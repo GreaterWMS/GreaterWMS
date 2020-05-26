@@ -19,7 +19,7 @@
 <hr>
 <p><h3>源代码：</h3></p>
 <p>由于源代码太大，所以摆在了百度网盘</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://pan.baidu.com/s/19bOyHbNuOnNyvFD_A5x4Xg">网盘地址</a></p>
+<p><a target="_blank" href="https://pan.baidu.com/s/19bOyHbNuOnNyvFD_A5x4Xg">网盘地址</a></p>
 <p>提取码：lssd</p>
 <hr>
 <p><h3>构建命令：</h3></p>
