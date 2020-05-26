@@ -23,23 +23,44 @@
 <p>提取码：lssd</p>
 <hr>
 <p><h3>构建命令：</h3></p>
-<p><h4>web端</h4></p>
-<p>运行开发服务器(使用默认主题):</p>
+<p><h4>开发：</h4></p>
+<p>运行开发服务器(使用默认主题)：</p>
 <p>$ quasar dev</p>
-<p>运行在特定端口:</p>
+<p>运行在特定端口：</p>
 <p>$ quasar dev -p 9090</p>
-<p>SSR:</p>
+<p>SSR：</p>
 <p>$ quasar dev -m ssr</p>
-<p>PWA:</p>
+<p>PWA：</p>
 <p>$ quasar dev -m pwa</p>
-<p>手机应用:</p>
+<p>手机应用：</p>
 <p>$ quasar dev -m cordova -T [android|ios]</p>
 <p>或更短的格式：</p>
 <p>$ quasar dev -m [android|ios]</p>
-<p>Electron应用:</p>
+<p>Electron应用：</p>
 <p>$ quasar dev -m electron</p>
 <p>将额外的参数和/或选项传递给</p>
 <p>底层“cordova”或“electron”可执行文件：</p>
 <p>$ quasar dev -m ios -- some params --and options --here</p>
 <p>$ quasar dev -m electron -- --no-sandbox --disable-setuid-sandbox</p>
+<p></p>
+<p><h3>生产版本</h3></p>
+<p>运行开发服务器(使用默认主题)：</p>
+<p>$ quasar build</p>
+<p>SSR：</p>
+<p>$ quasar build -m ssr</p>
+<p>PWA：</p>
+<p>$ quasar build -m pwa</p>
+<p>手机应用：</p>
+<p>$ quasar build -m cordova -T [android|ios]</p>
+<p>或更短的格式：</p>
+<p>$ quasar build -m [android|ios]</p>
+<p>Electron应用：</p>
+<p>$ quasar build -m electron</p>
+<p>将额外的参数和/或选项传递给</p>
+<p>底层“cordova”或“electron”可执行文件：</p>
+<p>$ quasar build -m ios -- some params --and options --here</p>
+<p></p>
+<p>Electron应用构建发布版本：</p>
+<p>quasar build --mode electron --publish always</p>
 <hr>
+<p><h3>开发环境：</h3></p>
