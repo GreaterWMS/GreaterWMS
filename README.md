@@ -7,6 +7,6 @@
 <p><div align=center><a href="https://www.npmjs.com/package/vue" rel="nofollow"><img src="https://camo.githubusercontent.com/9680910106d8b2169bb62b6ddb2e8d7b1136d3ff/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f7675652e7376673f73616e6974697a653d74727565" alt="Version" data-canonical-src="https://img.shields.io/npm/v/vue.svg?sanitize=true" style="max-width:100%;"></a>
 <img src="https://camo.githubusercontent.com/608dd8517bbaed6004fe246dbbf96f1cfdfd0a32/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f6c2f7675652e7376673f73616e6974697a653d74727565" alt="License" data-canonical-src="https://img.shields.io/npm/l/vue.svg?sanitize=true" style="max-width:100%;"></div></p>
 <hr>
-<p><h3>项目介绍</h3></p>
-<p>主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要主要</p>
+<p><h3>项目介绍：</h3></p>
+<p>企业在生产经营中，会有很多订货产生断货，或者库存积压等问题。如果断货产生，会给企业带来订单满足率下降，而如果库存过多，会给企业带来资金成本的压力，所以我们开发了这个供应链分析工具，帮助企业了解他们的库存状态，并分析可能存在的断货风险点，进而帮助企业进一步加强供应链计划的水平，提高订单满足率和降低库存堆积</p>
 <hr>
