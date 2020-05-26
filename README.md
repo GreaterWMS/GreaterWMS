@@ -58,7 +58,7 @@
 <p>将额外的参数和/或选项传递给</p>
 <p>底层“cordova”或“electron”可执行文件：</p>
 <p>$ quasar build -m ios -- some params --and options --here</p>
-<p>Electron应用构建发布版本：</h4></p>
+<p><h4>Electron应用构建发布版本：</h4></p>
 <p>quasar build --mode electron --publish always</p>
 <hr>
 <p><h3>使用教程：</h3></p>
