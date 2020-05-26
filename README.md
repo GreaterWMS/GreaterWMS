@@ -13,9 +13,12 @@
 <p><h3>开发环境：</h3></p>
 <p>Node.JS版本为v12.16.3</p>
 <p>Quasar/CLI版本为v1.0.7</p>
+<p>Vue.JS是基础开发语言</p>
 <p>axios版本为v0.19.2</p>
-<p>请求的API为restful协议</p>
+<p>API为restful协议</p>
 <hr>
-<p><h3>开发环境：</h3></p>
-<p>Node.JS版本为v12.16.3</p>
+<p><h3>源代码：</h3></p>
+<p>由于源代码太大，所以摆在了百度网盘</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://pan.baidu.com/s/19bOyHbNuOnNyvFD_A5x4Xg">网盘地址</a></p>
+<p>提取码：lssd</p>
 <hr>
