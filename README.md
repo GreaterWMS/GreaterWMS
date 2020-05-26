@@ -42,7 +42,7 @@
 <p>底层“cordova”或“electron”可执行文件：</p>
 <p>$ quasar dev -m ios -- some params --and options --here</p>
 <p>$ quasar dev -m electron -- --no-sandbox --disable-setuid-sandbox</p>
-<p><h4>生产版本</h4></p>
+<p><h4>生产版本：</h4></p>
 <p>运行开发服务器(使用默认主题)：</p>
 <p>$ quasar build</p>
 <p>SSR：</p>
