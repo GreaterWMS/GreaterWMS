@@ -22,3 +22,33 @@
 <p><a target="_blank" rel="noopener noreferrer" href="https://pan.baidu.com/s/19bOyHbNuOnNyvFD_A5x4Xg">网盘地址</a></p>
 <p>提取码：lssd</p>
 <hr>
+<p><h3>构建命令：</h3></p>
+<p>web 端</p>
+'''
+# 运行开发服务器(使用默认主题)
+$ quasar dev
+
+# 运行在特定端口
+$ quasar dev -p 9090
+
+# SSR
+$ quasar dev -m ssr
+
+# PWA
+$ quasar dev -m pwa
+
+# 手机应用
+$ quasar dev -m cordova -T [android|ios]
+# 或更短的格式：
+$ quasar dev -m [android|ios]
+
+# Electron应用
+$ quasar dev -m electron
+
+# 将额外的参数和/或选项传递给
+# 底层“cordova”或“electron”可执行文件：
+$ quasar dev -m ios -- some params --and options --here
+$ quasar dev -m electron -- --no-sandbox --disable-setuid-sandbox
+'''
+<p>提取码：lssd</p>
+<hr>
