@@ -17,11 +17,6 @@
 <p>* axios版本为v0.19.2</p>
 <p>* API，使用restful协议</p>
 <hr>
-<p><h3>源代码：</h3></p>
-<p>由于源代码太大，所以摆在了百度网盘</p>
-<p><a target="_blank" href="https://pan.baidu.com/s/19bOyHbNuOnNyvFD_A5x4Xg">网盘地址</a></p>
-<p>提取码：lssd</p>
-<hr>
 <p><h3>构建命令：</h3></p>
 <p><h4>开发：</h4></p>
 <p>运行开发服务器(使用默认主题)：</p>
