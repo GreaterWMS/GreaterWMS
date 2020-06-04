@@ -17,6 +17,22 @@
               二次开发API文档,暂未开放
             </q-tooltip>
         </q-btn>
+        <q-btn round flat @click="brownlink('https://github.com/Singosgu')">
+          <q-avatar size="26px">
+            <img src="statics/icons/GitHub.png">
+          </q-avatar>
+          <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                GitHub链接
+                </q-tooltip>
+        </q-btn>
+          <q-btn round flat @click="brownlink('https://gitee.com/Singosgu')">
+          <q-avatar size="26px">
+            <img src="statics/icons/gitee.ico">
+          </q-avatar>
+          <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                码云链接
+                </q-tooltip>
+        </q-btn>
         <q-btn icon="contact_mail" stretch flat label="联系我们" @click="contact = true">
           <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
               商务合作或给我们建议
