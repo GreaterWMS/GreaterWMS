@@ -7,14 +7,14 @@
             {{ title }}
           </q-toolbar-title>
       <q-space />
-        <q-btn icon="home" stretch flat label="首页" @click="outLink('https://www.56yhz.com/')">
+        <q-btn icon="home" stretch flat label="首页" @click="brownlink('https://www.56yhz.com/')">
           <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
             聚商汇首页
             </q-tooltip>
         </q-btn>
-        <q-btn icon="menu_book" stretch flat label="开发文档" @click="outLink('https://scmapi.56yhz.com/docs/')">
+        <q-btn icon="menu_book" stretch flat label="开发文档">
           <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-              二次开发API文档
+              二次开发API文档,暂未开放
             </q-tooltip>
         </q-btn>
         <q-btn icon="contact_mail" stretch flat label="联系我们" @click="contact = true">
@@ -254,7 +254,7 @@
     <q-page-container>
       <router-view />
         <q-page-sticky position="bottom-right" :offset="[18, 18]">
-          <q-btn v-show="authid === openid" flat @click="outLink('http://www.miit.gov.cn/')" color="black" label="版权所有 ICP证：沪ICP备16034540号-1" />
+          <q-btn v-show="authid === openid" flat @click="brownlink('http://www.miit.gov.cn/')" color="black" label="版权所有 ICP证：沪ICP备16034540号-1" />
             <q-btn fab glossy icon="contact_mail" color="purple" @click="contact = true"/>
           <q-dialog v-model="contact" transition-show="jump-down" transition-hide="jump-up">
       <q-card style="min-width: 350px">
@@ -745,9 +745,6 @@ export default {
     },
     brownlink (e) {
       openURL(e)
-    },
-    outLink (e) {
-      window.open(e, '_blank')
     },
     upnewdate () {
       var _this = this
