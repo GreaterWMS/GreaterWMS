@@ -1,0 +1,34 @@
+    <el-dialog title="用户登入" :lock-scroll="false" :close-on-click-modal="false" :visible.sync="dialogVisibleLogin" width="30%">
+    <el-row :gutter="24">
+        <el-col :span="24">
+            <el-input size="mini" show-word-limit placeholder="请输入用户名" v-model="loginform.name">
+                <template slot="prepend">用户：</template>
+            </el-input>
+        </el-col>
+    </el-row>
+        <el-row :gutter="24" style="margin-top: 10px">
+        <el-col :span="24">
+            <el-input size="mini" type="password" show-word-limit placeholder="请输入密码" v-model="loginform.password">
+                <template slot="prepend">密码：</template>
+            </el-input>
+        </el-col>
+    </el-row>
+  <el-row :gutter="24" style="margin: 10px 10px 0 0">
+      <el-col :span="11">
+    <span style="margin-top: 8px">滑动验证码：{[ captcha.num1 ]}{[ captcha.nummode ]}{[ captcha.num2 ]}=</span>
+      </el-col>
+      <el-col :span="11">
+          <div class="block">
+              <el-slider v-model="captcha.numrandom" :max="20"></el-slider>
+          </div>
+      </el-col>
+      <el-col :span="2">
+          <el-button v-show="captcha.numrandom === captcha.result" size="mini" type="success" icon="el-icon-check" circle></el-button>
+          <el-button v-show="captcha.numrandom != captcha.result" size="mini" type="danger" icon="el-icon-close" circle></el-button>
+      </el-col>
+  </el-row>
+  <div style="text-align: center">
+    <el-button size="mini" @click="dialogVisibleLogin = false">取 消</el-button>
+    <el-button size="mini" type="primary" @click="handleLoginSubmit()">登入</el-button>
+  </div>
+</el-dialog>

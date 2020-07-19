@@ -1,0 +1,23 @@
+from rest_framework import serializers
+
+class ListSerializers(serializers.Serializer):
+    name = serializers.CharField(read_only=True)
+    goods_name = serializers.CharField(read_only=True)
+    onhand_stock = serializers.IntegerField(read_only=True)
+    can_order_stock = serializers.IntegerField(read_only=True)
+    inspect_stock = serializers.IntegerField(read_only=True)
+    cross_stock = serializers.IntegerField(read_only=True)
+    hold_stock = serializers.IntegerField(read_only=True)
+    damage_stock = serializers.IntegerField(read_only=True)
+    ood_stock = serializers.IntegerField(read_only=True)
+    pre_delivery_stock = serializers.IntegerField(read_only=True)
+    pre_load_stock = serializers.IntegerField(read_only=True)
+    pre_sort_stock = serializers.IntegerField(read_only=True)
+    load_stock = serializers.IntegerField(read_only=True)
+    sort_stock = serializers.IntegerField(read_only=True)
+    pick_stock = serializers.IntegerField(read_only=True)
+    picked_stock = serializers.IntegerField(read_only=True)
+    back_order_stock = serializers.IntegerField(read_only=True)
+    t_code = serializers.CharField(read_only=True)
+    create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    last_update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')

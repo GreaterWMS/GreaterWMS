@@ -1,0 +1,43 @@
+from rest_framework import serializers
+
+class ListSerializers(serializers.Serializer):
+    name = serializers.CharField(read_only=True)
+    so_status = serializers.IntegerField(read_only=True)
+    goods_code = serializers.CharField(read_only=True)
+    goods_name = serializers.CharField(read_only=True)
+    so_qty = serializers.IntegerField(read_only=True)
+    pick_stock = serializers.IntegerField(read_only=True)
+    pick_down_qty = serializers.IntegerField(read_only=True)
+    picked_stock = serializers.IntegerField(read_only=True)
+    picked_down_qty = serializers.IntegerField(read_only=True)
+    down_qty = serializers.IntegerField(read_only=True)
+    shipping_qty = serializers.IntegerField(read_only=True)
+    receive_qty = serializers.IntegerField(read_only=True)
+    damage_qty = serializers.IntegerField(read_only=True)
+    shortage_qty = serializers.IntegerField(read_only=True)
+    oos_qty = serializers.IntegerField(read_only=True)
+    customer = serializers.CharField(read_only=True)
+    create_name = serializers.CharField(read_only=True)
+    t_code = serializers.CharField(read_only=True)
+    create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    last_update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+
+class PickListSerializers(serializers.Serializer):
+    name = serializers.CharField(read_only=True)
+    so_name = serializers.CharField(read_only=True)
+    bin_name = serializers.CharField(read_only=True)
+    picking_status = serializers.IntegerField(read_only=True)
+    goods_code = serializers.CharField(read_only=True)
+    goods_name = serializers.CharField(read_only=True)
+    pick_stock = serializers.IntegerField(read_only=True)
+    picked_stock = serializers.IntegerField(read_only=True)
+    shipping_stock = serializers.IntegerField(read_only=True)
+    customer = serializers.CharField(read_only=True)
+    picking_people = serializers.CharField(read_only=True)
+    create_name = serializers.CharField(read_only=True)
+    t_code = serializers.CharField(read_only=True)
+    create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    last_update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+
+class BinListSerializers(serializers.Serializer):
+    name = serializers.CharField(read_only=True)
