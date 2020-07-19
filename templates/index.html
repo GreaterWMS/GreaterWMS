@@ -1,0 +1,99 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% block detail %}
+    <section id="hero" class="hero hero-home bg-gray">
+      <div class="container">
+        <div class="row d-flex">
+          <div class="col-lg-6 text order-2 order-lg-1">
+            <h1>API</h1>
+          <h1>让系统开发更高效</h1>
+            <p class="hero-text">适用于开发生产管理系统，供应链采购系统，生产计划系统，订单管理系统，司机到货交接系统，仓库管理系统，销售跟踪系统，对账管理系统，POD电子回单系统</p>
+            <div class="CTA"><a href="https://wms.56yhz.com" target="_blank" class="btn btn-primary btn-shadow btn-gradient link-scroll">WMS系统</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'docs' %}" class="btn btn-outline-primary">查看文档</a>
+                 {% else %}
+                <a class="btn btn-outline-primary" @click="registeropen()">注册用户</a>
+            {% endif %}
+                </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2"><img src="{% static 'index/img/wms1.png' %}" alt="..." class="img-fluid"></div>
+        </div>
+      </div>
+    </section>
+    <section id="browser" class="browser">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8 text-center">
+            <h2 class="h3 mb-5">我们的优势</h2>
+            <div class="browser-mockup">
+              <div id="nav-tabContent" class="tab-content">
+                <div id="nav-first" role="tabpanel" aria-labelledby="nav-first-tab" class="tab-pane fade show active"><img src="/static/index/img/preview-3.png" alt="..." class="img-fluid"></div>
+                <div id="nav-second" role="tabpanel" aria-labelledby="nav-second-tab" class="tab-pane fade"><img src="{% static 'index/img/wmsapi.png' %}" alt="..." class="img-fluid"></div>
+                <div id="nav-third" role="tabpanel" aria-labelledby="nav-third-tab" class="tab-pane fade"><img src="/static/index/img/preview-1.png" alt="..." class="img-fluid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="myTab" role="tablist" class="nav nav-tabs">
+          <div class="row">
+            <div class="col-md-4"><a id="nav-first-tab" data-toggle="tab" href="#nav-first" role="tab" aria-controls="nav-first" aria-expanded="true" class="nav-item nav-link active"> <span class="number">1</span>完整的仪表盘报表系统，更直观的查看仓库运营状况</a></div>
+            <div class="col-md-4"><a id="nav-second-tab" data-toggle="tab" href="#nav-second" role="tab" aria-controls="nav-second" class="nav-item nav-link"> <span class="number">2</span>更开放的API，方便用户做二次开发使用，丰富的文档借口支持</a></div>
+            <div class="col-md-4"><a id="nav-third-tab" data-toggle="tab" href="#nav-third" role="tab" aria-controls="nav-third" class="nav-item nav-link"> <span class="number">3</span>简单明了的操作界面，附带扫描功能，可以实现无纸化办公</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="extra-features" class="extra-features bg-primary">
+      <div class="container text-center">
+        <header>
+          <h2>系统功能</h2>
+          <div class="row">
+            <p class="lead col-lg-8 mx-auto">我们主要的功能有6大模块，分别实现了，数据同步，库位规划，库存管理，出入库管理，二维码货物跟踪等功能</p>
+          </div>
+        </header>
+        <div class="grid row">
+          <div class="item col-lg-4 col-md-6">
+            <div class="icon"> <i class="el-icon-eleme"></i></div>
+            <h3 class="h5">实时数据</h3>
+            <p>完全在线的系统，可以实现数据同步化，仓库之间的数据对接，以及动态数据的实时展示</p>
+          </div>
+          <div class="item col-lg-4 col-md-6">
+            <div class="icon"> <i class="icon-folder-1"></i></div>
+            <h3 class="h5">权限管理</h3>
+            <p>精细化的权限管理功能，可以保护数据安全，细分员工工作，并有详细的数据可以查询用户使用记录</p>
+          </div>
+          <div class="item col-lg-4 col-md-6">
+            <div class="icon"> <i class="icon-gears"></i></div>
+            <h3 class="h5">仓库管理</h3>
+            <p>包括进出库管理，库内库存管理，储位规划，辅料包材管理，仓库前端供应商，司机，客户的交接管理</p>
+          </div>
+          <div class="item col-lg-4 col-md-6">
+            <div class="icon"> <i class="fa fa-language"></i></div>
+            <h3 class="h5">API文档</h3>
+            <p>开放的API文档，更适合您对系统做二次开发，也可以只是用API文档，来更快速的开发您的WMS系统</p>
+          </div>
+          <div class="item col-lg-4 col-md-6">
+            <div class="icon"><i class="fa fa-bar-chart"></i></div>
+            <h3 class="h5">报表系统</h3>
+            <p>完善的报表系统，可以让您随时掌握仓库信息，预警设置功能，可以让您及时处理仓库的各项事务</p>
+          </div>
+          <div class="item col-lg-4 col-md-6">
+            <div class="icon"> <i class="fa fa-qrcode"></i></div>
+            <h3 class="h5">扫描功能</h3>
+            <p>通过小程序，扫描二维码，可以全程跟踪货物动向，实现无纸化办公，也可以根据开放的API文档，自行开发二维码功能</p>
+          </div>
+        </div>
+      </div>
+    </section>
+{#    <section id="about-us" class="about-us bg-gray">#}
+{#      <div class="container">#}
+{#        <h2>About Us</h2>#}
+{#        <div class="row">#}
+{#          <p class="lead col-lg-10">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. or randomised words which don't look even slightly believable. </p>#}
+{#        </div><a href="#" class="btn btn-primary btn-shadow btn-gradient">Discover More</a>#}
+{#      </div>#}
+{#    </section>#}
+{% endblock %}
+{% block script %}
+
+{% endblock %}

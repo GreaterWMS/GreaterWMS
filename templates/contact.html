@@ -1,0 +1,41 @@
+<el-dialog title="联系我们" :lock-scroll="false" :close-on-click-modal="false" :visible.sync="dialogVisibleContact" width="30%">
+    <el-row :gutter="24">
+        <el-col :span="24">
+            <el-input size="small" type="text" maxlength="10" show-word-limit placeholder="请输入联系人名称" v-model="contactform.name">
+                <template slot="prepend">称谓：</template>
+            </el-input>
+        </el-col>
+    </el-row>
+        <el-row :gutter="24" style="margin-top: 10px">
+        <el-col :span="24">
+            <el-input size="small" maxlength="11" show-word-limit placeholder="请输入联系电话" v-model="contactform.mobile">
+                <template slot="prepend">电话：</template>
+            </el-input>
+        </el-col>
+    </el-row>
+    <el-row :gutter="24" style="margin-top: 10px">
+        <el-col :span="24">
+            <el-input size="small" type="textarea" maxlength="200" show-word-limit placeholder="请输入你需要联系的备注信息" v-model="contactform.comments">
+                <template slot="prepend">备注：</template>
+            </el-input>
+        </el-col>
+    </el-row>
+  <el-row :gutter="24" style="margin: 10px 10px 0 0">
+      <el-col :span="11">
+    <span style="margin-top: 8px">滑动验证码：{[ captcha.num1 ]}{[ captcha.nummode ]}{[ captcha.num2 ]}=</span>
+      </el-col>
+      <el-col :span="11">
+          <div class="block">
+              <el-slider v-model="captcha.numrandom" :max="20"></el-slider>
+          </div>
+      </el-col>
+      <el-col :span="2">
+          <el-button v-show="captcha.numrandom === captcha.result" size="mini" type="success" icon="el-icon-check" circle></el-button>
+          <el-button v-show="captcha.numrandom != captcha.result" size="mini" type="danger" icon="el-icon-close" circle></el-button>
+      </el-col>
+  </el-row>
+  <div style="text-align: center">
+    <el-button size="mini" @click="dialogVisibleContact = false">取 消</el-button>
+    <el-button size="mini" type="primary" @click="handleContactSubmit()">发送</el-button>
+  </div>
+</el-dialog>

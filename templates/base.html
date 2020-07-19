@@ -1,0 +1,547 @@
+{% load static %}
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <title>聚商汇--免费开源WMS仓库管理系统</title>
+        <meta name="renderer" content="webkit|ie-comp|ie-stand">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="content-language" content="zh-cn" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8" />
+        <meta name="baidu-site-verification" content="LQ7S6D6xBj" />
+        <meta name="description" content="聚商汇--免费开源WMS仓库管理系统">
+        <meta name="keywords" content="系统快速开发工具,WMS-API,TMS-API,WMS,TMS,SCM-API,SCM,企业管理系统,开发工具，仓库管理系统，供应链管理系统">
+        <meta name="author" content="聚商汇" >
+        {% block meta %}{% endblock %}
+        {% block link %}{% endblock %}
+        <link rel="stylesheet" href="/static/index/vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/index/vendor/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/index/css/landy-iconfont.css">
+        <link rel="stylesheet" href="{% static 'index/css/index1.css' %}">
+        <link rel="stylesheet" href="/static/index/vendor/owl.carousel/assets/owl.carousel.css">
+        <link rel="stylesheet" href="/static/index/vendor/owl.carousel/assets/owl.theme.default.css">
+        <link rel="stylesheet" href="/static/index/css/style.default.css" id="theme-stylesheet">
+        <link rel="stylesheet" href="/static/index/css/custom.css">
+        <link rel="stylesheet" href="https://unpkg.com/element-ui@2.13.0/lib/theme-chalk/index.css">
+        <link rel="shortcut icon" href="/static/index/logo.png">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?5efb624b19920b43bae25d88fedcf33a";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    </head>
+    <body>
+    <div id="index">
+    <header class="header">
+      <nav class="navbar navbar-expand-lg fixed-top"><a href="{% url 'index' %}" class="navbar-brand"><img src="{% static 'index/logo.png' %}" alt="Swagger Logo" style="padding-right:5px; height: 25px; width: 30px">聚商汇--免费开源WMS仓库管理系统</a>
+        <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"></button>
+        <div id="navbarSupportedContent" class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
+            <li class="nav-item"><el-link :underline="false" href="{% url 'index' %}" class="nav-link" style="margin-left: 10px">首页</el-link></li>
+            <li class="nav-item"><el-link :underline="false" href="{% url 'docs' %}" class="nav-link" style="margin-left: 10px">API文档</el-link></li>
+{#          <li class="nav-item"><el-link :underline="false" @click="operationOpen()" class="nav-link" style="margin-left: 10px">使用指南</el-link></li>#}
+{#                        <li class="nav-item"><el-link :underline="false" @click="deployOpen()" class="nav-link" style="margin-left: 10px">部署指南</el-link></li>#}
+              <li class="nav-item"><el-link class="nav-link" :underline="false" @click="styleOpen()" style="margin-left: 10px">参数样式</el-link></li>
+{#              <li class="nav-item"><el-link :underline="false" href="{% url 'price' %}" class="nav-link" style="margin-left: 10px">定价</el-link></li>#}
+            <li class="nav-item"><el-link :underline="false" class="nav-link" @click="ContactOpen()" style="margin-left: 10px">联系我们</el-link></li>
+          </ul>
+            {% if user.is_authenticated %}
+                <div class="navbar-text" style="margin-left: 10px">
+                    <el-dropdown>
+                        <span class="el-dropdown-link">
+                            {{ user.username }}<i class="el-icon-arrow-down el-icon--right"></i>
+                        </span>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item><el-link @click="openID" :underline="false" icon="el-icon-setting">我的openID</el-link></el-dropdown-item>
+                            <el-dropdown-item><el-link href="{% url 'logout' %}" icon="el-icon-link" :underline="false" style="text-decoration:none!important">退出登入</el-link></el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </div>
+            {% else %}
+                <div class="navbar-text" style="margin-left: 10px">
+                    <a class="btn btn-primary navbar-btn btn-shadow btn-gradient" @click="loginopen()" style="color: #ffffff">登入</a>
+                </div>
+            {% endif %}
+        </div>
+      </nav>
+    </header>
+        {% block detail %}{% endblock %}
+        <div id="scrollTop">
+      <div class="d-flex align-items-center justify-content-end"><i class="fa fa-long-arrow-up"></i>To Top</div>
+    </div>
+    <footer class="main-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6"><a href="#" class="brand">公众号</a>
+            <ul class="contact-info list-unstyled">
+              <li><a>
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="url"
+                :preview-src-list="srcList">
+              </el-image>
+            </a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5>快速链接</h5>
+            <ul class="links list-unstyled">
+{#              <li><el-link :underline="false" @click="operationOpen()">使用指南</el-link></li>#}
+{#                <li><el-link :underline="false" @click="deployOpen()">部署教程</el-link></li>#}
+                                <li><el-link :underline="false" href="{% url 'docs' %}">API文档</el-link></li>
+{#              <li><el-link :underline="false" href="{% url 'price' %}">定价</el-link></li>#}
+              <li><el-link :underline="false" @click="styleOpen()">参数格式</el-link></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5>动态</h5>
+            <ul class="links list-unstyled">
+{#              <li> <a href="#">人招</a></li>#}
+                <li><el-link :underline="false" @click="ContactOpen()">联系我们</el-link></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5>微信小程序</h5>
+            <ul class="links list-unstyled">
+              <li><a>
+              <el-image
+                style="width: 100px; height: 100px"
+                :src="url"
+                :preview-src-list="srcList">
+              </el-image>
+            </a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="copyrights">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7">
+{#                <p><a target="_blank" href="http://www.miit.gov.cn/">沪ICP备19016229号-2</a></p>#}
+
+              <p>版权所有 ICP证：沪ICP备16034540号-1<a target="_blank" href="http://www.miit.gov.cn/"></a></p>
+            </div>
+            <div class="col-md-5 text-right">
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    {% include 'openid.html' %}
+    {% include 'login.html' %}
+{% include 'register.html' %}
+    {% include 'contact.html' %}
+    {% include 'style.html' %}
+        {% include 'operation.html' %}
+    {% include 'order.html' %}
+    {% include 'deploy.html' %}
+    {% include 'up.html' %}
+    </div>
+        <script src="/static/index/js/jquery-3.2.1.min.js"></script>
+        <script src="/static/index/js/popper.min.js"> </script>
+        <script src="/static/index/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/static/index/vendor/jquery.cookie/jquery.cookie.js"> </script>
+        <script src="/static/index/vendor/owl.carousel/owl.carousel.min.js"></script>
+        <script src="/static/index/js/front.js"></script>
+        <script src="{% static 'vue/axios.min.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.1"></script>
+        <script src="https://unpkg.com/element-ui@2.13.0/lib/index.js"></script>
+        {% block script %}{% endblock %}
+    <script>
+    var index= new Vue({
+        delimiters: ["{[", "]}"],
+        el: "#index",
+        data: {
+            openid: '{ 你的openid }',
+            dialogVisibleLogin: false,
+            loginform: {
+                name : '',
+                password: '',
+            },
+            dialogVisibleRegister: false,
+            registerform: {
+                name : '',
+                password1: '',
+                password2: ''
+            },
+            formLabelWidth: '120px',
+            captcha: {
+                result: "",
+                num1: "",
+                num2: "",
+                nummode: "",
+                numrandom: ""
+            },
+            url: 'https://www.8838.info/media/img/cg.jpg',
+            srcList: [
+                'https://www.8838.info/media/img/cg.jpg'
+        ],
+            dialogVisibleopenID: false,
+            contactform: {
+                name: '',
+                mobile:'',
+                comments: ''
+            },
+            dialogVisibleContact: false,
+            dialogVisibleStyle: false,
+            activeName: 'first',
+            operationName: 'first',
+            deployName: 'first',
+            dialogVisibleOperation: false,
+            priceData:[{
+                auth: '同时并发数',
+                normal: '2',
+                vip:'10',
+                svip:'50',
+                ssvip:'无限制'
+        },{
+                auth: '每日接口调用限制次数',
+                normal: '1000',
+                vip:'5000',
+                svip:'无限制',
+                ssvip: '无限制'
+
+        },{
+                auth: '可以创建的用户数量',
+                normal: '1',
+                vip:'10',
+                svip: '50',
+                ssvip: '无限制'
+        },{
+                auth: '远程系统开发咨询',
+                normal: '否',
+                vip:'否',
+                svip: '是',
+                ssvip: '是'
+        },{
+                auth: '自定义api接口',
+                normal: '否',
+                vip:'否',
+                svip: '否',
+                ssvip: '是'
+        },{
+                auth: '驻场开发支持',
+                normal: '否',
+                vip:'否',
+                svip: '价格另议',
+                ssvip: '价格另议'
+        },{
+                auth: '数据恢复',
+                normal: '否',
+                vip:'1条数据1元',
+                svip: '1条数据1元',
+                ssvip: '1条数据1元'
+        },{
+                auth: '定价',
+                normal: '￥ 600/年',
+                vip:'￥ 1,200/年',
+                svip:'￥ 5,000/年',
+                ssvip: '￥ 12,000/年'
+        },{
+                auth: '订阅成为会员',
+                normal: '订阅会员',
+                vip:'订阅会员',
+                svip:'订阅会员',
+                ssvip:'订阅会员',
+        }],
+            dialogVisibleOrder: false,
+            orderData:[{
+                username: '',
+                vip: ''
+            }],
+            order_id: '',
+            pay_rule: '1',
+            dialogVisibleDeploy: false
+
+        },
+        methods: {
+            deployOpen(){
+                this.dialogVisibleDeploy = true
+            },
+            handle(row,column,event,cell){
+                if (row.auth === "订阅成为会员"){
+                axios({
+                    url: '{{order|safe}}',
+                    method: 'post',
+                    headers: {
+                        "Content-Type": "application/json;charset=utf-8",
+                    },
+                    params: {
+                    },
+                    data: {
+                        data: column.label
+                    }
+                }).then(res => {
+                    if (res.data.code === "200") {
+                        this.dialogVisibleOrder = true;
+                        this.orderData.forEach(r => {
+                            r.username = res.data.data.username;
+                            r.vip = res.data.data.vip;
+                        });
+                        this.order_id = res.data.data.order_id
+                    }else if(res.data.code === "1004"){
+                        this.dialogVisibleOrder = true;
+                        this.orderData.forEach(r => {
+                            r.username = res.data.data.username;
+                            r.vip = res.data.data.vip;
+                        });
+                        this.order_id = res.data.data.order_id
+                    }else if(res.data.code === "1011"){
+                        this.dialogVisibleLogin = true;
+                        this.getcaptcha();
+                    }else{
+                    }
+                }).catch(err => {
+                })
+                }else{}
+            },
+            orderPay(){
+                this.dialogVisibleOrder = false;
+                axios({
+                    url: '{{orderpay|safe}}',
+                    method: 'post',
+                    headers: {
+                        "Content-Type": "application/json;charset=utf-8",
+                    },
+                    params: {
+                    },
+                    data: {
+                        id: this.order_id,
+                        rule: this.pay_rule
+                    }
+                }).then(res => {
+                    if (res.data.code === "200") {
+                        window.open(res.data.data);
+                        this.orderCheck()
+                    }else{
+                    }
+                }).catch(err => {
+                })
+            },
+            orderCheck(){
+                axios({
+                    url: '{{ordercheck|safe}}',
+                    method: 'post',
+                    headers: {
+                        "Content-Type": "application/json;charset=utf-8",
+                    },
+                    params: {
+                    },
+                    data: {
+                        id: this.order_id
+                    }
+                }).then(res => {
+                    console.log(res)
+                    if (res.data.code === "200") {
+                        this.$message({
+                            message: '恭喜你，订阅成功',
+                            type: 'success'
+                        });
+                    }else{
+                        console.log(res)
+                    }
+                }).catch(err => {
+                })
+            },
+            styleOpen(){
+                this.dialogVisibleStyle = true;
+            },
+            operationOpen(){
+                this.dialogVisibleOperation = true;
+            },
+            handleClick(tab, event) {
+                console.log(tab, event);
+            },
+            ContactOpen(){
+                this.dialogVisibleContact = true;
+                this.getcaptcha()
+            },
+            handleContactSubmit() {
+                if(this.captcha.numrandom === this.captcha.result){
+                axios({
+                    url: '{{contactapi|safe}}',
+                    method: 'post',
+                    headers: {
+                        "Content-Type": "application/json;charset=utf-8",
+                    },
+                    params: {
+                    },
+                    data: {
+                        data: this.contactform
+                    }
+                }).then(res => {
+                    if (res.data.code === "200") {
+                        this.contactform.name = '';
+                        this.contactform.mobile = '';
+                        this.contactform.comments = '';
+                        this.$message({
+                            message: '感谢您的留言，我们会尽快与您联系',
+                            type: 'success'
+                        });
+                        this.dialogVisibleContact = false
+                    } else if(res.data.code === "1001"){
+                        this.getcaptcha();
+                        this.$message.error(res.data.msg)
+                    }else if(res.data.code === "1002"){
+                        this.getcaptcha();
+                        this.$message.error(res.data.msg)
+                    }else if(res.data.code === "1003"){
+                        this.getcaptcha();
+                        this.$message.error(res.data.msg)
+                    }else{
+                        this.getcaptcha();
+                        this.$message.error('未知错误信息，请检查网络')
+                    }
+                }).catch(err => {
+                    this.$message.error('未知错误信息，请检查网络')
+                    this.getcaptcha()
+                })
+                }else{
+                    this.getcaptcha();
+                    this.$message.error('验证码错误')
+                }
+            },
+            loginopen(){
+                this.dialogVisibleLogin = true;
+                console.log(this.captcha)
+                this.getcaptcha()
+            },
+            handleLoginSubmit(){
+                console.log(this.captcha)
+                if(this.captcha.numrandom === this.captcha.result){
+                    axios({
+                    url: '{{loginapi|safe}}',
+                    method: 'post',
+                    headers: {
+                        'Content-Type': "application/json;charset=utf-8"
+                    },
+                    params: {
+                    },
+                    data: {
+                        data: this.loginform
+                    }
+                }).then(res => {
+                    if (res.data.code === "200") {
+                        console.log(res.data)
+                        this.dialogVisibleLogin = false;
+                        window.location.reload()
+                    } else if(res.data.code === "1011"){
+                        this.$message.error(res.data.msg)
+                    }else {
+                        this.getcaptcha();
+                        this.$message.error('用户名或密码不正确')
+                    }
+                }).catch(err => {
+                    this.getcaptcha();
+                    this.$message.error('未知错误信息，请检查网络');
+                })
+                }else{
+                    this.getcaptcha();
+                    this.$message.error('验证码错误')
+                }
+            },
+            registeropen(){
+                this.dialogVisibleRegister = true;
+                this.getcaptcha()
+            },
+            handleRegisterSubmit(){
+
+                if(this.captcha.numrandom === this.captcha.result){
+                    axios({
+                    url: '{{registerapi|safe}}',
+                    method: 'post',
+                    headers: {
+                        'Content-Type': "application/json;charset=utf-8"
+                    },
+                    params: {
+                    },
+                    data: {
+                        data: this.registerform
+                    }
+                }).then(res => {
+                    if (res.data.code === "200") {
+                        this.dialogVisibleRegister = false;
+                        window.location.reload()
+                    } else if (res.data.code === "1022") {
+                        this.getcaptcha();
+                        this.$message.error(res.data.msg)
+                    }else if (res.data.code === "1024") {
+                        this.getcaptcha();
+                        this.$message.error(res.data.msg)
+                    }else if (res.data.code === "1025") {
+                        this.getcaptcha();
+                        this.$message.error(res.data.msg)
+                    }else if (res.data.code === "1026") {
+                        this.getcaptcha();
+                        this.$message.error(res.data.msg)
+                    }else if (res.data.code === "1029") {
+                        this.getcaptcha();
+                        this.$message.error(res.data.msg)
+                    }
+                    else{
+                        this.getcaptcha();
+                        this.$message.error('未知错误信息，请检查网络')
+                    }
+                }).catch(err => {
+                    console.log(err);
+                    this.getcaptcha()
+                })
+                }else{
+                    this.$message.error('验证码错误');
+                    this.getcaptcha()
+                }
+            },
+            getcaptcha(){
+                axios({
+                    url: '{{captcha|safe}}',
+                    method: 'get',
+                    headers: {
+                        'Content-Type': "application/json;charset=utf-8"
+                    },
+                    params: {
+                    },
+                    data: {
+                    }
+                }).then(res => {
+                    if (res.data.code === "200") {
+                        this.captcha.num1 = res.data.data.num1;
+                        this.captcha.num2 = res.data.data.num2;
+                        this.captcha.nummode = res.data.data.nummode;
+                        this.captcha.numrandom = res.data.data.numrandom;
+                        this.captcha.result = res.data.data.result;
+                        console.log(this.captcha)
+                    } else {
+                        this.$message.error('未知错误信息，请检查网络');
+                        this.getcaptcha()
+                    }
+                }).catch(err => {
+                    this.$message.error('未知错误信息，请检查网络');
+                    this.getcaptcha()
+                })
+            },
+            openID(){
+                this.dialogVisibleopenID = true;
+            },
+
+        },
+        created(){
+        },
+        mounted(){
+            if ('{{ openid|safe }}'){
+                this.openid = '{{ openid|safe }}'
+            }
+        },
+        updated(){
+
+        },
+    })
+</script>
+    </body>
+</html>
