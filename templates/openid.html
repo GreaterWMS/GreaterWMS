@@ -1,0 +1,10 @@
+<el-dialog
+  title="你的openID"
+  :lock-scroll="false"
+  :visible.sync="dialogVisibleopenID"
+  width="30%">
+  <span>openID:  {[openid]}</span>
+  <span slot="footer" class="dialog-footer">
+    <el-button type="primary" @click="dialogVisibleopenID = false">关 闭</el-button>
+  </span>
+</el-dialog>
