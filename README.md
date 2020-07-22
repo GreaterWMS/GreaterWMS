@@ -1,4 +1,4 @@
-# 聚商汇--供应链管理分析软件
+# Django, Open-source warehouse management system
 
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/scm/scm.png?raw=true"/></div></p>
 
