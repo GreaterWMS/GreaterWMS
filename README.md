@@ -1,4 +1,4 @@
-# Django, Open-source warehouse management system
+# 聚商汇--开源仓库管理系统
 
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/scm/scm.png?raw=true"/></div></p>
 
@@ -8,7 +8,8 @@
 <img src="https://camo.githubusercontent.com/608dd8517bbaed6004fe246dbbf96f1cfdfd0a32/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f6c2f7675652e7376673f73616e6974697a653d74727565" alt="License" data-canonical-src="https://img.shields.io/npm/l/vue.svg?sanitize=true" style="max-width:100%;"></div></p>
 <hr>
 <p><h3>项目介绍：</h3></p>
-<p>企业在生产经营中，会有很多订货产生断货，或者库存积压等问题。如果断货产生，会给企业带来订单满足率下降，而如果库存过多，会给企业带来资金成本的压力，所以我们开发了这个供应链分析工具，帮助企业了解他们的库存状态，并分析可能存在的断货风险点，进而帮助企业进一步加强供应链计划的水平，提高订单满足率和降低库存堆积</p>
+<p>现行的WMS项目分2类，一类是传统的线下软件，这类软件一般是高度封装，客户如果想要定制化一些功能，会非常复杂和耗时；第二类是saas的wms，线上WMS存在致命的问题，就是很难和线下的ERP或者TMS软件做API对接，如果涉及到定制开发，也很难得到支持。</p>
+<p>该开源项目，做了前后端分离，后端全部为分离的api，api技术使用的是Django-rest-framework，遵循restful协议；前端为vue页面，用axios进行封装，后端路由使用的是Django的路由机制，前端路由使用vue-router，并且数据传输做了安全控制，防sql注入和js,css攻击</p>
 <hr>
 <p><h3>开发环境：</h3></p>
 <p>* Node.JS版本为v12.16.3</p>
