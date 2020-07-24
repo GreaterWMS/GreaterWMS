@@ -46,6 +46,7 @@ class PickingModel(models.Model):
     shipping_stock = models.IntegerField(default=0)
     customer = models.CharField(max_length=50)
     picking_people = models.CharField(max_length=50)
+    plate_license = models.CharField(max_length=50)
     create_name = models.CharField(max_length=50)
     t_code = models.CharField(max_length=50)
     is_delete = models.IntegerField(default=0)
