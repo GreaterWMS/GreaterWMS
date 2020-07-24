@@ -1,4 +1,4 @@
 db.sqlite3
-__pycache_/
+__pycache__/
 cert/
 price/
