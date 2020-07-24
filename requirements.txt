@@ -7,7 +7,7 @@ colorama==0.4.3
 coreapi==2.3.3
 coreschema==0.0.4
 cryptography==2.9.2
-Django==2.2.12
+Django==2.2.14
 django-cors-headers==3.3.0
 django-rest-swagger==2.2.0
 django-silk==4.0.1

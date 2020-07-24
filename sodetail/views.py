@@ -652,14 +652,20 @@ class PickAPI(APIView):
                 ip = request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get(
                     'HTTP_X_FORWARDED_FOR') else request.META.get('REMOTE_ADDR')
                 for i in range(len(data)):
-                    if PickingModel.objects.filter(appid=request.user.appid, t_code=data[i]['t_code'], is_delete=0).exists():
+                    if PickingModel.objects.filter(appid=request.user.appid, t_code=data[i]['t_code'],
+                                                   picking_status=0,is_delete=0).exists():
                         picking_data = PickingModel.objects.filter(appid=request.user.appid, t_code=data[i]['t_code'], is_delete=0).first()
                         if picking_data.picked_stock + int(data[i]['picked_stock']) > picking_data.pick_stock:
                             ret = FBMsg.wms_so_picked_more()
                             ret['data'] = data
                             return Response(ret)
+                    else:
+                        ret = FBMsg.wms_so_picked_more()
+                        ret['data'] = data
+                        return Response(ret)
                 for j in range(len(data)):
-                    picking_data = PickingModel.objects.filter(appid=request.user.appid, t_code=data[j]['t_code'], is_delete=0).first()
+                    picking_data = PickingModel.objects.filter(appid=request.user.appid, t_code=data[j]['t_code'],
+                                                               picking_status=0, is_delete=0).first()
                     picking_data.pick_stock = picking_data.pick_stock - int(data[j]['picked_stock'])
                     picking_data.picked_stock = picking_data.picked_stock + int(data[j]['picked_stock'])
                     picking_data.shipping_stock = picking_data.picked_stock
@@ -687,6 +693,61 @@ class PickAPI(APIView):
                 return Response(ret)
         else:
             return Response(FBMsg.wms_vip())
+    def patch(self, request, *args, **kwargs):
+        vip_id = Users.objects.filter(appid=request.user.appid, developer=1, is_delete=0).first().vip
+        vip_check = VipCheck.VipCheck(vip_id)
+        if vip_check == "N":
+            return Response(FBMsg.wms_vip())
+        elif vip_check == "Y":
+            data = DataSolve.datasolve(request)
+            try:
+                if data['code'] == "1031":
+                    return Response(FBMsg.err_bad())
+            except:
+                print(data)
+                ip = request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get(
+                    'HTTP_X_FORWARDED_FOR') else request.META.get('REMOTE_ADDR')
+                for i in range(len(data)):
+                    if PickingModel.objects.filter(appid=request.user.appid, t_code=data[i]['t_code'], picking_status=1,
+                                                   is_delete=0).exists():
+                        shipping_data = PickingModel.objects.filter(appid=request.user.appid,
+                                                                   t_code=data[i]['t_code'], is_delete=0).first()
+                        if int(data[i]['shipping_stock']) > shipping_data.shipping_stock:
+                            ret = FBMsg.wms_so_picked_more()
+                            ret['data'] = data
+                            return Response(ret)
+                    else:
+                        ret = FBMsg.wms_so_picked_more()
+                        ret['data'] = data
+                        return Response(ret)
+                shipping_data = PickingModel.objects.filter(appid=request.user.appid, t_code=data[0]['t_code'],
+                                                           is_delete=0).first()
+                so_list = ListModel.objects.filter(appid=request.user.appid,
+                                                   name=shipping_data.so_name,
+                                                   is_delete=0).first()
+                so_list.so_status = 5
+                so_list.save()
+                for j in range(len(data)):
+                    shipping_data = PickingModel.objects.filter(appid=request.user.appid, t_code=data[j]['t_code'],
+                                                               is_delete=0).first()
+                    shipping_data.shipping_stock = int(data[j]['shipping_stock'])
+                    shipping_data.plate_license = str(data[j]['plate_license'])
+                    shipping_data.picking_status = 2
+                    so_detail = DetailModel.objects.filter(appid=request.user.appid,
+                                                           name=shipping_data.so_name,
+                                                           is_delete=0)
+                    for k in range(len(so_detail)):
+                        so_detail[k].so_status = 5
+                        so_detail[k].shipping_qty = so_detail[k].picked_stock
+                        so_detail[k].save()
+                    shipping_data.save()
+                ret = FBMsg.wms_ret()
+                ret['ip'] = ip
+                ret['data'] = data
+                return Response(ret)
+        else:
+            return Response(FBMsg.wms_vip())
+
     def put(self, request, *args, **kwargs):
         vip_id = Users.objects.filter(appid=request.user.appid, developer=1, is_delete=0).first().vip
         vip_check = VipCheck.VipCheck(vip_id)
@@ -702,25 +763,23 @@ class PickAPI(APIView):
                     'HTTP_X_FORWARDED_FOR') else request.META.get('REMOTE_ADDR')
                 for i in range(len(data)):
                     if PickingModel.objects.filter(appid=request.user.appid, t_code=data[i]['t_code'],
-                                                   is_delete=0).exists():
+                                                   picking_status=0, is_delete=0).exists():
                         picking_data = PickingModel.objects.filter(appid=request.user.appid,
                                                                    t_code=data[i]['t_code'], is_delete=0).first()
                         if picking_data.picked_stock + int(data[i]['picked_stock']) > picking_data.pick_stock:
                             ret = FBMsg.wms_so_picked_more()
                             ret['data'] = data
                             return Response(ret)
+                    else:
+                        ret = FBMsg.wms_so_picked_more()
+                        ret['data'] = data
+                        return Response(ret)
                 pick_data = PickingModel.objects.filter(appid=request.user.appid, t_code=data[0]['t_code'],
                                                            is_delete=0).first()
                 so_list = ListModel.objects.filter(appid=request.user.appid,
                                                    name=pick_data.so_name,
                                                    is_delete=0).first()
-                so_detail = DetailModel.objects.filter(appid=request.user.appid,
-                                                       name=pick_data.so_name,
-                                                       is_delete=0)
                 so_list.so_status = 4
-                for k in range(len(so_detail)):
-                    so_detail[k].so_status = 4
-                    so_detail[k].save()
                 so_list.save()
                 for j in range(len(data)):
                     picking_data = PickingModel.objects.filter(appid=request.user.appid, t_code=data[j]['t_code'],
@@ -729,7 +788,19 @@ class PickAPI(APIView):
                     picking_data.picked_stock = int(data[j]['picked_stock'])
                     picking_data.shipping_stock = int(data[j]['picked_stock'])
                     picking_data.picking_status = 1
-
+                    so_detail = DetailModel.objects.filter(appid=request.user.appid,
+                                                           name=picking_data.so_name,
+                                                           goods_code=picking_data.goods_code,
+                                                           is_delete=0)
+                    for k in range(len(so_detail)):
+                        so_detail[k].pick_stock = so_detail[k].pick_stock - int(data[j]['picked_stock'])
+                        so_detail[k].picked_stock = so_detail[k].picked_stock + int(data[j]['picked_stock'])
+                        if PickingModel.objects.filter(appid=request.user.appid, goods_code=picking_data.goods_code,
+                                                       so_name=picking_data.so_name, picking_status=0, is_delete=0).exists():
+                            pass
+                        else:
+                            so_detail[k].so_status = 4
+                        so_detail[k].save()
                     picking_data.save()
                 ret = FBMsg.wms_ret()
                 ret['ip'] = ip

@@ -40,7 +40,7 @@ path('register', views.register, name='register'),
 path('authcheck', views.authcheck, name='authcheck'),
 path('captcha', views.captcha, name='captcha'),
 path('logout', views.logout, name='logout'),
-path('', TemplateView.as_view(template_name="home.html")),
+path('', TemplateView.as_view(template_name="index.html")),
 path('userlogin/', include('userlogin.urls')),
 path('users/', include('users.urls')),
 path('notebook/', include('notebook.urls')),
@@ -75,7 +75,8 @@ path('cyclecount/', include('cyclecount.urls')),
 path('polist/', include('polist.urls')),
 path('podetail/', include('podetail.urls')),
 path('solist/', include('solist.urls')),
-path('sodetail/', include('sodetail.urls'))
+path('sodetail/', include('sodetail.urls')),
+path('driverlist/', include('driverlist.urls'))
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
