@@ -16,3 +16,6 @@ class GoodsListSerializers(serializers.Serializer):
 
 class CustomerListSerializers(serializers.Serializer):
     name = serializers.CharField(read_only=True)
+
+class DriverListSerializers(serializers.Serializer):
+    plate_license = serializers.CharField(read_only=True)
