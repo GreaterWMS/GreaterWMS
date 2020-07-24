@@ -11,9 +11,9 @@ from django.http import FileResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from .schemas import APISchema
-from .serializers import ListSerializers, GoodsListSerializers, CustomerListSerializers
+from .serializers import ListSerializers, GoodsListSerializers, CustomerListSerializers, DriverListSerializers
 from django.conf import settings
-import os, math, datetime, random, goodslist, customer, stocklist, stockbinlist
+import os, math, datetime, random, goodslist, customer, stocklist, stockbinlist, driverlist
 import pandas as pd
 from .models import ListModel, DetailModel, PickingModel
 from users.models import Users
@@ -382,12 +382,15 @@ class API(APIView):
                 goods_code_list_ser = GoodsListSerializers(goods_code_list, many=True)
                 customer_list = customer.models.ListModel.objects.filter(appid=request.user.appid, is_delete=0).order_by('name')
                 customer_list_ser = CustomerListSerializers(customer_list, many=True)
+                driver_list = driverlist.models.ListModel.objects.filter(appid=request.user.appid, is_delete=0).order_by('plate_license')
+                driver_list_ser = DriverListSerializers(driver_list, many=True)
                 ret = FBMsg.ret()
                 ret['ip'] = ip
                 ret['data'] = list_ser.data
                 ret['totlepage'] = math.ceil(list.count()/int(max_page))
                 ret['goods_code_list'] = goods_code_list_ser.data
                 ret['customer_list'] = customer_list_ser.data
+                ret['driver_list'] = driver_list_ser.data
                 return pg.get_paginated_response(ret)
         else:
             return Response(FBMsg.wms_vip_get())

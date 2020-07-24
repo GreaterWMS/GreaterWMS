@@ -80,7 +80,8 @@ INSTALLED_APPS = [
     'polist',
     'solist',
     'podetail',
-    'sodetail'
+    'sodetail',
+    'driverlist'
 
 
 
