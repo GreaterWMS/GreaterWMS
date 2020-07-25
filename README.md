@@ -1,6 +1,6 @@
 # 聚商汇--开源仓库管理系统
 
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/Elvis_WMS/tree/master/statics/icons/logo.png?raw=true"/></div></p>
+<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/Elvis_WMS/blob/master/statics/icons/logo.png?raw=true"/></div></p>
 
 <hr>
 <p><h3>项目介绍：</h3></p>
