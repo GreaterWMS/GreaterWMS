@@ -8,10 +8,10 @@
 <p>该开源项目，做了前后端分离，后端全部为分离的api，api技术使用的是Django-rest-framework，遵循restful协议；前端为vue页面，用axios进行封装，后端路由使用的是Django的路由机制，前端路由使用vue-router，并且数据传输做了安全控制，防sql注入和js,css攻击</p>
 <hr>
 <p><h3>开发环境：</h3></p>
-<p>* Node.JS版本为v12.16.3</p>
-<p>* Quasar/CLI版本为v1.0.7</p>
-<p>* Vue.JS是基础开发语言</p>
-<p>* axios版本为v0.19.2</p>
+<p>* python 版本为v3.7.0 +</p>
+<p>* django版本为v2.2.14</p>
+<p>* django-rest-framework 版本为3.9.2</p>
+<p>* django-rest-swagger 版本为v2.2.0</p>
 <p>* API，使用restful协议</p>
 <hr>
 <p><h3>构建命令：</h3></p>
@@ -27,4 +27,4 @@
 <p>如果运行特定端口，局域网的电脑，只需要访问，运行电脑的ip+端口，即可以访问运行结果</p>
 
 <hr>
-<p><h3>使用教程：</h3></p>
+<p><h3>开发指南：</h3></p>
