@@ -6,6 +6,7 @@
 <p><h3>项目介绍：</h3></p>
 <p>开源仓储管理软件，遵循MIT协议，前后端分离，api使用restful协议，方便二次开发，前端代码使用quasar进行构建，利用API，可以支持多仓，波次发货，合并拣货，Milk-Run等业务模型</p>
 <p>演示地址：<a href="https://www.56yhz.com" target="_blank">https://www.56yhz.com</a></p>
+<p>技术交流QQ群：<a>1051907485</a></p>
 <hr>
 <p><h3>开发环境：</h3></p>
 <p>* python 版本为v3.7.0 +</p>
@@ -13,6 +14,8 @@
 <p>* django-rest-framework 版本为3.9.2(该版本django和django-rest-swagger兼容比较好，如果不需要使用django-rest-swagger，可以使用更高版本的django)</p>
 <p>* django-rest-swagger 版本为v2.2.0</p>
 <p>* django-silk 版本为v4.0.1(如果是部署上线，请关闭silk，silk有可能会泄露用户信息)</p>
+<p>* quasar 版本为v1.7.2+</p>
+<p>* vue 版本为v2.6.0+</p>
 <p>* API，使用restful协议</p>
 <hr>
 <p><h3>构建命令：</h3></p>
