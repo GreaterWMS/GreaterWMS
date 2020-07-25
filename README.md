@@ -16,41 +16,10 @@
 <hr>
 <p><h3>构建命令：</h3></p>
 <p><h4>开发：</h4></p>
-<p>运行开发服务器(使用默认主题)：</p>
-<p>$ quasar dev</p>
+<p>运行开发服务器：</p>
+<p>$ python manage.py runserver</p>
 <p>运行在特定端口：</p>
-<p>$ quasar dev -p 9090</p>
-<p>SSR：</p>
-<p>$ quasar dev -m ssr</p>
-<p>PWA：</p>
-<p>$ quasar dev -m pwa</p>
-<p>手机应用：</p>
-<p>$ quasar dev -m cordova -T [android|ios]</p>
-<p>或更短的格式：</p>
-<p>$ quasar dev -m [android|ios]</p>
-<p>Electron应用：</p>
-<p>$ quasar dev -m electron</p>
-<p>将额外的参数和/或选项传递给</p>
-<p>底层“cordova”或“electron”可执行文件：</p>
-<p>$ quasar dev -m ios -- some params --and options --here</p>
-<p>$ quasar dev -m electron -- --no-sandbox --disable-setuid-sandbox</p>
-<p><h4>生产版本：</h4></p>
-<p>运行开发服务器(使用默认主题)：</p>
-<p>$ quasar build</p>
-<p>SSR：</p>
-<p>$ quasar build -m ssr</p>
-<p>PWA：</p>
-<p>$ quasar build -m pwa</p>
-<p>手机应用：</p>
-<p>$ quasar build -m cordova -T [android|ios]</p>
-<p>或更短的格式：</p>
-<p>$ quasar build -m [android|ios]</p>
-<p>Electron应用：</p>
-<p>$ quasar build -m electron</p>
-<p>将额外的参数和/或选项传递给</p>
-<p>底层“cordova”或“electron”可执行文件：</p>
-<p>$ quasar build -m ios -- some params --and options --here</p>
-<p><h4>Electron应用构建发布版本：</h4></p>
-<p>quasar build --mode electron --publish always</p>
+<p>$ python manage.py runserver 0.0.0.0:8001</p>
+
 <hr>
 <p><h3>使用教程：</h3></p>
