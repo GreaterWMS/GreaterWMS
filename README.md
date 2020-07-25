@@ -35,7 +35,7 @@
 <p>Nginx配置：</p>
 <p>这里仅以Nginx配置为例，将项目下的nginx.conf替换服务器端的nginx.conf即可，注意更改nginx.conf里面的项目地址和域名</p>
 <p>wsgi挂载：</p>
-<p>$ python manage.py runserver 0.0.0.0:8001</p>
-<p>如果运行特定端口，局域网的电脑，只需要访问，运行电脑的ip+端口，即可以访问运行页面</p>
+<p>uwsgi -x /path/to/***你的项目路径***/mysite.xml</p>
+<p>如果不希望代码更改后，自动刷新挂载，可以把py-autoreload设置为0</p>
 <hr>
 <p><h3>开发指南：</h3></p>
