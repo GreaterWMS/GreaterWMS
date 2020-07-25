@@ -1,6 +1,6 @@
 # 聚商汇--开源仓库管理系统
 
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/scm/scm.png?raw=true"/></div></p>
+<p><div align=center><img width="150" height="150" src="https://www.56yhz.com/statics/icons/logo.png"/></div></p>
 
 <hr>
 <p><h3>项目介绍：</h3></p>
