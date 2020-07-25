@@ -12,6 +12,7 @@
 <p>* django版本为v2.2.14</p>
 <p>* django-rest-framework 版本为3.9.2</p>
 <p>* django-rest-swagger 版本为v2.2.0</p>
+<p>* django-silk 版本为v4.0.1</p>
 <p>* API，使用restful协议</p>
 <hr>
 <p><h3>构建命令：</h3></p>
