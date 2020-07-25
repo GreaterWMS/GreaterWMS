@@ -1,0 +1,19 @@
+<uwsgi>
+    <socket>127.0.0.1:8002</socket><!-- 内部端口，自定义 -->
+    <chdir>/path/to/***你的项目路径***/</chdir><!-- 项目路径 -->
+    <pidfile>/path/to/***你的项目路径***/wsgi.pid</pidfile>
+    <module>singosgu.wsgi</module>
+    <processes>1</processes> <!-- 进程数 -->
+    <threads>1</threads>
+    <buffer-size>32768</buffer-size>
+    <log-maxsize>5000000</log-maxsize>
+    <reload-mercy>8</reload-mercy>
+    <daemonize>logs.log</daemonize><!-- 日志文件 -->
+    <master>True</master>
+    <harakiri>60</harakiri>
+    <vacuum>True</vacuum>
+    <uid>999</uid>
+    <pid>1999</pid>
+    <py-autoreload>1</py-autoreload>
+    <max-request>8000</max-request>
+ </uwsgi>
