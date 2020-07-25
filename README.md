@@ -15,6 +15,10 @@
 <p>* API，使用restful协议</p>
 <hr>
 <p><h3>构建命令：</h3></p>
+<p>$ python manage.py makemigrations</p>
+<p>运行数据库迁移文件</p>
+<p>$ python manage.py migrate</p>
+<p>创建数据库，django默认使用sqlite3作为数据库，如果需要mysql数据库，请在singosgu/settings.py里面进行配置</p>
 <p><h4>开发：</h4></p>
 <p>运行开发服务器：</p>
 <p>$ python manage.py runserver</p>
