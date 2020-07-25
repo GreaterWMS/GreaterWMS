@@ -5,7 +5,7 @@
 <hr>
 <p><h3>项目介绍：</h3></p>
 <p>开源仓储管理软件，遵循MIT协议，前后端分离，api使用restful协议，方便二次开发，前端代码使用quasar进行构建，利用API，可以支持多仓，波次发货，合并拣货，Milk-Run等业务模型</p>
-<p>演示地址：<a href="https://www.56yhz.com">https://www.56yhz.com</a></p>
+<p>演示地址：<a href="https://www.56yhz.com" targret="_blank">https://www.56yhz.com</a></p>
 <hr>
 <p><h3>开发环境：</h3></p>
 <p>* python 版本为v3.7.0 +</p>
