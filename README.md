@@ -22,12 +22,17 @@
 <p>运行数据库迁移文件</p>
 <p>$ python manage.py migrate</p>
 <p>创建数据库，django默认使用sqlite3作为数据库，如果需要mysql数据库，请在singosgu/settings.py里面进行配置</p>
-<p><h4>开发：</h4></p>
+<p><h4>开发服务器运行：</h4></p>
 <p>运行开发服务器：</p>
 <p>$ python manage.py runserver</p>
 <p>运行在特定端口：</p>
 <p>$ python manage.py runserver 0.0.0.0:8001</p>
-<p>如果运行特定端口，局域网的电脑，只需要访问，运行电脑的ip+端口，即可以访问运行结果</p>
-
+<p>如果运行特定端口，局域网的电脑，只需要访问，运行电脑的ip+端口，即可以访问运行页面</p>
+<p><h4>生产服务器运行：</h4></p>
+<p>Nginx配置：</p>
+<p>这里仅以Nginx配置为例，将项目下的nginx.conf替换服务器端的nginx.conf即可，注意更改nginx.conf里面的项目地址和域名</p>
+<p>wsgi挂载：</p>
+<p>$ python manage.py runserver 0.0.0.0:8001</p>
+<p>如果运行特定端口，局域网的电脑，只需要访问，运行电脑的ip+端口，即可以访问运行页面</p>
 <hr>
 <p><h3>开发指南：</h3></p>
