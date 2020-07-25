@@ -20,6 +20,7 @@
 <p>$ python manage.py runserver</p>
 <p>运行在特定端口：</p>
 <p>$ python manage.py runserver 0.0.0.0:8001</p>
+<p>如果运行特定端口，局域网的电脑，只需要访问，运行电脑的ip+端口，即可以访问运行结果</p>
 
 <hr>
 <p><h3>使用教程：</h3></p>
