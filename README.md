@@ -93,6 +93,8 @@
 <p>* 一般post,patch,put是4段式设计，1--审查用户权限，会return一个值'Y' or 'N'，2--审查数据的安全性， 3--审查数据是否可以存入数据库或修改数据库数据，4--新增或修改数据，并返回一个data给到前端，这样做可以避免数据增删改的时候出现误改的情况<p>
 <p><h4>数据库设计</h4></p>
 <p>* 数据库设计时考虑到数据迁移等问题，所以只有users里面的user_id和django自带的user_id做了外键，其余所有字段全部没有使用外键，方便数据备份和数据库迁移<p>
+<p><h4>小程序开发</h4></p>
+<p>* 由于小程序不支持patch请求，所以需要自信在django中设置一个views，来访问patch请求的数据<p>
 <hr>
 <p><h3>项目展示：</h3></p>
 <p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/home.png?raw=true"/></div></p>
