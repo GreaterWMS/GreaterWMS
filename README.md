@@ -73,6 +73,8 @@
 <p>* statics/baseurl.js是发起请求的基本网址，如果是本地调试，则默认为http://127.0.0.1:8000/ ，如果部署在服务器，则需要将其改为你的网站访问url</p>
 <p><h4>title</h4></p>
 <p>* statics/title.js是软件名称，将修改主页面的软件名称</p>
+<p><h4>icp备案信息更改</h4></p>
+<p>* statics/icp.js是软件的备案信息，将修改主页面的备案信息</p>
 <p><h4>django-silk</h4></p>
 <p>* django-silk为开发时的调试工具，可以统计每个接口的响应速度，如果需要部署到生产环境，请删除django-silk相关配置，因为会有泄露用户信息的风险，或者直接修改django-silk，让用户只能看到自己的请求数据<p>
 <p><h4>django-rest-swagger</h4></p>
