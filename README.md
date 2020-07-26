@@ -74,7 +74,7 @@
 <p><h4>title</h4></p>
 <p>* statics/title.js是软件名称，将修改主页面的软件名称</p>
 <p><h4>django-silk</h4></p>
-<p>* django-silk为开发时的调试工具，可以统计每个接口的响应速度，如果需要部署到生产环境，请删除django-silk相关配置，因为会有泄露用户信息的风险，或者直接修改django-silk，让用户智能看到自己的请求数据<p>
+<p>* django-silk为开发时的调试工具，可以统计每个接口的响应速度，如果需要部署到生产环境，请删除django-silk相关配置，因为会有泄露用户信息的风险，或者直接修改django-silk，让用户只能看到自己的请求数据<p>
 <p><h4>django-rest-swagger</h4></p>
 <p>* swagger会生成软件的开发者文档，访问'baseurl' + '/docs/'，就可以看到具体的开发者文档，同时还可以对接口进行调试, 开发者文档使用的YML的格式，也可以自己在APIView里面修改，注意接口，get是修改get请求的API文档，post是修改post请求的API文档<p>
 <p><h4>数据库设计</h4></p>
