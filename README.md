@@ -52,7 +52,7 @@
 <p><h3>开发指南：</h3></p>
 <hr>
 <p><h3>项目展示：</h3></p>
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/home.png?raw=true"/></div></p>
+<p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/home.png?raw=true"/></div></p>
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
