@@ -36,9 +36,15 @@
 <p><h4>生产服务器运行：</h4></p>
 <p>Nginx配置：</p>
 <p>这里仅以Nginx配置为例，将项目下的nginx.conf替换服务器端的nginx.conf即可，注意更改nginx.conf里面的项目地址和域名</p>
-<p>wsgi挂载：</p>
+<p>uwsgi安装：</p>
+<p>$ pip install uwsgi</p>
+<p>如果你使用了虚拟环境，那uwsgi的安装需要正式环境安装一遍，再在虚拟环境中安装一遍</p>
+<p>uwsgi挂载：</p>
 <p>uwsgi -x /path/to/***你的项目路径***/mysite.xml</p>
 <p>如果不希望代码更改后，自动刷新挂载，可以把py-autoreload设置为0</p>
+<p>uwsgi重新挂载：</p>
+<p>uwsgi --reload /path/to/***你的项目路径***/mysite.pid</p>
+<p>uwsgi已经记录了pid文件，每次重新挂载只需要reload这个pid就可以了</p>
 <hr>
 <p><h3>开发扩展：</h3></p>
 <hr>
