@@ -53,10 +53,9 @@
 <hr>
 <p><h3>项目展示：</h3></p>
 <p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/home.png?raw=true"/></div></p>
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
+<p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/inbound.png?raw=true"/></div></p>
+<p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/outbound.png?raw=true"/></div></p>
+<p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/stocklist.png?raw=true"/></div></p>
+<p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/goodslist.png?raw=true"/></div></p>
+<p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/staff.png?raw=true"/></div></p>
+<p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/notbook.png?raw=true"/></div></p>
