@@ -59,3 +59,5 @@
 <p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/goodslist.png?raw=true"/></div></p>
 <p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/staff.png?raw=true"/></div></p>
 <p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/notbook.png?raw=true"/></div></p>
+<p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/api.png?raw=true"/></div></p>
+<p><div align=center><img src="https://github.com/Singosgu/picfile/blob/master/silk.png?raw=true"/></div></p>
