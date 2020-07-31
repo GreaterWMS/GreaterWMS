@@ -7,6 +7,11 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
 from django.shortcuts import HttpResponseRedirect
 from django.http import JsonResponse
+from rest_framework.views import APIView
+from utils.fbmsg import FBMsg
+from utils.md5 import Md5
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 import re, json, random, datetime
@@ -16,12 +21,12 @@ from users.models import Users
 from notebook.models import NoteBook
 from notebook.serializers import NoteBookEventSerializers, NoteBookSerializers
 
-def index(requestuest):
+def index(request):
     context = {}
     apiurl = 'http://127.0.0.1:8000/'
     #apiurl = 'https://www.8838.info/'
-    if requestuest.user.id is not None:
-        user = Users.objects.get(user_id=requestuest.user.id)
+    if request.user.id is not None:
+        user = Users.objects.get(user_id=request.user.id)
         context['openid'] = user.openid
     else:
         pass
@@ -29,10 +34,10 @@ def index(requestuest):
     context['loginapi'] = apiurl + "login"
     context['registerapi'] = apiurl + "register"
     context['captcha'] = apiurl + "captcha"
-    return render(requestuest, 'home.html', context)
+    return render(request, 'home.html', context)
 
 @cache_page(60)
-def captcha(requestuest):
+def captcha(request):
     foo = ['a', 'b']
     data = {}
     mode = random.choice(foo)
@@ -58,15 +63,15 @@ def captcha(requestuest):
             return JsonResponse(ret)
 
 @method_decorator(csrf_exempt, name='dispatch')
-def login(requestuest):
-    if requestuest.method == "POST":
-        postdata = json.loads(requestuest.body.decode().replace("'", "\""))
+def login(request):
+    if request.method == "POST":
+        postdata = json.loads(request.body.decode().replace("'", "\""))
         data = {
             "name": postdata.get("name", ''),
             "password": postdata.get("password", '')
         }
-        ip = requestuest.META.get('HTTP_X_FORWARDED_FOR') if requestuest.META.get(
-            'HTTP_X_FORWARDED_FOR') else requestuest.META.get('REMOTE_ADDR')
+        ip = request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get(
+            'HTTP_X_FORWARDED_FOR') else request.META.get('REMOTE_ADDR')
         if Users.objects.filter(name=str(data['name']), password=str(data['password']), developer=1).exists():
             user = auth.authenticate(username=str(data['name']), password=str(data['password']))
             if user is None:
@@ -74,7 +79,7 @@ def login(requestuest):
                 err_ret['data'] = data
                 return JsonResponse(err_ret)
             else:
-                auth.login(requestuest, user)
+                auth.login(request, user)
                 user = Users.objects.get(name=str(data['name']), developer=1)
                 today = datetime.date.today()
                 note_date = today.strftime('%Y-%m-%d')
@@ -111,16 +116,15 @@ def login(requestuest):
             return JsonResponse(err_ret)
 
 @method_decorator(csrf_exempt, name='dispatch')
-def register(requestuest):
-    postdata = json.loads(requestuest.body.decode().replace("'", "\""))
-    print(postdata)
+def register(request):
+    postdata = json.loads(request.body.decode().replace("'", "\""))
     data = {
         "name": postdata.get("name", ''),
         "password1": postdata.get("password1", ''),
         "password2": postdata.get("password2", ''),
     }
-    ip = requestuest.META.get('HTTP_X_FORWARDED_FOR') if requestuest.META.get(
-        'HTTP_X_FORWARDED_FOR') else requestuest.META.get('REMOTE_ADDR')
+    ip = request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get(
+        'HTTP_X_FORWARDED_FOR') else request.META.get('REMOTE_ADDR')
     script_obj = re.findall(r'script', str(data), re.IGNORECASE)
     select_obj = re.findall(r'select', str(data), re.IGNORECASE)
     if script_obj:
@@ -178,7 +182,7 @@ def register(requestuest):
                                                              appid=Md5.md5(data['name'] + '1'),
                                                              transaction_code=Md5.md5(str(timezone.now())), developer=1,
                                                              ip=ip)
-                                        auth.login(requestuest, user)
+                                        auth.login(request, user)
                                         ret = FBMsg.ret()
                                         data['openid'] = transaction_code
                                         ret['ip'] = ip
@@ -225,7 +229,7 @@ def register(requestuest):
                                                          openid=transaction_code, appid=Md5.md5(data['name'] + '1'),
                                                          transaction_code=Md5.md5(str(timezone.now())),
                                                          developer=1, ip=ip)
-                                    auth.login(requestuest, user)
+                                    auth.login(request, user)
                                     ret = FBMsg.ret()
                                     ret['ip'] = ip
                                     data['openid'] = transaction_code
@@ -235,16 +239,19 @@ def register(requestuest):
                                     return JsonResponse(ret)
 
 @method_decorator(csrf_exempt, name='dispatch')
-def authcheck(requestuest):
-    if requestuest.method == "POST":
-        data = json.loads(requestuest.body.decode().replace("'", "\"")).get('data', '')
-        ip = requestuest.META.get('HTTP_X_FORWARDED_FOR') if requestuest.META.get(
-            'HTTP_X_FORWARDED_FOR') else requestuest.META.get('REMOTE_ADDR')
-        if Users.objects.filter(openid=data, is_delete=0).exists():
+class Authcheck(APIView):
+    authentication_classes = []
+    throttle_classes = []
+    permission_classes = []
+    def post(self, request, *args, **kwargs):
+        data = request.data
+        ip = request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get(
+            'HTTP_X_FORWARDED_FOR') else request.META.get('REMOTE_ADDR')
+        if Users.objects.filter(openid=data['data'], is_delete=0).exists():
             ret = FBMsg.ret()
             ret['ip'] = ip
             ret['data'] = {
-                "openid": Users.objects.filter(openid=data, is_delete=0).first().openid
+                "openid": Users.objects.filter(openid=data['data'], is_delete=0).first().openid
             }
             return JsonResponse(ret)
         else:
@@ -252,15 +259,15 @@ def authcheck(requestuest):
             return JsonResponse(err_ret)
 
 @method_decorator(csrf_exempt, name='dispatch')
-def initialdata(requestuest):
-    if requestuest.method == "POST":
-        postdata = json.loads(requestuest.body.decode().replace("'", "\""))
+class Initialdata(APIView):
+    def post(self, request, *args, **kwargs):
+        data = request.data
         data = {
-            "openid": postdata.get('openid', ''),
-            "authid": postdata.get('authid', '')
+            "openid": request.auth,
+            "authid": data.get('authid', '')
         }
-        ip = requestuest.META.get('HTTP_X_FORWARDED_FOR') if requestuest.META.get(
-            'HTTP_X_FORWARDED_FOR') else requestuest.META.get('REMOTE_ADDR')
+        ip = request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get(
+            'HTTP_X_FORWARDED_FOR') else request.META.get('REMOTE_ADDR')
         if (data['authid']) == '':
             err_authid = FBMsg.err_authid()
             err_authid['ip'] = ip
@@ -324,57 +331,61 @@ def initialdata(requestuest):
                     return JsonResponse(err_auth)
 
 @method_decorator(csrf_exempt, name='dispatch')
-def contact(requestuest):
-    postdata = json.loads(requestuest.body.decode().replace("'", "\""))
-    data = {
-        "name": postdata.get('name', ''),
-        "mobile": postdata.get('mobile', ''),
-        "comments": postdata.get('comments', ''),
-        "openid": postdata.get('openid', '')
-    }
-    script_obj = re.findall(r'script', str(data), re.IGNORECASE)
-    select_obj = re.findall(r'select', str(data), re.IGNORECASE)
-    if script_obj:
-        return JsonResponse(FBMsg.err_bad())
-    elif select_obj:
-        return JsonResponse(FBMsg.err_bad())
-    else:
-        ip = requestuest.META.get('HTTP_X_FORWARDED_FOR') if requestuest.META.get(
-            'HTTP_X_FORWARDED_FOR') else requestuest.META.get('REMOTE_ADDR')
-        if 'name' not in data:
-            err_contact_name = FBMsg.err_contact_name()
-            return JsonResponse(err_contact_name)
+class Contact(APIView):
+    permission_classes = []
+    authentication_classes = []
+    throttle_classes = []
+    def post(self, request, *args, **kwargs):
+        postdata = request.data
+        data = {
+            "name": postdata.get('name', ''),
+            "mobile": postdata.get('mobile', ''),
+            "comments": postdata.get('comments', ''),
+            "openid": postdata.get('openid', '')
+        }
+        script_obj = re.findall(r'script', str(data), re.IGNORECASE)
+        select_obj = re.findall(r'select', str(data), re.IGNORECASE)
+        if script_obj:
+            return JsonResponse(FBMsg.err_bad())
+        elif select_obj:
+            return JsonResponse(FBMsg.err_bad())
         else:
-            if data['name'] == '':
+            ip = request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get(
+                'HTTP_X_FORWARDED_FOR') else request.META.get('REMOTE_ADDR')
+            if 'name' not in data:
                 err_contact_name = FBMsg.err_contact_name()
                 return JsonResponse(err_contact_name)
             else:
-                if 'mobile' not in data:
-                    err_contact_mobile = FBMsg.err_contact_mobile()
-                    return JsonResponse(err_contact_mobile)
+                if data['name'] == '':
+                    err_contact_name = FBMsg.err_contact_name()
+                    return JsonResponse(err_contact_name)
                 else:
-                    if data['mobile'] == '':
+                    if 'mobile' not in data:
                         err_contact_mobile = FBMsg.err_contact_mobile()
                         return JsonResponse(err_contact_mobile)
                     else:
-                        if 'comments' not in data:
-                            err_contact_comments = FBMsg.err_contact_comments()
-                            return JsonResponse(err_contact_comments)
+                        if data['mobile'] == '':
+                            err_contact_mobile = FBMsg.err_contact_mobile()
+                            return JsonResponse(err_contact_mobile)
                         else:
-                            if data['comments'] == '':
+                            if 'comments' not in data:
                                 err_contact_comments = FBMsg.err_contact_comments()
                                 return JsonResponse(err_contact_comments)
                             else:
-                                Contact.objects.create(name=data['name'], mobile=data['mobile'], comments=data['comments'],
-                                                       openid=data['openid'], ip=ip)
-                                ret = FBMsg.ret()
-                                ret['ip'] = ip
-                                ret['data'] = data
-                                return JsonResponse(ret)
+                                if data['comments'] == '':
+                                    err_contact_comments = FBMsg.err_contact_comments()
+                                    return JsonResponse(err_contact_comments)
+                                else:
+                                    Contact.objects.create(name=data['name'], mobile=data['mobile'], comments=data['comments'],
+                                                           openid=data['openid'], ip=ip)
+                                    ret = FBMsg.ret()
+                                    ret['ip'] = ip
+                                    ret['data'] = data
+                                    return JsonResponse(ret)
 
 @login_required
-def logout(requestuest):
-    auth.logout(requestuest)
+def logout(request):
+    auth.logout(request)
     return HttpResponseRedirect("/")
 
 from django.http import StreamingHttpResponse

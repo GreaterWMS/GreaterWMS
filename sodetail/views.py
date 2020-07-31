@@ -311,6 +311,8 @@ class API(APIView):
                     list = list.filter(name__icontains=request._request.GET.get('so_number', '')).order_by(sort)
                 if request._request.GET.get('so_status', ''):
                     list = list.filter(so_status=int(request._request.GET.get('so_status', ''))).order_by(sort)
+                if request._request.GET.get('oos_qty', ''):
+                    list = list.filter(oos_qty__gt=int(request._request.GET.get('oos_qty', ''))).order_by(sort)
                 if request._request.GET.get('customer', ''):
                     list = list.filter(customer__icontains=request._request.GET.get('customer', '')).order_by(sort)
                 if request._request.GET.get('create_name', ''):
@@ -704,7 +706,6 @@ class PickAPI(APIView):
                 if data['code'] == "1031":
                     return Response(FBMsg.err_bad())
             except:
-                print(data)
                 ip = request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get(
                     'HTTP_X_FORWARDED_FOR') else request.META.get('REMOTE_ADDR')
                 for i in range(len(data)):
