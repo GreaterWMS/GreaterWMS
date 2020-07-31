@@ -1,7 +1,7 @@
 <uwsgi>
     <socket>127.0.0.1:8009</socket><!-- 内部端口，自定义 -->
     <chdir>/path/to/***你的项目路径***/</chdir><!-- 项目路径 -->
-    <pidfile>/path/to/***你的项目路径***/wsgi.pid</pidfile>
+    <pidfile>/path/to/***你的项目路径***/mysite.pid</pidfile>
     <module>singosgu.wsgi</module>
     <processes>1</processes> <!-- 进程数 -->
     <threads>1</threads>
