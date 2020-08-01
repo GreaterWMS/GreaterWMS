@@ -4,8 +4,8 @@
 
 <hr>
 <p><h2><a href="https://github.com/Singosgu/Elvis_WMS/blob/master/README_zh_Hans.md" target="_blank">中文文档</a></h2></p>
-<p><h3>项目介绍：</h3></p>
-<p>开源仓储管理软件，遵循MIT协议，前后端分离，api使用restful协议，方便二次开发，前端代码使用quasar进行构建，利用API，可以支持多仓，波次发货，合并拣货，Milk-Run等业务模型</p>
+<p><h3>Project Description:</h3></p>
+<p>Open source warehouse management software follows MIT protocol and front-back stage decoupling method. API uses restful protocol to facilitate for add-on functions development. The html & js code is constructed with quasar(base on Vue.js v2.6.0+). According to API, it can support business models such as multi warehouse, wave shipment, combined picking and milk-run and so on.</p>
 <p>演示地址：<a href="https://www.56yhz.com" target="_blank">https://www.56yhz.com</a></p>
 <p>软件著作权编号：<a>2018SR517685</a></p>
 <p>码云地址：<a href="https://gitee.com/Singosgu/Elvis_WMS" target="_blank">码云</a></p>
