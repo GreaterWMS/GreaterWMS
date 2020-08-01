@@ -6,11 +6,11 @@
 <p><h2><a href="https://github.com/Singosgu/Elvis_WMS/blob/master/README_zh_Hans.md" target="_blank">中文文档</a></h2></p>
 <p><h3>Project Description:</h3></p>
 <p>Open source warehouse management software follows MIT protocol and front-back stage decoupling method. API uses restful protocol to facilitate for add-on functions development. The html & js code is constructed with quasar(base on Vue.js v2.6.0+). According to API, it can support business models such as multi warehouse, wave shipment, combined picking and milk-run and so on.</p>
-<p>演示地址：<a href="https://www.56yhz.com" target="_blank">https://www.56yhz.com</a></p>
-<p>软件著作权编号：<a>2018SR517685</a></p>
-<p>码云地址：<a href="https://gitee.com/Singosgu/Elvis_WMS" target="_blank">码云</a></p>
-<p>GitHub地址：<a href="https://www.56yhz.com" target="_blank">GitHub</a></p>
-<p>技术交流QQ群：<a>1051907485（需要修改baseurl，title等信息，请进群获取修改权限）</a></p>
+<p>Demo:<a href="https://www.56yhz.com" target="_blank">https://www.56yhz.com</a></p>
+<p>Software copyright Code：<a>Chine: 2018SR517685</a></p>
+<p>Gitee Link:<a href="https://gitee.com/Singosgu/Elvis_WMS" target="_blank">Gitee</a></p>
+<p>GitHub Link:<a href="https://www.56yhz.com" target="_blank">GitHub</a></p>
+<p>Technical QQ community：<a>1051907485(If you need change baseurl & title, or custom Vue, please be free to join qq group)</a></p>
 <hr>
 <p><h3>开发环境：</h3></p>
 <p>* python 版本为v3.7.0 +</p>
