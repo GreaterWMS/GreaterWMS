@@ -12,15 +12,15 @@
 <p>GitHub Link:<a href="https://www.56yhz.com" target="_blank">GitHub</a></p>
 <p>Technical QQ community：<a>1051907485(If you need change baseurl & title, or custom Vue, please be free to join qq group)</a></p>
 <hr>
-<p><h3>开发环境：</h3></p>
-<p>* python 版本为v3.7.0 +</p>
-<p>* django版本为v2.2.14(该版本django和django-rest-swagger兼容比较好，如果不需要使用django-rest-swagger，可以使用更高版本的django)</p>
-<p>* django-rest-framework 版本为3.9.2(该版本django和django-rest-swagger兼容比较好，如果不需要使用django-rest-swagger，可以使用更高版本的django)</p>
-<p>* django-rest-swagger 版本为v2.2.0</p>
-<p>* django-silk 版本为v4.0.1(如果是部署上线，请关闭silk，silk有可能会泄露用户信息)</p>
-<p>* quasar 版本为v1.7.2+</p>
-<p>* vue 版本为v2.6.0+</p>
-<p>* API，使用restful协议</p>
+<p><h3>Development Environment:</h3></p>
+<p>* Python v3.7.0 +</p>
+<p>* Django v2.2.14(Django v2.2.14 can support Django-rest-swagger better. If you don't need Django-rest-swagger to debug api, you can pip install higher version Django)</p>
+<p>* Django-rest-framework v3.9.2(Django-rest-framework v3.9.2 can support Django-rest-swagger better，If you don't need Django-rest-swagger to debug api, you can pip install higher version Django-rest-framework)</p>
+<p>* Django-rest-swagger v2.2.0</p>
+<p>* Django-silk 版本为v4.0.1(In production environment，please close silk，silk will leak user infomation)</p>
+<p>* Quasar v1.7.2+</p>
+<p>* Vue v2.6.0+</p>
+<p>* API，follow restful protocol</p>
 <hr>
 <p><h3>构建命令：</h3></p>
 <p>$ pip install -r requirements.txt</p>
