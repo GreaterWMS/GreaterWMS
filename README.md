@@ -9,7 +9,7 @@
 <p>软件著作权编号：<a>2018SR517685</a></p>
 <p>码云地址：<a href="https://gitee.com/Singosgu/Elvis_WMS" target="_blank">码云</a></p>
 <p>GitHub地址：<a href="https://www.56yhz.com" target="_blank">GitHub</a></p>
-<p>技术交流QQ群：<a>1051907485</a></p>
+<p>技术交流QQ群：<a>1051907485（需要修改baseurl，title等信息，请进群获取修改权限）</a></p>
 <hr>
 <p><h3>开发环境：</h3></p>
 <p>* python 版本为v3.7.0 +</p>
