@@ -1,4 +1,4 @@
-# Elvis_WMS--Open source warehouse management software
+# Django_WMS--Open source warehouse management software
 
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
 
