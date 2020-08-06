@@ -9,7 +9,7 @@
 <p>软件著作权编号：<a>2018SR517685</a></p>
 <p>码云地址：<a href="https://gitee.com/Singosgu/Elvis_WMS" target="_blank">码云</a></p>
 <p>GitHub地址：<a href="https://www.56yhz.com" target="_blank">GitHub</a></p>
-<p>技术交流QQ群：<a>1051907485（需要修改baseurl，title等信息，请进群获取修改权限）</a></p>
+<p>技术交流QQ群：<a>1051907485</a></p>
 <hr>
 <p><h3>开发环境：</h3></p>
 <p>* python 版本为v3.7.0 +</p>
@@ -70,11 +70,8 @@
 <hr>
 <p><h3>开发指南：</h3></p>
 <p><h4>baseurl</h4></p>
-<p>* statics/baseurl.js是发起请求的基本网址，如果是本地调试，则默认为http://127.0.0.1:8000/ ，如果部署在服务器，则需要将其改为你的网站访问url</p>
-<p><h4>title</h4></p>
-<p>* statics/title.js是软件名称，将修改主页面的软件名称</p>
-<p><h4>icp备案信息更改</h4></p>
-<p>* statics/icp.js是软件的备案信息，将修改主页面的备案信息</p>
+<p>* 是发起请求的基本网址，如果是本地调试，则默认为http://127.0.0.1:8000/ ，如果部署在服务器，则需要将其改为你的网站访问url</p>
+<p>* 修改方式为，发起一个post请求到https://www.56yhz.com/baseurl/ ，传输一个json数据data{'baseurl': 'http://*****', 'title': '你的项目名称', 'icp': '中国的icp备案信息'}</p>
 <p><h4>django-silk</h4></p>
 <p>* django-silk为开发时的调试工具，可以统计每个接口的响应速度，如果需要部署到生产环境，请删除django-silk相关配置，因为会有泄露用户信息的风险，或者直接修改django-silk，让用户只能看到自己的请求数据<p>
 <p><h4>django-rest-swagger</h4></p>
