@@ -17,7 +17,7 @@
 <p>* Django v2.2.14(Django v2.2.14 can support Django-rest-swagger better. If you don't need Django-rest-swagger to debug api, you can pip install higher version Django)</p>
 <p>* Django-rest-framework v3.9.2(Django-rest-framework v3.9.2 can support Django-rest-swagger better，If you don't need Django-rest-swagger to debug api, you can pip install higher version Django-rest-framework)</p>
 <p>* Django-rest-swagger v2.2.0</p>
-<p>* Django-silk 版本为v4.0.1(In production environment，please close silk，silk will leak user infomation)</p>
+<p>* Django-silk v4.0.1(In production environment，please close silk，silk will leak user infomation)</p>
 <p>* Quasar v1.7.2+</p>
 <p>* Vue v2.6.0+</p>
 <p>* API，follow restful protocol</p>
@@ -35,7 +35,7 @@
 <p>Local Server Port Customize</p>
 <p>$ python manage.py runserver 0.0.0.0:8001</p>
 <p>If you customize the Port. The user in local area network can use 'server IP:Port' to browse the software</p>
-<p><h4>生产服务器运行：</h4></p>
+<p><h4>Production Server Run:</h4></p>
 <p>Nginx Config：</p>
 <p>Only example for Nginx. You can get example nginx.conf in project files. Exchange you server nginx.conf is ok. Take attention the project path & domin name in nginx.conf must be real.</p>
 <p>Install uwsgi:</p>
@@ -48,7 +48,7 @@
 <p>$ uwsgi --reload /path/to/***your project path***/mysite.pid</p>
 <p>Uwsgi recorded a pid file. Each time you want to reload the uwsgi . Reload this pid is ok</p>
 <hr>
-<p><h3>开发扩展：</h3></p>
+<p><h3>Develop Extend:</h3></p>
 <p>因为使用的前后端分离的设计，所以可以通过API，开发更多的软件应用</p>
 <p><h4>物流智能AGV</h4></p>
 <p>* AGV的项目也已经开源，由于场地受限，仅实现智能发货，定点回库，使用的循迹感应器，超声波避障感应器，红外避障感应器，所有的指令通过网络传输，AGV绑定MAC地址和IP地址，保证了安全性</p>
