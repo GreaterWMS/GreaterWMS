@@ -58,24 +58,20 @@
 <p>* API can support you develop a real time data monitoring system.</p>
 <p><h4>SCM</h4></p>
 <p>* Goods' QTY, Create_time, Last_update_time be detailed record. So you can analyst the inventory cleary and develop a SCM system.</p>
-<p><h4></h4></p>
-<p>* openid为用户的唯一标识，数据统一标识为appid，数据t_code为数据在服务器的唯一标识，所以很方便可以实现多仓管理</p>
+<p><h4>Multi Warehouse Management</h4></p>
+<p>* Openid is user's unique identification. Data unique identification is appid. Data-line unique identification is t_code. So it facilitate support Multi Warehouse Management</p>
 <p><h4>波次拣货，发货</h4></p>
 <p>* 可以设置固定时间向服务器发出请求，从而达到波次拣货的功能</p>
 <p><h4>Milk-Run</h4></p>
-<p>* 可以给供应商或者客户设置权限，让他们可以查询到固定产品的库存消耗</p>
+<p>* Can edit supplier & customer's authorization. Let them know the goods demand & consumption</p>
 <p><h4>VMI</h4></p>
-<p>* 同上</p>
+<p>* Ditto</p>
 <p><h4>拣货路线优化</h4></p>
 <p>* 库位的设置决定了拣货的效率</p>
 <hr>
-<p><h3>开发指南：</h3></p>
+<p><h3>Develop Guide:</h3></p>
 <p><h4>baseurl</h4></p>
 <p>* statics/baseurl.js是发起请求的基本网址，如果是本地调试，则默认为http://127.0.0.1:8000/ ，如果部署在服务器，则需要将其改为你的网站访问url</p>
-<p><h4>title</h4></p>
-<p>* statics/title.js是软件名称，将修改主页面的软件名称</p>
-<p><h4>icp备案信息更改</h4></p>
-<p>* statics/icp.js是软件的备案信息，将修改主页面的备案信息</p>
 <p><h4>django-silk</h4></p>
 <p>* django-silk为开发时的调试工具，可以统计每个接口的响应速度，如果需要部署到生产环境，请删除django-silk相关配置，因为会有泄露用户信息的风险，或者直接修改django-silk，让用户只能看到自己的请求数据<p>
 <p><h4>django-rest-swagger</h4></p>
