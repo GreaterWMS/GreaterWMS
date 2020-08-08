@@ -49,16 +49,16 @@
 <p>Uwsgi recorded a pid file. Each time you want to reload the uwsgi . Reload this pid is ok</p>
 <hr>
 <p><h3>Develop Extend:</h3></p>
-<p>因为使用的前后端分离的设计，所以可以通过API，开发更多的软件应用</p>
-<p><h4>物流智能AGV</h4></p>
-<p>* AGV的项目也已经开源，由于场地受限，仅实现智能发货，定点回库，使用的循迹感应器，超声波避障感应器，红外避障感应器，所有的指令通过网络传输，AGV绑定MAC地址和IP地址，保证了安全性</p>
-<p><h4>进销存</h4></p>
-<p>* 不使用仓库设置模块，直接使用商品设置和供应商及客户设置，可以快速搭建一个进销存系统</p>
-<p><h4>APP和小程序</h4></p>
-<p>* API的组合可以达到1万种，这样我们可以根据查询请求，来获得实时报表和数据监控</p>
-<p><h4>供应链管理系统</h4></p>
-<p>* 产品的数量，创建时间，最后使用时间是各方面统计的，所以可以方便采购计划和调拨计划进行库存的分析</p>
-<p><h4>多仓管理</h4></p>
+<p>According to front-back stage decoupling method. It support you to develop more extend software</p>
+<p><h4>Logistic_AI_ROBOT_AGV</h4></p>
+<p>* The project of AGV has been open-source. It use Tracking sensor,Ultrasonic obstacle avoidance sensor, Infrared obstacle avoidance sensor. Base on HTTP protocol & WEB Web Framework. In order to ensure safety, data interchange must bind AGV's MAC address and IP address . </p>
+<p><h4>Sales Management System</h4></p>
+<p>* Don't use warehouse modular, API can support fast develop a sales management system.</p>
+<p><h4>APP & WX Mini Program</h4></p>
+<p>* API can support you develop a real time data monitoring system.</p>
+<p><h4>SCM</h4></p>
+<p>* Goods' QTY, Create_time, Last_update_time be detailed record. So you can analyst the inventory cleary and develop a SCM system.</p>
+<p><h4></h4></p>
 <p>* openid为用户的唯一标识，数据统一标识为appid，数据t_code为数据在服务器的唯一标识，所以很方便可以实现多仓管理</p>
 <p><h4>波次拣货，发货</h4></p>
 <p>* 可以设置固定时间向服务器发出请求，从而达到波次拣货的功能</p>
