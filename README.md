@@ -66,8 +66,8 @@
 <p>* Can edit supplier & customer's authorization. Let them know the goods demand & consumption</p>
 <p><h4>VMI</h4></p>
 <p>* Ditto</p>
-<p><h4>拣货路线优化</h4></p>
-<p>* 库位的设置决定了拣货的效率</p>
+<p><h4>Picking Route Optimization</h4></p>
+<p>* You can set picking route rule to imporve picking productiveness.</p>
 <hr>
 <p><h3>Develop Guide:</h3></p>
 <p><h4>baseurl</h4></p>
