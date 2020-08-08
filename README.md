@@ -60,8 +60,8 @@
 <p>* Goods' QTY, Create_time, Last_update_time be detailed record. So you can analyst the inventory cleary and develop a SCM system.</p>
 <p><h4>Multi Warehouse Management</h4></p>
 <p>* Openid is user's unique identification. Data unique identification is appid. Data-line unique identification is t_code. So it facilitate support Multi Warehouse Management</p>
-<p><h4>波次拣货，发货</h4></p>
-<p>* 可以设置固定时间向服务器发出请求，从而达到波次拣货的功能</p>
+<p><h4>Wave Picking, Shipping</h4></p>
+<p>* Can set Cyclical-Requests to realize Wave picking & shipping.</p>
 <p><h4>Milk-Run</h4></p>
 <p>* Can edit supplier & customer's authorization. Let them know the goods demand & consumption</p>
 <p><h4>VMI</h4></p>
