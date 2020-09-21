@@ -34,7 +34,7 @@ def index(request):
     context['loginapi'] = apiurl + "login"
     context['registerapi'] = apiurl + "register"
     context['captcha'] = apiurl + "captcha"
-    return render(request, 'home.html', context)
+    return render(request, 'index.html', context)
 
 @cache_page(60)
 def captcha(request):
@@ -420,4 +420,33 @@ def statics(request):
     resp['Cache-Control'] = "max-age=864000000000"
     # 静态文件最好加上这句让浏览器缓存，不然会重复请求
     return resp
+def sogousiteverification(request):
+    path = settings.BASE_DIR + request.path_info
+    content_type, encoding = mimetypes.guess_type(path)
+    resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
+    resp['Cache-Control'] = "max-age=864000000000"
+    # 静态文件最好加上这句让浏览器缓存，不然会重复请求
+    return resp
+def baidu_verify_BjjcovFejD(request):
+    path = settings.BASE_DIR + request.path_info
+    content_type, encoding = mimetypes.guess_type(path)
+    resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
+    resp['Cache-Control'] = "max-age=864000000000"
+    # 静态文件最好加上这句让浏览器缓存，不然会重复请求
+    return resp
+def bdunion(request):
+    path = settings.BASE_DIR + request.path_info
+    content_type, encoding = mimetypes.guess_type(path)
+    resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
+    resp['Cache-Control'] = "max-age=864000000000"
+    # 静态文件最好加上这句让浏览器缓存，不然会重复请求
+    return resp
+def root(request):
+    path = settings.BASE_DIR + request.path_info
+    content_type, encoding = mimetypes.guess_type(path)
+    resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
+    resp['Cache-Control'] = "max-age=864000000000"
+    # 静态文件最好加上这句让浏览器缓存，不然会重复请求
+    return resp
+
 
