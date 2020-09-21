@@ -22,6 +22,7 @@ from . import views
 from rest_framework.schemas import get_schema_view
 from rest_framework_swagger.renderers import SwaggerUIRenderer, OpenAPICodec
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
 
 schema_view = get_schema_view(title='聚商汇--API接口文档', renderer_classes=[SwaggerUIRenderer, OpenAPICodec])
 
@@ -29,18 +30,24 @@ urlpatterns = [
 path('admin/', admin.site.urls),
 path('docs/', schema_view, name='docs'),
 url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+re_path(r'^favicon\.ico$',RedirectView.as_view(url=r'statics/icons/logo.png')),
 path('login', views.login, name='login'),
 re_path('^js/.*$', views.js, name='js'),
 re_path('^css/.*$', views.css, name='css'),
 re_path('^fonts/.*$', views.fonts, name='fonts'),
 re_path('^statics/.*$', views.statics, name='statics'),
+re_path(r'^sogousiteverification.txt', views.sogousiteverification, name='sogousiteverification'),
+re_path(r'^baidu_verify_BjjcovFejD.html', views.baidu_verify_BjjcovFejD, name='baidu_verify_BjjcovFejD'),
+re_path(r'^bdunion.txt', views.bdunion, name='bdunion'),
+re_path(r'^root.txt', views.root, name='root'),
 path('initialdata/', views.Initialdata.as_view(), name='initialdata'),
 path('contact', views.Contact.as_view(), name='contact'),
 path('register', views.register, name='register'),
 path('authcheck', views.Authcheck.as_view(), name='authcheck'),
 path('captcha', views.captcha, name='captcha'),
 path('logout', views.logout, name='logout'),
-path('', TemplateView.as_view(template_name="index.html")),
+path('', views.index),
+#path('', TemplateView.as_view(template_name="index.html")),
 path('userlogin/', include('userlogin.urls')),
 path('users/', include('users.urls')),
 path('notebook/', include('notebook.urls')),
@@ -76,7 +83,8 @@ path('polist/', include('polist.urls')),
 path('podetail/', include('podetail.urls')),
 path('solist/', include('solist.urls')),
 path('sodetail/', include('sodetail.urls')),
-path('driverlist/', include('driverlist.urls'))
+path('driverlist/', include('driverlist.urls')),
+path('baseurl/', include('baseurl.urls'))
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
