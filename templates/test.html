@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    WARNING! Make sure that you match all Quasar related
+    tags to the same version! (Below it's "@1.7.4")
+  -->
+
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@^3.5.2/animate.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/quasar@1.7.4/dist/quasar.rtl.min.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+
+<div id="q-app">
+<template>
+    <q-layout view="lhh LpR lff" style="height: 100%" class="shadow-2 rounded-borders">
+      <q-header reveal class="bg-grey-1">
+        <q-toolbar>
+          <q-toolbar-title style="color: black">Header</q-toolbar-title>
+        </q-toolbar>
+      </q-header>
+
+        <q-footer style="height: 500px">
+        <q-toolbar>
+          <q-toolbar-title>Footer</q-toolbar-title>
+        </q-toolbar>
+      </q-footer>
+
+      <q-page-container>
+        <q-page style="padding: 60px 100px 0 100px" class="q-pa-md">
+          <p v-for="n in 150" :key="n">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit nihil praesentium molestias a adipisci, dolore vitae odit, quidem consequatur optio voluptates asperiores pariatur eos numquam rerum delectus commodi perferendis voluptate?
+          </p>
+          <q-page-sticky position="top" expand class="bg-light-blue-10 text-white shadow-24">
+            <q-toolbar>
+                <a href="https://www.baidu.com" style="color: white; text-decoration:none;"><q-btn flat dense style="height:100%">3333</q-btn></a>
+            </q-toolbar>
+          </q-page-sticky>
+        </q-page>
+
+        <q-page-scroller position="bottom-right">
+          <q-btn fab icon="keyboard_arrow_up" color="blue" />
+        </q-page-scroller>
+      </q-page-container>
+    </q-layout>
+</template>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/quasar@1.7.4/dist/quasar.ie.polyfills.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@^2.0.0/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@1.7.4/dist/quasar.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@1.7.4/dist/lang/zh-hans.umd.min.js"></script>
+
+    <script>
+      Quasar.lang.set(Quasar.lang.zhHans)
+
+      /*
+        Example kicking off the UI. Obviously, adapt this to your specific needs.
+        Assumes you have a <div id="q-app"></div> in your <body> above
+       */
+      new Vue({
+          el: '#q-app',
+          data () {
+            return {
+            }
+          },
+          methods: {
+            notify: function () {
+              this.$q.notify('Running on Quasar v' + this.$q.version)
+            }
+          }
+        })
+    </script>
+  </body>
+</html>
