@@ -3,6 +3,8 @@
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
 
 <hr>
+<p>虽然本开源项目使用前后端分离设计，但是，前后端分离就是一个垃圾产物，会增加很多前端人员和后端人员，而你的开发效率提升仅仅是20%的速度提升，原因就在于你们会浪费非常多的时间，发邮件，发聊天，发截图，相互扯淡，一旦一处代码改动，整个团队都要加班改动</p>
+<p>项目2.0版本，将全部改版为异步通信，同步数据，并加入实时聊天功能</p>
 <p><h2><a href="https://github.com/Singosgu/Elvis_WMS/blob/master/README_zh_Hans.md" target="_blank">中文文档</a></h2></p>
 <p><h3>Project Description:</h3></p>
 <p>Open source warehouse management software follows MIT protocol and front-back stage decoupling method. API uses restful protocol to facilitate for add-on functions development. The html & js code is constructed with quasar(base on Vue.js v2.6.0+). According to API, it can support business models such as multi warehouse, wave shipment, combined picking and milk-run and so on.</p>
