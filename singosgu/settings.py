@@ -82,7 +82,6 @@ INSTALLED_APPS = [
     'podetail',
     'sodetail',
     'driverlist',
-    'baseurl'
 
 
 

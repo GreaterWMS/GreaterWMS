@@ -84,7 +84,7 @@ path('podetail/', include('podetail.urls')),
 path('solist/', include('solist.urls')),
 path('sodetail/', include('sodetail.urls')),
 path('driverlist/', include('driverlist.urls')),
-path('baseurl/', include('baseurl.urls'))
+#path('baseurl/', include('baseurl.urls'))
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
