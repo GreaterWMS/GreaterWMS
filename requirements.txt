@@ -21,7 +21,7 @@ djangorestframework==3.12.2
 drf-yasg==1.20.0
 et-xmlfile==1.0.1
 gprof2dot==2019.11.30
-h2==3.2.0
+h2==4.0.0
 hpack==4.0.0
 hyperframe==6.0.0
 hyperlink==20.0.1
@@ -35,7 +35,7 @@ MarkupSafe==1.1.1
 numpy==1.19.3
 openapi-codec==1.3.2
 openpyxl==3.0.5
-packaging==20.4
+packaging==20.7
 pandas==1.1.4
 priority==1.3.0
 pyasn1==0.4.8
@@ -59,7 +59,7 @@ simplejson==3.17.2
 six==1.15.0
 sqlparse==0.4.1
 toml==0.10.2
-Twisted @ file:///C:/Users/singo/PycharmProjects/django_wms/Twisted-20.3.0-cp39-cp39-win_amd64.whl
+Twisted==20.3.0
 txaio==20.4.1
 uritemplate==3.0.1
 urllib3==1.25.11
