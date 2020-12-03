@@ -1,4 +1,4 @@
-# Django_WMS--Open source warehouse management software
+# GreaterWMS--Open source warehouse management software
 <p><div align=center><img width="100" height="25" src="https://visitor-badge.glitch.me/badge?page_id=<your_page_id>"/></div></p>
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
 
@@ -8,16 +8,14 @@
 <p>Open source warehouse management software follows MIT protocol and front-back stage decoupling method. API uses restful protocol to facilitate for add-on functions development. The html & js code is constructed with quasar(base on Vue.js v2.6.0+). According to API, it can support business models such as multi warehouse, wave shipment, combined picking and milk-run and so on.</p>
 
 <p>Software copyright Code：<a>China: 2018SR517685</a></p>
-<p>Gitee Link:<a href="https://gitee.com/Singosgu/Elvis_WMS" target="_blank">Gitee</a></p>
+<p>Gitee Link:<a href="https://gitee.com/Singosgu/GreaterWMS" target="_blank">Gitee</a></p>
 
 <p>Technical QQ community：<a>1051907485</a></p>
 <hr>
 <p><h3>Development Environment:</h3></p>
-<p>* Python v3.7.0 +</p>
-<p>* Django v2.2.14(Django v2.2.14 can support Django-rest-swagger better. If you don't need Django-rest-swagger to debug api, you can pip install higher version Django)</p>
-<p>* Django-rest-framework v3.9.2(Django-rest-framework v3.9.2 can support Django-rest-swagger better，If you don't need Django-rest-swagger to debug api, you can pip install higher version Django-rest-framework)</p>
-<p>* Django-rest-swagger v2.2.0</p>
-<p>* Django-silk v4.0.1(In production environment，please close silk，silk will leak user infomation)</p>
+<p>* Python v3.8.0 +</p>
+<p>* Django v3.1.3 +</p>
+<p>* Django-silk v4.0.1 + (In production environment，please close silk，silk will leak user infomation)</p>
 <p>* Quasar v1.7.2+</p>
 <p>* Vue v2.6.0+</p>
 <p>* API，follow restful protocol</p>
