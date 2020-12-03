@@ -1,6 +1,11 @@
 # GreaterWMS--Open source warehouse management software
 <p><div align=center><img width="100" height="25" src="https://visitor-badge.glitch.me/badge?page_id=<your_page_id>"/></div></p>
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
+<p>
+<div align=center>
+  <img width="100" height="25" src="https://img.shields.io/hexpm/l/plug?style=plastic"/>
+</div>
+</p>
 
 <hr>
 <p><h2><a href="https://github.com/Singosgu/GreaterWMS/blob/master/README_zh_Hans.md" target="_blank">中文文档</a></h2></p>
