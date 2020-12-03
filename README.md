@@ -29,9 +29,9 @@
 <p>Confirm migrate database. Django Primordial support sqlite3 database. If you wanna change database to others. Please editor singosgu/settings.py.</p>
 <p><h4>Run Server:</h4></p>
 <p>Local Server</p>
-<p>$ daphne -p 8000 django_wms.asgi:application</p>
+<p>$ daphne -p 8008 django_wms.asgi:application</p>
 <p>Local Server Port Customize</p>
-<p>$ daphne -b 0.0.0.0 -p 8000 django_wms.asgi:application</p>
+<p>$ daphne -b 0.0.0.0 -p 8008 django_wms.asgi:application</p>
 <p>If you customize the Port. The user in local area network can use 'server IP:Port' to browse the software</p>
 <hr>
 <p><h3>Develop Extend:</h3></p>
