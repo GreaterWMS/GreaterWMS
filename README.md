@@ -4,6 +4,7 @@
 <p>
 <div align=center>
   <img width="100" height="25" src="https://img.shields.io/hexpm/l/plug?style=plastic"/>
+  <img src="https://img.shields.io/npm/v/quasar.svg?label=quasar"> <img src="https://img.shields.io/npm/v/%40quasar/app.svg?label=@quasar/app"> <img src="https://img.shields.io/npm/v/%40quasar/cli.svg?label=@quasar/cli"> <img src="https://img.shields.io/npm/v/%40quasar/extras.svg?label=@quasar/extras"> <img src="https://img.shields.io/npm/v/%40quasar/icongenie.svg?label=@quasar/icongenie">
 </div>
 </p>
 
