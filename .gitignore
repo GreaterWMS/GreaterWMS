@@ -1,0 +1,5 @@
+node_modules/
+migrations/
+__pycache__/
+db.sqlite3
+
