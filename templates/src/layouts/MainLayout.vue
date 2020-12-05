@@ -16,6 +16,11 @@
             {{ $t('index.title_tip') }}
           </q-tooltip>
         </q-btn>
+        <q-btn icon="img:statics/icons/github.png" stretch flat @click="brownlink('https://github.com/Singosgu/GreaterWMS')">
+          <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+            GitHub Link
+          </q-tooltip>
+        </q-btn>
         <q-btn round dense flat color="white" icon="translate" style="margin: 0 10px 0 10px">
           <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
             {{ $t('index.translate') }}
