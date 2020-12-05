@@ -9,7 +9,6 @@ class Authtication(object):
                 return (False, None)
         else:
             openid = request.META.get('HTTP_TOKEN')
-            print(openid)
             if openid:
                 user = Users.objects.filter(openid__exact=str(openid)).first()
                 return (True, user)

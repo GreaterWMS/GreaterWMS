@@ -6,6 +6,7 @@ import Quasar from 'quasar'
 Vue.use(VueI18n)
 
 var getlang = Quasar.lang.getLocale().split('-')[0].toLowerCase()
+console.log(getlang)
 if (getlang === 'zh') {
   getlang = 'zh-hans'
 } else {

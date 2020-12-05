@@ -17,6 +17,10 @@
         bordered
       >
          <template v-slot:top>
+           <transition
+              appear
+              enter-active-class="animated bounceInLeft"
+            >
            <q-btn-group push>
              <q-btn label="New" icon="add" @click="newFormOpen()">
                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
@@ -34,6 +38,7 @@
                </q-tooltip>
              </q-btn>
            </q-btn-group>
+           </transition>
            <q-space />
            <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" placeholder="Search word">
              <template v-slot:append>
