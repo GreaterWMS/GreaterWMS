@@ -14,8 +14,11 @@
 <hr>
 <p><h3>Development Environment:</h3></p>
 <p>* Python v3.8.0 +</p>
+
 <p>* Django v3.1.3 +</p>
 <p>* Django-silk v4.0.1 + (In production environment，please close silk，silk will leak user infomation)</p>
+<p>* Node.js v14.15.0</p>
+<p>* Npm v6.14.8</p>
 <p>* Quasar v1.7.2+</p>
 <p>* Vue v2.6.0+</p>
 <p>* API，follow restful protocol</p>
