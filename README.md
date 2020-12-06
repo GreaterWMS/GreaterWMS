@@ -1,4 +1,4 @@
-# GreaterWMS--Open source warehouse management software
+# GreaterWMS--Warehouse management software
 <p><div align=center><img width="100" height="25" src="https://visitor-badge.glitch.me/badge?page_id=<your_page_id>"/></div></p>
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
 
@@ -9,7 +9,7 @@
 
 <p>Software copyright Code：<a>China: 2018SR517685</a></p>
 <p>Gitee Link:<a href="https://gitee.com/Singosgu/GreaterWMS" target="_blank">Gitee</a></p>
-
+<p><a href="https://www.56yhz.com">Demo: https://www.56yhz.com</a></p>
 <p>Technical QQ community：<a>1051907485</a></p>
 <hr>
 <p><h3>Development Environment:</h3></p>
