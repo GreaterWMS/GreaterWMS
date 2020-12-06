@@ -1,5 +1,6 @@
 <template>
     <div class="q-pa-md" style="width: 100%; margin-top: -20px">
+      <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-table shadow-24"
         :data="table_list"
@@ -72,6 +73,7 @@
            </q-tr>
          </template>
       </q-table>
+        </transition>
       <template>
         <div class="q-pa-lg flex flex-center">
           <q-btn v-show="pathname_previous" flat push color="purple" label="Previous" icon="navigate_before" @click="getListPrevious()">
