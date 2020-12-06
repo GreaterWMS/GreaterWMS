@@ -8,8 +8,8 @@
 <p>Open source warehouse management software follows Apache License 2.0 protocol and front-back stage decoupling method. API uses restful protocol to facilitate for add-on functions development. The html & js code is constructed with quasar(base on Vue.js v2.6.0+). According to API, it can support business models such as multi warehouse, wave shipment, combined picking and milk-run and so on.</p>
 
 <p>Software copyright Code：<a>China: 2018SR517685</a></p>
-<p>Gitee Link:<a href="https://gitee.com/Singosgu/GreaterWMS" target="_blank">Gitee</a></p>
-<p><a href="https://www.56yhz.com">Demo: https://www.56yhz.com</a></p>
+<p>Gitee Link:<a href="https://gitee.com/Singosgu/GreaterWMS">Gitee</a></p>
+<p>Demo Link:<a href="https://www.56yhz.com">https://www.56yhz.com</a></p>
 <p>Technical QQ community：<a>1051907485</a></p>
 <hr>
 <p><h3>Development Environment:</h3></p>
