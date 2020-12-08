@@ -6,7 +6,9 @@
       <q-tabs
         v-model="detaillink"
       >
-  <q-route-tab name="driverlist" label="Driver" icon="img:statics/staff/driver.png" to="/driver/driverlist" exact/>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="driverlist" label="Driver" icon="img:statics/staff/driver.png" to="/driver/driverlist" exact/>
+        </transition>
       </q-tabs>
     </div>
   </div>

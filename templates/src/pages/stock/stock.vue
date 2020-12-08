@@ -6,10 +6,18 @@
       <q-tabs
         v-model="detaillink"
       >
-  <q-route-tab name="stocklist" label="Stock List" icon="img:statics/stock/stocklist.png" to="/stock/stocklist" exact/>
-  <q-route-tab name="stockbinlist" label="Bin Stock" icon="img:statics/warehouse/binset.png" to="/stock/stockbinlist" exact/>
-  <q-route-tab name="emptybin" label="Empty Bin" icon="img:statics/stock/cyclecount.png" to="/stock/emptybin" exact/>
-  <q-route-tab name="occupiedbin" label="Occupied Bin" icon="img:statics/stock/cyclecount.png" to="/stock/occupiedbin" exact/>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="stocklist" label="Stock List" icon="img:statics/stock/stocklist.png" to="/stock/stocklist" exact/>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="stockbinlist" label="Bin Stock" icon="img:statics/warehouse/binset.png" to="/stock/stockbinlist" exact/>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="emptybin" label="Empty Bin" icon="img:statics/stock/cyclecount.png" to="/stock/emptybin" exact/>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="occupiedbin" label="Occupied Bin" icon="img:statics/stock/cyclecount.png" to="/stock/occupiedbin" exact/>
+        </transition>
       </q-tabs>
     </div>
   </div>
