@@ -6,7 +6,9 @@
       <q-tabs
         v-model="detaillink"
       >
-  <q-route-tab name="stafflist" label="Staff" icon="img:statics/staff/stafflist.png" to="/staff/stafflist" exact/>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="stafflist" label="Staff" icon="img:statics/staff/stafflist.png" to="/staff/stafflist" exact/>
+        </transition>
       </q-tabs>
     </div>
   </div>

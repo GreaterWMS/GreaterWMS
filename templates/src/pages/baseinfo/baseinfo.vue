@@ -6,9 +6,15 @@
       <q-tabs
         v-model="detaillink"
       >
-  <q-route-tab name="company" label="Company info" icon="img:statics/baseinfo/company.png" to="/baseinfo/company" exact/>
-  <q-route-tab name="supplier" label="Supplier" icon="img:statics/baseinfo/supplier.png" to="/baseinfo/supplier" exact/>
-  <q-route-tab name="customer" label="Customer" icon="img:statics/baseinfo/customer.png" to="/baseinfo/customer" exact/>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="company" label="Company info" icon="img:statics/baseinfo/company.png" to="/baseinfo/company" exact/>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="supplier" label="Supplier" icon="img:statics/baseinfo/supplier.png" to="/baseinfo/supplier" exact/>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="customer" label="Customer" icon="img:statics/baseinfo/customer.png" to="/baseinfo/customer" exact/>
+        </transition>
       </q-tabs>
     </div>
   </div>
