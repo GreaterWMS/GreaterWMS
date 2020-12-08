@@ -6,7 +6,9 @@
       <q-tabs
         v-model="detaillink"
       >
-  <q-route-tab name="capital" label="capital" icon="img:statics/capital/capital.png" to="/capital/capitallist" exact/>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="capital" label="capital" icon="img:statics/capital/capital.png" to="/capital/capitallist" exact/>
+        </transition>
       </q-tabs>
     </div>
   </div>

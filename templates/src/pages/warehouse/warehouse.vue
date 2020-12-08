@@ -6,10 +6,18 @@
       <q-tabs
         v-model="detaillink"
       >
-  <q-route-tab name="warehouseset" label="warehouse" icon="img:statics/warehouse/warehouseset.png" to="/warehouse/warehouseset" exact/>
-  <q-route-tab name="binset" label="bin_set" icon="img:statics/warehouse/binset.png" to="/warehouse/binset" exact/>
-  <q-route-tab name="binsize" label="bin_size" icon="img:statics/warehouse/binsize.png" to="/warehouse/binsize" exact/>
-  <q-route-tab name="property" label="bin_property" icon="img:statics/warehouse/property.png" to="/warehouse/property" exact/>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="warehouseset" label="warehouse" icon="img:statics/warehouse/warehouseset.png" to="/warehouse/warehouseset" exact/>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="binset" label="bin_set" icon="img:statics/warehouse/binset.png" to="/warehouse/binset" exact/>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="binsize" label="bin_size" icon="img:statics/warehouse/binsize.png" to="/warehouse/binsize" exact/>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab name="property" label="bin_property" icon="img:statics/warehouse/property.png" to="/warehouse/property" exact/>
+        </transition>
       </q-tabs>
     </div>
   </div>

@@ -10,20 +10,20 @@
           </q-btn>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-toolbar-title v-show="!this.$q.platform.is.mobile" shrink class="text-weight-bold">
+          <q-toolbar-title v-show="!$q.platform.is.mobile" shrink class="text-weight-bold">
             {{ $t('index.title') }}
           </q-toolbar-title>
         </transition>
         <q-space />
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn v-show="!this.$q.platform.is.mobile" icon="img:statics/icons/logo.png" stretch flat :label="$t('index.home')" to="/">
+          <q-btn v-show="!$q.platform.is.mobile" icon="img:statics/icons/logo.png" stretch flat :label="$t('index.home')" to="/">
             <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
               {{ $t('index.title_tip') }}
             </q-tooltip>
           </q-btn>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <a href="/docs/" v-show="!this.$q.platform.is.mobile" style="text-decoration:none; color: #c8e6c9">
+          <a href="/docs/" v-show="!$q.platform.is.mobile" style="text-decoration:none; color: #c8e6c9">
             <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px">
               <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
                 API Docs
@@ -32,7 +32,7 @@
           </a>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn v-show="!this.$q.platform.is.mobile" icon="img:statics/icons/GitHub.png" round dense flat @click="brownlink('https://github.com/Singosgu/GreaterWMS')" style="margin: 0 10px 0 10px">
+          <q-btn v-show="!$q.platform.is.mobile" icon="img:statics/icons/GitHub.png" round dense flat @click="brownlink('https://github.com/Singosgu/GreaterWMS')" style="margin: 0 10px 0 10px">
             <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
               GitHub Link
             </q-tooltip>
