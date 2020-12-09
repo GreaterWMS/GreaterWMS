@@ -25,7 +25,7 @@ class StockListModel(models.Model):
         db_table = 'stocklist'
         verbose_name = 'data id'
         verbose_name_plural = "data id"
-        ordering = ['update_time']
+        ordering = ['-id']
 
     def __str__(self):
         return self.pk
@@ -45,7 +45,7 @@ class StockBinModel(models.Model):
         db_table = 'stockbin'
         verbose_name = 'data id'
         verbose_name_plural = "data id"
-        ordering = ['update_time']
+        ordering = ['-id']
 
     def __str__(self):
         return self.pk

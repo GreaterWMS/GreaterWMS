@@ -22,4 +22,8 @@ from . import views
 urlpatterns = [
 path(r'list/', views.StockListViewSet.as_view({"get": "list"}), name="list"),
 path(r'bin/', views.StockBinViewSet.as_view({"get": "list"}), name="bin"),
+re_path(r'^bin/(?P<pk>\d+)/$', views.StockBinViewSet.as_view({
+    'get': 'retrieve',
+    'post': 'create'
+}), name="bin_1"),
 ]
