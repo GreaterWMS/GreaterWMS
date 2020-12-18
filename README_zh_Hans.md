@@ -2,108 +2,235 @@
 
 <p><div align=center><img width="150" height="150" src="https://www.56yhz.com/statics/icons/logo.png"/></div></p>
 
-<hr>
-<p><h3>项目介绍：</h3></p>
-<p>开源仓储管理软件，遵循MIT协议，前后端分离，api使用restful协议，方便二次开发，前端代码使用quasar进行构建，利用API，可以支持多仓，波次发货，合并拣货，Milk-Run等业务模型</p>
+---
 
-<p>软件著作权编号：<a>2018SR517685</a></p>
-<p>码云地址：<a href="https://gitee.com/Singosgu/Elvis_WMS" target="_blank">码云</a></p>
+## 项目介绍：
 
-<p>技术交流QQ群：<a>1051907485</a></p>
-<hr>
-<p><h3>开发环境：</h3></p>
-<p>* python 版本为v3.7.0 +</p>
-<p>* django版本为v2.2.14(该版本django和django-rest-swagger兼容比较好，如果不需要使用django-rest-swagger，可以使用更高版本的django)</p>
-<p>* django-rest-framework 版本为3.9.2(该版本django和django-rest-swagger兼容比较好，如果不需要使用django-rest-swagger，可以使用更高版本的django)</p>
-<p>* django-rest-swagger 版本为v2.2.0</p>
-<p>* django-silk 版本为v4.0.1(如果是部署上线，请关闭silk，silk有可能会泄露用户信息)</p>
-<p>* quasar 版本为v1.7.2+</p>
-<p>* vue 版本为v2.6.0+</p>
-<p>* API，使用restful协议</p>
-<hr>
-<p><h3>构建命令：</h3></p>
-<p>$ pip install -r requirements.txt</p>
-<p>安装python库</p>
-<p>$ python manage.py makemigrations</p>
-<p>运行数据库迁移文件</p>
-<p>$ python manage.py migrate</p>
-<p>创建数据库，django默认使用sqlite3作为数据库，如果需要mysql数据库，请在singosgu/settings.py里面进行配置</p>
-<p><h4>开发服务器运行：</h4></p>
-<p>运行开发服务器：</p>
-<p>$ python manage.py runserver</p>
-<p>运行在特定端口：</p>
-<p>$ python manage.py runserver 0.0.0.0:8001</p>
-<p>如果运行特定端口，局域网的电脑，只需要访问，运行电脑的ip+端口，即可以访问运行页面</p>
-<p><h4>生产服务器运行：</h4></p>
-<p>Nginx配置：</p>
-<p>这里仅以Nginx配置为例，将项目下的nginx.conf替换服务器端的nginx.conf即可，注意更改nginx.conf里面的项目地址和域名</p>
-<p>uwsgi安装：</p>
-<p>$ pip install uwsgi</p>
-<p>如果你使用了虚拟环境，那uwsgi的安装需要正式环境安装一遍，再在虚拟环境中安装一遍</p>
-<p>uwsgi挂载：</p>
-<p>$ uwsgi -x /path/to/***你的项目路径***/mysite.xml</p>
-<p>如果不希望代码更改后，自动刷新挂载，可以把py-autoreload设置为0</p>
-<p>uwsgi重新挂载：</p>
-<p>$ uwsgi --reload /path/to/***你的项目路径***/mysite.pid</p>
-<p>uwsgi已经记录了pid文件，每次重新挂载只需要reload这个pid就可以了</p>
-<hr>
-<p><h3>开发扩展：</h3></p>
-<p>因为使用的前后端分离的设计，所以可以通过API，开发更多的软件应用</p>
-<p><h4>物流智能AGV</h4></p>
-<p>* AGV的项目也已经开源，由于场地受限，仅实现智能发货，定点回库，使用的循迹感应器，超声波避障感应器，红外避障感应器，所有的指令通过网络传输，AGV绑定MAC地址和IP地址，保证了安全性</p>
-<p><h4>进销存</h4></p>
-<p>* 不使用仓库设置模块，直接使用商品设置和供应商及客户设置，可以快速搭建一个进销存系统</p>
-<p><h4>APP和小程序</h4></p>
-<p>* API的组合可以达到1万种，这样我们可以根据查询请求，来获得实时报表和数据监控</p>
-<p><h4>供应链管理系统</h4></p>
-<p>* 产品的数量，创建时间，最后使用时间是各方面统计的，所以可以方便采购计划和调拨计划进行库存的分析</p>
-<p><h4>多仓管理</h4></p>
-<p>* openid为用户的唯一标识，数据统一标识为appid，数据t_code为数据在服务器的唯一标识，所以很方便可以实现多仓管理</p>
-<p><h4>波次拣货，发货</h4></p>
-<p>* 可以设置固定时间向服务器发出请求，从而达到波次拣货的功能</p>
-<p><h4>Milk-Run</h4></p>
-<p>* 可以给供应商或者客户设置权限，让他们可以查询到固定产品的库存消耗</p>
-<p><h4>VMI</h4></p>
-<p>* 同上</p>
-<p><h4>拣货路线优化</h4></p>
-<p>* 库位的设置决定了拣货的效率</p>
-<hr>
-<p><h3>开发指南：</h3></p>
-<p><h4>baseurl</h4></p>
-<p>* 是发起请求的基本网址，如果是本地调试，则默认为http://127.0.0.1:8000/ ，如果部署在服务器，则需要将其改为你的网站访问url</p>
-<p>* 修改方式为，发起一个post请求到https://www.56yhz.com/baseurl/ ，传输一个json数据data{'baseurl': 'http://*****', 'title': '你的项目名称', 'icp': '中国的icp备案信息'}</p>
-<p><h4>django-silk</h4></p>
-<p>* django-silk为开发时的调试工具，可以统计每个接口的响应速度，如果需要部署到生产环境，请删除django-silk相关配置，因为会有泄露用户信息的风险，或者直接修改django-silk，让用户只能看到自己的请求数据<p>
-<p><h4>django-rest-swagger</h4></p>
-<p>* swagger会生成软件的开发者文档，访问'baseurl' + '/docs/'，就可以看到具体的开发者文档，同时还可以对接口进行调试, 开发者文档使用的YML的格式，也可以自己在APIView里面修改，注意接口，get是修改get请求的API文档，post是修改post请求的API文档<p>
-<p><h4>数据库设计</h4></p>
-<p>* 数据库设计时考虑到数据迁移等问题，所以只有users里面的user_id和django自带的user_id做了外键，其余所有字段全部没有使用外键，方便数据备份和数据库迁移<p>
-<p><h4>关于数据传输</h4></p>
-<p>* post，patch，put请求会传输一个数据data，可以是一个json数据，也可以是一个json数据组，传输的data会被utils/datasolve处理，来判断是否有js文件或sql注入，从而保证了后台数据库的安全性，每个前端给后端发的请求，都会核对用户的唯一标识，以防止用户数据串流<p>
-<p><h4>openid</h4></p>
-<p>* openid是注册用户的唯一标识，当管理员直接注册时，会有developer=1这个管理员标识，管理员具备最高权限，而由管理员，或有新增用户权限的用户新建的用户，developer=0，developer作为管理员标识存在，每次向服务器发起请求，都需要url传值这个openid，服务器端会根据这个openid来判断是否为正常用户，从而保证数据不会被混乱访问，同时也可以根据openid来记录具体的访问用户，作为数据追溯依据，可以使用request.auth获得该条数据<p>
-<p><h4>appid</h4></p>
-<p>* appid是数据源唯一标识，每次新建用户(员工账号)时，用户的appid都会统一为管理员账号的appid，从而达到了所有数据的统一性，即新用户A在发起数据请求时，会带上自己的openid，服务器端根据这个openid去链接appid下的所有数据，防止访问到其他用户的数据，可以使用request.user.appid获得该条数据<p>
-<p><h4>用户权限</h4></p>
-<p>* 用户信息已经设计了权限管理，共45个，有字段aut1~~aut45，可自定义权限管理，先未对权限管理数据传输做任何限制，可自定义添加<p>
-<p><h4>t_code</h4></p>
-<p>* t_code是数据存在数据库里面的唯一标识，是具有唯一性的，所有的数据修改和删除，都是使用t_code来判断的，避免使用id判断时，会出现数据误操作，该条数据是由当时的时间戳+传入的一个string值，合并生成的MD5码<p>
-<p><h4>get请求设计</h4></p>
-<p>* get请求已经做好了分页设计，传值时：max_page参数为每页最大显示多少条内容，默认设计是1000条数据，因为如果数据过多，会造成数据较慢； page参数为请求第几页的数据，一般在返回的数据中，有一个totalpage参数，可以知道一共有多少页<p>
-<p><h4>数据传输流程</h4></p>
-<p>* 一般post,patch,put是4段式设计，1--审查用户权限，会return一个值'Y' or 'N'，2--审查数据的安全性， 3--审查数据是否可以存入数据库或修改数据库数据，4--新增或修改数据，并返回一个data给到前端，这样做可以避免数据增删改的时候出现误改的情况<p>
-<p><h4>数据库设计</h4></p>
-<p>* 数据库设计时考虑到数据迁移等问题，所以只有users里面的user_id和django自带的user_id做了外键，其余所有字段全部没有使用外键，方便数据备份和数据库迁移<p>
-<p><h4>小程序开发</h4></p>
-<p>* 由于小程序不支持patch请求，所以需要自信在django中设置一个views，来访问patch请求的数据<p>
-<hr>
-<p><h3>项目展示：</h3></p>
-<p><div align=center><img src="https://images.gitee.com/uploads/images/2020/0801/081359_00047e76_1199519.png"/></div></p>
-<p><div align=center><img src="https://images.gitee.com/uploads/images/2020/0801/081400_accf72f6_1199519.png"/></div></p>
-<p><div align=center><img src="https://images.gitee.com/uploads/images/2020/0801/081401_96be5429_1199519.png"/></div></p>
-<p><div align=center><img src="https://images.gitee.com/uploads/images/2020/0801/081359_c6a79408_1199519.png"/></div></p>
-<p><div align=center><img src="https://images.gitee.com/uploads/images/2020/0801/081400_bc1c201e_1199519.png"/></div></p>
-<p><div align=center><img src="https://images.gitee.com/uploads/images/2020/0801/081400_812d6c78_1199519.png"/></div></p>
-<p><div align=center><img src="https://images.gitee.com/uploads/images/2020/0801/081401_a90ce517_1199519.png"/></div></p>
-<p><div align=center><img src="https://images.gitee.com/uploads/images/2020/0801/081402_e23345dd_1199519.png"/></div></p>
-<p><div align=center><img src="https://images.gitee.com/uploads/images/2020/0801/081403_77ce3a94_1199519.png"/></div></p>
+完全开源仓储管理软件，遵循Apache License 2.0协议，前后端分离，且完全开源，API使用restful协议，方便二次开发，前端代码使用quasar进行构建，后端使用Python Django3.1，利用API，可以支持多仓，波次发货，合并拣货，Milk-Run等业务模型。
+
+- 软件著作权编号：2018SR517685
+- GitHub地址：[GitHub](https://github.com/Singosgu/GreaterWMS)
+
+- 码云地址：[码云](https://gitee.com/Singosgu/GreaterWMS)
+
+- Demo地址：[DEMO](https://www.56yhz.com/)
+- 技术交流QQ群：463562933
+
+---
+
+## 项目初衷：
+
+我在供应链行业工作了15年，发现在我们这个专业的领域，没有一款高自由度、高自定义化的软件，来深度支持我们企业的业务。大多数软件都是闭源的，而且很难去做二次开发，即使开发，周期也是非常长，开发失败的案例也是比比皆是。由于企业选择了一款软件后，其二次开发也会被开发公司绑定，至于二次开发费用，只能说呵呵。所以，我设立了这个聚商汇WMS，为的是做到一款高自由度，高自定义开发的仓库管理软件，来深度支持企业的业务。
+
+- 愿景：如果你从事着非IT行业的工作，而你又热爱你的行业，那就用科技去改变他。
+
+---
+
+## 生命周期
+
+- V 1.0.0 -- 2019年7月 ~~2020年12月（由于1.0.0版本的二次开发设计较为复杂，故2.0重新编写）
+- V 2.0.0 -- 2020年12月 ~~2021年3月（重新编写业务逻辑，原生自带API开发文档，加入实时通信，方便企业用户互相沟通）
+- V 2.1.0 -- 2021年3月 ~~2021年6月（加入了客户与企业之间的实时互动，增进企业与客户之间的业务联系，实现VMI）
+- V 2.2.0 -- 2020年6月 ~~2021年9月（加入了供应商与企业之间的实时互动，增进企业与供应商之间的业务联系，实现Milk-Run和看板拉动）
+- V 2.3.0 -- 2021年9月 ~~2021年12月（库存管理雏形，初步加入神经网络，深度学习库存变化）
+- V 3.0.0 -- 2021年9月 ~~2021年12月（完全植入神经网络，让上下游企业可以以最低的成本运营整体的业务）
+- V 3.1.0 -- 2021年12月 ~~2022年3月（区域仓库业务布局，通过深度学习，实现多仓运营，成本最低化）
+
+---
+
+## 开发环境：
+
+- Python 版本为 V 3.8.0 +
+
+- Django 版本为 V 3.1.0 +(该版本Django才原生支持异步实时通信)
+
+- Django-rest-framework 版本为 V 3.12.2 + (更高版本的Django-rest-Framework对Django3的兼容比较好)
+
+- Django-silk 版本为 V 4.1.0 (如果是部署上线，请关闭silk，silk仅为调试API接口速度用，有可能会泄露用户信息)
+
+- Quasar 版本为 V1.7.2 + (可以查看Quasar官网，来编辑GreaterWMS前端代码：[Quasar官网](http://www.quasarchs.com/))
+
+- Vue 版本为 V 2.6.0 +（尽量不要使用Vue3，因为开发环境没有使用Vue3，不知道会出现什么问题）
+- API，遵循 RESTful 架构
+
+---
+
+## 构建命令：
+
+- 下载代码：
+
+~~~shell
+git clone https://github.com/Singosgu/GreaterWMS.git
+~~~
+
+- 安装Python库：
+
+~~~python
+pip install -r requirements.txt
+~~~
+
+注意：`安装需要Twisted库，这个库有时候会安装不上，需要下载下来本地安装`
+
+- 下载地址：[TWISTED](https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted)
+
+~~~python
+pip install Twisted{你下载下来的版本名称}
+~~~
+
+注意：`本地安装需要注意路径`
+
+- 初始化数据库：
+
+~~~python
+python manage.py makemigrations
+~~~
+
+- 迁移数据库：
+
+~~~python
+python manage.py migrate
+~~~
+
+创建数据库，Django默认使用sqlite3作为数据库，如果需要mysql数据库，请在django_wms/settings.py里面配置DATABASE
+
+### 开发服务器运行：
+
+- 开发运行：
+
+~~~python
+daphne -p 8008 django_wms.asgi:application
+~~~
+
+### 生产服务器运行：
+
+- supervisor守护进程：
+
+~~~shell
+pip install supervisor
+~~~
+
+使用supervisor来守护Django进程，再使用Nginx做反向代理，至于superevisor的教程有很多，这里不做讲解
+
+- Nginx支持：
+
+推荐使用Nginx进行部署，部署的时候需要指定WebSocket链接，如果不知道，实时通信功能将报错
+
+另需要修改axios_request.js里的ws_url
+
+~~~shell
+## 示例更改前
+const baseurl = 'http://127.0.0.1:8008/'
+const wsurl = 'ws://127.0.0.1:8008/'
+
+## 示例更改后
+const baseurl = 'https://你的域名/'
+const wsurl = 'wss://你的域名/websocket/'
+~~~
+
+如果服务器启用了SSL，请使用https和wss，如果没有启用SSL，则使用http和ws
+
+修改后需要重新build前端代码
+
+---
+
+## 开发扩展：
+
+因为使用的前后端分离的设计，所以可以通过API，开发更多的软件应用
+
+### 物流智能AGV
+
+- AGV的项目也已经开源，由于场地受限，仅实现智能发货，定点回库，使用的循迹感应器，超声波避障感应器，红外避障感应器，所有的指令通过网络传输，AGV绑定MAC地址和IP地址，保证了安全性，前提是，你需要有一个树莓派。
+
+### 进销存
+
+- 可以直接当一个进销存系统使用，简化仓库库位设置等操作即可。
+
+### APP和小程序
+
+- Quasar原生可以直接打包成IOS APP和Android APP
+- 小程序的开发可以通过API开做二次开发，但小程序不知道put请求，所以需要自己再写一个请求接口。
+
+- API的组合可以达到100万种，这样我们可以根据查询请求，来获得实时报表和数据监控
+
+### 供应链管理系统
+
+- 产品的数量，创建时间，最后使用时间是各方面统计的，所以可以方便采购计划和调拨计划进行库存的分析
+- V 2.3.0及其以后的版本，将自带深度学习分析，所以可以直接使用分析结果作为供应链管理系统工具使用
+
+### 多仓管理
+
+- OPENID为用户的数据唯一标识，数据组统一标识为APPID，所以很方便可以实现多仓管理
+
+### 波次拣货，发货
+
+- 可以设置固定时间向服务器发出请求，从而达到波次拣货的功能
+
+- 也可以直接使用任务工作，通过API查询分析结果来实现，推荐使用[APScheduler](https://pypi.org/project/APScheduler/)
+
+  ~~~python
+  pip install apscheduler
+  ~~~
+
+### Milk-Run
+
+- V 2.2.0及其以上版本，将原生支持此功能
+- 如果现在就需要这个业务，可以根据API调用库存消耗，来实现此功能
+
+### VMI
+
+- V 2.1.0及其以上版本，将原生支持此功能
+- 如果现在就需要这个业务，可以根据API调用库存消耗，来实现此功能
+
+#### 拣货路线优化
+
+- 现在的拣货路线是按照库位排序
+- V 2.3.0以后版本将原生支持此功能
+- 如果现在需要这个业务，可以根据每天的拣货明细，调用API来实现此功能
+
+---
+
+## 开发指南：
+
+### baseurl
+
+- 是发起请求的基本网址，如果是本地调试，则默认为http://127.0.0.1:8008/ ，如果部署在服务器，则需要将其改为你的网站访问url
+
+- 修改方式为，修改axios_request.js，注意`websocket的修改之前已经提到了`
+
+### Django-silk
+
+- django-silk为开发时的调试工具，可以统计每个接口的响应速度，如果需要部署到生产环境，请删除Django-silk相关配置，因为会有泄露用户信息的风险，或者直接修改Django-silk库，让用户只能看到自己的请求数据
+
+### 数据库设计
+
+- 数据库设计时考虑到数据迁移等问题，所以只有users里面的user_id和Django自带的user_id做了外键，其余所有字段全部没有使用外键，方便数据备份和数据库迁移
+- 数据库是3段式设计
+  1. 验证数据用户归属
+  2. 验证数据安全性
+  3. 验证数据是否可以存入数据库
+  4. 存入数据库，并返回Response
+
+### 关于数据传输
+
+- 需要在所有的请求头headers里面加入token值，这个值就是用户的数据唯一标识OPENID
+- 所有的数据传输需要设定content-type为application/json
+
+### OPENID
+
+- OPENID是注册用户数据的唯一标识，当管理员直接注册时，会有developer=1这个管理员标识。
+- 你可以根据developter标识来做自定义二次开发
+
+### APPID
+
+- APPID是用户数据组唯一标识
+- 如果需要多公司运营，或者多仓运营，可以通过APPID做统一链接，来实现多公司，多仓操作
+
+### 用户权限
+
+- 未对用户权限做过多限制，请根据自身的业务需要，做二次开发限制
+
+---
+
+## 业务流程：
+
+- 暂时未更新此内容
