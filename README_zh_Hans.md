@@ -1,4 +1,4 @@
-# 聚商汇--开源仓库管理系统
+# 聚商汇WMS--开源仓库管理系统
 
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/GreaterWMS/blob/master/templates/public/statics/icons/logo.png?raw=true"/></div></p>
 
