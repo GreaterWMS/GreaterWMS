@@ -4,6 +4,8 @@
 
 ---
 
+[中文文档](https://github.com/Singosgu/GreaterWMS/blob/master/README_zh_Hans.md)
+
 ## 项目介绍：
 
 完全开源仓储管理软件，遵循Apache License 2.0协议，前后端分离，且完全开源，API使用restful协议，方便二次开发，前端代码使用quasar进行构建，后端使用Python Django3.1，利用API，可以支持多仓，波次发货，合并拣货，Milk-Run等业务模型。
