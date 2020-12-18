@@ -1,6 +1,6 @@
 # 聚商汇--开源仓库管理系统
 
-<p><div align=center><img width="150" height="150" src="https://www.56yhz.com/statics/icons/logo.png"/></div></p>
+<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/GreaterWMS/blob/master/templates/public/statics/icons/logo.png?raw=true"/></div></p>
 
 ---
 
@@ -10,8 +10,6 @@
 
 - 软件著作权编号：2018SR517685
 - GitHub地址：[GitHub](https://github.com/Singosgu/GreaterWMS)
-
-- 码云地址：[码云](https://gitee.com/Singosgu/GreaterWMS)
 
 - Demo地址：[DEMO](https://www.56yhz.com/)
 - 技术交流QQ群：463562933
