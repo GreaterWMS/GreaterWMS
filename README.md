@@ -1,4 +1,4 @@
-# 聚商汇WMS--开源仓库管理系统
+# GreaterWMS--Open Source Warehouse Management System
 
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/GreaterWMS/blob/master/templates/public/statics/icons/logo.png?raw=true"/></div></p>
 
@@ -6,52 +6,52 @@
 
 [中文文档](https://github.com/Singosgu/GreaterWMS/blob/master/README_zh_Hans.md)
 
-## 项目介绍：
+## Production Introduce：
 
-完全开源仓储管理软件，遵循Apache License 2.0协议，前后端分离，且完全开源，API使用restful协议，方便二次开发，前端代码使用quasar进行构建，后端使用Python Django3.1，利用API，可以支持多仓，波次发货，合并拣货，Milk-Run等业务模型。
+Fully open source warehouse management system follows Apache License 2.0 and front-back stage decoupling method. API uses restful protocol to facilitate for add-on functions development. The html & js code is constructed with quasar(base on Vue.js v2.6.0+). According to API, it can support business models such as multi warehouse, wave shipment, combined picking and milk-run and so on.
 
-- 软件著作权编号：2018SR517685
-- GitHub地址：[GitHub](https://github.com/Singosgu/GreaterWMS)
+- Software Copyright Procedures: 2018SR517685
+- GitHub Link: [GitHub](https://github.com/Singosgu/GreaterWMS)
 
-- Demo地址：[DEMO](https://www.56yhz.com/)
-- 技术交流QQ群：463562933
-
----
-
-## 项目初衷：
-
-我在供应链行业工作了15年，发现在我们这个专业的领域，没有一款高自由度、高自定义化的软件，来深度支持我们企业的业务。大多数软件都是闭源的，而且很难去做二次开发，即使开发，周期也是非常长，开发失败的案例也是比比皆是。由于企业选择了一款软件后，其二次开发也会被开发公司绑定，至于二次开发费用，只能说呵呵。所以，我设计了这个聚商汇WMS，为的是做到一款高自由度，高自定义开发的仓库管理软件，来深度支持企业的业务。
-
-- 愿景：如果你从事着非IT行业的工作，而你又热爱你的行业，那就用科技去改变他。
+- Demo Link: [DEMO](https://www.56yhz.com/)
+- QQ Caboodle ：463562933
 
 ---
 
-## 生命周期
+## Our Original Intention：
 
-- V 1.0.0 -- 2019年7月 ~ 2020年12月（由于1.0.0版本的二次开发设计较为复杂，故2.0重新编写）
-- V 2.0.0 -- 2020年12月 ~ 2021年3月（重新编写业务逻辑，原生自带API开发文档，加入实时通信，方便企业用户互相沟通）
-- V 2.1.0 -- 2021年3月 ~ 2021年6月（加入了客户与企业之间的实时互动，增进企业与客户之间的业务联系，实现VMI）
-- V 2.2.0 -- 2020年6月 ~ 2021年9月（加入了供应商与企业之间的实时互动，增进企业与供应商之间的业务联系，实现Milk-Run和看板拉动）
-- V 2.3.0 -- 2021年9月 ~ 2021年12月（库存管理雏形，初步加入神经网络，深度学习库存变化）
-- V 3.0.0 -- 2021年12月 ~ 2022年3月（完全植入神经网络，让上下游企业可以以最低的成本运营整体的业务）
-- V 3.1.0 -- 2022年3月 ~ 2022年6月（区域仓库业务布局，通过深度学习，实现多仓运营，成本最低化）
+I have 15 years old experience focus on supply chain . I find that in this professional field . No freedom customize software can support our business deeply . Any software are closed-source and hardly to customize or dynamic with our suppliers & customers . So I design GreaterWMS , in order to give business highest freedom way to support trade development .
+
+-  Our Vision: If you work in a non IT industry and you love your industry, please using technology to change it.
 
 ---
 
-## 开发环境：
+## Production Life Cycle:
 
-- Python 版本为 V 3.8.0 +
+- V 1.0.0 -- 2019.07 ~ 2020.12(Due to version 1.0.0 is more complex for re-development, so we rewrite the V 2.0)
+- V 2.0.0 -- 2020.12 ~ 2021.03(Rewrite business process, native API development documents, add real-time communication, facilitate enterprise users to communicate with each other)
+- V 2.1.0 -- 2021.03 ~ 2021.06(The real-time interaction between customers and enterprises is added to enhance the business relationship between enterprises and customers, and realize VMI business)
+- V 2.2.0 -- 2020.06 ~ 2021.09(The real-time interaction between suppliers and enterprises is added to enhance the business relationship between enterprises and suppliers, and realize milk-run and look-proof pulling）
+- V 2.3.0 -- 2021.09 ~ 2021.12(The rudiment of inventory management, the neural network is initially added, and the inventory changes are Deep learning)
+- V 3.0.0 -- 2021.12 ~ 2022.03(Fully implanted neural network, so that upstream and downstream enterprises can operate the whole business at the lowest cost)
+- V 3.1.0 -- 2022.03 ~ 2022.06(Regional warehouse business layout, through in-depth learning, to achieve multi warehouse operation, cost minimization)
 
-- Django 版本为 V 3.1.0 +(该版本Django才原生支持异步实时通信)
+---
 
-- Django-rest-framework 版本为 V 3.12.2 + (更高版本的Django-rest-Framework对Django3的兼容比较好)
+## Development Environment：
 
-- Django-silk 版本为 V 4.1.0 (如果是部署上线，请关闭silk，silk仅为调试API接口速度用，有可能会泄露用户信息)
+- Python Version 3.8.0 +
 
-- Quasar 版本为 V1.7.2 + (可以查看Quasar官网，来编辑GreaterWMS前端代码：[Quasar官网](http://www.quasarchs.com/))
+- Django Version 3.1.0 +(This version of Django only supports asynchronous real-time communication)
 
-- Vue 版本为 V 2.6.0 +（尽量不要使用Vue3，因为开发环境没有使用Vue3，不知道会出现什么问题）
-- API，遵循 RESTful 架构
+- Django-rest-framework Version  3.12.2 + (Highest versions of Django-rest-framework are more compatible with Django3)
+
+- Django-silk Version  4.1.0 (If you are deploying production, please turn off silk, which is only used for debugging API interface speed, which may leak users' information)
+
+- Quasar Version 1.7.2 + (You can view the official website of quasar to edit the webside code of greater WMS: [Quasar官网](http://www.quasarchs.com/))
+
+- Vue Version  2.6.0 +（Try not to use vue3, because the development environment does not use vue3, I don't know what will happened）
+- API，Follow RESTful
 
 ---
 
@@ -222,15 +222,15 @@ const wsurl = 'wss://你的域名/websocket/'
 
 ### APPID
 
-- APPID是用户数据组唯一标识
-- 如果需要多公司运营，或者多仓运营，可以通过APPID做统一链接，来实现多公司，多仓操作
+- APPID is the unique identifier of the user data group
+- If you need multi company operation or multi warehouse operation, you can make unified link through appid to realize multi company and multi warehouse operation
 
-### 用户权限
+### User Jurisdiction
 
-- 未对用户权限做过多限制，请根据自身的业务需要，做二次开发限制
+- There are not too many restrictions on user authorization. Please limit the secondary development according to your own business needs
 
 ---
 
-## 业务流程：
+## Business Process：
 
-- 暂时未更新此内容
+- This content is not updated at this time
