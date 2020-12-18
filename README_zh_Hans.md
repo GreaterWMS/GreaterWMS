@@ -113,7 +113,7 @@ pip install supervisor
 
 - Nginx支持：
 
-推荐使用Nginx进行部署，部署的时候需要指定WebSocket链接，如果不知道，实时通信功能将报错
+推荐使用Nginx进行部署，部署的时候需要指定WebSocket链接，如果不指定，实时通信功能将报错
 
 另需要修改axios_request.js里的ws_url
 
