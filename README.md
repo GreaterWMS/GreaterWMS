@@ -6,7 +6,7 @@
 
 [中文文档](https://github.com/Singosgu/GreaterWMS/blob/master/README_zh_Hans.md)
 
-## Production Introduce：
+## Production Introduce:
 
 Fully open source warehouse management system follows Apache License 2.0 and front-back stage decoupling method. API uses restful protocol to facilitate for add-on functions development. The html & js code is constructed with quasar(base on Vue.js v2.6.0+). According to API, it can support business models such as multi warehouse, wave shipment, combined picking and milk-run and so on.
 
@@ -18,7 +18,7 @@ Fully open source warehouse management system follows Apache License 2.0 and fro
 
 ---
 
-## Our Original Intention：
+## Our Original Intention:
 
 I have 15 years old experience focus on supply chain . I find that in this professional field . No freedom customize software can support our business deeply . Any software are closed-source and hardly to customize or dynamic with our suppliers & customers . So I design GreaterWMS , in order to give business highest freedom way to support trade development .
 
@@ -38,7 +38,7 @@ I have 15 years old experience focus on supply chain . I find that in this profe
 
 ---
 
-## Development Environment：
+## Development Environment:
 
 - Python Version 3.8.0 +
 
@@ -55,117 +55,117 @@ I have 15 years old experience focus on supply chain . I find that in this profe
 
 ---
 
-## 构建命令：
+## Build Command:
 
-- 下载代码：
+- Git Clone:
 
 ~~~shell
 git clone https://github.com/Singosgu/GreaterWMS.git
 ~~~
 
-- 安装Python库：
+- Install Python Library：
 
 ~~~python
 pip install -r requirements.txt
 ~~~
 
-注意：`安装需要Twisted库，这个库有时候会安装不上，需要下载下来本地安装`
+Atention: `Installation requires Twisted library, this library sometimes cannot be installed, you need to download it and install it locally`
 
-- 下载地址：[TWISTED](https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted)
+- Download Link：[TWISTED](https://www.lfd.uci.edu/~gohlke/pythonlibs/#twisted)
 
 ~~~python
-pip install Twisted{你下载下来的版本名称}
+pip install Twisted{Version Name Which You Download}
 ~~~
 
-注意：`本地安装需要注意路径`
+Atention:  `Local installation needs to pay attention to the path`
 
-- 初始化数据库：
+- Makemigrations the Database：
 
 ~~~python
 python manage.py makemigrations
 ~~~
 
-- 迁移数据库：
+- Migrate Database：
 
 ~~~python
 python manage.py migrate
 ~~~
 
-创建数据库，Django默认使用sqlite3作为数据库，如果需要mysql数据库，请在django_wms/settings.py里面配置DATABASE
+Create a database. Django uses sqlite3 as the default database. If you need other database, please configure DATABASE in django_wms/settings.py
 
-### 开发服务器运行：
+### Run Development Server:
 
-- 开发运行：
+- Dev Run：
 
 ~~~python
 daphne -p 8008 django_wms.asgi:application
 ~~~
 
-### 生产服务器运行：
+### Run Production Server:
 
-- supervisor守护进程：
+- supervisor Daemon:
 
 ~~~shell
 pip install supervisor
 ~~~
 
-使用supervisor来守护Django进程，再使用Nginx做反向代理，至于superevisor的教程有很多，这里不做讲解
+Use supervisor to guard the Django process, and then use Nginx as a reverse proxy. As for supervisors, there are many tutorials, so I won’t explain them here.
 
-- Nginx支持：
+- Nginx Support：
 
-推荐使用Nginx进行部署，部署的时候需要指定WebSocket链接，如果不指定，实时通信功能将报错
+It is recommended to use Nginx for deployment. You need to specify the WebSocket link when deploying. If you do not specify it, the real-time communication function will report an error.
 
-另需要修改axios_request.js里的ws_url
+Also need to modify ws_url in axios_request.js
 
 ~~~shell
-## 示例更改前
+## Example changes before
 const baseurl = 'http://127.0.0.1:8008/'
 const wsurl = 'ws://127.0.0.1:8008/'
 
-## 示例更改后
-const baseurl = 'https://你的域名/'
-const wsurl = 'wss://你的域名/websocket/'
+## Example changes after
+const baseurl = 'https://Your Production Server/'
+const wsurl = 'wss://Your Production Server/websocket/'
 ~~~
 
-如果服务器启用了SSL，请使用https和wss，如果没有启用SSL，则使用http和ws
+If the server has SSL enabled, please use https and wss, if SSL is not enabled, use http and ws
 
-修改后需要重新build前端代码
+The front-end code needs to be rebuilt after modification
 
 ---
 
-## 开发扩展：
+## Development Extension:
 
-因为使用的前后端分离的设计，所以可以通过API，开发更多的软件应用
+Because the front and back ends are separated, more software applications can be developed through API
 
-### 物流智能AGV
+### Logistics AI AGV
 
-- AGV的项目也已经开源，由于场地受限，仅实现智能发货，定点回库，使用的循迹感应器，超声波避障感应器，红外避障感应器，所有的指令通过网络传输，AGV绑定MAC地址和IP地址，保证了安全性，前提是，你需要有一个树莓派。
+- The AGV project has also been open sourced. Due to the limited space, only intelligent delivery, fixed-point return to the warehouse, tracking sensors, ultrasonic obstacle avoidance sensors, and infrared obstacle avoidance sensors are used. All instructions are transmitted through the network and are tied to the AGV. Specify the MAC address and IP address to ensure security, provided that you need a Raspberry Pi.
 
-### 进销存
+### Invoicing System
 
-- 可以直接当一个进销存系统使用，简化仓库库位设置等操作即可。
+- It can be directly used as an invoicing system to simplify operations such as warehouse location setting.
 
-### APP和小程序
+### APP And Mini Programe
 
-- Quasar原生可以直接打包成IOS APP和Android APP
-- 小程序的开发可以通过API开做二次开发，但小程序不支持put请求，所以需要自己再写一个请求接口。
+- Quasar can be directly packaged into IOS APP and Android APP
+- The development of mini programs can be developed through API for secondary development, but small programs do not support put requests, so you need to write another request interface yourself.
 
-- API的组合可以达到100万种，这样我们可以根据查询请求，来获得实时报表和数据监控
+- The combination of API can reach 1 million, so that we can obtain real-time reports and data monitoring according to query requests
 
-### 供应链管理系统
+### Supply Chain Management System
 
-- 产品的数量，创建时间，最后使用时间是各方面统计的，所以可以方便采购计划和调拨计划进行库存的分析
-- V 2.3.0及其以后的版本，将自带深度学习分析，所以可以直接使用分析结果作为供应链管理系统工具使用
+- The number of products, creation time, and last update time are all recorded, so it is convenient to analyze the inventory of the purchase plan and the allocation plan
+- V 2.3.0 and later versions will come with deep learning analysis, so you can directly use the analysis results as a supply chain management system tool
 
-### 多仓管理
+### Multi-warehouse Management
 
-- OPENID为用户的数据唯一标识，数据组统一标识为APPID，所以很方便可以实现多仓管理
+- OPENID is the unique identification of the user's data, and the data group is uniformly identified as the APPID, so it is very convenient to realize multi-warehouse management
 
-### 波次拣货，发货
+### Wave Picking And Shipping
 
-- 可以设置固定时间向服务器发出请求，从而达到波次拣货的功能
+- You can set a fixed time to send a request to the server to achieve the function of wave picking
 
-- 也可以直接使用任务工作，通过API查询分析结果来实现，推荐使用[APScheduler](https://pypi.org/project/APScheduler/)
+- You can also use task work directly, through API query and analysis results to achieve, it is recommended to use [APScheduler](https://pypi.org/project/APScheduler/)
 
   ~~~python
   pip install apscheduler
@@ -173,52 +173,53 @@ const wsurl = 'wss://你的域名/websocket/'
 
 ### Milk-Run
 
-- V 2.2.0及其以上版本，将原生支持此功能
-- 如果现在就需要这个业务，可以根据API调用库存消耗，来实现此功能
+- V 2.2.0 and above will natively support this function
+- If you need this business now, you can call inventory consumption according to API to achieve this function
 
 ### VMI
 
-- V 2.1.0及其以上版本，将原生支持此功能
-- 如果现在就需要这个业务，可以根据API调用库存消耗，来实现此功能
+- V 2.1.0 and above, will natively support this function
+- If you need this business now, you can call inventory consumption according to API to achieve this function
 
-### 拣货路线优化
+### Picking Route Optimization
 
-- 现在的拣货路线是按照库位排序
-- V 2.3.0以后版本将原生支持此功能
-- 如果现在需要这个业务，可以根据每天的拣货明细，调用API来实现此功能
+- The current picking route is sorted by bin location
+- This feature will be natively supported after V 2.3.0
+- If you need this business now, you can call the API to implement this function according to the daily picking details
 
 ---
 
-## 开发指南：
+## Development Guide:
 
-### baseurl
+### Baseurl
 
-- 是发起请求的基本网址，如果是本地调试，则默认为http://127.0.0.1:8008/ ，如果部署在服务器，则需要将其改为你的网站访问url
+- It is the basic URL for initiating the request. If it is for local debugging, the default is http://127.0.0.1:8008/. If it is deployed on the server, you need to change it to your website access URL
 
-- 修改方式为，修改axios_request.js，注意`websocket的修改之前已经提到了`
+- The modification method is to modify axios_request.js. Attention: `The modification of websocket has been mentioned `
 
-### Django-silk
+### Django-Silk
 
-- django-silk为开发时的调试工具，可以统计每个接口的响应速度，如果需要部署到生产环境，请删除Django-silk相关配置，因为会有泄露用户信息的风险，或者直接修改Django-silk库，让用户只能看到自己的请求数据
+- Django-Silk is a debugging tool during development. It can count the response speed of each interface. If you need to deploy to a production environment, please delete the Django-silk related configuration, because there is a risk of leaking user information, or directly modify the Django-silk library , So that users can only see their request data
 
-### 数据库存储
+### Database Storage
 
-- 数据库设计时考虑到数据迁移等问题，所以只有users里面的user_id和Django自带的user_id做了外键，其余所有字段全部没有使用外键，方便数据备份和数据库迁移
-- 数据库是4段式设计
-  1. 验证数据用户归属
-  2. 验证数据安全性
-  3. 验证数据是否可以存入数据库
-  4. 存入数据库，并返回Response
+- Data migration and other issues are considered during database design, so only the user_id in users and the user_id that comes with Django are foreign keys, and all the other fields do not use foreign keys, which is convenient for data backup and database migration.
+  - The database is a 4-stage design
 
-### 关于数据传输
+  1. Verify data user ownership
+  2. Verify data security
+  3. Verify that the data can be stored in the database
+  4. Save it in the database and return Response
 
-- 需要在所有的请求头headers里面加入token值，这个值就是用户的数据唯一标识OPENID
-- 所有的数据传输需要设定content-type为application/json
+### About Data Request
+
+- The token value needs to be added to all request headers. This value is the unique identifier OPENID of the user’s data
+- All data transmission needs to set content-type to application/json
 
 ### OPENID
 
-- OPENID是注册用户数据的唯一标识，当管理员直接注册时，会有developer=1这个管理员标识。
-- 你可以根据developter标识来做自定义二次开发
+- OPENID is the unique identifier of registered user data. When the administrator registers directly, there will be developer=1 as the administrator ID.
+- You can do custom secondary development based on the developer label
 
 ### APPID
 
@@ -231,6 +232,6 @@ const wsurl = 'wss://你的域名/websocket/'
 
 ---
 
-## Business Process：
+## Business Process:
 
 - This content is not updated at this time
