@@ -63,7 +63,7 @@ I have 15 years old experience focus on supply chain . I find that in this profe
 git clone https://github.com/Singosgu/GreaterWMS.git
 ~~~
 
-- Install Python Library：
+- Install Python Library:
 
 ~~~python
 pip install -r requirements.txt
@@ -79,13 +79,13 @@ pip install Twisted{Version Name Which You Download}
 
 Atention:  `Local installation needs to pay attention to the path`
 
-- Makemigrations the Database：
+- Makemigrations the Database:
 
 ~~~python
 python manage.py makemigrations
 ~~~
 
-- Migrate Database：
+- Migrate Database:
 
 ~~~python
 python manage.py migrate
@@ -111,7 +111,7 @@ pip install supervisor
 
 Use supervisor to guard the Django process, and then use Nginx as a reverse proxy. As for supervisors, there are many tutorials, so I won’t explain them here.
 
-- Nginx Support：
+- Nginx Support:
 
 It is recommended to use Nginx for deployment. You need to specify the WebSocket link when deploying. If you do not specify it, the real-time communication function will report an error.
 
