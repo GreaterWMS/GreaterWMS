@@ -48,7 +48,7 @@ I have 15 years old experience focus on supply chain . I find that in this profe
 
 - Django-silk Version  4.1.0 (If you are deploying production, please turn off silk, which is only used for debugging API interface speed, which may leak users' information)
 
-- Quasar Version 1.7.2 + (You can view the official website of quasar to edit the webside code of greater WMS: [Quasar](http://www.quasarchs.com/))
+- Quasar Version 1.7.2 + (You can view the official website of quasar to edit the webside code of greater WMS: [Quasar](https://quasar.dev/))
 
 - Vue Version  2.6.0 +（Try not to use vue3, because the development environment does not use vue3, I don't know what will happened）
 - API，Follow RESTful
