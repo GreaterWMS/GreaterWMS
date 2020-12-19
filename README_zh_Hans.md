@@ -216,7 +216,7 @@ const wsurl = 'wss://你的域名/websocket/'
 ### OPENID
 
 - OPENID是注册用户数据的唯一标识，当管理员直接注册时，会有developer=1这个管理员标识。
-- 你可以根据developter标识来做自定义二次开发
+- 你可以根据developer标识来做自定义二次开发
 
 ### APPID
 
