@@ -1,0 +1,51 @@
+// This is just an example,
+// so you can safely delete all default props below
+
+export default {
+  failed: 'Action failed',
+  success: 'Action was successful',
+  index: {
+    webtitle: 'GreaterWMS--Open Source Warehouse Management System',
+    home: 'Home',
+    title: 'GreaterWMS',
+    title_tip: 'GreaterWMS Home',
+    hide_menu: 'Hide Menu',
+    translate: 'Choose Language',
+    unread: 'Unread Message',
+    login: 'Login',
+    register: 'Register',
+    login_tip: 'Enter Your OPENID & Login Name',
+    register_tip: 'Register An Admin',
+    logout: 'Logout',
+    user_login: 'User Login',
+    admin_login: 'Admin Login',
+    user_center: 'User Center',
+    change_user: 'Change User',
+    view_my_openid: 'View My OPENID',
+    your_openid: 'Your OPENID',
+    contact_list: 'Recent Contact',
+    chat_more: 'Load More',
+    chat_no_more: 'No More Message',
+    chat_send: 'Send',
+    previous: 'Previous',
+    next: 'Next',
+    admin_name: 'Admin',
+    password: 'Password',
+    confirm_password: 'Confirm Password',
+    staff_name: 'User Name',
+    cancel: 'Cancel',
+    close: 'Close',
+    submit: 'Submit'
+  },
+  menuItem: {
+    inbound: 'Inound',
+    outbound: 'Outbound',
+    stock: 'Inventory',
+    capital: 'Capital',
+    goods: 'GoodsList',
+    baseinfo: 'Base Info',
+    warehouse: 'Warehouse',
+    staff: 'Staff',
+    driver: 'Driver'
+  }
+}
