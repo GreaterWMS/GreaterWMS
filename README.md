@@ -91,14 +91,14 @@ python manage.py makemigrations
 python manage.py migrate
 ~~~
 
-Create a database. Django uses sqlite3 as the default database. If you need other database, please configure DATABASE in django_wms/settings.py
+Create a database. Django uses sqlite3 as the default database. If you need other database, please configure DATABASE in greaterwms/settings.py
 
 ### Run Development Server:
 
 - Dev Run：
 
 ~~~python
-daphne -p 8008 django_wms.asgi:application
+daphne -p 8008 greaterwms.asgi:application
 ~~~
 
 ### Run Production Server:
