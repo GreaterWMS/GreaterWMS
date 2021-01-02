@@ -1,6 +1,6 @@
 {
   "name": "templates",
-  "version": "2.0.1",
+  "version": "2.0.0",
   "description": "GreaterWMS--Open Source Warehouse Management System",
   "productName": "GreaterWMS--Open Source Warehouse Management System",
   "author": "singosgu(singosgu@gmail.com)",
@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
-    "axios": "^0.21.0",
-    "core-js": "^3.7.0",
+    "axios": "^0.21.1",
+    "core-js": "^3.8.1",
     "quasar": "^1.0.0",
-    "v-distpicker": "^1.2.8",
+    "v-distpicker": "^1.2.9",
     "vue-i18n": "^8.22.2",
     "vue-print-nb": "^1.5.0"
   },

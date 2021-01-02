@@ -25,6 +25,12 @@ export default function (/* { store, ssrContext } */) {
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
   })
-
+  Router.afterEach((to, from) => {
+    window.gtag('config', 'G-PGBVYC9CNE', {
+      page_title: to.name,
+      page_path: to.path,
+      page_location: location
+    })
+  })
   return Router
 }

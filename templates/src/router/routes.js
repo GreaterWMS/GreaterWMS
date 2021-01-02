@@ -74,19 +74,14 @@ const routes = [
         component: () => import('pages/outbound/outbound.vue'),
         children: [
           {
-            path: 'dnlist',
-            name: 'dnlist',
-            component: () => import('pages/outbound/dnlist.vue')
+            path: 'dn',
+            name: 'dn',
+            component: () => import('pages/outbound/dn.vue')
           },
           {
             path: 'neworder',
             name: 'neworder',
             component: () => import('pages/outbound/neworder.vue')
-          },
-          {
-            path: 'orderrelease',
-            name: 'orderrelease',
-            component: () => import('pages/outbound/orderrelease.vue')
           },
           {
             path: 'pickstock',

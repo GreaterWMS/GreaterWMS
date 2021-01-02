@@ -7,13 +7,13 @@
         v-model="detaillink"
       >
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab name="dnlist" label="DN" icon="img:statics/outbound/dnlist.png" to="/outbound/dnlist" exact/>
+          <q-route-tab name="dn" label="DN" icon="img:statics/outbound/dnlist.png" to="/outbound/dn" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-route-tab name="neworder" label="New Order" icon="img:statics/outbound/order.png" to="/outbound/neworder" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab name="orderrelease" label="Order Release" icon="img:statics/outbound/orderrelease.png" to="/outbound/orderrelease" exact/>
+          <q-route-tab name="backorder" label="Back Order" icon="img:statics/outbound/backorder.png" to="/outbound/backorder" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-route-tab name="pickstock" label="Pre Pick" icon="img:statics/outbound/pickstock.png" to="/outbound/pickstock" exact/>
@@ -22,10 +22,7 @@
           <q-route-tab name="pickedstock" label="Picked" icon="img:statics/outbound/picked.png" to="/outbound/pickedstock" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab name="backorder" label="Back Order" icon="img:statics/outbound/backorder.png" to="/outbound/backorder" exact/>
-        </transition>
-        <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab name="dndetail" label="Shipping Detail" icon="img:statics/outbound/outbound.png" to="/outbound/dndetail" exact/>
+          <q-route-tab name="shippedstock" label="Shipping Detail" icon="img:statics/outbound/outbound.png" to="/outbound/shippedstock" exact/>
         </transition>
       </q-tabs>
     </div>

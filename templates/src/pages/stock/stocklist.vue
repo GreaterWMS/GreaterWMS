@@ -54,11 +54,11 @@
              <q-td key="can_order_stock" :props="props">
                {{ props.row.can_order_stock }}
              </q-td>
+             <q-td key="ordered_stock" :props="props">
+               {{ props.row.ordered_stock }}
+             </q-td>
              <q-td key="inspect_stock" :props="props">
                {{ props.row.inspect_stock }}
-             </q-td>
-             <q-td key="cross_dock_stock" :props="props">
-               {{ props.row.cross_dock_stock }}
              </q-td>
              <q-td key="damage_stock" :props="props">
                {{ props.row.damage_stock }}
@@ -68,6 +68,9 @@
              </q-td>
              <q-td key="asn_stock" :props="props">
                {{ props.row.asn_stock }}
+             </q-td>
+             <q-td key="dn_stock" :props="props">
+               {{ props.row.dn_stock }}
              </q-td>
              <q-td key="pre_load_stock" :props="props">
                {{ props.row.pre_load_stock }}
@@ -142,15 +145,16 @@ export default {
         { name: 'goods_qty', label: 'Total Qty', field: 'goods_qty', align: 'center' },
         { name: 'onhand_stock', label: 'On-hand', field: 'onhand_stock', align: 'center' },
         { name: 'can_order_stock', label: 'Can Order', field: 'can_order_stock', align: 'center' },
+        { name: 'ordered_stock', label: 'Ordered Stock', field: 'ordered_stock', align: 'center' },
         { name: 'inspect_stock', label: 'Inspect', field: 'inspect_stock', align: 'center' },
-        { name: 'cross_dock_stock', label: 'Cross Dock', field: 'cross_dock_stock', align: 'center' },
         { name: 'hold_stock', label: 'Holding', field: 'hold_stock', align: 'center' },
         { name: 'damage_stock', label: 'Damage', field: 'damage_stock', align: 'center' },
         { name: 'asn_stock', label: 'ASN Stock', field: 'asn_stock', align: 'center' },
+        { name: 'dn_stock', label: 'DN Stock', field: 'dn_stock', align: 'center' },
         { name: 'pre_load_stock', label: 'Pre-Load', field: 'pre_load_stock', align: 'center' },
         { name: 'pre_sort_stock', label: 'Pre Sort', field: 'pre_sort_stock', align: 'center' },
         { name: 'sorted_stock', label: 'Sorted Stock', field: 'sorted_stock', align: 'center' },
-        { name: 'pick_stock', label: 'Pick Stockd', field: 'pick_stock', align: 'center' },
+        { name: 'pick_stock', label: 'Pick Stock', field: 'pick_stock', align: 'center' },
         { name: 'picked_stock', label: 'Picked Stock', field: 'picked_stock', align: 'center' },
         { name: 'back_order_stock', label: 'Back Order', field: 'back_order_stock', align: 'center' },
         { name: 'create_time', label: 'Create_time', field: 'create_time', align: 'center' },

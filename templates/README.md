@@ -1,6 +1,6 @@
 # wms templates (templates)
 
-a wms templates
+wms templates
 
 ## Install the dependencies
 ```bash

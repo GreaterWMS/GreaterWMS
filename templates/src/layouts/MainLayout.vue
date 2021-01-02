@@ -229,9 +229,6 @@
     </q-drawer>
     <q-page-container style="width: 100%">
       <router-view />
-      <q-page-sticky position="bottom-right" :offset="[18, 18]" v-if="lang === 'zh-hans'">
-        <q-btn flat @click="brownlink('http://www.miit.gov.cn/')" color="black" label='版权所有 ICP证：沪ICP备16034540号-1' />
-      </q-page-sticky>
     </q-page-container>
     <q-dialog v-model="chat">
     <q-card style="width: 600px">

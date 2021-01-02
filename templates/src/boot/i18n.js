@@ -6,22 +6,8 @@ import { LocalStorage } from 'quasar'
 
 Vue.use(VueI18n)
 
-if (LocalStorage.has('country')) {
-} else {
-  axios.post('https://www.56yhz.com/area/').then(res => {
-    LocalStorage.set('country', res.data.country)
-  })
-}
-var getcountry = LocalStorage.getItem('country')
-getcountry = getcountry || 'United States'
-var getlang = ''
-if (getcountry === 'China') {
-  getlang = 'zh-hans'
-} else {
-  getlang = 'en-us'
-}
 var lang = LocalStorage.getItem('lang')
-lang = lang || getlang
+lang = lang || 'en-us'
 
 const i18n = new VueI18n({
   locale: lang,

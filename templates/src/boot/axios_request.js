@@ -15,6 +15,11 @@ const axiosInstanceAuth = axios.create({
   timeout: 5000
 })
 
+const axiosFile = axios.create({
+  baseURL: baseurl,
+  timeout: 5000
+})
+
 axiosInstanceAuth.interceptors.request.use(
   function (config) {
     config.headers.post['Content-Type'] = 'application/json, charset="utf-8"'
@@ -56,6 +61,26 @@ axiosInstance.interceptors.response.use(
   }
 )
 
+axiosFile.interceptors.request.use(
+  function (config) {
+    config.headers.get['Content-Type'] = 'application/vnd.ms-excel'
+    config.headers.token = LocalStorage.getItem('openid')
+    return config
+  },
+  function (error) {
+    return Promise.reject(error)
+  }
+)
+
+axiosFile.interceptors.response.use(
+  function (response) {
+    return response
+  },
+  function (error) {
+    return Promise.reject(error)
+  }
+)
+
 function getauth (url) {
   return axiosInstanceAuth.get(url)
 }
@@ -84,6 +109,10 @@ function ViewPrintAuth (url) {
   return axiosInstanceAuth.get(url)
 }
 
+function getfile (url) {
+  return axiosFile.get(url)
+}
+
 Vue.prototype.$axios = axios
 
-export { baseurl, wsurl, post, getauth, postauth, putauth, deleteauth, patchauth, ViewPrintAuth }
+export { baseurl, wsurl, post, getauth, postauth, putauth, deleteauth, patchauth, ViewPrintAuth, getfile }

@@ -1,5 +1,6 @@
 <template>
     <div class="q-pa-md" style="width: 100%; margin-top: -20px">
+      <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-table shadow-24"
         :data="table_list"
@@ -18,11 +19,6 @@
       >
          <template v-slot:top>
            <q-btn-group push>
-             <q-btn label="New" icon="add" @click="newForm = true">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                 New one data
-               </q-tooltip>
-             </q-btn>
              <q-btn label="refresh" icon="refresh" @click="reFresh()">
                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                  Refresh data
@@ -43,82 +39,34 @@
          </template>
          <template v-slot:body="props">
            <q-tr :props="props">
-             <template v-if="props.row.id === editid">
-               <q-td key="staff_name" :props="props">
-                 <q-input dense
-                          outlined
-                          square
-                          v-model="editFormData.staff_name"
-                          label="Staff_name"
-                          autofocus
-                 />
+               <q-td key="dn_code" :props="props">
+                 {{ props.row.dn_code }}
                </q-td>
-             </template>
-             <template v-else-if="props.row.id !== editid">
-               <q-td key="staff_name" :props="props">
-                 {{ props.row.staff_name }}
+               <q-td key="goods_code" :props="props">
+                 {{ props.row.goods_code }}
                </q-td>
-             </template>
-             <template v-if="props.row.id === editid">
-               <q-td key="staff_type" :props="props">
-                 <q-input dense
-                          outlined
-                          square
-                          v-model="editFormData.staff_type"
-                          label="Staff_type"
-                 />
+               <q-td key="goods_qty" :props="props">
+                 {{ props.row.goods_qty }}
                </q-td>
-             </template>
-             <template v-else-if="props.row.id !== editid">
-               <q-td key="staff_type" :props="props">
-                 {{ props.row.staff_type }}
+               <q-td key="intransit_qty" :props="props">
+                 {{ props.row.intransit_qty }}
                </q-td>
-             </template>
+             <q-td key="customer" :props="props">
+               {{ props.row.customer }}
+             </q-td>
+             <q-td key="creater" :props="props">
+               {{ props.row.creater }}
+             </q-td>
              <q-td key="create_time" :props="props">
                {{ props.row.create_time }}
              </q-td>
              <q-td key="update_time" :props="props">
                {{ props.row.update_time }}
              </q-td>
-             <template v-if="!editMode">
-               <q-td key="action" :props="props">
-                 <q-btn round flat push color="secondary" icon="edit" @click="editData(props.row)">
-                   <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                    Edit one line
-                  </q-tooltip>
-                 </q-btn>
-                 <q-btn round flat push color="red" icon="delete" @click="deleteData(props.row.id)">
-                   <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                    Delete one line
-                  </q-tooltip>
-                 </q-btn>
-                 <q-btn color="teal" label='Contact' icon="contacts" @click="ChatWith(props.row.staff_name)">
-                   <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                    Contact with him
-                  </q-tooltip>
-                 </q-btn>
-               </q-td>
-               </template>
-             <template v-else-if="editMode">
-               <template v-if="props.row.id === editid">
-                 <q-td key="action" :props="props">
-                 <q-btn round flat push color="secondary" icon="check" @click="editDataSubmit()">
-                   <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                    Confirm edit data
-                  </q-tooltip>
-                 </q-btn>
-                 <q-btn round flat push color="red" icon="close" @click="editDataCancel()">
-                   <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                    Cancel edit data
-                  </q-tooltip>
-                 </q-btn>
-               </q-td>
-               </template>
-                <template v-else-if="props.row.id !== editid"></template>
-             </template>
            </q-tr>
          </template>
       </q-table>
+        </transition>
       <template>
         <div class="q-pa-lg flex flex-center">
           <q-btn v-show="pathname_previous" flat push color="purple" label="Previous" icon="navigate_before" @click="getListPrevious()">
@@ -133,107 +81,46 @@
           </q-btn>
         </div>
       </template>
-      <q-dialog v-model="newForm">
-       <q-card class="shadow-24">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>New one data</div>
-           <q-space />
-           <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip>Close</q-tooltip>
-           </q-btn>
-         </q-bar>
-         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-           <q-input dense
-                    outlined
-                    square
-                    v-model="newFormData.staff_name"
-                    label="Staff_Name"
-                    autofocus
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Staff_Name']"
-                    @keyup.enter="newDataSubmit()"/>
-           <q-input dense
-                    outlined
-                    square
-                    v-model="newFormData.staff_type"
-                    label="Staff_Type"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Staff_Type']"
-                    @keyup.enter="newDataSubmit()"
-                    style="margin-top: 5px"/>
-         </q-card-section>
-         <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">Cancel</q-btn>
-           <q-btn color="primary" @click="newDataSubmit()">Submit</q-btn>
-         </div>
-       </q-card>
-     </q-dialog>
-      <q-dialog v-model="deleteForm">
-       <q-card class="shadow-24">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>Delete one data</div>
-           <q-space />
-           <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip>Close</q-tooltip>
-           </q-btn>
-         </q-bar>
-         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-           This is an irreversible process.
-         </q-card-section>
-         <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="deleteDataCancel()">Cancel</q-btn>
-           <q-btn color="primary" @click="deleteDataSubmit()">Submit</q-btn>
-         </div>
-       </q-card>
-     </q-dialog>
     </div>
 </template>
     <router-view />
 
 <script>
 // import { openURL } from 'quasar'
-import { getauth, postauth, putauth, deleteauth } from 'boot/axios_request'
+import { getauth } from 'boot/axios_request'
 
 export default {
-  name: 'Pagedriverlist',
+  name: 'Pagednprepick',
   data () {
     return {
       openid: '',
       login_name: '',
       authin: '0',
-      pathname: 'driver/',
+      pathname: 'dn/detail/?dn_status=3&intransit_qty__gt=0',
       pathname_previous: '',
       pathname_next: '',
       separator: 'cell',
       loading: false,
       height: '',
       table_list: [],
+      bin_size_list: [],
+      bin_property_list: [],
+      warehouse_list: [],
       columns: [
-        { name: 'staff_name', required: true, label: 'Staff_Name', align: 'left', field: 'staff_name' },
-        { name: 'staff_type', label: 'Staff_Type', field: 'staff_type', align: 'center' },
+        { name: 'dn_code', required: true, label: 'DN Code', align: 'left', field: 'dn_code' },
+        { name: 'goods_code', label: 'Goods Code', field: 'goods_code', align: 'center' },
+        { name: 'goods_qty', label: 'Goods Qty', field: 'goods_qty', align: 'center' },
+        { name: 'intransit_qty', label: 'Shipping QTY', field: 'intransit_qty', align: 'center' },
+        { name: 'customer', label: 'customer', field: 'customer', align: 'center' },
+        { name: 'creater', label: 'Creater', field: 'creater', align: 'center' },
         { name: 'create_time', label: 'Create_time', field: 'create_time', align: 'center' },
-        { name: 'update_time', label: 'Update_time', field: 'update_time', align: 'center' },
-        { name: 'action', label: 'Action', align: 'right' }
+        { name: 'update_time', label: 'Update_time', field: 'update_time', align: 'center' }
       ],
       filter: '',
       pagination: {
         page: 1,
         rowsPerPage: '30'
-      },
-      newForm: false,
-      newFormData: {
-        staff_name: '',
-        staff_type: ''
-      },
-      editid: 0,
-      editFormData: {},
-      editMode: false,
-      deleteForm: false,
-      deleteid: 0,
-      sender: '',
-      receiver: '',
-      chat: false,
-      chat_list: '',
-      chat_text: '',
-      chat_next: null
+      }
     }
   },
   methods: {
@@ -330,144 +217,10 @@ export default {
     reFresh () {
       var _this = this
       _this.getList()
-    },
-    newDataSubmit () {
-      var _this = this
-      postauth(_this.pathname, _this.newFormData).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.getList()
-          _this.newDataCancel()
-          _this.$q.notify({
-            message: 'Success Create',
-            icon: 'check',
-            color: 'green'
-          })
-        }
-      }).catch(err => {
-        _this.$q.notify({
-          message: err.detail,
-          icon: 'close',
-          color: 'negative'
-        })
-      })
-    },
-    newDataCancel () {
-      var _this = this
-      _this.newForm = false
-      _this.newFormData = {
-        staff_name: '',
-        staff_type: ''
-      }
-    },
-    editData (e) {
-      var _this = this
-      _this.editMode = true
-      _this.editid = e.id
-      _this.editFormData = {
-        staff_name: e.staff_name,
-        staff_type: e.staff_type
-      }
-    },
-    editDataSubmit () {
-      var _this = this
-      putauth(_this.pathname + _this.editid + '/', _this.editFormData).then(res => {
-        console.log(res)
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.editDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Edit Data',
-            icon: 'check',
-            color: 'green'
-          })
-        }
-      }).catch(err => {
-        _this.$q.notify({
-          message: err.detail,
-          icon: 'close',
-          color: 'negative'
-        })
-      })
-    },
-    editDataCancel () {
-      var _this = this
-      _this.editMode = false
-      _this.editid = 0
-      _this.editFormData = {
-        staff_name: '',
-        staff_type: ''
-      }
-    },
-    deleteData (e) {
-      var _this = this
-      _this.deleteForm = true
-      _this.deleteid = e
-    },
-    deleteDataSubmit () {
-      var _this = this
-      deleteauth(_this.pathname + _this.deleteid + '/').then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.deleteDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Edit Data',
-            icon: 'check',
-            color: 'green'
-          })
-        }
-      }).catch(err => {
-        _this.$q.notify({
-          message: err.detail,
-          icon: 'close',
-          color: 'negative'
-        })
-      })
-    },
-    deleteDataCancel () {
-      var _this = this
-      _this.deleteForm = false
-      _this.deleteid = 0
     }
   },
   created () {
     var _this = this
-    _this.getList()
     if (_this.$q.localStorage.has('openid')) {
       _this.openid = _this.$q.localStorage.getItem('openid')
     } else {
@@ -482,6 +235,7 @@ export default {
     }
     if (_this.$q.localStorage.has('auth')) {
       _this.authin = '1'
+      _this.getList()
     } else {
       _this.authin = '0'
     }

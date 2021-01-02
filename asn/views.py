@@ -16,7 +16,6 @@ from payment.models import TransportationFeeListModel as transportation
 from stock.models import StockListModel as stocklist
 from stock.models import StockBinModel as stockbin
 from binset.models import ListModel as binset
-
 from django.db.models import Q
 import re
 
@@ -97,8 +96,15 @@ class AsnListViewSet(viewsets.ModelViewSet):
         else:
             if qs.asn_status == 1:
                 qs.is_delete = True
-                AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=qs.asn_code,
-                                              asn_status=1, is_delete=False).update(is_delete=True)
+                asn_detail_list = AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=qs.asn_code,
+                                              asn_status=1, is_delete=False)
+                for i in range(len(asn_detail_list)):
+                    goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
+                                                                goods_code=str(asn_detail_list[i].goods_code)).first()
+                    goods_qty_change.goods_qty = goods_qty_change.goods_qty - int(asn_detail_list[i].goods_qty)
+                    goods_qty_change.asn_stock = goods_qty_change.asn_stock - int(asn_detail_list[i].goods_qty)
+                    goods_qty_change.save()
+                asn_detail_list.update(is_delete=True)
                 qs.save()
                 serializer = self.get_serializer(qs, many=False)
                 headers = self.get_success_headers(serializer.data)
@@ -675,8 +681,6 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                             qs.goods_damage_qty = qs.goods_damage_qty + int(data['qty'])
                         elif bin_detail.bin_property == 'Inspection':
                             goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['qty'])
-                        elif bin_detail.bin_property == 'Cross_Docking':
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock + int(data['qty'])
                         elif bin_detail.bin_property == 'Holding':
                             goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['qty'])
                         else:
@@ -701,8 +705,6 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                             qs.goods_damage_qty = qs.goods_damage_qty + int(data['qty'])
                         elif bin_detail.bin_property == 'Inspection':
                             goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['qty'])
-                        elif bin_detail.bin_property == 'Cross_Docking':
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock + int(data['qty'])
                         elif bin_detail.bin_property == 'Holding':
                             goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['qty'])
                         else:

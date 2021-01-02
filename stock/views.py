@@ -97,10 +97,6 @@ class StockBinViewSet(viewsets.ModelViewSet):
                         elif move_to_bin_detail.bin_property == 'Inspection':
                             goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data['move_qty'])
                             goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['move_qty'])
-                        elif move_to_bin_detail.bin_property == 'Cross_Docking':
-                            goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data['move_qty'])
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock + int(
-                                data['move_qty'])
                         elif move_to_bin_detail.bin_property == 'Holding':
                             goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data['move_qty'])
                             goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['move_qty'])
@@ -113,30 +109,11 @@ class StockBinViewSet(viewsets.ModelViewSet):
                             goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data['move_qty'])
                         elif move_to_bin_detail.bin_property == 'Inspection':
                             pass
-                        elif move_to_bin_detail.bin_property == 'Cross_Docking':
-                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(data['move_qty'])
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock + int(
-                                data['move_qty'])
                         elif move_to_bin_detail.bin_property == 'Holding':
                             goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(data['move_qty'])
                             goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['move_qty'])
                         else:
                             goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(data['move_qty'])
-                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(data['move_qty'])
-                    elif current_bin_detail.bin_property == 'Cross_Docking':
-                        if move_to_bin_detail.bin_property == 'Damage':
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock - int(data['move_qty'])
-                            goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data['move_qty'])
-                        elif move_to_bin_detail.bin_property == 'Inspection':
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock - int(data['move_qty'])
-                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['move_qty'])
-                        elif move_to_bin_detail.bin_property == 'Cross_Docking':
-                            pass
-                        elif move_to_bin_detail.bin_property == 'Holding':
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock - int(data['move_qty'])
-                            goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['move_qty'])
-                        else:
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock - int(data['move_qty'])
                             goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(data['move_qty'])
                     elif current_bin_detail.bin_property == 'Holding':
                         if move_to_bin_detail.bin_property == 'Damage':
@@ -145,9 +122,6 @@ class StockBinViewSet(viewsets.ModelViewSet):
                         elif move_to_bin_detail.bin_property == 'Inspection':
                             goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data['move_qty'])
                             goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['move_qty'])
-                        elif move_to_bin_detail.bin_property == 'Cross_Docking':
-                            goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data['move_qty'])
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock + int(data['move_qty'])
                         elif move_to_bin_detail.bin_property == 'Holding':
                             pass
                         else:
@@ -160,10 +134,6 @@ class StockBinViewSet(viewsets.ModelViewSet):
                         elif move_to_bin_detail.bin_property == 'Inspection':
                             goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(data['move_qty'])
                             goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['move_qty'])
-                        elif move_to_bin_detail.bin_property == 'Cross_Docking':
-                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(data['move_qty'])
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock + int(
-                                data['move_qty'])
                         elif move_to_bin_detail.bin_property == 'Holding':
                             goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(data['move_qty'])
                             goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['move_qty'])
@@ -186,10 +156,6 @@ class StockBinViewSet(viewsets.ModelViewSet):
                         elif move_to_bin_detail.bin_property == 'Inspection':
                             goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data['move_qty'])
                             goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['move_qty'])
-                        elif move_to_bin_detail.bin_property == 'Cross_Docking':
-                            goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data['move_qty'])
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock + int(
-                                data['move_qty'])
                         elif move_to_bin_detail.bin_property == 'Holding':
                             goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data['move_qty'])
                             goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['move_qty'])
@@ -202,34 +168,11 @@ class StockBinViewSet(viewsets.ModelViewSet):
                             goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data['move_qty'])
                         elif move_to_bin_detail.bin_property == 'Inspection':
                             pass
-                        elif move_to_bin_detail.bin_property == 'Cross_Docking':
-                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(data['move_qty'])
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock + int(
-                                data['move_qty'])
                         elif move_to_bin_detail.bin_property == 'Holding':
                             goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(data['move_qty'])
                             goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['move_qty'])
                         else:
                             goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(data['move_qty'])
-                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(data['move_qty'])
-                    elif current_bin_detail.bin_property == 'Cross_Docking':
-                        if move_to_bin_detail.bin_property == 'Damage':
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock - int(
-                                data['move_qty'])
-                            goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data['move_qty'])
-                        elif move_to_bin_detail.bin_property == 'Inspection':
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock - int(
-                                data['move_qty'])
-                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['move_qty'])
-                        elif move_to_bin_detail.bin_property == 'Cross_Docking':
-                            pass
-                        elif move_to_bin_detail.bin_property == 'Holding':
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock - int(
-                                data['move_qty'])
-                            goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['move_qty'])
-                        else:
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock - int(
-                                data['move_qty'])
                             goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(data['move_qty'])
                     elif current_bin_detail.bin_property == 'Holding':
                         if move_to_bin_detail.bin_property == 'Damage':
@@ -238,10 +181,6 @@ class StockBinViewSet(viewsets.ModelViewSet):
                         elif move_to_bin_detail.bin_property == 'Inspection':
                             goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data['move_qty'])
                             goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['move_qty'])
-                        elif move_to_bin_detail.bin_property == 'Cross_Docking':
-                            goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data['move_qty'])
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock + int(
-                                data['move_qty'])
                         elif move_to_bin_detail.bin_property == 'Holding':
                             pass
                         else:
@@ -254,10 +193,6 @@ class StockBinViewSet(viewsets.ModelViewSet):
                         elif move_to_bin_detail.bin_property == 'Inspection':
                             goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(data['move_qty'])
                             goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['move_qty'])
-                        elif move_to_bin_detail.bin_property == 'Cross_Docking':
-                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(data['move_qty'])
-                            goods_qty_change.cross_dock_stock = goods_qty_change.cross_dock_stock + int(
-                                data['move_qty'])
                         elif move_to_bin_detail.bin_property == 'Holding':
                             goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(data['move_qty'])
                             goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['move_qty'])

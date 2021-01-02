@@ -74,3 +74,16 @@ class CustomerPartialUpdateSerializer(serializers.ModelSerializer):
         model = ListModel
         exclude = ['openid', 'is_delete', ]
         read_only_fields = ['id', 'create_time', 'update_time', ]
+
+class FileRenderSerializer(serializers.ModelSerializer):
+    customer_name = serializers.CharField(read_only=False, required=False, validators=[data_validate])
+    customer_city = serializers.CharField(read_only=False, required=False, validators=[data_validate])
+    customer_address = serializers.CharField(read_only=False, required=False, validators=[data_validate])
+    customer_contact = serializers.IntegerField(read_only=False, required=False, validators=[data_validate])
+    customer_manager = serializers.CharField(read_only=False, required=False, validators=[data_validate])
+    create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+
+    class Meta:
+        model = ListModel
+        exclude = ['openid', 'is_delete', 'creater', ]

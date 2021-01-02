@@ -2,7 +2,7 @@
 /shelf/
 /workspace.xml
 # Datasource local storage ignored files
-/../../../../../../:\Users\singo\PycharmProjects\django_wms\.idea/dataSources/
+/../../../../../../:\Users\singo\PycharmProjects\greaterwms\.idea/dataSources/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/

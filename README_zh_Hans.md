@@ -89,14 +89,14 @@ python manage.py makemigrations
 python manage.py migrate
 ~~~
 
-创建数据库，Django默认使用sqlite3作为数据库，如果需要mysql数据库，请在django_wms/settings.py里面配置DATABASE
+创建数据库，Django默认使用sqlite3作为数据库，如果需要mysql数据库，请在greaterwms/settings.py里面配置DATABASE
 
 ### 开发服务器运行：
 
 - 开发运行：
 
 ~~~python
-daphne -p 8008 django_wms.asgi:application
+daphne -p 8008 greaterwms.asgi:application
 ~~~
 
 ### 生产服务器运行：
@@ -216,7 +216,7 @@ const wsurl = 'wss://你的域名/websocket/'
 ### OPENID
 
 - OPENID是注册用户数据的唯一标识，当管理员直接注册时，会有developer=1这个管理员标识。
-- 你可以根据developter标识来做自定义二次开发
+- 你可以根据developer标识来做自定义二次开发
 
 ### APPID
 

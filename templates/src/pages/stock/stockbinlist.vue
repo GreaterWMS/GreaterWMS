@@ -51,6 +51,12 @@
              <q-td key="goods_qty" :props="props">
                {{ props.row.goods_qty }}
              </q-td>
+             <q-td key="pick_qty" :props="props">
+               {{ props.row.pick_qty }}
+             </q-td>
+             <q-td key="picked_qty" :props="props">
+               {{ props.row.picked_qty }}
+             </q-td>
              <q-td key="bin_size" :props="props">
                {{ props.row.bin_size }}
              </q-td>
@@ -171,6 +177,8 @@ export default {
         { name: 'goods_code', label: 'Goods Code', field: 'goods_code', align: 'center' },
         { name: 'goods_desc', label: 'Goods Desc', field: 'onhand_stock', align: 'center' },
         { name: 'goods_qty', label: 'Total Qty', field: 'goods_qty', align: 'center' },
+        { name: 'pick_qty', label: 'Pick Qty', field: 'pick_qty', align: 'center' },
+        { name: 'picked_qty', label: 'Picked Qty', field: 'picked_qty', align: 'center' },
         { name: 'bin_size', label: 'Bin Size', field: 'bin_size', align: 'center' },
         { name: 'bin_property', label: 'Bin Property', field: 'bin_property', align: 'center' },
         { name: 'create_time', label: 'Create_time', field: 'create_time', align: 'center' },

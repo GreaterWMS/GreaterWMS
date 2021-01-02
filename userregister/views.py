@@ -27,7 +27,7 @@ def register(request, *args, **kwargs):
         err_user_same['data'] = data['name']
         return JsonResponse(err_user_same)
     else:
-        if 'password1' not in data:
+        if data.get('password1') is None:
             err_password1_empty = FBMsg.err_password1_empty()
             err_password1_empty['ip'] = ip
             err_password1_empty['data'] = data['name']
@@ -39,7 +39,7 @@ def register(request, *args, **kwargs):
                 err_password1_empty['data'] = data['name']
                 return JsonResponse(err_password1_empty)
             else:
-                if 'password2' not in data:
+                if data.get('password2') is None:
                     err_password2_empty = FBMsg.err_password2_empty()
                     err_password2_empty['ip'] = ip
                     err_password2_empty['data'] = data['name']

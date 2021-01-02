@@ -31,7 +31,7 @@
              </q-btn>
              <q-btn label="Download" icon="cloud_download" @click="downloadData()">
                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                Download 1 month data
+                Download All data
                </q-tooltip>
              </q-btn>
            </q-btn-group>
@@ -266,8 +266,8 @@
     <router-view />
 
 <script>
-// import { openURL } from 'quasar'
-import { getauth, postauth, putauth, deleteauth } from 'boot/axios_request'
+import { date } from 'quasar'
+import { getauth, postauth, putauth, deleteauth, getfile } from 'boot/axios_request'
 
 export default {
   name: 'Pagecustomer',
@@ -560,6 +560,22 @@ export default {
       var _this = this
       _this.deleteForm = false
       _this.deleteid = 0
+    },
+    downloadData () {
+      var _this = this
+      getfile(_this.pathname + 'file/').then(res => {
+        var blob = new Blob([res.data], { type: res.headers['content-type'] })
+        var downloadElement = document.createElement('a')
+        var href = window.URL.createObjectURL(blob)
+        downloadElement.href = href
+        var timeStamp = Date.now()
+        var formattedString = date.formatDate(timeStamp, 'X')
+        downloadElement.download = 'customerlist' + formattedString + '.csv'
+        document.body.appendChild(downloadElement)
+        downloadElement.click()
+        document.body.removeChild(downloadElement)
+        window.URL.revokeObjectURL(href)
+      })
     }
   },
   created () {
