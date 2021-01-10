@@ -135,5 +135,6 @@ class MoveToBinSerializer(serializers.ModelSerializer):
     qty = serializers.IntegerField(read_only=False, required=True, validators=[data_validate])
     class Meta:
         model = AsnDetailModel
+        ref_name = 'AsnMoveToBin'
         exclude = ['openid', 'is_delete', ]
         read_only_fields = ['id', 'create_time', 'update_time', ]
