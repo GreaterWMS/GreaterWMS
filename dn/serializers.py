@@ -141,5 +141,6 @@ class MoveToBinSerializer(serializers.ModelSerializer):
     qty = serializers.IntegerField(read_only=False, required=True, validators=[data_validate])
     class Meta:
         model = DnDetailModel
+        ref_name = 'DNMoveToBin'
         exclude = ['openid', 'is_delete', ]
         read_only_fields = ['id', 'create_time', 'update_time', ]
