@@ -234,7 +234,7 @@ Because the front and back ends are separated, more software applications can be
 
 ## Business Process:
 
-### administrator
+### Administrator
 
 - Click Register, you can register as an administrator account, so as to realize the initialization program settings
 - After registration, you will get two IDs and one developer label. openid is the unique ID of the user data group. All data under this openid is bound through openid. Appid is the unique ID of the user group data. Multi company and multi warehouse functions are realized through appid. The developer ID is a Boolean value, and true represents an administrator account
