@@ -234,4 +234,142 @@ Because the front and back ends are separated, more software applications can be
 
 ## Business Process:
 
-- This content is not updated at this time
+### 管理员
+
+- Click Register, you can register as an administrator account, so as to realize the initialization program settings
+- After registration, you will get two IDs and one developer label. openid is the unique ID of the user data group. All data under this openid is bound through openid. Appid is the unique ID of the user group data. Multi company and multi warehouse functions are realized through appid. The developer ID is a Boolean value, and true represents an administrator account
+- There are two way for user login:
+  1. Login directly with openid and staff name
+  2. Administrator login with account and password
+- After login, the web will localstorage login information
+- you can view the openid of user data group by view my openid
+- If multi company and multi warehouse operation is required, pay attention to change openid
+- More administrator authrization, please develop by yourself
+
+### Staff
+
+- After registering as an administrator, create a new staff first
+- Staff has two fields, staff_ Name (for employee login), staff_ Type (employee type to control employee permissions)
+- The system does not have any restrictions on employee permissions. If you need employee permissions, please modify them according to the enterprise business model Templates
+- Click Edit to modify the employee information
+- Click Delete to delete the staff information. The system will set is_delete to true
+- Click Contact:
+  1. You can directly chat with employees in real time, but you can't chat with yourself
+  2. You can create a new notebook employee, which is actually used as a notebook
+  3. In the personal center, you can view recent contacts
+  4. The message flag will remind you how many unread messages you have
+
+### Driver
+
+- Driver management is only used in the shipping process
+- You need to know which driver picked up the goods
+
+### Warehouse Set
+
+- Warehouse
+  1. You can create only one warehouse. Now you can create multiple warehouses, but only the first one will work
+  2. If multi warehouse processing is needed, secondary development can be carried out through appid, or an administrator account can be created directly
+  3. The city of the warehouse must be filled in, which is used to calculate the freight
+- Bin_Property
+  1. 库位属性决定了仓库中货物属于什么属性的货物
+  2. 4种属性：破损（Damage)，锁定（Holding），质检（Inspection），正常（Normal）
+  3. Beta版中，属性可以修改和删除，正式版将无法删除和修改
+  4. 所有的发货，都只会匹配Normal库位的货物
+  5. 收货上架和移库，都会根据库位属性，直接修改库存数量，仓库的库存数量不会出现负数
+- Bin_Size
+  1. 库位的尺寸是帮助操作人员查看货物是否可以放入库位
+  2. 现行的版本没有对上架和移库尺寸做检查，将来会加入自动检查
+- Bin_Set
+  1. 库位设置是必须的，通常库位设置是横纵横纵，比如A010101，即A横01纵01横01纵
+  2. 库位的设置需要设置库位属性和尺寸，属性很重要，他决定了此库位的货物是否为正常货物
+
+### 基础设置
+
+- Company
+  1. 公司基本信息的创建只可以创建一个公司，现在可以创建多个，但是只有第一个会起作用
+  2. 如果需要多公司处理，可以通过APPID进行二次开发，也可以直接重新创建一个管理员账号
+  3. 公司的城市一定要填写，这是用来显示在收发货单上的
+- Supplier
+  1. 供应商的基础信息
+  2. 供应商的城市一定要填写，这是用来显示在收货单上的，并且也是要自动计算运费的
+- Customer
+  1. 客户的基础信息
+  2. 客户的城市一定要填写，这是用来显示在发货单上的，并且也是要自动计算运费的
+
+### 商品管理
+
+- Unit
+  1. 商品的单位，系统会初始化创建一些，但可以自己添加和修改
+- Class
+  1. 商品的类型，可以自己添加和修改
+- Color
+  1. 商品的颜色，系统会初始化创建一些，但可以自己添加和修改
+- Brand
+  1. 商品的品牌，可以自己添加和修改
+- Shape
+  1. 商品的形状，系统会初始化创建一些，但可以自己添加和修改
+- Specs
+  1. 商品的规格，可以自己添加和修改
+- Origin
+  1. 商品的产地，可以自己添加和修改
+- Goods List
+  1. 商品的列表
+
+### 固定资产
+
+- Capital
+  1. 固定资产创建，没有做过多拓展，只是记录使用
+  2. 可以统计托盘账目等
+
+### 库存管理
+
+- Stock List
+  1. 在库的货物总的库存数据量
+  2. Onhand_stock现有的库存数量
+  3. Can Order，可以用于下单发货的库存数量，因为有些货物已经被下了订单，虽然有现有库存，但是不可以再被订货
+  4. Ordered Stock，已经被下单的货物数量
+  5. ASN Stock，已经下了到货通知书，但还没有确认到货通知书的货物数量
+  6. DN Stock，已被下单，但是还没有确认订单数量
+  7. Pre Load，预计到货货物数量
+  8. Pre Sort，已经到货，卸货完成，等待分拣的货物数量
+  9. Sorted Stock，货物分拣完成，等待上架的货物数量
+  10. Pick Stock，发货单生成了拣货单，等待拣货的货物数量
+  11. Picked Stock，已经拣货完成，等待和司机交接的货物数量
+  12. Back Order Stock，欠货订单数量
+- Bin Stock
+  1. Total Stock，这个库位该产品的所有库存数量
+  2. Pick Stock，这个库位需要拣货的数量
+  3. Picked Stock，这个库位拣货完成的数量
+  4. Move To Bin， 移库，移库后，会根据库位属性，直接更新库存数量，如果库位全部移空，则该库位会更新为空库位
+- Empty Bin
+  1. 空库位明细
+- Occupied Bin
+  1. 非空库位明细
+
+### 收获管理
+
+- ASN到货通知书状态
+  1. ASN Status = 1, ASN到货通知书创建完成，状态1是唯一可以删除和修改ASN信息的状态，他会显示在Pre Delivery中，即有了到货通知书，但是还没有到货，点击Confirm Delivery，即确认货物已经到达，ASN Status更新到2，此时已经无法再修改ASN信息
+  2. ASN Status = 2, 拓展开发为司机到货排队，如果我们有很多司机到货，这可以做成一个排队系统，同时也可以让采购和销售看到到货信息，减少不必要的邮件和电话沟通，点击Finish Loading，即确认货物已经卸货完成，ASN Status更新到3,货物信息会出现在Sorting，此时的ASN状态表示，货物已卸到仓库，等待分拣
+  3. ASN Status = 3, 货物分拣是必须的一个流程，没有货物分拣，货物是无法上架的，上架的原则就是货物整理好，摆放到相对应的库位上，点击Confirm Sorted，ASN Status更新到4，即确认分拣完成，等待上架
+  4. 此时移动Sorted页面，会出现需要上架的货物明细，点击Move To Bin，上架完成，当然，系统会根据上架后的库位属性，自动更新商品库存数量信息
+
+### 发货管理
+
+- DN发货单状态
+  1. DN Status = 1, DN发货单创建完成，此时订单还是可以修改状态，且系统中的库存数量不会发生任何改变，点击Confirm Order，DN Status更新到2，即订单已经被确认，且无法更改，同时系统中的货物库存数量会自动更新，比如Can Order数量和Ordered数量
+  2. DN Status = 2, 这是订单被确认等待生成拣货单的过程，你可以点击单条订单Order Release来生成一个订单的拣货单，你也可以点击Release All Order，来将所有订单生成拣货单，如果是所有订单Release，那么会根据时间的先后进行库存匹配，库存不足时，会生成Back Order，即欠货订单，在这个过程中，DN单号是会发生改变的，如一家客户的多张订单，会被统一到一张订单中进行拣货，如客户订单无法满足，会将未满足部分生成欠货订单，欠货订单如果仍未得到匹配库存满足，将不再生成新的订单，DN Status会更新到3，即等待拣货的过程，已确认的订单和欠货订单都时Status为2的状态
+  3. DN Status = 3, 直接拣货，此功能会出现在Beta5更新中，暂时未更新
+  4. DN Status = 4, 发货交接，此功能会出现在Beta6更新中，暂时未更新
+  5. DN Status = 5, 客户签收，此功能会出现在Beta7更新中，暂时未更新
+  6. DN Status = 6, 对账结束，订单关闭，此功能会出现在Beta7更新中，暂时未更新
+
+### 退货管理
+
+- RO退货订单
+  此功能将会出现在正式版中
+
+### 运费管理
+
+- Transportation Fee
+  API已经完成，前端暂未更新入口，如果想要使用，可以直接调用Payment下的Transportation Fee API进行使用，运费自动计算模块已经做进收发货流程中
