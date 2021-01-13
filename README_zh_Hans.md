@@ -338,7 +338,7 @@ const wsurl = 'wss://你的域名/websocket/'
 
 ### 收获管理
 - ASN到货通知书状态
-  1， ASN Status = 1, ASN到货通知书创建完成，状态1是唯一可以删除和修改ASN信息的状态，他会显示在Pre Delivery中，即有了到货通知书，但是还没有到货，点击Confirm Delivery，即确认货物已经到达，ASN Status更新到2，此时已经无法再修改ASN信息
+  1. ASN Status = 1, ASN到货通知书创建完成，状态1是唯一可以删除和修改ASN信息的状态，他会显示在Pre Delivery中，即有了到货通知书，但是还没有到货，点击Confirm Delivery，即确认货物已经到达，ASN Status更新到2，此时已经无法再修改ASN信息
   2. ASN Status = 2, 拓展开发为司机到货排队，如果我们有很多司机到货，这可以做成一个排队系统，同时也可以让采购和销售看到到货信息，减少不必要的邮件和电话沟通，点击Finish Loading，即确认货物已经卸货完成，ASN Status更新到3,货物信息会出现在Sorting，此时的ASN状态表示，货物已卸到仓库，等待分拣
   3. ASN Status = 3, 货物分拣是必须的一个流程，没有货物分拣，货物是无法上架的，上架的原则就是货物整理好，摆放到相对应的库位上，点击Confirm Sorted，ASN Status更新到4，即确认分拣完成，等待上架
   4. 此时移动Sorted页面，会出现需要上架的货物明细，点击Move To Bin，上架完成，当然，系统会根据上架后的库位属性，自动更新商品库存数量信息
