@@ -336,7 +336,7 @@ const wsurl = 'wss://你的域名/websocket/'
 - Occupied Bin
   1. 非空库位明细
 
-### 收获管理
+### 收货管理
 - ASN到货通知书状态
   1. ASN Status = 1, ASN到货通知书创建完成，状态1是唯一可以删除和修改ASN信息的状态，他会显示在Pre Delivery中，即有了到货通知书，但是还没有到货，点击Confirm Delivery，即确认货物已经到达，ASN Status更新到2，此时已经无法再修改ASN信息
   2. ASN Status = 2, 拓展开发为司机到货排队，如果我们有很多司机到货，这可以做成一个排队系统，同时也可以让采购和销售看到到货信息，减少不必要的邮件和电话沟通，点击Finish Loading，即确认货物已经卸货完成，ASN Status更新到3,货物信息会出现在Sorting，此时的ASN状态表示，货物已卸到仓库，等待分拣
