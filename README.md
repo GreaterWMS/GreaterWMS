@@ -271,57 +271,57 @@ Because the front and back ends are separated, more software applications can be
   2. If multi warehouse processing is needed, secondary development can be carried out through appid, or an administrator account can be created directly
   3. The city of the warehouse must be filled in, which is used to calculate the freight
 - Bin_Property
-  1. 库位属性决定了仓库中货物属于什么属性的货物
-  2. 4种属性：破损（Damage)，锁定（Holding），质检（Inspection），正常（Normal）
-  3. Beta版中，属性可以修改和删除，正式版将无法删除和修改
-  4. 所有的发货，都只会匹配Normal库位的货物
-  5. 收货上架和移库，都会根据库位属性，直接修改库存数量，仓库的库存数量不会出现负数
+  1. The bin property determines the property of the goods in the warehouse
+  2. Four property: damage, holding, inspection, normal
+  3. In the beta version, property can be modified and deleted, but the release version can not
+  4. All shipping process will only match the goods in the normal bin
+  5. When goods are received and moved to another bin, the inventory quantity will be directly modified according to the bin property, and the inventory quantity of the warehouse will not be negative
 - Bin_Size
-  1. 库位的尺寸是帮助操作人员查看货物是否可以放入库位
-  2. 现行的版本没有对上架和移库尺寸做检查，将来会加入自动检查
+  1. The size of bin is to help the operator to check whether the goods can be put into the bin
+  2. The current version does not check the dimensions of bin, and automatic inspection will be added in the future
 - Bin_Set
-  1. 库位设置是必须的，通常库位设置是横纵横纵，比如A010101，即A横01纵01横01纵
-  2. 库位的设置需要设置库位属性和尺寸，属性很重要，他决定了此库位的货物是否为正常货物
+  1. Bin setting is necessary. Generally, bin setting is horizontal, vertical and horizontal, such as A010101, i.e. A horizontal, 01 vertical, 01 horizontal and 01 vertical
+  2. The setting of bin needs to set the bin property and size. The property is very important, which determines whether the goods in this bin are normal goods
 
-### 基础设置
+### Basic Info
 
 - Company
-  1. 公司基本信息的创建只可以创建一个公司，现在可以创建多个，但是只有第一个会起作用
-  2. 如果需要多公司处理，可以通过APPID进行二次开发，也可以直接重新创建一个管理员账号
-  3. 公司的城市一定要填写，这是用来显示在收发货单上的
+  1. The creation of basic company information can only create one company. Now you can create multiple companies, but only the first one will work
+  2. If multi company processing is needed, secondary development can be carried out through appid, or an administrator account can be created directly
+  3. The city of the company must be filled in, which is used to show on the receipt-proof
 - Supplier
-  1. 供应商的基础信息
-  2. 供应商的城市一定要填写，这是用来显示在收货单上的，并且也是要自动计算运费的
+  1. Basic information of suppliers
+  2. The city of the supplier must be filled in, which is used to display on the receipt-proof, and also to calculate the freight automatically
 - Customer
-  1. 客户的基础信息
-  2. 客户的城市一定要填写，这是用来显示在发货单上的，并且也是要自动计算运费的
+  1. Basic information of customers
+  2. The customer's city must be filled in, which is used to display on the invoice, and also to automatically calculate the freight
 
-### 商品管理
+### Godds
 
 - Unit
-  1. 商品的单位，系统会初始化创建一些，但可以自己添加和修改
+  1. Goods units, the system will initialize to create some, but you can add and modify
 - Class
-  1. 商品的类型，可以自己添加和修改
+  1. Goods Class, you can add and modify
 - Color
-  1. 商品的颜色，系统会初始化创建一些，但可以自己添加和修改
+  1. Goods color, the system will initialize to create some, but you can add and modify
 - Brand
-  1. 商品的品牌，可以自己添加和修改
+  1. Goods brand, you can add and modify
 - Shape
-  1. 商品的形状，系统会初始化创建一些，但可以自己添加和修改
+  1. Goods Shape, the system will initialize to create some, but you can add and modify
 - Specs
-  1. 商品的规格，可以自己添加和修改
+  1. Goods specs, you can add and modify
 - Origin
-  1. 商品的产地，可以自己添加和修改
+  1. Goods Origin, where initial product goods, you can add and modify
 - Goods List
-  1. 商品的列表
+  1. Goods list
 
-### 固定资产
+### Capital
 
 - Capital
-  1. 固定资产创建，没有做过多拓展，只是记录使用
-  2. 可以统计托盘账目等
+  1. The creation of fixed assets, not too much expansion, just record the use
+  2. Can be statistical pallets accounts
 
-### 库存管理
+### Stock Management
 
 - Stock List
   1. 在库的货物总的库存数据量
