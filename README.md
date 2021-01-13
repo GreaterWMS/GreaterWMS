@@ -324,52 +324,52 @@ Because the front and back ends are separated, more software applications can be
 ### Stock Management
 
 - Stock List
-  1. 在库的货物总的库存数据量
-  2. Onhand_stock现有的库存数量
-  3. Can Order，可以用于下单发货的库存数量，因为有些货物已经被下了订单，虽然有现有库存，但是不可以再被订货
-  4. Ordered Stock，已经被下单的货物数量
-  5. ASN Stock，已经下了到货通知书，但还没有确认到货通知书的货物数量
-  6. DN Stock，已被下单，但是还没有确认订单数量
-  7. Pre Load，预计到货货物数量
-  8. Pre Sort，已经到货，卸货完成，等待分拣的货物数量
-  9. Sorted Stock，货物分拣完成，等待上架的货物数量
-  10. Pick Stock，发货单生成了拣货单，等待拣货的货物数量
-  11. Picked Stock，已经拣货完成，等待和司机交接的货物数量
-  12. Back Order Stock，欠货订单数量
+  1. Total inventory data of goods
+  2. Onhand_ Stock quantity on hand
+  3. Can order, which can be used to determine the inventory quantity of an order. Some goods have been ordered, but they can't be ordered any more even though they have existing inventory
+  4. Ordered stock, the quantity of goods be ordered
+  5. ASN stock has issued the arrival notice, but has not confirmed the quantity of goods in the arrival notice
+  6. DN stock, has been ordered, but the order quantity has not been confirmed
+  7. Pre Load,expected quantity of goods delivered
+  8. Pre Sort,the quantity of goods that have arrived, unloaded and waiting to be sorted
+  9. Sorted Stock, The quantity of goods waiting to be put on the bin after sorting
+  10. Pick Stock, The picking list is generated from the delivery document, and the quantity of goods waiting to be picked
+  11. Picked Stock， The quantity of goods that have been picked up and waiting to be handed over to the driver
+  12. Back Order Stock, Order quantity in arrears
 - Bin Stock
-  1. Total Stock，这个库位该产品的所有库存数量
-  2. Pick Stock，这个库位需要拣货的数量
-  3. Picked Stock，这个库位拣货完成的数量
-  4. Move To Bin， 移库，移库后，会根据库位属性，直接更新库存数量，如果库位全部移空，则该库位会更新为空库位
+  1. Total Stock, all inventory quantities of the product in this bin
+  2. Pick Stock, the quantity of goods to be picked in this bin
+  3. Picked stock, the quantity of goods picked in this bin
+  4. Move to Bin: after moving, the inventory quantity will be updated directly according to the bin property. If all goods has been moved out from this bin, the bin will be updated to empty
 - Empty Bin
-  1. 空库位明细
+  1. Empty bin List
 - Occupied Bin
-  1. 非空库位明细
+  1. Occupied bin list
 
-### 收获管理
+### Inbound
 
-- ASN到货通知书状态
-  1. ASN Status = 1, ASN到货通知书创建完成，状态1是唯一可以删除和修改ASN信息的状态，他会显示在Pre Delivery中，即有了到货通知书，但是还没有到货，点击Confirm Delivery，即确认货物已经到达，ASN Status更新到2，此时已经无法再修改ASN信息
-  2. ASN Status = 2, 拓展开发为司机到货排队，如果我们有很多司机到货，这可以做成一个排队系统，同时也可以让采购和销售看到到货信息，减少不必要的邮件和电话沟通，点击Finish Loading，即确认货物已经卸货完成，ASN Status更新到3,货物信息会出现在Sorting，此时的ASN状态表示，货物已卸到仓库，等待分拣
-  3. ASN Status = 3, 货物分拣是必须的一个流程，没有货物分拣，货物是无法上架的，上架的原则就是货物整理好，摆放到相对应的库位上，点击Confirm Sorted，ASN Status更新到4，即确认分拣完成，等待上架
-  4. 此时移动Sorted页面，会出现需要上架的货物明细，点击Move To Bin，上架完成，当然，系统会根据上架后的库位属性，自动更新商品库存数量信息
+- ASN
+  1. ASN status = 1, the ASN arrival notice is created, and status 1 is the only status that can delete and modify the ASN information. It will be displayed in pre delivery, that is, there is an arrival notice, but it has not arrived. Click confirm delivery to confirm that the goods have arrived, and ASN status will be updated to 2. At this time, the ASN information can no longer be modified
+  2. ASN status = 2, it is developed to queue up for the arrival of drivers. If we have many drivers arriving, it can be made into a queuing system. At the same time, it can also let the purchase and sales see the arrival information, reduce unnecessary email and telephone communication. Click finish loading to confirm that the goods have been unloaded, and Asn status will be updated to 3, The goods information will appear in sorting, and the ASN status indicates that the goods have been unloaded to the warehouse and are waiting for sorting
+  3. ASN status = 3, goods sorting is a necessary process. Without goods sorting, goods cannot be put on shelves. The principle of putting on shelves is to arrange the goods and put them on the corresponding warehouse location. Click confirm sorted, and Asn status will be updated to 4, that is, confirm the sorting and wait for loading
+  4. At this time, when you move the sorted page, the goods details that need to be put on the shelves will appear. Click move to bin to finish the listing. Of course, the system will automatically update the inventory quantity information of goods according to the location attributes after the listing
 
-### 发货管理
+### Outbound
 
-- DN发货单状态
-  1. DN Status = 1, DN发货单创建完成，此时订单还是可以修改状态，且系统中的库存数量不会发生任何改变，点击Confirm Order，DN Status更新到2，即订单已经被确认，且无法更改，同时系统中的货物库存数量会自动更新，比如Can Order数量和Ordered数量
-  2. DN Status = 2, 这是订单被确认等待生成拣货单的过程，你可以点击单条订单Order Release来生成一个订单的拣货单，你也可以点击Release All Order，来将所有订单生成拣货单，如果是所有订单Release，那么会根据时间的先后进行库存匹配，库存不足时，会生成Back Order，即欠货订单，在这个过程中，DN单号是会发生改变的，如一家客户的多张订单，会被统一到一张订单中进行拣货，如客户订单无法满足，会将未满足部分生成欠货订单，欠货订单如果仍未得到匹配库存满足，将不再生成新的订单，DN Status会更新到3，即等待拣货的过程，已确认的订单和欠货订单都时Status为2的状态
-  3. DN Status = 3, 直接拣货，此功能会出现在Beta5更新中，暂时未更新
-  4. DN Status = 4, 发货交接，此功能会出现在Beta6更新中，暂时未更新
-  5. DN Status = 5, 客户签收，此功能会出现在Beta7更新中，暂时未更新
-  6. DN Status = 6, 对账结束，订单关闭，此功能会出现在Beta7更新中，暂时未更新
+- DN
+  1. DN status = 1, when the DN shipping order is created, the order status can still be modified, and the inventory quantity in the system will not change. Click confirm order, and the DN status will be updated to 2, that is, the order has been confirmed and cannot be changed. At the same time, the inventory quantity in the system will be automatically updated, such as can order quantity and ordered quantity
+  2. DN Status = 2, This is the process when an order is confirmed and waiting to generate a picking list. You can click order release of a single order to generate a picking list of an order. You can also click release all order to generate a picking list of all orders. If all orders are released, the inventory will be matched according to the time sequence. When the inventory is insufficient, back will be generated In this process, the DN order number will change. For example, multiple orders of a customer will be unified into one order for picking. If the customer's order cannot be satisfied, the unsatisfied part will be generated as a shortage order. If the shortage order is not met by the matched inventory, no new order will be generated. Dn The status will be updated to 3, that is, in the process of waiting for picking, the status will be 2 when both the confirmed order and the shortage order are in the same status
+  3. DN Status = 3,Direct picking, this function will appear in beta5 update, not updated temporarily
+  4. DN Status = 4, Delivery handover, this function will appear in beta6 update, not updated temporarily
+  5. DN Status = 5, Customer receiving, this function will appear in beta7 update, not updated temporarily
+  6. DN Status = 6, When the reconciliation is finished and the order is closed, this function will appear in the beta7 update, which has not been updated yet
 
-### 退货管理
+### Reject Order
 
-- RO退货订单
-  此功能将会出现在正式版中
+- RO
+  This feature will add in the release version
 
-### 运费管理
+### Payment
 
 - Transportation Fee
-  API已经完成，前端暂未更新入口，如果想要使用，可以直接调用Payment下的Transportation Fee API进行使用，运费自动计算模块已经做进收发货流程中
+  The API has been completed, and the front end has not updated the entry yet. If you want to use it, you can directly call the transportation fee API under payment to use it. The automatic freight calculation module has been put into the receiving and shipping process
