@@ -158,6 +158,7 @@ class FileListRenderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DnListModel
+        ref_name = 'DNFileListRenderSerializer'
         exclude = ['openid', 'is_delete', ]
 
 class FileDetailRenderSerializer(serializers.ModelSerializer):
@@ -182,4 +183,5 @@ class FileDetailRenderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DnDetailModel
+        ref_name = 'DNFileDetailRenderSerializer'
         exclude = ['openid', 'is_delete', ]
