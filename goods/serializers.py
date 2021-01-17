@@ -148,4 +148,5 @@ class FileRenderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ListModel
+        ref_name = 'GOODSFileRenderSerializer'
         exclude = ['openid', 'is_delete', ]
