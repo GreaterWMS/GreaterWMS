@@ -84,4 +84,5 @@ class FileRenderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ListModel
+        ref_name = 'BinSizeFileRenderSerializer'
         exclude = ['openid', 'is_delete', ]

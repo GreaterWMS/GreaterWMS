@@ -152,6 +152,7 @@ class FileListRenderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AsnListModel
+        ref_name = 'ASNFileListRenderSerializer'
         exclude = ['openid', 'is_delete', ]
 
 class FileDetailRenderSerializer(serializers.ModelSerializer):
@@ -173,4 +174,5 @@ class FileDetailRenderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AsnDetailModel
+        ref_name = 'ASNFileDetailRenderSerializer'
         exclude = ['openid', 'is_delete', ]

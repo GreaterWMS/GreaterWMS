@@ -57,4 +57,5 @@ class FileRenderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ListModel
+        ref_name = 'BinSetFileRenderSerializer'
         exclude = ['openid', 'is_delete', ]
