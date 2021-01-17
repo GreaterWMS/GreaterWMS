@@ -9,5 +9,6 @@ class BinpropertyGetSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ListModel
+        ref_name = 'BinpropertyGetSerializer'
         exclude = ['openid', 'is_delete', ]
         read_only_fields = ['id', ]

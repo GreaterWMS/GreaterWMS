@@ -93,6 +93,7 @@ class FileBinListRenderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StockBinModel
+        ref_name = 'StockFileBinListRenderSerializer'
         exclude = ['openid', ]
 
 class FileListRenderSerializer(serializers.ModelSerializer):
@@ -117,4 +118,5 @@ class FileListRenderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StockListModel
+        ref_name = 'StockFileListRenderSerializer'
         exclude = ['openid', ]
