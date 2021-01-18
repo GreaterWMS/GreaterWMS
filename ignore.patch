@@ -1,0 +1,10 @@
+diff --git a/.gitignore b/.gitignore
+index 8d4cb14..6fa4248 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -4,3 +4,4 @@ country.txt
+ db.sqlite3
+ nginx.conf
+ .idea/
++1
+\ No newline at end of file
