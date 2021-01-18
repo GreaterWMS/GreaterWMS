@@ -3,3 +3,4 @@ __pycache__/
 country.txt
 db.sqlite3
 nginx.conf
+.idea/
