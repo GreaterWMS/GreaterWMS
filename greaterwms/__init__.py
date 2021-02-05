@@ -11,7 +11,7 @@ try:
     if os.path.exists(path):
         pass
     else:
-        response = requests.post('https://www.56yhz.com/area/')
+        response = requests.post('https://wms.56yhz.com/area/')
         with open(path, 'w') as f:
             f.write(str(eval(response.text).get('country')))
             f.close()
