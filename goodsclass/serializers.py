@@ -29,10 +29,12 @@ def appid_validate(data):
 class GoodsclassGetSerializer(serializers.ModelSerializer):
     goods_class = serializers.CharField(read_only=True, required=False)
     creater = serializers.CharField(read_only=True, required=False)
+    create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     class Meta:
         model = ListModel
         exclude = ['openid', 'is_delete', ]
-        read_only_fields = ['id', 'openid', 'appid', 'create_time', 'update_time', ]
+        read_only_fields = ['id', ]
 
 class GoodsclassPostSerializer(serializers.ModelSerializer):
     openid = serializers.CharField(read_only=False, required=False, validators=[openid_validate])
