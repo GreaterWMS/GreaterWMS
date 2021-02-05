@@ -29,10 +29,12 @@ def appid_validate(data):
 class DriverGetSerializer(serializers.ModelSerializer):
     driver_name = serializers.CharField(read_only=True, required=False)
     license_plate = serializers.CharField(read_only=True, required=False)
+    create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     class Meta:
         model = ListModel
         exclude = ['openid', 'is_delete', ]
-        read_only_fields = ['id', 'openid', 'create_time', 'update_time', ]
+        read_only_fields = ['id', ]
 
 class DriverPostSerializer(serializers.ModelSerializer):
     openid = serializers.CharField(read_only=False, required=False, validators=[openid_validate])

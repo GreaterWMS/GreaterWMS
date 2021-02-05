@@ -39,7 +39,7 @@ class SupplierGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = ListModel
         exclude = ['openid', 'is_delete', ]
-        read_only_fields = ['id', 'openid', 'create_time', 'update_time', ]
+        read_only_fields = ['id', ]
 
 class SupplierPostSerializer(serializers.ModelSerializer):
     openid = serializers.CharField(read_only=False, required=False, validators=[openid_validate])
