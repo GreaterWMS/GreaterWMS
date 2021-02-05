@@ -212,7 +212,7 @@ module.exports = function (/* ctx */) {
 
     // Full list of options: https://quasar.dev/quasar-cli/developing-electron-apps/configuring-electron
     electron: {
-      bundler: 'packager', // 'packager' or 'builder'
+      bundler: 'builder', // 'packager' or 'builder'
 
       packager: {
         // https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#options
@@ -230,7 +230,46 @@ module.exports = function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'templates'
+        appId: 'com.electron.greaterwms',
+        productName: 'GreaterWMS',
+        copyright: '2018SR517685',
+        publish: [
+          {
+            provider: 'generic',
+            url: 'http://127.0.0.1:8008/media/'
+          }
+        ],
+        mac: {
+          target: ['dmg', 'zip']
+        },
+        win: {
+          target: [
+            {
+              target: 'zip',
+              arch: [
+                'x64',
+                'ia32'
+              ]
+            },
+            {
+              target: 'nsis',
+              arch: [
+                'x64',
+                'ia32'
+              ]
+            }
+          ]
+        },
+        nsis: {
+          uninstallDisplayName: 'GreaterWMS',
+          oneClick: false,
+          allowToChangeInstallationDirectory: true,
+          createDesktopShortcut: true,
+          createStartMenuShortcut: true,
+          shortcutName: 'GreaterWMS',
+          runAfterFinish: true
+        },
+        compression: 'maximum'
       },
 
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
