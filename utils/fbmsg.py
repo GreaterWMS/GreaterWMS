@@ -1,6 +1,6 @@
 class FBMsg(object):
     def ret():
-        ret = {"code": "200", "msg": "请求完成", "ip":"未获得ip地址","data": None}
+        ret = {"code": "200", "msg": "Success Create", "data": None}
         return ret
     def err_contact_name():
         err_contact_name = {"code": "1001", "msg": "称谓不能为空", "data": None}
@@ -21,7 +21,7 @@ class FBMsg(object):
         err_order_fail = {"code": "1006", "msg": "订单支付失败", "data": None}
         return err_order_fail
     def err_ret():
-        err_ret = {"code": "1011", "msg": "用户名或密码错误", "data": None}
+        err_ret = {"code": "1011", "msg": "User Name Or Password Errot", "data": None}
         return err_ret
     def err_data():
         err_data = {"code": "1012", "msg": "数据不可用", "data": None}
@@ -48,19 +48,19 @@ class FBMsg(object):
         err_auth = {'code': "1021", 'msg': '用户不存在'}
         return err_auth
     def err_user_same():
-        err_user_same = {'code': "1022", 'msg': '用户已存在'}
+        err_user_same = {'code': "1022", 'msg': 'User Is Exists'}
         return err_user_same
     def error_referer():
         error_referer = {'code': "1023", 'msg': '错误的token'}
         return error_referer
     def err_password1_empty():
-        err_password1_empty = {'code': "1024", 'msg': '密码1不能为空'}
+        err_password1_empty = {'code': "1024", 'msg': 'Password Can Not Be Empty'}
         return err_password1_empty
     def err_password2_empty():
-        err_password2_empty = {'code': "1025", 'msg': '密码2不能为空'}
+        err_password2_empty = {'code': "1025", 'msg': 'Please Confirm The Password'}
         return err_password2_empty
     def err_password_not_same():
-        err_password_not_same = {'code': "1026", 'msg': '2次输入的密码不一致'}
+        err_password_not_same = {'code': "1026", 'msg': 'Password Is Not Same One'}
         return err_password_not_same
     def err_psw():
         err_psw = {"code": "1027", "msg": "用户密码错误"}
