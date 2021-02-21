@@ -11,7 +11,7 @@
 - 软件著作权编号：2018SR517685
 - GitHub地址：[GitHub](https://github.com/Singosgu/GreaterWMS)
 
-- Demo地址：[DEMO](https://www.56yhz.com/)
+- Demo地址：[DEMO](https://www.56yhz.com/)(注册会获得初始化Demo数据)
 - 技术交流QQ群：463562933
 
 ---
