@@ -1,0 +1,3854 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="db">
+  <database-model serializer="dbm" dbms="SQLITE" family-id="SQLITE" format-version="4.20">
+    <root id="1">
+      <ServerVersion>3.31.1</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="main">
+      <Current>1</Current>
+    </schema>
+    <collation id="3" parent="1" name="BINARY"/>
+    <collation id="4" parent="1" name="NOCASE"/>
+    <collation id="5" parent="1" name="RTRIM"/>
+    <routine id="6" parent="1" name="abs">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="7" parent="1" name="acos"/>
+    <routine id="8" parent="1" name="acosh"/>
+    <routine id="9" parent="1" name="asin"/>
+    <routine id="10" parent="1" name="asinh"/>
+    <routine id="11" parent="1" name="atan"/>
+    <routine id="12" parent="1" name="atan2"/>
+    <routine id="13" parent="1" name="atanh"/>
+    <routine id="14" parent="1" name="atn2"/>
+    <routine id="15" parent="1" name="avg">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="16" parent="1" name="bm25">
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="17" parent="1" name="ceil"/>
+    <routine id="18" parent="1" name="changes"/>
+    <routine id="19" parent="1" name="char">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="20" parent="1" name="charindex"/>
+    <routine id="21" parent="1" name="charindex"/>
+    <routine id="22" parent="1" name="coalesce">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="23" parent="1" name="cos"/>
+    <routine id="24" parent="1" name="cosh"/>
+    <routine id="25" parent="1" name="cot"/>
+    <routine id="26" parent="1" name="coth"/>
+    <routine id="27" parent="1" name="count">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="28" parent="1" name="cume_dist">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="29" parent="1" name="current_date"/>
+    <routine id="30" parent="1" name="current_time"/>
+    <routine id="31" parent="1" name="current_timestamp"/>
+    <routine id="32" parent="1" name="date">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="33" parent="1" name="datetime">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="34" parent="1" name="degrees"/>
+    <routine id="35" parent="1" name="dense_rank">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="36" parent="1" name="difference"/>
+    <routine id="37" parent="1" name="exp"/>
+    <routine id="38" parent="1" name="first_value">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="39" parent="1" name="floor"/>
+    <routine id="40" parent="1" name="fts3_tokenizer"/>
+    <routine id="41" parent="1" name="fts3_tokenizer"/>
+    <routine id="42" parent="1" name="fts5"/>
+    <routine id="43" parent="1" name="fts5_decode"/>
+    <routine id="44" parent="1" name="fts5_decode_none"/>
+    <routine id="45" parent="1" name="fts5_expr">
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="46" parent="1" name="fts5_expr_tcl">
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="47" parent="1" name="fts5_fold">
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="48" parent="1" name="fts5_isalnum">
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="49" parent="1" name="fts5_rowid">
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="50" parent="1" name="fts5_source_id"/>
+    <routine id="51" parent="1" name="glob">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="52" parent="1" name="group_concat">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="53" parent="1" name="hex">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="54" parent="1" name="highlight">
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="55" parent="1" name="ifnull">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="56" parent="1" name="instr">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="57" parent="1" name="json">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="58" parent="1" name="json_array">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="59" parent="1" name="json_array_length">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="60" parent="1" name="json_array_length">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="61" parent="1" name="json_extract">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="62" parent="1" name="json_group_array">
+      <FunctionType>window</FunctionType>
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="63" parent="1" name="json_group_object">
+      <FunctionType>window</FunctionType>
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="64" parent="1" name="json_insert">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="65" parent="1" name="json_object">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="66" parent="1" name="json_patch">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="67" parent="1" name="json_quote">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="68" parent="1" name="json_remove">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="69" parent="1" name="json_replace">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="70" parent="1" name="json_set">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="71" parent="1" name="json_type">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="72" parent="1" name="json_type">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="73" parent="1" name="json_valid">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="74" parent="1" name="julianday">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="75" parent="1" name="lag">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="76" parent="1" name="lag">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="77" parent="1" name="last_insert_rowid"/>
+    <routine id="78" parent="1" name="last_value">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="79" parent="1" name="lead">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="80" parent="1" name="lead">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="81" parent="1" name="leftstr"/>
+    <routine id="82" parent="1" name="length">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="83" parent="1" name="like">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="84" parent="1" name="likelihood">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="85" parent="1" name="likely">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="86" parent="1" name="load_extension"/>
+    <routine id="87" parent="1" name="log"/>
+    <routine id="88" parent="1" name="log10"/>
+    <routine id="89" parent="1" name="lower">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="90" parent="1" name="lower_quartile">
+      <FunctionType>aggregate</FunctionType>
+    </routine>
+    <routine id="91" parent="1" name="ltrim">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="92" parent="1" name="match"/>
+    <routine id="93" parent="1" name="matchinfo"/>
+    <routine id="94" parent="1" name="matchinfo"/>
+    <routine id="95" parent="1" name="max">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="96" parent="1" name="max">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="97" parent="1" name="median">
+      <FunctionType>aggregate</FunctionType>
+    </routine>
+    <routine id="98" parent="1" name="min">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="99" parent="1" name="min">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="100" parent="1" name="mode">
+      <FunctionType>aggregate</FunctionType>
+    </routine>
+    <routine id="101" parent="1" name="nth_value">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="102" parent="1" name="ntile">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="103" parent="1" name="nullif">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="104" parent="1" name="offsets"/>
+    <routine id="105" parent="1" name="optimize"/>
+    <routine id="106" parent="1" name="padc"/>
+    <routine id="107" parent="1" name="padl"/>
+    <routine id="108" parent="1" name="padr"/>
+    <routine id="109" parent="1" name="percent_rank">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="110" parent="1" name="pi"/>
+    <routine id="111" parent="1" name="power"/>
+    <routine id="112" parent="1" name="printf">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="113" parent="1" name="proper"/>
+    <routine id="114" parent="1" name="quote">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="115" parent="1" name="radians"/>
+    <routine id="116" parent="1" name="random"/>
+    <routine id="117" parent="1" name="randomblob"/>
+    <routine id="118" parent="1" name="rank">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="119" parent="1" name="replace">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="120" parent="1" name="replicate"/>
+    <routine id="121" parent="1" name="reverse"/>
+    <routine id="122" parent="1" name="rightstr"/>
+    <routine id="123" parent="1" name="round">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="124" parent="1" name="row_number">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="125" parent="1" name="rtreecheck">
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="126" parent="1" name="rtreedepth"/>
+    <routine id="127" parent="1" name="rtreenode"/>
+    <routine id="128" parent="1" name="rtrim">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="129" parent="1" name="sign"/>
+    <routine id="130" parent="1" name="sin"/>
+    <routine id="131" parent="1" name="sinh"/>
+    <routine id="132" parent="1" name="snippet">
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="133" parent="1" name="sqlite_compileoption_get"/>
+    <routine id="134" parent="1" name="sqlite_compileoption_used"/>
+    <routine id="135" parent="1" name="sqlite_log">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="136" parent="1" name="sqlite_source_id"/>
+    <routine id="137" parent="1" name="sqlite_version"/>
+    <routine id="138" parent="1" name="sqrt"/>
+    <routine id="139" parent="1" name="square"/>
+    <routine id="140" parent="1" name="stdev">
+      <FunctionType>aggregate</FunctionType>
+    </routine>
+    <routine id="141" parent="1" name="strfilter"/>
+    <routine id="142" parent="1" name="strftime">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="143" parent="1" name="substr">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="144" parent="1" name="sum">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="145" parent="1" name="tan"/>
+    <routine id="146" parent="1" name="tanh"/>
+    <routine id="147" parent="1" name="time">
+      <Deterministic>1</Deterministic>
+      <Variadic>1</Variadic>
+    </routine>
+    <routine id="148" parent="1" name="total">
+      <FunctionType>window</FunctionType>
+    </routine>
+    <routine id="149" parent="1" name="total_changes"/>
+    <routine id="150" parent="1" name="trim">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="151" parent="1" name="typeof">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="152" parent="1" name="unicode">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="153" parent="1" name="unlikely">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="154" parent="1" name="upper">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <routine id="155" parent="1" name="upper_quartile">
+      <FunctionType>aggregate</FunctionType>
+    </routine>
+    <routine id="156" parent="1" name="variance">
+      <FunctionType>aggregate</FunctionType>
+    </routine>
+    <routine id="157" parent="1" name="zeroblob">
+      <Deterministic>1</Deterministic>
+    </routine>
+    <package id="158" parent="1" name="fts3"/>
+    <package id="159" parent="1" name="fts3tokenize"/>
+    <package id="160" parent="1" name="fts4"/>
+    <package id="161" parent="1" name="fts4aux"/>
+    <package id="162" parent="1" name="fts5"/>
+    <package id="163" parent="1" name="fts5vocab"/>
+    <package id="164" parent="1" name="json_each"/>
+    <package id="165" parent="1" name="json_tree"/>
+    <package id="166" parent="1" name="rtree"/>
+    <package id="167" parent="1" name="rtree_i32"/>
+    <table id="168" parent="2" name="asndetail"/>
+    <table id="169" parent="2" name="asnlist"/>
+    <table id="170" parent="2" name="auth_group"/>
+    <table id="171" parent="2" name="auth_group_permissions"/>
+    <table id="172" parent="2" name="auth_permission"/>
+    <table id="173" parent="2" name="auth_user"/>
+    <table id="174" parent="2" name="auth_user_groups"/>
+    <table id="175" parent="2" name="auth_user_user_permissions"/>
+    <table id="176" parent="2" name="binproperty"/>
+    <table id="177" parent="2" name="binset"/>
+    <table id="178" parent="2" name="binsize"/>
+    <table id="179" parent="2" name="capital"/>
+    <table id="180" parent="2" name="chat"/>
+    <table id="181" parent="2" name="company"/>
+    <table id="182" parent="2" name="customer"/>
+    <table id="183" parent="2" name="dispatchlist"/>
+    <table id="184" parent="2" name="django_admin_log"/>
+    <table id="185" parent="2" name="django_content_type"/>
+    <table id="186" parent="2" name="django_migrations"/>
+    <table id="187" parent="2" name="django_session"/>
+    <table id="188" parent="2" name="dndetail"/>
+    <table id="189" parent="2" name="dnlist"/>
+    <table id="190" parent="2" name="driver"/>
+    <table id="191" parent="2" name="goods"/>
+    <table id="192" parent="2" name="goodsbrand"/>
+    <table id="193" parent="2" name="goodsclass"/>
+    <table id="194" parent="2" name="goodscolor"/>
+    <table id="195" parent="2" name="goodsorigin"/>
+    <table id="196" parent="2" name="goodsshape"/>
+    <table id="197" parent="2" name="goodsspecs"/>
+    <table id="198" parent="2" name="goodsunit"/>
+    <table id="199" parent="2" name="pickinglist"/>
+    <table id="200" parent="2" name="silk_profile"/>
+    <table id="201" parent="2" name="silk_profile_queries"/>
+    <table id="202" parent="2" name="silk_request"/>
+    <table id="203" parent="2" name="silk_response"/>
+    <table id="204" parent="2" name="silk_sqlquery"/>
+    <table id="205" parent="2" name="sqlite_master">
+      <System>1</System>
+    </table>
+    <table id="206" parent="2" name="sqlite_sequence">
+      <System>1</System>
+    </table>
+    <table id="207" parent="2" name="staff"/>
+    <table id="208" parent="2" name="stockbin"/>
+    <table id="209" parent="2" name="stocklist"/>
+    <table id="210" parent="2" name="supplier"/>
+    <table id="211" parent="2" name="transportationfee"/>
+    <table id="212" parent="2" name="userprofile_users"/>
+    <table id="213" parent="2" name="warehouse"/>
+    <argument id="214" parent="6">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="215" parent="6">
+      <Position>1</Position>
+    </argument>
+    <argument id="216" parent="7">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="217" parent="7">
+      <Position>1</Position>
+    </argument>
+    <argument id="218" parent="8">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="219" parent="8">
+      <Position>1</Position>
+    </argument>
+    <argument id="220" parent="9">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="221" parent="9">
+      <Position>1</Position>
+    </argument>
+    <argument id="222" parent="10">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="223" parent="10">
+      <Position>1</Position>
+    </argument>
+    <argument id="224" parent="11">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="225" parent="11">
+      <Position>1</Position>
+    </argument>
+    <argument id="226" parent="12">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="227" parent="12">
+      <Position>1</Position>
+    </argument>
+    <argument id="228" parent="12">
+      <Position>2</Position>
+    </argument>
+    <argument id="229" parent="13">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="230" parent="13">
+      <Position>1</Position>
+    </argument>
+    <argument id="231" parent="14">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="232" parent="14">
+      <Position>1</Position>
+    </argument>
+    <argument id="233" parent="14">
+      <Position>2</Position>
+    </argument>
+    <argument id="234" parent="15">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="235" parent="15">
+      <Position>1</Position>
+    </argument>
+    <argument id="236" parent="16">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="237" parent="17">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="238" parent="17">
+      <Position>1</Position>
+    </argument>
+    <argument id="239" parent="18">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="240" parent="19">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="241" parent="20">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="242" parent="20">
+      <Position>1</Position>
+    </argument>
+    <argument id="243" parent="20">
+      <Position>2</Position>
+    </argument>
+    <argument id="244" parent="21">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="245" parent="21">
+      <Position>1</Position>
+    </argument>
+    <argument id="246" parent="21">
+      <Position>2</Position>
+    </argument>
+    <argument id="247" parent="21">
+      <Position>3</Position>
+    </argument>
+    <argument id="248" parent="22">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="249" parent="23">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="250" parent="23">
+      <Position>1</Position>
+    </argument>
+    <argument id="251" parent="24">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="252" parent="24">
+      <Position>1</Position>
+    </argument>
+    <argument id="253" parent="25">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="254" parent="25">
+      <Position>1</Position>
+    </argument>
+    <argument id="255" parent="26">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="256" parent="26">
+      <Position>1</Position>
+    </argument>
+    <argument id="257" parent="27">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="258" parent="27">
+      <Position>1</Position>
+    </argument>
+    <argument id="259" parent="28">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="260" parent="29">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="261" parent="30">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="262" parent="31">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="263" parent="32">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="264" parent="33">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="265" parent="34">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="266" parent="34">
+      <Position>1</Position>
+    </argument>
+    <argument id="267" parent="35">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="268" parent="36">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="269" parent="36">
+      <Position>1</Position>
+    </argument>
+    <argument id="270" parent="36">
+      <Position>2</Position>
+    </argument>
+    <argument id="271" parent="37">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="272" parent="37">
+      <Position>1</Position>
+    </argument>
+    <argument id="273" parent="38">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="274" parent="38">
+      <Position>1</Position>
+    </argument>
+    <argument id="275" parent="39">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="276" parent="39">
+      <Position>1</Position>
+    </argument>
+    <argument id="277" parent="40">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="278" parent="40">
+      <Position>1</Position>
+    </argument>
+    <argument id="279" parent="41">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="280" parent="41">
+      <Position>1</Position>
+    </argument>
+    <argument id="281" parent="41">
+      <Position>2</Position>
+    </argument>
+    <argument id="282" parent="42">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="283" parent="42">
+      <Position>1</Position>
+    </argument>
+    <argument id="284" parent="43">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="285" parent="43">
+      <Position>1</Position>
+    </argument>
+    <argument id="286" parent="43">
+      <Position>2</Position>
+    </argument>
+    <argument id="287" parent="44">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="288" parent="44">
+      <Position>1</Position>
+    </argument>
+    <argument id="289" parent="44">
+      <Position>2</Position>
+    </argument>
+    <argument id="290" parent="45">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="291" parent="46">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="292" parent="47">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="293" parent="48">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="294" parent="49">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="295" parent="50">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="296" parent="51">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="297" parent="51">
+      <Position>1</Position>
+    </argument>
+    <argument id="298" parent="51">
+      <Position>2</Position>
+    </argument>
+    <argument id="299" parent="52">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="300" parent="52">
+      <Position>1</Position>
+    </argument>
+    <argument id="301" parent="52">
+      <Position>2</Position>
+    </argument>
+    <argument id="302" parent="53">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="303" parent="53">
+      <Position>1</Position>
+    </argument>
+    <argument id="304" parent="54">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="305" parent="55">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="306" parent="55">
+      <Position>1</Position>
+    </argument>
+    <argument id="307" parent="55">
+      <Position>2</Position>
+    </argument>
+    <argument id="308" parent="56">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="309" parent="56">
+      <Position>1</Position>
+    </argument>
+    <argument id="310" parent="56">
+      <Position>2</Position>
+    </argument>
+    <argument id="311" parent="57">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="312" parent="57">
+      <Position>1</Position>
+    </argument>
+    <argument id="313" parent="58">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="314" parent="59">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="315" parent="59">
+      <Position>1</Position>
+    </argument>
+    <argument id="316" parent="60">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="317" parent="60">
+      <Position>1</Position>
+    </argument>
+    <argument id="318" parent="60">
+      <Position>2</Position>
+    </argument>
+    <argument id="319" parent="61">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="320" parent="62">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="321" parent="62">
+      <Position>1</Position>
+    </argument>
+    <argument id="322" parent="63">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="323" parent="63">
+      <Position>1</Position>
+    </argument>
+    <argument id="324" parent="63">
+      <Position>2</Position>
+    </argument>
+    <argument id="325" parent="64">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="326" parent="65">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="327" parent="66">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="328" parent="66">
+      <Position>1</Position>
+    </argument>
+    <argument id="329" parent="66">
+      <Position>2</Position>
+    </argument>
+    <argument id="330" parent="67">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="331" parent="67">
+      <Position>1</Position>
+    </argument>
+    <argument id="332" parent="68">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="333" parent="69">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="334" parent="70">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="335" parent="71">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="336" parent="71">
+      <Position>1</Position>
+    </argument>
+    <argument id="337" parent="72">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="338" parent="72">
+      <Position>1</Position>
+    </argument>
+    <argument id="339" parent="72">
+      <Position>2</Position>
+    </argument>
+    <argument id="340" parent="73">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="341" parent="73">
+      <Position>1</Position>
+    </argument>
+    <argument id="342" parent="74">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="343" parent="75">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="344" parent="75">
+      <Position>1</Position>
+    </argument>
+    <argument id="345" parent="75">
+      <Position>2</Position>
+    </argument>
+    <argument id="346" parent="76">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="347" parent="76">
+      <Position>1</Position>
+    </argument>
+    <argument id="348" parent="76">
+      <Position>2</Position>
+    </argument>
+    <argument id="349" parent="76">
+      <Position>3</Position>
+    </argument>
+    <argument id="350" parent="77">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="351" parent="78">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="352" parent="78">
+      <Position>1</Position>
+    </argument>
+    <argument id="353" parent="79">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="354" parent="79">
+      <Position>1</Position>
+    </argument>
+    <argument id="355" parent="79">
+      <Position>2</Position>
+    </argument>
+    <argument id="356" parent="80">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="357" parent="80">
+      <Position>1</Position>
+    </argument>
+    <argument id="358" parent="80">
+      <Position>2</Position>
+    </argument>
+    <argument id="359" parent="80">
+      <Position>3</Position>
+    </argument>
+    <argument id="360" parent="81">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="361" parent="81">
+      <Position>1</Position>
+    </argument>
+    <argument id="362" parent="81">
+      <Position>2</Position>
+    </argument>
+    <argument id="363" parent="82">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="364" parent="82">
+      <Position>1</Position>
+    </argument>
+    <argument id="365" parent="83">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="366" parent="83">
+      <Position>1</Position>
+    </argument>
+    <argument id="367" parent="83">
+      <Position>2</Position>
+    </argument>
+    <argument id="368" parent="83">
+      <Position>3</Position>
+    </argument>
+    <argument id="369" parent="84">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="370" parent="84">
+      <Position>1</Position>
+    </argument>
+    <argument id="371" parent="84">
+      <Position>2</Position>
+    </argument>
+    <argument id="372" parent="85">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="373" parent="85">
+      <Position>1</Position>
+    </argument>
+    <argument id="374" parent="86">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="375" parent="86">
+      <Position>1</Position>
+    </argument>
+    <argument id="376" parent="86">
+      <Position>2</Position>
+    </argument>
+    <argument id="377" parent="87">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="378" parent="87">
+      <Position>1</Position>
+    </argument>
+    <argument id="379" parent="88">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="380" parent="88">
+      <Position>1</Position>
+    </argument>
+    <argument id="381" parent="89">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="382" parent="89">
+      <Position>1</Position>
+    </argument>
+    <argument id="383" parent="90">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="384" parent="90">
+      <Position>1</Position>
+    </argument>
+    <argument id="385" parent="91">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="386" parent="91">
+      <Position>1</Position>
+    </argument>
+    <argument id="387" parent="91">
+      <Position>2</Position>
+    </argument>
+    <argument id="388" parent="92">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="389" parent="92">
+      <Position>1</Position>
+    </argument>
+    <argument id="390" parent="92">
+      <Position>2</Position>
+    </argument>
+    <argument id="391" parent="93">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="392" parent="93">
+      <Position>1</Position>
+    </argument>
+    <argument id="393" parent="94">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="394" parent="94">
+      <Position>1</Position>
+    </argument>
+    <argument id="395" parent="94">
+      <Position>2</Position>
+    </argument>
+    <argument id="396" parent="95">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="397" parent="96">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="398" parent="96">
+      <Position>1</Position>
+    </argument>
+    <argument id="399" parent="97">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="400" parent="97">
+      <Position>1</Position>
+    </argument>
+    <argument id="401" parent="98">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="402" parent="99">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="403" parent="99">
+      <Position>1</Position>
+    </argument>
+    <argument id="404" parent="100">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="405" parent="100">
+      <Position>1</Position>
+    </argument>
+    <argument id="406" parent="101">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="407" parent="101">
+      <Position>1</Position>
+    </argument>
+    <argument id="408" parent="101">
+      <Position>2</Position>
+    </argument>
+    <argument id="409" parent="102">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="410" parent="102">
+      <Position>1</Position>
+    </argument>
+    <argument id="411" parent="103">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="412" parent="103">
+      <Position>1</Position>
+    </argument>
+    <argument id="413" parent="103">
+      <Position>2</Position>
+    </argument>
+    <argument id="414" parent="104">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="415" parent="104">
+      <Position>1</Position>
+    </argument>
+    <argument id="416" parent="105">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="417" parent="105">
+      <Position>1</Position>
+    </argument>
+    <argument id="418" parent="106">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="419" parent="106">
+      <Position>1</Position>
+    </argument>
+    <argument id="420" parent="106">
+      <Position>2</Position>
+    </argument>
+    <argument id="421" parent="107">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="422" parent="107">
+      <Position>1</Position>
+    </argument>
+    <argument id="423" parent="107">
+      <Position>2</Position>
+    </argument>
+    <argument id="424" parent="108">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="425" parent="108">
+      <Position>1</Position>
+    </argument>
+    <argument id="426" parent="108">
+      <Position>2</Position>
+    </argument>
+    <argument id="427" parent="109">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="428" parent="110">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="429" parent="111">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="430" parent="111">
+      <Position>1</Position>
+    </argument>
+    <argument id="431" parent="111">
+      <Position>2</Position>
+    </argument>
+    <argument id="432" parent="112">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="433" parent="113">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="434" parent="113">
+      <Position>1</Position>
+    </argument>
+    <argument id="435" parent="114">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="436" parent="114">
+      <Position>1</Position>
+    </argument>
+    <argument id="437" parent="115">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="438" parent="115">
+      <Position>1</Position>
+    </argument>
+    <argument id="439" parent="116">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="440" parent="117">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="441" parent="117">
+      <Position>1</Position>
+    </argument>
+    <argument id="442" parent="118">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="443" parent="119">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="444" parent="119">
+      <Position>1</Position>
+    </argument>
+    <argument id="445" parent="119">
+      <Position>2</Position>
+    </argument>
+    <argument id="446" parent="119">
+      <Position>3</Position>
+    </argument>
+    <argument id="447" parent="120">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="448" parent="120">
+      <Position>1</Position>
+    </argument>
+    <argument id="449" parent="120">
+      <Position>2</Position>
+    </argument>
+    <argument id="450" parent="121">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="451" parent="121">
+      <Position>1</Position>
+    </argument>
+    <argument id="452" parent="122">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="453" parent="122">
+      <Position>1</Position>
+    </argument>
+    <argument id="454" parent="122">
+      <Position>2</Position>
+    </argument>
+    <argument id="455" parent="123">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="456" parent="123">
+      <Position>1</Position>
+    </argument>
+    <argument id="457" parent="123">
+      <Position>2</Position>
+    </argument>
+    <argument id="458" parent="124">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="459" parent="125">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="460" parent="126">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="461" parent="126">
+      <Position>1</Position>
+    </argument>
+    <argument id="462" parent="127">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="463" parent="127">
+      <Position>1</Position>
+    </argument>
+    <argument id="464" parent="127">
+      <Position>2</Position>
+    </argument>
+    <argument id="465" parent="128">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="466" parent="128">
+      <Position>1</Position>
+    </argument>
+    <argument id="467" parent="128">
+      <Position>2</Position>
+    </argument>
+    <argument id="468" parent="129">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="469" parent="129">
+      <Position>1</Position>
+    </argument>
+    <argument id="470" parent="130">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="471" parent="130">
+      <Position>1</Position>
+    </argument>
+    <argument id="472" parent="131">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="473" parent="131">
+      <Position>1</Position>
+    </argument>
+    <argument id="474" parent="132">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="475" parent="133">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="476" parent="133">
+      <Position>1</Position>
+    </argument>
+    <argument id="477" parent="134">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="478" parent="134">
+      <Position>1</Position>
+    </argument>
+    <argument id="479" parent="135">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="480" parent="135">
+      <Position>1</Position>
+    </argument>
+    <argument id="481" parent="135">
+      <Position>2</Position>
+    </argument>
+    <argument id="482" parent="136">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="483" parent="137">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="484" parent="138">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="485" parent="138">
+      <Position>1</Position>
+    </argument>
+    <argument id="486" parent="139">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="487" parent="139">
+      <Position>1</Position>
+    </argument>
+    <argument id="488" parent="140">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="489" parent="140">
+      <Position>1</Position>
+    </argument>
+    <argument id="490" parent="141">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="491" parent="141">
+      <Position>1</Position>
+    </argument>
+    <argument id="492" parent="141">
+      <Position>2</Position>
+    </argument>
+    <argument id="493" parent="142">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="494" parent="143">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="495" parent="143">
+      <Position>1</Position>
+    </argument>
+    <argument id="496" parent="143">
+      <Position>2</Position>
+    </argument>
+    <argument id="497" parent="143">
+      <Position>3</Position>
+    </argument>
+    <argument id="498" parent="144">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="499" parent="144">
+      <Position>1</Position>
+    </argument>
+    <argument id="500" parent="145">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="501" parent="145">
+      <Position>1</Position>
+    </argument>
+    <argument id="502" parent="146">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="503" parent="146">
+      <Position>1</Position>
+    </argument>
+    <argument id="504" parent="147">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="505" parent="148">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="506" parent="148">
+      <Position>1</Position>
+    </argument>
+    <argument id="507" parent="149">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="508" parent="150">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="509" parent="150">
+      <Position>1</Position>
+    </argument>
+    <argument id="510" parent="150">
+      <Position>2</Position>
+    </argument>
+    <argument id="511" parent="151">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="512" parent="151">
+      <Position>1</Position>
+    </argument>
+    <argument id="513" parent="152">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="514" parent="152">
+      <Position>1</Position>
+    </argument>
+    <argument id="515" parent="153">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="516" parent="153">
+      <Position>1</Position>
+    </argument>
+    <argument id="517" parent="154">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="518" parent="154">
+      <Position>1</Position>
+    </argument>
+    <argument id="519" parent="155">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="520" parent="155">
+      <Position>1</Position>
+    </argument>
+    <argument id="521" parent="156">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="522" parent="156">
+      <Position>1</Position>
+    </argument>
+    <argument id="523" parent="157">
+      <ArgumentDirection>R</ArgumentDirection>
+    </argument>
+    <argument id="524" parent="157">
+      <Position>1</Position>
+    </argument>
+    <column id="525" parent="168" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="526" parent="168" name="asn_code">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="527" parent="168" name="asn_status">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="528" parent="168" name="supplier">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="529" parent="168" name="goods_code">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="530" parent="168" name="goods_qty">
+      <Position>6</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="531" parent="168" name="goods_actual_qty">
+      <Position>7</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="532" parent="168" name="sorted_qty">
+      <Position>8</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="533" parent="168" name="goods_shortage_qty">
+      <Position>9</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="534" parent="168" name="goods_more_qty">
+      <Position>10</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="535" parent="168" name="goods_damage_qty">
+      <Position>11</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="536" parent="168" name="goods_weight">
+      <Position>12</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="537" parent="168" name="goods_volume">
+      <Position>13</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="538" parent="168" name="creater">
+      <Position>14</Position>
+      <DataType>varchar(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="539" parent="168" name="openid">
+      <Position>15</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="540" parent="168" name="is_delete">
+      <Position>16</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="541" parent="168" name="create_time">
+      <Position>17</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="542" parent="168" name="update_time">
+      <Position>18</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="543" parent="168">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="544" parent="169" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="545" parent="169" name="asn_code">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="546" parent="169" name="asn_status">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="547" parent="169" name="total_weight">
+      <Position>4</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="548" parent="169" name="total_volume">
+      <Position>5</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="549" parent="169" name="supplier">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="550" parent="169" name="creater">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="551" parent="169" name="openid">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="552" parent="169" name="transportation_fee">
+      <Position>9</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="553" parent="169" name="is_delete">
+      <Position>10</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="554" parent="169" name="create_time">
+      <Position>11</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="555" parent="169" name="update_time">
+      <Position>12</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="556" parent="169">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <check id="557" parent="169">
+      <Predicate>(JSON_VALID(&quot;transportation_fee&quot;) OR &quot;transportation_fee&quot; IS NULL)</Predicate>
+    </check>
+    <column id="558" parent="170" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="559" parent="170" name="name">
+      <Position>2</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="560" parent="170" name="sqlite_autoindex_auth_group_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>name</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="561" parent="170">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="562" parent="170">
+      <ColNames>name</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_auth_group_1</UnderlyingIndexName>
+    </key>
+    <column id="563" parent="171" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="564" parent="171" name="group_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="565" parent="171" name="permission_id">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="566" parent="171" name="auth_group_permissions_group_id_permission_id_0cd325b0_uniq">
+      <ColNames>group_id
+permission_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="567" parent="171" name="auth_group_permissions_group_id_b120cbf9">
+      <ColNames>group_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="568" parent="171" name="auth_group_permissions_permission_id_84c5c92e">
+      <ColNames>permission_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="569" parent="171">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="570" parent="171">
+      <ColNames>group_id</ColNames>
+      <RefTableName>auth_group</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <foreign-key id="571" parent="171">
+      <ColNames>permission_id</ColNames>
+      <RefTableName>auth_permission</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <column id="572" parent="172" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="573" parent="172" name="content_type_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="574" parent="172" name="codename">
+      <Position>3</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="575" parent="172" name="name">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="576" parent="172" name="auth_permission_content_type_id_codename_01ab375a_uniq">
+      <ColNames>content_type_id
+codename</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="577" parent="172" name="auth_permission_content_type_id_2f476e4b">
+      <ColNames>content_type_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="578" parent="172">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="579" parent="172">
+      <ColNames>content_type_id</ColNames>
+      <RefTableName>django_content_type</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <column id="580" parent="173" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="581" parent="173" name="password">
+      <Position>2</Position>
+      <DataType>varchar(128)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="582" parent="173" name="last_login">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="583" parent="173" name="is_superuser">
+      <Position>4</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="584" parent="173" name="username">
+      <Position>5</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="585" parent="173" name="last_name">
+      <Position>6</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="586" parent="173" name="email">
+      <Position>7</Position>
+      <DataType>varchar(254)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="587" parent="173" name="is_staff">
+      <Position>8</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="588" parent="173" name="is_active">
+      <Position>9</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="589" parent="173" name="date_joined">
+      <Position>10</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="590" parent="173" name="first_name">
+      <Position>11</Position>
+      <DataType>varchar(150)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="591" parent="173" name="sqlite_autoindex_auth_user_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>username</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="592" parent="173">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="593" parent="173">
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_auth_user_1</UnderlyingIndexName>
+    </key>
+    <column id="594" parent="174" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="595" parent="174" name="user_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="596" parent="174" name="group_id">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="597" parent="174" name="auth_user_groups_user_id_group_id_94350c0c_uniq">
+      <ColNames>user_id
+group_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="598" parent="174" name="auth_user_groups_user_id_6a12ed8b">
+      <ColNames>user_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="599" parent="174" name="auth_user_groups_group_id_97559544">
+      <ColNames>group_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="600" parent="174">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="601" parent="174">
+      <ColNames>user_id</ColNames>
+      <RefTableName>auth_user</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <foreign-key id="602" parent="174">
+      <ColNames>group_id</ColNames>
+      <RefTableName>auth_group</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <column id="603" parent="175" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="604" parent="175" name="user_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="605" parent="175" name="permission_id">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="606" parent="175" name="auth_user_user_permissions_user_id_permission_id_14a6b632_uniq">
+      <ColNames>user_id
+permission_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="607" parent="175" name="auth_user_user_permissions_user_id_a95ead1b">
+      <ColNames>user_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="608" parent="175" name="auth_user_user_permissions_permission_id_1fbb5f2c">
+      <ColNames>permission_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="609" parent="175">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="610" parent="175">
+      <ColNames>user_id</ColNames>
+      <RefTableName>auth_user</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <foreign-key id="611" parent="175">
+      <ColNames>permission_id</ColNames>
+      <RefTableName>auth_permission</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <column id="612" parent="176" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="613" parent="176" name="bin_property">
+      <Position>2</Position>
+      <DataType>varchar(32)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="614" parent="176" name="creater">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="615" parent="176" name="openid">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="616" parent="176" name="is_delete">
+      <Position>5</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="617" parent="176" name="create_time">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="618" parent="176" name="update_time">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="619" parent="176">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="620" parent="177" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="621" parent="177" name="bin_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="622" parent="177" name="bin_size">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="623" parent="177" name="bin_property">
+      <Position>4</Position>
+      <DataType>varchar(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="624" parent="177" name="empty_label">
+      <Position>5</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="625" parent="177" name="creater">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="626" parent="177" name="openid">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="627" parent="177" name="is_delete">
+      <Position>8</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="628" parent="177" name="create_time">
+      <Position>9</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="629" parent="177" name="update_time">
+      <Position>10</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="630" parent="177">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="631" parent="178" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="632" parent="178" name="bin_size">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="633" parent="178" name="bin_size_w">
+      <Position>3</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="634" parent="178" name="bin_size_d">
+      <Position>4</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="635" parent="178" name="bin_size_h">
+      <Position>5</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="636" parent="178" name="creater">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="637" parent="178" name="openid">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="638" parent="178" name="is_delete">
+      <Position>8</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="639" parent="178" name="create_time">
+      <Position>9</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="640" parent="178" name="update_time">
+      <Position>10</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="641" parent="178">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="642" parent="179" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="643" parent="179" name="capital_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="644" parent="179" name="capital_qty">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="645" parent="179" name="capital_cost">
+      <Position>4</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="646" parent="179" name="creater">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="647" parent="179" name="openid">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="648" parent="179" name="is_delete">
+      <Position>7</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="649" parent="179" name="create_time">
+      <Position>8</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="650" parent="179" name="update_time">
+      <Position>9</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="651" parent="179">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="652" parent="180" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="653" parent="180" name="sender">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="654" parent="180" name="receiver">
+      <Position>3</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="655" parent="180" name="read">
+      <Position>4</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="656" parent="180" name="detail">
+      <Position>5</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="657" parent="180" name="is_delete">
+      <Position>6</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="658" parent="180" name="create_time">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="659" parent="180" name="update_time">
+      <Position>8</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="660" parent="180">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="661" parent="181" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="662" parent="181" name="company_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="663" parent="181" name="company_city">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="664" parent="181" name="company_address">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="665" parent="181" name="company_contact">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="666" parent="181" name="company_manager">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="667" parent="181" name="creater">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="668" parent="181" name="openid">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="669" parent="181" name="is_delete">
+      <Position>9</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="670" parent="181" name="create_time">
+      <Position>10</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="671" parent="181" name="update_time">
+      <Position>11</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="672" parent="181">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="673" parent="182" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="674" parent="182" name="customer_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="675" parent="182" name="customer_city">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="676" parent="182" name="customer_address">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="677" parent="182" name="customer_contact">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="678" parent="182" name="customer_manager">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="679" parent="182" name="creater">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="680" parent="182" name="openid">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="681" parent="182" name="is_delete">
+      <Position>9</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="682" parent="182" name="create_time">
+      <Position>10</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="683" parent="182" name="update_time">
+      <Position>11</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="684" parent="182">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="685" parent="183" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="686" parent="183" name="driver_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="687" parent="183" name="dn_code">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="688" parent="183" name="contact">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="689" parent="183" name="creater">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="690" parent="183" name="openid">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="691" parent="183" name="create_time">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="692" parent="183" name="update_time">
+      <Position>8</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="693" parent="183">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="694" parent="184" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="695" parent="184" name="action_time">
+      <Position>2</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="696" parent="184" name="object_id">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="697" parent="184" name="object_repr">
+      <Position>4</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="698" parent="184" name="change_message">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="699" parent="184" name="content_type_id">
+      <Position>6</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="700" parent="184" name="user_id">
+      <Position>7</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="701" parent="184" name="action_flag">
+      <Position>8</Position>
+      <DataType>smallint unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="702" parent="184" name="django_admin_log_content_type_id_c4bce8eb">
+      <ColNames>content_type_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="703" parent="184" name="django_admin_log_user_id_c564eba6">
+      <ColNames>user_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="704" parent="184">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="705" parent="184">
+      <ColNames>content_type_id</ColNames>
+      <RefTableName>django_content_type</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <foreign-key id="706" parent="184">
+      <ColNames>user_id</ColNames>
+      <RefTableName>auth_user</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <check id="707" parent="184">
+      <Predicate>&quot;action_flag&quot; &gt;= 0</Predicate>
+    </check>
+    <column id="708" parent="185" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="709" parent="185" name="app_label">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="710" parent="185" name="model">
+      <Position>3</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="711" parent="185" name="django_content_type_app_label_model_76bd3d3b_uniq">
+      <ColNames>app_label
+model</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="712" parent="185">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="713" parent="186" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="714" parent="186" name="app">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="715" parent="186" name="name">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="716" parent="186" name="applied">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="717" parent="186">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="718" parent="187" name="session_key">
+      <Position>1</Position>
+      <DataType>varchar(40)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="719" parent="187" name="session_data">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="720" parent="187" name="expire_date">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="721" parent="187" name="sqlite_autoindex_django_session_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>session_key</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="722" parent="187" name="django_session_expire_date_a5c62663">
+      <ColNames>expire_date</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="723" parent="187">
+      <ColNames>session_key</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_django_session_1</UnderlyingIndexName>
+    </key>
+    <column id="724" parent="188" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="725" parent="188" name="dn_code">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="726" parent="188" name="dn_status">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="727" parent="188" name="customer">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="728" parent="188" name="goods_code">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="729" parent="188" name="goods_qty">
+      <Position>6</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="730" parent="188" name="pick_qty">
+      <Position>7</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="731" parent="188" name="picked_qty">
+      <Position>8</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="732" parent="188" name="intransit_qty">
+      <Position>9</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="733" parent="188" name="delivery_actual_qty">
+      <Position>10</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="734" parent="188" name="delivery_shortage_qty">
+      <Position>11</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="735" parent="188" name="delivery_more_qty">
+      <Position>12</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="736" parent="188" name="delivery_damage_qty">
+      <Position>13</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="737" parent="188" name="goods_weight">
+      <Position>14</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="738" parent="188" name="goods_volume">
+      <Position>15</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="739" parent="188" name="creater">
+      <Position>16</Position>
+      <DataType>varchar(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="740" parent="188" name="back_order_label">
+      <Position>17</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="741" parent="188" name="openid">
+      <Position>18</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="742" parent="188" name="is_delete">
+      <Position>19</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="743" parent="188" name="create_time">
+      <Position>20</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="744" parent="188" name="update_time">
+      <Position>21</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="745" parent="188">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="746" parent="189" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="747" parent="189" name="dn_code">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="748" parent="189" name="dn_status">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="749" parent="189" name="total_weight">
+      <Position>4</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="750" parent="189" name="total_volume">
+      <Position>5</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="751" parent="189" name="customer">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="752" parent="189" name="creater">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="753" parent="189" name="back_order_label">
+      <Position>8</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="754" parent="189" name="openid">
+      <Position>9</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="755" parent="189" name="transportation_fee">
+      <Position>10</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="756" parent="189" name="is_delete">
+      <Position>11</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="757" parent="189" name="create_time">
+      <Position>12</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="758" parent="189" name="update_time">
+      <Position>13</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="759" parent="189">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <check id="760" parent="189">
+      <Predicate>(JSON_VALID(&quot;transportation_fee&quot;) OR &quot;transportation_fee&quot; IS NULL)</Predicate>
+    </check>
+    <column id="761" parent="190" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="762" parent="190" name="driver_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="763" parent="190" name="license_plate">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="764" parent="190" name="contact">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="765" parent="190" name="creater">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="766" parent="190" name="openid">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="767" parent="190" name="is_delete">
+      <Position>7</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="768" parent="190" name="create_time">
+      <Position>8</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="769" parent="190" name="update_time">
+      <Position>9</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="770" parent="190">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="771" parent="191" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="772" parent="191" name="goods_code">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="773" parent="191" name="goods_desc">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="774" parent="191" name="goods_supplier">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="775" parent="191" name="goods_weight">
+      <Position>5</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="776" parent="191" name="goods_w">
+      <Position>6</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="777" parent="191" name="goods_d">
+      <Position>7</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="778" parent="191" name="goods_h">
+      <Position>8</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="779" parent="191" name="unit_volume">
+      <Position>9</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="780" parent="191" name="goods_unit">
+      <Position>10</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="781" parent="191" name="goods_class">
+      <Position>11</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="782" parent="191" name="goods_brand">
+      <Position>12</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="783" parent="191" name="goods_color">
+      <Position>13</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="784" parent="191" name="goods_shape">
+      <Position>14</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="785" parent="191" name="goods_specs">
+      <Position>15</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="786" parent="191" name="goods_origin">
+      <Position>16</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="787" parent="191" name="goods_cost">
+      <Position>17</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="788" parent="191" name="goods_price">
+      <Position>18</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="789" parent="191" name="creater">
+      <Position>19</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="790" parent="191" name="openid">
+      <Position>20</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="791" parent="191" name="is_delete">
+      <Position>21</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="792" parent="191" name="create_time">
+      <Position>22</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="793" parent="191" name="update_time">
+      <Position>23</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="794" parent="191">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="795" parent="192" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="796" parent="192" name="goods_brand">
+      <Position>2</Position>
+      <DataType>varchar(32)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="797" parent="192" name="creater">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="798" parent="192" name="openid">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="799" parent="192" name="is_delete">
+      <Position>5</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="800" parent="192" name="create_time">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="801" parent="192" name="update_time">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="802" parent="192">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="803" parent="193" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="804" parent="193" name="goods_class">
+      <Position>2</Position>
+      <DataType>varchar(32)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="805" parent="193" name="creater">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="806" parent="193" name="openid">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="807" parent="193" name="is_delete">
+      <Position>5</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="808" parent="193" name="create_time">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="809" parent="193" name="update_time">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="810" parent="193">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="811" parent="194" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="812" parent="194" name="goods_color">
+      <Position>2</Position>
+      <DataType>varchar(32)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="813" parent="194" name="creater">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="814" parent="194" name="openid">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="815" parent="194" name="is_delete">
+      <Position>5</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="816" parent="194" name="create_time">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="817" parent="194" name="update_time">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="818" parent="194">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="819" parent="195" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="820" parent="195" name="goods_origin">
+      <Position>2</Position>
+      <DataType>varchar(32)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="821" parent="195" name="creater">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="822" parent="195" name="openid">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="823" parent="195" name="is_delete">
+      <Position>5</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="824" parent="195" name="create_time">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="825" parent="195" name="update_time">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="826" parent="195">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="827" parent="196" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="828" parent="196" name="goods_shape">
+      <Position>2</Position>
+      <DataType>varchar(32)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="829" parent="196" name="creater">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="830" parent="196" name="openid">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="831" parent="196" name="is_delete">
+      <Position>5</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="832" parent="196" name="create_time">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="833" parent="196" name="update_time">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="834" parent="196">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="835" parent="197" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="836" parent="197" name="goods_specs">
+      <Position>2</Position>
+      <DataType>varchar(32)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="837" parent="197" name="creater">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="838" parent="197" name="openid">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="839" parent="197" name="is_delete">
+      <Position>5</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="840" parent="197" name="create_time">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="841" parent="197" name="update_time">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="842" parent="197">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="843" parent="198" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="844" parent="198" name="goods_unit">
+      <Position>2</Position>
+      <DataType>varchar(32)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="845" parent="198" name="creater">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="846" parent="198" name="openid">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="847" parent="198" name="is_delete">
+      <Position>5</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="848" parent="198" name="create_time">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="849" parent="198" name="update_time">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="850" parent="198">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="851" parent="199" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="852" parent="199" name="dn_code">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="853" parent="199" name="bin_name">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="854" parent="199" name="goods_code">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="855" parent="199" name="pick_qty">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="856" parent="199" name="picked_qty">
+      <Position>6</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="857" parent="199" name="creater">
+      <Position>7</Position>
+      <DataType>varchar(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="858" parent="199" name="openid">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="859" parent="199" name="create_time">
+      <Position>9</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="860" parent="199" name="update_time">
+      <Position>10</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="861" parent="199">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="862" parent="200" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="863" parent="200" name="name">
+      <Position>2</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="864" parent="200" name="start_time">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="865" parent="200" name="end_time">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="866" parent="200" name="time_taken">
+      <Position>5</Position>
+      <DataType>real|0s</DataType>
+    </column>
+    <column id="867" parent="200" name="file_path">
+      <Position>6</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="868" parent="200" name="line_num">
+      <Position>7</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="869" parent="200" name="end_line_num">
+      <Position>8</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="870" parent="200" name="func_name">
+      <Position>9</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="871" parent="200" name="exception_raised">
+      <Position>10</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="872" parent="200" name="dynamic">
+      <Position>11</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="873" parent="200" name="request_id">
+      <Position>12</Position>
+      <DataType>varchar(36)|0s</DataType>
+    </column>
+    <index id="874" parent="200" name="silk_profile_request_id_7b81bd69">
+      <ColNames>request_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="875" parent="200">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="876" parent="200">
+      <ColNames>request_id</ColNames>
+      <RefTableName>silk_request</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <column id="877" parent="201" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="878" parent="201" name="profile_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="879" parent="201" name="sqlquery_id">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="880" parent="201" name="silk_profile_queries_profile_id_sqlquery_id_b2403d9b_uniq">
+      <ColNames>profile_id
+sqlquery_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="881" parent="201" name="silk_profile_queries_profile_id_a3d76db8">
+      <ColNames>profile_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="882" parent="201" name="silk_profile_queries_sqlquery_id_155df455">
+      <ColNames>sqlquery_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="883" parent="201">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="884" parent="201">
+      <ColNames>profile_id</ColNames>
+      <RefTableName>silk_profile</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <foreign-key id="885" parent="201">
+      <ColNames>sqlquery_id</ColNames>
+      <RefTableName>silk_sqlquery</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <column id="886" parent="202" name="id">
+      <Position>1</Position>
+      <DataType>varchar(36)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="887" parent="202" name="path">
+      <Position>2</Position>
+      <DataType>varchar(190)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="888" parent="202" name="query_params">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="889" parent="202" name="raw_body">
+      <Position>4</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="890" parent="202" name="body">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="891" parent="202" name="method">
+      <Position>6</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="892" parent="202" name="start_time">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="893" parent="202" name="view_name">
+      <Position>8</Position>
+      <DataType>varchar(190)|0s</DataType>
+    </column>
+    <column id="894" parent="202" name="end_time">
+      <Position>9</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="895" parent="202" name="time_taken">
+      <Position>10</Position>
+      <DataType>real|0s</DataType>
+    </column>
+    <column id="896" parent="202" name="encoded_headers">
+      <Position>11</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="897" parent="202" name="meta_time">
+      <Position>12</Position>
+      <DataType>real|0s</DataType>
+    </column>
+    <column id="898" parent="202" name="meta_num_queries">
+      <Position>13</Position>
+      <DataType>integer|0s</DataType>
+    </column>
+    <column id="899" parent="202" name="meta_time_spent_queries">
+      <Position>14</Position>
+      <DataType>real|0s</DataType>
+    </column>
+    <column id="900" parent="202" name="pyprofile">
+      <Position>15</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="901" parent="202" name="num_sql_queries">
+      <Position>16</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="902" parent="202" name="prof_file">
+      <Position>17</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="903" parent="202" name="sqlite_autoindex_silk_request_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="904" parent="202" name="silk_request_path_9f3d798e">
+      <ColNames>path</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="905" parent="202" name="silk_request_start_time_1300bc58">
+      <ColNames>start_time</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <index id="906" parent="202" name="silk_request_view_name_68559f7b">
+      <ColNames>view_name</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="907" parent="202">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_silk_request_1</UnderlyingIndexName>
+    </key>
+    <column id="908" parent="203" name="status_code">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="909" parent="203" name="raw_body">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="910" parent="203" name="body">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="911" parent="203" name="encoded_headers">
+      <Position>4</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="912" parent="203" name="request_id">
+      <Position>5</Position>
+      <DataType>varchar(36)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="913" parent="203" name="id">
+      <Position>6</Position>
+      <DataType>varchar(36)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="914" parent="203" name="sqlite_autoindex_silk_response_1">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>request_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <index id="915" parent="203" name="sqlite_autoindex_silk_response_2">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <ColumnCollations></ColumnCollations>
+      <Unique>1</Unique>
+    </index>
+    <key id="916" parent="203">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>sqlite_autoindex_silk_response_2</UnderlyingIndexName>
+    </key>
+    <key id="917" parent="203">
+      <ColNames>request_id</ColNames>
+      <UnderlyingIndexName>sqlite_autoindex_silk_response_1</UnderlyingIndexName>
+    </key>
+    <foreign-key id="918" parent="203">
+      <ColNames>request_id</ColNames>
+      <RefTableName>silk_request</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <column id="919" parent="204" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="920" parent="204" name="query">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="921" parent="204" name="start_time">
+      <Position>3</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="922" parent="204" name="end_time">
+      <Position>4</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <column id="923" parent="204" name="time_taken">
+      <Position>5</Position>
+      <DataType>real|0s</DataType>
+    </column>
+    <column id="924" parent="204" name="traceback">
+      <Position>6</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="925" parent="204" name="request_id">
+      <Position>7</Position>
+      <DataType>varchar(36)|0s</DataType>
+    </column>
+    <column id="926" parent="204" name="identifier">
+      <Position>8</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="927" parent="204" name="silk_sqlquery_request_id_6f8f0527">
+      <ColNames>request_id</ColNames>
+      <ColumnCollations></ColumnCollations>
+    </index>
+    <key id="928" parent="204">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="929" parent="204">
+      <ColNames>request_id</ColNames>
+      <RefTableName>silk_request</RefTableName>
+      <RefColNames>id</RefColNames>
+      <Deferrable>1</Deferrable>
+      <InitiallyDeferred>1</InitiallyDeferred>
+    </foreign-key>
+    <column id="930" parent="205" name="type">
+      <Position>1</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="931" parent="205" name="name">
+      <Position>2</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="932" parent="205" name="tbl_name">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="933" parent="205" name="rootpage">
+      <Position>4</Position>
+      <DataType>int|0s</DataType>
+    </column>
+    <column id="934" parent="205" name="sql">
+      <Position>5</Position>
+      <DataType>text|0s</DataType>
+    </column>
+    <column id="935" parent="206" name="name">
+      <Position>1</Position>
+    </column>
+    <column id="936" parent="206" name="seq">
+      <Position>2</Position>
+    </column>
+    <column id="937" parent="207" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="938" parent="207" name="staff_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="939" parent="207" name="staff_type">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="940" parent="207" name="openid">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="941" parent="207" name="is_delete">
+      <Position>5</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="942" parent="207" name="create_time">
+      <Position>6</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="943" parent="207" name="update_time">
+      <Position>7</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="944" parent="207">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="945" parent="208" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="946" parent="208" name="bin_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="947" parent="208" name="goods_code">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="948" parent="208" name="goods_desc">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="949" parent="208" name="goods_qty">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="950" parent="208" name="pick_qty">
+      <Position>6</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="951" parent="208" name="picked_qty">
+      <Position>7</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="952" parent="208" name="bin_size">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="953" parent="208" name="bin_property">
+      <Position>9</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="954" parent="208" name="openid">
+      <Position>10</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="955" parent="208" name="create_time">
+      <Position>11</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="956" parent="208" name="update_time">
+      <Position>12</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="957" parent="208">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="958" parent="209" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="959" parent="209" name="goods_code">
+      <Position>2</Position>
+      <DataType>varchar(32)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="960" parent="209" name="goods_desc">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="961" parent="209" name="goods_qty">
+      <Position>4</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="962" parent="209" name="onhand_stock">
+      <Position>5</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="963" parent="209" name="can_order_stock">
+      <Position>6</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="964" parent="209" name="ordered_stock">
+      <Position>7</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="965" parent="209" name="inspect_stock">
+      <Position>8</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="966" parent="209" name="hold_stock">
+      <Position>9</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="967" parent="209" name="damage_stock">
+      <Position>10</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="968" parent="209" name="asn_stock">
+      <Position>11</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="969" parent="209" name="dn_stock">
+      <Position>12</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="970" parent="209" name="pre_load_stock">
+      <Position>13</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="971" parent="209" name="pre_sort_stock">
+      <Position>14</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="972" parent="209" name="sorted_stock">
+      <Position>15</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="973" parent="209" name="pick_stock">
+      <Position>16</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="974" parent="209" name="picked_stock">
+      <Position>17</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="975" parent="209" name="back_order_stock">
+      <Position>18</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="976" parent="209" name="openid">
+      <Position>19</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="977" parent="209" name="create_time">
+      <Position>20</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="978" parent="209" name="update_time">
+      <Position>21</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="979" parent="209">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="980" parent="210" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="981" parent="210" name="supplier_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="982" parent="210" name="supplier_city">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="983" parent="210" name="supplier_address">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="984" parent="210" name="supplier_contact">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="985" parent="210" name="supplier_manager">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="986" parent="210" name="creater">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="987" parent="210" name="openid">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="988" parent="210" name="is_delete">
+      <Position>9</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="989" parent="210" name="create_time">
+      <Position>10</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="990" parent="210" name="update_time">
+      <Position>11</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="991" parent="210">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="992" parent="211" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="993" parent="211" name="send_city">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="994" parent="211" name="receiver_city">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="995" parent="211" name="weight_fee">
+      <Position>4</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="996" parent="211" name="volume_fee">
+      <Position>5</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="997" parent="211" name="min_payment">
+      <Position>6</Position>
+      <DataType>real|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="998" parent="211" name="transportation_supplier">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="999" parent="211" name="creater">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1000" parent="211" name="openid">
+      <Position>9</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1001" parent="211" name="is_delete">
+      <Position>10</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1002" parent="211" name="create_time">
+      <Position>11</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1003" parent="211" name="update_time">
+      <Position>12</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="1004" parent="211">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="1005" parent="212" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="1006" parent="212" name="user_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1007" parent="212" name="name">
+      <Position>3</Position>
+      <DataType>varchar(80)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1008" parent="212" name="vip">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1009" parent="212" name="openid">
+      <Position>5</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1010" parent="212" name="appid">
+      <Position>6</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1011" parent="212" name="is_delete">
+      <Position>7</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1012" parent="212" name="developer">
+      <Position>8</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1013" parent="212" name="t_code">
+      <Position>9</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1014" parent="212" name="ip">
+      <Position>10</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1015" parent="212" name="vip_time">
+      <Position>11</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1016" parent="212" name="link_to">
+      <Position>12</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1017" parent="212" name="link_to_id">
+      <Position>13</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1018" parent="212" name="avatar">
+      <Position>14</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1019" parent="212" name="create_time">
+      <Position>15</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1020" parent="212" name="update_time">
+      <Position>16</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="1021" parent="212">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="1022" parent="213" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="1023" parent="213" name="warehouse_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1024" parent="213" name="warehouse_city">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1025" parent="213" name="warehouse_address">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1026" parent="213" name="warehouse_contact">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1027" parent="213" name="warehouse_manager">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1028" parent="213" name="creater">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1029" parent="213" name="openid">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1030" parent="213" name="is_delete">
+      <Position>9</Position>
+      <DataType>bool|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1031" parent="213" name="create_time">
+      <Position>10</Position>
+      <DataType>datetime|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="1032" parent="213" name="update_time">
+      <Position>11</Position>
+      <DataType>datetime|0s</DataType>
+    </column>
+    <key id="1033" parent="213">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
