@@ -568,7 +568,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                 dn_detail_list[i].goods_code)).first()
                 goods_bin_stock_list = stockbin.objects.filter(openid=self.request.auth.openid,
                                                                goods_code=str(dn_detail_list[i].goods_code),
-                                                               bin_property="Normal").order_by('-id')
+                                                               bin_property="Normal").order_by('id')
                 can_pick_qty = goods_qty_change.onhand_stock - \
                                goods_qty_change.inspect_stock - \
                                goods_qty_change.hold_stock - \
@@ -983,7 +983,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                     dn_detail_list[i].goods_code)).first()
                     goods_bin_stock_list = stockbin.objects.filter(openid=self.request.auth.openid,
                                                                    goods_code=str(dn_detail_list[i].goods_code),
-                                                                   bin_property="Normal").order_by('-id')
+                                                                   bin_property="Normal").order_by('id')
                     can_pick_qty = goods_qty_change.onhand_stock - \
                                    goods_qty_change.inspect_stock - \
                                    goods_qty_change.hold_stock - \
@@ -1582,8 +1582,11 @@ class DnDispatchViewSet(viewsets.ModelViewSet):
                                                              goods_code=pick_qty_change[j].goods_code,
                                                              bin_name=pick_qty_change[j].bin_name).first()
                     bin_qty_change.goods_qty = bin_qty_change.goods_qty - pick_qty_change[j].picked_qty
-                    bin_qty_change.picked_qty = bin_qty_change.picked_qty - pick_qty_change[j].picked_qty
-                    bin_qty_change.save()
+                    if bin_qty_change.goods_qty == 0:
+                        bin_qty_change.delete()
+                    else:
+                        bin_qty_change.picked_qty = bin_qty_change.picked_qty - pick_qty_change[j].picked_qty
+                        bin_qty_change.save()
                 driverdispatch.objects.create(openid=self.request.auth.openid,
                                               driver_name=driver.driver_name,
                                               dn_code=str(data['dn_code']),
