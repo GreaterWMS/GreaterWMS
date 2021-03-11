@@ -13,7 +13,7 @@ class Authtication(object):
                 user = Users.objects.filter(openid__exact=str(openid)).first()
                 return (True, user)
             else:
-                raise APIException({"detail": "请添加token到你的headers中"})
+                raise APIException({"detail": "Please Add token to your request headers"})
 
     def authenticate_header(self, request):
         pass
