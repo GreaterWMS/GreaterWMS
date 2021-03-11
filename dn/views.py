@@ -11,6 +11,7 @@ from .filter import DnListFilter, DnDetailFilter, DnPickingListFilter
 from rest_framework.exceptions import APIException
 from customer.models import ListModel as customer
 from warehouse.models import ListModel as warehouse
+from binset.models import ListModel as binset
 from goods.models import ListModel as goods
 from payment.models import TransportationFeeListModel as transportation
 from stock.models import StockListModel as stocklist
@@ -1584,6 +1585,12 @@ class DnDispatchViewSet(viewsets.ModelViewSet):
                     bin_qty_change.goods_qty = bin_qty_change.goods_qty - pick_qty_change[j].picked_qty
                     if bin_qty_change.goods_qty == 0:
                         bin_qty_change.delete()
+                        if stockbin.objects.filter(openid=self.request.auth.openid,
+                                                   bin_name=pick_qty_change[j].bin_name).exists():
+                            pass
+                        else:
+                            binset.objects.filter(openid=self.request.auth.openid,
+                                                  bin_name=pick_qty_change[j].bin_name).update(empty_label=True)
                     else:
                         bin_qty_change.picked_qty = bin_qty_change.picked_qty - pick_qty_change[j].picked_qty
                         bin_qty_change.save()
