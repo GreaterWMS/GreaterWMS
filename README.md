@@ -359,10 +359,10 @@ Because the front and back ends are separated, more software applications can be
 - DN
   1. DN status = 1, when the DN shipping order is created, the order status can still be modified, and the inventory quantity in the system will not change. Click confirm order, and the DN status will be updated to 2, that is, the order has been confirmed and cannot be changed. At the same time, the inventory quantity in the system will be automatically updated, such as can order quantity and ordered quantity
   2. DN Status = 2, This is the process when an order is confirmed and waiting to generate a picking list. You can click order release of a single order to generate a picking list of an order. You can also click release all order to generate a picking list of all orders. If all orders are released, the inventory will be matched according to the time sequence. When the inventory is insufficient, back will be generated In this process, the DN order number will change. For example, multiple orders of a customer will be unified into one order for picking. If the customer's order cannot be satisfied, the unsatisfied part will be generated as a shortage order. If the shortage order is not met by the matched inventory, no new order will be generated. Dn The status will be updated to 3, that is, in the process of waiting for picking, the status will be 2 when both the confirmed order and the shortage order are in the same status
-  3. DN Status = 3,Direct picking, this function will appear in beta5 update, not updated temporarily
-  4. DN Status = 4, Delivery handover, this function will appear in beta6 update, not updated temporarily
-  5. DN Status = 5, Customer receiving, this function will appear in beta7 update, not updated temporarily
-  6. DN Status = 6, When the reconciliation is finished and the order is closed, this function will appear in the beta7 update, which has not been updated yet
+  3. DN Status = 3,Direct picking, this function will appear in beta5 update
+  4. DN Status = 4, Delivery handover, this function will appear in beta6 update
+  5. DN Status = 5, Customer receiving, this function will appear in beta7 update
+  6. DN Status = 6, When the reconciliation is finished and the order is closed, this function will appear in the beta7 update
 
 ### Reject Order
 
