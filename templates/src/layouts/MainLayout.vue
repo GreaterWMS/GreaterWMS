@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hhh LpR lFf"  v-show="$q.platform.is.desktop">
     <q-header reveal elevated class="bg-primary text-white">
-      <q-toolbar class="bg-light-blue-10 text-white shadow-18 rounded-borders">
+      <q-toolbar class="main-headers text-white shadow-18 rounded-borders">
         <transition appear enter-active-class="animated zoomIn">
           <q-btn flat @click="drawerleft = !drawerleft" round dense icon="menu">
             <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
@@ -291,7 +291,7 @@
         </q-list>
       </q-scroll-area>
     </q-drawer>
-    <q-page-container style="width: 100%">
+    <q-page-container class="main-page" style="width: 100%">
       <router-view />
     </q-page-container>
     <q-dialog v-model="chat">
