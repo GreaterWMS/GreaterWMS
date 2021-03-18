@@ -157,7 +157,7 @@ export default {
     view_driver: {
       driver_name: 'ドライバー名',
       license_plate: 'ナンバープレート番号',
-      contact: '連絡先情報',
+      contact: '連絡先情報'
     },
     view_dispatch: {
       driver_name: 'ドライバー名',
