@@ -12,7 +12,7 @@ Fully open source warehouse management system follows Apache License 2.0 and fro
 
 - Software Copyright Procedures: 2018SR517685
 - GitHub Link: [GitHub](https://github.com/Singosgu/GreaterWMS)
-
+- Video Tutorials: [YouTube](https://youtu.be/-3BKX0C_PJE)(All Tutorials Will Upload To Here)
 - Demo Link: [DEMO](https://www.56yhz.com/)(Register can initial the demo data)
 - QQ Caboodle ：463562933
 
