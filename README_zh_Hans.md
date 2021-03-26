@@ -1,6 +1,6 @@
 # 聚商汇WMS--开源仓库管理系统
 
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/GreaterWMS/blob/master/templates/public/statics/icons/logo.png?raw=true"/></div></p>
+<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
 
 ---
 
@@ -360,6 +360,9 @@ const wsurl = 'wss://你的域名/websocket/'
 ### 运费管理
 - Transportation Fee
   API已经完成，前端暂未更新入口，如果想要使用，可以直接调用Payment下的Transportation Fee API进行使用，运费自动计算模块已经做进收发货流程中
-  
-  
-  
+
+### 界面截图
+
+<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
+
+<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/CN/inbound.png?raw=true"/></div></p>

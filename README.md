@@ -1,6 +1,6 @@
 # GreaterWMS--Open Source Warehouse Management System
 
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/GreaterWMS/blob/master/templates/public/statics/icons/logo.png?raw=true"/></div></p>
+<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
 
 ---
 
@@ -370,7 +370,6 @@ Because the front and back ends are separated, more software applications can be
 - RO
   This feature will add in the release version
 
-### Payment
+### Screen Shot
 
-- Transportation Fee
-  The API has been completed, and the front end has not updated the entry yet. If you want to use it, you can directly call the transportation fee API under payment to use it. The automatic freight calculation module has been put into the receiving and shipping process
+<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
