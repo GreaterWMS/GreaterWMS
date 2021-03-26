@@ -365,4 +365,4 @@ const wsurl = 'wss://你的域名/websocket/'
 
 <p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
 
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/CN/inbound.png?raw=true"/></div></p>
+<p><div align=center><img width="100%" height="100%" src="https://github.com/Singosgu/picfile/blob/master/CN/inbound.png?raw=true"/></div></p>
