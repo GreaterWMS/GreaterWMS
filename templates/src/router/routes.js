@@ -266,6 +266,11 @@ const routes = [
             component: () => import('pages/staff/stafflist.vue')
           },
           {
+            path: 'stafflist_check_code',
+            name: 'stafflist_check_code',
+            component: () => import('pages/staff/stafflist_check_code.vue')
+          },
+          {
             path: 'stafftype',
             name: 'stafftype',
             component: () => import('pages/staff/stafftype.vue')
@@ -322,6 +327,16 @@ const routes = [
             component: () => import('pages/supplierasn/supplierasnfinish.vue')
           }
         ]
+      },
+      {
+        path: 'scan_stafflist',
+        name: 'scan_stafflist',
+        component: () => import('pages/scan/stafflist.vue')
+      },
+      {
+        path: 'scan_goodslist',
+        name: 'scan_goodslist',
+        component: () => import('pages/scan/goodslist.vue')
       }
     ]
   }
