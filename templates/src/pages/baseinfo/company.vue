@@ -1,5 +1,5 @@
 <template>
-    <div class="q-pa-md" style="width: 100%; margin-top: -20px">
+    <div>
       <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-column-table shadow-24"
@@ -125,7 +125,7 @@
                {{ props.row.update_time }}
              </q-td>
              <template v-if="!editMode">
-               <q-td key="action" :props="props">
+               <q-td key="action" :props="props" style="width: 100px">
                  <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
                    <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                      {{ $t('edit') }}
@@ -140,7 +140,7 @@
                </template>
              <template v-else-if="editMode">
                <template v-if="props.row.id === editid">
-                 <q-td key="action" :props="props">
+                 <q-td key="action" :props="props" style="width: 100px">
                  <q-btn round flat push color="secondary" icon="check" @click="editDataSubmit()">
                    <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                      {{ $t('confirmedit') }}
@@ -171,6 +171,7 @@
               {{ $t('next') }}
             </q-tooltip>
           </q-btn>
+          <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
         </div>
       </template>
       <q-dialog v-model="newForm">
@@ -587,10 +588,11 @@ export default {
     }
   },
   mounted () {
+    var _this = this
     if (this.$q.platform.is.electron) {
-      this.height = String(this.$q.screen.height - 290) + 'px'
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      this.height = this.$q.screen.height - 290 + '' + 'px'
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
   updated () {

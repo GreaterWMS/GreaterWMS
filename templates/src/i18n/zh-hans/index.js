@@ -82,6 +82,7 @@ export default {
   action: '操作',
   previous: '上一页',
   next: '下一页',
+  no_data: '没有更多数据',
   submit: '确认',
   cancel: '取消',
   estimate: '预估运费',
@@ -106,6 +107,7 @@ export default {
   confirmpicked: '确认拣货完成',
   dispatch: '装车发货',
   deletebackorder: '删除欠货订单',
+  scan: '扫描',
   baseinfo: {
     company_info: '公司信息',
     supplier: '供应商',
@@ -263,6 +265,7 @@ export default {
   },
   staff: {
     staff: '员工列表',
+    check_code: '验证码',
     view_staff: {
       staff_name: '员工名称',
       staff_type: '员工类型'

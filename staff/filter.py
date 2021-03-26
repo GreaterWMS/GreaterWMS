@@ -8,6 +8,7 @@ class Filter(FilterSet):
             "id": ['exact', 'iexact', 'gt', 'gte', 'lt', 'lte', 'isnull', 'in', 'range'],
             "staff_name": ['exact', 'iexact', 'contains', 'icontains'],
             "staff_type": ['exact', 'iexact', 'contains', 'icontains'],
+            "check_code": ['exact'],
             "create_time": ['year', 'month', 'day', 'week_day', 'gt', 'gte', 'lt', 'lte', 'range'],
             "update_time": ['year', 'month', 'day', 'week_day', 'gt', 'gte', 'lt', 'lte', 'range']
         }

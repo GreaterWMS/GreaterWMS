@@ -9,7 +9,16 @@
         <transition appear enter-active-class="animated zoomIn">
           <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="stafflist" :label="$t('staff.staff')" icon="img:statics/staff/stafflist.png" to="/staff/stafflist" exact/>
+                         " name="stafflist" :label="$t('staff.staff')" icon="perm_contact_calendar" to="/staff/stafflist" exact/>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
+                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
+                          $q.localStorage.getItem('staff_type') !== 'Outbound' &&
+                          $q.localStorage.getItem('staff_type') !== 'StockControl' &&
+                          $q.localStorage.getItem('staff_type') !== 'Supplier'
+                         " name="stafflist_check_code" :label="$t('staff.check_code')" icon="published_with_changes" to="/staff/stafflist_check_code" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
@@ -24,7 +33,9 @@
     </div>
   </div>
 </template>
-    <router-view />
+    <div :style="{width: '100%', margin: '-10px 10px 0 10px'}">
+      <router-view />
+    </div>
   </q-page>
 </template>
 

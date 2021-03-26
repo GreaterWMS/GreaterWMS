@@ -1,5 +1,5 @@
 <template>
-    <div class="q-pa-md" style="width: 100%; margin-top: -20px">
+    <div>
       <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-column-table shadow-24"
@@ -69,7 +69,7 @@
                           v-model.number="editFormData.bin_size_w"
                           type="number"
                           label="Bin Size Wide(Unit:mm)"
-                          :rules="[ val => val && val > 0 || 'Bin_size width must greater than 0']"
+                          :rules="[ val => val && val > 0 || 'Bin Size width must greater than 0']"
                  />
                </q-td>
              </template>
@@ -86,7 +86,7 @@
                           v-model.number="editFormData.bin_size_d"
                           type="number"
                           label="Bin Size Depth(Unit:mm)"
-                          :rules="[ val => val && val > 0 || 'Bin_size depth must greater than 0']"
+                          :rules="[ val => val && val > 0 || 'Bin Size depth must greater than 0']"
                  />
                </q-td>
              </template>
@@ -102,7 +102,7 @@
                           square
                           v-model="editFormData.bin_size_h"
                           label="Bin Size Height(Unit:mm)"
-                          :rules="[ val => val && val > 0 || 'Bin_size height must greater than 0']"
+                          :rules="[ val => val && val > 0 || 'Bin Size height must greater than 0']"
                  />
                </q-td>
              </template>
@@ -121,7 +121,7 @@
                {{ props.row.update_time }}
              </q-td>
              <template v-if="!editMode">
-               <q-td key="action" :props="props">
+               <q-td key="action" :props="props" style="width: 100px">
                  <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
                    <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                     {{ $t('edit') }}
@@ -136,7 +136,7 @@
                </template>
              <template v-else-if="editMode">
                <template v-if="props.row.id === editid">
-                 <q-td key="action" :props="props">
+                 <q-td key="action" :props="props" style="width: 100px">
                  <q-btn round flat push color="secondary" icon="check" @click="editDataSubmit()">
                    <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                     {{ $t('confirmedit') }}
@@ -167,6 +167,7 @@
               {{ $t('next') }}
             </q-tooltip>
           </q-btn>
+          <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
         </div>
       </template>
       <q-dialog v-model="newForm">
@@ -183,7 +184,7 @@
                     outlined
                     square
                     v-model="newFormData.bin_size"
-                    label="Bin_size"
+                    label="Bin Size"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Size']"
                     @keyup.enter="newDataSubmit()"/>
@@ -193,7 +194,7 @@
                     v-model.number="newFormData.bin_size_w"
                     type="number"
                     label="Bin Size Wide(Unit:mm)"
-                    :rules="[ val => val && val > 0 || 'Bin_size width must greater than 0']"
+                    :rules="[ val => val && val > 0 || 'Bin Size width must greater than 0']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
@@ -201,7 +202,7 @@
                     v-model.number="newFormData.bin_size_d"
                     type="number"
                     label="Bin Size Depth(Unit:mm)"
-                    :rules="[ val => val && val > 0 || 'Bin_size depth must greater than 0']"
+                    :rules="[ val => val && val > 0 || 'Bin Size depth must greater than 0']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
@@ -209,7 +210,7 @@
                     v-model.number="newFormData.bin_size_h"
                     type="number"
                     label="Bin Size Height(Unit:mm)"
-                    :rules="[ val => val && val > 0 || 'Bin_size height must greater than 0']"
+                    :rules="[ val => val && val > 0 || 'Bin Size height must greater than 0']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">

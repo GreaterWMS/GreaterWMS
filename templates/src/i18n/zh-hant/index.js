@@ -82,6 +82,7 @@ export default {
   action: '操作',
   previous: '上一頁',
   next: '下一頁',
+  no_data: '沒有更多數據',
   submit: '確認',
   cancel: '取消',
   estimate: '預估運費',
@@ -106,6 +107,7 @@ export default {
   confirmpicked: '確認揀貨完成',
   dispatch: '發貨',
   deletebackorder: '刪除欠貨訂單',
+  scan: '扫描',
   baseinfo: {
     company_info: '公司信息',
     supplier: '供應商',
@@ -263,6 +265,7 @@ export default {
   },
   staff: {
     staff: '員工列表',
+    check_code: '驗證碼',
     view_staff: {
       staff_name: '員工名稱',
       staff_type: '員工類型'

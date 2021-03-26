@@ -30,7 +30,9 @@
     </div>
   </div>
 </template>
-    <router-view />
+    <div class="main-table">
+      <router-view />
+    </div>
   </q-page>
 </template>
 
