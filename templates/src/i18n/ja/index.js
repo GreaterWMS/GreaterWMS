@@ -13,10 +13,10 @@ export default {
     api: 'APIドキュメント',
     translate: '言語の変更',
     unread: '未読メッセージ',
-    login: 'ログイン',
-    register: '登録',
-    login_tip: 'OPENIDとユーザー名を入力してください',
-    register_tip: '管理者として登録',
+    login: '登録',
+    register: 'ログイン',
+    login_tip: '管理者として登録',
+    register_tip: 'OPENIDとユーザー名を入力してください',
     logout: 'ログインを終了',
     user_login: 'ユーザーログイン',
     admin_login: '管理者ログイン',
@@ -32,14 +32,14 @@ export default {
     next: '次のページ',
     admin_name: '管理者',
     password: 'パスワード',
-    Confirm_password: 'パスワードの確認',
+    confirm_password: 'パスワードの確認',
     staff_name: 'ユーザー名',
     cancel: 'キャンセル',
     close: '閉じる',
     submit: '送信',
     download: 'ダウンロード',
     updatetitle: 'アップグレードの準備ができました',
-    updateesc: 'バージョンをアップグレードする準備ができました',
+    updatedesc: 'バージョンをアップグレードする準備ができました',
     update: '今すぐ写新'
   },
   menuItem: {
@@ -82,6 +82,7 @@ export default {
   action: '操作',
   previous: '前のページ',
   next: '次のページ',
+  no_data: 'これ以上のデータはありません',
   submit: '確認',
   cancel: 'キャンセル',
   estimate: '見積もり送料',
@@ -106,6 +107,7 @@ export default {
   confirmpicked: 'ピッキングが完了したことの確認',
   dispatch: '輸送する',
   deletebackorder: 'バックオーダーを削除する',
+  scan: '扫描',
   baseinfo: {
     company_info: '会社情報',
     supplier: 'サプライヤー',
@@ -263,6 +265,7 @@ export default {
   },
   staff: {
     staff: 'スタッフ表',
+    check_code: '验证码',
     view_staff: {
       staff_name: 'スタッフ名',
       staff_type: 'スタッフクラス型'

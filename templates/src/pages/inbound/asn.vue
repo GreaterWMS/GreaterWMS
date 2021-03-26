@@ -1,5 +1,5 @@
 <template>
-    <div class="q-pa-md" style="width: 100%; margin-top: -20px">
+    <div>
       <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-column-table shadow-24"
@@ -81,7 +81,7 @@
              <q-td key="update_time" :props="props">
                {{ props.row.update_time }}
              </q-td>
-             <q-td key="action" :props="props">
+             <q-td key="action" :props="props" style="width: 100px">
                <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Outbound' &&
@@ -173,6 +173,7 @@
               {{ $t('next') }}
             </q-tooltip>
           </q-btn>
+          <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
         </div>
       </template>
       <q-dialog v-model="newForm">

@@ -1,5 +1,5 @@
 <template>
-    <div class="q-pa-md" style="width: 100%; margin-top: -20px">
+    <div>
       <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-table shadow-24"
@@ -44,6 +44,21 @@
          </template>
         </q-table>
       </transition>
+      <template>
+        <div class="q-pa-lg flex flex-center">
+          <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
+            <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+              {{ $t('previous') }}
+            </q-tooltip>
+          </q-btn>
+          <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
+            <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+              {{ $t('next') }}
+            </q-tooltip>
+          </q-btn>
+          <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
+        </div>
+      </template>
     </div>
 </template>
     <router-view />
@@ -60,6 +75,8 @@ export default {
       login_name: '',
       authin: '0',
       pathname: 'staff/type/',
+      pathname_previous: '',
+      pathname_next: '',
       separator: 'cell',
       loading: false,
       height: '',

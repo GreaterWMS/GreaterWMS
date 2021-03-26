@@ -104,7 +104,10 @@ def register(request, *args, **kwargs):
                                                  t_code=Md5.md5(str(timezone.now())),
                                                  developer=1, ip=ip)
                             auth.login(request, user)
-                            staff.objects.create(staff_name=str(data['name']), staff_type='Admin', openid=transaction_code)
+                            staff.objects.create(staff_name=str(data['name']),
+                                                 staff_type='Admin',
+                                                 check_code=random.randint(1000, 9999),
+                                                 openid=transaction_code)
                             ret = FBMsg.ret()
                             ret['ip'] = ip
                             data['openid'] = transaction_code
@@ -160,7 +163,8 @@ def register(request, *args, **kwargs):
                             for staff_data in randomname:
                                 demo_data = staff(openid=transaction_code,
                                                   staff_name=staff_data,
-                                                  staff_type=str(randomStaffType())
+                                                  staff_type=str(randomStaffType()),
+                                                  check_code=random.randint(1000, 9999)
                                                   )
                                 staff_data_list.append(demo_data)
                             staff.objects.bulk_create(staff_data_list, batch_size=100)

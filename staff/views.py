@@ -87,7 +87,7 @@ class APIViewSet(viewsets.ModelViewSet):
     def update(self, request, pk):
         qs = self.get_object()
         if qs.openid != request.auth.openid:
-            raise APIException({"detail": "Cannot update data which not yours"})
+            raise APIException({"detail": "Cannot Update Data Which Not Yours"})
         else:
             data = request.data
             serializer = self.get_serializer(qs, data=data)
@@ -99,7 +99,7 @@ class APIViewSet(viewsets.ModelViewSet):
     def partial_update(self, request, pk):
         qs = self.get_object()
         if qs.openid != request.auth.openid:
-            raise APIException({"detail": "Cannot partial_update data which not yours"})
+            raise APIException({"detail": "Cannot Partial Update Data Which Not Yours"})
         else:
             data = request.data
             serializer = self.get_serializer(qs, data=data, partial=True)
@@ -111,7 +111,7 @@ class APIViewSet(viewsets.ModelViewSet):
     def destroy(self, request, pk):
         qs = self.get_object()
         if qs.openid != request.auth.openid:
-            raise APIException({"detail": "Cannot delete data which not yours"})
+            raise APIException({"detail": "Cannot Delete Data Which Not Yours"})
         else:
             qs.is_delete = True
             qs.save()

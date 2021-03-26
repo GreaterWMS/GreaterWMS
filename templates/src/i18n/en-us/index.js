@@ -82,6 +82,7 @@ export default {
   action: 'Action',
   previous: 'Previous',
   next: 'Next',
+  no_data: 'No More Data',
   submit: 'Submit',
   cancel: 'Cancel',
   estimate: 'Estimate Freight',
@@ -106,6 +107,7 @@ export default {
   confirmpicked: 'Confirm Picked',
   dispatch: 'Dispatch & Shipping',
   deletebackorder: 'Delete Back Order',
+  scan: 'SCAN',
   baseinfo: {
     company_info: 'Company Info',
     supplier: 'Supplier',
@@ -263,6 +265,7 @@ export default {
   },
   staff: {
     staff: 'Staff',
+    check_code: 'Check Code',
     view_staff: {
       staff_name: 'Staff Name',
       staff_type: 'Staff Type'
