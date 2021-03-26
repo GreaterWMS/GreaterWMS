@@ -50,7 +50,9 @@
     </div>
   </div>
 </template>
-    <router-view />
+    <div class="main-table">
+      <router-view />
+    </div>
   </q-page>
 </template>
 
@@ -59,7 +61,7 @@ export default {
   name: 'Pageinbound',
   data () {
     return {
-      detaillink: 'outbound'
+      detaillink: 'dn'
     }
   },
   methods: {

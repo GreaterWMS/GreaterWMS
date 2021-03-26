@@ -1,5 +1,5 @@
 <template>
-    <div class="q-pa-md" style="width: 100%; margin-top: -20px">
+    <div>
       <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-table shadow-24"
@@ -83,6 +83,7 @@
               {{ $t('next') }}
             </q-tooltip>
           </q-btn>
+          <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
         </div>
       </template>
     </div>

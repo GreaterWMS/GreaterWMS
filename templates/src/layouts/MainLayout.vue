@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hhh LpR lFf"  v-show="$q.platform.is.desktop">
+  <q-layout view="hhh LpR lFf" :style="{ height: $q.screen.height, width: $q.screen.width }">
     <q-header reveal elevated class="bg-primary text-white">
       <q-toolbar class="main-headers text-white shadow-18 rounded-borders">
         <transition appear enter-active-class="animated zoomIn">
@@ -9,21 +9,21 @@
             </q-tooltip>
           </q-btn>
         </transition>
-        <transition appear enter-active-class="animated zoomIn">
+        <transition v-show="$q.platform.is.desktop" appear enter-active-class="animated zoomIn">
           <q-toolbar-title shrink class="text-weight-bold">
             {{ $t('index.title') }}
           </q-toolbar-title>
         </transition>
         <q-space />
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn icon="img:statics/icons/logo.png" stretch flat :label="$t('index.home')" to="/">
+          <q-btn v-show="$q.platform.is.desktop" icon="img:statics/icons/logo.png" stretch flat :label="$t('index.home')" to="/">
             <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
               {{ $t('index.title_tip') }}
             </q-tooltip>
           </q-btn>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <a href="/docs/" v-show="!$q.platform.is.mobile" style="text-decoration:none; color: #c8e6c9">
+          <a v-show="$q.platform.is.desktop" href="/docs/" style="text-decoration:none; color: #c8e6c9">
             <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px">
               <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
                 {{ $t('index.api') }}
@@ -32,7 +32,7 @@
           </a>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn icon="img:statics/icons/GitHub.png" round dense flat @click="brownlink('https://github.com/Singosgu/GreaterWMS')" style="margin: 0 10px 0 10px">
+          <q-btn v-show="$q.platform.is.desktop" icon="img:statics/icons/GitHub.png" round dense flat @click="brownlink('https://github.com/Singosgu/GreaterWMS')" style="margin: 0 10px 0 10px">
             <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
               GitHub Link
             </q-tooltip>
@@ -143,7 +143,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
-            clickable to="/inbound" @click="linkChange('inbound')" v-ripple exact :active="link === 'inbound'" :class="{ 'my-menu-link': link === 'inbound' }">
+            clickable to="/inbound/asn" @click="linkChange('inbound')" v-ripple exact :active="link === 'inbound'" :class="{ 'my-menu-link': link === 'inbound' }">
             <q-item-section avatar>
               <q-icon name="speaker_notes" />
             </q-item-section>
@@ -155,7 +155,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Inbound'
                          "
-            clickable to="/outbound" @click="linkChange('outbound')" v-ripple exact :active="link === 'outbound'" :class="{ 'my-menu-link': link === 'outbound' }">
+            clickable to="/outbound/dn" @click="linkChange('outbound')" v-ripple exact :active="link === 'outbound'" :class="{ 'my-menu-link': link === 'outbound' }">
             <q-item-section avatar>
               <q-icon name="rv_hookup" />
             </q-item-section>
@@ -166,7 +166,7 @@
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
-            clickable to="/stock" @click="linkChange('stock')" v-ripple exact :active="link === 'stock'" :class="{ 'my-menu-link': link === 'stock' }">
+            clickable to="/stock/stocklist" @click="linkChange('stock')" v-ripple exact :active="link === 'stock'" :class="{ 'my-menu-link': link === 'stock' }">
             <q-item-section avatar>
               <q-icon name="multiline_chart" />
             </q-item-section>
@@ -181,7 +181,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Outbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-            clickable to="/finance" @click="linkChange('finance')" v-ripple exact :active="link === 'finance'" :class="{ 'my-menu-link': link === 'finance' }">
+            clickable to="/finance/capitallist" @click="linkChange('finance')" v-ripple exact :active="link === 'finance'" :class="{ 'my-menu-link': link === 'finance' }">
             <q-item-section avatar>
               <q-icon name="devices_other" />
             </q-item-section>
@@ -194,7 +194,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
-                  clickable to="/goods" @click="linkChange('goods')" v-ripple exact :active="link === 'goods'" :class="{ 'my-menu-link': link === 'goods' }">
+                  clickable to="/goods/goodslist" @click="linkChange('goods')" v-ripple exact :active="link === 'goods'" :class="{ 'my-menu-link': link === 'goods' }">
             <q-item-section avatar>
               <q-icon name="shop_two" />
             </q-item-section>
@@ -208,7 +208,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Outbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-            clickable to="/baseinfo" @click="linkChange('baseinfo')" v-ripple exact :active="link === 'baseinfo'" :class="{ 'my-menu-link': link === 'baseinfo' }">
+            clickable to="/baseinfo/company" @click="linkChange('baseinfo')" v-ripple exact :active="link === 'baseinfo'" :class="{ 'my-menu-link': link === 'baseinfo' }">
             <q-item-section avatar>
               <q-icon name="info" />
             </q-item-section>
@@ -221,7 +221,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
-            clickable to="/warehouse" @click="linkChange('warehouse')" v-ripple exact :active="link === 'warehouse'" :class="{ 'my-menu-link': link === 'warehouse' }">
+            clickable to="/warehouse/warehouseset" @click="linkChange('warehouse')" v-ripple exact :active="link === 'warehouse'" :class="{ 'my-menu-link': link === 'warehouse' }">
             <q-item-section avatar>
               <q-icon name="settings" />
             </q-item-section>
@@ -233,7 +233,7 @@
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
-            clickable to="/staff" @click="linkChange('staff')" v-ripple exact :active="link === 'staff'" :class="{ 'my-menu-link': link === 'staff' }">
+            clickable to="/staff/stafflist" @click="linkChange('staff')" v-ripple exact :active="link === 'staff'" :class="{ 'my-menu-link': link === 'staff' }">
             <q-item-section avatar>
               <q-icon name="assignment_ind" />
             </q-item-section>
@@ -246,7 +246,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-            clickable to="/driver" @click="linkChange('driver')" v-ripple exact :active="link === 'driver'" :class="{ 'my-menu-link': link === 'driver' }">
+            clickable to="/driver/driverlist" @click="linkChange('driver')" v-ripple exact :active="link === 'driver'" :class="{ 'my-menu-link': link === 'driver' }">
             <q-item-section avatar>
               <q-icon name="img:statics/staff/driver.png" />
             </q-item-section>
@@ -291,9 +291,112 @@
         </q-list>
       </q-scroll-area>
     </q-drawer>
-    <q-page-container class="main-page" style="width: 100%">
+    <q-page-container class="main-page" :style="{
+       height: container_height,
+       width: $q.screen.width
+    }">
       <router-view />
     </q-page-container>
+      <q-page-sticky v-show="$q.platform.is.cordova || $q.platform.is.mobile" position="bottom-right" :offset="[8, 8]">
+        <q-fab v-model="fabRight"
+               vertical-actions-align="right"
+               color="purple"
+               glossy
+               icon="keyboard_arrow_up"
+               direction="up"
+              >
+          <q-fab-action
+            color="purple"
+            to="/scan_stafflist"
+            icon="assignment_ind"
+            :label="$t('staff.staff')"
+          />
+          <q-fab-action v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
+                          $q.localStorage.getItem('staff_type') !== 'Supplier'
+                         "
+            color="purple"
+            to="/scan_goodslist"
+            icon="img:statics/goods/scan_goodslist.png"
+            icon-color="white"
+            label="商品查询"
+          />
+          <q-fab-action v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
+                          $q.localStorage.getItem('staff_type') !== 'Supplier'
+                         "
+            color="purple"
+            to="/scan_stafflist"
+            icon="assignment_ind"
+            label="库位查询"
+          />
+          <q-fab-action v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
+                          $q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          $q.localStorage.getItem('staff_type') !== 'Outbound'
+                         "
+            color="purple"
+            to="/scan_stafflist"
+            icon="assignment_ind"
+            label="收货"
+          />
+          <q-fab-action v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
+                          $q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          $q.localStorage.getItem('staff_type') !== 'Outbound'
+                         "
+            color="purple"
+            to="/scan_stafflist"
+            icon="assignment_ind"
+            label="上架"
+          />
+          <q-fab-action v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
+                          $q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          $q.localStorage.getItem('staff_type') !== 'Inbound'
+                         "
+            color="purple"
+            to="/scan_stafflist"
+            icon="assignment_ind"
+            label="拣货"
+          />
+          <q-fab-action v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
+                          $q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
+                          $q.localStorage.getItem('staff_type') !== 'StockControl'
+                         "
+            color="purple"
+            to="/scan_stafflist"
+            icon="assignment_ind"
+            label="装车"
+          />
+          <q-fab-action v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
+                          $q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
+                          $q.localStorage.getItem('staff_type') !== 'Outbound'
+                         "
+            color="purple"
+            to="/scan_stafflist"
+            icon="assignment_ind"
+            label="移库"
+          />
+          <q-fab-action v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
+                          $q.localStorage.getItem('staff_type') !== 'Supplier'
+                         "
+            color="purple"
+            to="/scan_stafflist"
+            icon="assignment_ind"
+            label="盘点"
+          />
+          <q-fab-action v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          $q.localStorage.getItem('staff_type') !== 'Supervisor' &&
+                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
+                          $q.localStorage.getItem('staff_type') !== 'Outbound' &&
+                          $q.localStorage.getItem('staff_type') !== 'StockControl' &&
+                          $q.localStorage.getItem('staff_type') !== 'Manager'
+                         "
+            color="purple"
+            to="/scan_stafflist"
+            icon="assignment_ind"
+            label="客户签收"
+          />
+        </q-fab>
+      </q-page-sticky>
     <q-dialog v-model="chat">
     <q-card style="width: 600px">
       <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
@@ -448,7 +551,15 @@
           <q-input dense outlined square :label="$t('index.staff_name')" v-model="login_name" autofocus @keyup.enter="Login()" style="margin-top: 5px"/>
         </template>
       </q-card-section>
-      <q-card-actions align="right" class="text-primary">
+      <q-card-actions align="left" class="text-primary">
+        <q-input v-model="check_code" dense style="width: 40%; margin-left: 10px"  @keyup.enter="Login()">
+          <template v-slot:prepend>
+            <div style="color: black; font-size: 15px!important">
+              {{ $t('staff.check_code') }}
+            </div>
+          </template>
+        </q-input>
+        <q-space />
         <q-btn flat :label="$t('index.cancel')" v-close-popup />
         <template v-if="admin">
           <q-btn color="primary" :label="$t('index.login')" @click="adminLogin()"/>
@@ -540,7 +651,6 @@
   </q-dialog>
   </q-layout>
 </template>
-
 <script>
 import { getauth, post, wsurl } from 'boot/axios_request'
 import { date, LocalStorage, openURL } from 'quasar'
@@ -555,6 +665,7 @@ export default {
       updateNow: false,
       processpercent: 0,
       downloadprocess: false,
+      container_height: '',
       langOptions: [
         { value: 'en-us', label: 'English' },
         { value: 'zh-hans', label: '中文简体' },
@@ -579,6 +690,7 @@ export default {
       login: false,
       link: localStorage.getItem('menulink'),
       login_name: '',
+      check_code: '',
       register: false,
       registerform: {
         name: '',
@@ -600,7 +712,8 @@ export default {
       read_num: 0,
       read_list: [],
       read_previous: '',
-      read_next: ''
+      read_next: '',
+      fabRight: false
     }
   },
   meta () {
@@ -636,38 +749,46 @@ export default {
       } else {
         if (_this.openid === '') {
           _this.$q.notify({
-            message: 'Please enter the openid',
+            message: 'Please Enter The Openid',
             icon: 'close',
             color: 'negative'
           })
         } else {
-          _this.$q.localStorage.set('openid', _this.openid)
-          getauth('staff/?staff_name=' + _this.login_name).then(res => {
-            if (res.count === 1) {
-              _this.authin = '1'
-              _this.login = false
-              _this.$q.localStorage.set('auth', '1')
-              _this.$q.localStorage.set('login_name', _this.login_name)
-              _this.$q.notify({
-                message: 'Success Login',
-                icon: 'check',
-                color: 'green'
-              })
-              window.location.reload()
-            } else {
-              _this.$q.notify({
-                message: "No user's Data",
-                icon: 'close',
-                color: 'negative'
-              })
-            }
-          }).catch(err => {
+          if (_this.check_code === '') {
             _this.$q.notify({
-              message: err.detail,
+              message: 'Please Enter The Check Code',
               icon: 'close',
               color: 'negative'
             })
-          })
+          } else {
+            _this.$q.localStorage.set('openid', _this.openid)
+            getauth('staff/?staff_name=' + _this.login_name + '&check_code=' + _this.check_code).then(res => {
+              if (res.count === 1) {
+                _this.authin = '1'
+                _this.login = false
+                _this.$q.localStorage.set('auth', '1')
+                _this.$q.localStorage.set('login_name', _this.login_name)
+                _this.$q.notify({
+                  message: 'Success Login',
+                  icon: 'check',
+                  color: 'green'
+                })
+                window.location.reload()
+              } else {
+                _this.$q.notify({
+                  message: "No User's Data Or Check Code Wrong",
+                  icon: 'close',
+                  color: 'negative'
+                })
+              }
+            }).catch(err => {
+              _this.$q.notify({
+                message: err.detail,
+                icon: 'close',
+                color: 'negative'
+              })
+            })
+          }
         }
       }
     },
@@ -1092,6 +1213,11 @@ export default {
   },
   created () {
     var _this = this
+    if (_this.$q.platform.is.cordova || _this.$q.platform.is.mobile) {
+      _this.container_height = _this.$q.screen.height - 90 + '' + 'px'
+    } else {
+      _this.container_height = _this.$q.screen.height
+    }
     if (_this.$q.localStorage.has('openid')) {
       _this.openid = _this.$q.localStorage.getItem('openid')
     } else {
@@ -1137,6 +1263,8 @@ export default {
   updated () {
     if (document.getElementById('chat_scroll')) {
       document.getElementById('chat_scroll').scrollTop = document.getElementById('chat_scroll').scrollHeight
+    } else if (document.getElementById('m_chat_scroll')) {
+      document.getElementById('m_chat_scroll').scrollTop = document.getElementById('m_chat_scroll').scrollHeight
     } else {
     }
   },
