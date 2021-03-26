@@ -356,7 +356,6 @@ const wsurl = 'wss://你的域名/websocket/'
 ### 退货管理
 - RO退货订单
   此功能将会出现在正式版中
-  
 ### 运费管理
 - Transportation Fee
   API已经完成，前端暂未更新入口，如果想要使用，可以直接调用Payment下的Transportation Fee API进行使用，运费自动计算模块已经做进收发货流程中
@@ -382,4 +381,6 @@ const wsurl = 'wss://你的域名/websocket/'
 <p><div align=center><img width="100%" height="100%" src="https://github.com/Singosgu/picfile/blob/master/CN/driver.png?raw=true"/></div></p>
 
 <p><div align=center><img width="100%" height="100%" src="https://github.com/Singosgu/picfile/blob/master/CN/api.png?raw=true"/></div></p>
+
+<p><div align=center><img width="100%" height="100%" src="https://github.com/Singosgu/picfile/blob/master/CN/chat.png?raw=true"/></div></p>
 
