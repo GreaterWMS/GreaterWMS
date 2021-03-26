@@ -2,6 +2,5 @@ node_modules/
 __pycache__/
 country.txt
 db.sqlite3
-nginx.conf
 .idea/
 delete.py
