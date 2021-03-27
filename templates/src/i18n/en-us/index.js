@@ -107,7 +107,6 @@ export default {
   confirmpicked: 'Confirm Picked',
   dispatch: 'Dispatch & Shipping',
   deletebackorder: 'Delete Back Order',
-  scan: 'SCAN',
   baseinfo: {
     company_info: 'Company Info',
     supplier: 'Supplier',
@@ -322,6 +321,20 @@ export default {
     },
     view_property: {
       bin_property: 'Bin Property'
+    }
+  },
+  scan: {
+    scan: 'SCAN',
+    scan_asn: 'ASN Check',
+    scan_dn: 'DN Check',
+    scan_sorting: 'Sorting',
+    scan_uptobin: 'Up To Bin',
+    scan_picking: 'Picking',
+    scan_shipping: 'Dispatch',
+    view_binmove: {
+      goods_code: 'Goods Code',
+      onhand_stock: 'OnHand Stock',
+      qty: 'Move Qty'
     }
   },
   notice: {

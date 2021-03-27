@@ -107,7 +107,6 @@ export default {
   confirmpicked: '確認揀貨完成',
   dispatch: '發貨',
   deletebackorder: '刪除欠貨訂單',
-  scan: '扫描',
   baseinfo: {
     company_info: '公司信息',
     supplier: '供應商',
@@ -322,6 +321,20 @@ export default {
     },
     view_property: {
       bin_property: '庫位屬性'
+    }
+  },
+scan: {
+    scan: '掃描',
+    scan_asn: 'ASN查詢',
+    scan_dn: 'DN查詢',
+    scan_sorting: '分揀',
+    scan_uptobin: '上架',
+    scan_picking: '揀貨',
+    scan_shipping: '發貨',
+    view_binmove: {
+      goods_code: '產品名稱',
+      onhand_stock: '現有庫存',
+      qty: '移庫數量'
     }
   },
   notice: {
