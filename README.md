@@ -394,3 +394,11 @@ Because the front and back ends are separated, more software applications can be
 
 <p><div align=center><img width="100%" height="100%" src="https://github.com/Singosgu/picfile/blob/master/CN/chat.png?raw=true"/></div></p>
 
+<p><div align=center><img width="100%" height="100%" src="https://github.com/Singosgu/picfile/blob/master/CN/app1.png?raw=true"/></div></p>
+
+<p><div align=center><img width="100%" height="100%" src="https://github.com/Singosgu/picfile/blob/master/CN/app2.png?raw=true"/></div></p>
+
+<p><div align=center><img width="100%" height="100%" src="https://github.com/Singosgu/picfile/blob/master/CN/app3.png?raw=true"/></div></p>
+
+<p><div align=center><img width="100%" height="100%" src="https://github.com/Singosgu/picfile/blob/master/CN/app4.png?raw=true"/></div></p>
+
