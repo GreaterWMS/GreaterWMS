@@ -79,7 +79,7 @@ export default {
   creater: '作成者',
   createtime: '作成時間',
   updatetime: '写新時間',
-  action: '操作',
+  action: 'オペレーティング',
   previous: '前のページ',
   next: '次のページ',
   no_data: 'これ以上のデータはありません',
@@ -107,7 +107,6 @@ export default {
   confirmpicked: 'ピッキングが完了したことの確認',
   dispatch: '輸送する',
   deletebackorder: 'バックオーダーを削除する',
-  scan: '扫描',
   baseinfo: {
     company_info: '会社情報',
     supplier: 'サプライヤー',
@@ -322,6 +321,20 @@ export default {
     },
     view_property: {
       bin_property: 'ロケーション属性'
+    }
+  },
+  scan: {
+    scan: 'スキャン',
+    scan_asn: 'ASNクエリ',
+    scan_dn: 'DNクエリ',
+    scan_sorting: '並べ替え',
+    scan_uptobin: '棚まで',
+    scan_picking: 'ピッキング',
+    scan_shipping: 'ディスパッチ',
+    view_binmove:{
+      goods_code: '製品コード',
+      onhand_stock: '既存の在庫',
+      qty: '移動されたライブラリの数'
     }
   },
   notice: {

@@ -19,12 +19,12 @@
         <transition appear enter-active-class="animated zoomIn">
           <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="emptybin" :label="$t('stock.emptybin')" icon="img:statics/stock/cyclecount.png" to="/stock/emptybin" exact/>
+                         " name="emptybin" :label="$t('stock.emptybin')" icon="all_out" to="/stock/emptybin" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="occupiedbin" :label="$t('stock.occupiedbin')" icon="img:statics/stock/cyclecount.png" to="/stock/occupiedbin" exact/>
+                         " name="occupiedbin" :label="$t('stock.occupiedbin')" icon="all_inbox" to="/stock/occupiedbin" exact/>
         </transition>
       </q-tabs>
     </div>
