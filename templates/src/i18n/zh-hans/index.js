@@ -107,7 +107,6 @@ export default {
   confirmpicked: '确认拣货完成',
   dispatch: '装车发货',
   deletebackorder: '删除欠货订单',
-  scan: '扫描',
   baseinfo: {
     company_info: '公司信息',
     supplier: '供应商',
@@ -322,6 +321,20 @@ export default {
     },
     view_property: {
       bin_property: '库位属性'
+    }
+  },
+  scan: {
+    scan: '扫描',
+    scan_asn: 'ASN查询',
+    scan_dn: 'DN查询',
+    scan_sorting: '分拣',
+    scan_uptobin: '上架',
+    scan_picking: '拣货',
+    scan_shipping: '发货',
+    view_binmove: {
+      goods_code: '产品名称',
+      onhand_stock: '现有库存',
+      qty: '移库数量'
     }
   },
   notice: {
