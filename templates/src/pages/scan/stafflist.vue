@@ -19,19 +19,10 @@
       >
          <template v-slot:top>
            <q-btn-group push>
-             <q-btn :label="$t('refresh')" @click="reFresh()">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                 {{ $t('refreshtip') }}
-               </q-tooltip>
-             </q-btn>
-             <q-btn :label="$t('scan')" @click="reFresh()">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                 {{ $t('scan') }}
-               </q-tooltip>
-             </q-btn>
+             <q-btn :label="$t('refresh')" @click="reFresh()" />
            </q-btn-group>
            <q-space />
-           <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()" style="width: 50%">
+           <q-input class="cordova-search" outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
              <template v-slot:append>
                <q-icon name="search" @click="getSearchList()"/>
              </template>
@@ -39,22 +30,27 @@
          </template>
          <template v-slot:body="props">
            <q-tr :props="props">
-              <q-td key="staff_name" :props="props">
+               <q-td key="staff_name" :props="props">
                  {{ props.row.staff_name }}
                </q-td>
-               <q-td key="action" :props="props" style="width: 200px">
-                 <q-btn color="teal" :label="$t('contact')" icon="contacts" @click="ChatWith(props.row.staff_name)">
-                   <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('sendmessage') }}
-                  </q-tooltip>
-                 </q-btn>
+               <q-td key="staff_type" :props="props">
+                 {{ props.row.staff_type }}
+               </q-td>
+             <q-td key="create_time" :props="props">
+               {{ props.row.create_time }}
+             </q-td>
+             <q-td key="update_time" :props="props">
+               {{ props.row.update_time }}
+             </q-td>
+               <q-td key="action" :props="props" style="width: 240px">
+                 <q-btn color="teal" :label="$t('contact')" @click="ChatWith(props.row.staff_name)" />
                </q-td>
            </q-tr>
          </template>
         </q-table>
       </transition>
       <template>
-        <div class="q-pa-lg flex flex-center">
+        <div class="q-pa-lg flex flex-center cordova-footer">
           <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
             <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
               {{ $t('previous') }}
@@ -118,12 +114,12 @@
     <router-view />
 
 <script>
-import { getauth, postauth, putauth, deleteauth, wsurl, getfile } from 'boot/axios_request'
-import { date, exportFile, LocalStorage } from 'quasar'
+import { getauth, wsurl } from 'boot/axios_request'
+import { date, LocalStorage } from 'quasar'
 var ws
 
 export default {
-  name: 'Pagestafflist',
+  name: 'Pagestafflist_scan',
   data () {
     return {
       openid: '',
@@ -139,6 +135,9 @@ export default {
       staff_type_list: ['Manager', 'Inbound', 'Outbound', 'Supervisor', 'StockControl', 'Customer', 'Supplier'],
       columns: [
         { name: 'staff_name', required: true, label: this.$t('staff.view_staff.staff_name'), align: 'left', field: 'staff_name' },
+        { name: 'staff_type', label: this.$t('staff.view_staff.staff_type'), field: 'staff_type', align: 'center' },
+        { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
+        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' },
         { name: 'action', label: this.$t('action'), align: 'right' }
       ],
       filter: '',
@@ -146,16 +145,6 @@ export default {
         page: 1,
         rowsPerPage: '30'
       },
-      newForm: false,
-      newFormData: {
-        staff_name: '',
-        staff_type: ''
-      },
-      editid: 0,
-      editFormData: {},
-      editMode: false,
-      deleteForm: false,
-      deleteid: 0,
       sender: '',
       receiver: '',
       chat: false,
@@ -289,137 +278,9 @@ export default {
       var _this = this
       _this.getList()
     },
-    newDataSubmit () {
+    Scan () {
       var _this = this
-      postauth(_this.pathname, _this.newFormData).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.getList()
-          _this.newDataCancel()
-          _this.$q.notify({
-            message: 'Success Create',
-            icon: 'check',
-            color: 'green'
-          })
-        }
-      }).catch(err => {
-        _this.$q.notify({
-          message: err.detail,
-          icon: 'close',
-          color: 'negative'
-        })
-      })
-    },
-    newDataCancel () {
-      var _this = this
-      _this.newForm = false
-      _this.newFormData = {
-        staff_name: '',
-        staff_type: ''
-      }
-    },
-    editData (e) {
-      var _this = this
-      _this.editMode = true
-      _this.editid = e.id
-      _this.editFormData = {
-        staff_name: e.staff_name,
-        staff_type: e.staff_type
-      }
-    },
-    editDataSubmit () {
-      var _this = this
-      putauth(_this.pathname + _this.editid + '/', _this.editFormData).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.editDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Edit Data',
-            icon: 'check',
-            color: 'green'
-          })
-        }
-      }).catch(err => {
-        _this.$q.notify({
-          message: err.detail,
-          icon: 'close',
-          color: 'negative'
-        })
-      })
-    },
-    editDataCancel () {
-      var _this = this
-      _this.editMode = false
-      _this.editid = 0
-      _this.editFormData = {
-        staff_name: '',
-        staff_type: ''
-      }
-    },
-    deleteData (e) {
-      var _this = this
-      _this.deleteForm = true
-      _this.deleteid = e
-    },
-    deleteDataSubmit () {
-      var _this = this
-      deleteauth(_this.pathname + _this.deleteid + '/').then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.deleteDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Edit Data',
-            icon: 'check',
-            color: 'green'
-          })
-        }
-      }).catch(err => {
-        _this.$q.notify({
-          message: err.detail,
-          icon: 'close',
-          color: 'negative'
-        })
-      })
-    },
-    deleteDataCancel () {
-      var _this = this
-      _this.deleteForm = false
-      _this.deleteid = 0
+      _this.filter = 'aa'
     },
     initWebSocket () {
       var _this = this
@@ -537,25 +398,6 @@ export default {
       _this.chat_list = []
       _this.chat_text = ''
       _this.chat_next = null
-    },
-    downloadData () {
-      var _this = this
-      getfile(_this.pathname + 'file/?lang=' + LocalStorage.getItem('lang')).then(res => {
-        var timeStamp = Date.now()
-        var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS')
-        const status = exportFile(
-          _this.pathname + formattedString + '.csv',
-          '\uFEFF' + res.data,
-          'text/csv'
-        )
-        if (status !== true) {
-          this.$q.notify({
-            message: 'Browser denied file download...',
-            color: 'negative',
-            icon: 'warning'
-          })
-        }
-      })
     }
   },
   created () {
@@ -582,9 +424,9 @@ export default {
   mounted () {
     var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 190) + 'px'
+      _this.height = String(_this.$q.screen.height - 170) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 190 + '' + 'px'
+      _this.height = _this.$q.screen.height - 170 + '' + 'px'
     }
   },
   updated () {
