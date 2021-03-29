@@ -1793,6 +1793,7 @@ export default {
     }
   },
   mounted () {
+    var _this = this
     if (this.$q.platform.is.electron) {
       this.height = String(this.$q.screen.height - 290) + 'px'
     } else {

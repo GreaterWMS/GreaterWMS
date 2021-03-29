@@ -1,6 +1,6 @@
 {
   "name": "templates",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "GreaterWMS--Open Source Warehouse Management System",
   "productName": "GreaterWMS--Open Source Warehouse Management System",
   "author": "singosgu(singosgu@gmail.com)",
@@ -16,6 +16,7 @@
     "electron-is-dev": "^1.2.0",
     "electron-log": "^4.3.1",
     "electron-updater": "^4.3.5",
+    "lottie-web": "^5.7.7",
     "quasar": "^1.0.0",
     "v-distpicker": "^1.2.8",
     "vue-i18n": "^8.22.2",
