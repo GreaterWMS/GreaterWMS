@@ -1,12 +1,13 @@
 <template>
   <q-page class="flex flex-center">
-    <transition appear enter-active-class="animated rubberBand">
-      <h2>{{ $t('index.title') }}</h2>
-    </transition>
+      <lottie-web-cimo ref="lottie_web" />
   </q-page>
 </template>
 <script>
+import LottieWebCimo from 'components/lottie-web-cimo'
+
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  components: { LottieWebCimo }
 }
 </script>

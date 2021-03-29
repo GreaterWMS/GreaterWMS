@@ -297,13 +297,7 @@ export default {
       editFormData: {},
       editMode: false,
       deleteForm: false,
-      deleteid: 0,
-      sender: '',
-      receiver: '',
-      chat: false,
-      chat_list: '',
-      chat_text: '',
-      chat_next: null
+      deleteid: 0
     }
   },
   methods: {
