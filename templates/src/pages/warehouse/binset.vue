@@ -274,13 +274,7 @@ export default {
       editFormData: {},
       editMode: false,
       deleteForm: false,
-      deleteid: 0,
-      sender: '',
-      receiver: '',
-      chat: false,
-      chat_list: '',
-      chat_text: '',
-      chat_next: null
+      deleteid: 0
     }
   },
   methods: {
@@ -598,10 +592,11 @@ export default {
     }
   },
   mounted () {
-    if (this.$q.platform.is.electron) {
-      this.height = String(this.$q.screen.height - 290) + 'px'
+    var _this = this
+    if (_this.$q.platform.is.electron) {
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      this.height = this.$q.screen.height - 290 + '' + 'px'
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
   updated () {
