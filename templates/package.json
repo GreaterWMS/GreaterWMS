@@ -6,6 +6,8 @@
   "author": "singosgu(singosgu@gmail.com)",
   "private": true,
   "scripts": {
+    "dev-spa": "quasar dev",
+    "dev-cordova-android-studio": " quasar dev -m android --ide",
     "lint": "eslint --ext .js,.vue ./",
     "test": "echo \"No test specified\" && exit 0"
   },
