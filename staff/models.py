@@ -1,9 +1,10 @@
 from django.db import models
+import random
 
 class ListModel(models.Model):
     staff_name = models.CharField(max_length=255, verbose_name="Staff Name")
     staff_type = models.CharField(max_length=255, verbose_name="Staff Type")
-    check_code = models.IntegerField(default=0, verbose_name="Staff Type")
+    check_code = models.IntegerField(default=random.randint(1000, 9999), verbose_name="Staff Type")
     openid = models.CharField(max_length=255, verbose_name="Openid")
     is_delete = models.BooleanField(default=False, verbose_name='Delete Label')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="Create Time")
