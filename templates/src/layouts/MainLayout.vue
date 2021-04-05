@@ -291,7 +291,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.cordova"
             clickable to="/scan_sorting" @click="linkChange('scan_sorting')" v-ripple exact :active="link === 'scan_sorting'" :class="{ 'my-menu-link': link === 'scan_sorting' }">
             <q-item-section avatar>
               <q-icon name="img:statics/inbound/preloadstock.png" />
@@ -305,7 +305,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Outbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.cordova"
             clickable to="/scan_uptobin" @click="linkChange('scan_uptobin')" v-ripple exact :active="link === 'scan_uptobin'" :class="{ 'my-menu-link': link === 'scan_uptobin' }">
             <q-item-section avatar>
               <q-icon name="img:statics/inbound/presortstock.png" />
@@ -319,7 +319,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.cordova"
             clickable to="/scan_picking" @click="linkChange('scan_picking')" v-ripple exact :active="link === 'scan_picking'" :class="{ 'my-menu-link': link === 'scan_picking' }">
             <q-item-section avatar>
               <q-icon name="img:statics/outbound/picked.png" />
@@ -333,7 +333,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.cordova"
                   clickable to="/scan_shipping" @click="linkChange('scan_shipping')" v-ripple exact :active="link === 'scan_shipping'" :class="{ 'my-menu-link': link === 'scan_shipping' }">
             <q-item-section avatar>
               <q-icon name="rv_hookup" />
@@ -347,7 +347,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.cordova"
             clickable to="/scan_movetobin" @click="linkChange('scan_movetobin')" v-ripple exact :active="link === 'scan_movetobin'" :class="{ 'my-menu-link': link === 'scan_movetobin' }">
             <q-item-section avatar>
               <q-icon name="move_to_inbox" />
@@ -356,7 +356,7 @@
               {{ $t('movetobin') }}
             </q-item-section>
           </q-item>
-          <q-separator />
+          <q-separator v-show="$q.platform.is.cordova" />
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
