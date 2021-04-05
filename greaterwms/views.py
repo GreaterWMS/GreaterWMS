@@ -1,4 +1,4 @@
-from django.http import StreamingHttpResponse
+from django.http import StreamingHttpResponse, JsonResponse
 from django.conf import settings
 from wsgiref.util import FileWrapper
 import mimetypes
@@ -44,3 +44,12 @@ def fonts(request):
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
     resp['Cache-Control'] = "max-age=864000000000"
     return resp
+
+async def myip(request):
+    import socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('8.8.8.8', 80))
+    print(s.getsockname()[0])
+    ip = s.getsockname()[0]
+    s.close()
+    return JsonResponse({"ip": ip})
