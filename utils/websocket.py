@@ -1,5 +1,5 @@
 import re, datetime, os, urllib, json, django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'greaterwms.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_wms.settings')
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 django.setup()
 from chat.models import ListModel
@@ -16,7 +16,7 @@ async def websocket_application(scope, receive, send):
             query_string = scope.get('query_string', b'').decode()
             qs = urllib.parse.parse_qs(query_string)
             openid = qs.get('openid', [''])[0]
-            sender = qs.get('sender', [''])[0] + '-' + openid
+            sender = str(qs.get('sender', [''])[0]).lower() + '-' + openid
             CONECTINGS[sender] = send
         elif event['type'] == 'websocket.receive':
             query_string = scope.get('query_string', b'').decode()
@@ -25,8 +25,8 @@ async def websocket_application(scope, receive, send):
             sender = qs.get('sender', [''])[0]
             receiver = qs.get('receiver', [''])[0]
             if staff.objects.filter(openid=openid, staff_name=receiver).exists():
-                sender_guy = sender + '-' + openid
-                receiver_guy = receiver + '-' + openid
+                sender_guy = str(sender).lower() + '-' + openid
+                receiver_guy = str(receiver).lower() + '-' + openid
                 ListModel.objects.create(sender=sender_guy, receiver=receiver_guy, detail=str(event['text']))
                 text = {
                     "sender": sender,
@@ -43,13 +43,13 @@ async def websocket_application(scope, receive, send):
                         'text': str(text).replace('\'', '\"')
                     })
             else:
-                raise APIException({"detail": "Can not send message to who not yours"})
+                raise APIException({"detail": "Can Not Send Message To Who Not Yours"})
         elif event['type'] == 'websocket.disconnect':
             try:
                 query_string = scope.get('query_string', b'').decode()
                 qs = urllib.parse.parse_qs(query_string)
                 openid = qs.get('openid', [''])[0]
-                sender = qs.get('sender', [''])[0] + '-' + openid
+                sender = str(qs.get('sender', [''])[0]).lower() + '-' + openid
                 CONECTINGS.pop(sender)
                 break
             except:
