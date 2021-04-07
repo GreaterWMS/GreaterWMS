@@ -40,7 +40,7 @@ sudo quasar d // 使用quasar命令启动前端页面
 // 前端会向 "127.0.0.1:8008"发请求, 在这里我们只是看下项目是不是可以运行
 Ctrl + C // 退回到templates文件夹
 cd src/boot // 进入在src/boot文件夹
-sudo vim axios_requests.js // 我们开始更改请求地址
+sudo vim axios_request.js // 我们开始更改请求地址
 // 更改 "127.0.0.1" 成你的内网IP, baseurl 是http请求地址 , ws 是 websocket请求地址
 按下 Esc 然后输入 ":wq" 去保存修改
 // 现在，你已经知道怎么部署和修改请求地址了
