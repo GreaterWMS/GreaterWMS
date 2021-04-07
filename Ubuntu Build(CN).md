@@ -10,7 +10,7 @@ sudo git clone https://github.com/Singosgu/GreaterWMS.git // 下载 GreaterWMS �
 sudo apt install nodejs // 安装 nodejs
 sudo apt install npm // 安装 npm
 sudo npm install n -g // 安装 n
-n stable // 下载 nodejs 的稳定版本
+sudo n stable // 下载 nodejs 的稳定版本
 // 你需要确定你的nodejs是12或者14版本，Quasar只支持12或者14版本
 // 这步完成以后，你需要重新启动你的Terminal，要不然升级不生效
 sudo npm install npm -g // 升级 NPM 到最新版本
