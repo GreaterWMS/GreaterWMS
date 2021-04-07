@@ -40,7 +40,7 @@ sudo quasar d // run quasar web
 // quasar web will send request to "127.0.0.1:8008", this step just to check whether it can be run
 Ctrl + C // out to terminal
 cd src/boot // go to boot follder
-sudo vim axios_requests.js // go to this file to change the request link
+sudo vim axios_request.js // go to this file to change the request link
 // change "127.0.0.1" to your Intranet ip , baseurl is for http , ws is for websocket
 Esc then enter ":wq" to save the change
 // till now you know how to build it and change the request
