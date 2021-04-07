@@ -10,7 +10,7 @@ sudo git clone https://github.com/Singosgu/GreaterWMS.git // Download GreaterWMS
 sudo apt install nodejs // install nodejs
 sudo apt install npm // install npm
 sudo npm install n -g // update n
-n stable // Download nodejs to stable version
+sudo n stable // Download nodejs to stable version
 // You must confirm your nodejs version is 14 or 12 , cause Quasar just support 12 or 14
 // after this step , you should re-open your terminal
 sudo npm install npm -g // update npm to latestest
