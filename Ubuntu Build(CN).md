@@ -6,7 +6,7 @@ cd ~ // 到达Home目录
 vi .bashrc // 把 "alias vi=vim" 加进 bashrc
 source .bashrc // 刷新生效bashrc
 sudo apt install git // 安装 git
-sudo git clone https://github.com/Singosgu/GreaterWMS.git // 下载 GreaterWMS 从 github1
+sudo git clone https://github.com/Singosgu/GreaterWMS.git // 下载 GreaterWMS 从 github
 sudo apt install nodejs // 安装 nodejs
 sudo apt install npm // 安装 npm
 sudo npm install n -g // 安装 n
