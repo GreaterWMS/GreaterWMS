@@ -22,10 +22,10 @@ sudo tar -zxvf Python-3.9.2.tgz // 解压
 cd Python-3.9.2/ // 进入目录
 sudo ./configure --enable-optimizations // 编译
 sudo make altinstall  // 安装
-mv /usr/bin/python3 /usr/bin/python3.bak // 备份
-ln -s /usr/local/bin/python3.9 /usr/bin/python3 // 建立软连接
-mv /usr/bin/pip3 /usr/bin/pip3.bak // 备份
-ln -s /usr/local/bin/pip3.9 /usr/bin/pip3  // 建立软连接
+sudo mv /usr/bin/python3 /usr/bin/python3.bak // 备份
+sudo ln -s /usr/local/bin/python3.9 /usr/bin/python3 // 建立软连接
+sudo mv /usr/bin/pip3 /usr/bin/pip3.bak // 备份
+sudo ln -s /usr/local/bin/pip3.9 /usr/bin/pip3  // 建立软连接
 python3 // 查看python版本
 pip3 list // 查看pip3 是否安装成功
 sudo yum install git // 安装git
@@ -44,7 +44,7 @@ sudo /usr/local/bin/daphne -p 8008 greaterwms.asgi:application
 // 输入 "127.0.0.1:8008/myip", 你会得到你的内网IP，一定记住它 
 Ctrl + C // 回到GreaterWMS文件夹
 cd templates //进入 templates 文件夹
-sudo yarn install // 等待Yarn安装完成，其实你也可以sudo npm install ，就是会慢一点
+sudo /usr/local/bin/yarn install // 等待Yarn安装完成，其实你也可以sudo npm install ，就是会慢一点
 sudo /usr/local/bin/quasar d // 使用quasar命令启动前端页面
 // 前端会向 "127.0.0.1:8008"发请求, 在这里我们只是看下项目是不是可以运行
 Ctrl + C // 退回到templates文件夹
