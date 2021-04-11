@@ -74,6 +74,7 @@ class APIViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         data = request.data
+        data['openid'] = request.auth.openid
         if self.queryset.filter(openid=self.request.auth.openid, driver_name=data['driver_name'], is_delete=False).exists():
             raise APIException({"detail": "Data Exists"})
         else:
