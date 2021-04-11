@@ -181,7 +181,7 @@
                     type="number"
                     v-model.number="newFormData.contact"
                     label="Contact"
-                    :rules="[ val => val && val.length > 1 || 'Please Enter The Contact']"
+                    :rules="[ val => val && val > 0 || 'Please Enter The Contact']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
@@ -422,6 +422,7 @@ export default {
       _this.newFormData = {
         driver_name: '',
         license_plate: '',
+        contact: '',
         creater: ''
       }
     },
