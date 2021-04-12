@@ -765,7 +765,7 @@ export default {
       sender: '',
       receiver: '',
       chat: false,
-      chat_list: '',
+      chat_list: [],
       chat_text: '',
       chat_next: null,
       read: false,
@@ -981,7 +981,7 @@ export default {
       }
       _this.Readnum()
       _this.$q.notify({
-        message: JSON.parse(e.data).sender + 'Send you a message',
+        message: JSON.parse(e.data).sender + ' Send you a message',
         color: 'deep-purple',
         icon: 'textsms',
         position: 'right',

@@ -16,7 +16,7 @@ async def websocket_application(scope, receive, send):
             query_string = scope.get('query_string', b'').decode()
             qs = urllib.parse.parse_qs(query_string)
             openid = qs.get('openid', [''])[0]
-            sender = str(qs.get('sender', [''])[0]).lower() + '-' + openid
+            sender = qs.get('sender', [''])[0] + '-' + openid
             CONECTINGS[sender] = send
         elif event['type'] == 'websocket.receive':
             query_string = scope.get('query_string', b'').decode()
@@ -25,8 +25,8 @@ async def websocket_application(scope, receive, send):
             sender = qs.get('sender', [''])[0]
             receiver = qs.get('receiver', [''])[0]
             if staff.objects.filter(openid=openid, staff_name=receiver).exists():
-                sender_guy = str(sender).lower() + '-' + openid
-                receiver_guy = str(receiver).lower() + '-' + openid
+                sender_guy = sender + '-' + openid
+                receiver_guy = receiver + '-' + openid
                 ListModel.objects.create(sender=sender_guy, receiver=receiver_guy, detail=str(event['text']))
                 text = {
                     "sender": sender,
@@ -49,7 +49,7 @@ async def websocket_application(scope, receive, send):
                 query_string = scope.get('query_string', b'').decode()
                 qs = urllib.parse.parse_qs(query_string)
                 openid = qs.get('openid', [''])[0]
-                sender = str(qs.get('sender', [''])[0]).lower() + '-' + openid
+                sender = qs.get('sender', [''])[0] + '-' + openid
                 CONECTINGS.pop(sender)
                 break
             except:
