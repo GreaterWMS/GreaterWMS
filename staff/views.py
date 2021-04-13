@@ -73,8 +73,8 @@ class APIViewSet(viewsets.ModelViewSet):
             return self.http_method_not_allowed(request=self.request)
 
     def create(self, request, *args, **kwargs):
-        data = request.data
-        data['openid'] = request.auth.openid
+        data = self.request.data
+        data['openid'] = self.request.auth.openid
         if self.queryset.filter(openid=data['openid'], staff_name=data['staff_name'], is_delete=False).exists():
             raise APIException({"detail": "Data exists"})
         else:
@@ -86,7 +86,7 @@ class APIViewSet(viewsets.ModelViewSet):
 
     def update(self, request, pk):
         qs = self.get_object()
-        if qs.openid != request.auth.openid:
+        if qs.openid != self.request.auth.openid:
             raise APIException({"detail": "Cannot Update Data Which Not Yours"})
         else:
             data = request.data
