@@ -1479,7 +1479,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                                          goods_code=str(data['goodsData'][j].get('goods_code'))).first()
                 bin_qty_change = stockbin.objects.filter(openid=self.request.auth.openid,
                                                          goods_code=str(data['goodsData'][j].get('goods_code')),
-                                                         bin_name=str(data['goodsData'][j].get('bin_name'))).first()
+                                                         bin_name=str(data['goodsData'][j].get('bin_name'))).order_by('create_time').first()
                 pick_qty_change = PickingListModel.objects.filter(openid=self.request.auth.openid,
                                                                   dn_code=str(data['dn_code']),
                                                                   goods_code=str(data['goodsData'][j].get('goods_code')),
