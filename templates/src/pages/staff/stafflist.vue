@@ -297,7 +297,8 @@ export default {
       newForm: false,
       newFormData: {
         staff_name: '',
-        staff_type: ''
+        staff_type: '',
+        check_code: ''
       },
       editid: 0,
       editFormData: {},
@@ -437,8 +438,20 @@ export default {
       var _this = this
       _this.getList()
     },
+    RandomCheckCode () {
+      var _this = this
+      var code = ''
+      var codeLength = 4
+      var random = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+      for (var i = 0; i < codeLength; i++) {
+        var index = Math.floor(Math.random() * 9)
+        code += random[index]
+      }
+      _this.newFormData.check_code = code
+    },
     newDataSubmit () {
       var _this = this
+      _this.RandomCheckCode()
       postauth(_this.pathname, _this.newFormData).then(res => {
         if (res.status_code === 400) {
           _this.$q.notify({

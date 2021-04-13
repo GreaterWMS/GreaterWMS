@@ -41,6 +41,7 @@ class StaffPostSerializer(serializers.ModelSerializer):
     openid = serializers.CharField(read_only=False, required=False, validators=[openid_validate])
     staff_name = serializers.CharField(read_only=False, required=True, validators=[data_validate])
     staff_type = serializers.CharField(read_only=False, required=True, validators=[data_validate])
+    check_code = serializers.IntegerField(read_only=False, required=True, validators=[data_validate])
     class Meta:
         model = ListModel
         exclude = ['is_delete', ]
