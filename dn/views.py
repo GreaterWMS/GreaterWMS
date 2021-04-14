@@ -593,9 +593,10 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          dn_code=dn_detail_list[i].dn_code,
                                                                          bin_name=goods_bin_stock_list[j].bin_name,
                                                                          goods_code=goods_bin_stock_list[
-                                                                             i].goods_code,
+                                                                             j].goods_code,
                                                                          pick_qty=bin_can_pick_qty,
-                                                                         creater=self.request.auth.name))
+                                                                         creater=self.request.auth.name,
+                                                                         t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_pick_qty = dn_pick_qty + bin_can_pick_qty
                                     goods_qty_change.save()
@@ -652,9 +653,10 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          dn_code=dn_detail_list[i].dn_code,
                                                                          bin_name=goods_bin_stock_list[j].bin_name,
                                                                          goods_code=goods_bin_stock_list[
-                                                                             i].goods_code,
+                                                                             j].goods_code,
                                                                          pick_qty=bin_can_pick_qty,
-                                                                         creater=self.request.auth.name))
+                                                                         creater=self.request.auth.name,
+                                                                         t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_pick_qty = dn_pick_qty + bin_can_pick_qty
                                     goods_qty_change.save()
@@ -710,9 +712,10 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          dn_code=dn_detail_list[i].dn_code,
                                                                          bin_name=goods_bin_stock_list[j].bin_name,
                                                                          goods_code=goods_bin_stock_list[
-                                                                             i].goods_code,
+                                                                             j].goods_code,
                                                                          pick_qty=bin_can_pick_qty,
-                                                                         creater=self.request.auth.name))
+                                                                         creater=self.request.auth.name,
+                                                                         t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + bin_can_pick_qty
                                     goods_bin_stock_list[j].save()
@@ -726,9 +729,10 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          dn_code=dn_detail_list[i].dn_code,
                                                                          bin_name=goods_bin_stock_list[j].bin_name,
                                                                          goods_code=goods_bin_stock_list[
-                                                                             i].goods_code,
+                                                                             j].goods_code,
                                                                          pick_qty=bin_can_pick_qty,
-                                                                         creater=self.request.auth.name))
+                                                                         creater=self.request.auth.name,
+                                                                         t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + bin_can_pick_qty
                                     dn_detail_list[i].dn_status = 3
@@ -762,9 +766,10 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          dn_code=dn_detail_list[i].dn_code,
                                                                          bin_name=goods_bin_stock_list[j].bin_name,
                                                                          goods_code=goods_bin_stock_list[
-                                                                             i].goods_code,
+                                                                             j].goods_code,
                                                                          pick_qty=bin_can_pick_qty,
-                                                                         creater=self.request.auth.name))
+                                                                         creater=self.request.auth.name,
+                                                                         t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + \
                                                                  bin_can_pick_qty
@@ -780,9 +785,10 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          dn_code=dn_detail_list[i].dn_code,
                                                                          bin_name=goods_bin_stock_list[j].bin_name,
                                                                          goods_code=goods_bin_stock_list[
-                                                                             i].goods_code,
+                                                                             j].goods_code,
                                                                          pick_qty=bin_can_pick_qty,
-                                                                         creater=self.request.auth.name))
+                                                                         creater=self.request.auth.name,
+                                                                         t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + bin_can_pick_qty
                                     dn_detail_list[i].dn_status = 3
@@ -801,9 +807,10 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          dn_code=dn_detail_list[i].dn_code,
                                                                          bin_name=goods_bin_stock_list[j].bin_name,
                                                                          goods_code=goods_bin_stock_list[
-                                                                             i].goods_code,
+                                                                             j].goods_code,
                                                                          pick_qty=dn_need_pick_qty,
-                                                                         creater=self.request.auth.name))
+                                                                         creater=self.request.auth.name,
+                                                                         t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + dn_need_pick_qty
                                     dn_detail_list[i].dn_status = 3
@@ -954,8 +961,9 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
             raise APIException({"detail": "Cannot Release Order Data Which Not Yours"})
         else:
             if qs.dn_status == 2:
-                dn_detail_list = DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=qs.dn_code,
-                                                                dn_status=2, is_delete=False)
+                dn_detail_list = DnDetailModel.objects.filter(openid=self.request.auth.openid,
+                                                              dn_code=qs.dn_code,
+                                                              dn_status=2, is_delete=False)
                 picking_list = []
                 picking_list_label = 0
                 back_order_list = []
@@ -1008,9 +1016,10 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              dn_code=dn_detail_list[i].dn_code,
                                                                              bin_name=goods_bin_stock_list[j].bin_name,
                                                                              goods_code=goods_bin_stock_list[
-                                                                                 i].goods_code,
+                                                                                 j].goods_code,
                                                                              pick_qty=bin_can_pick_qty,
-                                                                             creater=self.request.auth.name))
+                                                                             creater=self.request.auth.name,
+                                                                             t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_pick_qty = dn_pick_qty + bin_can_pick_qty
                                         goods_qty_change.save()
@@ -1067,9 +1076,10 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              dn_code=dn_detail_list[i].dn_code,
                                                                              bin_name=goods_bin_stock_list[j].bin_name,
                                                                              goods_code=goods_bin_stock_list[
-                                                                                 i].goods_code,
+                                                                                 j].goods_code,
                                                                              pick_qty=bin_can_pick_qty,
-                                                                             creater=self.request.auth.name))
+                                                                             creater=self.request.auth.name,
+                                                                             t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_pick_qty = dn_pick_qty + bin_can_pick_qty
                                         goods_qty_change.save()
@@ -1124,7 +1134,8 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              bin_name=goods_bin_stock_list[j].bin_name,
                                                                              goods_code=goods_bin_stock_list[j].goods_code,
                                                                              pick_qty=bin_can_pick_qty,
-                                                                             creater=self.request.auth.name))
+                                                                             creater=self.request.auth.name,
+                                                                             t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + bin_can_pick_qty
                                         goods_bin_stock_list[j].save()
@@ -1139,7 +1150,8 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              bin_name=goods_bin_stock_list[j].bin_name,
                                                                              goods_code=goods_bin_stock_list[j].goods_code,
                                                                              pick_qty=bin_can_pick_qty,
-                                                                             creater=self.request.auth.name))
+                                                                             creater=self.request.auth.name,
+                                                                             t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + bin_can_pick_qty
                                         dn_detail_list[i].dn_status = 3
@@ -1174,7 +1186,8 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              bin_name=goods_bin_stock_list[j].bin_name,
                                                                              goods_code=goods_bin_stock_list[j].goods_code,
                                                                              pick_qty=bin_can_pick_qty,
-                                                                             creater=self.request.auth.name))
+                                                                             creater=self.request.auth.name,
+                                                                             t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + \
                                                                      bin_can_pick_qty
@@ -1191,7 +1204,8 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              bin_name=goods_bin_stock_list[j].bin_name,
                                                                              goods_code=goods_bin_stock_list[j].goods_code,
                                                                              pick_qty=bin_can_pick_qty,
-                                                                             creater=self.request.auth.name))
+                                                                             creater=self.request.auth.name,
+                                                                             t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + bin_can_pick_qty
                                         dn_detail_list[i].dn_status = 3
@@ -1211,7 +1225,8 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              bin_name=goods_bin_stock_list[j].bin_name,
                                                                              goods_code=goods_bin_stock_list[j].goods_code,
                                                                              pick_qty=dn_need_pick_qty,
-                                                                             creater=self.request.auth.name))
+                                                                             creater=self.request.auth.name,
+                                                                             t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + dn_need_pick_qty
                                         dn_detail_list[i].dn_status = 3
@@ -1479,7 +1494,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                                          goods_code=str(data['goodsData'][j].get('goods_code'))).first()
                 bin_qty_change = stockbin.objects.filter(openid=self.request.auth.openid,
                                                          goods_code=str(data['goodsData'][j].get('goods_code')),
-                                                         bin_name=str(data['goodsData'][j].get('bin_name'))).order_by('create_time').first()
+                                                         bin_name=str(data['goodsData'][j].get('bin_name'))).first()
                 pick_qty_change = PickingListModel.objects.filter(openid=self.request.auth.openid,
                                                                   dn_code=str(data['dn_code']),
                                                                   goods_code=str(data['goodsData'][j].get('goods_code')),
@@ -1698,7 +1713,6 @@ class DnPODViewSet(viewsets.ModelViewSet):
                     goods_detail.save()
             qs.save()
             return Response({"detail": "Success Delivery DN"}, status=200)
-
 
 class FileListDownloadView(viewsets.ModelViewSet):
     queryset = DnListModel.objects.all()
