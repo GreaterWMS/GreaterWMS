@@ -1477,9 +1477,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
             data = request.data
             for i in range(len(data['goodsData'])):
                 pick_qty_change = PickingListModel.objects.filter(openid=self.request.auth.openid,
-                                                                  dn_code=str(data['dn_code']),
-                                                                  goods_code=str(data['goodsData'][i].get('goods_code')),
-                                                                  bin_name=str(data['goodsData'][i].get('bin_name'))).first()
+                                                                  t_code=str(data['goodsData'][i].get('t_code'))).first()
                 if int(data['goodsData'][i].get('pick_qty')) > pick_qty_change.pick_qty:
                     raise APIException({"detail": str(data['goodsData'][i].get('goods_code')) + "Picked Qty Must Less Than Pick Qty"})
                 else:
@@ -1493,12 +1491,9 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                                          dn_status=3, customer=str(data['customer']),
                                                          goods_code=str(data['goodsData'][j].get('goods_code'))).first()
                 bin_qty_change = stockbin.objects.filter(openid=self.request.auth.openid,
-                                                         goods_code=str(data['goodsData'][j].get('goods_code')),
-                                                         bin_name=str(data['goodsData'][j].get('bin_name'))).first()
+                                                         t_code=str(data['goodsData'][j].get('t_code'))).first()
                 pick_qty_change = PickingListModel.objects.filter(openid=self.request.auth.openid,
-                                                                  dn_code=str(data['dn_code']),
-                                                                  goods_code=str(data['goodsData'][j].get('goods_code')),
-                                                                  bin_name=str(data['goodsData'][j].get('bin_name'))).first()
+                                                                  t_code=str(data['goodsData'][j].get('t_code'))).first()
                 if int(data['goodsData'][j].get('pick_qty')) == pick_qty_change.pick_qty:
                     goods_qty_change.pick_stock = goods_qty_change.pick_stock - int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock + int(data['goodsData'][j].get('pick_qty'))
