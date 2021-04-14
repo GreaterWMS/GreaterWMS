@@ -111,9 +111,7 @@ class DnListViewSet(viewsets.ModelViewSet):
                     goods_qty_change.save()
                 dn_detail_list.update(is_delete=True)
                 qs.save()
-                serializer = self.get_serializer(qs, many=True)
-                headers = self.get_success_headers(serializer.data)
-                return Response(serializer.data, status=200, headers=headers)
+                return Response({"detail": "Yes"}, status=200)
             else:
                 raise APIException({"detail": "This order has Confirmed or Deliveried"})
 
@@ -164,6 +162,8 @@ class DnDetailViewSet(viewsets.ModelViewSet):
             return serializers.DNDetailPostSerializer
         elif self.action == 'update':
             return serializers.DNDetailUpdateSerializer
+        elif self.action == 'destroy':
+            return serializers.DNDetailGetSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
 
@@ -365,9 +365,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                     pass
                 else:
                     DnListModel.objects.filter(openid=self.request.auth.openid, dn_code=qs.dn_code).update(is_delete=True)
-                serializer = self.get_serializer(qs, many=True)
-                headers = self.get_success_headers(serializer.data)
-                return Response(serializer.data, status=200, headers=headers)
+                return Response({"detail": "Yes"}, status=200)
             else:
                 raise APIException({"detail": "This order has Confirmed or Deliveried"})
 
