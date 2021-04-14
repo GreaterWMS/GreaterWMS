@@ -907,7 +907,7 @@
            </q-input>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
+           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="editDataCancel()">{{ $t('cancel') }}</q-btn>
            <q-btn color="primary" @click="editDataSubmit()">{{ $t('submit') }}</q-btn>
          </div>
        </q-card>
