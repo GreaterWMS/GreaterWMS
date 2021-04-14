@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from .models import StockListModel, StockBinModel
 from . import serializers
 from utils.page import MyPageNumberPagination
+from utils.md5 import Md5
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
@@ -79,7 +80,7 @@ class StockBinViewSet(viewsets.ModelViewSet):
 
     def create(self, request, pk):
         qs = self.get_object()
-        if qs.openid != request.auth.openid:
+        if qs.openid != self.request.auth.openid:
             raise APIException({"detail": "Cannot update data which not yours"})
         else:
             data = request.data
@@ -147,10 +148,15 @@ class StockBinViewSet(viewsets.ModelViewSet):
                             else:
                                 pass
                         StockBinModel.objects.create(openid=self.request.auth.openid,
-                                                bin_name=str(data['move_to_bin']), goods_code=str(data['goods_code']),
-                                                goods_desc=goods_qty_change.goods_desc, goods_qty=int(data['move_qty']),
-                                                bin_size=move_to_bin_detail.bin_size,
-                                                bin_property=move_to_bin_detail.bin_property)
+                                                     bin_name=str(data['move_to_bin']),
+                                                     goods_code=str(data['goods_code']),
+                                                     goods_desc=goods_qty_change.goods_desc,
+                                                     goods_qty=int(data['move_qty']),
+                                                     bin_size=move_to_bin_detail.bin_size,
+                                                     bin_property=move_to_bin_detail.bin_property,
+                                                     t_code=Md5.md5(str(data['goods_code'])),
+                                                     create_time=qs.create_time
+                                                     )
                         if move_to_bin_detail.empty_label == True:
                             move_to_bin_detail.empty_label = False
                             move_to_bin_detail.save()
@@ -206,9 +212,15 @@ class StockBinViewSet(viewsets.ModelViewSet):
                             else:
                                 pass
                         StockBinModel.objects.create(openid=self.request.auth.openid,
-                                                bin_name=str(data['move_to_bin']), goods_code=str(data['goods_code']),
-                                                goods_desc=goods_qty_change.goods_desc, goods_qty=int(data['move_qty']),
-                                                bin_size=move_to_bin_detail.bin_size, bin_property=move_to_bin_detail.bin_property)
+                                                     bin_name=str(data['move_to_bin']),
+                                                     goods_code=str(data['goods_code']),
+                                                     goods_desc=goods_qty_change.goods_desc,
+                                                     goods_qty=int(data['move_qty']),
+                                                     bin_size=move_to_bin_detail.bin_size,
+                                                     bin_property=move_to_bin_detail.bin_property,
+                                                     t_code=Md5.md5(str(data['goods_code'])),
+                                                     create_time=qs.create_time
+                                                     )
                         if move_to_bin_detail.empty_label == True:
                             move_to_bin_detail.empty_label = False
                             move_to_bin_detail.save()
