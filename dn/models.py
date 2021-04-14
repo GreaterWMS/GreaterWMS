@@ -61,6 +61,7 @@ class PickingListModel(models.Model):
     pick_qty = models.BigIntegerField(default=0, verbose_name="Goods Pre Pick QTY")
     picked_qty = models.BigIntegerField(default=0, verbose_name="Picked QTY")
     creater = models.CharField(max_length=11, verbose_name="Who Created")
+    t_code = models.CharField(max_length=255, verbose_name="Transaction Code")
     openid = models.CharField(max_length=255, verbose_name="Openid")
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="Create Time")
     update_time = models.DateTimeField(auto_now=True, blank=True, null=True, verbose_name="Update Time")
