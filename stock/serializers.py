@@ -60,6 +60,7 @@ class StockBinGetSerializer(serializers.ModelSerializer):
     picked_qty = serializers.IntegerField(read_only=True, required=False)
     bin_size = serializers.CharField(read_only=True, required=False)
     bin_property = serializers.CharField(read_only=True, required=False)
+    t_code = serializers.CharField(read_only=True, required=False)
     create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
 

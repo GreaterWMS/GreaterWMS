@@ -4,6 +4,7 @@ from . import serializers
 from .page import MyPageNumberPaginationASNList
 from utils.page import MyPageNumberPagination
 from utils.datasolve import sumOfList, transportation_calculate
+from utils.md5 import Md5
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
@@ -699,9 +700,15 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                             qs.save()
                             goods_qty_change.save()
                             stockbin.objects.create(openid=self.request.auth.openid,
-                                                    bin_name=str(data['bin_name']), goods_code=str(data['goods_code']),
-                                                    goods_desc=goods_qty_change.goods_desc, goods_qty=int(data['qty']),
-                                                    bin_size=bin_detail.bin_size, bin_property=bin_detail.bin_property)
+                                                    bin_name=str(data['bin_name']),
+                                                    goods_code=str(data['goods_code']),
+                                                    goods_desc=goods_qty_change.goods_desc,
+                                                    goods_qty=int(data['qty']),
+                                                    bin_size=bin_detail.bin_size,
+                                                    bin_property=bin_detail.bin_property,
+                                                    t_code=Md5.md5(str(data['goods_code'])),
+                                                    create_time=qs.create_time
+                                                    )
                             if bin_detail.empty_label == True:
                                 bin_detail.empty_label = False
                                 bin_detail.save()
@@ -730,9 +737,14 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                 asn_detail.asn_status = 5
                                 asn_detail.save()
                             stockbin.objects.create(openid=self.request.auth.openid,
-                                                    bin_name=str(data['bin_name']), goods_code=str(data['goods_code']),
-                                                    goods_desc=goods_qty_change.goods_desc, goods_qty=int(data['qty']),
-                                                    bin_size=bin_detail.bin_size, bin_property=bin_detail.bin_property)
+                                                    bin_name=str(data['bin_name']),
+                                                    goods_code=str(data['goods_code']),
+                                                    goods_desc=goods_qty_change.goods_desc,
+                                                    goods_qty=int(data['qty']),
+                                                    bin_size=bin_detail.bin_size,
+                                                    bin_property=bin_detail.bin_property,
+                                                    t_code=Md5.md5(str(data['goods_code'])),
+                                                    create_time=qs.create_time)
                             if bin_detail.empty_label == True:
                                 bin_detail.empty_label = False
                                 bin_detail.save()
