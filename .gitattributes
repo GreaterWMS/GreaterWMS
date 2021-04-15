@@ -1,3 +1,1 @@
-*.js linguist-language=python
-*.css linguist-language=python
-*.sass linguist-language=python
+*.vue linguist-language=python
