@@ -39,7 +39,7 @@
                           outlined
                           square
                           v-model="editFormData.company_name"
-                          label="Company Name"
+                          :label="$t('baseinfo.view_company.company_name')"
                           autofocus
                           :rules="[ val => val && val.length > 0 || 'Please Enter The Company Name']"
                  />
@@ -56,7 +56,7 @@
                           outlined
                           square
                           v-model="editFormData.company_city"
-                          label="Company City"
+                          :label="$t('baseinfo.view_company.company_city')"
                           :rules="[ val => val && val.length > 0 || 'Please Enter The Company City']"
                  />
                </q-td>
@@ -72,7 +72,7 @@
                           outlined
                           square
                           v-model="editFormData.company_address"
-                          label="Company Address"
+                          :label="$t('baseinfo.view_company.company_address')"
                           :rules="[ val => val && val.length > 0 || 'Please Enter The Company Address']"
                  />
                </q-td>
@@ -89,7 +89,7 @@
                           square
                           v-model.number="editFormData.company_contact"
                           type="number"
-                          label="Company Contact"
+                          :label="$t('baseinfo.view_company.company_contact')"
                           :rules="[ val => val && val > 0 || 'Please Enter The Company Contact']"
                  />
                </q-td>
@@ -188,7 +188,7 @@
                     outlined
                     square
                     v-model="newFormData.company_name"
-                    label="Company Name"
+                    :label="$t('baseinfo.view_company.company_name')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter The Company Name']"
                     @keyup.enter="newDataSubmit()"/>
@@ -196,14 +196,14 @@
                     outlined
                     square
                     v-model="newFormData.company_city"
-                    label="Company City"
+                    :label="$t('baseinfo.view_company.company_city')"
                     :rules="[ val => val && val.length > 0 || 'Please Enter The Company City']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.company_address"
-                    label="Company Address"
+                    :label="$t('baseinfo.view_company.company_address')"
                     :rules="[ val => val && val.length > 0 || 'Please Enter The Company Address']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
@@ -211,14 +211,14 @@
                     square
                     v-model.number="newFormData.company_contact"
                     type="number"
-                    label="Company Contact"
+                    :label="$t('baseinfo.view_company.company_contact')"
                     :rules="[ val => val && val > 0 || 'Please Enter The Company Contact']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.company_manager"
-                    label="Company Manager"
+                    :label="$t('baseinfo.view_company.company_manager')"
                     :rules="[ val => val && val.length > 0 || 'Please Enter The company_manager']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>

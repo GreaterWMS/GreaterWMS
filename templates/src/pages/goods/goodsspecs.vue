@@ -45,9 +45,9 @@
                           outlined
                           square
                           v-model="editFormData.goods_specs"
-                          label="Goods_specs"
+                          :label="$t('goods.view_goodslist.goods_specs')"
                           autofocus
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the goods_specs']"
+                          :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Specs']"
                  />
                </q-td>
              </template>
@@ -129,9 +129,9 @@
                     outlined
                     square
                     v-model="newFormData.goods_specs"
-                    label="Goods_specs"
+                    :label="$t('goods.view_goodslist.goods_specs')"
                     autofocus
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the goods_specs']"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Specs']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
