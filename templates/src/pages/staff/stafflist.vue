@@ -56,7 +56,7 @@
                           outlined
                           square
                           v-model="editFormData.staff_name"
-                          label="Staff Name"
+                          :label="$t('staff.view_staff.staff_name')"
                           autofocus
                           :rules="[ val => val && val.length > 0 || 'Please Enter The Staff Name']"
                  />
@@ -76,7 +76,7 @@
                            :options="staff_type_list"
                            transition-show="scale"
                            transition-hide="scale"
-                           label="Staff Type"
+                           :label="$t('staff.view_staff.staff_type')"
                            :rules="[ val => val && val.length > 0 || 'Please Enter The Staff Type']"
                  />
                </q-td>
@@ -173,7 +173,7 @@
                     outlined
                     square
                     v-model="newFormData.staff_name"
-                    label="Staff Name"
+                    :label="$t('staff.view_staff.staff_name')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter The Staff Name']"
                     @keyup.enter="newDataSubmit()"/>
@@ -184,7 +184,7 @@
                      :options="staff_type_list"
                      transition-show="scale"
                      transition-hide="scale"
-                     label="Staff Type"
+                     :label="$t('staff.view_staff.staff_type')"
                      :rules="[ val => val && val.length > 0 || 'Please Enter The Staff Type']"
                      @keyup.enter="newDataSubmit()"
                      style="margin-top: 5px"/>

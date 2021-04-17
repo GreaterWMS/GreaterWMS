@@ -123,8 +123,8 @@
     <router-view />
 
 <script>
-import { getauth, postauth, putauth, deleteauth, ViewPrintAuth, getfile } from 'boot/axios_request'
-import { date, exportFile, LocalStorage } from 'quasar'
+import { getauth, ViewPrintAuth } from 'boot/axios_request'
+import { LocalStorage } from 'quasar'
 
 export default {
   name: 'Pagednlist',
@@ -147,11 +147,11 @@ export default {
       driver_list: [],
       customer_detail: {},
       columns: [
-        {name: 'dn_code', required: true, label: this.$t('outbound.view_dn.dn_code'), align: 'left', field: 'dn_code'},
-        {name: 'dn_status', label: this.$t('outbound.view_dn.dn_status'), field: 'dn_status', align: 'center'},
-        {name: 'total_weight', label: this.$t('outbound.view_dn.total_weight'), field: 'total_weight', align: 'center'},
-        {name: 'total_volume', label: this.$t('outbound.view_dn.total_volume'), field: 'total_volume', align: 'center'},
-        {name: 'customer', label: this.$t('outbound.view_dn.customer'), field: 'customer', align: 'center'},
+        { name: 'dn_code', required: true, label: this.$t('outbound.view_dn.dn_code'), align: 'left', field: 'dn_code'},
+        { name: 'dn_status', label: this.$t('outbound.view_dn.dn_status'), field: 'dn_status', align: 'center'},
+        { name: 'total_weight', label: this.$t('outbound.view_dn.total_weight'), field: 'total_weight', align: 'center'},
+        { name: 'total_volume', label: this.$t('outbound.view_dn.total_volume'), field: 'total_volume', align: 'center'},
+        { name: 'customer', label: this.$t('outbound.view_dn.customer'), field: 'customer', align: 'center'},
         {name: 'creater', label: this.$t('creater'), field: 'creater', align: 'center'},
         {name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center'},
         {name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center'},

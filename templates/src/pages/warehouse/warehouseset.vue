@@ -40,7 +40,7 @@
                           outlined
                           square
                           v-model="editFormData.warehouse_name"
-                          label="Warehouse Name"
+                          :label="$t('warehouse.view_warehouse.warehouse_name')"
                           autofocus
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Warehouse Name']"
                  />
@@ -57,8 +57,8 @@
                           outlined
                           square
                           v-model="editFormData.warehouse_city"
-                          label="Warehouse City"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Warehouse City']"
+                          :label="$t('warehouse.view_warehouse.warehouse_city')"
+                          :rules="[ val => val && val.length > 0 || 'Please Enter The Warehouse City']"
                  />
                </q-td>
              </template>
@@ -73,8 +73,8 @@
                           outlined
                           square
                           v-model="editFormData.warehouse_address"
-                          label="Warehouse Address"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Warehouse Address']"
+                          :label="$t('warehouse.view_warehouse.warehouse_address')"
+                          :rules="[ val => val && val.length > 0 || 'Please Enter The Warehouse Address']"
                  />
                </q-td>
              </template>
@@ -95,7 +95,7 @@
                           square
                           v-model.number="editFormData.warehouse_contact"
                           type="number"
-                          label="Warehouse Contact"
+                          :label="$t('warehouse.view_warehouse.warehouse_contact')"
                           :rules="[ val => val && val > 0 || 'Please Enter the Warehouse Contact']"
                  />
                </q-td>
@@ -111,8 +111,8 @@
                           outlined
                           square
                           v-model="editFormData.warehouse_manager"
-                          label="Warehouse Manager"
-                          :rules="[ val => val && val > 0 || 'Please Enter the Warehouse Manager']"
+                          :label="$t('warehouse.view_warehouse.warehouse_manager')"
+                          :rules="[ val => val && val > 0 || 'Please Enter The Warehouse Manager']"
                  />
                </q-td>
              </template>
@@ -194,38 +194,38 @@
                     outlined
                     square
                     v-model="newFormData.warehouse_name"
-                    label="Warehouse Name"
+                    :label="$t('warehouse.view_warehouse.warehouse_name')"
                     autofocus
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Warehouse Name']"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter The Warehouse Name']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.warehouse_city"
-                    label="Warehouse City"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Warehouse City']"
+                    :label="$t('warehouse.view_warehouse.warehouse_city')"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter The Warehouse City']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.warehouse_address"
-                    label="Warehouse Address"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Warehouse Address']"
+                    :label="$t('warehouse.view_warehouse.warehouse_address')"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter The Warehouse Address']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model.number="newFormData.warehouse_contact"
                     type="number"
-                    label="Warehouse Contact"
-                    :rules="[ val => val && val > 0 || 'Please Enter the Warehouse Contact']"
+                    :label="$t('warehouse.view_warehouse.warehouse_contact')"
+                    :rules="[ val => val && val > 0 || 'Please Enter The Warehouse Contact']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.warehouse_manager"
-                    label="Warehouse Manager"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Warehouse Manager']"
+                    :label="$t('warehouse.view_warehouse.warehouse_manager')"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter The Warehouse Manager']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
