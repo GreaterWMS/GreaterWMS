@@ -45,7 +45,7 @@
                           outlined
                           square
                           v-model="editFormData.transportation_supplier"
-                          label="Transportation Supplier"
+                          :label="$t('finance.view_freight.transportation_supplier')"
                           autofocus
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Transportation Supplier']"
                  />
@@ -62,7 +62,7 @@
                           outlined
                           square
                           v-model.number="editFormData.send_city"
-                          label="Send City"
+                          :label="$t('finance.view_freight.send_city')"
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Send City']"
                  />
                </q-td>
@@ -78,7 +78,7 @@
                           outlined
                           square
                           v-model.number="editFormData.receiver_city"
-                          label="Receiver City"
+                          :label="$t('finance.view_freight.receiver_city')"
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Receiver City']"
                  />
                </q-td>
@@ -95,7 +95,7 @@
                           square
                           v-model.number="editFormData.weight_fee"
                           type="number"
-                          label="Weight Fee"
+                          :label="$t('finance.view_freight.weight_fee')"
                           :rules="[ val => val && val > 0 || 'Weight Fee must greater than 0']"
                  />
                </q-td>
@@ -112,7 +112,7 @@
                           square
                           v-model.number="editFormData.volume_fee"
                           type="number"
-                          label="Volume Fee"
+                          :label="$t('finance.view_freight.volume_fee')"
                           :rules="[ val => val && val > 0 || 'Volume Fee must greater than 0']"
                  />
                </q-td>
@@ -129,7 +129,7 @@
                           square
                           v-model.number="editFormData.min_payment"
                           type="number"
-                          label="Min Payment"
+                          :label="$t('finance.view_freight.min_payment')"
                           :rules="[ val => val && val > 0 || 'Min Payment must greater than 0']"
                  />
                </q-td>
@@ -212,7 +212,7 @@
                     outlined
                     square
                     v-model="newFormData.transportation_supplier"
-                    label="transportation_supplier"
+                    :label="$t('finance.view_freight.transportation_supplier')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Transportation Supplier']"
                     @keyup.enter="newDataSubmit()"/>
@@ -220,14 +220,14 @@
                     outlined
                     square
                     v-model.number="newFormData.send_city"
-                    label="Send City"
+                    :label="$t('finance.view_freight.send_city')"
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Send City']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model.number="newFormData.receiver_city"
-                    label="Receiver City"
+                    :label="$t('finance.view_freight.receiver_city')"
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Receiver City']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
@@ -235,7 +235,7 @@
                     square
                     v-model.number="newFormData.weight_fee"
                     type="number"
-                    label="Weight Fee"
+                    :label="$t('finance.view_freight.weight_fee')"
                     :rules="[ val => val && val > 0 || 'Weight Fee must greater than 0']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
@@ -243,7 +243,7 @@
                     square
                     v-model.number="newFormData.volume_fee"
                     type="number"
-                    label="Volume Fee"
+                    :label="$t('finance.view_freight.volume_fee')"
                     :rules="[ val => val && val > 0 || 'Volume Fee must greater than 0']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
@@ -251,16 +251,8 @@
                     square
                     v-model.number="newFormData.min_payment"
                     type="number"
-                    label="Min Payment"
+                    :label="$t('finance.view_freight.min_payment')"
                     :rules="[ val => val && val > 0 || 'Min Payment must greater than 0']"
-                    @keyup.enter="newDataSubmit()"/>
-                      <q-input dense
-                    outlined
-                    square
-                    v-model.number="newFormData.capital_cost"
-                    type="number"
-                    label="Capital Cost"
-                    :rules="[ val => val && val > 0 || 'Capital Cost depth must greater than 0']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">

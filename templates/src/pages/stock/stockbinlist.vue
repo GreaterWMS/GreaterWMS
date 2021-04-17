@@ -114,7 +114,7 @@
                     debounce="500"
                     v-model.number="movedata.move_qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     :rules="[ val => val && val > 0 || 'Please Enter the Qty, It must > 0']"
                     @keyup.enter="MoveToBinSubmit()">
@@ -126,7 +126,7 @@
                          hide-selected
                          fill-input
                          v-model="movedata.move_to_bin"
-                         label="Move To Bin"
+                         :label="$t('warehouse.view_binset.bin_name')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="MoveToBinSubmit()">

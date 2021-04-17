@@ -229,7 +229,7 @@
                       debounce="500"
                       v-model="newFormData.customer"
                       :options="customer_list"
-                      label="Customer List"
+                      :label="$t('baseinfo.view_customer.customer_name')"
                       style="margin-bottom: 5px"
                       :rules="[ val => val && val.length > 0 || 'Please Enter the Customer']"
                       @keyup.enter="newDataSubmit()"/>
@@ -239,7 +239,7 @@
                     debounce="500"
                     v-model.number="goodsData1.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="newDataSubmit()">
              <template v-slot:before>
@@ -250,7 +250,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData1.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          autofocus
@@ -274,7 +274,7 @@
                     debounce="500"
                     v-model.number="goodsData2.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="newDataSubmit()">
              <template v-slot:before>
@@ -285,7 +285,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData2.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="newDataSubmit()">
@@ -308,7 +308,7 @@
                     debounce="500"
                     v-model.number="goodsData3.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="newDataSubmit()">
              <template v-slot:before>
@@ -319,7 +319,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData3.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="newDataSubmit()">
@@ -342,7 +342,7 @@
                     debounce="500"
                     v-model.number="goodsData4.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="newDataSubmit()">
              <template v-slot:before>
@@ -353,7 +353,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData4.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="newDataSubmit()">
@@ -376,7 +376,7 @@
                     debounce="500"
                     v-model.number="goodsData5.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="newDataSubmit()">
              <template v-slot:before>
@@ -387,7 +387,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData5.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="newDataSubmit()">
@@ -410,7 +410,7 @@
                     debounce="500"
                     v-model.number="goodsData6.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="newDataSubmit()">
              <template v-slot:before>
@@ -421,7 +421,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData6.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="newDataSubmit()">
@@ -444,7 +444,7 @@
                     debounce="500"
                     v-model.number="goodsData7.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="newDataSubmit()">
              <template v-slot:before>
@@ -455,7 +455,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData7.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="newDataSubmit()">
@@ -478,7 +478,7 @@
                     debounce="500"
                     v-model.number="goodsData8.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="newDataSubmit()">
              <template v-slot:before>
@@ -489,7 +489,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData8.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="newDataSubmit()">
@@ -512,7 +512,7 @@
                     debounce="500"
                     v-model.number="goodsData9.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="newDataSubmit()">
              <template v-slot:before>
@@ -523,7 +523,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData9.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="newDataSubmit()">
@@ -546,7 +546,7 @@
                     debounce="500"
                     v-model.number="goodsData10.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="newDataSubmit()">
              <template v-slot:before>
@@ -557,7 +557,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData10.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="newDataSubmit()">
@@ -597,7 +597,7 @@
                       debounce="500"
                       v-model="newFormData.customer"
                       :options="customer_list"
-                      label="Customer List"
+                      :label="$t('baseinfo.view_customer.customer_name')"
                       style="margin-bottom: 5px"
                       :rules="[ val => val && val.length > 0 || 'Please Enter the customer']"
                       @keyup.enter="editDataSubmit()"/>
@@ -607,7 +607,7 @@
                     debounce="500"
                     v-model.number="goodsData1.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="editDataSubmit()">
              <template v-slot:before>
@@ -618,7 +618,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData1.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          autofocus
@@ -642,7 +642,7 @@
                     debounce="500"
                     v-model.number="goodsData2.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="editDataSubmit()">
              <template v-slot:before>
@@ -653,7 +653,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData2.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="editDataSubmit()">
@@ -676,7 +676,7 @@
                     debounce="500"
                     v-model.number="goodsData3.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="editDataSubmit()">
              <template v-slot:before>
@@ -687,7 +687,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData3.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="editDataSubmit()">
@@ -710,7 +710,7 @@
                     debounce="500"
                     v-model.number="goodsData4.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="editDataSubmit()">
              <template v-slot:before>
@@ -721,7 +721,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData4.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="editDataSubmit()">
@@ -744,7 +744,7 @@
                     debounce="500"
                     v-model.number="goodsData5.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="editDataSubmit()">
              <template v-slot:before>
@@ -755,7 +755,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData5.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="editDataSubmit()">
@@ -778,7 +778,7 @@
                     debounce="500"
                     v-model.number="goodsData6.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="editDataSubmit()">
              <template v-slot:before>
@@ -789,7 +789,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData6.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="editDataSubmit()">
@@ -812,7 +812,7 @@
                     debounce="500"
                     v-model.number="goodsData7.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="editDataSubmit()">
              <template v-slot:before>
@@ -823,7 +823,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData7.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="editDataSubmit()">
@@ -846,7 +846,7 @@
                     debounce="500"
                     v-model.number="goodsData8.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="editDataSubmit()">
              <template v-slot:before>
@@ -857,7 +857,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData8.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="editDataSubmit()">
@@ -880,7 +880,7 @@
                     debounce="500"
                     v-model.number="goodsData9.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="editDataSubmit()">
              <template v-slot:before>
@@ -891,7 +891,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData9.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="editDataSubmit()">
@@ -914,7 +914,7 @@
                     debounce="500"
                     v-model.number="goodsData10.qty"
                     type="number"
-                    label="Goods QTY"
+                    :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
                     @keyup.enter="editDataSubmit()">
              <template v-slot:before>
@@ -925,7 +925,7 @@
                          hide-selected
                          fill-input
                          v-model="goodsData10.code"
-                         label="Goods Code"
+                         :label="$t('goods.view_goodslist.goods_code')"
                          :options="options"
                          @filter="filterFn"
                          @keyup.enter="editDataSubmit()">
@@ -1092,7 +1092,7 @@
                      disable
                      readonly
                      v-model="pickFormData.customer"
-                     label="Customer List"
+                     :label="$t('baseinfo.view_customer.customer_name')"
                      style="margin-bottom: 5px"
             />
            <div v-for="(item, index) in pickFormData.goodsData" :key="index">
@@ -1133,7 +1133,7 @@
                       hide-selected
                       fill-input
                       v-model="dispatchFormData.driver"
-                      label="Driver List"
+                      :label="$t('driver.view_driver.driver_name')"
                       :options="driver_options"
                       @filter="filterFnDispatch"
                       autofocus
@@ -1174,7 +1174,7 @@
                      debounce="500"
                      v-model.number="item.intransit_qty"
                      type="number"
-                     label="Deliver Actual QTY"
+                     :label="$t('outbound.view_dn.delivery_actual_qty')"
                     style="margin-bottom: 5px"
             >
              <template v-slot:after>
@@ -1184,7 +1184,7 @@
                         debounce="500"
                         v-model.number="item.delivery_damage_qty"
                         type="number"
-                        label="Damage"
+                        :label="$t('outbound.view_dn.delivery_damage_qty')"
                >
               </q-input>
              </template>
