@@ -50,7 +50,7 @@
                           outlined
                           square
                           v-model="editFormData.supplier_name"
-                          label="Supplier Name"
+                          :label="$t('baseinfo.view_supplier.supplier_name')"
                           autofocus
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier Name']"
                  />
@@ -67,7 +67,7 @@
                           outlined
                           square
                           v-model="editFormData.supplier_city"
-                          label="Supplier City"
+                          :label="$t('baseinfo.view_supplier.supplier_city')"
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier City']"
                  />
                </q-td>
@@ -83,7 +83,7 @@
                           outlined
                           square
                           v-model="editFormData.supplier_address"
-                          label="Supplier Address"
+                          :label="$t('baseinfo.view_supplier.supplier_address')"
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier Address']"
                  />
                </q-td>
@@ -100,7 +100,7 @@
                           square
                           v-model.number="editFormData.supplier_contact"
                           type="number"
-                          label="Supplier Contact"
+                          :label="$t('baseinfo.view_supplier.supplier_contact')"
                           :rules="[ val => val && val > 0 || 'Please Enter the Supplier Contact']"
                  />
                </q-td>
@@ -116,7 +116,7 @@
                           outlined
                           square
                           v-model="editFormData.supplier_manager"
-                          label="Supplier Manager"
+                          :label="$t('baseinfo.view_supplier.supplier_manager')"
                           :rules="[ val => val && val > 0 || 'Please Enter the Supplier Manager']"
                  />
                </q-td>
@@ -133,7 +133,7 @@
                           square
                           v-model.number="editFormData.supplier_level"
                           type="number"
-                          label="Supplier Level"
+                          :label="$t('baseinfo.view_supplier.supplier_level')"
                           :rules="[ val => val && val > 0 || 'Please Enter the Supplier Level']"
                  />
                </q-td>
@@ -216,7 +216,7 @@
                     outlined
                     square
                     v-model="newFormData.supplier_name"
-                    label="Supplier Name"
+                    :label="$t('baseinfo.view_supplier.supplier_name')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier Name']"
                     @keyup.enter="newDataSubmit()"/>
@@ -224,14 +224,14 @@
                     outlined
                     square
                     v-model="newFormData.supplier_city"
-                    label="Supplier City"
+                    :label="$t('baseinfo.view_supplier.supplier_city')"
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier City']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.supplier_address"
-                    label="Supplier Address"
+                    :label="$t('baseinfo.view_supplier.supplier_address')"
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier Address']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
@@ -239,14 +239,14 @@
                     square
                     v-model.number="newFormData.supplier_contact"
                     type="number"
-                    label="Supplier Contact"
+                    :label="$t('baseinfo.view_supplier.supplier_contact')"
                     :rules="[ val => val && val > 0 || 'Please Enter the Supplier Contact']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.supplier_manager"
-                    label="Supplier Manager"
+                    :label="$t('baseinfo.view_supplier.supplier_manager')"
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier Manager']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
@@ -254,7 +254,7 @@
                     square
                     v-model.number="newFormData.supplier_level"
                     type="number"
-                    label="Supplier Level"
+                    :label="$t('baseinfo.view_supplier.supplier_level')"
                     :rules="[ val => val && val > 0 || 'Please Enter the Supplier Level']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>

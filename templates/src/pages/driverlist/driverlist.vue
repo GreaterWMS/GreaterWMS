@@ -50,7 +50,7 @@
                           outlined
                           square
                           v-model="editFormData.driver_name"
-                          label="Driver Name"
+                          :label="$t('driver.view_driver.driver_name')"
                           autofocus
                  />
                </q-td>
@@ -66,7 +66,7 @@
                           outlined
                           square
                           v-model="editFormData.license_plate"
-                          label="License Plate"
+                          :label="$t('driver.view_driver.license_plate')"
                  />
                </q-td>
              </template>
@@ -82,7 +82,7 @@
                           square
                           type="number"
                           v-model.number="editFormData.contact"
-                          label="Contact"
+                          :label="$t('driver.view_driver.contact')"
                  />
                </q-td>
              </template>
@@ -164,7 +164,7 @@
                     outlined
                     square
                     v-model="newFormData.driver_name"
-                    label="Driver Name"
+                    :label="$t('driver.view_driver.driver_name')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Driver Name']"
                     @keyup.enter="newDataSubmit()"/>
@@ -172,7 +172,7 @@
                     outlined
                     square
                     v-model="newFormData.license_plate"
-                    label="License Plate"
+                    :label="$t('driver.view_driver.license_plate')"
                     :rules="[ val => val && val.length > 0 || 'Please Enter the License Plate']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
@@ -180,7 +180,7 @@
                     square
                     type="number"
                     v-model.number="newFormData.contact"
-                    label="Contact"
+                    :label="$t('driver.view_driver.contact')"
                     :rules="[ val => val && val > 0 || 'Please Enter The Contact']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>

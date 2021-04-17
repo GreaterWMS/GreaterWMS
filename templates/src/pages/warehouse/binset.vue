@@ -50,7 +50,7 @@
                           outlined
                           square
                           v-model="editFormData.bin_name"
-                          label="Bin Name"
+                          :label="$t('warehouse.view_binset.bin_name')"
                           autofocus
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Bin_name']"
                  />
@@ -70,7 +70,7 @@
                            :options="bin_size_list"
                            transition-show="scale"
                            transition-hide="scale"
-                           label="Bin Size"
+                           :label="$t('warehouse.view_binset.bin_size')"
                            :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Size']"
                  />
                </q-td>
@@ -89,7 +89,7 @@
                            :options="bin_property_list"
                            transition-show="scale"
                            transition-hide="scale"
-                           label="Bin Property"
+                           :label="$t('warehouse.view_binset.bin_property')"
                            :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Property']"
                  />
                </q-td>
@@ -175,7 +175,7 @@
                     outlined
                     square
                     v-model="newFormData.bin_name"
-                    label="Bin Name"
+                    :label="$t('warehouse.view_binset.bin_name')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Name']"
                     @keyup.enter="newDataSubmit()"/>
@@ -186,7 +186,7 @@
                      :options="bin_size_list"
                      transition-show="scale"
                      transition-hide="scale"
-                     label="Bin Size"
+                     :label="$t('warehouse.view_binset.bin_size')"
                      :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Size']"
                      />
            <q-select dense
@@ -196,7 +196,7 @@
                      :options="bin_property_list"
                      transition-show="scale"
                      transition-hide="scale"
-                     label="Bin Property"
+                     :label="$t('warehouse.view_binset.bin_property')"
                      :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Property']"
                     />
          </q-card-section>

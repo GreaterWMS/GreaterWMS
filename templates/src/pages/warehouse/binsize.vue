@@ -50,7 +50,7 @@
                           outlined
                           square
                           v-model="editFormData.bin_size"
-                          label="Bin Size"
+                          :label="$t('warehouse.view_binsize.bin_size')"
                           autofocus
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Bin_size']"
                  />
@@ -68,7 +68,7 @@
                           square
                           v-model.number="editFormData.bin_size_w"
                           type="number"
-                          label="Bin Size Wide(Unit:mm)"
+                          :label="$t('warehouse.view_binsize.bin_size_w')"
                           :rules="[ val => val && val > 0 || 'Bin Size width must greater than 0']"
                  />
                </q-td>
@@ -85,7 +85,7 @@
                           square
                           v-model.number="editFormData.bin_size_d"
                           type="number"
-                          label="Bin Size Depth(Unit:mm)"
+                          :label="$t('warehouse.view_binsize.bin_size_d')"
                           :rules="[ val => val && val > 0 || 'Bin Size depth must greater than 0']"
                  />
                </q-td>
@@ -101,7 +101,7 @@
                           outlined
                           square
                           v-model="editFormData.bin_size_h"
-                          label="Bin Size Height(Unit:mm)"
+                          :label="$t('warehouse.view_binsize.bin_size_h')"
                           :rules="[ val => val && val > 0 || 'Bin Size height must greater than 0']"
                  />
                </q-td>
@@ -184,7 +184,7 @@
                     outlined
                     square
                     v-model="newFormData.bin_size"
-                    label="Bin Size"
+                    :label="$t('warehouse.view_binsize.bin_size')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Size']"
                     @keyup.enter="newDataSubmit()"/>
@@ -193,7 +193,7 @@
                     square
                     v-model.number="newFormData.bin_size_w"
                     type="number"
-                    label="Bin Size Wide(Unit:mm)"
+                    :label="$t('warehouse.view_binsize.bin_size_w')"
                     :rules="[ val => val && val > 0 || 'Bin Size width must greater than 0']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
@@ -201,7 +201,7 @@
                     square
                     v-model.number="newFormData.bin_size_d"
                     type="number"
-                    label="Bin Size Depth(Unit:mm)"
+                    :label="$t('warehouse.view_binsize.bin_size_d')"
                     :rules="[ val => val && val > 0 || 'Bin Size depth must greater than 0']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
@@ -209,7 +209,7 @@
                     square
                     v-model.number="newFormData.bin_size_h"
                     type="number"
-                    label="Bin Size Height(Unit:mm)"
+                    :label="$t('warehouse.view_binsize.bin_size_h')"
                     :rules="[ val => val && val > 0 || 'Bin Size height must greater than 0']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>

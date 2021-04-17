@@ -16,14 +16,14 @@
         </transition>
         <q-space />
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn v-show="$q.platform.is.desktop" icon="img:statics/icons/logo.png" stretch flat :label="$t('index.home')" to="/">
+          <q-btn v-show="$q.platform.is.desktop && !$q.platform.is.electron" icon="img:statics/icons/logo.png" stretch flat :label="$t('index.home')" to="/">
             <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
               {{ $t('index.title_tip') }}
             </q-tooltip>
           </q-btn>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <a v-show="$q.platform.is.desktop" href="/docs/" style="text-decoration:none; color: #c8e6c9">
+          <a v-show="$q.platform.is.desktop && !$q.platform.is.electron" href="/docs/" style="text-decoration:none; color: #c8e6c9">
             <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px">
               <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
                 {{ $t('index.api') }}
@@ -32,7 +32,7 @@
           </a>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn v-show="$q.platform.is.desktop" icon="img:statics/icons/GitHub.png" round dense flat @click="brownlink('https://github.com/Singosgu/GreaterWMS')" style="margin: 0 10px 0 10px">
+          <q-btn v-show="$q.platform.is.desktop && !$q.platform.is.electron" icon="img:statics/icons/GitHub.png" round dense flat @click="brownlink('https://github.com/Singosgu/GreaterWMS')" style="margin: 0 10px 0 10px">
             <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
               GitHub Link
             </q-tooltip>
@@ -142,7 +142,8 @@
         bordered
         content-class="bg-grey-3 shadow-24"
       >
-      <q-scroll-area class="fit" style="overflow-y: hidden">
+      <q-scroll-area class="fit" style="overflow-y: auto"
+      >
         <q-list>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
@@ -687,9 +688,9 @@
       <q-card-actions align="right" class="text-primary">
         <q-btn v-show="!downloadprocess" flat :label="$t('index.cancel')" v-close-popup @click="NewVersionignore()" />
         <q-btn v-show="!downloadprocess" color="primary" :label="$t('index.download')" @click="NewVersionDownload()"/>
-        <q-linear-progress v-show="downloadprocess" size="25px" :value="processpercent" color="accent">
+        <q-linear-progress v-show="downloadprocess" size="25px" :value="(processpercent / 100)" color="accent">
           <div class="absolute-full flex flex-center">
-            <q-badge color="white" text-color="accent" :label="processpercent" />
+            <q-badge color="white" text-color="accent" :label="processpercent.toFixed(2) + '' + '%' " />
           </div>
         </q-linear-progress>
       </q-card-actions>

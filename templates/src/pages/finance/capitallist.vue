@@ -50,7 +50,7 @@
                           outlined
                           square
                           v-model="editFormData.capital_name"
-                          label="Capital Name"
+                          :label="$t('finance.view_capital.capital_name')"
                           autofocus
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Capital Name']"
                  />
@@ -68,7 +68,7 @@
                           square
                           v-model.number="editFormData.capital_qty"
                           type="number"
-                          label="Capital Qty"
+                          :label="$t('finance.view_capital.capital_qty')"
                           :rules="[ val => val && val > 0 || 'Capital Qty width must greater than 0']"
                  />
                </q-td>
@@ -85,7 +85,7 @@
                           square
                           v-model.number="editFormData.capital_cost"
                           type="number"
-                          label="Capital Cost"
+                          :label="$t('finance.view_capital.capital_cost')"
                           :rules="[ val => val && val > 0 || 'Capital Cost depth must greater than 0']"
                  />
                </q-td>
@@ -168,7 +168,7 @@
                     outlined
                     square
                     v-model="newFormData.capital_name"
-                    label="Capital Name"
+                    :label="$t('finance.view_capital.capital_name')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Capital Name']"
                     @keyup.enter="newDataSubmit()"/>
@@ -177,7 +177,7 @@
                     square
                     v-model.number="newFormData.capital_qty"
                     type="number"
-                    label="Capital Qty"
+                    :label="$t('finance.view_capital.capital_qty')"
                     :rules="[ val => val && val > 0 || 'Capital Qty width must greater than 0']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
@@ -185,7 +185,7 @@
                     square
                     v-model.number="newFormData.capital_cost"
                     type="number"
-                    label="Capital Cost"
+                    :label="$t('finance.view_capital.capital_cost')"
                     :rules="[ val => val && val > 0 || 'Capital Cost depth must greater than 0']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
