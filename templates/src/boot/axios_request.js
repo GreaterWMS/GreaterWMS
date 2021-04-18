@@ -2,8 +2,8 @@ import Vue from 'vue'
 import axios from 'axios'
 import { LocalStorage } from 'quasar'
 
-const baseurl = 'https://wms.56yhz.com/'
-const wsurl = 'wss://wms.56yhz.com/websocket/'
+const baseurl = 'http://127.0.0.1:8008/'
+const wsurl = 'ws://127.0.0.1:8008/'
 
 const axiosInstance = axios.create({
   baseURL: baseurl,
