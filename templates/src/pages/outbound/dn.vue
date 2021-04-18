@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <transition appear enter-active-class="animated fadeIn">
+  <div>
+    <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-column-table shadow-24"
         :data="table_list"
@@ -17,173 +17,173 @@
         flat
         bordered
       >
-         <template v-slot:top>
-           <q-btn-group push>
-             <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+        <template v-slot:top>
+          <q-btn-group push>
+            <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                    :label="$t('new')" icon="add" @click="newFormOpen()">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                 {{ $t('newtip') }}
-               </q-tooltip>
-             </q-btn>
-             <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                 {{ $t('refreshtip') }}
-               </q-tooltip>
-             </q-btn>
-             <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                   :label="$t('new')" icon="add" @click="newFormOpen()">
+              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('newtip') }}
+              </q-tooltip>
+            </q-btn>
+            <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
+              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('refreshtip') }}
+              </q-tooltip>
+            </q-btn>
+            <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                    :label="$t('release')" icon="img:statics/outbound/orderrelease.png" @click="orderreleaseAllData()">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                 {{ $t('releaseallorder') }}
-               </q-tooltip>
-             </q-btn>
-             <q-btn :label="$t('downloaddnlist')" icon="cloud_download" @click="downloadlistData()">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                   :label="$t('release')" icon="img:statics/outbound/orderrelease.png" @click="orderreleaseAllData()">
+              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('releaseallorder') }}
+              </q-tooltip>
+            </q-btn>
+            <q-btn :label="$t('downloaddnlist')" icon="cloud_download" @click="downloadlistData()">
+              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('downloaddnlisttip') }}
-               </q-tooltip>
-             </q-btn>
-             <q-btn :label="$t('downloaddndetail')" icon="cloud_download" @click="downloaddetailData()">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                 {{ $t('downloaddndetailtip') }}
-               </q-tooltip>
-             </q-btn>
-           </q-btn-group>
-           <q-space />
-           <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
-             <template v-slot:append>
-               <q-icon name="search" @click="getSearchList()"/>
-             </template>
-           </q-input>
-         </template>
-         <template v-slot:body="props">
-           <q-tr :props="props">
-             <q-td key="dn_code" :props="props">
-               {{ props.row.dn_code }}
-             </q-td>
-             <q-td key="dn_status" :props="props">
-               {{ props.row.dn_status }}
-             </q-td>
-             <q-td key="total_weight" :props="props">
-               {{ props.row.total_weight }}
-             </q-td>
-             <q-td key="total_volume" :props="props">
-               {{ props.row.total_volume }}
-             </q-td>
-             <q-td key="customer" :props="props">
-               {{ props.row.customer }}
-             </q-td>
-             <q-td key="creater" :props="props">
-               {{ props.row.creater }}
-             </q-td>
-             <q-td key="create_time" :props="props">
-               {{ props.row.create_time }}
-             </q-td>
-             <q-td key="update_time" :props="props">
-               {{ props.row.update_time }}
-             </q-td>
-             <q-td key="action" :props="props" style="width: 100px">
-               <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+              </q-tooltip>
+            </q-btn>
+            <q-btn :label="$t('downloaddndetail')" icon="cloud_download" @click="downloaddetailData()">
+              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('downloaddndetailtip') }}
+              </q-tooltip>
+            </q-btn>
+          </q-btn-group>
+          <q-space />
+          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
+            <template v-slot:append>
+              <q-icon name="search" @click="getSearchList()"/>
+            </template>
+          </q-input>
+        </template>
+        <template v-slot:body="props">
+          <q-tr :props="props">
+            <q-td key="dn_code" :props="props">
+              {{ props.row.dn_code }}
+            </q-td>
+            <q-td key="dn_status" :props="props">
+              {{ props.row.dn_status }}
+            </q-td>
+            <q-td key="total_weight" :props="props">
+              {{ props.row.total_weight }}
+            </q-td>
+            <q-td key="total_volume" :props="props">
+              {{ props.row.total_volume }}
+            </q-td>
+            <q-td key="customer" :props="props">
+              {{ props.row.customer }}
+            </q-td>
+            <q-td key="creater" :props="props">
+              {{ props.row.creater }}
+            </q-td>
+            <q-td key="create_time" :props="props">
+              {{ props.row.create_time }}
+            </q-td>
+            <q-td key="update_time" :props="props">
+              {{ props.row.update_time }}
+            </q-td>
+            <q-td key="action" :props="props" style="width: 100px">
+              <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                      round flat push color="info" icon="visibility" @click="viewData(props.row)">
-                 <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                   {{ $t('printthisdn') }}
+                     round flat push color="info" icon="visibility" @click="viewData(props.row)">
+                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                  {{ $t('printthisdn') }}
                 </q-tooltip>
-               </q-btn>
-               <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+              </q-btn>
+              <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                      round flat push color="positive" icon="img:statics/outbound/order.png" @click="neworderData(props.row)">
-                 <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                   {{ $t('confirmorder') }}
+                     round flat push color="positive" icon="img:statics/outbound/order.png" @click="neworderData(props.row)">
+                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                  {{ $t('confirmorder') }}
                 </q-tooltip>
-               </q-btn>
-               <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+              </q-btn>
+              <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                      round flat push color="positive" icon="img:statics/outbound/orderrelease.png" @click="orderreleaseData(props.row)">
-                 <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                   {{ $t('releaseorder') }}
+                     round flat push color="positive" icon="img:statics/outbound/orderrelease.png" @click="orderreleaseData(props.row)">
+                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                  {{ $t('releaseorder') }}
                 </q-tooltip>
-               </q-btn>
-               <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+              </q-btn>
+              <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                      round flat push color="secondary" icon="print" @click="PrintPickingList(props.row)">
-                 <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                   {{ $t('print') }}
+                     round flat push color="secondary" icon="print" @click="PrintPickingList(props.row)">
+                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                  {{ $t('print') }}
                 </q-tooltip>
-               </q-btn>
-               <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+              </q-btn>
+              <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                      round flat push color="purple" icon="img:statics/outbound/picked.png" @click="pickedData(props.row)">
-                 <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                   {{ $t('confirmpicked') }}
+                     round flat push color="purple" icon="img:statics/outbound/picked.png" @click="pickedData(props.row)">
+                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                  {{ $t('confirmpicked') }}
                 </q-tooltip>
-               </q-btn>
-               <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+              </q-btn>
+              <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                      round flat push color="dark" icon="rv_hookup" @click="DispatchDN(props.row)">
-                 <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                     round flat push color="dark" icon="rv_hookup" @click="DispatchDN(props.row)">
+                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('dispatch') }}
                 </q-tooltip>
-               </q-btn>
-               <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+              </q-btn>
+              <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                      round flat push color="info" icon="img:statics/outbound/receiving.png" @click="PODData(props.row)">
-                 <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                   {{ $t('outbound.pod') }}
+                     round flat push color="info" icon="img:statics/outbound/receiving.png" @click="PODData(props.row)">
+                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                  {{ $t('outbound.pod') }}
                 </q-tooltip>
-               </q-btn>
-               <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+              </q-btn>
+              <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                      round flat push color="purple" icon="edit" @click="editData(props.row)">
-                 <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                     round flat push color="purple" icon="edit" @click="editData(props.row)">
+                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('edit') }}
                 </q-tooltip>
-               </q-btn>
-               <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+              </q-btn>
+              <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                      round flat push color="dark" icon="delete" @click="deleteData(props.row)">
-                 <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                     round flat push color="dark" icon="delete" @click="deleteData(props.row)">
+                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('delete') }}
                 </q-tooltip>
-               </q-btn>
-             </q-td>
-             <template v-if="props.row.transportation_fee.detail !== []">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                 <q-list>
-                   <div v-for="(transportation_fee, index) in props.row.transportation_fee.detail" :key="index">
+              </q-btn>
+            </q-td>
+            <template v-if="props.row.transportation_fee.detail !== []">
+              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                <q-list>
+                  <div v-for="(transportation_fee, index) in props.row.transportation_fee.detail" :key="index">
                     <q-item v-ripple>
                       <q-item-section>
                         <q-item-label>{{ transportation_fee.transportation_supplier }}</q-item-label>
@@ -192,1014 +192,1014 @@
                     </q-item>
                   </div>
                 </q-list>
-               </q-tooltip>
-             </template>
-           </q-tr>
-         </template>
+              </q-tooltip>
+            </template>
+          </q-tr>
+        </template>
       </q-table>
-      </transition>
-      <template>
-        <div class="q-pa-md flex flex-center">
-          <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
-            <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-              {{ $t('previous') }}
-            </q-tooltip>
+    </transition>
+    <template>
+      <div class="q-pa-md flex flex-center">
+        <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
+          <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+            {{ $t('previous') }}
+          </q-tooltip>
+        </q-btn>
+        <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
+          <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+            {{ $t('next') }}
+          </q-tooltip>
+        </q-btn>
+        <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
+      </div>
+    </template>
+    <q-dialog v-model="newForm">
+      <q-card class="shadow-24">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ newFormData.dn_code }}</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
           </q-btn>
-          <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
-            <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-              {{ $t('next') }}
-            </q-tooltip>
-          </q-btn>
-          <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
+        </q-bar>
+        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+          <q-select dense
+                    outlined
+                    square
+                    debounce="500"
+                    v-model="newFormData.customer"
+                    :options="customer_list"
+                    :label="$t('baseinfo.view_customer.customer_name')"
+                    style="margin-bottom: 5px"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Customer']"
+                    @keyup.enter="newDataSubmit()"/>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData1.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="newDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData1.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        autofocus
+                        @keyup.enter="newDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData1.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData1.code = ''" class="cursor-pointer" />
+                </template>
+              </q-select>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData2.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="newDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData2.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="newDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData2.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData2.code = ''" class="cursor-pointer" />
+                </template>
+              </q-select>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData3.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="newDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData3.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="newDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData3.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData3.code = ''" class="cursor-pointer" />
+                </template>
+              </q-select>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData4.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="newDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData4.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="newDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData4.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData4.code = ''" class="cursor-pointer" />
+                </template>
+              </q-select>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData5.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="newDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData5.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="newDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData5.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData5.code = ''" class="cursor-pointer" />
+                </template>
+              </q-select>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData6.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="newDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData6.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="newDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData6.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData6.code = ''" class="cursor-pointer" />
+                </template>
+              </q-select>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData7.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="newDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData7.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="newDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData7.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData7.code = ''" class="cursor-pointer" />
+                </template>
+              </q-select>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData8.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="newDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData8.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="newDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData8.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData8.code = ''" class="cursor-pointer" />
+                </template>
+              </q-select>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData9.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="newDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData9.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="newDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData9.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData9.code = ''" class="cursor-pointer" />
+                </template>
+              </q-select>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData10.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="newDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData10.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="newDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData10.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData10.code = ''" class="cursor-pointer" />
+                </template>
+              </q-select>
+            </template>
+          </q-input>
+        </q-card-section>
+        <div style="float: right; padding: 15px 15px 15px 0">
+          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
+          <q-btn color="primary" @click="newDataSubmit()">{{ $t('submit') }}</q-btn>
         </div>
-      </template>
-      <q-dialog v-model="newForm">
-       <q-card class="shadow-24">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>{{ newFormData.dn_code }}</div>
-           <q-space />
-           <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip>{{ $t('index.close') }}</q-tooltip>
-           </q-btn>
-         </q-bar>
-         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-            <q-select dense
-                      outlined
-                      square
-                      debounce="500"
-                      v-model="newFormData.customer"
-                      :options="customer_list"
-                      :label="$t('baseinfo.view_customer.customer_name')"
-                      style="margin-bottom: 5px"
-                      :rules="[ val => val && val.length > 0 || 'Please Enter the Customer']"
-                      @keyup.enter="newDataSubmit()"/>
-           <q-input dense
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="editMode">
+      <q-card class="shadow-24">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ newFormData.dn_code }}</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+          </q-btn>
+        </q-bar>
+        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+          <q-select dense
                     outlined
                     square
                     debounce="500"
-                    v-model.number="goodsData1.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
+                    v-model="newFormData.customer"
+                    :options="customer_list"
+                    :label="$t('baseinfo.view_customer.customer_name')"
                     style="margin-bottom: 5px"
-                    @keyup.enter="newDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData1.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         autofocus
-                         @keyup.enter="newDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData1.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData1.code = ''" class="cursor-pointer" />
-                 </template>
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the customer']"
+                    @keyup.enter="editDataSubmit()"/>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData1.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="editDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData1.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        autofocus
+                        @keyup.enter="editDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData1.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData1.code = ''" class="cursor-pointer" />
+                </template>
               </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData2.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="newDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData2.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="newDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData2.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData2.code = ''" class="cursor-pointer" />
-                 </template>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData2.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="editDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData2.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="editDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData2.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData2.code = ''" class="cursor-pointer" />
+                </template>
               </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData3.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="newDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData3.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="newDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData3.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData3.code = ''" class="cursor-pointer" />
-                 </template>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData3.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="editDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData3.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="editDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData3.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData3.code = ''" class="cursor-pointer" />
+                </template>
               </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData4.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="newDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData4.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="newDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData4.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData4.code = ''" class="cursor-pointer" />
-                 </template>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData4.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="editDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData4.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="editDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData4.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData4.code = ''" class="cursor-pointer" />
+                </template>
               </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData5.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="newDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData5.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="newDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData5.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData5.code = ''" class="cursor-pointer" />
-                 </template>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData5.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="editDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData5.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="editDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData5.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData5.code = ''" class="cursor-pointer" />
+                </template>
               </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData6.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="newDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData6.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="newDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData6.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData6.code = ''" class="cursor-pointer" />
-                 </template>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData6.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="editDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData6.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="editDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData6.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData6.code = ''" class="cursor-pointer" />
+                </template>
               </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData7.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="newDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData7.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="newDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData7.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData7.code = ''" class="cursor-pointer" />
-                 </template>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData7.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="editDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData7.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="editDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData7.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData7.code = ''" class="cursor-pointer" />
+                </template>
               </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData8.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="newDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData8.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="newDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData8.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData8.code = ''" class="cursor-pointer" />
-                 </template>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData8.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="editDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData8.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="editDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData8.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData8.code = ''" class="cursor-pointer" />
+                </template>
               </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData9.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="newDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData9.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="newDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData9.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData9.code = ''" class="cursor-pointer" />
-                 </template>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData9.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="editDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData9.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="editDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData9.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData9.code = ''" class="cursor-pointer" />
+                </template>
               </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData10.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="newDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData10.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="newDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData10.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData10.code = ''" class="cursor-pointer" />
-                 </template>
+            </template>
+          </q-input>
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   v-model.number="goodsData10.qty"
+                   type="number"
+                   :label="$t('stock.view_stocklist.goods_qty')"
+                   style="margin-bottom: 5px"
+                   @keyup.enter="editDataSubmit()">
+            <template v-slot:before>
+              <q-select dense
+                        outlined
+                        square
+                        use-input
+                        hide-selected
+                        fill-input
+                        v-model="goodsData10.code"
+                        :label="$t('goods.view_goodslist.goods_code')"
+                        :options="options"
+                        @filter="filterFn"
+                        @keyup.enter="editDataSubmit()">
+                <template v-slot:no-option>
+                  <q-item>
+                    <q-item-section class="text-grey">
+                      No results
+                    </q-item-section>
+                  </q-item>
+                </template>
+                <template v-if="goodsData10.code" v-slot:append>
+                  <q-icon name="cancel" @click.stop="goodsData10.code = ''" class="cursor-pointer" />
+                </template>
               </q-select>
-             </template>
-           </q-input>
-         </q-card-section>
-         <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
-           <q-btn color="primary" @click="newDataSubmit()">{{ $t('submit') }}</q-btn>
-         </div>
-       </q-card>
-     </q-dialog>
-      <q-dialog v-model="editMode">
-       <q-card class="shadow-24">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>{{ newFormData.dn_code }}</div>
-           <q-space />
-           <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip>{{ $t('index.close') }}</q-tooltip>
-           </q-btn>
-         </q-bar>
-         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-            <q-select dense
-                      outlined
-                      square
-                      debounce="500"
-                      v-model="newFormData.customer"
-                      :options="customer_list"
-                      :label="$t('baseinfo.view_customer.customer_name')"
-                      style="margin-bottom: 5px"
-                      :rules="[ val => val && val.length > 0 || 'Please Enter the customer']"
-                      @keyup.enter="editDataSubmit()"/>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData1.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="editDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData1.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         autofocus
-                         @keyup.enter="editDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData1.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData1.code = ''" class="cursor-pointer" />
-                 </template>
-              </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData2.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="editDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData2.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="editDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData2.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData2.code = ''" class="cursor-pointer" />
-                 </template>
-              </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData3.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="editDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData3.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="editDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData3.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData3.code = ''" class="cursor-pointer" />
-                 </template>
-              </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData4.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="editDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData4.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="editDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData4.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData4.code = ''" class="cursor-pointer" />
-                 </template>
-              </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData5.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="editDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData5.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="editDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData5.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData5.code = ''" class="cursor-pointer" />
-                 </template>
-              </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData6.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="editDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData6.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="editDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData6.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData6.code = ''" class="cursor-pointer" />
-                 </template>
-              </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData7.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="editDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData7.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="editDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData7.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData7.code = ''" class="cursor-pointer" />
-                 </template>
-              </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData8.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="editDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData8.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="editDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData8.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData8.code = ''" class="cursor-pointer" />
-                 </template>
-              </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData9.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="editDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData9.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="editDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData9.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData9.code = ''" class="cursor-pointer" />
-                 </template>
-              </q-select>
-             </template>
-           </q-input>
-           <q-input dense
-                    outlined
-                    square
-                    debounce="500"
-                    v-model.number="goodsData10.qty"
-                    type="number"
-                    :label="$t('stock.view_stocklist.goods_qty')"
-                    style="margin-bottom: 5px"
-                    @keyup.enter="editDataSubmit()">
-             <template v-slot:before>
-               <q-select dense
-                         outlined
-                         square
-                         use-input
-                         hide-selected
-                         fill-input
-                         v-model="goodsData10.code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         :options="options"
-                         @filter="filterFn"
-                         @keyup.enter="editDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="goodsData10.code" v-slot:append>
-                   <q-icon name="cancel" @click.stop="goodsData10.code = ''" class="cursor-pointer" />
-                 </template>
-              </q-select>
-             </template>
-           </q-input>
-         </q-card-section>
-         <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="editDataCancel()">{{ $t('cancel') }}</q-btn>
-           <q-btn color="primary" @click="editDataSubmit()">{{ $t('submit') }}</q-btn>
-         </div>
-       </q-card>
-     </q-dialog>
-      <q-dialog v-model="deleteForm">
-       <q-card class="shadow-24">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>{{ $t('delete') }}</div>
-           <q-space />
-           <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip>{{ $t('index.close') }}</q-tooltip>
-           </q-btn>
-         </q-bar>
-         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-           {{ $t('deletetip') }}
-         </q-card-section>
-         <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="deleteDataCancel()">{{ $t('cancel') }}</q-btn>
-           <q-btn color="primary" @click="deleteDataSubmit()">{{ $t('submit') }}</q-btn>
-         </div>
-       </q-card>
-     </q-dialog>
-      <q-dialog v-model="neworderForm">
-       <q-card class="shadow-24">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>{{ $t('confirmorder') }}</div>
-           <q-space />
-           <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip>{{ $t('index.close') }}</q-tooltip>
-           </q-btn>
-         </q-bar>
-         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-           {{ $t('deletetip') }}
-         </q-card-section>
-         <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="neworderDataCancel()">{{ $t('cancel') }}</q-btn>
-           <q-btn color="primary" @click="neworderDataSubmit()">{{ $t('submit') }}</q-btn>
-         </div>
-       </q-card>
-     </q-dialog>
-      <q-dialog v-model="orderreleaseForm">
-       <q-card class="shadow-24">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>{{ $t('releaseorder') }}</div>
-           <q-space />
-           <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip>{{ $t('index.close') }}</q-tooltip>
-           </q-btn>
-         </q-bar>
-         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-           {{ $t('deletetip') }}
-         </q-card-section>
-         <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="orderreleaseDataCancel()">{{ $t('cancel') }}</q-btn>
-           <q-btn color="primary" @click="orderreleaseDataSubmit()">{{ $t('submit') }}</q-btn>
-         </div>
-       </q-card>
-     </q-dialog>
-      <q-dialog v-model="viewForm">
-       <q-card id="printMe">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>{{ viewdn }}</div>
-           <q-space />
-         </q-bar>
-         <q-card-section>
-           <div class="text-h6">Sender: {{ warehouse_detail.warehouse_name }}</div>
-           <div class="text-subtitle2">Address: {{ warehouse_detail.warehouse_city }}{{ warehouse_detail.warehouse_address }}</div>
-           <div class="text-subtitle2">Tel: {{ warehouse_detail.warehouse_contact }}</div>
-           <div class="text-h6">Receiver: {{ customer_detail.customer_name }}</div>
-           <div class="text-subtitle2">Address: {{ customer_detail.customer_city }}{{ customer_detail.customer_address }}</div>
-           <div class="text-subtitle2">Tel: {{ customer_detail.customer_contact }}</div>
-         </q-card-section>
-         <q-markup-table>
+            </template>
+          </q-input>
+        </q-card-section>
+        <div style="float: right; padding: 15px 15px 15px 0">
+          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="editDataCancel()">{{ $t('cancel') }}</q-btn>
+          <q-btn color="primary" @click="editDataSubmit()">{{ $t('submit') }}</q-btn>
+        </div>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="deleteForm">
+      <q-card class="shadow-24">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ $t('delete') }}</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+          </q-btn>
+        </q-bar>
+        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+          {{ $t('deletetip') }}
+        </q-card-section>
+        <div style="float: right; padding: 15px 15px 15px 0">
+          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="deleteDataCancel()">{{ $t('cancel') }}</q-btn>
+          <q-btn color="primary" @click="deleteDataSubmit()">{{ $t('submit') }}</q-btn>
+        </div>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="neworderForm">
+      <q-card class="shadow-24">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ $t('confirmorder') }}</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+          </q-btn>
+        </q-bar>
+        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+          {{ $t('deletetip') }}
+        </q-card-section>
+        <div style="float: right; padding: 15px 15px 15px 0">
+          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="neworderDataCancel()">{{ $t('cancel') }}</q-btn>
+          <q-btn color="primary" @click="neworderDataSubmit()">{{ $t('submit') }}</q-btn>
+        </div>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="orderreleaseForm">
+      <q-card class="shadow-24">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ $t('releaseorder') }}</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+          </q-btn>
+        </q-bar>
+        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+          {{ $t('deletetip') }}
+        </q-card-section>
+        <div style="float: right; padding: 15px 15px 15px 0">
+          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="orderreleaseDataCancel()">{{ $t('cancel') }}</q-btn>
+          <q-btn color="primary" @click="orderreleaseDataSubmit()">{{ $t('submit') }}</q-btn>
+        </div>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="viewForm">
+      <q-card id="printMe">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ viewdn }}</div>
+          <q-space />
+        </q-bar>
+        <q-card-section>
+          <div class="text-h6">Sender: {{ warehouse_detail.warehouse_name }}</div>
+          <div class="text-subtitle2">Address: {{ warehouse_detail.warehouse_city }}{{ warehouse_detail.warehouse_address }}</div>
+          <div class="text-subtitle2">Tel: {{ warehouse_detail.warehouse_contact }}</div>
+          <div class="text-h6">Receiver: {{ customer_detail.customer_name }}</div>
+          <div class="text-subtitle2">Address: {{ customer_detail.customer_city }}{{ customer_detail.customer_address }}</div>
+          <div class="text-subtitle2">Tel: {{ customer_detail.customer_contact }}</div>
+        </q-card-section>
+        <q-markup-table>
           <thead>
-            <tr>
-              <th class="text-left">Goods Code</th>
-              <th class="text-right">Goods Weight(Unit: KG)</th>
-              <th class="text-right">Goods Volume(Unit: Cubic Metres)</th>
-              <th class="text-right">Shipping QTY</th>
-              <th class="text-right">Comments</th>
-            </tr>
+          <tr>
+            <th class="text-left">Goods Code</th>
+            <th class="text-right">Goods Weight(Unit: KG)</th>
+            <th class="text-right">Goods Volume(Unit: Cubic Metres)</th>
+            <th class="text-right">Shipping QTY</th>
+            <th class="text-right">Comments</th>
+          </tr>
           </thead>
           <tbody>
-            <tr v-for="(view, index) in viewprint_table" :key="index">
-              <td class="text-left">{{ view.goods_code }}</td>
-              <td class="text-right">{{ view.goods_weight }}</td>
-              <td class="text-right">{{ view.goods_volume }}</td>
-              <td class="text-right">{{ view.picked_qty + view.intransit_qty }}</td>
-              <td class="text-right"></td>
-            </tr>
+          <tr v-for="(view, index) in viewprint_table" :key="index">
+            <td class="text-left">{{ view.goods_code }}</td>
+            <td class="text-right">{{ view.goods_weight }}</td>
+            <td class="text-right">{{ view.goods_volume }}</td>
+            <td class="text-right">{{ view.picked_qty + view.intransit_qty }}</td>
+            <td class="text-right"></td>
+          </tr>
           </tbody>
         </q-markup-table>
-       </q-card>
-        <div style="float: right; padding: 15px 15px 15px 0">
-          <q-btn color="primary" icon="print" v-print="printObj">print</q-btn>
-        </div>
-     </q-dialog>
-      <q-dialog v-model="viewPLForm">
-       <q-card id="printPL">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>{{ $t('print') }}</div>
-           <q-space />
-         </q-bar>
-         <q-markup-table>
+      </q-card>
+      <div style="float: right; padding: 15px 15px 15px 0">
+        <q-btn color="primary" icon="print" v-print="printObj">print</q-btn>
+      </div>
+    </q-dialog>
+    <q-dialog v-model="viewPLForm">
+      <q-card id="printPL">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ $t('print') }}</div>
+          <q-space />
+        </q-bar>
+        <q-markup-table>
           <thead>
-            <tr>
-              <th class="text-left">DN Code</th>
-              <th class="text-right">BIN Name</th>
-              <th class="text-right">Goods Code</th>
-              <th class="text-right">Pick QTY</th>
-              <th class="text-right">Picked QTY</th>
-              <th class="text-right">Comments</th>
-            </tr>
+          <tr>
+            <th class="text-left">DN Code</th>
+            <th class="text-right">BIN Name</th>
+            <th class="text-right">Goods Code</th>
+            <th class="text-right">Pick QTY</th>
+            <th class="text-right">Picked QTY</th>
+            <th class="text-right">Comments</th>
+          </tr>
           </thead>
           <tbody>
-            <tr v-for="(view, index) in pickinglist_print_table" :key="index">
-              <td class="text-left">{{ view.dn_code }}</td>
-              <td class="text-right">{{ view.bin_name }}</td>
-              <td class="text-right">{{ view.goods_code }}</td>
-              <td class="text-right">{{ view.pick_qty }}</td>
-              <td class="text-right"></td>
-              <td class="text-right"></td>
-            </tr>
+          <tr v-for="(view, index) in pickinglist_print_table" :key="index">
+            <td class="text-left">{{ view.dn_code }}</td>
+            <td class="text-right">{{ view.bin_name }}</td>
+            <td class="text-right">{{ view.goods_code }}</td>
+            <td class="text-right">{{ view.pick_qty }}</td>
+            <td class="text-right"></td>
+            <td class="text-right"></td>
+          </tr>
           </tbody>
         </q-markup-table>
-       </q-card>
-        <div style="float: right; padding: 15px 15px 15px 0">
-          <q-btn color="primary" icon="print" v-print="printPL">print</q-btn>
-        </div>
-     </q-dialog>
-      <q-dialog v-model="pickedForm">
-       <q-card class="shadow-24">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>{{ pickFormData.dn_code }}</div>
-           <q-space />
-           <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip>{{ $t('index.close') }}</q-tooltip>
-           </q-btn>
-         </q-bar>
-         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+      </q-card>
+      <div style="float: right; padding: 15px 15px 15px 0">
+        <q-btn color="primary" icon="print" v-print="printPL">print</q-btn>
+      </div>
+    </q-dialog>
+    <q-dialog v-model="pickedForm">
+      <q-card class="shadow-24">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ pickFormData.dn_code }}</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+          </q-btn>
+        </q-bar>
+        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+          <q-input dense
+                   outlined
+                   square
+                   debounce="500"
+                   disable
+                   readonly
+                   v-model="pickFormData.customer"
+                   :label="$t('baseinfo.view_customer.customer_name')"
+                   style="margin-bottom: 5px"
+          />
+          <div v-for="(item, index) in pickFormData.goodsData" :key="index">
             <q-input dense
                      outlined
                      square
-                     debounce="500"
-                     disable
-                     readonly
-                     v-model="pickFormData.customer"
-                     :label="$t('baseinfo.view_customer.customer_name')"
-                     style="margin-bottom: 5px"
-            />
-           <div v-for="(item, index) in pickFormData.goodsData" :key="index">
-             <q-input dense
-                      outlined
-                      square
-                      bottom-slots
-                      type="number"
-                      v-model='item.pick_qty'
-                      :label="item.goods_code"
-             >
-               <template v-slot:append>
-                 {{ item.bin_name }}
-               </template>
+                     bottom-slots
+                     type="number"
+                     v-model='item.pick_qty'
+                     :label="item.goods_code"
+            >
+              <template v-slot:append>
+                {{ item.bin_name }}
+              </template>
             </q-input>
-           </div>
-         </q-card-section>
-         <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="pickedDataCancel()">{{ $t('cancel') }}</q-btn>
-           <q-btn color="primary" @click="pickedDataSubmit()">{{ $t('submit') }}</q-btn>
-         </div>
-       </q-card>
-     </q-dialog>
-      <q-dialog v-model="dispatchForm">
-       <q-card class="shadow-24">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>{{ dispatchFormData.dn_code }}</div>
-           <q-space />
-           <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip>{{ $t('index.close') }}</q-tooltip>
-           </q-btn>
-         </q-bar>
-         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-            <q-select dense
-                      outlined
-                      square
-                      use-input
-                      hide-selected
-                      fill-input
-                      v-model="dispatchFormData.driver"
-                      :label="$t('driver.view_driver.driver_name')"
-                      :options="driver_options"
-                      @filter="filterFnDispatch"
-                      autofocus
-                      @keyup.enter="dispatchDataSubmit()">
-                 <template v-slot:no-option>
-                   <q-item>
-                     <q-item-section class="text-grey">
-                       No results
-                     </q-item-section>
-                   </q-item>
-                 </template>
-                 <template v-if="dispatchFormData.driver" v-slot:append>
-                   <q-icon name="cancel" @click.stop="dispatchFormData.driver = ''" class="cursor-pointer" />
-                 </template>
-              </q-select>
-         </q-card-section>
-         <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="dispatchDataCancel()">{{ $t('cancel') }}</q-btn>
-           <q-btn color="primary" @click="dispatchDataSubmit()">{{ $t('submit') }}</q-btn>
-         </div>
-       </q-card>
-     </q-dialog>
-      <q-dialog v-model="podForm">
-       <q-card class="shadow-24">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>{{ $t('outbound.dn') }}: {{ podFormData.dn_code }}</div>
-           <q-space />
-           <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip>{{ $t('index.close') }}</q-tooltip>
-           </q-btn>
-         </q-bar>
-         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-           {{ $t('baseinfo.customer') }}: {{ podFormData.customer }}
-           <div v-for="(item, index) in podFormData.goodsData" :key="index">
-           <q-input dense
+          </div>
+        </q-card-section>
+        <div style="float: right; padding: 15px 15px 15px 0">
+          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="pickedDataCancel()">{{ $t('cancel') }}</q-btn>
+          <q-btn color="primary" @click="pickedDataSubmit()">{{ $t('submit') }}</q-btn>
+        </div>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="dispatchForm">
+      <q-card class="shadow-24">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ dispatchFormData.dn_code }}</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+          </q-btn>
+        </q-bar>
+        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+          <q-select dense
+                    outlined
+                    square
+                    use-input
+                    hide-selected
+                    fill-input
+                    v-model="dispatchFormData.driver"
+                    :label="$t('driver.view_driver.driver_name')"
+                    :options="driver_options"
+                    @filter="filterFnDispatch"
+                    autofocus
+                    @keyup.enter="dispatchDataSubmit()">
+            <template v-slot:no-option>
+              <q-item>
+                <q-item-section class="text-grey">
+                  No results
+                </q-item-section>
+              </q-item>
+            </template>
+            <template v-if="dispatchFormData.driver" v-slot:append>
+              <q-icon name="cancel" @click.stop="dispatchFormData.driver = ''" class="cursor-pointer" />
+            </template>
+          </q-select>
+        </q-card-section>
+        <div style="float: right; padding: 15px 15px 15px 0">
+          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="dispatchDataCancel()">{{ $t('cancel') }}</q-btn>
+          <q-btn color="primary" @click="dispatchDataSubmit()">{{ $t('submit') }}</q-btn>
+        </div>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="podForm">
+      <q-card class="shadow-24">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ $t('outbound.dn') }}: {{ podFormData.dn_code }}</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+          </q-btn>
+        </q-bar>
+        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+          {{ $t('baseinfo.customer') }}: {{ podFormData.customer }}
+          <div v-for="(item, index) in podFormData.goodsData" :key="index">
+            <q-input dense
                      outlined
                      square
                      debounce="500"
                      v-model.number="item.intransit_qty"
                      type="number"
                      :label="$t('outbound.view_dn.delivery_actual_qty')"
-                    style="margin-bottom: 5px"
+                     style="margin-bottom: 5px"
             >
-             <template v-slot:after>
-               <q-input dense
-                        outlined
-                        square
-                        debounce="500"
-                        v-model.number="item.delivery_damage_qty"
-                        type="number"
-                        :label="$t('outbound.view_dn.delivery_damage_qty')"
-               >
-              </q-input>
-             </template>
-           </q-input>
-             </div>
-         </q-card-section>
-         <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="PODDataCancel()">{{ $t('cancel') }}</q-btn>
-           <q-btn color="primary" @click="PODDataSubmit()">{{ $t('submit') }}</q-btn>
-         </div>
-       </q-card>
-     </q-dialog>
-    </div>
+              <template v-slot:after>
+                <q-input dense
+                         outlined
+                         square
+                         debounce="500"
+                         v-model.number="item.delivery_damage_qty"
+                         type="number"
+                         :label="$t('outbound.view_dn.delivery_damage_qty')"
+                >
+                </q-input>
+              </template>
+            </q-input>
+          </div>
+        </q-card-section>
+        <div style="float: right; padding: 15px 15px 15px 0">
+          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="PODDataCancel()">{{ $t('cancel') }}</q-btn>
+          <q-btn color="primary" @click="PODDataSubmit()">{{ $t('submit') }}</q-btn>
+        </div>
+      </q-card>
+    </q-dialog>
+  </div>
 </template>
-    <router-view />
+<router-view />
 
 <script>
 import { getauth, postauth, putauth, deleteauth, ViewPrintAuth, getfile } from 'boot/axios_request'
@@ -1860,7 +1860,6 @@ export default {
       _this.orderreleaseid = 0
     },
     filterFn (val, update, abort) {
-      var _this = this
       if (val.length < 1) {
         abort()
         return
@@ -1868,14 +1867,15 @@ export default {
       update(() => {
         const needle = val.toLowerCase()
         getauth('goods/?goods_code__icontains=' + needle).then(res => {
-          var goodscodelist = []
-          res.results.forEach(detail => {
-            goodscodelist.push(detail.goods_code)
-          })
+          const goodscodelist = []
+          for (let i = 0; i < res.results.length; i++) {
+            goodscodelist.push(res.results[i].goods_code)
+          }
           LocalStorage.set('goods_code_list', goodscodelist)
-          _this.options = LocalStorage.getItem('goods_code_list')
+          this.options = LocalStorage.getItem('goods_code_list')
+          this.$forceUpdate()
         }).catch(err => {
-          _this.$q.notify({
+          this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
