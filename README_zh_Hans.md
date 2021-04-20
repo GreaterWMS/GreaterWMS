@@ -14,6 +14,7 @@
 - 视频教程：[B站](https://space.bilibili.com/407321291/channel/detail?cid=152043)(所有的教程都会更新在这里)
 - Demo地址：[DEMO](https://www.56yhz.com/)(注册会获得初始化Demo数据)
 - 技术交流QQ群：463562933
+- CIMO-ADMIN(vue-quasar-manage): [GitHub](https://github.com/972784674t/vue-quasar-manage) | [Gitee](https://gitee.com/incimo/vue-quasar-manage)
 
 ---
 
