@@ -1639,12 +1639,13 @@ export default {
       update(() => {
         const needle = val.toLowerCase()
         getauth('goods/?goods_code__icontains=' + needle).then(res => {
-          var goodscodelist = []
-          res.results.forEach(detail => {
-            goodscodelist.push(detail.goods_code)
-          })
-          SessionStorage.set('goods_code', goodscodelist)
-          _this.options = SessionStorage.getItem('goods_code')
+          const goodscodelist = []
+          for (let i = 0; i < res.results.length; i++) {
+            goodscodelist.push(res.results[i].goods_code)
+          }
+          LocalStorage.set('goods_code_list', goodscodelist)
+          _this.options = LocalStorage.getItem('goods_code_list')
+          _this.$forceUpdate()
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,

@@ -1860,6 +1860,7 @@ export default {
       _this.orderreleaseid = 0
     },
     filterFn (val, update, abort) {
+      var _this = this
       if (val.length < 1) {
         abort()
         return
@@ -1872,10 +1873,10 @@ export default {
             goodscodelist.push(res.results[i].goods_code)
           }
           LocalStorage.set('goods_code_list', goodscodelist)
-          this.options = LocalStorage.getItem('goods_code_list')
-          this.$forceUpdate()
+          _this.options = LocalStorage.getItem('goods_code_list')
+          _this.$forceUpdate()
         }).catch(err => {
-          this.$q.notify({
+          _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
@@ -1992,12 +1993,13 @@ export default {
       update(() => {
         const needle = val.toLowerCase()
         getauth('driver/?driver_name__icontains=' + needle).then(res => {
-          var drivernamelist = []
-          res.results.forEach(detail => {
-            drivernamelist.push(detail.driver_name)
-          })
+          const drivernamelist = []
+          for (let i = 0; i < res.results.length; i++) {
+            drivernamelist.push(res.results[i].driver_name)
+          }
           LocalStorage.set('driver_name_list', drivernamelist)
           _this.driver_options = LocalStorage.getItem('driver_name_list')
+          _this.$forceUpdate()
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
