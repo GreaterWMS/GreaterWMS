@@ -20,7 +20,7 @@ djangorestframework-csv==2.1.0
 drf-yasg==1.20.0
 gprof2dot==2019.11.30
 hyperlink==21.0.0
-idna==3.1
+idna==2.9
 incremental==21.3.0
 inflection==0.5.1
 itypes==1.2.0
