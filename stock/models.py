@@ -41,8 +41,9 @@ class StockBinModel(models.Model):
     picked_qty = models.BigIntegerField(default=0, verbose_name="BinPicked Qty")
     bin_size = models.CharField(max_length=255, verbose_name="Bin size")
     bin_property = models.CharField(max_length=255, verbose_name="Bin Property")
+    t_code = models.CharField(max_length=255, verbose_name="Transaction Code")
     openid = models.CharField(max_length=255, verbose_name="Openid")
-    create_time = models.DateTimeField(auto_now_add=True, verbose_name="Create Time")
+    create_time = models.DateTimeField(auto_now_add=False, verbose_name="Create Time")
     update_time = models.DateTimeField(auto_now=True, blank=True, null=True, verbose_name="Update Time")
 
     class Meta:

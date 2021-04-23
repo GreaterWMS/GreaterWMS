@@ -50,7 +50,7 @@
                           outlined
                           square
                           v-model="editFormData.customer_name"
-                          label="Customer Name"
+                          :label="$t('baseinfo.view_customer.customer_name')"
                           autofocus
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Customer Name']"
                  />
@@ -67,7 +67,7 @@
                           outlined
                           square
                           v-model="editFormData.customer_city"
-                          label="Customer City"
+                          :label="$t('baseinfo.view_customer.customer_city')"
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Customer City']"
                  />
                </q-td>
@@ -83,7 +83,7 @@
                           outlined
                           square
                           v-model="editFormData.customer_address"
-                          label="Customer Address"
+                          :label="$t('baseinfo.view_customer.customer_address')"
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Customer Address']"
                  />
                </q-td>
@@ -100,7 +100,7 @@
                           square
                           v-model.number="editFormData.customer_contact"
                           type="number"
-                          label="Customer Contact"
+                          :label="$t('baseinfo.view_customer.customer_contact')"
                           :rules="[ val => val && val > 0 || 'Please Enter the Customer Contact']"
                  />
                </q-td>
@@ -116,7 +116,7 @@
                           outlined
                           square
                           v-model="editFormData.customer_manager"
-                          label="Customer Manager"
+                          :label="$t('baseinfo.view_customer.customer_manager')"
                           :rules="[ val => val && val > 0 || 'Please Enter the Customer Manager']"
                  />
                </q-td>
@@ -133,7 +133,7 @@
                           square
                           v-model.number="editFormData.customer_level"
                           type="number"
-                          label="Customer Level"
+                          :label="$t('baseinfo.view_customer.customer_level')"
                           :rules="[ val => val && val > 0 || 'Please Enter the Customer Level']"
                  />
                </q-td>
@@ -216,7 +216,7 @@
                     outlined
                     square
                     v-model="newFormData.customer_name"
-                    label="Customer Name"
+                    :label="$t('baseinfo.view_customer.customer_name')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Customer Name']"
                     @keyup.enter="newDataSubmit()"/>
@@ -224,14 +224,14 @@
                     outlined
                     square
                     v-model="newFormData.customer_city"
-                    label="Customer City"
+                    :label="$t('baseinfo.view_customer.customer_city')"
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Customer City']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.customer_address"
-                    label="Customer Address"
+                    :label="$t('baseinfo.view_customer.customer_address')"
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Customer Address']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
@@ -239,14 +239,14 @@
                     square
                     v-model.number="newFormData.customer_contact"
                     type="number"
-                    label="Customer Contact"
+                    :label="$t('baseinfo.view_customer.customer_contact')"
                     :rules="[ val => val && val > 0 || 'Please Enter the Customer Contact']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.customer_manager"
-                    label="Customer Manager"
+                    :label="$t('baseinfo.view_customer.customer_manager')"
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Customer Manager']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
@@ -254,7 +254,7 @@
                     square
                     v-model.number="newFormData.customer_level"
                     type="number"
-                    label="Customer Level"
+                    :label="$t('baseinfo.view_customer.customer_level')"
                     :rules="[ val => val && val > 0 || 'Please Enter the Customer Level']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>

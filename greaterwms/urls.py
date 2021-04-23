@@ -1,18 +1,3 @@
-"""django_wms URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include, re_path
@@ -28,7 +13,7 @@ from . import views
 schema_view = get_schema_view(
    openapi.Info(
        title="GreaterWMS--API Docs",
-       default_version='v2.0.0',
+       default_version='v2.0.12',
        description=
        """
         openid:
@@ -48,6 +33,7 @@ def return_static(request, path, insecure=True, **kwargs):
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='dist/spa/index.html')),
+    path('myip/', views.myip, name='myip'),
     path('asn/', include('asn.urls')),
     path('dn/', include('dn.urls')),
     path('staff/', include('staff.urls')),

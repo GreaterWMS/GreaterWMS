@@ -1,5 +1,5 @@
 import re, datetime, os, urllib, json, django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'greaterwms.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_wms.settings')
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 django.setup()
 from chat.models import ListModel
@@ -43,7 +43,7 @@ async def websocket_application(scope, receive, send):
                         'text': str(text).replace('\'', '\"')
                     })
             else:
-                raise APIException({"detail": "Can not send message to who not yours"})
+                raise APIException({"detail": "Can Not Send Message To Who Not Yours"})
         elif event['type'] == 'websocket.disconnect':
             try:
                 query_string = scope.get('query_string', b'').decode()

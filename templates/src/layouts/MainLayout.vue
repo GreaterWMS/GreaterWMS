@@ -16,14 +16,14 @@
         </transition>
         <q-space />
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn v-show="$q.platform.is.desktop" icon="img:statics/icons/logo.png" stretch flat :label="$t('index.home')" to="/">
+          <q-btn v-show="$q.platform.is.desktop && !$q.platform.is.electron" icon="img:statics/icons/logo.png" stretch flat :label="$t('index.home')" to="/">
             <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
               {{ $t('index.title_tip') }}
             </q-tooltip>
           </q-btn>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <a v-show="$q.platform.is.desktop" href="/docs/" style="text-decoration:none; color: #c8e6c9">
+          <a v-show="$q.platform.is.desktop && !$q.platform.is.electron" href="/docs/" style="text-decoration:none; color: #c8e6c9">
             <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px">
               <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
                 {{ $t('index.api') }}
@@ -32,7 +32,7 @@
           </a>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn v-show="$q.platform.is.desktop" icon="img:statics/icons/GitHub.png" round dense flat @click="brownlink('https://github.com/Singosgu/GreaterWMS')" style="margin: 0 10px 0 10px">
+          <q-btn v-show="$q.platform.is.desktop && !$q.platform.is.electron" icon="img:statics/icons/GitHub.png" round dense flat @click="brownlink('https://github.com/Singosgu/GreaterWMS')" style="margin: 0 10px 0 10px">
             <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
               GitHub Link
             </q-tooltip>
@@ -142,7 +142,8 @@
         bordered
         content-class="bg-grey-3 shadow-24"
       >
-      <q-scroll-area class="fit" style="overflow-y: hidden">
+      <q-scroll-area class="fit" style="overflow-y: auto"
+      >
         <q-list>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
@@ -291,7 +292,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.cordova"
             clickable to="/scan_sorting" @click="linkChange('scan_sorting')" v-ripple exact :active="link === 'scan_sorting'" :class="{ 'my-menu-link': link === 'scan_sorting' }">
             <q-item-section avatar>
               <q-icon name="img:statics/inbound/preloadstock.png" />
@@ -305,7 +306,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Outbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.cordova"
             clickable to="/scan_uptobin" @click="linkChange('scan_uptobin')" v-ripple exact :active="link === 'scan_uptobin'" :class="{ 'my-menu-link': link === 'scan_uptobin' }">
             <q-item-section avatar>
               <q-icon name="img:statics/inbound/presortstock.png" />
@@ -319,7 +320,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.cordova"
             clickable to="/scan_picking" @click="linkChange('scan_picking')" v-ripple exact :active="link === 'scan_picking'" :class="{ 'my-menu-link': link === 'scan_picking' }">
             <q-item-section avatar>
               <q-icon name="img:statics/outbound/picked.png" />
@@ -333,7 +334,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.cordova"
                   clickable to="/scan_shipping" @click="linkChange('scan_shipping')" v-ripple exact :active="link === 'scan_shipping'" :class="{ 'my-menu-link': link === 'scan_shipping' }">
             <q-item-section avatar>
               <q-icon name="rv_hookup" />
@@ -347,7 +348,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.cordova"
             clickable to="/scan_movetobin" @click="linkChange('scan_movetobin')" v-ripple exact :active="link === 'scan_movetobin'" :class="{ 'my-menu-link': link === 'scan_movetobin' }">
             <q-item-section avatar>
               <q-icon name="move_to_inbox" />
@@ -356,7 +357,7 @@
               {{ $t('movetobin') }}
             </q-item-section>
           </q-item>
-          <q-separator />
+          <q-separator v-show="$q.platform.is.cordova" />
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
@@ -687,9 +688,9 @@
       <q-card-actions align="right" class="text-primary">
         <q-btn v-show="!downloadprocess" flat :label="$t('index.cancel')" v-close-popup @click="NewVersionignore()" />
         <q-btn v-show="!downloadprocess" color="primary" :label="$t('index.download')" @click="NewVersionDownload()"/>
-        <q-linear-progress v-show="downloadprocess" size="25px" :value="processpercent" color="accent">
+        <q-linear-progress v-show="downloadprocess" size="25px" :value="(processpercent / 100)" color="accent">
           <div class="absolute-full flex flex-center">
-            <q-badge color="white" text-color="accent" :label="processpercent" />
+            <q-badge color="white" text-color="accent" :label="processpercent.toFixed(2) + '' + '%' " />
           </div>
         </q-linear-progress>
       </q-card-actions>
@@ -765,7 +766,7 @@ export default {
       sender: '',
       receiver: '',
       chat: false,
-      chat_list: '',
+      chat_list: [],
       chat_text: '',
       chat_next: null,
       read: false,
@@ -981,7 +982,7 @@ export default {
       }
       _this.Readnum()
       _this.$q.notify({
-        message: JSON.parse(e.data).sender + 'Send you a message',
+        message: JSON.parse(e.data).sender + ' Send you a message',
         color: 'deep-purple',
         icon: 'textsms',
         position: 'right',

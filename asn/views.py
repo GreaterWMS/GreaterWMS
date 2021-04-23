@@ -4,6 +4,7 @@ from . import serializers
 from .page import MyPageNumberPaginationASNList
 from utils.page import MyPageNumberPagination
 from utils.datasolve import sumOfList, transportation_calculate
+from utils.md5 import Md5
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
@@ -679,65 +680,79 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                                 asn_code=str(data['asn_code'])).first()
                     goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
                                                                 goods_code=str(data['goods_code'])).first()
-                    move_qty = qs.goods_actual_qty - qs.sorted_qty - int(data['qty'])
-                    if move_qty > 0:
-                        qs.sorted_qty = qs.sorted_qty + int(data['qty'])
-                        goods_qty_change.sorted_stock = goods_qty_change.sorted_stock - int(data['qty'])
-                        goods_qty_change.onhand_stock = goods_qty_change.onhand_stock + int(data['qty'])
-                        if bin_detail.bin_property == 'Damage':
-                            goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data['qty'])
-                            qs.goods_damage_qty = qs.goods_damage_qty + int(data['qty'])
-                        elif bin_detail.bin_property == 'Inspection':
-                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['qty'])
-                        elif bin_detail.bin_property == 'Holding':
-                            goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['qty'])
-                        else:
-                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(data['qty'])
-                        qs.save()
-                        goods_qty_change.save()
-                        stockbin.objects.create(openid=self.request.auth.openid,
-                                                bin_name=str(data['bin_name']), goods_code=str(data['goods_code']),
-                                                goods_desc=goods_qty_change.goods_desc, goods_qty=int(data['qty']),
-                                                bin_size=bin_detail.bin_size, bin_property=bin_detail.bin_property)
-                        if bin_detail.empty_label == True:
-                            bin_detail.empty_label = False
-                            bin_detail.save()
-                    elif move_qty == 0:
-                        qs.sorted_qty = qs.sorted_qty + int(data['qty'])
-                        qs.asn_status = 5
-                        goods_qty_change.sorted_stock = goods_qty_change.sorted_stock - int(data['qty'])
-                        goods_qty_change.onhand_stock = goods_qty_change.onhand_stock + int(data['qty'])
-                        if bin_detail.bin_property == 'Damage':
-                            goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data['qty'])
-                            qs.goods_damage_qty = qs.goods_damage_qty + int(data['qty'])
-                        elif bin_detail.bin_property == 'Inspection':
-                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['qty'])
-                        elif bin_detail.bin_property == 'Holding':
-                            goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['qty'])
-                        else:
-                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(data['qty'])
-                        qs.save()
-                        goods_qty_change.save()
-                        if AsnDetailModel.objects.filter(openid=self.request.auth.openid,
-                                                         asn_code=str(data['asn_code']),
-                                                         asn_status=4
-                                                         ).exists():
-                            pass
-                        else:
-                            asn_detail.asn_status = 5
-                            asn_detail.save()
-                        stockbin.objects.create(openid=self.request.auth.openid,
-                                                bin_name=str(data['bin_name']), goods_code=str(data['goods_code']),
-                                                goods_desc=goods_qty_change.goods_desc, goods_qty=int(data['qty']),
-                                                bin_size=bin_detail.bin_size, bin_property=bin_detail.bin_property)
-                        if bin_detail.empty_label == True:
-                            bin_detail.empty_label = False
-                            bin_detail.save()
-                    elif move_qty < 0:
-                        raise APIException({"detail": "Move Qty must < Actual Arrive Qty"})
+                    if int(data['qty']) <= 0:
+                        raise APIException({"detail": "Move QTY Must > 0"})
                     else:
-                        pass
-                    return Response({"success": "Yes"}, status=200)
+                        move_qty = qs.goods_actual_qty - qs.sorted_qty - int(data['qty'])
+                        if move_qty > 0:
+                            qs.sorted_qty = qs.sorted_qty + int(data['qty'])
+                            goods_qty_change.sorted_stock = goods_qty_change.sorted_stock - int(data['qty'])
+                            goods_qty_change.onhand_stock = goods_qty_change.onhand_stock + int(data['qty'])
+                            if bin_detail.bin_property == 'Damage':
+                                goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data['qty'])
+                                qs.goods_damage_qty = qs.goods_damage_qty + int(data['qty'])
+                            elif bin_detail.bin_property == 'Inspection':
+                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['qty'])
+                            elif bin_detail.bin_property == 'Holding':
+                                goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['qty'])
+                            else:
+                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(data['qty'])
+                            qs.save()
+                            goods_qty_change.save()
+                            stockbin.objects.create(openid=self.request.auth.openid,
+                                                    bin_name=str(data['bin_name']),
+                                                    goods_code=str(data['goods_code']),
+                                                    goods_desc=goods_qty_change.goods_desc,
+                                                    goods_qty=int(data['qty']),
+                                                    bin_size=bin_detail.bin_size,
+                                                    bin_property=bin_detail.bin_property,
+                                                    t_code=Md5.md5(str(data['goods_code'])),
+                                                    create_time=qs.create_time
+                                                    )
+                            if bin_detail.empty_label == True:
+                                bin_detail.empty_label = False
+                                bin_detail.save()
+                        elif move_qty == 0:
+                            qs.sorted_qty = qs.sorted_qty + int(data['qty'])
+                            qs.asn_status = 5
+                            goods_qty_change.sorted_stock = goods_qty_change.sorted_stock - int(data['qty'])
+                            goods_qty_change.onhand_stock = goods_qty_change.onhand_stock + int(data['qty'])
+                            if bin_detail.bin_property == 'Damage':
+                                goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data['qty'])
+                                qs.goods_damage_qty = qs.goods_damage_qty + int(data['qty'])
+                            elif bin_detail.bin_property == 'Inspection':
+                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['qty'])
+                            elif bin_detail.bin_property == 'Holding':
+                                goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['qty'])
+                            else:
+                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(data['qty'])
+                            qs.save()
+                            goods_qty_change.save()
+                            if AsnDetailModel.objects.filter(openid=self.request.auth.openid,
+                                                             asn_code=str(data['asn_code']),
+                                                             asn_status=4
+                                                             ).exists():
+                                pass
+                            else:
+                                asn_detail.asn_status = 5
+                                asn_detail.save()
+                            stockbin.objects.create(openid=self.request.auth.openid,
+                                                    bin_name=str(data['bin_name']),
+                                                    goods_code=str(data['goods_code']),
+                                                    goods_desc=goods_qty_change.goods_desc,
+                                                    goods_qty=int(data['qty']),
+                                                    bin_size=bin_detail.bin_size,
+                                                    bin_property=bin_detail.bin_property,
+                                                    t_code=Md5.md5(str(data['goods_code'])),
+                                                    create_time=qs.create_time)
+                            if bin_detail.empty_label == True:
+                                bin_detail.empty_label = False
+                                bin_detail.save()
+                        elif move_qty < 0:
+                            raise APIException({"detail": "Move Qty must < Actual Arrive Qty"})
+                        else:
+                            pass
+                        return Response({"success": "Yes"}, status=200)
 
 class FileListDownloadView(viewsets.ModelViewSet):
     queryset = AsnListModel.objects.all()

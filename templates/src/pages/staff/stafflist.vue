@@ -56,7 +56,7 @@
                           outlined
                           square
                           v-model="editFormData.staff_name"
-                          label="Staff Name"
+                          :label="$t('staff.view_staff.staff_name')"
                           autofocus
                           :rules="[ val => val && val.length > 0 || 'Please Enter The Staff Name']"
                  />
@@ -76,7 +76,7 @@
                            :options="staff_type_list"
                            transition-show="scale"
                            transition-hide="scale"
-                           label="Staff Type"
+                           :label="$t('staff.view_staff.staff_type')"
                            :rules="[ val => val && val.length > 0 || 'Please Enter The Staff Type']"
                  />
                </q-td>
@@ -156,6 +156,7 @@
               {{ $t('next') }}
             </q-tooltip>
           </q-btn>
+          <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
         </div>
       </template>
       <q-dialog v-model="newForm">
@@ -172,7 +173,7 @@
                     outlined
                     square
                     v-model="newFormData.staff_name"
-                    label="Staff Name"
+                    :label="$t('staff.view_staff.staff_name')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter The Staff Name']"
                     @keyup.enter="newDataSubmit()"/>
@@ -183,7 +184,7 @@
                      :options="staff_type_list"
                      transition-show="scale"
                      transition-hide="scale"
-                     label="Staff Type"
+                     :label="$t('staff.view_staff.staff_type')"
                      :rules="[ val => val && val.length > 0 || 'Please Enter The Staff Type']"
                      @keyup.enter="newDataSubmit()"
                      style="margin-top: 5px"/>
@@ -296,7 +297,8 @@ export default {
       newForm: false,
       newFormData: {
         staff_name: '',
-        staff_type: ''
+        staff_type: '',
+        check_code: ''
       },
       editid: 0,
       editFormData: {},
@@ -306,7 +308,7 @@ export default {
       sender: '',
       receiver: '',
       chat: false,
-      chat_list: '',
+      chat_list: [],
       chat_text: '',
       chat_next: null
     }
@@ -436,8 +438,20 @@ export default {
       var _this = this
       _this.getList()
     },
+    RandomCheckCode () {
+      var _this = this
+      var code = ''
+      var codeLength = 4
+      var random = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+      for (var i = 0; i < codeLength; i++) {
+        var index = Math.floor(Math.random() * 9)
+        code += random[index]
+      }
+      _this.newFormData.check_code = code
+    },
     newDataSubmit () {
       var _this = this
+      _this.RandomCheckCode()
       postauth(_this.pathname, _this.newFormData).then(res => {
         if (res.status_code === 400) {
           _this.$q.notify({
@@ -591,7 +605,7 @@ export default {
       }
       _this.Readnum()
       _this.$q.notify({
-        message: JSON.parse(e.data).sender + 'Send you a message',
+        message: JSON.parse(e.data).sender + ' Send you a message',
         color: 'deep-purple',
         icon: 'textsms',
         position: 'right',
