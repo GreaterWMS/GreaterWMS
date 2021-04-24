@@ -65,7 +65,20 @@ def asn_data_validate(data):
             data = 'ASN' + str(int(asn_last_code[0]) + 1).zfill(8)
         return data
 
-
+def dn_data_validate(data):
+    script_obj = re.findall(r'script', str(data), re.IGNORECASE)
+    select_obj = re.findall(r'select', str(data), re.IGNORECASE)
+    if script_obj:
+        raise APIException({'detail': 'Bad Data can‘not be store'})
+    elif select_obj:
+        raise APIException({'detail': 'Bad Data can‘not be store'})
+    else:
+        dn_last_code = re.findall(r'\d+', str(data), re.IGNORECASE)
+        if str(dn_last_code[0]) == '00000001':
+            data = 'DN' + '00000001'
+        else:
+            data = 'DN' + str(int(dn_last_code[0]) + 1).zfill(8)
+        return data
 
 def sumOfList(list, size):
     if (size == 0):
