@@ -117,7 +117,6 @@ class AsnListViewSet(viewsets.ModelViewSet):
             else:
                 raise APIException({"detail": "This ASN Status Is Not '1'"})
 
-
 class AsnDetailViewSet(viewsets.ModelViewSet):
     """
         retrieve:
@@ -570,7 +569,7 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         if self.action == 'create':
-            return serializers.ASNListUpdateSerializer
+            return serializers.ASNSortedPostSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
 
@@ -591,37 +590,57 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
                 }
                 serializer = self.get_serializer(data=check_data)
                 serializer.is_valid(raise_exception=True)
-            qs.asn_status = 4
             for j in range(len(data['goodsData'])):
                 goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
-                                                            goods_code=str(data['goodsData'][j].get('goods_code'))).first()
-                asn_detail = AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=str(data['asn_code']),
-                                                  asn_status=3, supplier=str(data['supplier']),
-                                                  goods_code=str(data['goodsData'][j].get('goods_code'))).first()
-                asn_detail.asn_status = 4
-                asn_detail.goods_actual_qty = int(data['goodsData'][j].get('goods_actual_qty'))
-                goods_qty_check = asn_detail.goods_qty - int(data['goodsData'][j].get('goods_actual_qty'))
-                if goods_qty_check > 0:
-                    asn_detail.goods_shortage_qty = goods_qty_check
-                    asn_detail.goods_more_qty = 0
-                    goods_qty_change.goods_qty = goods_qty_change.goods_qty - goods_qty_check
+                                                            goods_code=str(
+                                                                data['goodsData'][j].get('goods_code'))).first()
+                asn_detail = AsnDetailModel.objects.filter(openid=self.request.auth.openid,
+                                                           asn_code=str(data['asn_code']),
+                                                           asn_status=3, supplier=str(data['supplier']),
+                                                           goods_code=str(
+                                                               data['goodsData'][j].get('goods_code'))).first()
+                if int(data['goodsData'][j].get('goods_actual_qty')) == 0:
+                    asn_detail.goods_actual_qty = int(data['goodsData'][j].get('goods_actual_qty'))
+                    asn_detail.goods_shortage_qty = asn_detail.goods_qty
+                    goods_qty_change.goods_qty = goods_qty_change.goods_qty - asn_detail.goods_qty
                     goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
-                    goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
-                elif goods_qty_check == 0:
-                    asn_detail.goods_shortage_qty = 0
-                    asn_detail.goods_more_qty = 0
-                    goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - int(data['goodsData'][j].get('goods_actual_qty'))
-                    goods_qty_change.sorted_stock = goods_qty_change.sorted_stock +int(data['goodsData'][j].get('goods_actual_qty'))
-                elif goods_qty_check < 0:
-                    asn_detail.goods_shortage_qty = 0
-                    asn_detail.goods_more_qty = abs(goods_qty_check)
-                    goods_qty_change.goods_qty = goods_qty_change.goods_qty + abs(goods_qty_check)
-                    goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
-                    goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
+                    asn_detail.asn_status = 5
+                    asn_detail.save()
+                    goods_qty_change.save()
+                    if goods_qty_change.goods_qty == 0 and goods_qty_change.back_order_stock == 0:
+                        goods_qty_change.delete()
                 else:
-                    pass
-                asn_detail.save()
-                goods_qty_change.save()
+                    asn_detail.goods_actual_qty = int(data['goodsData'][j].get('goods_actual_qty'))
+                    goods_qty_check = asn_detail.goods_qty - int(data['goodsData'][j].get('goods_actual_qty'))
+                    if goods_qty_check > 0:
+                        asn_detail.goods_shortage_qty = goods_qty_check
+                        asn_detail.goods_more_qty = 0
+                        goods_qty_change.goods_qty = goods_qty_change.goods_qty - goods_qty_check
+                        goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
+                        goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
+                    elif goods_qty_check == 0:
+                        asn_detail.goods_shortage_qty = 0
+                        asn_detail.goods_more_qty = 0
+                        goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - int(data['goodsData'][j].get('goods_actual_qty'))
+                        goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
+                    elif goods_qty_check < 0:
+                        asn_detail.goods_shortage_qty = 0
+                        asn_detail.goods_more_qty = abs(goods_qty_check)
+                        goods_qty_change.goods_qty = goods_qty_change.goods_qty + abs(goods_qty_check)
+                        goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
+                        goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
+                    else:
+                        pass
+                    asn_detail.asn_status = 4
+                    asn_detail.save()
+                    goods_qty_change.save()
+                    if goods_qty_change.goods_qty == 0 and goods_qty_change.back_order_stock == 0:
+                        goods_qty_change.delete()
+            if AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=str(data['asn_code']),
+                                                      asn_status=4, supplier=str(data['supplier'])).exists():
+                qs.asn_status = 4
+            else:
+                qs.asn_status = 5
             qs.save()
             return Response({"ok": "ok"}, status=200)
 

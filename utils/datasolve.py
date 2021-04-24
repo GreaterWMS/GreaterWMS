@@ -12,6 +12,32 @@ def data_validate(data):
     else:
         return data
 
+def qty_0_data_validate(data):
+    script_obj = re.findall(r'script', str(data), re.IGNORECASE)
+    select_obj = re.findall(r'select', str(data), re.IGNORECASE)
+    if script_obj:
+        raise APIException({'detail': 'Bad Data can‘not be store'})
+    elif select_obj:
+        raise APIException({'detail': 'Bad Data can‘not be store'})
+    else:
+        if data > 0:
+            return data
+        else:
+            raise APIException({'detail': 'Qty Must > 0'})
+
+def qty_data_validate(data):
+    script_obj = re.findall(r'script', str(data), re.IGNORECASE)
+    select_obj = re.findall(r'select', str(data), re.IGNORECASE)
+    if script_obj:
+        raise APIException({'detail': 'Bad Data can‘not be store'})
+    elif select_obj:
+        raise APIException({'detail': 'Bad Data can‘not be store'})
+    else:
+        if data >= 0:
+            return data
+        else:
+            raise APIException({'detail': 'Qty Must >= 0'})
+
 def openid_validate(data):
     if Users.objects.filter(openid=data).exists():
         return data
@@ -23,6 +49,23 @@ def appid_validate(data):
         return data
     else:
         raise APIException({'detail': 'User does not exists'})
+
+def asn_data_validate(data):
+    script_obj = re.findall(r'script', str(data), re.IGNORECASE)
+    select_obj = re.findall(r'select', str(data), re.IGNORECASE)
+    if script_obj:
+        raise APIException({'detail': 'Bad Data can‘not be store'})
+    elif select_obj:
+        raise APIException({'detail': 'Bad Data can‘not be store'})
+    else:
+        asn_last_code = re.findall(r'\d+', str(data), re.IGNORECASE)
+        if str(asn_last_code[0]) == '00000001':
+            data = 'ASN' + '00000001'
+        else:
+            data = 'ASN' + str(int(asn_last_code[0]) + 1).zfill(8)
+        return data
+
+
 
 def sumOfList(list, size):
     if (size == 0):
