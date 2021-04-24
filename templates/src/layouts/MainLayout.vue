@@ -56,7 +56,7 @@
         <template v-if="authin === '1'">
         <transition appear enter-active-class="animated zoomIn">
           <q-btn round dense flat color="white" icon="notifications" @click="read = true" style="margin: 0 10px 0 10px">
-            <q-badge color="red" text-color="white" floating>
+            <q-badge v-if="read_num" color="red" text-color="white" floating>
               {{ read_num }}
             </q-badge>
             <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
