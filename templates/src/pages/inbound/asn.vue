@@ -1283,44 +1283,44 @@ export default {
       var _this = this
       _this.newFormData.creater = _this.login_name
       if (_this.goodsData1.code !== '' && _this.goodsData1.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData1.code)
-        _this.newFormData.goods_qty.push(_this.goodsData1.qty)
+        _this.newFormData.goods_code[0] = _this.goodsData1.code
+        _this.newFormData.goods_qty[0] = _this.goodsData1.qty
       }
       if (_this.goodsData2.code !== '' && _this.goodsData2.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData2.code)
-        _this.newFormData.goods_qty.push(_this.goodsData2.qty)
+        _this.newFormData.goods_code[1] = _this.goodsData2.code
+        _this.newFormData.goods_qty[1] = _this.goodsData2.qty
       }
       if (_this.goodsData3.code !== '' && _this.goodsData3.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData3.code)
-        _this.newFormData.goods_qty.push(_this.goodsData3.qty)
+        _this.newFormData.goods_code[2] = _this.goodsData3.code
+        _this.newFormData.goods_qty[2] = _this.goodsData3.qty
       }
       if (_this.goodsData4.code !== '' && _this.goodsData4.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData4.code)
-        _this.newFormData.goods_qty.push(_this.goodsData4.qty)
+        _this.newFormData.goods_code[3] = _this.goodsData4.code
+        _this.newFormData.goods_qty[3] = _this.goodsData4.qty
       }
       if (_this.goodsData5.code !== '' && _this.goodsData5.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData5.code)
-        _this.newFormData.goods_qty.push(_this.goodsData5.qty)
+        _this.newFormData.goods_code[4] = _this.goodsData5.code
+        _this.newFormData.goods_qty[4] = _this.goodsData5.qty
       }
       if (_this.goodsData6.code !== '' && _this.goodsData6.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData6.code)
-        _this.newFormData.goods_qty.push(_this.goodsData6.qty)
+        _this.newFormData.goods_code[5] = _this.goodsData6.code
+        _this.newFormData.goods_qty[5] = _this.goodsData6.qty
       }
       if (_this.goodsData7.code !== '' && _this.goodsData7.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData7.code)
-        _this.newFormData.goods_qty.push(_this.goodsData7.qty)
+        _this.newFormData.goods_code[6] = _this.goodsData7.code
+        _this.newFormData.goods_qty[6] = _this.goodsData7.qty
       }
       if (_this.goodsData8.code !== '' && _this.goodsData8.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData8.code)
-        _this.newFormData.goods_qty.push(_this.goodsData8.qty)
+        _this.newFormData.goods_code[7] = _this.goodsData8.code
+        _this.newFormData.goods_qty[7] = _this.goodsData8.qty
       }
       if (_this.goodsData9.code !== '' && _this.goodsData9.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData9.code)
-        _this.newFormData.goods_qty.push(_this.goodsData9.qty)
+        _this.newFormData.goods_code[8] = _this.goodsData9.code
+        _this.newFormData.goods_qty[8] = _this.goodsData9.qty
       }
       if (_this.goodsData10.code !== '' && _this.goodsData10.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData10.code)
-        _this.newFormData.goods_qty.push(_this.goodsData10.qty)
+        _this.newFormData.goods_code[9] = _this.goodsData10.code
+        _this.newFormData.goods_qty[9] = _this.goodsData10.qty
       }
       postauth(_this.pathname + 'detail/', _this.newFormData).then(res => {
         if (res.status_code === 400) {
@@ -1422,44 +1422,44 @@ export default {
       var _this = this
       _this.newFormData.creater = _this.login_name
       if (_this.goodsData1.code !== '' && _this.goodsData1.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData1.code)
-        _this.newFormData.goods_qty.push(_this.goodsData1.qty)
+        _this.newFormData.goods_code[0] = _this.goodsData1.code
+        _this.newFormData.goods_qty[0] = _this.goodsData1.qty
       }
       if (_this.goodsData2.code !== '' && _this.goodsData2.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData2.code)
-        _this.newFormData.goods_qty.push(_this.goodsData2.qty)
+        _this.newFormData.goods_code[1] = _this.goodsData2.code
+        _this.newFormData.goods_qty[1] = _this.goodsData2.qty
       }
       if (_this.goodsData3.code !== '' && _this.goodsData3.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData3.code)
-        _this.newFormData.goods_qty.push(_this.goodsData3.qty)
+        _this.newFormData.goods_code[2] = _this.goodsData3.code
+        _this.newFormData.goods_qty[2] = _this.goodsData3.qty
       }
       if (_this.goodsData4.code !== '' && _this.goodsData4.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData4.code)
-        _this.newFormData.goods_qty.push(_this.goodsData4.qty)
+        _this.newFormData.goods_code[3] = _this.goodsData4.code
+        _this.newFormData.goods_qty[3] = _this.goodsData4.qty
       }
       if (_this.goodsData5.code !== '' && _this.goodsData5.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData5.code)
-        _this.newFormData.goods_qty.push(_this.goodsData5.qty)
+        _this.newFormData.goods_code[4] = _this.goodsData5.code
+        _this.newFormData.goods_qty[4] = _this.goodsData5.qty
       }
       if (_this.goodsData6.code !== '' && _this.goodsData6.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData6.code)
-        _this.newFormData.goods_qty.push(_this.goodsData6.qty)
+        _this.newFormData.goods_code[5] = _this.goodsData6.code
+        _this.newFormData.goods_qty[5] = _this.goodsData6.qty
       }
       if (_this.goodsData7.code !== '' && _this.goodsData7.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData7.code)
-        _this.newFormData.goods_qty.push(_this.goodsData7.qty)
+        _this.newFormData.goods_code[6] = _this.goodsData7.code
+        _this.newFormData.goods_qty[6] = _this.goodsData7.qty
       }
       if (_this.goodsData8.code !== '' && _this.goodsData8.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData8.code)
-        _this.newFormData.goods_qty.push(_this.goodsData8.qty)
+        _this.newFormData.goods_code[7] = _this.goodsData8.code
+        _this.newFormData.goods_qty[7] = _this.goodsData8.qty
       }
       if (_this.goodsData9.code !== '' && _this.goodsData9.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData9.code)
-        _this.newFormData.goods_qty.push(_this.goodsData9.qty)
+        _this.newFormData.goods_code[8] = _this.goodsData9.code
+        _this.newFormData.goods_qty[8] = _this.goodsData9.qty
       }
       if (_this.goodsData10.code !== '' && _this.goodsData10.qty !== '') {
-        _this.newFormData.goods_code.push(_this.goodsData10.code)
-        _this.newFormData.goods_qty.push(_this.goodsData10.qty)
+        _this.newFormData.goods_code[9] = _this.goodsData10.code
+        _this.newFormData.goods_qty[9] = _this.goodsData10.qty
       }
       putauth(_this.pathname + 'detail/', _this.newFormData).then(res => {
         if (res.status_code === 400) {
