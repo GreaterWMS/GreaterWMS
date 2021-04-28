@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class ListModel(models.Model):
     sender = models.CharField(max_length=100, verbose_name='Sender')
     receiver = models.CharField(max_length=100, verbose_name='Receiver')

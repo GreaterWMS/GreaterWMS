@@ -21,6 +21,7 @@ class Filter(FilterSet):
             "goods_shape": ['exact', 'iexact', 'contains', 'icontains'],
             "goods_specs": ['exact', 'iexact', 'contains', 'icontains'],
             "goods_origin": ['exact', 'iexact', 'contains', 'icontains'],
+            "safety_stock": ['exact', 'iexact', 'gt', 'gte', 'lt', 'lte', 'isnull', 'in', 'range'],
             "goods_cost": ['exact', 'iexact', 'gt', 'gte', 'lt', 'lte', 'isnull', 'in', 'range'],
             "goods_price": ['exact', 'iexact', 'gt', 'gte', 'lt', 'lte', 'isnull', 'in', 'range'],
             "creater": ['exact', 'iexact', 'contains', 'icontains'],
