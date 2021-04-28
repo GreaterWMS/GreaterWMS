@@ -12,7 +12,7 @@ class Filter(FilterSet):
             "customer_contact": ['exact', 'iexact', 'contains', 'icontains'],
             "customer_manager": ['exact', 'iexact', 'contains', 'icontains'],
             "customer_level": ['exact', 'iexact', 'gt', 'gte', 'lt', 'lte', 'isnull', 'in', 'range'],
-            "openid": ['exact', 'iexact', 'contains', 'icontains'],
+            "creater": ['exact', 'iexact', 'contains', 'icontains'],
             "is_delete": ['exact', 'iexact'],
             "create_time": ['year', 'month', 'day', 'week_day', 'gt', 'gte', 'lt', 'lte', 'range'],
             "update_time": ['year', 'month', 'day', 'week_day', 'gt', 'gte', 'lt', 'lte', 'range']
