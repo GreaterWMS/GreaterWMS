@@ -1,12 +1,6 @@
 from django.http import JsonResponse
-from userprofile.models import Users
-from userprofile import serializers
 from utils.fbmsg import FBMsg
-from utils.md5 import Md5
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 from django.contrib import auth
-from django.utils import timezone
 from django.contrib.auth.models import User
 import json
 from userprofile.models import Users
