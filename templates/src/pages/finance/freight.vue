@@ -369,7 +369,7 @@ export default {
     getSearchList () {
       var _this = this
       if (LocalStorage.has('auth')) {
-        getauth(_this.pathname + '?transportation_supplier__icontains=' + _this.filter, {
+        getauth(_this.pathname + '?receiver_city__icontains=' + _this.filter, {
         }).then(res => {
           _this.table_list = res.results
           if (res.previous) {
