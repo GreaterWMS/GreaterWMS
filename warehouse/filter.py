@@ -11,7 +11,6 @@ class Filter(FilterSet):
             "warehouse_address": ['exact', 'iexact', 'contains', 'icontains'],
             "warehouse_contact": ['exact', 'iexact', 'gt', 'gte', 'lt', 'lte', 'isnull', 'in', 'range'],
             "warehouse_manager": ['exact', 'iexact', 'contains', 'icontains'],
-            "warehouse_level": ['exact', 'iexact', 'gt', 'gte', 'lt', 'lte', 'isnull', 'in', 'range'],
             "creater": ['exact', 'iexact', 'contains', 'icontains'],
             "is_delete": ['exact', 'iexact'],
             "create_time": ['year', 'month', 'day', 'week_day', 'gt', 'gte', 'lt', 'lte', 'range'],
