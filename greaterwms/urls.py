@@ -1,8 +1,7 @@
 from django.contrib import admin
 from django.conf import settings
 from django.urls import path, include, re_path
-from django.views.generic.base import RedirectView, TemplateView
-from django.conf.urls.static import static
+from django.views.generic.base import TemplateView
 from django.contrib.staticfiles.views import serve
 from django.views.static import serve as static_serve
 from rest_framework import permissions
@@ -13,7 +12,7 @@ from . import views
 schema_view = get_schema_view(
    openapi.Info(
        title="GreaterWMS--API Docs",
-       default_version='v2.0.12',
+       default_version='v2.0.19',
        description=
        """
         openid:
