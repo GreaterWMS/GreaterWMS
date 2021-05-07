@@ -53,21 +53,3 @@ async def myip(request):
     ip = s.getsockname()[0]
     s.close()
     return JsonResponse({"ip": ip})
-
-async def baseurl(request):
-    import json
-    baseurl_path = str(settings.BASE_DIR) + '/templates/public/statics/baseurl.json'
-    wsurl_path = str(settings.BASE_DIR) + '/templates/public/statics/wsurl.json'
-    baseurl = {
-        "baseurl": "http://127.0.0.1:8008/"
-    }
-    wsurl = {
-        "wsurl": "ws://127.0.0.1:8008/"
-    }
-    with open(baseurl_path, 'w') as http:
-        json.dump(baseurl, http)
-    http.close()
-    with open(wsurl_path, 'w') as ws:
-        json.dump(wsurl, ws)
-    ws.close()
-    return JsonResponse({"Status": "Success"})
