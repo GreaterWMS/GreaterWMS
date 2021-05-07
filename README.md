@@ -117,7 +117,7 @@ Use supervisor to guard the Django process, and then use Nginx as a reverse prox
 
 It is recommended to use Nginx for deployment. You need to specify the WebSocket link when deploying. If you do not specify it, the real-time communication function will report an error.
 
-Also need to modify ws_url in axios_request.js
+Also need to modify ws_url in templates/public/statics/baseurl.js
 
 ~~~shell
 ## Example changes before
