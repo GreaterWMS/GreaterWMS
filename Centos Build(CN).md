@@ -48,6 +48,9 @@ sudo /usr/local/bin/yarn install // 等待Yarn安装完成，其实你也可以s
 sudo /usr/local/bin/quasar d // 使用quasar命令启动前端页面
 // 前端会向 "127.0.0.1:8008"发请求, 在这里我们只是看下项目是不是可以运行
 Ctrl + C // 退回到templates文件夹
+
+从2.0.19版本以后，优化了请求地址修改方式，直接修改templates/public/statics/baseurl.js，中的baseurl和wsurl，就可以成功更改前端请求地址，不再需要做下面的quasar build打包工作。
+
 cd src/boot // 进入在src/boot文件夹
 sudo vim axios_request.js // 我们开始更改请求地址
 // 更改 "127.0.0.1" 成你的内网IP, baseurl 是http请求地址 , ws 是 websocket请求地址

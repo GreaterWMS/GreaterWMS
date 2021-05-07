@@ -54,6 +54,9 @@ daphne -p 8008 greaterwms.asgi:application
 # 回到CMD界面，按住Ctrl+C来退出项目启动
 # 进入templates目录
 cd templates
+
+从2.0.19版本以后，优化了请求地址修改方式，直接修改templates/public/statics/baseurl.js，中的baseurl和wsurl，就可以成功更改前端请求地址，不再需要做下面的quasar build打包工作。
+
 # 升级下npm
 npm install -g npm
 # 切换npm源为国内源
