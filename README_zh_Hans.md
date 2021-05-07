@@ -115,7 +115,7 @@ pip install supervisor
 
 推荐使用Nginx进行部署，部署的时候需要指定WebSocket链接，如果不指定，实时通信功能将报错
 
-另需要修改axios_request.js里的ws_url
+另需要修改templates/public/statics/baseurl.js里的ws_url
 
 ~~~shell
 ## 示例更改前
@@ -344,7 +344,6 @@ const wsurl = 'wss://你的域名/websocket/'
   2. ASN Status = 2, 拓展开发为司机到货排队，如果我们有很多司机到货，这可以做成一个排队系统，同时也可以让采购和销售看到到货信息，减少不必要的邮件和电话沟通，点击Finish Loading，即确认货物已经卸货完成，ASN Status更新到3,货物信息会出现在Sorting，此时的ASN状态表示，货物已卸到仓库，等待分拣
   3. ASN Status = 3, 货物分拣是必须的一个流程，没有货物分拣，货物是无法上架的，上架的原则就是货物整理好，摆放到相对应的库位上，点击Confirm Sorted，ASN Status更新到4，即确认分拣完成，等待上架
   4. 此时移动Sorted页面，会出现需要上架的货物明细，点击Move To Bin，上架完成，当然，系统会根据上架后的库位属性，自动更新商品库存数量信息
-  
 ### 发货管理
 - DN发货单状态
   1. DN Status = 1, DN发货单创建完成，此时订单还是可以修改状态，且系统中的库存数量不会发生任何改变，点击Confirm Order，DN Status更新到2，即订单已经被确认，且无法更改，同时系统中的货物库存数量会自动更新，比如Can Order数量和Ordered数量
@@ -353,7 +352,6 @@ const wsurl = 'wss://你的域名/websocket/'
   4. DN Status = 4, 发货交接，此功能会出现在Beta6更新
   5. DN Status = 5, 客户签收，此功能会出现在Beta7更新
   6. DN Status = 6, 对账结束，订单关闭，此功能会出现在Beta7更新
-  
 ### 退货管理
 - RO退货订单
   此功能将会出现在正式版中
