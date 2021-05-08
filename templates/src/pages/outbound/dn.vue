@@ -1493,27 +1493,13 @@ export default {
         _this.newFormData.goods_qty[9] = _this.goodsData10.qty
       }
       postauth(_this.pathname + 'detail/', _this.newFormData).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.getList()
-          _this.newDataCancel()
-          _this.$q.notify({
-            message: 'Success Create',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.getList()
+        _this.newDataCancel()
+        _this.$q.notify({
+          message: 'Success Create',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1632,27 +1618,13 @@ export default {
         _this.newFormData.goods_qty[9] = _this.goodsData10.qty
       }
       putauth(_this.pathname + 'detail/', _this.newFormData).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.editDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Edit Data',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.editDataCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Edit Data',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1690,27 +1662,13 @@ export default {
     deleteDataSubmit () {
       var _this = this
       deleteauth(_this.pathname + 'list/' + _this.deleteid + '/').then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.deleteDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Edit Data',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.deleteDataCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Edit Data',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1740,27 +1698,13 @@ export default {
     neworderDataSubmit () {
       var _this = this
       postauth(_this.pathname + 'neworder/' + _this.neworderid + '/', {}).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.neworderDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Confirm dn Delivery',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.neworderDataCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Confirm dn Delivery',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1790,26 +1734,12 @@ export default {
     orderreleaseAllData () {
       var _this = this
       postauth(_this.pathname + 'orderrelease/', {}).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Release All Order',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Release All Order',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1821,27 +1751,13 @@ export default {
     orderreleaseDataSubmit () {
       var _this = this
       putauth(_this.pathname + 'orderrelease/' + _this.orderreleaseid + '/', {}).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.orderreleaseDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Release DN Code',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.orderreleaseDataCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Release DN Code',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1883,22 +1799,8 @@ export default {
     PrintPickingList (e) {
       var _this = this
       getauth(_this.pathname + 'pickinglist/' + e.id + '/').then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Other Error',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.pickinglist_print_table = res
-          _this.viewPLForm = true
-        }
+        _this.pickinglist_print_table = res
+        _this.viewPLForm = true
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1929,27 +1831,13 @@ export default {
       var _this = this
       _this.pickFormData.creater = _this.login_name
       postauth(_this.pathname + 'picked/' + _this.pickedid + '/', _this.pickFormData).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter The Words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.pickedDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Confirm Picking List',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.pickedDataCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Confirm Picking List',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -2027,27 +1915,13 @@ export default {
     dispatchDataSubmit () {
       var _this = this
       postauth(_this.pathname + 'dispatch/' + _this.dispatchid + '/', _this.dispatchFormData).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter Driver Name',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.dispatchDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Dispatch',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.dispatchDataCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Dispatch',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -2087,27 +1961,13 @@ export default {
     PODDataSubmit () {
       var _this = this
       postauth(_this.pathname + 'pod/' + _this.podid + '/', _this.podFormData).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter Receiving QTY',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.PODDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Dispatch',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.PODDataCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Dispatch',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,

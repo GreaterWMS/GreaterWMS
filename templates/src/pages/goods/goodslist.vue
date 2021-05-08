@@ -308,7 +308,7 @@
                           v-model.number="editFormData.goods_cost"
                           type="number"
                           :label="$t('goods.view_goodslist.goods_cost')"
-                          :rules="[ val => val || 'Please Enter the Goods Cost']"
+                          :rules="[ val => val && val > 0 || 'Please Enter the Goods Cost']"
                  />
                </q-td>
              </template>
@@ -325,7 +325,7 @@
                           v-model.number="editFormData.goods_price"
                           type="number"
                           :label="$t('goods.view_goodslist.goods_price')"
-                          :rules="[ val => val || 'Please Enter the Goods Price']"
+                          :rules="[ val => val && val > 0 || 'Please Enter the Goods Price']"
                  />
                </q-td>
              </template>
@@ -536,7 +536,7 @@
                     v-model.number="newFormData.goods_cost"
                     type="number"
                     :label="$t('goods.view_goodslist.goods_cost')"
-                    :rules="[ val => val || 'Please Enter The Goods Cost']"
+                    :rules="[ val => val && val > 0 || 'Please Enter The Goods Cost']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
@@ -544,7 +544,7 @@
                     v-model.number="newFormData.goods_price"
                     type="number"
                     :label="$t('goods.view_goodslist.goods_price')"
-                    :rules="[ val => val || 'Please Enter The Goods Price']"
+                    :rules="[ val => val && val > 0 || 'Please Enter The Goods Price']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
@@ -817,28 +817,13 @@ export default {
       var _this = this
       _this.newFormData.creater = _this.login_name
       postauth(_this.pathname, _this.newFormData).then(res => {
-        console.log(res)
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.getList()
-          _this.newDataCancel()
-          _this.$q.notify({
-            message: 'Success Create',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.getList()
+        _this.newDataCancel()
+        _this.$q.notify({
+          message: 'Success Create',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -897,27 +882,13 @@ export default {
     editDataSubmit () {
       var _this = this
       putauth(_this.pathname + _this.editid + '/', _this.editFormData).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.editDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Edit Data',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.editDataCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Edit Data',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -958,27 +929,13 @@ export default {
     deleteDataSubmit () {
       var _this = this
       deleteauth(_this.pathname + _this.deleteid + '/').then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.deleteDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Edit Data',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.deleteDataCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Edit Data',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
