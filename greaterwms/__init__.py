@@ -11,10 +11,18 @@ try:
     if os.path.exists(path):
         pass
     else:
-        response = requests.post('https://wms.56yhz.com/area/')
-        with open(path, 'w') as f:
-            f.write(str(eval(response.text).get('country')))
-            f.close()
+        response = requests.post('https://wms.56yhz.com/area_v2/')
+        if response.status_code == 200:
+            area_results = requests.put(
+                url='https://wms.56yhz.com/area_v2/',
+                data=eval(response.text)
+            )
+            if area_results.status_code == 200:
+                with open(path, 'w') as f:
+                    f.write(str(eval(area_results.text).get('country')))
+                f.close()
+            else:
+                pass
 except:
     pass
 print('Welcome To GreaterWMS')
