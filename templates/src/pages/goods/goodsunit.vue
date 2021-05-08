@@ -332,27 +332,13 @@ export default {
       var _this = this
       _this.newFormData.creater = _this.login_name
       postauth(_this.pathname, _this.newFormData).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.getList()
-          _this.newDataCancel()
-          _this.$q.notify({
-            message: 'Success Create',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.getList()
+        _this.newDataCancel()
+        _this.$q.notify({
+          message: 'Success Create',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -381,27 +367,13 @@ export default {
     editDataSubmit () {
       var _this = this
       putauth(_this.pathname + _this.editid + '/', _this.editFormData).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.editDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Edit Data',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.editDataCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Edit Data',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -427,27 +399,13 @@ export default {
     deleteDataSubmit () {
       var _this = this
       deleteauth(_this.pathname + _this.deleteid + '/').then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.deleteDataCancel()
-          _this.getList()
-          _this.$q.notify({
-            message: 'Success Edit Data',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.deleteDataCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Edit Data',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
