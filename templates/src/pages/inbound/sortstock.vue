@@ -327,27 +327,13 @@ export default {
         })
       } else {
         postauth('asn/movetobin/' + _this.movedata.id + '/', _this.movedata).then(res => {
-          if (res.status_code === 400) {
-            _this.$q.notify({
-              message: 'Please Enter the words',
-              icon: 'close',
-              color: 'negative'
-            })
-          } else if (res.status_code === 500) {
-            _this.$q.notify({
-              message: res.detail,
-              icon: 'close',
-              color: 'negative'
-            })
-          } else {
-            _this.getList()
-            _this.MoveToBinCancel()
-            _this.$q.notify({
-              message: 'Success Create',
-              icon: 'check',
-              color: 'green'
-            })
-          }
+          _this.getList()
+          _this.MoveToBinCancel()
+          _this.$q.notify({
+            message: 'Success Create',
+            icon: 'check',
+            color: 'green'
+          })
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
