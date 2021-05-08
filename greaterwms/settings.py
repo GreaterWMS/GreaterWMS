@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'driver.apps.DriverConfig',
     'stock.apps.StockConfig',
+    'throttle.apps.ThrottleConfig',
     'rest_framework',
     'django_filters',
     'silk',
