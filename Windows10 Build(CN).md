@@ -63,6 +63,8 @@ npm install -g npm
 npm config set registry https://registry.npm.taobao.org
 # 安装Yarn
 npm install -g yarn
+# 更改yarn为国内源
+yarn config set registry https://registry.npm.taobao.org/
 # 安装quasar环境
 npm install -g @quasar/cli
 # 安装windows构建工具
