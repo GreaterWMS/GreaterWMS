@@ -338,7 +338,8 @@ export default {
     }
   },
   notice: {
-    unknow_error: 'Network abnormal',
+    unknow_error: 'Unknow Error',
+    network_error: 'Network Abnormal',
     400: 'Bad request (400)',
     401: 'Authorization not obtained (401)',
     403: 'Access denied (403)',
