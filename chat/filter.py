@@ -6,8 +6,6 @@ class Filter(FilterSet):
         model = ListModel
         fields = {
             "id": ['exact', 'iexact', 'gt', 'gte', 'lt', 'lte', 'isnull', 'in', 'range'],
-            "sender": ['exact', 'iexact', 'contains', 'icontains'],
-            "receiver": ['exact', 'iexact', 'contains', 'icontains'],
             "read": ['exact', 'iexact'],
             "detail": ['exact', 'iexact', 'contains', 'icontains'],
             "is_delete": ['exact', 'iexact'],

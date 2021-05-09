@@ -48,7 +48,7 @@ axiosInstanceAuth.interceptors.response.use(
   },
   function (error) {
     const defaultNotify = {
-      message: i18n.t('notice.network_error'),
+      message: i18n.t('notice.unknow_error'),
       icon: 'close',
       color: 'negative',
       timeout: 1500
