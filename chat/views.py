@@ -10,7 +10,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .filter import Filter
 
 @method_decorator(csrf_exempt, name='dispatch')
-class APIViewSet(viewsets.ModelViewSet):
+class ChatViewSet(viewsets.ModelViewSet):
     """
         list:
             Response a data list（all）
