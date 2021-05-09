@@ -331,14 +331,15 @@ export default {
     scan_uptobin: '棚まで',
     scan_picking: 'ピッキング',
     scan_shipping: 'ディスパッチ',
-    view_binmove:{
+    view_binmove: {
       goods_code: '製品コード',
       onhand_stock: '既存の在庫',
       qty: '移動されたライブラリの数'
     }
   },
   notice: {
-    unknow_error:'ネットワーク異常',
+    unknow_error: '未知の間違い',
+    network_error: 'ネットワーク異常',
     400: '不正なリクエスト（400）',
     401: '認証が取得されていません（401）',
     403: 'アクセスが拒否されました（403）',

@@ -338,7 +338,8 @@ export default {
     }
   },
   notice: {
-    unknow_error: '网络异常',
+    unknow_error: '未知错误',
+    network_error: '网络异常',
     400: '错误请求(400)',
     401: '未取得授权(401)',
     403: '拒绝访问(403)',
