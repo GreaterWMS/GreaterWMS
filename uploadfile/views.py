@@ -3,15 +3,10 @@ import pandas as pd
 import numpy as np
 from goods.models import ListModel as goodslist
 from . import serializers
-from utils.page import MyPageNumberPagination
-from rest_framework.filters import OrderingFilter
-from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework.exceptions import APIException
-from django.http import StreamingHttpResponse
-from rest_framework.settings import api_settings
 
-class GoodlistViewSet(viewsets.ModelViewSet):
+class GoodlistfileViewSet(viewsets.ModelViewSet):
     """
         create:
             Create a data line（post）
