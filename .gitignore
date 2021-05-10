@@ -1,6 +1,6 @@
 node_modules/
 __pycache__/
-country.txt
+authorization.txt
 db.sqlite3
 .idea/
 delete.py
