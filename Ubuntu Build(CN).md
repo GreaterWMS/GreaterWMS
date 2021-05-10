@@ -36,7 +36,9 @@ sudo daphne -p 8008 greaterwms.asgi:application
 Ctrl + C // 回到GreaterWMS文件夹
 cd templates //进入 templates 文件夹
 
-从2.0.19版本以后，优化了请求地址修改方式，直接修改templates/public/statics/baseurl.js，中的baseurl和wsurl，就可以成功更改前端请求地址，不再需要做下面的quasar build打包工作。
+从2.0.19版本以后，优化了请求地址修改方式，直接修改templates/dist/spa/statics/baseurl.js，中的baseurl和wsurl，就可以成功更改前端请求地址，不再需要做下面的quasar build打包工作。
+
+如果需要修改前端内容，则还需要修改templates/public/statics/baseurl.js中的baseurl和wsurl，然后重新使用quasar build进行打包
 
 sudo yarn config set registry https://registry.npm.taobao.org/  //更改yarn为国内源
 sudo yarn install // 等待Yarn安装完成，其实你也可以sudo npm install ，就是会慢一点
