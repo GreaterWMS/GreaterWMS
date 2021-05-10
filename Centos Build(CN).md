@@ -50,7 +50,9 @@ sudo /usr/local/bin/quasar d // 使用quasar命令启动前端页面
 // 前端会向 "127.0.0.1:8008"发请求, 在这里我们只是看下项目是不是可以运行
 Ctrl + C // 退回到templates文件夹
 
-从2.0.19版本以后，优化了请求地址修改方式，直接修改templates/public/statics/baseurl.js，中的baseurl和wsurl，就可以成功更改前端请求地址，不再需要做下面的quasar build打包工作。
+从2.0.19版本以后，优化了请求地址修改方式，直接修改templates/dist/spa/statics/baseurl.js，中的baseurl和wsurl，就可以成功更改前端请求地址，不再需要做下面的quasar build打包工作。
+
+如果需要修改前端内容，则还需要修改templates/public/statics/baseurl.js中的baseurl和wsurl，然后重新使用quasar build进行打包
 
 cd src/boot // 进入在src/boot文件夹
 sudo vim axios_request.js // 我们开始更改请求地址

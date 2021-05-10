@@ -115,7 +115,9 @@ pip install supervisor
 
 推荐使用Nginx进行部署，部署的时候需要指定WebSocket链接，如果不指定，实时通信功能将报错
 
-另需要修改templates/public/statics/baseurl.js里的ws_url
+另需要修改从2.0.19版本以后，优化了请求地址修改方式，直接修改templates/dist/spa/statics/baseurl.js，中的baseurl和wsurl，就可以成功更改前端请求地址，不再需要做下面的quasar build打包工作。
+
+如果需要修改前端内容，则还需要修改templates/public/statics/baseurl.js中的baseurl和wsurl，然后重新使用quasar build进行打包里的ws_url
 
 ~~~shell
 ## 示例更改前
