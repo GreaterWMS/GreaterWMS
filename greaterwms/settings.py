@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'driver.apps.DriverConfig',
     'stock.apps.StockConfig',
     'throttle.apps.ThrottleConfig',
+    'uploadfile.apps.UploadfileConfig',
     'rest_framework',
     'django_filters',
     'silk',
