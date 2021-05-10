@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-path(r'goodslist/', views.GoodlistViewSet.as_view({"post": "create"}), name="goodslist")
+path(r'goodslistfile/', views.GoodlistfileViewSet.as_view({"post": "create"}), name="goodslistfile")
 ]
