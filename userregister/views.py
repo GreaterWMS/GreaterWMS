@@ -8,8 +8,9 @@ from django.contrib import auth
 from django.utils import timezone
 from django.contrib.auth.models import User
 from staff.models import ListModel as staff
-import json
+import json, os
 import random
+from django.conf import settings
 
 @method_decorator(csrf_exempt, name='dispatch')
 def register(request, *args, **kwargs):
@@ -69,6 +70,9 @@ def register(request, *args, **kwargs):
                                                  staff_type='Admin',
                                                  check_code=random.randint(1000, 9999),
                                                  openid=transaction_code)
+                            folder = os.path.exists(os.path.join(settings.BASE_DIR, 'media/' + transaction_code))
+                            if not folder:
+                                os.makedirs(os.path.join(settings.BASE_DIR, 'media/' + transaction_code))
                             ret = FBMsg.ret()
                             ret['ip'] = ip
                             data['openid'] = transaction_code
