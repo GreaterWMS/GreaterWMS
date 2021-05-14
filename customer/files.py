@@ -1,7 +1,7 @@
 from rest_framework_csv.renderers import CSVStreamingRenderer
 
-class FileRenderCN(CSVStreamingRenderer):
-    header = [
+def file_headers():
+    return [
         'customer_name',
         'customer_city',
         'customer_address',
@@ -12,7 +12,9 @@ class FileRenderCN(CSVStreamingRenderer):
         'create_time',
         'update_time'
     ]
-    labels = dict([
+
+def cn_data_header():
+    return dict([
         ('customer_name', u'客户名称'),
         ('customer_city', u'客户城市'),
         ('customer_address', u'详细地址'),
@@ -24,19 +26,8 @@ class FileRenderCN(CSVStreamingRenderer):
         ('update_time', u'更新时间'),
     ])
 
-class FileRenderEN(CSVStreamingRenderer):
-    header = [
-        'customer_name',
-        'customer_city',
-        'customer_address',
-        'customer_contact',
-        'customer_manager',
-        'customer_level',
-        'creater',
-        'create_time',
-        'update_time'
-    ]
-    labels = dict([
+def en_data_header():
+    return dict([
         ('customer_name', u'Customer Name'),
         ('customer_city', u'Customer City'),
         ('customer_address', u'Customer Address'),
@@ -47,3 +38,12 @@ class FileRenderEN(CSVStreamingRenderer):
         ('create_time', u'Create Time'),
         ('update_time', u'Update Time'),
     ])
+
+
+class FileRenderCN(CSVStreamingRenderer):
+    header = file_headers()
+    labels = cn_data_header()
+
+class FileRenderEN(CSVStreamingRenderer):
+    header = file_headers()
+    labels = en_data_header()
