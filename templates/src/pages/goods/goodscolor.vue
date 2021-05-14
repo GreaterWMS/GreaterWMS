@@ -45,7 +45,7 @@
                           outlined
                           square
                           v-model="editFormData.goods_color"
-                          :label="$t('goods.view_brand.goods_color')"
+                          :label="$t('goods.view_goodslist.goods_color')"
                           autofocus
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Color']"
                  />
@@ -129,7 +129,7 @@
                     outlined
                     square
                     v-model="newFormData.goods_color"
-                    :label="$t('goods.view_brand.goods_color')"
+                    :label="$t('goods.view_goodslist.goods_color')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Color']"
                     @keyup.enter="newDataSubmit()"/>
