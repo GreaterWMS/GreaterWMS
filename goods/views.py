@@ -40,7 +40,6 @@ class APIViewSet(viewsets.ModelViewSet):
         update:
             Update a data（put：update）
     """
-    queryset = ListModel.objects.all()
     serializer_class = serializers.GoodsGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -58,11 +57,11 @@ class APIViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return ListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return ListModel.objects.filter().none()
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -81,7 +80,7 @@ class APIViewSet(viewsets.ModelViewSet):
             return self.http_method_not_allowed(request=self.request)
 
     def create(self, request, *args, **kwargs):
-        data = request.data
+        data = self.request.data
         data['openid'] = self.request.auth.openid
         data['unit_volume'] = round(
             (float(data['goods_w']) * float(data['goods_d']) * float(data['goods_h'])) / 1000000000, 4)

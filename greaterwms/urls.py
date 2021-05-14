@@ -12,11 +12,11 @@ from . import views
 schema_view = get_schema_view(
    openapi.Info(
        title="GreaterWMS--API Docs",
-       default_version='v2.0.19',
+       default_version='v2.0.20',
        description=
        """
         openid:
-            Openid is the only mark of your data group, You shoud add it to you request headers.token .
+            Openid is the only mark of your data group, You should add it to you request headers.token .
         """
        ,
        terms_of_service="https://www.56yhz.com/",
@@ -58,7 +58,7 @@ urlpatterns = [
     path('payment/', include('payment.urls')),
     path('login/', include('userlogin.urls')),
     path('register/', include('userregister.urls')),
-    # path('uploadfile/', include('uploadfile.urls')),
+    path('uploadfile/', include('uploadfile.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     re_path(r'^favicon\.ico$', views.favicon, name='favicon'),
     re_path('^css/.*$', views.css, name='css'),
