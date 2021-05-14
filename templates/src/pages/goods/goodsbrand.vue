@@ -45,7 +45,7 @@
                           outlined
                           square
                           v-model="editFormData.goods_brand"
-                          :label="$t('goods.view_brand.goods_brand')"
+                          :label="$t('goods.view_goodslist.goods_brand')"
                           autofocus
                           :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Brand']"
                  />
@@ -129,7 +129,7 @@
                     outlined
                     square
                     v-model="newFormData.goods_brand"
-                    :label="$t('goods.view_brand.goods_brand')"
+                    :label="$t('goods.view_goodslist.goods_brand')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Brand']"
                     @keyup.enter="newDataSubmit()"/>
