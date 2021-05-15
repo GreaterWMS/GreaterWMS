@@ -86,6 +86,20 @@ def sumOfList(list, size):
     else:
         return list[size - 1] + sumOfList(list, size - 1)
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        pass
+    try:
+        import unicodedata
+        unicodedata.numeric(s)
+        return True
+    except (TypeError, ValueError):
+        pass
+    return False
+
 def transportation_calculate(weight, volume, weight_fee, volume_fee, min_fee):
     weight_cost = weight * weight_fee
     volume_cost = volume * volume_fee
