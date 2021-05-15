@@ -195,7 +195,7 @@
                            :options="goods_class_list"
                            transition-show="scale"
                            transition-hide="scale"
-                           :label="$t('goods.view_goodslist.goods_Class')"
+                           :label="$t('goods.view_goodslist.goods_class')"
                            :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Class']"
                  />
                </q-td>
