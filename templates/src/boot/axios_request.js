@@ -16,6 +16,14 @@ const axiosInstanceAuth = axios.create({
   timeout: 5000
 })
 
+var lang = LocalStorage.getItem('lang')
+if (LocalStorage.has('lang')) {
+  lang = lang || 'en-us'
+} else {
+  LocalStorage.set('lang', 'en-us')
+  lang = 'en-us'
+}
+
 const axiosFile = axios.create({
   baseURL: baseurl,
   timeout: 5000
@@ -26,7 +34,7 @@ axiosInstanceAuth.interceptors.request.use(
     config.headers.post['Content-Type'] = 'application/json, charset="utf-8"'
     config.headers.patch['Content-Type'] = 'application/json, charset="utf-8"'
     config.headers.put['Content-Type'] = 'application/json, charset="utf-8"'
-    config.headers.token = LocalStorage.getItem('openid')
+    config.headers.token = LocalStorage.getItem('openid') + '-language-' + lang
     return config
   },
   function (error) {
@@ -37,12 +45,14 @@ axiosInstanceAuth.interceptors.request.use(
 axiosInstanceAuth.interceptors.response.use(
   function (response) {
     if (response.data.detail) {
-      Notify.create({
-        message: response.data.detail,
-        icon: 'close',
-        color: 'negative',
-        timeout: 1500
-      })
+      if (response.data.detail !== 'success') {
+        Notify.create({
+          message: response.data.detail,
+          icon: 'close',
+          color: 'negative',
+          timeout: 1500
+        })
+      }
     }
     return response.data
   },
@@ -126,6 +136,7 @@ axiosInstanceAuth.interceptors.response.use(
 axiosInstance.interceptors.request.use(
   function (config) {
     config.headers.post['Content-Type'] = 'application/json, charset="utf-8"'
+    config.headers.token = 'token' + '-language-' + lang
     return config
   },
   function (error) {
@@ -136,12 +147,14 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   function (response) {
     if (response.data.detail) {
-      Notify.create({
-        message: response.data.detail,
-        icon: 'close',
-        color: 'negative',
-        timeout: 1500
-      })
+      if (response.data.detail !== 'success') {
+        Notify.create({
+          message: response.data.detail,
+          icon: 'close',
+          color: 'negative',
+          timeout: 1500
+        })
+      }
     }
     return response.data
   },
@@ -225,7 +238,7 @@ axiosInstance.interceptors.response.use(
 axiosFile.interceptors.request.use(
   function (config) {
     config.headers.get['Content-Type'] = 'application/vnd.ms-excel'
-    config.headers.token = LocalStorage.getItem('openid')
+    config.headers.token = LocalStorage.getItem('openid') + '-language-' + lang
     return config
   },
   function (error) {
@@ -236,12 +249,14 @@ axiosFile.interceptors.request.use(
 axiosFile.interceptors.response.use(
   function (response) {
     if (response.data.detail) {
-      Notify.create({
-        message: response.data.detail,
-        icon: 'close',
-        color: 'negative',
-        timeout: 1500
-      })
+      if (response.data.detail !== 'success') {
+        Notify.create({
+          message: response.data.detail,
+          icon: 'close',
+          color: 'negative',
+          timeout: 1500
+        })
+      }
     }
     return response
   },

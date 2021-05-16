@@ -225,6 +225,7 @@ export default {
     shortage: '來貨短少',
     more: '多到貨',
     asnfinish: '收貨明細',
+    asndone: '收貨完成',
     view_asn: {
       asn_code: '到貨通知書單號',
       asn_status: '到貨通知書狀態',

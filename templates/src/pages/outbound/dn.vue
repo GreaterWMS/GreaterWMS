@@ -1020,10 +1020,10 @@
         <q-markup-table>
           <thead>
           <tr>
-            <th class="text-left">Goods Code</th>
-            <th class="text-right">Goods Weight(Unit: KG)</th>
-            <th class="text-right">Goods Volume(Unit: Cubic Metres)</th>
-            <th class="text-right">Shipping QTY</th>
+            <th class="text-left">{{ $t('goods.view_goodslist.goods_code') }}</th>
+            <th class="text-right">{{ $t('outbound.view_dn.total_weight') }}</th>
+            <th class="text-right">{{ $t('outbound.view_dn.total_volume') }}</th>
+            <th class="text-right">{{ $t('outbound.view_dn.intransit_qty') }}/th>
             <th class="text-right">Comments</th>
           </tr>
           </thead>
@@ -1051,11 +1051,11 @@
         <q-markup-table>
           <thead>
           <tr>
-            <th class="text-left">DN Code</th>
-            <th class="text-right">BIN Name</th>
-            <th class="text-right">Goods Code</th>
-            <th class="text-right">Pick QTY</th>
-            <th class="text-right">Picked QTY</th>
+            <th class="text-left">{{ $t('outbound.view_dn.dn_code') }}</th>
+            <th class="text-right">{{ $t('warehouse.view_binset.bin_name') }}</th>
+            <th class="text-right">{{ $t('outbound.view_dn.goods_qty') }}</th>
+            <th class="text-right">{{ $t('outbound.pickstock') }}</th>
+            <th class="text-right">{{ $t('outbound.pickedstock') }}</th>
             <th class="text-right">Comments</th>
           </tr>
           </thead>
@@ -1313,6 +1313,11 @@ export default {
         getauth(_this.pathname + 'list/', {
         }).then(res => {
           _this.table_list = res.results
+          res.results.forEach((item) => {
+            if (item.asn_status === 1) {
+              item.asn_status = _this.$t()
+            }
+          })
           _this.customer_list = res.customer_list
           if (res.previous) {
             var previous = res.previous.split(':')[0]
@@ -1698,13 +1703,15 @@ export default {
     neworderDataSubmit () {
       var _this = this
       postauth(_this.pathname + 'neworder/' + _this.neworderid + '/', {}).then(res => {
-        _this.neworderDataCancel()
-        _this.getList()
-        _this.$q.notify({
-          message: 'Success Confirm dn Delivery',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.detail) {
+          _this.neworderDataCancel()
+          _this.getList()
+          _this.$q.notify({
+            message: 'Success Confirm dn Delivery',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
