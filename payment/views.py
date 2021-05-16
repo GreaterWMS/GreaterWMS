@@ -9,7 +9,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from .filter import TransportationFeeListFilter
 from rest_framework.exceptions import APIException
-from files import FreightfileRenderCN, FreightfileRenderEN
+from .files import FreightfileRenderCN, FreightfileRenderEN
 
 class TransportationFeeListViewSet(viewsets.ModelViewSet):
     """
@@ -117,7 +117,7 @@ class TransportationFeeListViewSet(viewsets.ModelViewSet):
 
 class FreightfileDownloadView(viewsets.ModelViewSet):
     queryset = TransportationFeeListModel.objects.all()
-    serializer_class = serializers.FileRenderSerializer
+    serializer_class = serializers.FreightfileRenderSerializer
     renderer_classes = (FreightfileRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
