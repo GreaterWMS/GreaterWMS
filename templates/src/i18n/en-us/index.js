@@ -225,6 +225,7 @@ export default {
     shortage: 'Shortage',
     more: 'More QTY',
     asnfinish: 'Receiving List',
+    asndone: 'Finish Receiving',
     view_asn: {
       asn_code: 'ASN Code',
       asn_status: 'ASN Status',

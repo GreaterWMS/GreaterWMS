@@ -225,6 +225,7 @@ export default {
     shortage: '到着が少ない',
     more: 'より多くの量',
     asnfinish: '収货明フィルター',
+    asndone: '領収書が完了しました',
     view_asn: {
       asn_code: '采购単単号',
       asn_status: '采购単様态',

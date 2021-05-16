@@ -42,7 +42,7 @@
                 {{ $t('downloadasnlisttip') }}
                </q-tooltip>
              </q-btn>
-             <q-btn :label="$t('downloadasnlist')" icon="cloud_download" @click="downloaddetailData()">
+             <q-btn :label="$t('downloadasndetail')" icon="cloud_download" @click="downloaddetailData()">
                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                  {{ $t('downloadasndetailtip') }}
                </q-tooltip>
@@ -97,7 +97,7 @@
                               $q.localStorage.getItem('staff_type') !== 'Outbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                      round flat push color="positive" icon="img:statics/inbound/preloadstock.png" @click="preloadData(props.row.id)">
+                      round flat push color="positive" icon="img:statics/inbound/preloadstock.png" @click="preloadData(props.row)">
                  <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('confirmdelivery') }}
                 </q-tooltip>
@@ -107,7 +107,7 @@
                               $q.localStorage.getItem('staff_type') !== 'Outbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                      round flat push color="positive" icon="img:statics/inbound/presortstock.png" @click="presortData(props.row.id)">
+                      round flat push color="positive" icon="img:statics/inbound/presortstock.png" @click="presortData(props.row)">
                  <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('finishloading') }}
                 </q-tooltip>
@@ -137,7 +137,7 @@
                               $q.localStorage.getItem('staff_type') !== 'Outbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                      round flat push color="dark" icon="delete" @click="deleteData(props.row.id)">
+                      round flat push color="dark" icon="delete" @click="deleteData(props.row)">
                  <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('delete') }}
                 </q-tooltip>
@@ -1142,7 +1142,22 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/', {
         }).then(res => {
-          _this.table_list = res.results
+          res.results.forEach((item) => {
+            if (item.asn_status === 1) {
+              item.asn_status = _this.$t('inbound.predeliverystock')
+            } else if (item.asn_status === 2) {
+              item.asn_status = _this.$t('inbound.preloadstock')
+            } else if (item.asn_status === 3) {
+              item.asn_status = _this.$t('inbound.presortstock')
+            } else if (item.asn_status === 4) {
+              item.asn_status = _this.$t('inbound.sortstock')
+            } else if (item.asn_status === 5) {
+              item.asn_status = _this.$t('inbound.asndone')
+            } else {
+              item.asn_status = 'N/A'
+            }
+            _this.table_list.push(item)
+          })
           _this.supplier_list = res.supplier_list
           if (res.previous) {
             var previous = res.previous.split(':')[0]
@@ -1173,7 +1188,22 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/?asn_code__icontains=' + _this.filter, {
         }).then(res => {
-          _this.table_list = res.results
+          res.results.forEach((item) => {
+            if (item.asn_status === 1) {
+              item.asn_status = _this.$t('inbound.predeliverystock')
+            } else if (item.asn_status === 2) {
+              item.asn_status = _this.$t('inbound.preloadstock')
+            } else if (item.asn_status === 3) {
+              item.asn_status = _this.$t('inbound.presortstock')
+            } else if (item.asn_status === 4) {
+              item.asn_status = _this.$t('inbound.sortstock')
+            } else if (item.asn_status === 5) {
+              item.asn_status = _this.$t('inbound.asndone')
+            } else {
+              item.asn_status = 'N/A'
+            }
+            _this.table_list.push(item)
+          })
           _this.supplier_list = res.supplier_list
           if (res.previous) {
             var previous = res.previous.split(':')[0]
@@ -1204,7 +1234,22 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_previous, {
         }).then(res => {
-          _this.table_list = res.results
+          res.results.forEach((item) => {
+            if (item.asn_status === 1) {
+              item.asn_status = _this.$t('inbound.predeliverystock')
+            } else if (item.asn_status === 2) {
+              item.asn_status = _this.$t('inbound.preloadstock')
+            } else if (item.asn_status === 3) {
+              item.asn_status = _this.$t('inbound.presortstock')
+            } else if (item.asn_status === 4) {
+              item.asn_status = _this.$t('inbound.sortstock')
+            } else if (item.asn_status === 5) {
+              item.asn_status = _this.$t('inbound.asndone')
+            } else {
+              item.asn_status = 'N/A'
+            }
+            _this.table_list.push(item)
+          })
           _this.supplier_list = res.supplier_list
           if (res.previous) {
             var previous = res.previous.split(':')[0]
@@ -1235,7 +1280,22 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_next, {
         }).then(res => {
-          _this.table_list = res.results
+          res.results.forEach((item) => {
+            if (item.asn_status === 1) {
+              item.asn_status = _this.$t('inbound.predeliverystock')
+            } else if (item.asn_status === 2) {
+              item.asn_status = _this.$t('inbound.preloadstock')
+            } else if (item.asn_status === 3) {
+              item.asn_status = _this.$t('inbound.presortstock')
+            } else if (item.asn_status === 4) {
+              item.asn_status = _this.$t('inbound.sortstock')
+            } else if (item.asn_status === 5) {
+              item.asn_status = _this.$t('inbound.asndone')
+            } else {
+              item.asn_status = 'N/A'
+            }
+            _this.table_list.push(item)
+          })
           _this.supplier_list = res.supplier_list
           if (res.previous) {
             var previous = res.previous.split(':')[0]
@@ -1263,6 +1323,7 @@ export default {
     },
     reFresh () {
       var _this = this
+      _this.table_list = []
       _this.getList()
     },
     newFormOpen () {
@@ -1270,7 +1331,9 @@ export default {
       _this.newForm = true
       _this.newAsn.creater = _this.login_name
       postauth(_this.pathname + 'list/', _this.newAsn).then(res => {
-        _this.newFormData.asn_code = res.asn_code
+        if (!res.detail) {
+          _this.newFormData.asn_code = res.asn_code
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1323,6 +1386,7 @@ export default {
         _this.newFormData.goods_qty[9] = _this.goodsData10.qty
       }
       postauth(_this.pathname + 'detail/', _this.newFormData).then(res => {
+        _this.table_list = []
         _this.getList()
         _this.newDataCancel()
         _this.$q.notify({
@@ -1366,9 +1430,9 @@ export default {
     editData (e) {
       var _this = this
       _this.goodsDataClear()
-      if (e.asn_status !== 1) {
+      if (e.asn_status !== _this.$t('inbound.predeliverystock')) {
         _this.$q.notify({
-          message: e.asn_code + 'Status Is Not 1',
+          message: e.asn_code + ' Status Is Not ' + _this.$t('inbound.predeliverystock'),
           icon: 'close',
           color: 'negative'
         })
@@ -1448,13 +1512,16 @@ export default {
         _this.newFormData.goods_qty[9] = _this.goodsData10.qty
       }
       putauth(_this.pathname + 'detail/', _this.newFormData).then(res => {
+        _this.table_list = []
         _this.editDataCancel()
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Edit Data',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.data) {
+          _this.$q.notify({
+            message: 'Success Edit Data',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1478,19 +1545,30 @@ export default {
     },
     deleteData (e) {
       var _this = this
-      _this.deleteForm = true
-      _this.deleteid = e
+      if (e.asn_status !== _this.$t('inbound.predeliverystock')) {
+        _this.$q.notify({
+          message: e.asn_code + ' Status Is Not ' + _this.$t('inbound.predeliverystock'),
+          icon: 'close',
+          color: 'negative'
+        })
+      } else {
+        _this.deleteForm = true
+        _this.deleteid = e.id
+      }
     },
     deleteDataSubmit () {
       var _this = this
       deleteauth(_this.pathname + 'list/' + _this.deleteid + '/').then(res => {
+        _this.table_list = []
         _this.deleteDataCancel()
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Edit Data',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.data) {
+          _this.$q.notify({
+            message: 'Success Delete Data',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1506,19 +1584,30 @@ export default {
     },
     preloadData (e) {
       var _this = this
-      _this.preloadForm = true
-      _this.preloadid = e
+      if (e.asn_status !== _this.$t('inbound.predeliverystock')) {
+        _this.$q.notify({
+          message: e.asn_code + ' Status Is Not ' + _this.$t('inbound.predeliverystock'),
+          icon: 'close',
+          color: 'negative'
+        })
+      } else {
+        _this.preloadForm = true
+        _this.preloadid = e.id
+      }
     },
     preloadDataSubmit () {
       var _this = this
       postauth(_this.pathname + 'preload/' + _this.preloadid + '/', {}).then(res => {
+        _this.table_list = []
         _this.preloadDataCancel()
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Confirm ASN Delivery',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.detail) {
+          _this.$q.notify({
+            message: 'Success Confirm ASN Delivery',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1534,19 +1623,30 @@ export default {
     },
     presortData (e) {
       var _this = this
-      _this.presortForm = true
-      _this.presortid = e
+      if (e.asn_status !== _this.$t('inbound.preloadstock')) {
+        _this.$q.notify({
+          message: e.asn_code + ' Status Is Not ' + _this.$t('inbound.preloadstock'),
+          icon: 'close',
+          color: 'negative'
+        })
+      } else {
+        _this.presortForm = true
+        _this.presortid = e.id
+      }
     },
     presortDataSubmit () {
       var _this = this
       postauth(_this.pathname + 'presort/' + _this.presortid + '/', {}).then(res => {
+        _this.table_list = []
         _this.presortDataCancel()
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Confirm ASN Delivery',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.detail) {
+          _this.$q.notify({
+            message: 'Success Load ASN',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1588,9 +1688,9 @@ export default {
     sortedData (e) {
       var _this = this
       _this.goodsDataClear()
-      if (e.asn_status !== 3) {
+      if (e.asn_status !== _this.$t('inbound.presortstock')) {
         _this.$q.notify({
-          message: e.asn_code + 'Status Is Not 3',
+          message: e.asn_code + ' Status Is Not ' + _this.$t('inbound.presortstock'),
           icon: 'close',
           color: 'negative'
         })
@@ -1608,13 +1708,16 @@ export default {
       var _this = this
       _this.sorted_list.creater = _this.login_name
       postauth(_this.pathname + 'sorted/' + _this.sortedid + '/', _this.sorted_list).then(res => {
+        _this.table_list = []
         _this.sortedDataCancel()
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Edit Data',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.data) {
+          _this.$q.notify({
+            message: 'Success Sorted ASN',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1700,6 +1803,7 @@ export default {
     }
     if (LocalStorage.has('auth')) {
       _this.authin = '1'
+      _this.table_list = []
       _this.getList()
     } else {
       _this.authin = '0'
