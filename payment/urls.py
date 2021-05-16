@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
 path(r'freight/', views.TransportationFeeListViewSet.as_view({"get": "list", "post": "create"}), name="transportationfee"),
+path(r'freightfile/', views.FreightfileDownloadView.as_view({"get": "list"}), name="freightfiledownload"),
 re_path(r'^freight/(?P<pk>\d+)/$', views.TransportationFeeListViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',
