@@ -8,15 +8,15 @@ class Authtication(object):
         elif request.path == '/swagger/':
                 return (False, None)
         else:
-            openid = request.META.get('HTTP_TOKEN')
-            if openid:
-                if Users.objects.filter(openid__exact=str(openid)).exists():
-                    user = Users.objects.filter(openid__exact=str(openid)).first()
-                    return (True, user)
+            token = request.META.get('HTTP_TOKEN').split('-language-')
+            if token:
+                if Users.objects.filter(openid__exact=str(token[0])).exists():
+                    user = Users.objects.filter(openid__exact=str(token[0])).first()
+                    return (token[1], user)
                 else:
                     raise APIException({"detail": "User Does Not Exists"})
             else:
-                raise APIException({"detail": "Please Add Openid To Your Request Headers"})
+                raise APIException({"detail": "Please Add Token To Your Request Headers"})
 
     def authenticate_header(self, request):
         pass
