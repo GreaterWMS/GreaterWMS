@@ -1312,7 +1312,24 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/', {
         }).then(res => {
-          _this.table_list = res.results
+          res.results.forEach((item) => {
+            if (item.dn_status === 1) {
+              item.dn_status = _this.$t('outbound.freshorder')
+            } else if (item.dn_status === 2) {
+              item.dn_status = _this.$t('outbound.neworder')
+            } else if (item.dn_status === 3) {
+              item.dn_status = _this.$t('outbound.pickstock')
+            } else if (item.dn_status === 4) {
+              item.dn_status = _this.$t('outbound.pickedstock')
+            } else if (item.dn_status === 5) {
+              item.dn_status = _this.$t('outbound.shippedstock')
+            } else if (item.dn_status === 6) {
+              item.dn_status = _this.$t('outbound.received')
+            } else {
+              item.dn_status = 'N/A'
+            }
+            _this.table_list.push(item)
+          })
           res.results.forEach((item) => {
             if (item.asn_status === 1) {
               item.asn_status = _this.$t()
@@ -1348,7 +1365,24 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/?dn_code__icontains=' + _this.filter, {
         }).then(res => {
-          _this.table_list = res.results
+          res.results.forEach((item) => {
+            if (item.dn_status === 1) {
+              item.dn_status = _this.$t('outbound.freshorder')
+            } else if (item.dn_status === 2) {
+              item.dn_status = _this.$t('outbound.neworder')
+            } else if (item.dn_status === 3) {
+              item.dn_status = _this.$t('outbound.pickstock')
+            } else if (item.dn_status === 4) {
+              item.dn_status = _this.$t('outbound.pickedstock')
+            } else if (item.dn_status === 5) {
+              item.dn_status = _this.$t('outbound.shippedstock')
+            } else if (item.dn_status === 6) {
+              item.dn_status = _this.$t('outbound.received')
+            } else {
+              item.dn_status = 'N/A'
+            }
+            _this.table_list.push(item)
+          })
           _this.customer_list = res.customer_list
           if (res.previous) {
             var previous = res.previous.split(':')[0]
@@ -1379,7 +1413,24 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_previous, {
         }).then(res => {
-          _this.table_list = res.results
+          res.results.forEach((item) => {
+            if (item.dn_status === 1) {
+              item.dn_status = _this.$t('outbound.freshorder')
+            } else if (item.dn_status === 2) {
+              item.dn_status = _this.$t('outbound.neworder')
+            } else if (item.dn_status === 3) {
+              item.dn_status = _this.$t('outbound.pickstock')
+            } else if (item.dn_status === 4) {
+              item.dn_status = _this.$t('outbound.pickedstock')
+            } else if (item.dn_status === 5) {
+              item.dn_status = _this.$t('outbound.shippedstock')
+            } else if (item.dn_status === 6) {
+              item.dn_status = _this.$t('outbound.received')
+            } else {
+              item.dn_status = 'N/A'
+            }
+            _this.table_list.push(item)
+          })
           _this.customer_list = res.customer_list
           if (res.previous) {
             var previous = res.previous.split(':')[0]
@@ -1410,7 +1461,24 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_next, {
         }).then(res => {
-          _this.table_list = res.results
+          res.results.forEach((item) => {
+            if (item.dn_status === 1) {
+              item.dn_status = _this.$t('outbound.freshorder')
+            } else if (item.dn_status === 2) {
+              item.dn_status = _this.$t('outbound.neworder')
+            } else if (item.dn_status === 3) {
+              item.dn_status = _this.$t('outbound.pickstock')
+            } else if (item.dn_status === 4) {
+              item.dn_status = _this.$t('outbound.pickedstock')
+            } else if (item.dn_status === 5) {
+              item.dn_status = _this.$t('outbound.shippedstock')
+            } else if (item.dn_status === 6) {
+              item.dn_status = _this.$t('outbound.received')
+            } else {
+              item.dn_status = 'N/A'
+            }
+            _this.table_list.push(item)
+          })
           _this.customer_list = res.customer_list
           if (res.previous) {
             var previous = res.previous.split(':')[0]
@@ -1438,6 +1506,7 @@ export default {
     },
     reFresh () {
       var _this = this
+      _this.table_list = []
       _this.getList()
     },
     newFormOpen () {
@@ -1445,7 +1514,9 @@ export default {
       _this.newForm = true
       _this.newdn.creater = _this.login_name
       postauth(_this.pathname + 'list/', _this.newdn).then(res => {
-        _this.newFormData.dn_code = res.dn_code
+        if (!res.detail) {
+          _this.newFormData.dn_code = res.dn_code
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1498,13 +1569,16 @@ export default {
         _this.newFormData.goods_qty[9] = _this.goodsData10.qty
       }
       postauth(_this.pathname + 'detail/', _this.newFormData).then(res => {
+        _this.table_list = []
         _this.getList()
         _this.newDataCancel()
-        _this.$q.notify({
-          message: 'Success Create',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.detail) {
+          _this.$q.notify({
+            message: 'Success Create',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1541,9 +1615,9 @@ export default {
     editData (e) {
       var _this = this
       _this.goodsDataClear()
-      if (e.dn_status !== 1) {
+      if (e.dn_status !== _this.$t('outbound.freshorder')) {
         _this.$q.notify({
-          message: e.dn_code + 'This DN Status Not 1',
+          message: e.dn_code + ' DN Status Not ' + _this.$t('outbound.freshorder'),
           icon: 'close',
           color: 'negative'
         })
@@ -1623,13 +1697,16 @@ export default {
         _this.newFormData.goods_qty[9] = _this.goodsData10.qty
       }
       putauth(_this.pathname + 'detail/', _this.newFormData).then(res => {
+        _this.table_list = []
         _this.editDataCancel()
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Edit Data',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.detail) {
+          _this.$q.notify({
+            message: 'Success Edit DN',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1653,9 +1730,9 @@ export default {
     },
     deleteData (e) {
       var _this = this
-      if (e.dn_status !== 1) {
+      if (e.dn_status !== _this.$t('outbound.freshorder')) {
         _this.$q.notify({
-          message: e.dn_code + ' Not in Status 1',
+          message: e.dn_code + ' DN Status Is Not ' + _this.$t('outbound.freshorder'),
           icon: 'close',
           color: 'negative'
         })
@@ -1667,13 +1744,16 @@ export default {
     deleteDataSubmit () {
       var _this = this
       deleteauth(_this.pathname + 'list/' + _this.deleteid + '/').then(res => {
+        _this.table_list = []
         _this.deleteDataCancel()
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Edit Data',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.detail) {
+          _this.$q.notify({
+            message: 'Success Delete DN',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1689,9 +1769,9 @@ export default {
     },
     neworderData (e) {
       var _this = this
-      if (e.dn_status !== 1) {
+      if (e.dn_status !== _this.$t('outbound.freshorder')) {
         _this.$q.notify({
-          message: e.dn_code + ' Not in Status 1',
+          message: e.dn_code + ' DN Status Is Not ' + _this.$t('outbound.freshorder'),
           icon: 'close',
           color: 'negative'
         })
@@ -1703,11 +1783,12 @@ export default {
     neworderDataSubmit () {
       var _this = this
       postauth(_this.pathname + 'neworder/' + _this.neworderid + '/', {}).then(res => {
+        _this.table_list = []
+        _this.neworderDataCancel()
+        _this.getList()
         if (!res.detail) {
-          _this.neworderDataCancel()
-          _this.getList()
           _this.$q.notify({
-            message: 'Success Confirm dn Delivery',
+            message: 'Success Confirm DN Delivery',
             icon: 'check',
             color: 'green'
           })
@@ -1727,9 +1808,9 @@ export default {
     },
     orderreleaseData (e) {
       var _this = this
-      if (e.dn_status !== 2) {
+      if (e.dn_status !== _this.$t('outbound.neworder')) {
         _this.$q.notify({
-          message: e.dn_code + ' Not in Status 2',
+          message: e.dn_code + ' DN Status Is Not ' + _this.$t('outbound.neworder'),
           icon: 'close',
           color: 'negative'
         })
@@ -1741,12 +1822,15 @@ export default {
     orderreleaseAllData () {
       var _this = this
       postauth(_this.pathname + 'orderrelease/', {}).then(res => {
+        _this.table_list = []
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Release All Order',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.detail) {
+          _this.$q.notify({
+            message: 'Success Release All Order',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1758,13 +1842,16 @@ export default {
     orderreleaseDataSubmit () {
       var _this = this
       putauth(_this.pathname + 'orderrelease/' + _this.orderreleaseid + '/', {}).then(res => {
+        _this.table_list = []
         _this.orderreleaseDataCancel()
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Release DN Code',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.detail) {
+          _this.$q.notify({
+            message: 'Success Release DN Code',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1818,9 +1905,9 @@ export default {
     },
     pickedData (e) {
       var _this = this
-      if (e.dn_status !== 3) {
+      if (e.dn_status !== _this.$t('outbound.pickstock')) {
         _this.$q.notify({
-          message: e.dn_code + ' Not in Status 3',
+          message: e.dn_code + ' DN Status Is Not ' + _this.$t('outbound.pickstock'),
           icon: 'close',
           color: 'negative'
         })
@@ -1838,13 +1925,16 @@ export default {
       var _this = this
       _this.pickFormData.creater = _this.login_name
       postauth(_this.pathname + 'picked/' + _this.pickedid + '/', _this.pickFormData).then(res => {
+        _this.table_list = []
         _this.pickedDataCancel()
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Confirm Picking List',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.detail) {
+          _this.$q.notify({
+            message: 'Success Confirm Picking List',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1902,9 +1992,9 @@ export default {
     },
     DispatchDN (e) {
       var _this = this
-      if (e.dn_status !== 4) {
+      if (e.dn_status !== _this.$t('outbound.pickedstock')) {
         _this.$q.notify({
-          message: 'This DN Status Not 4',
+          message: e.dn_code + ' DN Status Is Not ' + _this.$t('outbound.pickedstock'),
           icon: 'close',
           color: 'negative'
         })
@@ -1922,13 +2012,16 @@ export default {
     dispatchDataSubmit () {
       var _this = this
       postauth(_this.pathname + 'dispatch/' + _this.dispatchid + '/', _this.dispatchFormData).then(res => {
+        _this.table_list = []
         _this.dispatchDataCancel()
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Dispatch',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.detail) {
+          _this.$q.notify({
+            message: 'Success Dispatch',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1939,9 +2032,9 @@ export default {
     },
     PODData (e) {
       var _this = this
-      if (e.dn_status !== 5) {
+      if (e.dn_status !== _this.$t('outbound.shippedstock')) {
         _this.$q.notify({
-          message: e.dn_code + ' Not in Status 5',
+          message: e.dn_code + ' DN Status Is Not ' + _this.$t('outbound.shippedstock'),
           icon: 'close',
           color: 'negative'
         })
@@ -1968,13 +2061,16 @@ export default {
     PODDataSubmit () {
       var _this = this
       postauth(_this.pathname + 'pod/' + _this.podid + '/', _this.podFormData).then(res => {
+        _this.table_list = []
         _this.PODDataCancel()
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Dispatch',
-          icon: 'check',
-          color: 'green'
-        })
+        if (!res.detail) {
+          _this.$q.notify({
+            message: 'Success Dispatch',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -2038,6 +2134,7 @@ export default {
     }
     if (LocalStorage.has('auth')) {
       _this.authin = '1'
+      _this.table_list = []
       _this.getList()
     } else {
       _this.authin = '0'
