@@ -242,12 +242,14 @@ export default {
   },
   outbound: {
     dn: '發貨單',
+    freshorder: '預發貨單',
     neworder: '新發貨單',
     backorder: '欠貨訂單',
     pickstock: '待揀貨',
     pickedstock: '已揀貨',
     pickinglist: '揀貨單',
     shippedstock: '已發貨',
+    received: '已簽收',
     pod: '簽收回單',
     view_dn: {
       dn_code: '發貨單號',

@@ -242,12 +242,14 @@ export default {
   },
   outbound: {
     dn: 'DN',
+    freshorder: 'Pre Order',
     neworder: 'New Order',
     backorder: 'Back Order',
     pickstock: 'Pre Pick',
     pickedstock: 'Picked',
     pickinglist: 'Picking List',
     shippedstock: 'Shipping List',
+    received: 'Received',
     pod: 'Proof Of Delivery',
     view_dn: {
       dn_code: 'DN Code',
