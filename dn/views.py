@@ -494,7 +494,7 @@ class DnNewOrderViewSet(viewsets.ModelViewSet):
                 else:
                     raise APIException({"detail": "Please Enter The DN Detail"})
             else:
-                raise APIException({"detail": "This DN Status Is Not 1"})
+                raise APIException({"detail": "This DN Status Is Not Pre Order"})
 
 class DnOrderReleaseViewSet(viewsets.ModelViewSet):
     """
@@ -1402,7 +1402,7 @@ class DnPickingListViewSet(viewsets.ModelViewSet):
     def retrieve(self, request, pk):
         qs = self.get_object()
         if qs.dn_status != 3:
-            raise APIException({"detail": "This DN Status Not 3"})
+            raise APIException({"detail": "This DN Status Not Pre Pick"})
         else:
             picking_qs = PickingListModel.objects.filter(openid=self.request.auth.openid, dn_code=qs.dn_code)
             serializer = serializers.DNPickingListGetSerializer(picking_qs, many=True)
@@ -1470,7 +1470,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
     def create(self, request, pk):
         qs = self.get_object()
         if qs.dn_status != 3:
-            raise APIException({"detail": "This dn Status Not 3"})
+            raise APIException({"detail": "This dn Status Not Pre Pick"})
         else:
             data = request.data
             for i in range(len(data['goodsData'])):
@@ -1563,7 +1563,7 @@ class DnDispatchViewSet(viewsets.ModelViewSet):
     def create(self, request, pk):
         qs = self.get_object()
         if qs.dn_status != 4:
-            raise APIException({"detail": "This DN Status Not 4"})
+            raise APIException({"detail": "This DN Status Not Picked"})
         else:
             qs.dn_status = 5
             data = self.request.data
@@ -1652,7 +1652,7 @@ class DnPODViewSet(viewsets.ModelViewSet):
     def create(self, request, pk):
         qs = self.get_object()
         if qs.dn_status != 5:
-            raise APIException({"detail": "This DN Status Not 5"})
+            raise APIException({"detail": "This DN Status Not Intran-Sit"})
         else:
             qs.dn_status = 6
             data = self.request.data
