@@ -1432,7 +1432,7 @@ export default {
       _this.goodsDataClear()
       if (e.asn_status !== _this.$t('inbound.predeliverystock')) {
         _this.$q.notify({
-          message: e.asn_code + ' Status Is Not ' + _this.$t('inbound.predeliverystock'),
+          message: e.asn_code + ' ASN Status Is Not ' + _this.$t('inbound.predeliverystock'),
           icon: 'close',
           color: 'negative'
         })
@@ -1547,7 +1547,7 @@ export default {
       var _this = this
       if (e.asn_status !== _this.$t('inbound.predeliverystock')) {
         _this.$q.notify({
-          message: e.asn_code + ' Status Is Not ' + _this.$t('inbound.predeliverystock'),
+          message: e.asn_code + ' ASN Status Is Not ' + _this.$t('inbound.predeliverystock'),
           icon: 'close',
           color: 'negative'
         })
@@ -1586,7 +1586,7 @@ export default {
       var _this = this
       if (e.asn_status !== _this.$t('inbound.predeliverystock')) {
         _this.$q.notify({
-          message: e.asn_code + ' Status Is Not ' + _this.$t('inbound.predeliverystock'),
+          message: e.asn_code + ' ASN Status Is Not ' + _this.$t('inbound.predeliverystock'),
           icon: 'close',
           color: 'negative'
         })
@@ -1625,7 +1625,7 @@ export default {
       var _this = this
       if (e.asn_status !== _this.$t('inbound.preloadstock')) {
         _this.$q.notify({
-          message: e.asn_code + ' Status Is Not ' + _this.$t('inbound.preloadstock'),
+          message: e.asn_code + ' ASN Status Is Not ' + _this.$t('inbound.preloadstock'),
           icon: 'close',
           color: 'negative'
         })
@@ -1690,7 +1690,7 @@ export default {
       _this.goodsDataClear()
       if (e.asn_status !== _this.$t('inbound.presortstock')) {
         _this.$q.notify({
-          message: e.asn_code + ' Status Is Not ' + _this.$t('inbound.presortstock'),
+          message: e.asn_code + ' ASN Status Is Not ' + _this.$t('inbound.presortstock'),
           icon: 'close',
           color: 'negative'
         })

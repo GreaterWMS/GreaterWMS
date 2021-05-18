@@ -242,12 +242,14 @@ export default {
   },
   outbound: {
     dn: '注文',
+    freshorder: '請求前の注文',
     neworder: '新注文',
     backorder: '取り寄せ',
     pickstock: '選ばれる',
     pickedstock: '選んだ',
     pickinglist: 'ピッキングオーダー',
     shippedstock: '輸送する数量',
+    received: '受け取った',
     pod: '領収書に署名する',
     view_dn: {
       dn_code: '注文号',

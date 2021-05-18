@@ -14,6 +14,11 @@
         <transition appear enter-active-class="animated zoomIn">
           <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
+                         " name="freshorder" :label="$t('outbound.freshorder')" icon="img:statics/outbound/freshorder.png" to="/outbound/freshorder" exact/>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          $q.localStorage.getItem('staff_type') !== 'Customer'
                          " name="neworder" :label="$t('outbound.neworder')" icon="img:statics/outbound/order.png" to="/outbound/neworder" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">

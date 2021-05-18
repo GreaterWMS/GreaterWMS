@@ -67,6 +67,11 @@ const routes = [
             component: () => import('pages/outbound/dn.vue')
           },
           {
+            path: 'freshorder',
+            name: 'freshorder',
+            component: () => import('pages/outbound/freshorder.vue')
+          },
+          {
             path: 'neworder',
             name: 'neworder',
             component: () => import('pages/outbound/neworder.vue')
