@@ -1,13 +1,14 @@
 import { autoUpdater } from 'electron-updater'
 import { ipcMain } from 'electron'
-import { baseurl } from '../../src/boot/axios_request'
+import { LocalStorage } from 'quasar'
+const baseurl = window.g.BaseUrl
 
 let mainWindow = null
 
 export function updateHandle (window) {
   mainWindow = window
   autoUpdater.autoDownload = false
-  autoUpdater.setFeedURL(baseurl + 'media/')
+  autoUpdater.setFeedURL(baseurl + 'media/' + LocalStorage.getItem('openid') + '/')
   autoUpdater.on('error', function (error) {
     sendUpdateMessage({
       cmd: 'error',
