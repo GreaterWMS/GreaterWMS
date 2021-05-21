@@ -41,9 +41,9 @@ class GoodlistfileViewSet(views.APIView):
 
     def get_lang(self):
         if self.request.user:
-            lang = self.request.user
+            lang = self.request.META.get('HTTP_LANGUAGE')
         else:
-            lang = 'zh-hans'
+            lang = 'en-us'
         if lang == 'zh-hans':
             data_header = goodsfiles.cn_data_header()
         elif lang == 'en-us':
@@ -232,9 +232,9 @@ class SupplierfileViewSet(views.APIView):
 
     def get_lang(self):
         if self.request.user:
-            lang = self.request.user
+            lang = self.request.META.get('HTTP_LANGUAGE')
         else:
-            lang = 'zh-hans'
+            lang = 'en-us'
         if lang == 'zh-hans':
             data_header = supplierfiles.cn_data_header()
         elif lang == 'en-us':
@@ -305,9 +305,9 @@ class CustomerfileViewSet(views.APIView):
 
     def get_lang(self):
         if self.request.user:
-            lang = self.request.user
+            lang = self.request.META.get('HTTP_LANGUAGE')
         else:
-            lang = 'zh-hans'
+            lang = 'en-us'
         if lang == 'zh-hans':
             data_header = customerfiles.cn_data_header()
         elif lang == 'en-us':
