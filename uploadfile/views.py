@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, views
 import pandas as pd
 import numpy as np
 from utils.datasolve import data_validate
@@ -16,13 +16,20 @@ from supplier.models import ListModel as supplier
 from supplier import files as supplierfiles
 from customer.models import ListModel as customer
 from customer import files as customerfiles
+from payment.models import TransportationFeeListModel as freight
+from capital.models import ListModel as capital
+from goods.serializers import GoodsGetSerializer
+from supplier.serializers import SupplierGetSerializer
+from customer.serializers import CustomerGetSerializer
+from capital.serializers import CapitalGetSerializer
+from payment.serializers import FreightGetSerializer
 from rest_framework.response import Response
 from rest_framework.exceptions import APIException
 
-class GoodlistfileViewSet(viewsets.ModelViewSet):
+class GoodlistfileViewSet(views.APIView):
     """
         create:
-            Create a data line（post）
+            Upload One Excel（post）
     """
     pagination_class = []
 
@@ -33,8 +40,8 @@ class GoodlistfileViewSet(viewsets.ModelViewSet):
             return goodslist.objects.filter().none()
 
     def get_lang(self):
-        if self.request.GET.get('lang', ''):
-            lang = self.request.GET.get('lang', '')
+        if self.request.user:
+            lang = self.request.user
         else:
             lang = 'zh-hans'
         if lang == 'zh-hans':
@@ -45,7 +52,7 @@ class GoodlistfileViewSet(viewsets.ModelViewSet):
             data_header = goodsfiles.en_data_header()
         return data_header
 
-    def create(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         data_header = self.get_lang()
         files = self.request.FILES.get('file')
         if files:
@@ -208,12 +215,12 @@ class GoodlistfileViewSet(viewsets.ModelViewSet):
                 raise APIException({"detail": "Can Not Support This File Type"})
         else:
             raise APIException({"detail": "Please Select One File"})
-        return Response({"detail": "Success"})
+        return Response({"detail": "success"})
 
-class SupplierfileViewSet(viewsets.ModelViewSet):
+class SupplierfileViewSet(views.APIView):
     """
         create:
-            Create a data line（post）
+            Upload One Excel（post）
     """
     pagination_class = []
 
@@ -224,8 +231,8 @@ class SupplierfileViewSet(viewsets.ModelViewSet):
             return supplier.objects.filter().none()
 
     def get_lang(self):
-        if self.request.GET.get('lang', ''):
-            lang = self.request.GET.get('lang', '')
+        if self.request.user:
+            lang = self.request.user
         else:
             lang = 'zh-hans'
         if lang == 'zh-hans':
@@ -236,7 +243,7 @@ class SupplierfileViewSet(viewsets.ModelViewSet):
             data_header = supplierfiles.en_data_header()
         return data_header
 
-    def create(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         data_header = self.get_lang()
         files = self.request.FILES.get('file')
         if files:
@@ -281,13 +288,12 @@ class SupplierfileViewSet(viewsets.ModelViewSet):
                 raise APIException({"detail": "Can Not Support This File Type"})
         else:
             raise APIException({"detail": "Please Select One File"})
-        return Response({"detail": "Success"})
+        return Response({"detail": "success"})
 
-
-class CustomerfileViewSet(viewsets.ModelViewSet):
+class CustomerfileViewSet(views.APIView):
     """
         create:
-            Create a data line（post）
+            Upload One Excel（post）
     """
     pagination_class = []
 
@@ -298,8 +304,8 @@ class CustomerfileViewSet(viewsets.ModelViewSet):
             return customer.objects.filter().none()
 
     def get_lang(self):
-        if self.request.GET.get('lang', ''):
-            lang = self.request.GET.get('lang', '')
+        if self.request.user:
+            lang = self.request.user
         else:
             lang = 'zh-hans'
         if lang == 'zh-hans':
@@ -310,7 +316,7 @@ class CustomerfileViewSet(viewsets.ModelViewSet):
             data_header = customerfiles.en_data_header()
         return data_header
 
-    def create(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         data_header = self.get_lang()
         files = self.request.FILES.get('file')
         if files:
@@ -355,4 +361,113 @@ class CustomerfileViewSet(viewsets.ModelViewSet):
                 raise APIException({"detail": "Can Not Support This File Type"})
         else:
             raise APIException({"detail": "Please Select One File"})
-        return Response({"detail": "Success"})
+        return Response({"detail": "success"})
+
+class CapitalfileViewSet(views.APIView):
+    """
+        create:
+            Upload One Excel（post）
+    """
+    pagination_class = []
+
+    def get_queryset(self):
+        if self.request.user:
+            return capital.objects.filter(openid=self.request.auth.openid)
+        else:
+            return capital.objects.filter().none()
+
+    def post(self, request, *args, **kwargs):
+        files = self.request.FILES.get('file')
+        if files:
+            excel_type = files.name.split('.')[1]
+            if excel_type in ['xlsx', 'xls', 'csv']:
+                self.get_queryset().delete()
+                df = pd.read_excel(files)
+                data_list = df.drop_duplicates(keep='first', inplace=True)
+                for d in range(len(data_list)):
+                    data_validate(str(data_list[d]))
+                for i in range(len(data_list)):
+                    if str(data_list[i][0]) == 'nan':
+                        continue
+                    else:
+                        if is_number(str(data_list[i][1])):
+                            if str(data_list[i][1]) == 'nan':
+                                data_list[i][1] = 0
+                        else:
+                            data_list[i][1] = 0
+                        if is_number(str(data_list[i][2])):
+                            if str(data_list[i][2]) == 'nan':
+                                data_list[i][2] = 0
+                        else:
+                            data_list[i][2] = 0
+                        capital.objects.create(openid=self.request.auth.openid,
+                                               capital_name=str(data_list[i][0]).strip(),
+                                               capital_qty=data_list[i][1],
+                                               capital_cost=data_list[i][2],
+                                               creater=self.request.auth.name
+                                               )
+            else:
+                raise APIException({"detail": "Can Not Support This File Type"})
+        else:
+            raise APIException({"detail": "Please Select One File"})
+        return Response({"detail": "success"})
+
+class FreightfileViewSet(views.APIView):
+    """
+        create:
+            Upload One Excel（post）
+    """
+    pagination_class = []
+
+    def get_queryset(self):
+        if self.request.user:
+            return freight.objects.filter(openid=self.request.auth.openid)
+        else:
+            return freight.objects.filter().none()
+
+    def post(self, request, *args, **kwargs):
+        files = self.request.FILES.get('file')
+        if files:
+            excel_type = files.name.split('.')[1]
+            if excel_type in ['xlsx', 'xls', 'csv']:
+                self.get_queryset().delete()
+                df = pd.read_excel(files)
+                data_list = df.drop_duplicates(keep='first', inplace=True).values
+                for d in range(len(data_list)):
+                    data_validate(str(data_list[d]))
+                for i in range(len(data_list)):
+                        if str(data_list[i][0]) == 'nan':
+                            data_list[i][0] = 'None'
+                        if str(data_list[i][1]) == 'nan':
+                            data_list[i][1] = 'None'
+                        if is_number(str(data_list[i][2])):
+                            if str(data_list[i][2]) == 'nan':
+                                data_list[i][2] = 0
+                        else:
+                            data_list[i][2] = 0
+                        if is_number(str(data_list[i][3])):
+                            if str(data_list[i][3]) == 'nan':
+                                data_list[i][3] = 0
+                        else:
+                            data_list[i][3] = 0
+                        if is_number(str(data_list[i][4])):
+                            if str(data_list[i][4]) == 'nan':
+                                data_list[i][4] = 0
+                        else:
+                            data_list[i][4] = 0
+                        if str(data_list[i][5]) == 'nan':
+                            data_list[i][5] = 'None'
+                        freight.objects.create(openid=self.request.auth.openid,
+                                               send_city=str(data_list[i][0]).strip(),
+                                               receiver_city=str(data_list[i][1]).strip(),
+                                               weight_fee=data_list[i][2],
+                                               volume_fee=data_list[i][3],
+                                               min_payment=data_list[i][4],
+                                               transportation_supplier=str(data_list[i][5]).strip(),
+                                               creater=self.request.auth.name
+                                               )
+            else:
+                raise APIException({"detail": "Can Not Support This File Type"})
+        else:
+            raise APIException({"detail": "Please Select One File"})
+        return Response({"detail": "success"})
