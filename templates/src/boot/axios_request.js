@@ -34,7 +34,8 @@ axiosInstanceAuth.interceptors.request.use(
     config.headers.post['Content-Type'] = 'application/json, charset="utf-8"'
     config.headers.patch['Content-Type'] = 'application/json, charset="utf-8"'
     config.headers.put['Content-Type'] = 'application/json, charset="utf-8"'
-    config.headers.token = LocalStorage.getItem('openid') + '-language-' + lang
+    config.headers.token = LocalStorage.getItem('openid')
+    config.headers.language = lang
     return config
   },
   function (error) {
@@ -136,7 +137,7 @@ axiosInstanceAuth.interceptors.response.use(
 axiosInstance.interceptors.request.use(
   function (config) {
     config.headers.post['Content-Type'] = 'application/json, charset="utf-8"'
-    config.headers.token = 'token' + '-language-' + lang
+    config.headers.language = lang
     return config
   },
   function (error) {
@@ -238,7 +239,8 @@ axiosInstance.interceptors.response.use(
 axiosFile.interceptors.request.use(
   function (config) {
     config.headers.get['Content-Type'] = 'application/vnd.ms-excel'
-    config.headers.token = LocalStorage.getItem('openid') + '-language-' + lang
+    config.headers.token = LocalStorage.getItem('openid')
+    config.headers.language = lang
     return config
   },
   function (error) {

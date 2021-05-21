@@ -8,11 +8,11 @@ class Authtication(object):
         elif request.path == '/swagger/':
                 return (False, None)
         else:
-            token = request.META.get('HTTP_TOKEN').split('-language-')
+            token = request.META.get('HTTP_TOKEN')
             if token:
-                if Users.objects.filter(openid__exact=str(token[0])).exists():
-                    user = Users.objects.filter(openid__exact=str(token[0])).first()
-                    return (token[1], user)
+                if Users.objects.filter(openid__exact=str(token)).exists():
+                    user = Users.objects.filter(openid__exact=str(token)).first()
+                    return (True, user)
                 else:
                     raise APIException({"detail": "User Does Not Exists"})
             else:
