@@ -76,9 +76,9 @@ class GoodlistfileViewSet(views.APIView):
                         continue
                     else:
                         if str(data_list[i][1]) == 'nan':
-                            data_list[i][1] = 'None'
+                            data_list[i][1] = 'N/A'
                         if str(data_list[i][2]) == 'nan':
-                            data_list[i][2] = 'None'
+                            data_list[i][2] = 'N/A'
                         if is_number(str(data_list[i][3])):
                             if str(data_list[i][3]) == 'nan':
                                 data_list[i][3] = 0
@@ -105,19 +105,19 @@ class GoodlistfileViewSet(views.APIView):
                         else:
                             data_list[i][7] = 0
                         if str(data_list[i][8]) == 'nan':
-                            data_list[i][8] = 'None'
+                            data_list[i][8] = 'N/A'
                         if str(data_list[i][9]) == 'nan':
-                            data_list[i][9] = 'None'
+                            data_list[i][9] = 'N/A'
                         if str(data_list[i][10]) == 'nan':
-                            data_list[i][10] = 'None'
+                            data_list[i][10] = 'N/A'
                         if str(data_list[i][11]) == 'nan':
-                            data_list[i][11] = 'None'
+                            data_list[i][11] = 'N/A'
                         if str(data_list[i][12]) == 'nan':
-                            data_list[i][12] = 'None'
+                            data_list[i][12] = 'N/A'
                         if str(data_list[i][13]) == 'nan':
-                            data_list[i][13] = 'None'
+                            data_list[i][13] = 'N/A'
                         if str(data_list[i][14]) == 'nan':
-                            data_list[i][14] = 'None'
+                            data_list[i][14] = 'N/A'
                         if is_number(str(data_list[i][15])):
                             if str(data_list[i][15]) == 'nan':
                                 data_list[i][15] = 0
@@ -152,7 +152,7 @@ class GoodlistfileViewSet(views.APIView):
                                     data_header.get('goods_unit')].values
                 for i in goods_unit_list:
                     if str(i) == 'nan':
-                        i = 'None'
+                        i = 'N/A'
                     goodsunit.objects.create(openid=self.request.auth.openid,
                                              goods_unit=str(i).strip(),
                                              creater=self.request.auth.name
@@ -161,7 +161,7 @@ class GoodlistfileViewSet(views.APIView):
                                     data_header.get('goods_class')].values
                 for i in goods_class_list:
                     if str(i) == 'nan':
-                        i = 'None'
+                        i = 'N/A'
                     goodsclass.objects.create(openid=self.request.auth.openid,
                                               goods_class=str(i).strip(),
                                               creater=self.request.auth.name
@@ -170,7 +170,7 @@ class GoodlistfileViewSet(views.APIView):
                                     data_header.get('goods_brand')].values
                 for i in goods_brand_list:
                     if str(i) == 'nan':
-                        i = 'None'
+                        i = 'N/A'
                     goodsbrand.objects.create(openid=self.request.auth.openid,
                                               goods_brand=str(i).strip(),
                                               creater=self.request.auth.name
@@ -179,7 +179,7 @@ class GoodlistfileViewSet(views.APIView):
                                     data_header.get('goods_color')].values
                 for i in goods_color_list:
                     if str(i) == 'nan':
-                        i = 'None'
+                        i = 'N/A'
                     goodscolor.objects.create(openid=self.request.auth.openid,
                                               goods_color=str(i).strip(),
                                               creater=self.request.auth.name
@@ -188,7 +188,7 @@ class GoodlistfileViewSet(views.APIView):
                                     data_header.get('goods_shape')].values
                 for i in goods_shape_list:
                     if str(i) == 'nan':
-                        i = 'None'
+                        i = 'N/A'
                     goodsshape.objects.create(openid=self.request.auth.openid,
                                               goods_shape=str(i).strip(),
                                               creater=self.request.auth.name
@@ -197,7 +197,7 @@ class GoodlistfileViewSet(views.APIView):
                                     data_header.get('goods_specs')].values
                 for i in goods_specs_list:
                     if str(i) == 'nan':
-                        i = 'None'
+                        i = 'N/A'
                     goodsspecs.objects.create(openid=self.request.auth.openid,
                                               goods_specs=str(i).strip(),
                                               creater=self.request.auth.name
@@ -206,7 +206,7 @@ class GoodlistfileViewSet(views.APIView):
                                     data_header.get('goods_origin')].values
                 for i in goods_origin_list:
                     if str(i) == 'nan':
-                        i = 'None'
+                        i = 'N/A'
                     goodsorigin.objects.create(openid=self.request.auth.openid,
                                                goods_origin=str(i).strip(),
                                                creater=self.request.auth.name
@@ -260,16 +260,16 @@ class SupplierfileViewSet(views.APIView):
                         continue
                     else:
                         if str(data_list[i][1]) == 'nan':
-                            data_list[i][1] = 'None'
+                            data_list[i][1] = 'N/A'
                         if str(data_list[i][2]) == 'nan':
-                            data_list[i][2] = 'None'
+                            data_list[i][2] = 'N/A'
                         if is_number(str(data_list[i][3])):
                             if str(data_list[i][3]) == 'nan':
                                 data_list[i][3] = 0
                         else:
                             data_list[i][3] = 0
                         if str(data_list[i][4]) == 'nan':
-                            data_list[i][4] = 'None'
+                            data_list[i][4] = 'N/A'
                         if is_number(str(data_list[i][5])):
                             if str(data_list[i][5]) == 'nan':
                                 data_list[i][5] = 0
@@ -333,16 +333,16 @@ class CustomerfileViewSet(views.APIView):
                         continue
                     else:
                         if str(data_list[i][1]) == 'nan':
-                            data_list[i][1] = 'None'
+                            data_list[i][1] = 'N/A'
                         if str(data_list[i][2]) == 'nan':
-                            data_list[i][2] = 'None'
+                            data_list[i][2] = 'N/A'
                         if is_number(str(data_list[i][3])):
                             if str(data_list[i][3]) == 'nan':
                                 data_list[i][3] = 0
                         else:
                             data_list[i][3] = 0
                         if str(data_list[i][4]) == 'nan':
-                            data_list[i][4] = 'None'
+                            data_list[i][4] = 'N/A'
                         if is_number(str(data_list[i][5])):
                             if str(data_list[i][5]) == 'nan':
                                 data_list[i][5] = 0
@@ -437,9 +437,9 @@ class FreightfileViewSet(views.APIView):
                     data_validate(str(data_list[d]))
                 for i in range(len(data_list)):
                         if str(data_list[i][0]) == 'nan':
-                            data_list[i][0] = 'None'
+                            data_list[i][0] = 'N/A'
                         if str(data_list[i][1]) == 'nan':
-                            data_list[i][1] = 'None'
+                            data_list[i][1] = 'N/A'
                         if is_number(str(data_list[i][2])):
                             if str(data_list[i][2]) == 'nan':
                                 data_list[i][2] = 0
@@ -456,7 +456,7 @@ class FreightfileViewSet(views.APIView):
                         else:
                             data_list[i][4] = 0
                         if str(data_list[i][5]) == 'nan':
-                            data_list[i][5] = 'None'
+                            data_list[i][5] = 'N/A'
                         freight.objects.create(openid=self.request.auth.openid,
                                                send_city=str(data_list[i][0]).strip(),
                                                receiver_city=str(data_list[i][1]).strip(),
