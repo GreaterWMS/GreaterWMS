@@ -2340,7 +2340,7 @@ cacache@^12.0.2:
     move-concurrently "^1.0.1"
     promise-inflight "^1.0.1"
     rimraf "^2.6.3"
-    ssri "^6.0.1"
+    ssri "^6.0.2"
     unique-filename "^1.1.1"
     y18n "^4.0.0"
 
