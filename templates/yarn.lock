@@ -8637,6 +8637,13 @@ ssri@^6.0.1:
   dependencies:
     figgy-pudding "^3.5.1"
 
+ssri@^6.0.2:
+  version "6.0.2"
+  resolved "https://registry.nlark.com/ssri/download/ssri-6.0.2.tgz#157939134f20464e7301ddba3e90ffa8f7728ac5"
+  integrity sha1-FXk5E08gRk5zAd26PpD/qPdyisU=
+  dependencies:
+    figgy-pudding "^3.5.1"
+
 ssri@^8.0.0:
   version "8.0.0"
   resolved "https://registry.npm.taobao.org/ssri/download/ssri-8.0.0.tgz#79ca74e21f8ceaeddfcb4b90143c458b8d988808"
