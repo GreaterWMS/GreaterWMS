@@ -49,7 +49,7 @@ service-identity==18.1.0
 six==1.15.0
 sqlparse==0.4.1
 toml==0.10.2
-Twisted @ file:///C:/GreaterWMS/Twisted-20.3.0-cp39-cp39-win_amd64.whl
+Twisted==20.3.0
 txaio==21.2.1
 unicodecsv==0.14.1
 uritemplate==3.0.1
