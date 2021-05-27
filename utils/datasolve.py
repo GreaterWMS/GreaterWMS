@@ -1,5 +1,5 @@
 from userprofile.models import Users
-import re
+import re, base64, json
 from rest_framework.exceptions import APIException
 
 def data_validate(data):
@@ -86,19 +86,25 @@ def sumOfList(list, size):
     else:
         return list[size - 1] + sumOfList(list, size - 1)
 
-def is_number(s):
+def is_number(data):
     try:
-        float(s)
+        float(data)
         return True
     except ValueError:
         pass
     try:
         import unicodedata
-        unicodedata.numeric(s)
+        unicodedata.numeric(data)
         return True
     except (TypeError, ValueError):
         pass
     return False
+
+def secret_bar_code(data):
+    return base64.b64encode(str(data).encode()).decode()
+
+def verify_bar_code(data):
+    return json.loads(base64.b64decode(str(data).encode()).decode().replace('\'', '\"'))
 
 def transportation_calculate(weight, volume, weight_fee, volume_fee, min_fee):
     weight_cost = weight * weight_fee
