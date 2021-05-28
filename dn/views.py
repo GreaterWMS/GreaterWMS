@@ -40,7 +40,6 @@ class DnListViewSet(viewsets.ModelViewSet):
             Delete a data line（delete)
 
     """
-    queryset = DnListModel.objects.all()
     serializer_class = serializers.DNListGetSerializer
     pagination_class = MyPageNumberPaginationDNList
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -58,11 +57,11 @@ class DnListViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return DnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return DnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -81,10 +80,10 @@ class DnListViewSet(viewsets.ModelViewSet):
             return self.http_method_not_allowed(request=self.request)
 
     def create(self, request, *args, **kwargs):
-        data = request.data
+        data = self.request.data
         data['openid'] = self.request.auth.openid
-        if self.queryset.filter(openid=data['openid'], is_delete=False).exists():
-            dn_last_code = self.queryset.filter(openid=data['openid']).first().dn_code
+        if DnListModel.objects.filter(openid=data['openid'], is_delete=False).exists():
+            dn_last_code = DnListModel.objects.filter(openid=data['openid']).first().dn_code
             dn_add_code = str(int(re.findall(r'\d+', str(dn_last_code), re.IGNORECASE)[0]) + 1).zfill(8)
             data['dn_code'] = 'DN' + dn_add_code
         else:
@@ -111,7 +110,7 @@ class DnListViewSet(viewsets.ModelViewSet):
                     goods_qty_change.save()
                 dn_detail_list.update(is_delete=True)
                 qs.save()
-                return Response({"detail": "Yes"}, status=200)
+                return Response({"detail": "success"}, status=200)
             else:
                 raise APIException({"detail": "This order has Confirmed or Deliveried"})
 
@@ -129,7 +128,6 @@ class DnDetailViewSet(viewsets.ModelViewSet):
         update:
             Update a data（put：update）
     """
-    queryset = DnDetailModel.objects.all()
     serializer_class = serializers.DNDetailGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -147,11 +145,11 @@ class DnDetailViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return DnDetailModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return DnDetailModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return DnDetailModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -168,7 +166,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
             return self.http_method_not_allowed(request=self.request)
 
     def create(self, request, *args, **kwargs):
-        data = request.data
+        data = self.request.data
         if DnListModel.objects.filter(openid=self.request.auth.openid, dn_code=str(data['dn_code']), is_delete=False).exists():
             if customer.objects.filter(openid=self.request.auth.openid, customer_name=str(data['customer']), is_delete=False).exists():
                 for i in range(len(data['goods_code'])):
@@ -251,7 +249,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
             raise APIException({"detail": "DN Code does not exists"})
 
     def update(self, request, *args, **kwargs):
-        data = request.data
+        data = self.request.data
         if DnListModel.objects.filter(openid=self.request.auth.openid, dn_code=str(data['dn_code']),
                                        dn_status=1, is_delete=False).exists():
             if customer.objects.filter(openid=self.request.auth.openid, customer_name=str(data['customer']),
@@ -365,7 +363,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                     pass
                 else:
                     DnListModel.objects.filter(openid=self.request.auth.openid, dn_code=qs.dn_code).update(is_delete=True)
-                return Response({"detail": "Yes"}, status=200)
+                return Response({"detail": "success"}, status=200)
             else:
                 raise APIException({"detail": "This order has Confirmed or Deliveried"})
 
@@ -374,7 +372,6 @@ class DnViewPrintViewSet(viewsets.ModelViewSet):
         retrieve:
             Response a data list（get）
     """
-    queryset = DnListModel.objects.all()
     serializer_class = serializers.DNListGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -392,11 +389,11 @@ class DnViewPrintViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return DnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return DnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -436,7 +433,6 @@ class DnNewOrderViewSet(viewsets.ModelViewSet):
         retrieve:
             Response a data list（get）
     """
-    queryset = DnListModel.objects.all()
     serializer_class = serializers.DNListGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -454,11 +450,11 @@ class DnNewOrderViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return DnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return DnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'create':
@@ -501,7 +497,6 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
         retrieve:
             Response a data list（get）
     """
-    queryset = DnListModel.objects.all()
     serializer_class = serializers.DNListGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -519,11 +514,11 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, dn_status=2, is_delete=False).order_by('create_time')
+                return DnListModel.objects.filter(openid=self.request.auth.openid, dn_status=2, is_delete=False).order_by('create_time')
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, dn_status=2, id=id, is_delete=False)
+                return DnListModel.objects.filter(openid=self.request.auth.openid, dn_status=2, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return DnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'create':
@@ -1372,7 +1367,6 @@ class DnPickingListViewSet(viewsets.ModelViewSet):
         retrieve:
             Picklist for pk
     """
-    queryset = DnListModel.objects.all()
     serializer_class = serializers.DNListGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -1389,9 +1383,9 @@ class DnPickingListViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         id = self.get_project()
         if self.request.user:
-            return self.queryset.filter(openid=self.request.auth.openid, id=id)
+            return DnListModel.objects.filter(openid=self.request.auth.openid, id=id)
         else:
-            return self.queryset.none()
+            return DnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -1401,8 +1395,8 @@ class DnPickingListViewSet(viewsets.ModelViewSet):
 
     def retrieve(self, request, pk):
         qs = self.get_object()
-        if qs.dn_status != 3:
-            raise APIException({"detail": "This DN Status Not Pre Pick"})
+        if qs.dn_status < 3:
+            raise APIException({"detail": "No Picking List Been Created"})
         else:
             picking_qs = PickingListModel.objects.filter(openid=self.request.auth.openid, dn_code=qs.dn_code)
             serializer = serializers.DNPickingListGetSerializer(picking_qs, many=True)
@@ -1413,7 +1407,6 @@ class DnPickingListFilterViewSet(viewsets.ModelViewSet):
         list:
             Picklist for Filter
     """
-    queryset = PickingListModel.objects.all()
     serializer_class = serializers.DNPickingCheckGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -1422,9 +1415,9 @@ class DnPickingListFilterViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         if self.request.user:
-            return self.queryset.filter(openid=self.request.auth.openid)
+            return PickingListModel.objects.filter(openid=self.request.auth.openid)
         else:
-            return self.queryset.none()
+            return PickingListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -1437,7 +1430,6 @@ class DnPickedViewSet(viewsets.ModelViewSet):
         create:
             Finish Picked
     """
-    queryset = DnListModel.objects.all()
     serializer_class = serializers.DNListPostSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -1455,11 +1447,11 @@ class DnPickedViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return DnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return DnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'create':
@@ -1472,7 +1464,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
         if qs.dn_status != 3:
             raise APIException({"detail": "This dn Status Not Pre Pick"})
         else:
-            data = request.data
+            data = self.request.data
             for i in range(len(data['goodsData'])):
                 pick_qty_change = PickingListModel.objects.filter(openid=self.request.auth.openid,
                                                                   t_code=str(data['goodsData'][i].get('t_code'))).first()
@@ -1489,7 +1481,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                                             goods_code=str(data['goodsData'][j].get('goods_code'))).first()
                 dn_detail = DnDetailModel.objects.filter(openid=self.request.auth.openid,
                                                          dn_code=str(data['dn_code']),
-                                                         dn_status=3, customer=str(data['customer']),
+                                                         customer=str(data['customer']),
                                                          goods_code=str(data['goodsData'][j].get('goods_code'))).first()
                 bin_qty_change = stockbin.objects.filter(openid=self.request.auth.openid,
                                                          t_code=str(data['goodsData'][j].get('t_code'))).first()
@@ -1514,7 +1506,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                     pick_qty_change.save()
                     bin_qty_change.save()
                 else:
-                    continue
+                    pass
                 dn_detail.picked_qty = dn_detail.picked_qty + int(data['goodsData'][j].get('pick_qty'))
                 if dn_detail.dn_status == 3:
                     dn_detail.dn_status = 4
@@ -1533,7 +1525,6 @@ class DnDispatchViewSet(viewsets.ModelViewSet):
         create:
             Confirm Dispatch
     """
-    queryset = DnListModel.objects.all()
     serializer_class = serializers.DNListPostSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -1550,9 +1541,9 @@ class DnDispatchViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         id = self.get_project()
         if self.request.user:
-            return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+            return DnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return DnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'create':
@@ -1622,7 +1613,6 @@ class DnPODViewSet(viewsets.ModelViewSet):
         create:
             Confirm Dispatch
     """
-    queryset = DnListModel.objects.all()
     serializer_class = serializers.DNListPostSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -1639,9 +1629,9 @@ class DnPODViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         id = self.get_project()
         if self.request.user:
-            return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+            return DnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return DnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'create':
@@ -1719,7 +1709,6 @@ class DnPODViewSet(viewsets.ModelViewSet):
             return Response({"detail": "Success Delivery DN"}, status=200)
 
 class FileListDownloadView(viewsets.ModelViewSet):
-    queryset = DnListModel.objects.all()
     serializer_class = serializers.FileListRenderSerializer
     renderer_classes = (FileListRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -1737,9 +1726,9 @@ class FileListDownloadView(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return DnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
             return self.queryset.none()
 
@@ -1749,6 +1738,16 @@ class FileListDownloadView(viewsets.ModelViewSet):
         else:
             return self.http_method_not_allowed(request=self.request)
 
+    def get_lang(self, data):
+        lang = self.request.META.get('HTTP_LANGUAGE')
+        if lang:
+            if lang == 'zh-hans':
+                return FileDetailRenderCN().render(data)
+            else:
+                return FileDetailRenderEN().render(data)
+        else:
+            return FileDetailRenderEN().render(data)
+
     def list(self, request, *args, **kwargs):
         from datetime import datetime
         dt = datetime.now()
@@ -1756,10 +1755,7 @@ class FileListDownloadView(viewsets.ModelViewSet):
             FileListRenderSerializer(instance).data
             for instance in self.filter_queryset(self.get_queryset())
         )
-        if self.request.GET.get('lang', '') == 'zh-hans':
-            renderer = FileListRenderCN().render(data)
-        else:
-            renderer = FileListRenderEN().render(data)
+        renderer = self.get_lang(data)
         response = StreamingHttpResponse(
             renderer,
             content_type="text/csv"
@@ -1768,7 +1764,6 @@ class FileListDownloadView(viewsets.ModelViewSet):
         return response
 
 class FileDetailDownloadView(viewsets.ModelViewSet):
-    queryset = DnDetailModel.objects.all()
     serializer_class = serializers.FileDetailRenderSerializer
     renderer_classes = (FileDetailRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -1786,17 +1781,27 @@ class FileDetailDownloadView(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return DnDetailModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return DnDetailModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return DnDetailModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'list':
             return serializers.FileDetailRenderSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
+
+    def get_lang(self, data):
+        lang = self.request.META.get('HTTP_LANGUAGE')
+        if lang:
+            if lang == 'zh-hans':
+                return FileDetailRenderCN().render(data)
+            else:
+                return FileDetailRenderEN().render(data)
+        else:
+            return FileDetailRenderEN().render(data)
 
     def list(self, request, *args, **kwargs):
         from datetime import datetime
@@ -1805,10 +1810,7 @@ class FileDetailDownloadView(viewsets.ModelViewSet):
             FileDetailRenderSerializer(instance).data
             for instance in self.filter_queryset(self.get_queryset())
         )
-        if self.request.GET.get('lang', '') == 'zh-hans':
-            renderer = FileDetailRenderCN().render(data)
-        else:
-            renderer = FileDetailRenderEN().render(data)
+        renderer = self.get_lang(data)
         response = StreamingHttpResponse(
             renderer,
             content_type="text/csv"

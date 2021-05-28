@@ -1,7 +1,7 @@
 from rest_framework_csv.renderers import CSVStreamingRenderer
 
-class FileListRenderCN(CSVStreamingRenderer):
-    header = [
+def list_file_headers():
+    return [
         'dn_code',
         'dn_status',
         'total_weight',
@@ -12,7 +12,8 @@ class FileListRenderCN(CSVStreamingRenderer):
         'create_time',
         'update_time'
     ]
-    labels = dict([
+def list_cn_data_header():
+    return dict([
         ('dn_code', u'发货单单号'),
         ('dn_status', u'发货单状态'),
         ('total_weight', u'总重量'),
@@ -24,19 +25,8 @@ class FileListRenderCN(CSVStreamingRenderer):
         ('update_time', u'更新时间')
     ])
 
-class FileListRenderEN(CSVStreamingRenderer):
-    header = [
-        'dn_code',
-        'dn_status',
-        'total_weight',
-        'total_volume',
-        'customer',
-        'creater',
-        'back_order_label',
-        'create_time',
-        'update_time'
-    ]
-    labels = dict([
+def list_en_data_header():
+    return dict([
         ('dn_code', u'DN Code'),
         ('dn_status', u'DN Status'),
         ('total_weight', u'Total Weight'),
@@ -48,8 +38,8 @@ class FileListRenderEN(CSVStreamingRenderer):
         ('update_time', u'Update Time')
     ])
 
-class FileDetailRenderCN(CSVStreamingRenderer):
-    header = [
+def detail_file_headers():
+    return [
         'dn_code',
         'dn_status',
         'goods_code',
@@ -69,7 +59,8 @@ class FileDetailRenderCN(CSVStreamingRenderer):
         'create_time',
         'update_time'
     ]
-    labels = dict([
+def detail_cn_data_header():
+    return dict([
         ('dn_code', u'发货单单号'),
         ('dn_status', u'发货单状态'),
         ('goods_code', u'发货单货物名称'),
@@ -90,28 +81,8 @@ class FileDetailRenderCN(CSVStreamingRenderer):
         ('update_time', u'更新时间')
     ])
 
-class FileDetailRenderEN(CSVStreamingRenderer):
-    header = [
-        'dn_code',
-        'dn_status',
-        'goods_code',
-        'goods_qty',
-        'pick_qty',
-        'picked_qty',
-        'intransit_qty',
-        'delivery_actual_qty',
-        'delivery_shortage_qty',
-        'delivery_more_qty',
-        'delivery_damage_qty',
-        'goods_weight',
-        'goods_volume',
-        'customer',
-        'creater',
-        'back_order_label',
-        'create_time',
-        'update_time'
-    ]
-    labels = dict([
+def detail_en_data_header():
+    return dict([
         ('dn_code', u'DN Code'),
         ('dn_status', u'DN Status'),
         ('goods_code', u'Goods Code'),
@@ -131,3 +102,19 @@ class FileDetailRenderEN(CSVStreamingRenderer):
         ('create_time', u'Create Time'),
         ('update_time', u'Update Time')
     ])
+
+class FileListRenderCN(CSVStreamingRenderer):
+    header = list_file_headers()
+    labels = list_cn_data_header()
+
+class FileListRenderEN(CSVStreamingRenderer):
+    header = list_file_headers()
+    labels = list_cn_data_header()
+
+class FileDetailRenderCN(CSVStreamingRenderer):
+    header = detail_file_headers()
+    labels = detail_cn_data_header()
+
+class FileDetailRenderEN(CSVStreamingRenderer):
+    header = detail_file_headers()
+    labels = detail_en_data_header()
