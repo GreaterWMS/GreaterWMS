@@ -18,6 +18,7 @@ class ASNListPostSerializer(serializers.ModelSerializer):
     openid = serializers.CharField(read_only=False, required=False, validators=[datasolve.openid_validate])
     asn_code = serializers.CharField(read_only=False,  required=True, validators=[datasolve.asn_data_validate])
     supplier = serializers.CharField(read_only=False, required=False)
+    bar_code = serializers.CharField(read_only=False, required=False)
     creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     class Meta:
         model = AsnListModel
