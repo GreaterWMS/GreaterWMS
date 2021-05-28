@@ -84,8 +84,8 @@ class APIViewSet(viewsets.ModelViewSet):
         data['openid'] = self.request.auth.openid
         data['unit_volume'] = round(
             (float(data['goods_w']) * float(data['goods_d']) * float(data['goods_h'])) / 1000000000, 4)
-        if self.queryset.filter(openid=data['openid'], goods_code=data['goods_code'], is_delete=False).exists():
-            raise APIException({"detail": "Data exists"})
+        if ListModel.objects.filter(openid=data['openid'], goods_code=data['goods_code'], is_delete=False).exists():
+            raise APIException({"detail": "Data Exists"})
         else:
             if supplier.objects.filter(openid=data['openid'], supplier_name=data['goods_supplier'],
                                         is_delete=False).exists():
@@ -239,8 +239,7 @@ class APIViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=200, headers=headers)
 
 class FileDownloadView(viewsets.ModelViewSet):
-    queryset = ListModel.objects.all()
-    serializer_class = serializers.FileRenderSerializer
+    serializer_class = FileRenderSerializer
     renderer_classes = (FileRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -257,11 +256,11 @@ class FileDownloadView(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return ListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return ListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'list':
