@@ -3,7 +3,7 @@ from .models import AsnListModel, AsnDetailModel
 from . import serializers
 from .page import MyPageNumberPaginationASNList
 from utils.page import MyPageNumberPagination
-from utils.datasolve import sumOfList, transportation_calculate
+from utils.datasolve import sumOfList, transportation_calculate, secret_bar_code, verify_bar_code
 from utils.md5 import Md5
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -39,7 +39,6 @@ class AsnListViewSet(viewsets.ModelViewSet):
             Delete a data line（delete)
 
     """
-    queryset = AsnListModel.objects.all()
     serializer_class = serializers.ASNListGetSerializer
     pagination_class = MyPageNumberPaginationASNList
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -57,11 +56,11 @@ class AsnListViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return AsnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -82,8 +81,8 @@ class AsnListViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         data = self.request.data
         data['openid'] = self.request.auth.openid
-        if self.queryset.filter(openid=data['openid'], is_delete=False).exists():
-            asn_last_code = self.queryset.filter(openid=data['openid']).first().asn_code
+        if AsnListModel.objects.filter(openid=data['openid'], is_delete=False).exists():
+            asn_last_code = AsnListModel.objects.filter(openid=data['openid']).first().asn_code
             asn_add_code = str(int(re.findall(r'\d+', str(asn_last_code), re.IGNORECASE)[0]) + 1).zfill(8)
             data['asn_code'] = 'ASN' + asn_add_code
         else:
@@ -131,7 +130,6 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
         update:
             Update a data（put：update）
     """
-    queryset = AsnDetailModel.objects.all()
     serializer_class = serializers.ASNDetailGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -149,11 +147,11 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return AsnDetailModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return AsnDetailModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return AsnDetailModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -245,7 +243,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                 AsnListModel.objects.filter(openid=self.request.auth.openid, asn_code=str(data['asn_code'])).update(
                     supplier=str(data['supplier']), total_weight=total_weight, total_volume=total_volume,
                     transportation_fee=transportation_res)
-                return Response({"success": "Yes"}, status=200)
+                return Response({"detail": "success"}, status=200)
             else:
                 raise APIException({"detail": "Supplier does not exists"})
         else:
@@ -346,7 +344,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                 AsnListModel.objects.filter(openid=self.request.auth.openid, asn_code=str(data['asn_code'])).update(
                     supplier=str(data['supplier']), total_weight=total_weight, total_volume=total_volume,
                     transportation_fee=transportation_res)
-                return Response({"success": "Yes"}, status=200)
+                return Response({"detail": "success"}, status=200)
             else:
                 raise APIException({"detail": "Supplier does not exists"})
         else:
@@ -357,7 +355,6 @@ class AsnViewPrintViewSet(viewsets.ModelViewSet):
         retrieve:
             Response a data list（get）
     """
-    queryset = AsnListModel.objects.all()
     serializer_class = serializers.ASNListGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -375,11 +372,11 @@ class AsnViewPrintViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return AsnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -419,7 +416,6 @@ class AsnPreLoadViewSet(viewsets.ModelViewSet):
         retrieve:
             Response a data list（get）
     """
-    queryset = AsnListModel.objects.all()
     serializer_class = serializers.ASNListGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -437,11 +433,11 @@ class AsnPreLoadViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return AsnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'create':
@@ -483,7 +479,6 @@ class AsnPreSortViewSet(viewsets.ModelViewSet):
         retrieve:
             Response a data list（get）
     """
-    queryset = AsnListModel.objects.all()
     serializer_class = serializers.ASNListGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -501,11 +496,11 @@ class AsnPreSortViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return AsnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'create':
@@ -543,7 +538,6 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
         create:
             Finish Sorted
     """
-    queryset = AsnListModel.objects.all()
     serializer_class = serializers.ASNListGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -561,11 +555,11 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return AsnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'create':
@@ -642,14 +636,13 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
             else:
                 qs.asn_status = 5
             qs.save()
-            return Response({"ok": "ok"}, status=200)
+            return Response({"detail": "success"}, status=200)
 
 class MoveToBinViewSet(viewsets.ModelViewSet):
     """
         create:
             Create a data line（post）
     """
-    queryset = AsnDetailModel.objects.all()
     serializer_class = serializers.MoveToBinSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -667,11 +660,11 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return AsnDetailModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return AsnDetailModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return AsnDetailModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -771,10 +764,9 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                             raise APIException({"detail": "Move Qty must < Actual Arrive Qty"})
                         else:
                             pass
-                        return Response({"success": "Yes"}, status=200)
+                        return Response({"detail": "success"}, status=200)
 
 class FileListDownloadView(viewsets.ModelViewSet):
-    queryset = AsnListModel.objects.all()
     serializer_class = serializers.FileListRenderSerializer
     renderer_classes = (FileListRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -792,17 +784,27 @@ class FileListDownloadView(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return AsnListModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'list':
             return serializers.FileListRenderSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
+
+    def get_lang(self, data):
+        lang = self.request.META.get('HTTP_LANGUAGE')
+        if lang:
+            if lang == 'zh-hans':
+                return FileListRenderCN().render(data)
+            else:
+                return FileListRenderEN().render(data)
+        else:
+            return FileListRenderEN().render(data)
 
     def list(self, request, *args, **kwargs):
         from datetime import datetime
@@ -811,10 +813,7 @@ class FileListDownloadView(viewsets.ModelViewSet):
             FileListRenderSerializer(instance).data
             for instance in self.filter_queryset(self.get_queryset())
         )
-        if self.request.GET.get('lang', '') == 'zh-hans':
-            renderer = FileListRenderCN().render(data)
-        else:
-            renderer = FileListRenderEN().render(data)
+        renderer = self.get_lang(data)
         response = StreamingHttpResponse(
             renderer,
             content_type="text/csv"
@@ -823,7 +822,6 @@ class FileListDownloadView(viewsets.ModelViewSet):
         return response
 
 class FileDetailDownloadView(viewsets.ModelViewSet):
-    queryset = AsnDetailModel.objects.all()
     serializer_class = serializers.FileDetailRenderSerializer
     renderer_classes = (FileDetailRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -841,17 +839,27 @@ class FileDetailDownloadView(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return AsnDetailModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return AsnDetailModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return AsnDetailModel.objects.none()
 
     def get_serializer_class(self):
         if self.action == 'list':
             return serializers.FileDetailRenderSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
+
+    def get_lang(self, data):
+        lang = self.request.META.get('HTTP_LANGUAGE')
+        if lang:
+            if lang == 'zh-hans':
+                return FileDetailRenderCN().render(data)
+            else:
+                return FileDetailRenderEN().render(data)
+        else:
+            return FileDetailRenderEN().render(data)
 
     def list(self, request, *args, **kwargs):
         from datetime import datetime
@@ -860,10 +868,7 @@ class FileDetailDownloadView(viewsets.ModelViewSet):
             FileDetailRenderSerializer(instance).data
             for instance in self.filter_queryset(self.get_queryset())
         )
-        if self.request.GET.get('lang', '') == 'zh-hans':
-            renderer = FileDetailRenderCN().render(data)
-        else:
-            renderer = FileDetailRenderEN().render(data)
+        renderer = self.get_lang(data)
         response = StreamingHttpResponse(
             renderer,
             content_type="text/csv"

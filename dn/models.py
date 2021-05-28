@@ -7,6 +7,7 @@ class DnListModel(models.Model):
     total_volume = models.FloatField(default=0, verbose_name="Total Volume")
     customer = models.CharField(max_length=255, verbose_name="DN Customer")
     creater = models.CharField(max_length=255, verbose_name="Who Created")
+    bar_code = models.CharField(max_length=255, verbose_name="Bar Code")
     back_order_label = models.BooleanField(default=False, verbose_name='Back Order Label')
     openid = models.CharField(max_length=255, verbose_name="Openid")
     transportation_fee = models.JSONField(default=dict, verbose_name="Transportation Fee")

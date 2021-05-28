@@ -7,6 +7,7 @@ class AsnListModel(models.Model):
     total_volume = models.FloatField(default=0, verbose_name="Total Volume")
     supplier = models.CharField(max_length=255, verbose_name="ASN Supplier")
     creater = models.CharField(max_length=255, verbose_name="Who Created")
+    bar_code = models.CharField(max_length=255, verbose_name="Bar Code")
     openid = models.CharField(max_length=255, verbose_name="Openid")
     transportation_fee = models.JSONField(default=dict, verbose_name="Transportation Fee")
     is_delete = models.BooleanField(default=False, verbose_name='Delete Label')
