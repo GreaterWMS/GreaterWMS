@@ -39,7 +39,7 @@ class DnDetailModel(models.Model):
     delivery_damage_qty = models.BigIntegerField(default=0, verbose_name="Delivery More QTY")
     goods_weight = models.FloatField(default=0, verbose_name="Goods Weight")
     goods_volume = models.FloatField(default=0, verbose_name="Goods Volume")
-    creater = models.CharField(max_length=11, verbose_name="Who Created")
+    creater = models.CharField(max_length=255, verbose_name="Who Created")
     back_order_label = models.BooleanField(default=False, verbose_name='Back Order Label')
     openid = models.CharField(max_length=255, verbose_name="Openid")
     is_delete = models.BooleanField(default=False, verbose_name='Delete Label')
