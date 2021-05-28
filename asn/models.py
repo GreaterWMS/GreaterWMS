@@ -36,7 +36,7 @@ class AsnDetailModel(models.Model):
     goods_damage_qty = models.BigIntegerField(default=0, verbose_name="Goods damage QTY")
     goods_weight = models.FloatField(default=0, verbose_name="Goods Weight")
     goods_volume = models.FloatField(default=0, verbose_name="Goods Volume")
-    creater = models.CharField(max_length=11, verbose_name="Who Created")
+    creater = models.CharField(max_length=255, verbose_name="Who Created")
     openid = models.CharField(max_length=255, verbose_name="Openid")
     is_delete = models.BooleanField(default=False, verbose_name='Delete Label')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="Create Time")
