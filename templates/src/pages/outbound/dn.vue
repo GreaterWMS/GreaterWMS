@@ -1065,7 +1065,8 @@
             <td class="text-right">{{ view.bin_name }}</td>
             <td class="text-right">{{ view.goods_code }}</td>
             <td class="text-right">{{ view.pick_qty }}</td>
-            <td class="text-right"></td>
+            <td class="text-right" v-show="picklist_check === 0"></td>
+            <td class="text-right" v-show="picklist_check > 0">{{ view.picked_qty }}</td>
             <td class="text-right"></td>
           </tr>
           </tbody>
@@ -1221,6 +1222,7 @@ export default {
       table_list: [],
       viewprint_table: [],
       pickinglist_print_table: [],
+      pickinglist_check: 0,
       warehouse_detail: {},
       customer_list: [],
       driver_list: [],
@@ -1893,6 +1895,13 @@ export default {
     PrintPickingList (e) {
       var _this = this
       getauth(_this.pathname + 'pickinglist/' + e.id + '/').then(res => {
+        _this.pickinglist_print_table = []
+        _this.picklist_check = 0
+        res.forEach((item) => {
+          if (item.picked_qty > 0) {
+            _this.picklist_check += 1
+          } else {}
+        })
         _this.pickinglist_print_table = res
         _this.viewPLForm = true
       }).catch(err => {
