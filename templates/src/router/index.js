@@ -37,7 +37,7 @@ export default function (/* { store, ssrContext } */) {
   Router.afterEach((to, from) => {
     window.gtag('config', 'G-PGBVYC9CNE', {
       page_title: to.name,
-      page_path: to.path,
+      page_path: window.g.BaseUrl + '#' + to.path,
       page_location: location
     })
   })
