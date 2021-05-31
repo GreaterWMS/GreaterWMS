@@ -611,8 +611,6 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
                         goods_qty_change.goods_qty = goods_qty_change.goods_qty + abs(goods_qty_check)
                         goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
                         goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
-                    else:
-                        pass
                     asn_detail.asn_status = 4
                     asn_detail.save()
                     goods_qty_change.save()
@@ -749,8 +747,6 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                 bin_detail.save()
                         elif move_qty < 0:
                             raise APIException({"detail": "Move Qty must < Actual Arrive Qty"})
-                        else:
-                            pass
                         return Response({"detail": "success"}, status=200)
 
 class FileListDownloadView(viewsets.ModelViewSet):
