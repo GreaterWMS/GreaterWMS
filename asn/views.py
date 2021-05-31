@@ -39,7 +39,6 @@ class AsnListViewSet(viewsets.ModelViewSet):
             Delete a data line（delete)
 
     """
-    serializer_class = serializers.ASNListGetSerializer
     pagination_class = MyPageNumberPaginationASNList
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -126,7 +125,6 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
         update:
             Update a data（put：update）
     """
-    serializer_class = serializers.ASNDetailGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -150,13 +148,11 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
             return AsnDetailModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ['list', 'retrieve']:
             return serializers.ASNDetailGetSerializer
-        elif self.action == 'retrieve':
-            return serializers.ASNDetailGetSerializer
-        elif self.action == 'create':
+        elif self.action in ['create']:
             return serializers.ASNDetailPostSerializer
-        elif self.action == 'update':
+        elif self.action == ['update']:
             return serializers.ASNDetailUpdateSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
@@ -351,7 +347,6 @@ class AsnViewPrintViewSet(viewsets.ModelViewSet):
         retrieve:
             Response a data list（get）
     """
-    serializer_class = serializers.ASNListGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -375,7 +370,7 @@ class AsnViewPrintViewSet(viewsets.ModelViewSet):
             return AsnListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'retrieve':
+        if self.action in ['retrieve']:
             return serializers.ASNDetailGetSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
@@ -412,7 +407,6 @@ class AsnPreLoadViewSet(viewsets.ModelViewSet):
         retrieve:
             Response a data list（get）
     """
-    serializer_class = serializers.ASNListGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -436,7 +430,7 @@ class AsnPreLoadViewSet(viewsets.ModelViewSet):
             return AsnListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'create':
+        if self.action in ['create']:
             return serializers.ASNListPartialUpdateSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
@@ -475,7 +469,6 @@ class AsnPreSortViewSet(viewsets.ModelViewSet):
         retrieve:
             Response a data list（get）
     """
-    serializer_class = serializers.ASNListGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -499,7 +492,7 @@ class AsnPreSortViewSet(viewsets.ModelViewSet):
             return AsnListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'create':
+        if self.action in ['create']:
             return serializers.ASNListUpdateSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
@@ -534,7 +527,6 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
         create:
             Finish Sorted
     """
-    serializer_class = serializers.ASNListGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -558,7 +550,7 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
             return AsnListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'create':
+        if self.action in ['create']:
             return serializers.ASNSortedPostSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
@@ -639,7 +631,6 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
         create:
             Create a data line（post）
     """
-    serializer_class = serializers.MoveToBinSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -663,9 +654,9 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
             return AsnDetailModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'retrieve':
+        if self.action in ['retrieve']:
             return serializers.ASNDetailGetSerializer
-        elif self.action == 'create':
+        elif self.action in ['create']:
             return serializers.MoveToBinSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
@@ -763,7 +754,6 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                         return Response({"detail": "success"}, status=200)
 
 class FileListDownloadView(viewsets.ModelViewSet):
-    serializer_class = serializers.FileListRenderSerializer
     renderer_classes = (FileListRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -787,7 +777,7 @@ class FileListDownloadView(viewsets.ModelViewSet):
             return AsnListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ['list']:
             return serializers.FileListRenderSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
