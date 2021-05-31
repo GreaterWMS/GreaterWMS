@@ -17,9 +17,7 @@ def init_category():
     try:
         from .models import ListModel as ls
         if ls.objects.filter(openid__iexact='init_data').exists():
-            if ls.objects.filter(openid__iexact='init_data').count() == 4:
-                pass
-            else:
+            if ls.objects.filter(openid__iexact='init_data').count() != 4:
                 ls.objects.filter(openid__iexact='init_data').delete()
                 init_data = [
                     ls(id=1, openid='init_data', bin_property='Damage', creater='GreaterWMS'),
