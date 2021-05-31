@@ -6,6 +6,7 @@ class Filter(FilterSet):
         model = ListModel
         fields = {
             "id": ['exact', 'iexact', 'gt', 'gte', 'lt', 'lte', 'isnull', 'in', 'range'],
+            "bin_property": ['exact', 'iexact', 'contains', 'icontains'],
             "creater": ['exact', 'iexact', 'contains', 'icontains'],
             "is_delete": ['exact', 'iexact'],
             "create_time": ['year', 'month', 'day', 'week_day', 'gt', 'gte', 'lt', 'lte', 'range'],
