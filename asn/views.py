@@ -63,26 +63,22 @@ class AsnListViewSet(viewsets.ModelViewSet):
             return AsnListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ['list', 'retrieve', 'destroy']:
             return serializers.ASNListGetSerializer
-        elif self.action == 'retrieve':
-            return serializers.ASNListGetSerializer
-        elif self.action == 'create':
+        elif self.action in ['create']:
             return serializers.ASNListPostSerializer
-        elif self.action == 'update':
+        elif self.action in ['update']:
             return serializers.ASNListUpdateSerializer
-        elif self.action == 'partial_update':
+        elif self.action in ['partial_update']:
             return serializers.ASNListPartialUpdateSerializer
-        elif self.action == 'destroy':
-            return serializers.ASNListGetSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
 
     def create(self, request, *args, **kwargs):
         data = self.request.data
         data['openid'] = self.request.auth.openid
-        if AsnListModel.objects.filter(openid=data['openid'], is_delete=False).exists():
-            asn_last_code = AsnListModel.objects.filter(openid=data['openid']).first().asn_code
+        if self.get_queryset().filter(openid=data['openid'], is_delete=False).exists():
+            asn_last_code = self.get_queryset().filter(openid=data['openid']).first().asn_code
             asn_add_code = str(int(re.findall(r'\d+', str(asn_last_code), re.IGNORECASE)[0]) + 1).zfill(8)
             data['asn_code'] = 'ASN' + asn_add_code
         else:
