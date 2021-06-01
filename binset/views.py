@@ -80,9 +80,9 @@ class APIViewSet(viewsets.ModelViewSet):
             if binsize.objects.filter(openid=data['openid'], bin_size=data['bin_size'], is_delete=False).exists():
                 if binproperty.objects.filter(Q(openid=data['openid'], bin_property=data['bin_property'], is_delete=False) |
                                               Q(openid='init_data', bin_property=data['bin_property'], is_delete=False)).exists():
+                    data['bar_code'] = Md5.md5(data['bin_name'])
                     serializer = self.get_serializer(data=data)
                     serializer.is_valid(raise_exception=True)
-                    data['bar_code'] = Md5.md5(data['bin_name'])
                     serializer.save()
                     scanner.objects.create(openid=self.request.auth.openid, mode="BINSET", code=data['bin_name'],
                                            bar_code=data['bar_code'])
