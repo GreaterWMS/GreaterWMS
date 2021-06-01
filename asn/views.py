@@ -17,6 +17,7 @@ from payment.models import TransportationFeeListModel as transportation
 from stock.models import StockListModel as stocklist
 from stock.models import StockBinModel as stockbin
 from binset.models import ListModel as binset
+from scanner.models import ListModel as scanner
 from django.db.models import Q
 import re
 from .serializers import FileListRenderSerializer, FileDetailRenderSerializer
@@ -82,9 +83,11 @@ class AsnListViewSet(viewsets.ModelViewSet):
             data['asn_code'] = 'ASN' + asn_add_code
         else:
             data['asn_code'] = 'ASN00000001'
+        data['bar_code'] = Md5.md5(data['asn_code'])
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        scanner.objects.create(openid=self.request.auth.openid, mode="ASN", code=data['asn_code'], bar_code=data['bar_code'])
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=200, headers=headers)
 
