@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'stock.apps.StockConfig',
     'throttle.apps.ThrottleConfig',
     'uploadfile.apps.UploadfileConfig',
+    'scanner.apps.ScannerConfig',
     'rest_framework',
     'django_filters',
     'silk',
