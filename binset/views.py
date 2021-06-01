@@ -9,11 +9,13 @@ from .filter import Filter
 from rest_framework.exceptions import APIException
 from django.db.models import Q
 from binsize.models import ListModel as binsize
+from scanner.models import ListModel as scanner
 from binproperty.models import ListModel as binproperty
 from .serializers import FileRenderSerializer
 from django.http import StreamingHttpResponse
 from .files import FileRenderCN, FileRenderEN
 from rest_framework.settings import api_settings
+from utils.md5 import Md5
 
 class APIViewSet(viewsets.ModelViewSet):
     """
@@ -35,8 +37,6 @@ class APIViewSet(viewsets.ModelViewSet):
         update:
             Update a data（put：update）
     """
-    queryset = ListModel.objects.all()
-    serializer_class = serializers.BinsetGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -53,32 +53,28 @@ class APIViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return ListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return ListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ['list', 'retrieve', 'destroy']:
             return serializers.BinsetGetSerializer
-        elif self.action == 'retrieve':
-            return serializers.BinsetGetSerializer
-        elif self.action == 'create':
+        elif self.action in ['create']:
             return serializers.BinsetPostSerializer
-        elif self.action == 'update':
+        elif self.action in ['update']:
             return serializers.BinsetUpdateSerializer
-        elif self.action == 'partial_update':
+        elif self.action in ['partial_update']:
             return serializers.BinsetPartialUpdateSerializer
-        elif self.action == 'destroy':
-            return serializers.BinsetGetSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
 
     def create(self, request, *args, **kwargs):
-        data = request.data
-        data['openid'] = request.auth.openid
-        if self.queryset.filter(openid=data['openid'], bin_name=data['bin_name'], is_delete=False).exists():
+        data = self.request.data
+        data['openid'] = self.request.auth.openid
+        if ListModel.objects.filter(openid=data['openid'], bin_name=data['bin_name'], is_delete=False).exists():
             raise APIException({"detail": "Data exists"})
         else:
             if binsize.objects.filter(openid=data['openid'], bin_size=data['bin_size'], is_delete=False).exists():
@@ -86,7 +82,10 @@ class APIViewSet(viewsets.ModelViewSet):
                                               Q(openid='init_data', bin_property=data['bin_property'], is_delete=False)).exists():
                     serializer = self.get_serializer(data=data)
                     serializer.is_valid(raise_exception=True)
+                    data['bar_code'] = Md5.md5(data['bin_name'])
                     serializer.save()
+                    scanner.objects.create(openid=self.request.auth.openid, mode="BINSET", code=data['bin_name'],
+                                           bar_code=data['bar_code'])
                     headers = self.get_success_headers(serializer.data)
                     return Response(serializer.data, status=200, headers=headers)
                 else:
@@ -99,7 +98,7 @@ class APIViewSet(viewsets.ModelViewSet):
         if qs.openid != self.request.auth.openid:
             raise APIException({"detail": "Cannot update data which not yours"})
         else:
-            data = request.data
+            data = self.request.data
             if binsize.objects.filter(openid=self.request.auth.openid, bin_size=data['bin_size'], is_delete=False).exists():
                 if binproperty.objects.filter(Q(openid=self.request.auth.openid, bin_property=data['bin_property'], is_delete=False) |
                                               Q(openid='init_data', bin_property=data['bin_property'], is_delete=False)).exists():
@@ -118,7 +117,7 @@ class APIViewSet(viewsets.ModelViewSet):
         if qs.openid != self.request.auth.openid:
             raise APIException({"detail": "Cannot partial_update data which not yours"})
         else:
-            data = request.data
+            data = self.request.data
             if binsize.objects.filter(openid=self.request.auth.openid, bin_size=data['bin_size'], is_delete=False).exists():
                 if binproperty.objects.filter(Q(openid=self.request.auth.openid, bin_property=data['bin_property'], is_delete=False) |
                                               Q(openid='init_data', bin_property=data['bin_property'], is_delete=False)).exists():
@@ -144,8 +143,6 @@ class APIViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=200, headers=headers)
 
 class FileDownloadView(viewsets.ModelViewSet):
-    queryset = ListModel.objects.all()
-    serializer_class = serializers.FileRenderSerializer
     renderer_classes = (FileRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -162,17 +159,27 @@ class FileDownloadView(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return ListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return ListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ['list']:
             return serializers.FileRenderSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
+
+    def get_lang(self, data):
+        lang = self.request.META.get('HTTP_LANGUAGE')
+        if lang:
+            if lang == 'zh-hans':
+                return FileRenderCN().render(data)
+            else:
+                return FileRenderEN().render(data)
+        else:
+            return FileRenderEN().render(data)
 
     def list(self, request, *args, **kwargs):
         from datetime import datetime
@@ -181,10 +188,7 @@ class FileDownloadView(viewsets.ModelViewSet):
             FileRenderSerializer(instance).data
             for instance in self.filter_queryset(self.get_queryset())
         )
-        if self.request.GET.get('lang', '') == 'zh-hans':
-            renderer = FileRenderCN().render(data)
-        else:
-            renderer = FileRenderEN().render(data)
+        renderer = self.get_lang(data)
         response = StreamingHttpResponse(
             renderer,
             content_type="text/csv"
