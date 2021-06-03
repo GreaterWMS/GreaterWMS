@@ -252,6 +252,7 @@ CORS_ALLOW_HEADERS = (
     'x-csrftoken',
     'x-requested-with',
     'token',
-    'language'
+    'language',
+    'device'
 )
 
