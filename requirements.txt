@@ -53,5 +53,5 @@ Twisted==20.3.0
 txaio==21.2.1
 unicodecsv==0.14.1
 uritemplate==3.0.1
-urllib3==1.26.4
+urllib3==1.26.5
 zope.interface==5.2.0
