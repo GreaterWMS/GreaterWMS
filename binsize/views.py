@@ -137,7 +137,7 @@ class FileDownloadView(viewsets.ModelViewSet):
             return ListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ['list']:
             return serializers.FileRenderSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
