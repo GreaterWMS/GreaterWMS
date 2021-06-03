@@ -1,5 +1,3 @@
-from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
 from django.db.models import Q
 from rest_framework import viewsets
 from .models import ListModel
@@ -9,14 +7,11 @@ from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from .filter import Filter
 
-@method_decorator(csrf_exempt, name='dispatch')
 class ChatViewSet(viewsets.ModelViewSet):
     """
         list:
             Response a data list（all）
     """
-    queryset = ListModel.objects.all()
-    serializer_class = serializers.ChatGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -26,26 +21,23 @@ class ChatViewSet(viewsets.ModelViewSet):
         if self.request.user:
             sender = str(self.request.GET.get('sender', '')) + '-' + self.request.auth.openid
             receiver = str(self.request.GET.get('receiver', '')) + '-' + self.request.auth.openid
-            if self.queryset.filter(sender=receiver, receiver=sender, read=False).exists():
-                self.queryset.filter(sender=receiver, receiver=sender, read=False).update(read=True)
-            return self.queryset.filter(Q(sender=sender, receiver=receiver) | Q(sender=receiver, receiver=sender))
+            if ListModel.objects.filter(sender=receiver, receiver=sender, read=False).exists():
+                ListModel.objects.filter(sender=receiver, receiver=sender, read=False).update(read=True)
+            return ListModel.objects.filter(Q(sender=sender, receiver=receiver) | Q(sender=receiver, receiver=sender))
         else:
-            return self.queryset.none()
+            return ListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ['list']:
             return serializers.ChatGetSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
 
-@method_decorator(csrf_exempt, name='dispatch')
 class ReadAPI(viewsets.ModelViewSet):
     """
         list:
             Response a data list（all）
     """
-    queryset = ListModel.objects.all()
-    serializer_class = serializers.ChatGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -54,12 +46,12 @@ class ReadAPI(viewsets.ModelViewSet):
     def get_queryset(self):
         if self.request.user:
             sender = str(self.request.GET.get('sender', '')) + '-' + self.request.auth.openid
-            return self.queryset.filter(receiver=sender, read=False)
+            return ListModel.objects.filter(receiver=sender, read=False)
         else:
-            return self.queryset.none()
+            return ListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ['list']:
             return serializers.ChatGetSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
