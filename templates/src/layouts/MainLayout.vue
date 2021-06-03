@@ -183,7 +183,7 @@
               {{ $t('menuItem.stock') }}
             </q-item-section>
           </q-item>
-          <q-separator />
+          <q-separator v-show="$q.platform.is.desktop"/>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
@@ -242,7 +242,7 @@
               {{ $t('menuItem.warehouse') }}
             </q-item-section>
           </q-item>
-          <q-separator />
+          <q-separator v-show="$q.platform.is.desktop"/>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
@@ -269,7 +269,7 @@
               {{ $t('menuItem.driver') }}
             </q-item-section>
           </q-item>
-          <q-separator />
+          <q-separator v-show="$q.platform.is.desktop"/>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Supervisor' &&
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
@@ -384,7 +384,7 @@
               {{ $t('scan.scan_dn') }}
             </q-item-section>
           </q-item>
-          <q-separator />
+          <q-separator v-show="$q.platform.is.cordova"/>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
@@ -435,7 +435,7 @@
               {{ $t('goods.goods_list') }}
             </q-item-section>
           </q-item>
-          <q-separator />
+          <q-separator v-show="$q.platform.is.cordova || $q.platform.is.mobile"/>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Supplier'
                          "
@@ -448,7 +448,7 @@
               {{ $t('staff.staff') }}
             </q-item-section>
           </q-item>
-          <q-separator />
+          <q-separator v-show="$q.platform.is.cordova || $q.platform.is.mobile"/>
         </q-list>
       </q-scroll-area>
     </q-drawer>
@@ -554,7 +554,7 @@
             <q-tooltip content-class="bg-indigo" :offset="[20, 20]" content-style="font-size: 12px">关闭</q-tooltip>
         </q-btn>
       </q-bar>
-      <q-separator />
+      <q-separator v-show="$q.platform.is.desktop"/>
       <q-card-section style="max-height: 50vh; height: 50vh" class="scroll">
         <q-list>
           <template v-for="item in friend_list">
