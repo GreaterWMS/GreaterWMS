@@ -21,7 +21,7 @@ var stIsIE = /*@cc_on!@*/false;
 var up = '&nbsp;&#x25B4;';
 var down = '&nbsp;&#x25BE;';
 
-sorttable = {
+const sorttable = {
   init: function() {
     // quit if this function has already been called
     if (arguments.callee.done) return;
