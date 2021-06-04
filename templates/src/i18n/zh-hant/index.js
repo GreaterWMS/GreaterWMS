@@ -43,6 +43,7 @@ export default {
     update: '馬上更新'
   },
   menuItem: {
+    dashborad:'首頁',
     inbound: '收貨管理',
     outbound: '發貨管理',
     stock: '庫存管理',
