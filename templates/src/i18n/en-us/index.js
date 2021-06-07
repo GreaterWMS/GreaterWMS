@@ -43,8 +43,8 @@ export default {
     update: 'Update Now'
   },
   menuItem: {
-    dashborad:'HomePage',
-    inbound: 'Inound',
+    dashboard: 'Report Center',
+    inbound: 'Inbound',
     outbound: 'Outbound',
     stock: 'Inventory',
     finance: 'Finance',

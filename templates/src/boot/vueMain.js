@@ -1,6 +1,7 @@
 import Print from 'vue-print-nb'
 import VDistpicker from 'v-distpicker'
-import vueQr from "vue-qr"
+import vueQr from 'vue-qr'
+
 export default async ({ app, router, store, Vue }) => {
   Vue.component('v-distpicker', VDistpicker)
   Vue.use(Print)

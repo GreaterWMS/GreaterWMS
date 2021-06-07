@@ -13,7 +13,6 @@
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.0",
     "core-js": "^3.7.0",
-    "electron": "^9.4.4",
     "electron-is-dev": "^1.2.0",
     "electron-log": "^4.3.1",
     "electron-updater": "^4.3.5",
@@ -22,7 +21,8 @@
     "ssri": "^6.0.2",
     "v-distpicker": "^1.2.8",
     "vue-i18n": "^8.22.2",
-    "vue-print-nb": "^1.5.0"
+    "vue-print-nb": "^1.5.0",
+    "vue-qr": "^2.4.0"
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",

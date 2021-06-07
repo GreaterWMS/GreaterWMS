@@ -970,11 +970,9 @@
        <q-card id="printMe">
          <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px;justify-content:space-around;">
            <div>{{ viewAsn }}</div>
-           <!-- <q-space /> <!-- 填充flex盒子的空间 -->  -->
            <div>
              <vue-qr  :text="qrCode" style="margin-top:23vh;" :size="180"></vue-qr>
            </div>
-           
          </q-bar>
          <q-card-section>
            <div class="text-h6">Sender: {{ supplier_detail.supplier_name }} </div>
@@ -1075,7 +1073,7 @@ export default {
       height: '',
       table_list: [],
       viewprint_table: [],
-      qrCode:'',
+      qrCode: '',
       warehouse_detail: {},
       supplier_list: [],
       supplier_detail: {},
@@ -1147,7 +1145,6 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/', {
         }).then(res => {
-          console.log(res,'list')
           res.results.forEach((item) => {
             if (item.asn_status === 1) {
               item.asn_status = _this.$t('inbound.predeliverystock')
@@ -1747,8 +1744,6 @@ export default {
     viewData (e) {
       var _this = this
       ViewPrintAuth(_this.pathname + 'viewprint/' + e.id + '/').then(res => {
-        console.log(e,'e')
-        console.log(res,'ress')
         _this.viewprint_table = res.asn_detail
         _this.warehouse_detail = res.warehouse_detail
         _this.supplier_detail = res.supplier_detail
