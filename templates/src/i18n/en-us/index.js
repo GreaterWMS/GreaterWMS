@@ -43,6 +43,7 @@ export default {
     update: 'Update Now'
   },
   menuItem: {
+    dashborad:'HomePage',
     inbound: 'Inound',
     outbound: 'Outbound',
     stock: 'Inventory',
