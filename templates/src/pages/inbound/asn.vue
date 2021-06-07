@@ -968,13 +968,12 @@
      </q-dialog>
       <q-dialog v-model="viewForm">
        <q-card id="printMe">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px;justify-content:space-around;">
+         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px;justify-content:space-around;position:relative;">
            <div>{{ viewAsn }}</div>
            <!-- <q-space /> <!-- 填充flex盒子的空间 -->  -->
            <div>
-             <vue-qr  :text="qrCode" style="margin-top:23vh;" :size="180"></vue-qr>
+             <vue-qr class="codes" :text="qrCode" :size="180"></vue-qr>
            </div>
-           
          </q-bar>
          <q-card-section>
            <div class="text-h6">Sender: {{ supplier_detail.supplier_name }} </div>
@@ -1053,9 +1052,16 @@
        </q-card>
      </q-dialog>
     </div>
+     <!-- <router-view /> -->
 </template>
-    <router-view />
-
+   
+<style scoped>
+.codes{
+  position: absolute;
+  left:60%;
+  top:100%;
+}
+</style>
 <script>
 import { getauth, postauth, putauth, deleteauth, ViewPrintAuth, getfile } from 'boot/axios_request'
 import { date, exportFile, SessionStorage, LocalStorage } from 'quasar'
