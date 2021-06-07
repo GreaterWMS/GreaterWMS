@@ -10,6 +10,18 @@ const routes = [
         component: () => import('pages/Index.vue')
       },
       {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: () => import('pages/dashboard/dashboard.vue'),
+        children: [
+          {
+            path: 'v1',
+            name: 'v1',
+            component: () => import('pages/dashboard/v1.vue')
+          }
+        ]
+      },
+      {
         path: 'inbound',
         name: 'inbound',
         component: () => import('pages/inbound/inbound.vue'),
