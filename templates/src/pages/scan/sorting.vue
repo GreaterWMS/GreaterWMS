@@ -21,6 +21,8 @@
            <q-btn-group push>
              <q-btn :label="$t('refresh')" @click="reFresh()" />
            </q-btn-group>
+           {{ IMEI }}
+           {{ screenq }}
            <q-space />
            <q-input class="cordova-search" outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
              <template v-slot:append>
@@ -88,7 +90,9 @@ export default {
       pagination: {
         page: 1,
         rowsPerPage: '30'
-      }
+      },
+      screenq: this.$q.screen,
+      IMEI: window.device
     }
   },
   methods: {

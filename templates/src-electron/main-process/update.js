@@ -1,14 +1,17 @@
 import { autoUpdater } from 'electron-updater'
 import { ipcMain } from 'electron'
 import { LocalStorage } from 'quasar'
-const baseurl = window.g.BaseUrl
-
 let mainWindow = null
+
+autoUpdater.logger = require('electron-log')
+autoUpdater.logger.transports.file.level = 'info'
 
 export function updateHandle (window) {
   mainWindow = window
   autoUpdater.autoDownload = false
-  autoUpdater.setFeedURL(baseurl + 'media/' + LocalStorage.getItem('openid') + '/')
+  if (LocalStorage.has('openid')) {
+    autoUpdater.setFeedURL('https://wms.56yhz.com/' + 'media/' + LocalStorage.getItem('openid') + '/')
+  }
   autoUpdater.on('error', function (error) {
     sendUpdateMessage({
       cmd: 'error',
