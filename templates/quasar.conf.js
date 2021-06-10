@@ -47,7 +47,6 @@ module.exports = function (/* ctx */) {
     // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
       vueRouterMode: 'hash', // available values: 'hash', 'history'
-
       // transpile: false,
 
       // Add dependencies for transpiling with Babel (Array of string/regex)
@@ -58,7 +57,7 @@ module.exports = function (/* ctx */) {
       // rtl: false, // https://quasar.dev/options/rtl-support
       // preloadChunks: true,
       // showProgress: false,
-      // gzip: true,
+      gzip: true,
       // analyze: true,
 
       // Options below are automatically set depending on the env, set them if you want to override
@@ -144,7 +143,6 @@ module.exports = function (/* ctx */) {
         'Meta'
       ]
     },
-
     // animations: 'all', // --- includes all animations
     // https://quasar.dev/options/animations
     animations: [
@@ -236,21 +234,21 @@ module.exports = function (/* ctx */) {
         publish: [
           {
             provider: 'generic',
-            url: 'http://127.0.0.1:8008/media/'
+            url: 'https://wms.56yhz.com/media/'
           }
         ],
         mac: {
-          target: ['dmg', 'zip']
+          target: 'dmg'
+        },
+        linux: {
+          target: [
+            {
+              target: 'deb'
+            }
+          ]
         },
         win: {
           target: [
-            {
-              target: 'zip',
-              arch: [
-                'x64',
-                'ia32'
-              ]
-            },
             {
               target: 'nsis',
               arch: [
