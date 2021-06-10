@@ -1,6 +1,7 @@
 import { app, BrowserWindow, nativeTheme } from 'electron'
 import { updateHandle } from './update'
 import { isDev } from 'electron-is-dev'
+import path from 'path'
 
 try {
   if (process.platform === 'win32' && nativeTheme.shouldUseDarkColors === true) {
@@ -30,10 +31,10 @@ function createWindow () {
       // Change from /quasar.conf.js > electron > nodeIntegration;
       // More info: https://quasar.dev/quasar-cli/developing-electron-apps/node-integration
       nodeIntegration: process.env.QUASAR_NODE_INTEGRATION,
-      nodeIntegrationInWorker: process.env.QUASAR_NODE_INTEGRATION
+      nodeIntegrationInWorker: process.env.QUASAR_NODE_INTEGRATION,
 
       // More info: /quasar-cli/developing-electron-apps/electron-preload-script
-      // preload: path.resolve(__dirname, 'electron-preload.js')
+      preload: path.resolve(__dirname, 'electron-preload.js')
     }
   })
   mainWindow.loadURL(process.env.APP_URL)
@@ -44,9 +45,6 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
-  if (!isDev) {
-    updateHandle(mainWindow)
-  }
 }
 
 app.on('ready', createWindow)
@@ -60,5 +58,8 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
+    if (!isDev) {
+      updateHandle(mainWindow)
+    }
   }
 })
