@@ -975,7 +975,7 @@
          </q-bar>
          <q-card-section>
             <div class="row">
-              <div class="col">
+              <div class="col-8">
                 <div class="text-h6">Sender: {{ supplier_detail.supplier_name }}</div>
                <div class="text-subtitle2">Address: {{ supplier_detail.supplier_city }}{{ supplier_detail.supplier_address }}</div>
                <div class="text-subtitle2">Tel: {{ supplier_detail.supplier_contact }}</div>
@@ -983,8 +983,8 @@
                <div class="text-subtitle2">Address: {{ warehouse_detail.warehouse_city }}{{ warehouse_detail.warehouse_address }}</div>
                <div class="text-subtitle2">Tel: {{ warehouse_detail.warehouse_contact }}</div>
               </div>
-              <div class="col">
-                <q-img :src="bar_code" style="height: 150px; width: 150px; margin-left: 25%"/>
+              <div class="col-4">
+                <img :src="bar_code" style="width: 70%; margin-left: 15%"/>
               </div>
             </div>
          </q-card-section>
@@ -1765,7 +1765,6 @@ export default {
         }]
         )
           .then(url => {
-            console.log(url)
             _this.bar_code = url
           })
           .catch(err => {
