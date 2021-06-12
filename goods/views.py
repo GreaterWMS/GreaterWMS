@@ -15,6 +15,8 @@ from goodsshape.models import ListModel as goods_shape
 from goodsspecs.models import ListModel as goods_specs
 from goodsorigin.models import ListModel as goods_origin
 from supplier.models import ListModel as supplier
+from scanner.models import ListModel as scanner
+from utils.md5 import Md5
 from .serializers import FileRenderSerializer
 from django.http import StreamingHttpResponse
 from .files import FileRenderCN, FileRenderEN
@@ -40,7 +42,6 @@ class APIViewSet(viewsets.ModelViewSet):
         update:
             Update a data（put：update）
     """
-    serializer_class = serializers.GoodsGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -64,18 +65,14 @@ class APIViewSet(viewsets.ModelViewSet):
             return ListModel.objects.filter().none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ['list', 'retrieve', 'destroy']:
             return serializers.GoodsGetSerializer
-        elif self.action == 'retrieve':
-            return serializers.GoodsGetSerializer
-        elif self.action == 'create':
+        elif self.action in ['create']:
             return serializers.GoodsPostSerializer
-        elif self.action == 'update':
+        elif self.action in ['update']:
             return serializers.GoodsUpdateSerializer
-        elif self.action == 'partial_update':
+        elif self.action in ['partial_update']:
             return serializers.GoodsPartialUpdateSerializer
-        elif self.action == 'destroy':
-            return serializers.GoodsGetSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
 
@@ -105,9 +102,13 @@ class APIViewSet(viewsets.ModelViewSet):
                                         if goods_origin.objects.filter(openid=data['openid'],
                                                                      goods_origin=data['goods_origin'],
                                                                      is_delete=False).exists():
+                                            data['bar_code'] = Md5.md5(data['goods_code'])
                                             serializer = self.get_serializer(data=data)
                                             serializer.is_valid(raise_exception=True)
                                             serializer.save()
+                                            scanner.objects.create(openid=self.request.auth.openid, mode="GOODS",
+                                                                   code=data['goods_code'],
+                                                                   bar_code=data['bar_code'])
                                             headers = self.get_success_headers(serializer.data)
                                             return Response(serializer.data, status=200, headers=headers)
                                         else:
@@ -134,7 +135,7 @@ class APIViewSet(viewsets.ModelViewSet):
         if qs.openid != self.request.auth.openid:
             raise APIException({"detail": "Cannot update data which not yours"})
         else:
-            data = request.data
+            data = self.request.data
             data['unit_volume'] = round(
                 (float(data['goods_w']) * float(data['goods_d']) * float(data['goods_h'])) / 1000000000, 4)
             if supplier.objects.filter(openid=self.request.auth.openid, supplier_name=data['goods_supplier'],
@@ -239,7 +240,6 @@ class APIViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=200, headers=headers)
 
 class FileDownloadView(viewsets.ModelViewSet):
-    serializer_class = FileRenderSerializer
     renderer_classes = (FileRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -263,10 +263,20 @@ class FileDownloadView(viewsets.ModelViewSet):
             return ListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ['list']:
             return serializers.FileRenderSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
+
+    def get_lang(self, data):
+        lang = self.request.META.get('HTTP_LANGUAGE')
+        if lang:
+            if lang == 'zh-hans':
+                return FileRenderCN().render(data)
+            else:
+                return FileRenderEN().render(data)
+        else:
+            return FileRenderEN().render(data)
 
     def list(self, request, *args, **kwargs):
         from datetime import datetime
@@ -275,10 +285,7 @@ class FileDownloadView(viewsets.ModelViewSet):
             FileRenderSerializer(instance).data
             for instance in self.filter_queryset(self.get_queryset())
         )
-        if self.request.GET.get('lang', '') == 'zh-hans':
-            renderer = FileRenderCN().render(data)
-        else:
-            renderer = FileRenderEN().render(data)
+        renderer = self.get_lang(data)
         response = StreamingHttpResponse(
             renderer,
             content_type="text/csv"
