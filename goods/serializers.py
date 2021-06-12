@@ -21,6 +21,7 @@ class GoodsGetSerializer(serializers.ModelSerializer):
     goods_cost = serializers.FloatField(read_only=True, required=False)
     goods_price = serializers.FloatField(read_only=True, required=False)
     creater = serializers.CharField(read_only=True, required=False)
+    bar_code = serializers.CharField(read_only=True, required=False)
     create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     class Meta:
@@ -48,6 +49,7 @@ class GoodsPostSerializer(serializers.ModelSerializer):
     goods_cost = serializers.FloatField(read_only=False,  required=True, validators=[datasolve.data_validate])
     goods_price = serializers.FloatField(read_only=False,  required=True, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False,  required=True, validators=[datasolve.data_validate])
+    bar_code = serializers.CharField(read_only=False, required=True)
     class Meta:
         model = ListModel
         exclude = ['is_delete', ]
@@ -72,6 +74,7 @@ class GoodsUpdateSerializer(serializers.ModelSerializer):
     goods_cost = serializers.FloatField(read_only=False,  required=True, validators=[datasolve.data_validate])
     goods_price = serializers.FloatField(read_only=False,  required=True, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False,  required=True, validators=[datasolve.data_validate])
+    bar_code = serializers.CharField(read_only=False, required=False)
     class Meta:
         model = ListModel
         exclude = ['openid', 'is_delete', ]
@@ -96,6 +99,7 @@ class GoodsPartialUpdateSerializer(serializers.ModelSerializer):
     goods_cost = serializers.FloatField(read_only=False,  required=False, validators=[datasolve.data_validate])
     goods_price = serializers.FloatField(read_only=False,  required=False, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False,  required=False, validators=[datasolve.data_validate])
+    bar_code = serializers.CharField(read_only=False, required=False)
     class Meta:
         model = ListModel
         exclude = ['openid', 'is_delete', ]
