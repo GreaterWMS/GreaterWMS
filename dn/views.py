@@ -1232,8 +1232,6 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                     continue
                                 else:
                                     continue
-                        else:
-                            pass
                     elif can_pick_qty == 0:
                         if qs.back_order_label == False:
                             goods_qty_change.back_order_stock = goods_qty_change.back_order_stock + dn_detail_list[i].goods_qty
