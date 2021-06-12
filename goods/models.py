@@ -20,6 +20,7 @@ class ListModel(models.Model):
     goods_cost = models.FloatField(default=0, verbose_name="Goods Cost")
     goods_price = models.FloatField(default=0, verbose_name="Goods Price")
     creater = models.CharField(max_length=255, verbose_name="Who created")
+    bar_code = models.CharField(max_length=255, verbose_name="Bar Code")
     openid = models.CharField(max_length=255, verbose_name="Openid")
     is_delete = models.BooleanField(default=False, verbose_name='Delete Label')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="Create Time")
