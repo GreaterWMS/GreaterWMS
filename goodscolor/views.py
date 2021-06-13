@@ -28,8 +28,6 @@ class APIViewSet(viewsets.ModelViewSet):
         update:
             Update a data（put：update）
     """
-    queryset = ListModel.objects.all()
-    serializer_class = serializers.GoodscolorGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
