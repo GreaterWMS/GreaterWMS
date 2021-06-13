@@ -16,9 +16,7 @@ def init_category():
     try:
         from .models import TypeListModel as ls
         if ls.objects.filter(openid__iexact='init_data').exists():
-            if ls.objects.filter(openid__iexact='init_data').count() == 7:
-                pass
-            else:
+            if ls.objects.filter(openid__iexact='init_data').count() != 7:
                 ls.objects.filter(openid__iexact='init_data').delete()
                 init_data = [
                     ls(id=1, openid='init_data', staff_type='Manager', creater='GreaterWMS'),
