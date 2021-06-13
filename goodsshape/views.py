@@ -28,8 +28,6 @@ class APIViewSet(viewsets.ModelViewSet):
         update:
             Update a data（put：update）
     """
-    queryset = ListModel.objects.all()
-    serializer_class = serializers.GoodsshapeGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -46,32 +44,28 @@ class APIViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return ListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return ListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ['list', 'retrieve', 'destroy']:
             return serializers.GoodsshapeGetSerializer
-        elif self.action == 'retrieve':
-            return serializers.GoodsshapeGetSerializer
-        elif self.action == 'create':
+        elif self.action in ['create']:
             return serializers.GoodsshapePostSerializer
-        elif self.action == 'update':
+        elif self.action in ['update']:
             return serializers.GoodsshapeUpdateSerializer
-        elif self.action == 'partial_update':
+        elif self.action in ['partial_update']:
             return serializers.GoodsshapePartialUpdateSerializer
-        elif self.action == 'destroy':
-            return serializers.GoodsshapeGetSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
 
     def create(self, request, *args, **kwargs):
-        data = request.data
-        data['openid'] = request.auth.openid
-        if self.queryset.filter(openid=data['openid'], goods_shape=data['goods_shape'], is_delete=False).exists():
+        data = self.request.data
+        data['openid'] = self.request.auth.openid
+        if ListModel.objects.filter(openid=data['openid'], goods_shape=data['goods_shape'], is_delete=False).exists():
             raise APIException({"detail": "Data exists"})
         else:
             serializer = self.get_serializer(data=data)
@@ -82,18 +76,10 @@ class APIViewSet(viewsets.ModelViewSet):
 
     def update(self, request, pk):
         qs = self.get_object()
-        if qs.openid != 'init_data':
-            if qs.openid != request.auth.openid:
-                raise APIException({"detail": "Cannot update data which not yours"})
-            else:
-                data = request.data
-                serializer = self.get_serializer(qs, data=data)
-                serializer.is_valid(raise_exception=True)
-                serializer.save()
-                headers = self.get_success_headers(serializer.data)
-                return Response(serializer.data, status=200, headers=headers)
+        if qs.openid != self.request.auth.openid:
+            raise APIException({"detail": "Cannot update data which not yours"})
         else:
-            data = request.data
+            data = self.request.data
             serializer = self.get_serializer(qs, data=data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
@@ -102,18 +88,10 @@ class APIViewSet(viewsets.ModelViewSet):
 
     def partial_update(self, request, pk):
         qs = self.get_object()
-        if qs.openid != 'init_data':
-            if qs.openid != request.auth.openid:
-                raise APIException({"detail": "Cannot partial_update data which not yours"})
-            else:
-                data = request.data
-                serializer = self.get_serializer(qs, data=data, partial=True)
-                serializer.is_valid(raise_exception=True)
-                serializer.save()
-                headers = self.get_success_headers(serializer.data)
-                return Response(serializer.data, status=200, headers=headers)
+        if qs.openid != self.request.auth.openid:
+            raise APIException({"detail": "Cannot partial_update data which not yours"})
         else:
-            data = request.data
+            data = self.request.data
             serializer = self.get_serializer(qs, data=data, partial=True)
             serializer.is_valid(raise_exception=True)
             serializer.save()
@@ -122,15 +100,8 @@ class APIViewSet(viewsets.ModelViewSet):
 
     def destroy(self, request, pk):
         qs = self.get_object()
-        if qs.openid != 'init_data':
-            if qs.openid != request.auth.openid:
-                raise APIException({"detail": "Cannot delete data which not yours"})
-            else:
-                qs.is_delete = True
-                qs.save()
-                serializer = self.get_serializer(qs, many=False)
-                headers = self.get_success_headers(serializer.data)
-                return Response(serializer.data, status=200, headers=headers)
+        if qs.openid != self.request.auth.openid:
+            raise APIException({"detail": "Cannot delete data which not yours"})
         else:
             qs.is_delete = True
             qs.save()
