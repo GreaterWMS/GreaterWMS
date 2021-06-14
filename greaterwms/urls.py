@@ -12,7 +12,7 @@ from . import views
 schema_view = get_schema_view(
    openapi.Info(
        title="GreaterWMS--API Docs",
-       default_version='v2.0.20',
+       default_version='v2.0.21',
        description=
        """
         openid:
@@ -60,12 +60,12 @@ urlpatterns = [
     path('register/', include('userregister.urls')),
     path('uploadfile/', include('uploadfile.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    re_path(r'^favicon\.ico$', views.favicon, name='favicon'),
-    re_path('^css/.*$', views.css, name='css'),
-    re_path('^js/.*$', views.js, name='js'),
-    re_path('^statics/.*$', views.statics, name='statics'),
-    re_path('^fonts/.*$', views.fonts, name='fonts'),
-    re_path(r'^robots.txt', views.robots, name='robots'),
+    re_path(r'^favicon\.ico$', views.FaviconRe, name='favicon'),
+    re_path('^css/.*$', views.CssRe, name='css'),
+    re_path('^js/.*$', views.JsRe, name='js'),
+    re_path('^statics/.*$', views.StaticsRe, name='statics'),
+    re_path('^fonts/.*$', views.FontsRe, name='fonts'),
+    re_path(r'^robots.txt', views.RobotsRe, name='robots'),
     re_path(r'^static/(?P<path>.*)$', return_static, name='static'),
     re_path(r'^media/(?P<path>.*)$', static_serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
