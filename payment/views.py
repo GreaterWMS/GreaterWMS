@@ -31,8 +31,6 @@ class TransportationFeeListViewSet(viewsets.ModelViewSet):
         update:
             Update a data（put：update）
     """
-    queryset = TransportationFeeListModel.objects.all()
-    serializer_class = serializers.FreightGetSerializer
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -49,16 +47,14 @@ class TransportationFeeListViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return TransportationFeeListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return TransportationFeeListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return TransportationFeeListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
-            return serializers.FreightGetSerializer
-        elif self.action == 'retrieve':
+        if self.action in ['list', 'retrieve', 'destroy']:
             return serializers.FreightGetSerializer
         elif self.action == 'create':
             return serializers.FreightPostSerializer
@@ -66,8 +62,6 @@ class TransportationFeeListViewSet(viewsets.ModelViewSet):
             return serializers.FreightUpdateSerializer
         elif self.action == 'partial_update':
             return serializers.FreightPartialUpdateSerializer
-        elif self.action == 'destroy':
-            return serializers.FreightGetSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
 
@@ -116,8 +110,6 @@ class TransportationFeeListViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=200, headers=headers)
 
 class FreightfileDownloadView(viewsets.ModelViewSet):
-    queryset = TransportationFeeListModel.objects.all()
-    serializer_class = serializers.FreightfileRenderSerializer
     renderer_classes = (FreightfileRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -134,14 +126,14 @@ class FreightfileDownloadView(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return self.queryset.filter(openid=self.request.auth.openid, is_delete=False)
+                return TransportationFeeListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return self.queryset.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return TransportationFeeListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
-            return self.queryset.none()
+            return TransportationFeeListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action == 'list':
+        if self.action in ['list']:
             return serializers.FreightfileRenderSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
