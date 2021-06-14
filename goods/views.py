@@ -182,10 +182,10 @@ class APIViewSet(viewsets.ModelViewSet):
 
     def partial_update(self, request, pk):
         qs = self.get_object()
-        if qs.openid != request.auth.openid:
+        if qs.openid != self.request.auth.openid:
             raise APIException({"detail": "Cannot partial_update data which not yours"})
         else:
-            data = request.data
+            data = self.request.data
             if supplier.objects.filter(openid=self.request.auth.openid, supplier_name=data['goods_supplier'],
                                         is_delete=False).exists():
                 if goods_unit.objects.filter(openid=self.request.auth.openid, goods_unit=data['goods_unit'],
@@ -230,7 +230,7 @@ class APIViewSet(viewsets.ModelViewSet):
 
     def destroy(self, request, pk):
         qs = self.get_object()
-        if qs.openid != request.auth.openid:
+        if qs.openid != self.request.auth.openid:
             raise APIException({"detail": "Cannot delete data which not yours"})
         else:
             qs.is_delete = True
