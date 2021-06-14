@@ -16,12 +16,10 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'greaterwms.settings')
 http_application = get_asgi_application()
 
 async def application(scope, receive, send):
-    if scope['type'] == 'http':
+    if scope['type'] in ['http', 'https']:
         await http_application(scope, receive, send)
-    elif scope['type'] == 'https':
-        await http_application(scope, receive, send)
-    elif scope['type'] == 'websocket':
+    elif scope['type'] in ['websocket']:
         await websocket_application(scope, receive, send)
     else:
-        raise Exception('unknow type' + scope['type'])
+        raise Exception('Unknown Type' + scope['type'])
 
