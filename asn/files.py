@@ -21,7 +21,7 @@ def list_cn_data_header():
         ('supplier', u'供应商'),
         ('creater', u'创建人'),
         ('create_time', u'创建时间'),
-        ('update_time', u'更新时间'),
+        ('update_time', u'更新时间')
     ])
 
 def list_en_data_header():
@@ -33,7 +33,7 @@ def list_en_data_header():
         ('supplier', u'Supplier'),
         ('creater', u'Creater'),
         ('create_time', u'Create Time'),
-        ('update_time', u'Update Time'),
+        ('update_time', u'Update Time')
     ])
 
 def detail_file_headers():
