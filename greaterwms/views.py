@@ -3,42 +3,42 @@ from django.conf import settings
 from wsgiref.util import FileWrapper
 import mimetypes
 
-async def robots(request):
+async def RobotsRe(request):
     path = settings.BASE_DIR + request.path_info
     content_type, encoding = mimetypes.guess_type(path)
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
     resp['Cache-Control'] = "max-age=864000000000"
     return resp
 
-async def favicon(request):
+async def FaviconRe(request):
     path = str(settings.BASE_DIR) + '/static/img/logo.png'
     content_type, encoding = mimetypes.guess_type(path)
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
     resp['Cache-Control'] = "max-age=864000000000"
     return resp
 
-async def css(request):
+async def CssRe(request):
     path = str(settings.BASE_DIR) + '/templates/dist/spa' + request.path_info
     content_type, encoding = mimetypes.guess_type(path)
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
     resp['Cache-Control'] = "max-age=864000000000"
     return resp
 
-async def js(request):
+async def JsRe(request):
     path = str(settings.BASE_DIR) + '/templates/dist/spa' + request.path_info
     content_type, encoding = mimetypes.guess_type(path)
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
     resp['Cache-Control'] = "max-age=864000000000"
     return resp
 
-async def statics(request):
+async def StaticsRe(request):
     path = str(settings.BASE_DIR) + '/templates/dist/spa' + request.path_info
     content_type, encoding = mimetypes.guess_type(path)
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
     resp['Cache-Control'] = "max-age=864000000000"
     return resp
 
-def fonts(request):
+def FontsRe(request):
     path = str(settings.BASE_DIR) + '/templates/dist/spa' + request.path_info
     content_type, encoding = mimetypes.guess_type(path)
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
