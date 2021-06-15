@@ -138,6 +138,16 @@ class FreightfileDownloadView(viewsets.ModelViewSet):
         else:
             return self.http_method_not_allowed(request=self.request)
 
+    def get_lang(self, data):
+        lang = self.request.META.get('HTTP_LANGUAGE')
+        if lang:
+            if lang == 'zh-hans':
+                return FreightfileRenderCN().render(data)
+            else:
+                return FreightfileRenderEN().render(data)
+        else:
+            return FreightfileRenderEN().render(data)
+
     def list(self, request, *args, **kwargs):
         from datetime import datetime
         dt = datetime.now()
@@ -145,10 +155,7 @@ class FreightfileDownloadView(viewsets.ModelViewSet):
             serializers.FreightfileRenderSerializer(instance).data
             for instance in self.filter_queryset(self.get_queryset())
         )
-        if self.request.GET.get('lang', '') == 'zh-hans':
-            renderer = FreightfileRenderCN().render(data)
-        else:
-            renderer = FreightfileRenderEN().render(data)
+        renderer = self.get_lang(data)
         response = StreamingHttpResponse(
             renderer,
             content_type="text/csv"
