@@ -3,10 +3,8 @@ from rest_framework.exceptions import APIException
 
 class Authtication(object):
     def authenticate(self, request):
-        if request.path == '/docs/':
+        if request.path in ['/docs/', '/swagger/']:
             return (False, None)
-        elif request.path == '/swagger/':
-                return (False, None)
         else:
             token = request.META.get('HTTP_TOKEN')
             if token:
