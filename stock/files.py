@@ -1,7 +1,7 @@
 from rest_framework_csv.renderers import CSVStreamingRenderer
 
-class FileBinListRenderCN(CSVStreamingRenderer):
-    header = [
+def file_headers_bin():
+    return [
         'bin_name',
         'goods_code',
         'goods_desc',
@@ -13,7 +13,9 @@ class FileBinListRenderCN(CSVStreamingRenderer):
         'create_time',
         'update_time'
     ]
-    labels = dict([
+
+def cn_data_header_bin():
+    return dict([
         ('bin_name', u'库位名称'),
         ('goods_code', u'商品编码'),
         ('goods_desc', u'商品描述'),
@@ -26,20 +28,8 @@ class FileBinListRenderCN(CSVStreamingRenderer):
         ('update_time', u'更新时间')
     ])
 
-class FileBinListRenderEN(CSVStreamingRenderer):
-    header = [
-        'bin_name',
-        'goods_code',
-        'goods_desc',
-        'goods_qty',
-        'pick_qty',
-        'picked_qty',
-        'bin_size',
-        'bin_property',
-        'create_time',
-        'update_time'
-    ]
-    labels = dict([
+def en_data_header_bin():
+    return dict([
         ('bin_name', u'Bin Name'),
         ('goods_code', u'Goods Code'),
         ('goods_desc', u'Goods Description'),
@@ -52,8 +42,9 @@ class FileBinListRenderEN(CSVStreamingRenderer):
         ('update_time', u'Update Time')
     ])
 
-class FileListRenderCN(CSVStreamingRenderer):
-    header = [
+
+def file_headers_list():
+    return [
         'goods_code',
         'goods_desc',
         'goods_qty',
@@ -74,7 +65,9 @@ class FileListRenderCN(CSVStreamingRenderer):
         'create_time',
         'update_time'
     ]
-    labels = dict([
+
+def cn_data_header_list():
+    return dict([
         ('goods_code', u'商品编码'),
         ('goods_desc', u'商品描述'),
         ('goods_qty', u'商品数量'),
@@ -96,29 +89,8 @@ class FileListRenderCN(CSVStreamingRenderer):
         ('update_time', u'更新时间')
     ])
 
-class FileListRenderEN(CSVStreamingRenderer):
-    header = [
-        'goods_code',
-        'goods_desc',
-        'goods_qty',
-        'onhand_stock',
-        'can_order_stock',
-        'ordered_stock',
-        'inspect_stock',
-        'hold_stock',
-        'damage_stock',
-        'asn_stock',
-        'dn_stock',
-        'pre_load_stock',
-        'pre_sort_stock',
-        'sorted_stock',
-        'pick_stock',
-        'picked_stock',
-        'back_order_stock',
-        'create_time',
-        'update_time'
-    ]
-    labels = dict([
+def en_data_header_list():
+    return dict([
         ('goods_code', u'Goods Code'),
         ('goods_desc', u'Goods Description'),
         ('goods_qty', u'Goods Qty'),
@@ -139,3 +111,19 @@ class FileListRenderEN(CSVStreamingRenderer):
         ('create_time', u'Create Time'),
         ('update_time', u'Update Time')
     ])
+
+class FileBinListRenderCN(CSVStreamingRenderer):
+    header = file_headers_bin()
+    labels = cn_data_header_bin()
+
+class FileBinListRenderEN(CSVStreamingRenderer):
+    header = file_headers_bin()
+    labels = en_data_header_bin()
+
+class FileListRenderCN(CSVStreamingRenderer):
+    header = file_headers_list()
+    labels = cn_data_header_list()
+
+class FileListRenderEN(CSVStreamingRenderer):
+    header = file_headers_list()
+    labels = en_data_header_list()
