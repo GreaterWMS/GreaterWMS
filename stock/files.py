@@ -42,7 +42,6 @@ def en_data_header_bin():
         ('update_time', u'Update Time')
     ])
 
-
 def file_headers_list():
     return [
         'goods_code',
