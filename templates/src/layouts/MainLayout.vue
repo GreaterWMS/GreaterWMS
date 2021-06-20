@@ -1306,26 +1306,28 @@ export default {
     if (_this.$q.platform.is.electron) {
       if (LocalStorage.has('openid')) {
         versioncheck('vcheck/' + '?openid=' + LocalStorage.getItem('openid') + '&platform=' + process.platform).then(res => {
-          const ipcRenderer = require('electron').ipcRenderer
-          window.setTimeout(() => {
-            ipcRenderer.send('checkForUpdate', res.upurl.toString())
-          }, 1000)
-          ipcRenderer.on('message', (event, arg) => {
-            if (arg.cmd === 'update-available') {
-              _this.verCheck = true
-              _this.version = arg.message.version
-            } else if (arg.cmd === 'download-progress') {
-              _this.processpercent = arg.message.percent
-            } else if (arg.cmd === 'update-downloaded') {
-              _this.processpercent = 100
-              _this.verCheck = false
-              _this.downloadprocess = false
-              _this.updateNow = true
-            } else if (arg.cmd === 'check') {
-              console.log(arg)
-            }
-          })
-          clearTimeout()
+          if (!res.detail) {
+            const ipcRenderer = require('electron').ipcRenderer
+            window.setTimeout(() => {
+              ipcRenderer.send('checkForUpdate', res.upurl.toString())
+            }, 1000)
+            ipcRenderer.on('message', (event, arg) => {
+              if (arg.cmd === 'update-available') {
+                _this.verCheck = true
+                _this.version = arg.message.version
+              } else if (arg.cmd === 'download-progress') {
+                _this.processpercent = arg.message.percent
+              } else if (arg.cmd === 'update-downloaded') {
+                _this.processpercent = 100
+                _this.verCheck = false
+                _this.downloadprocess = false
+                _this.updateNow = true
+              } else if (arg.cmd === 'check') {
+                console.log(arg)
+              }
+            })
+            clearTimeout()
+          }
         }).catch(err => {
           console.log(err)
         })
