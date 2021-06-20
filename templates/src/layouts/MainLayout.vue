@@ -673,7 +673,7 @@
       </q-card-actions>
     </q-card>
   </q-dialog>
-    <q-dialog v-model="versionCheck" transition-show="jump-down" transition-hide="jump-up" persistent>
+    <q-dialog v-model="verCheck" transition-show="jump-down" transition-hide="jump-up" persistent>
     <q-card style="min-width: 350px">
       <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
         <div>{{ $t('index.updatetitle') }}</div>
@@ -713,7 +713,7 @@
   </q-layout>
 </template>
 <script>
-import { getauth, post, wsurl } from 'boot/axios_request'
+import { versioncheck, getauth, post, wsurl } from 'boot/axios_request'
 import { date, LocalStorage, openURL } from 'quasar'
 
 var ws
@@ -721,7 +721,7 @@ export default {
   data () {
     return {
       lang: this.$i18n.locale,
-      versionCheck: false,
+      verCheck: false,
       version: '',
       updateNow: false,
       processpercent: 0,
@@ -1251,15 +1251,16 @@ export default {
     },
     NewVersionignore () {
       var _this = this
-      _this.versionCheck = false
+      _this.verCheck = false
       _this.version = ''
     },
     NewVersionDownload () {
       var _this = this
       _this.version = ''
       require('electron').ipcRenderer.send('downloadUpdate')
+      console.log(_this.processpercent)
       if (_this.processpercent === 100) {
-        _this.versionCheck = false
+        _this.verCheck = false
         _this.downloadprocess = false
       } else {
         _this.downloadprocess = true
@@ -1303,21 +1304,32 @@ export default {
   mounted () {
     var _this = this
     if (_this.$q.platform.is.electron) {
-      const ipcRenderer = require('electron').ipcRenderer
-      ipcRenderer.on('message', (event, arg) => {
-        if (arg.cmd === 'update-available') {
-          _this.versionCheck = true
-          _this.version = arg.message.version
-        } else if (arg.cmd === 'download-progress') {
-          _this.processpercent = arg.message.percent
-        } else if (arg.cmd === 'update-downloaded') {
-          _this.updateNow = true
-        }
-      })
-      window.setTimeout(() => {
-        ipcRenderer.send('checkForUpdate')
-      }, 1000)
-      clearTimeout()
+      if (LocalStorage.has('openid')) {
+        versioncheck('vcheck/' + '?openid=' + LocalStorage.getItem('openid') + '&platform=' + process.platform).then(res => {
+          const ipcRenderer = require('electron').ipcRenderer
+          window.setTimeout(() => {
+            ipcRenderer.send('checkForUpdate', res.upurl.toString())
+          }, 1000)
+          ipcRenderer.on('message', (event, arg) => {
+            if (arg.cmd === 'update-available') {
+              _this.verCheck = true
+              _this.version = arg.message.version
+            } else if (arg.cmd === 'download-progress') {
+              _this.processpercent = arg.message.percent
+            } else if (arg.cmd === 'update-downloaded') {
+              _this.processpercent = 100
+              _this.verCheck = false
+              _this.downloadprocess = false
+              _this.updateNow = true
+            } else if (arg.cmd === 'check') {
+              console.log(arg)
+            }
+          })
+          clearTimeout()
+        }).catch(err => {
+          console.log(err)
+        })
+      }
     }
   },
   updated () {
