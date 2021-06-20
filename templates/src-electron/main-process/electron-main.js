@@ -1,6 +1,6 @@
-import { app, BrowserWindow, nativeTheme } from 'electron'
-import { updateHandle } from './update'
-import { isDev } from 'electron-is-dev'
+import { app, BrowserWindow, ipcMain, nativeTheme } from 'electron'
+import { autoUpdater } from 'electron-updater'
+import isDev from 'electron-is-dev'
 import path from 'path'
 
 try {
@@ -37,7 +37,7 @@ function createWindow () {
       preload: path.resolve(__dirname, 'electron-preload.js')
     }
   })
-  mainWindow.loadURL(process.env.APP_URL)
+  mainWindow.loadURL(process.env.APP_URL).then(r => console.log(r))
   if (isDev) {
     mainWindow.webContents.openDevTools()
   }
@@ -45,9 +45,69 @@ function createWindow () {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
+  if (!isDev) {
+    autoUpdater.autoDownload = false
+    autoUpdater.on('error', (error) => {
+      sendUpdateMessage({
+        cmd: 'error',
+        message: error
+      })
+    })
+    autoUpdater.on('checking-for-update', (info) => {
+      sendUpdateMessage({
+        cmd: 'checking-for-update',
+        message: info
+      })
+    })
+    autoUpdater.on('update-available', (info) => {
+      sendUpdateMessage({
+        cmd: 'update-available',
+        message: info
+      })
+    })
+    autoUpdater.on('update-not-available', (info) => {
+      sendUpdateMessage({
+        cmd: 'update-not-available',
+        message: info
+      })
+    })
+    autoUpdater.on('download-progress', function (progressObj) {
+      sendUpdateMessage({
+        cmd: 'download-progress',
+        message: progressObj
+      })
+    })
+    autoUpdater.on('update-downloaded', function (event, releaseNotes, releaseName, releaseDate, updateUrl) {
+      sendUpdateMessage({
+        cmd: 'update-downloaded',
+        message: {
+          releaseNotes: releaseNotes,
+          releaseName: releaseName,
+          releaseDate: releaseDate,
+          updateUrl: updateUrl
+        }
+      })
+    })
+    ipcMain.on('checkForUpdate', (e, arg) => {
+      autoUpdater.setFeedURL(arg)
+      autoUpdater.checkForUpdates()
+    })
+    ipcMain.on('downloadUpdate', (e, arg) => {
+      autoUpdater.downloadUpdate()
+    })
+    ipcMain.on('updateNow', (e, arg) => {
+      autoUpdater.quitAndInstall()
+    })
+  }
 }
 
-app.on('ready', createWindow)
+function sendUpdateMessage (text) {
+  mainWindow.webContents.send('message', text)
+}
+
+app.on('ready', () => {
+  createWindow()
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -58,8 +118,5 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   if (mainWindow === null) {
     createWindow()
-    if (!isDev) {
-      updateHandle(mainWindow)
-    }
   }
 })

@@ -1,6 +1,6 @@
 {
   "name": "templates",
-  "version": "2.0.21",
+  "version": "2.0.22",
   "description": "GreaterWMS--Open Source Warehouse Management System",
   "productName": "GreaterWMS--Open Source Warehouse Management System",
   "author": "singosgu(singosgu@gmail.com)",
@@ -17,6 +17,7 @@
     "electron-is-dev": "^1.2.0",
     "electron-log": "^4.3.5",
     "electron-updater": "^4.3.9",
+    "highlight.js": "^11.0.1",
     "lottie-web": "^5.7.11",
     "normalize-url": "^6.0.1",
     "qrcode": "^1.4.4",
@@ -24,14 +25,15 @@
     "ssri": "^6.0.2",
     "v-distpicker": "^1.2.12",
     "vue-i18n": "^8.24.4",
-    "vue-print-nb": "^1.7.4"
+    "vue-print-nb": "^1.7.4",
+    "webpack": "5.0.0"
   },
   "devDependencies": {
     "@quasar/app": "^2.2.10",
     "babel-eslint": "^10.0.1",
     "devtron": "^1.4.0",
-    "electron": "^9.4.4",
-    "electron-builder": "^22.10.5",
+    "electron": "^11.4.8",
+    "electron-builder": "^22.11.7",
     "electron-debug": "^3.2.0",
     "electron-devtools-installer": "^3.2.0",
     "electron-packager": "^14.2.1",
