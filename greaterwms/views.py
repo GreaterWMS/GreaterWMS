@@ -17,7 +17,7 @@ async def vcheck(request):
             else:
                 upurl = baseurl + openid + '/' + platform
         else:
-            upurl = baseurl + platform
+            return JsonResponse({"detail": "Please Enter Your Openid"})
     else:
         return JsonResponse({"detail": "Please Choose Your Platform"})
     return JsonResponse({"upurl": upurl})
