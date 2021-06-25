@@ -155,7 +155,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
             return serializers.ASNDetailGetSerializer
         elif self.action in ['create']:
             return serializers.ASNDetailPostSerializer
-        elif self.action == ['update']:
+        elif self.action in ['update']:
             return serializers.ASNDetailUpdateSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
