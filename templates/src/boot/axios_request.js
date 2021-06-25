@@ -11,6 +11,11 @@ const axiosInstance = axios.create({
   timeout: 5000
 })
 
+const axiosInstanceVersion = axios.create({
+  baseURL: baseurl,
+  timeout: 5000
+})
+
 const axiosInstanceAuth = axios.create({
   baseURL: baseurl,
   timeout: 5000
@@ -236,6 +241,24 @@ axiosInstance.interceptors.response.use(
   }
 )
 
+axiosInstanceVersion.interceptors.request.use(
+  function (config) {
+    return config
+  },
+  function (error) {
+    return Promise.reject(error)
+  }
+)
+
+axiosInstanceVersion.interceptors.response.use(
+  function (response) {
+    return response.data
+  },
+  function (error) {
+    return Promise.reject(error)
+  }
+)
+
 axiosFile.interceptors.request.use(
   function (config) {
     config.headers.get['Content-Type'] = 'application/vnd.ms-excel'
@@ -347,6 +370,10 @@ function get (url) {
   return axiosInstance.get(url)
 }
 
+function versioncheck (url) {
+  return axiosInstanceVersion.get(url)
+}
+
 function post (url, data) {
   return axiosInstance.post(url, data)
 }
@@ -377,4 +404,4 @@ function getfile (url) {
 
 Vue.prototype.$axios = axios
 
-export { baseurl, wsurl, get, post, getauth, postauth, putauth, deleteauth, patchauth, ViewPrintAuth, getfile }
+export { baseurl, wsurl, get, versioncheck, post, getauth, postauth, putauth, deleteauth, patchauth, ViewPrintAuth, getfile }
