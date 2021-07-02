@@ -1323,6 +1323,7 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/', {
         }).then(res => {
+          _this.table_list = []
           res.results.forEach((item) => {
             if (item.dn_status === 1) {
               item.dn_status = _this.$t('outbound.freshorder')
@@ -1376,6 +1377,7 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/?dn_code__icontains=' + _this.filter, {
         }).then(res => {
+          _this.table_list = []
           res.results.forEach((item) => {
             if (item.dn_status === 1) {
               item.dn_status = _this.$t('outbound.freshorder')
@@ -1424,6 +1426,7 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_previous, {
         }).then(res => {
+          _this.table_list = []
           res.results.forEach((item) => {
             if (item.dn_status === 1) {
               item.dn_status = _this.$t('outbound.freshorder')
@@ -1472,6 +1475,7 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_next, {
         }).then(res => {
+          _this.table_list = []
           res.results.forEach((item) => {
             if (item.dn_status === 1) {
               item.dn_status = _this.$t('outbound.freshorder')
