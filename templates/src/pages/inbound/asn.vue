@@ -1142,7 +1142,8 @@ export default {
       printObj: {
         id: 'printMe',
         popTitle: this.$t('inbound.asn')
-      }
+      },
+      devi: window.device
     }
   },
   methods: {
@@ -1151,6 +1152,7 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/', {
         }).then(res => {
+          _this.table_list = []
           res.results.forEach((item) => {
             if (item.asn_status === 1) {
               item.asn_status = _this.$t('inbound.predeliverystock')
@@ -1197,6 +1199,7 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/?asn_code__icontains=' + _this.filter, {
         }).then(res => {
+          _this.table_list = []
           res.results.forEach((item) => {
             if (item.asn_status === 1) {
               item.asn_status = _this.$t('inbound.predeliverystock')
@@ -1243,6 +1246,7 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_previous, {
         }).then(res => {
+          _this.table_list = []
           res.results.forEach((item) => {
             if (item.asn_status === 1) {
               item.asn_status = _this.$t('inbound.predeliverystock')
@@ -1289,6 +1293,7 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_next, {
         }).then(res => {
+          _this.table_list = []
           res.results.forEach((item) => {
             if (item.asn_status === 1) {
               item.asn_status = _this.$t('inbound.predeliverystock')
