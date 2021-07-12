@@ -191,6 +191,51 @@ import { getauth } from 'boot/axios_request'
 var sendCommandResults = 'false'
 var scans = []
 
+function sendCommand (extraName, extraValue) {
+  console.log('Sending Command: ' + extraName + ', ' + JSON.stringify(extraValue))
+  var broadcastExtras = {}
+  broadcastExtras[extraName] = extraValue
+  broadcastExtras.SEND_RESULT = sendCommandResults
+  window.plugins.intentShim.sendBroadcast({
+    action: 'com.symbol.datawedge.api.ACTION',
+    extras: broadcastExtras
+  },
+  function () { },
+  function () { }
+  )
+}
+
+function unregisterBroadcastReceiver () {
+  window.plugins.intentShim.unregisterBroadcastReceiver()
+}
+function commandReceived (commandText) {
+  document.getElementById('info_lastApiMessage').innerHTML = commandText
+}
+function enumerateScanners (enumeratedScanners) {
+  var humanReadableScannerList = ''
+  for (var i = 0; i < enumeratedScanners.length; i++) {
+    console.log('Scanner found: name= ' + enumeratedScanners[i].SCANNER_NAME + ', id=' + enumeratedScanners[i].SCANNER_INDEX + ', connected=' + enumeratedScanners[i].SCANNER_CONNECTION_STATE)
+    humanReadableScannerList += enumeratedScanners[i].SCANNER_NAME
+    if (i < enumeratedScanners.length - 1) { humanReadableScannerList += ', ' }
+  }
+  document.getElementById('info_availableScanners').innerHTML = humanReadableScannerList
+}
+function activeProfile (theActiveProfile) {
+  document.getElementById('info_activeProfile').innerHTML = theActiveProfile
+}
+function barcodeScanned (scanData, timeOfScan) {
+  var scannedData = scanData.extras['com.symbol.datawedge.data_string']
+  var scannedType = scanData.extras['com.symbol.datawedge.label_type']
+  console.log('Scan: ' + scannedData)
+  scans.unshift({ data: scannedData, decoder: scannedType, timeAtDecode: timeOfScan })
+  console.log(scans)
+  var scanDisplay = ''
+  for (var i = 0; i < scans.length; i++) {
+    scanDisplay += '<b><small>' + scans[i].decoder + ' (' + scans[i].timeAtDecode + ')</small></b><br>' + scans[i].data + '<br><br>'
+  }
+  document.getElementById('scannedBarcodes').innerHTML = scanDisplay
+}
+
 export default {
   name: 'Pagemovetobin_scan',
   data () {
@@ -326,6 +371,8 @@ export default {
     onDeviceReady () {
       this.receivedEvent('deviceready')
       document.getElementById('scanButton').addEventListener('touchstart', this.startSoftTrigger)
+      document.getElementById('scanButton').addEventListener('click', this.startSoftTrigger)
+      // document.getElementById('disableScanningButton').addEventListener('click', this.disableEnableScanning)
       document.getElementById('scanButton').addEventListener('touchend', this.stopSoftTrigger)
       document.getElementById('scanButton').style.display = 'none'
       document.getElementById('header_lastApiMessage').style.display = 'none'
@@ -339,7 +386,7 @@ export default {
     },
     onPause: function () {
       console.log('Paused')
-      this.unregisterBroadcastReceiver()
+      unregisterBroadcastReceiver()
     },
     onResume () {
       console.log('Resumed')
@@ -349,13 +396,13 @@ export default {
       console.log('Received Event: ' + id)
     },
     startSoftTrigger () {
-      this.sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'START_SCANNING')
+      sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'START_SCANNING')
     },
     stopSoftTrigger () {
-      this.sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'STOP_SCANNING')
+      sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'STOP_SCANNING')
     },
     determineVersion () {
-      this.sendCommand('com.symbol.datawedge.api.GET_VERSION_INFO', '')
+      sendCommand('com.symbol.datawedge.api.GET_VERSION_INFO', '')
     },
     setDecoders () {
       var ean8Decoder = '' + document.getElementById('chk_ean8').checked
@@ -379,22 +426,7 @@ export default {
           }
         }
       }
-      this.sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
-    },
-    sendCommand (extraName, extraValue) {
-      console.log('Sending Command: ' + extraName + ', ' + JSON.stringify(extraValue))
-      var broadcastExtras = {}
-      broadcastExtras[extraName] = extraValue
-      broadcastExtras.SEND_RESULT = sendCommandResults
-      window.plugins.intentShim.sendBroadcast({
-        action: 'com.symbol.datawedge.api.ACTION',
-        extras: broadcastExtras
-      },
-      function () { },
-      function () { }
-      )
-    },
-    registerBroadcastReceiverThen (intent) {
+      sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
     },
     registerBroadcastReceiver () {
       window.plugins.intentShim.registerBroadcastReceiver({
@@ -407,13 +439,12 @@ export default {
         ]
       },
       function (intent) {
-        var _this = this
         console.log('Received Intent: ' + JSON.stringify(intent))
         // eslint-disable-next-line no-prototype-builtins
         if (intent.extras.hasOwnProperty('RESULT_INFO')) {
           var commandResult = intent.extras.RESULT + ' (' +
                     intent.extras.COMMAND.substring(intent.extras.COMMAND.lastIndexOf('.') + 1, intent.extras.COMMAND.length) + ')'// + JSON.stringify(intent.extras.RESULT_INFO);
-          this.commandReceived(commandResult.toLowerCase())
+          commandReceived(commandResult.toLowerCase())
         }
         // eslint-disable-next-line no-prototype-builtins
         if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_VERSION_INFO')) {
@@ -423,124 +454,91 @@ export default {
           var datawedgeVersion = versionInfo.DATAWEDGE
           console.log('Datawedge version: ' + datawedgeVersion)
           //  Fire events sequentially so the application can gracefully degrade the functionality available on earlier DW versions
-          if (datawedgeVersion >= '6.3') { _this.Wedge63() }
-          if (datawedgeVersion >= '6.4') { _this.Wedge64() }
-          if (datawedgeVersion >= '6.5') { _this.Wedge65() }
+          if (datawedgeVersion >= '6.3') {
+            console.log('Datawedge 6.3 APIs are available')
+            //  Create a profile for our application
+            sendCommand('com.symbol.datawedge.api.CREATE_PROFILE', 'wms')
+            document.getElementById('info_datawedgeVersion').innerHTML = '6.3.  Please configure profile manually.  See ReadMe for more details.'
+            //  Although we created the profile we can only configure it with DW 6.4.
+            sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
+            //  Enumerate the available scanners on the device
+            sendCommand('com.symbol.datawedge.api.ENUMERATE_SCANNERS', '')
+            //  Functionality of the scan button is available
+            document.getElementById('scanButton').style.display = 'block'
+          }
+          if (datawedgeVersion >= '6.4') {
+            console.log('Datawedge 6.4 APIs are available')
+            //  Documentation states the ability to set a profile config is only available from DW 6.4.
+            //  For our purposes, this includes setting the decoders and configuring the associated app / output params of the profile.
+            document.getElementById('info_datawedgeVersion').innerHTML = '6.4.'
+            document.getElementById('info_datawedgeVersion').classList.remove('attention')
+            //  Decoders are now available
+            document.getElementById('chk_ean8').disabled = false
+            document.getElementById('chk_ean13').disabled = false
+            document.getElementById('chk_code39').disabled = false
+            document.getElementById('chk_code128').disabled = false
+            //  Configure the created profile (associated app and keyboard plugin)
+            var profileConfig = {
+              PROFILE_NAME: 'wms',
+              PROFILE_ENABLED: 'true',
+              CONFIG_MODE: 'UPDATE',
+              PLUGIN_CONFIG: {
+                PLUGIN_NAME: 'BARCODE',
+                RESET_CONFIG: 'true',
+                PARAM_LIST: {}
+              },
+              APP_LIST: [{
+                PACKAGE_NAME: 'com.greaterwms.app',
+                ACTIVITY_LIST: ['*']
+              }]
+            }
+            sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
+            //  Configure the created profile (intent plugin)
+            var profileConfig2 = {
+              PROFILE_NAME: 'wms',
+              PROFILE_ENABLED: 'true',
+              CONFIG_MODE: 'UPDATE',
+              PLUGIN_CONFIG: {
+                PLUGIN_NAME: 'INTENT',
+                RESET_CONFIG: 'true',
+                PARAM_LIST: {
+                  intent_output_enabled: 'true',
+                  intent_action: 'com.greaterwms.app.ACTION',
+                  intent_delivery: '2'
+                }
+              }
+            }
+            sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig2)
+            //  Give some time for the profile to settle then query its value
+            setTimeout(function () {
+              sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
+            }, 1000)
+          }
+          if (datawedgeVersion >= '6.5') {
+            console.log('Datawedge 6.5 APIs are available')
+            document.getElementById('info_datawedgeVersion').innerHTML = '6.5 or higher.'
+            //  Instruct the API to send
+            sendCommandResults = 'true'
+            document.getElementById('header_lastApiMessage').style.display = 'block'
+            document.getElementById('info_lastApiMessage').style.display = 'block'
+          }
         // eslint-disable-next-line no-prototype-builtins
         } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS')) {
         //  Return from our request to enumerate the available scanners
           var enumeratedScannersObj = intent.extras['com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS']
-          this.enumerateScanners(enumeratedScannersObj)
+          enumerateScanners(enumeratedScannersObj)
         // eslint-disable-next-line no-prototype-builtins
         } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE')) {
         //  Return from our request to obtain the active profile
           var activeProfileObj = intent.extras['com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE']
-          this.activeProfile(activeProfileObj)
+          activeProfile(activeProfileObj)
         // eslint-disable-next-line no-prototype-builtins
         } else if (!intent.extras.hasOwnProperty('RESULT_INFO')) {
         //  A barcode has been scanned
-          this.barcodeScanned(intent, new Date().toLocaleString())
+          barcodeScanned(intent, new Date().toLocaleString())
         }
       }
       )
-    },
-    unregisterBroadcastReceiver () {
-      window.plugins.intentShim.unregisterBroadcastReceiver()
-    },
-    Wedge63 () {
-      console.log('Datawedge 6.3 APIs are available')
-      //  Create a profile for our application
-      this.sendCommand('com.symbol.datawedge.api.CREATE_PROFILE', 'wms')
-      document.getElementById('info_datawedgeVersion').innerHTML = '6.3.  Please configure profile manually.  See ReadMe for more details.'
-      //  Although we created the profile we can only configure it with DW 6.4.
-      this.sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
-      //  Enumerate the available scanners on the device
-      this.sendCommand('com.symbol.datawedge.api.ENUMERATE_SCANNERS', '')
-      //  Functionality of the scan button is available
-      document.getElementById('scanButton').style.display = 'block'
-    },
-    Wedge64 () {
-      console.log('Datawedge 6.4 APIs are available')
-      //  Documentation states the ability to set a profile config is only available from DW 6.4.
-      //  For our purposes, this includes setting the decoders and configuring the associated app / output params of the profile.
-      document.getElementById('info_datawedgeVersion').innerHTML = '6.4.'
-      document.getElementById('info_datawedgeVersion').classList.remove('attention')
-      //  Decoders are now available
-      document.getElementById('chk_ean8').disabled = false
-      document.getElementById('chk_ean13').disabled = false
-      document.getElementById('chk_code39').disabled = false
-      document.getElementById('chk_code128').disabled = false
-      //  Configure the created profile (associated app and keyboard plugin)
-      var profileConfig = {
-        PROFILE_NAME: 'wms',
-        PROFILE_ENABLED: 'true',
-        CONFIG_MODE: 'UPDATE',
-        PLUGIN_CONFIG: {
-          PLUGIN_NAME: 'BARCODE',
-          RESET_CONFIG: 'true',
-          PARAM_LIST: {}
-        },
-        APP_LIST: [{
-          PACKAGE_NAME: 'com.greaterwms.app',
-          ACTIVITY_LIST: ['*']
-        }]
-      }
-      this.sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
-      //  Configure the created profile (intent plugin)
-      var profileConfig2 = {
-        PROFILE_NAME: 'wms',
-        PROFILE_ENABLED: 'true',
-        CONFIG_MODE: 'UPDATE',
-        PLUGIN_CONFIG: {
-          PLUGIN_NAME: 'INTENT',
-          RESET_CONFIG: 'true',
-          PARAM_LIST: {
-            intent_output_enabled: 'true',
-            intent_action: 'com.greaterwms.app.ACTION',
-            intent_delivery: '2'
-          }
-        }
-      }
-      this.sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig2)
-      //  Give some time for the profile to settle then query its value
-      setTimeout(function () {
-        this.sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
-      }, 1000)
-    },
-    Wedge65 () {
-      console.log('Datawedge 6.5 APIs are available')
-      document.getElementById('info_datawedgeVersion').innerHTML = '6.5 or higher.'
-      //  Instruct the API to send
-      sendCommandResults = 'true'
-      document.getElementById('header_lastApiMessage').style.display = 'block'
-      document.getElementById('info_lastApiMessage').style.display = 'block'
-    },
-    commandReceived (commandText) {
-      document.getElementById('info_lastApiMessage').innerHTML = commandText
-    },
-    enumerateScanners (enumeratedScanners) {
-      var humanReadableScannerList = ''
-      for (var i = 0; i < enumeratedScanners.length; i++) {
-        console.log('Scanner found: name= ' + enumeratedScanners[i].SCANNER_NAME + ', id=' + enumeratedScanners[i].SCANNER_INDEX + ', connected=' + enumeratedScanners[i].SCANNER_CONNECTION_STATE)
-        humanReadableScannerList += enumeratedScanners[i].SCANNER_NAME
-        if (i < enumeratedScanners.length - 1) { humanReadableScannerList += ', ' }
-      }
-      document.getElementById('info_availableScanners').innerHTML = humanReadableScannerList
-    },
-    activeProfile (theActiveProfile) {
-      document.getElementById('info_activeProfile').innerHTML = theActiveProfile
-    },
-    barcodeScanned (scanData, timeOfScan) {
-      var scannedData = scanData.extras['com.symbol.datawedge.data_string']
-      var scannedType = scanData.extras['com.symbol.datawedge.label_type']
-      console.log('Scan: ' + scannedData)
-      scans.unshift({ data: scannedData, decoder: scannedType, timeAtDecode: timeOfScan })
-      console.log(scans)
-      var scanDisplay = ''
-      for (var i = 0; i < scans.length; i++) {
-        scanDisplay += '<b><small>' + scans[i].decoder + ' (' + scans[i].timeAtDecode + ')</small></b><br>' + scans[i].data + '<br><br>'
-      }
-      document.getElementById('scannedBarcodes').innerHTML = scanDisplay
     }
   },
   created () {
