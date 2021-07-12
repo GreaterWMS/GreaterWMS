@@ -29,7 +29,8 @@ cordova plugin add com-darryncampbell-cordova-plugin-intent
 quasar d -m cordova -T andorid
 
 现在只支持Zebra扫描枪，Zebra扫描枪需要打开广播
-
+Zebra扫描枪配置请看：
+https://github.com/Singosgu/GreaterWMS/blob/master/Zebra-Profile.pdf
 
 # 打包apk
 quasar build -m android
