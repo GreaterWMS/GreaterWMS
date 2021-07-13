@@ -10,7 +10,7 @@ cd src-cordova
 cordova platform add android
 输入app名称为org.greaterwms.app
 # 返回templates目录，先启动一次项目来创建gradle文件夹
-quasar d -m cordova -T andorid
+quasar d -m cordova -T android
 Ctrl + c退出
 # 修改gradle版本下载distributionUrl，文件在tempates/src-cordova/platforms/android/gradle/wrapper/gradle-wrapper.properties
 distributionUrl=https://mirrors.cloud.tencent.com/gradle/gradle-4.10.3-all.zip
@@ -26,7 +26,7 @@ cordova plugin add com-darryncampbell-cordova-plugin-intent
 # 修改适配问题的文件，templates\src-cordova\platforms\android\app\src\main\java\org\apache\cordova\camera\CameraLauncher.java
 第42行的android.support.v4.content.FileProvider，修改为androidx.core.content.FileProvider
 # 回到templates，再次启动项目
-quasar d -m cordova -T andorid
+quasar d -m cordova -T android
 
 现在只支持Zebra扫描枪，Zebra扫描枪需要打开广播
 Zebra扫描枪配置请看：
