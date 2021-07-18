@@ -165,16 +165,21 @@ class DnDetailViewSet(viewsets.ModelViewSet):
         if DnListModel.objects.filter(openid=self.request.auth.openid, dn_code=str(data['dn_code']), is_delete=False).exists():
             if customer.objects.filter(openid=self.request.auth.openid, customer_name=str(data['customer']), is_delete=False).exists():
                 for i in range(len(data['goods_code'])):
-                    check_data = {
-                        'openid': self.request.auth.openid,
-                        'dn_code': str(data['dn_code']),
-                        'customer': str(data['customer']),
-                        'goods_code': str(data['goods_code'][i]),
-                        'goods_qty': int(data['goods_qty'][i]),
-                        'creater': str(data['creater'])
-                    }
-                    serializer = self.get_serializer(data=check_data)
-                    serializer.is_valid(raise_exception=True)
+                    if goods.objects.filter(openid=self.request.auth.openid,
+                                                        goods_code=str(data['goods_code'][i]),
+                                                        is_delete=False).exists():
+                        check_data = {
+                            'openid': self.request.auth.openid,
+                            'dn_code': str(data['dn_code']),
+                            'customer': str(data['customer']),
+                            'goods_code': str(data['goods_code'][i]),
+                            'goods_qty': int(data['goods_qty'][i]),
+                            'creater': str(data['creater'])
+                        }
+                        serializer = self.get_serializer(data=check_data)
+                        serializer.is_valid(raise_exception=True)
+                    else:
+                        raise APIException({"detail": str(data['goods_code'][i]) + " does not exists"})
                 post_data_list = []
                 weight_list = []
                 volume_list = []
