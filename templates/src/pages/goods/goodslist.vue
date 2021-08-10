@@ -671,20 +671,8 @@ export default {
           _this.goods_specs_list = res.goods_specs_list
           _this.goods_origin_list = res.goods_origin_list
           _this.supplier_list = res.supplier_list
-          if (res.previous) {
-            var previous = res.previous.split(':')[0]
-            var previouspage = res.previous.replace(previous, window.location.href.split(':')[0])
-            _this.pathname_previous = previouspage
-          } else {
-            _this.pathname_previous = res.previous
-          }
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            var nextpage = res.next.replace(next, window.location.href.split(':')[0])
-            _this.pathname_next = nextpage
-          } else {
-            _this.pathname_next = res.next
-          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -709,20 +697,8 @@ export default {
           _this.goods_specs_list = res.goods_specs_list
           _this.goods_origin_list = res.goods_origin_list
           _this.supplier_list = res.supplier_list
-          if (res.previous) {
-            var previous = res.previous.split(':')[0]
-            var previouspage = res.previous.replace(previous, window.location.href.split(':')[0])
-            _this.pathname_previous = previouspage
-          } else {
-            _this.pathname_previous = res.previous
-          }
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            var nextpage = res.next.replace(next, window.location.href.split(':')[0])
-            _this.pathname_next = nextpage
-          } else {
-            _this.pathname_next = res.next
-          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -747,20 +723,8 @@ export default {
           _this.goods_specs_list = res.goods_specs_list
           _this.goods_origin_list = res.goods_origin_list
           _this.supplier_list = res.supplier_list
-          if (res.previous) {
-            var previous = res.previous.split(':')[0]
-            var previouspage = res.previous.replace(previous, window.location.href.split(':')[0])
-            _this.pathname_previous = previouspage
-          } else {
-            _this.pathname_previous = res.previous
-          }
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            var nextpage = res.next.replace(next, window.location.href.split(':')[0])
-            _this.pathname_next = nextpage
-          } else {
-            _this.pathname_next = res.next
-          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -785,20 +749,8 @@ export default {
           _this.goods_specs_list = res.goods_specs_list
           _this.goods_origin_list = res.goods_origin_list
           _this.supplier_list = res.supplier_list
-          if (res.previous) {
-            var previous = res.previous.split(':')[0]
-            var previouspage = res.previous.replace(previous, window.location.href.split(':')[0])
-            _this.pathname_previous = previouspage
-          } else {
-            _this.pathname_previous = res.previous
-          }
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            var nextpage = res.next.replace(next, window.location.href.split(':')[0])
-            _this.pathname_next = nextpage
-          } else {
-            _this.pathname_next = res.next
-          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -876,7 +828,8 @@ export default {
         goods_origin: e.goods_origin,
         goods_cost: e.goods_cost,
         goods_price: e.goods_price,
-        creater: _this.login_name
+        creater: _this.login_name,
+        bar_code: e.bar_code
       }
     },
     editDataSubmit () {
