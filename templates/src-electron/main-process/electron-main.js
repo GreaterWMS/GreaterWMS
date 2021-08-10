@@ -37,6 +37,7 @@ function createWindow () {
       preload: path.resolve(__dirname, 'electron-preload.js')
     }
   })
+  mainWindow.maximize()
   mainWindow.loadURL(process.env.APP_URL).then(r => console.log(r))
   if (isDev) {
     mainWindow.webContents.openDevTools()

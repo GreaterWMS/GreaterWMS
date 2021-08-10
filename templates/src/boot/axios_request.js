@@ -60,6 +60,32 @@ axiosInstanceAuth.interceptors.response.use(
         })
       }
     }
+    if (response.data.results) {
+      var sslcheck = baseurl.split(':')
+      if (response.data.next !== null) {
+        if (sslcheck.length === 2) {
+          var nextlinkcheck = (response.data.next).toString().split(sslcheck[1])
+          response.data.next = nextlinkcheck[1]
+        } else {
+          var nextlinkcheck1 = (response.data.next).toString().split(sslcheck[1] + ':' + sslcheck[2])
+          response.data.next = nextlinkcheck1[1]
+        }
+      } else {
+        response.data.next = null
+      }
+      if (response.data.previous !== null) {
+        if (sslcheck.length === 2) {
+          var previouslinkcheck = (response.data.previous).toString().split(sslcheck[1])
+          response.data.previous = previouslinkcheck[1]
+        } else {
+          var previouslinkcheck1 = (response.data.previous).toString().split(sslcheck[1] + ':' + sslcheck[2])
+          response.data.previous = previouslinkcheck1[1]
+        }
+      } else {
+        response.data.previous = null
+      }
+      return response.data
+    }
     return response.data
   },
   function (error) {
