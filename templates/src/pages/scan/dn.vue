@@ -147,15 +147,15 @@ export default {
       driver_list: [],
       customer_detail: {},
       columns: [
-        { name: 'dn_code', required: true, label: this.$t('outbound.view_dn.dn_code'), align: 'left', field: 'dn_code'},
-        { name: 'dn_status', label: this.$t('outbound.view_dn.dn_status'), field: 'dn_status', align: 'center'},
-        { name: 'total_weight', label: this.$t('outbound.view_dn.total_weight'), field: 'total_weight', align: 'center'},
-        { name: 'total_volume', label: this.$t('outbound.view_dn.total_volume'), field: 'total_volume', align: 'center'},
-        { name: 'customer', label: this.$t('outbound.view_dn.customer'), field: 'customer', align: 'center'},
-        {name: 'creater', label: this.$t('creater'), field: 'creater', align: 'center'},
-        {name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center'},
-        {name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center'},
-        {name: 'action', label: this.$t('action'), align: 'right'}
+        { name: 'dn_code', required: true, label: this.$t('outbound.view_dn.dn_code'), align: 'left', field: 'dn_code' },
+        { name: 'dn_status', label: this.$t('outbound.view_dn.dn_status'), field: 'dn_status', align: 'center' },
+        { name: 'total_weight', label: this.$t('outbound.view_dn.total_weight'), field: 'total_weight', align: 'center' },
+        { name: 'total_volume', label: this.$t('outbound.view_dn.total_volume'), field: 'total_volume', align: 'center' },
+        { name: 'customer', label: this.$t('outbound.view_dn.customer'), field: 'customer', align: 'center' },
+        { name: 'creater', label: this.$t('creater'), field: 'creater', align: 'center' },
+        { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
+        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' },
+        { name: 'action', label: this.$t('action'), align: 'right' }
       ],
       filter: '',
       pagination: {
@@ -179,20 +179,8 @@ export default {
         }).then(res => {
           _this.table_list = res.results
           _this.customer_list = res.customer_list
-          if (res.previous) {
-            var previous = res.previous.split(':')[0]
-            var previouspage = res.previous.replace(previous, window.location.href.split(':')[0])
-            _this.pathname_previous = previouspage
-          } else {
-            _this.pathname_previous = res.previous
-          }
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            var nextpage = res.next.replace(next, window.location.href.split(':')[0])
-            _this.pathname_next = nextpage
-          } else {
-            _this.pathname_next = res.next
-          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -210,20 +198,8 @@ export default {
         }).then(res => {
           _this.table_list = res.results
           _this.customer_list = res.customer_list
-          if (res.previous) {
-            var previous = res.previous.split(':')[0]
-            var previouspage = res.previous.replace(previous, window.location.href.split(':')[0])
-            _this.pathname_previous = previouspage
-          } else {
-            _this.pathname_previous = res.previous
-          }
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            var nextpage = res.next.replace(next, window.location.href.split(':')[0])
-            _this.pathname_next = nextpage
-          } else {
-            _this.pathname_next = res.next
-          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -241,20 +217,8 @@ export default {
         }).then(res => {
           _this.table_list = res.results
           _this.customer_list = res.customer_list
-          if (res.previous) {
-            var previous = res.previous.split(':')[0]
-            var previouspage = res.previous.replace(previous, window.location.href.split(':')[0])
-            _this.pathname_previous = previouspage
-          } else {
-            _this.pathname_previous = res.previous
-          }
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            var nextpage = res.next.replace(next, window.location.href.split(':')[0])
-            _this.pathname_next = nextpage
-          } else {
-            _this.pathname_next = res.next
-          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -272,20 +236,8 @@ export default {
         }).then(res => {
           _this.table_list = res.results
           _this.customer_list = res.customer_list
-          if (res.previous) {
-            var previous = res.previous.split(':')[0]
-            var previouspage = res.previous.replace(previous, window.location.href.split(':')[0])
-            _this.pathname_previous = previouspage
-          } else {
-            _this.pathname_previous = res.previous
-          }
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            var nextpage = res.next.replace(next, window.location.href.split(':')[0])
-            _this.pathname_next = nextpage
-          } else {
-            _this.pathname_next = res.next
-          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,

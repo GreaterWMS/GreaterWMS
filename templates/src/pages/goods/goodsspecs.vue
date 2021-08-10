@@ -210,20 +210,8 @@ export default {
         getauth(_this.pathname, {
         }).then(res => {
           _this.table_list = res.results
-          if (res.previous) {
-            var previous = res.previous.split(':')[0]
-            var previouspage = res.previous.replace(previous, window.location.href.split(':')[0])
-            _this.pathname_previous = previouspage
-          } else {
-            _this.pathname_previous = res.previous
-          }
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            var nextpage = res.next.replace(next, window.location.href.split(':')[0])
-            _this.pathname_next = nextpage
-          } else {
-            _this.pathname_next = res.next
-          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -240,20 +228,8 @@ export default {
         getauth(_this.pathname + '?goods_specs__icontains=' + _this.filter, {
         }).then(res => {
           _this.table_list = res.results
-          if (res.previous) {
-            var previous = res.previous.split(':')[0]
-            var previouspage = res.previous.replace(previous, window.location.href.split(':')[0])
-            _this.pathname_previous = previouspage
-          } else {
-            _this.pathname_previous = res.previous
-          }
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            var nextpage = res.next.replace(next, window.location.href.split(':')[0])
-            _this.pathname_next = nextpage
-          } else {
-            _this.pathname_next = res.next
-          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -270,20 +246,8 @@ export default {
         getauth(_this.pathname_previous, {
         }).then(res => {
           _this.table_list = res.results
-          if (res.previous) {
-            var previous = res.previous.split(':')[0]
-            var previouspage = res.previous.replace(previous, window.location.href.split(':')[0])
-            _this.pathname_previous = previouspage
-          } else {
-            _this.pathname_previous = res.previous
-          }
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            var nextpage = res.next.replace(next, window.location.href.split(':')[0])
-            _this.pathname_next = nextpage
-          } else {
-            _this.pathname_next = res.next
-          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -300,20 +264,8 @@ export default {
         getauth(_this.pathname_next, {
         }).then(res => {
           _this.table_list = res.results
-          if (res.previous) {
-            var previous = res.previous.split(':')[0]
-            var previouspage = res.previous.replace(previous, window.location.href.split(':')[0])
-            _this.pathname_previous = previouspage
-          } else {
-            _this.pathname_previous = res.previous
-          }
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            var nextpage = res.next.replace(next, window.location.href.split(':')[0])
-            _this.pathname_next = nextpage
-          } else {
-            _this.pathname_next = res.next
-          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
