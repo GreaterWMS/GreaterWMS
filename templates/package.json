@@ -18,7 +18,7 @@
     "electron-is-dev": "^1.2.0",
     "electron-log": "^4.3.5",
     "electron-updater": "^4.3.9",
-    "highlight.js": "^11.0.1",
+    "highlight.js": "^10.4.1",
     "lottie-web": "^5.7.11",
     "normalize-url": "^6.0.1",
     "qrcode": "^1.4.4",
