@@ -1032,13 +1032,7 @@ export default {
         getauth('chat/?' + 'sender=' + _this.sender + '&receiver=' + _this.receiver).then(res => {
           _this.chat_list = res.results.reverse()
           _this.Readnum()
-          if (res.next) {
-            var next = res.next.split(':')[0]
-            res.next.replace(next, window.location.href.split(':')[0])
-            _this.chat_next = res.next
-          } else {
-            _this.chat_next = res.next
-          }
+          _this.chat_next = res.next
         }).catch(err => {
           console.log(err)
           _this.$q.notify({
@@ -1055,13 +1049,7 @@ export default {
         res.results.forEach(c => {
           _this.chat_list.unshift(c)
         })
-        if (res.next) {
-          var next = res.next.split(':')[0]
-          res.next.replace(next, window.location.href.split(':')[0])
-          _this.chat_next = res.next
-        } else {
-          _this.chat_next = res.next
-        }
+        _this.chat_next = res.next
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1081,20 +1069,8 @@ export default {
     Readnum () {
       var _this = this
       getauth('chat/read/?' + 'sender=' + _this.login_name).then(res => {
-        if (res.previous) {
-          var previous = res.previous.split(':')[0]
-          res.previous.replace(previous, window.location.href.split(':')[0])
-          _this.read_previous = res.previous
-        } else {
-          _this.read_previous = res.previous
-        }
-        if (res.next) {
-          var next = res.next.split(':')[0]
-          res.next.replace(next, window.location.href.split(':')[0])
-          _this.read_next = res.next
-        } else {
-          _this.read_next = res.next
-        }
+        _this.read_previous = res.previous
+        _this.read_next = res.next
         _this.read_list = res.results
         _this.read_num = res.count
       }).catch(err => {
@@ -1110,20 +1086,8 @@ export default {
       getauth(_this.read_previous, {
       }).then(res => {
         _this.read_list = res.results
-        if (res.previous) {
-          var previous = res.previous.split(':')[0]
-          res.previous.replace(previous, window.location.href.split(':')[0])
-          _this.read_previous = res.previous
-        } else {
-          _this.read_previous = res.previous
-        }
-        if (res.next) {
-          var next = res.next.split(':')[0]
-          res.next.replace(next, window.location.href.split(':')[0])
-          _this.read_next = res.next
-        } else {
-          _this.read_next = res.next
-        }
+        _this.read_previous = res.previous
+        _this.read_next = res.next
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1137,20 +1101,8 @@ export default {
       getauth(_this.read_next, {
       }).then(res => {
         _this.read_list = res.results
-        if (res.previous) {
-          var previous = res.previous.split(':')[0]
-          res.previous.replace(previous, window.location.href.split(':')[0])
-          _this.read_previous = res.previous
-        } else {
-          _this.read_previous = res.previous
-        }
-        if (res.next) {
-          var next = res.next.split(':')[0]
-          res.next.replace(next, window.location.href.split(':')[0])
-          _this.read_next = res.next
-        } else {
-          _this.read_next = res.next
-        }
+        _this.read_previous = res.previous
+        _this.read_next = res.next
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1165,20 +1117,8 @@ export default {
       getauth('staff/', {
       }).then(res => {
         _this.friend_list = res.results
-        if (res.previous) {
-          var previous = res.previous.split(':')[0]
-          res.previous.replace(previous, window.location.href.split(':')[0])
-          _this.friend_previous = res.previous
-        } else {
-          _this.friend_previous = res.previous
-        }
-        if (res.next) {
-          var next = res.next.split(':')[0]
-          res.next.replace(next, window.location.href.split(':')[0])
-          _this.friend_next = res.next
-        } else {
-          _this.friend_next = res.next
-        }
+        _this.friend_previous = res.previous
+        _this.friend_next = res.next
         _this.friend_num = res.count
       }).catch(err => {
         _this.$q.notify({
@@ -1193,20 +1133,8 @@ export default {
       getauth(_this.friend_previous, {
       }).then(res => {
         _this.friend_list = res.results
-        if (res.previous) {
-          var previous = res.previous.split(':')[0]
-          res.previous.replace(previous, window.location.href.split(':')[0])
-          _this.friend_previous = res.previous
-        } else {
-          _this.friend_previous = res.previous
-        }
-        if (res.next) {
-          var next = res.next.split(':')[0]
-          res.next.replace(next, window.location.href.split(':')[0])
-          _this.friend_next = res.next
-        } else {
-          _this.friend_next = res.next
-        }
+        _this.friend_previous = res.previous
+        _this.friend_next = res.next
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -1220,20 +1148,8 @@ export default {
       getauth(_this.friend_next, {
       }).then(res => {
         _this.friend_list = res.results
-        if (res.previous) {
-          var previous = res.previous.split(':')[0]
-          res.previous.replace(previous, window.location.href.split(':')[0])
-          _this.friend_previous = res.previous
-        } else {
-          _this.friend_previous = res.previous
-        }
-        if (res.next) {
-          var next = res.next.split(':')[0]
-          res.next.replace(next, window.location.href.split(':')[0])
-          _this.friend_next = res.next
-        } else {
-          _this.friend_next = res.next
-        }
+        _this.friend_previous = res.previous
+        _this.friend_next = res.next
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
