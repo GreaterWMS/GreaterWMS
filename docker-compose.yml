@@ -1,0 +1,38 @@
+version: '2'
+networks:
+  basic:
+services:
+  world:
+    container_name: cow11023_greaterwmsV1.1
+    image: cow11023:greaterwms_v1.1
+    ports:
+      - "8000:8000"
+      - "8080:8080"
+    volumes:
+      - ./greaterwms/settings.py:/src/Greaterwms/greaterwms/settings.py:rw
+      - ./templates:/src/GreaterWMS/templates:rw
+    command:
+      - /bin/bash 
+      - -c 
+      - |
+        #python3 manage.py makemigrations
+        #python3 manage.py migrate
+        nohup daphne -b 0.0.0.0 -p 8000 greaterwms.asgi:application &
+        cd /src/GreaterWMS/templates && yarn && quasar d 
+    networks:
+      - basic
+  mysql:
+    image: mysql:5.7
+    container_name: greaterwns_mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - "MYSQL_ROOT_PASSWORD=root1234"
+      - "MYSQL_DATABASE=greaterwms"
+      - "TZ=Asia/Shanghai"
+    volumes:
+      - ./mysqldata:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - basic
