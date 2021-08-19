@@ -19,7 +19,7 @@ services:
         #python3 manage.py makemigrations
         #python3 manage.py migrate
         #利用supervisor来启动后端程序
-	/etc/init.d/supervisor start
+	    /etc/init.d/supervisor start
         supervisorctl -c /etc/supervisor/supervisord.conf reload
         cd /GreaterWMS/templates && quasar d 
     networks:
