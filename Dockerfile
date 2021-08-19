@@ -13,15 +13,15 @@ RUN apt-get update && apt-get install supervisor -y
 RUN apt-get install build-essential -y
 RUN python3 -m pip install --upgrade pip -i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
 #安装Twisted依赖
-run tar -xjvf Twisted-18.4.0.tar.bz2
-run cd Twisted-18.4.0 && python3 setup.py install
+run tar -xjvf Twisted-20.3.0.tar.bz2
+run cd Twisted-20.3.0 && python3 setup.py install
 run cd /src/GreaterWMS
 #安装项目依赖包
-RUN pip install supervisor -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
-RUN pip install -U 'Twisted[tls,http2]' -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
+RUN pip3 install supervisor -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
+RUN pip3 install -U 'Twisted[tls,http2]' -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
 RUN apt install -y libmariadbd-dev
-RUN pip install mysqlclient -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
-RUN pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
+RUN pip3 install mysqlclient -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
+RUN pip3 install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
 #前端环境
 RUN tar xf node-v14.17.5-linux-x64.tar.xz -C /opt
 ENV PATH=$PATH:/opt/node-v14.17.5-linux-x64/bin
@@ -30,6 +30,6 @@ RUN npm install npm -g
 RUN npm install yarn -g
 RUN npm install -g @quasar/cli
 RUN cd /src/GreaterWMS/templates
-RUN yarn
-EXPOSE 8000
+RUN yarn install
+EXPOSE 8008
 EXPOSE 8080
