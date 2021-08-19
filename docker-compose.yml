@@ -1,12 +1,14 @@
+
+
 version: '2'
 networks:
   basic:
 services:
   world:
-    container_name: cow11023_greaterwmsV1.1
-    image: cow11023:greaterwms_v1.1
+    container_name: cow11023_GreaterWMS
+    image: cow11023:GreaterWMSv2.0.24
     ports:
-      - "8000:8000"
+      - "8008:8008"
       - "8080:8080"
     volumes:
       - ./greaterwms/settings.py:/src/Greaterwms/greaterwms/settings.py:rw
@@ -15,10 +17,11 @@ services:
       - /bin/bash 
       - -c 
       - |
+        #首次运行需要进行数据库迁
         #python3 manage.py makemigrations
         #python3 manage.py migrate
-        nohup daphne -b 0.0.0.0 -p 8000 greaterwms.asgi:application &
-        cd /src/GreaterWMS/templates && yarn && quasar d 
+        nohup daphne -b 0.0.0.0 -p 8008 greaterwms.asgi:application &
+        cd /src/GreaterWMS/templates && quasar d 
     networks:
       - basic
   mysql:
