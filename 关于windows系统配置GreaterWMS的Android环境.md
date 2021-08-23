@@ -1,5 +1,7 @@
 # 关于windows系统配置GreaterWMS的Android环境
 
+**@author:Briliant Wang**
+
 
 
 参考网页：http://www.quasarchs.com/quasar-cli/developing-cordova-apps/preparation/
