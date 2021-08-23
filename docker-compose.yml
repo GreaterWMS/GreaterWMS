@@ -3,7 +3,7 @@ networks:
   basic:
 services:
   world:
-    container_name: cow11023_GreaterWMS
+    container_name: cow11023_GreaterWMSv2.0.24
     image: cow11023:GreaterWMSv2.0.24
     ports:
       - "8008:8008"
