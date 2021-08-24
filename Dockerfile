@@ -13,9 +13,9 @@ RUN apt-get update && apt-get install supervisor -y
 RUN apt-get install build-essential -y
 RUN python3 -m pip install --upgrade pip -i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
 #安装Twisted依赖
-run tar -xjvf Twisted-20.3.0.tar.bz2
-run cd Twisted-20.3.0 && python3 setup.py install
-run cd /GreaterWMS
+RUN tar -xjvf Twisted-20.3.0.tar.bz2
+RUN cd Twisted-20.3.0 && python3 setup.py install
+RUN cd /GreaterWMS
 #安装项目依赖包
 RUN pip3 install supervisor -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
 RUN pip3 install -U 'Twisted[tls,http2]' -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
