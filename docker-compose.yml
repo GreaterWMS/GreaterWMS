@@ -2,6 +2,21 @@ version: '2'
 networks:
   basic:
 services:
+  mysql:
+    image: mysql:5.7
+    container_name: greaterwms_mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - "MYSQL_ROOT_PASSWORD=root1234"
+      - "MYSQL_DATABASE=greaterwms"
+      - "TZ=Asia/Shanghai"
+    volumes:
+      - ./mysqldata:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - basic
   world:
     container_name: cow11023_GreaterWMSv2.0.24
     image: cow11023:GreaterWMSv2.0.24
@@ -13,29 +28,14 @@ services:
       - ./templates:/GreaterWMS/templates:rw
     command:
       - /bin/bash 
-      - -c 
+      - -c
       - |
         #首次运行需要进行数据库迁移
         #python3 manage.py makemigrations
         #python3 manage.py migrate
         #利用supervisor来启动后端程序
-	    /etc/init.d/supervisor start
+        /etc/init.d/supervisor start
         supervisorctl -c /etc/supervisor/supervisord.conf reload
-        cd /GreaterWMS/templates && quasar d 
-    networks:
-      - basic
-  mysql:
-    image: mysql:5.7
-    container_name: greaterwns_mysql
-    restart: always
-    ports:
-      - 3306:3306
-    environment:
-      - "MYSQL_ROOT_PASSWORD=root1234"
-      - "MYSQL_DATABASE=greaterwms"
-      - "TZ=Asia/Shanghai"
-    volumes:
-      - ./mysqldata:/var/lib/mysql
-      - /etc/localtime:/etc/localtime:ro
+        cd /GreaterWMS/templates && yarn && quasar d 
     networks:
       - basic
