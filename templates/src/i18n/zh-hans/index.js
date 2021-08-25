@@ -76,6 +76,7 @@ export default {
   downloadtip: '下载所有数据',
   frombin: '从库位',
   movetobin: '移库',
+  cyclecount: '动态盘点',
   search: '关键字搜索',
   creater: '创建人',
   createtime: '创建时间',
@@ -296,7 +297,13 @@ export default {
       sorted_stock: '已分拣数量',
       pick_stock: '待拣货数量',
       picked_stock: '已拣货数量',
-      back_order_stock: '欠货数量'
+      back_order_stock: '欠货数量',
+      on_hand_inventory:'现有库存',
+      physical_inventory:'盘点数量',
+      difference:'差异',
+      cyclecount: '动态盘点',
+      cyclecounttip: '动态盘点所有',
+
     }
   },
   warehouse: {
