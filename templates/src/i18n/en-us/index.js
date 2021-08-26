@@ -300,8 +300,8 @@ export default {
       back_order_stock: 'Back Order',
       cyclecount: 'Cyclecount',
       cyclecounttip: 'Cyclecount All',
-      on_hand_inventory: 'On-hand inventory',
-      physical_inventory: 'Physical inventory',
+      on_hand_inventory: 'On-hand Inventory',
+      physical_inventory: 'Physical Inventory',
       difference: ' Difference'
     }
   },
