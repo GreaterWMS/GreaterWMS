@@ -144,6 +144,11 @@ const routes = [
             path: 'occupiedbin',
             name: 'occupiedbin',
             component: () => import('pages/stock/occupiedbin.vue')
+          },
+          {
+            path: 'cyclecount',
+            name: 'cyclecount',
+            component: () => import('pages/stock/cyclecount.vue'),
           }
         ]
       },
@@ -393,6 +398,11 @@ const routes = [
         name: 'scan_dn',
         component: () => import('pages/scan/dn.vue')
       },
+      {
+        path: 'scan_cyclecount',
+        name: 'scan_cyclecount',
+        component: () => import('pages/scan/cyclecount.vue')
+      }
     ]
   }
 ]
