@@ -76,6 +76,7 @@ export default {
   downloadtip: '下載所有數據',
   frombin: '從庫位',
   movetobin: '移庫',
+  cyclecount: '動態盤點',
   search: '關鍵字搜索',
   creater: '創建人',
   createtime: '創建時間',
@@ -296,7 +297,12 @@ export default {
       sorted_stock: '已分揀數量',
       pick_stock: '待揀貨數量',
       picked_stock: '已揀貨數量',
-      back_order_stock: '欠貨數量'
+      back_order_stock: '欠貨數量',
+      cyclecount: '動態盤點',
+      cyclecounttip: '動態盤點總量',
+      on_hand_inventory: '現有庫存',
+      physical_inventory: '盤點數量',
+      difference: '差異'
     }
   },
   warehouse: {
