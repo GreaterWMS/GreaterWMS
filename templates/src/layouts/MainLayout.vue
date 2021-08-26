@@ -357,6 +357,20 @@
               {{ $t('movetobin') }}
             </q-item-section>
           </q-item>
+          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
+                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
+                          $q.localStorage.getItem('staff_type') !== 'Outbound'
+                         "
+                  v-if="$q.platform.is.cordova"
+                  clickable to="/scan_cyclecount" @click="linkChange('scan_cyclecount')" v-ripple exact :active="link === 'scan_cyclecount'" :class="{ 'my-menu-link': link === 'scan_cyclecount' }">
+            <q-item-section avatar>
+              <q-icon name="move_to_inbox" />
+            </q-item-section>
+            <q-item-section>
+              {{ $t('cyclecount') }}
+            </q-item-section>
+          </q-item>
           <q-separator v-show="$q.platform.is.cordova" />
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
