@@ -76,6 +76,7 @@ export default {
   downloadtip: 'すべてのデータをダウンロードする',
   frombin: '場所から',
   movetobin: 'ライブラリを移動',
+  cyclecount: '動的棚卸し',
   search: 'キーワード検索',
   creater: '作成者',
   createtime: '作成時間',
@@ -296,7 +297,12 @@ export default {
       sorted_stock: '仕分け数量',
       pick_stock: 'ピッキングする数量',
       picked_stock: '選んだ数量',
-      back_order_stock: 'バックオーダー数量'
+      back_order_stock: 'バックオーダー数量',
+      cyclecount: '動的棚卸し',
+      cyclecounttip: '動的棚卸しすべて',
+      on_hand_inventory: '在庫品',
+      physical_inventory: '棚卸しの数量',
+      difference: '違い'
     }
   },
   warehouse: {
