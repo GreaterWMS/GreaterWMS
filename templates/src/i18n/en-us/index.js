@@ -76,6 +76,7 @@ export default {
   downloadtip: 'Download All Data',
   frombin: 'From Bin',
   movetobin: 'Move to Bin',
+  cyclecount: 'Cyclecount',
   search: 'Search Word',
   creater: 'Creater',
   createtime: 'Cteate Time',
@@ -299,10 +300,9 @@ export default {
       back_order_stock: 'Back Order',
       cyclecount: 'Cyclecount',
       cyclecounttip: 'Cyclecount All',
-      on_hand_inventory: 'on-hand inventory',
-      physical_inventory: 'physical inventory',
-      difference: ' difference'
-
+      on_hand_inventory: 'On-hand inventory',
+      physical_inventory: 'Physical inventory',
+      difference: ' Difference'
     }
   },
   warehouse: {
