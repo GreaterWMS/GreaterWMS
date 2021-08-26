@@ -296,7 +296,13 @@ export default {
       sorted_stock: 'Sorted Stock',
       pick_stock: 'Pick Stock',
       picked_stock: 'Picked Stock',
-      back_order_stock: 'Back Order'
+      back_order_stock: 'Back Order',
+      cyclecount: 'Cyclecount',
+      cyclecounttip: 'Cyclecount All',
+      on_hand_inventory: 'on-hand inventory',
+      physical_inventory: 'physical inventory',
+      difference: ' difference'
+
     }
   },
   warehouse: {
