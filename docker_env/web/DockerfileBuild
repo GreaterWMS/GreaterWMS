@@ -2,6 +2,6 @@ FROM node:14
 WORKDIR /GreaterWMS/
 COPY templates/package.json .
 # yarn 默认已经安装
-# RUN npm install -g yarn --registry=https://registry.npm.taobao.org
-RUN npm install -g @quasar/cli --registry=https://registry.npm.taobao.org
-RUN yarn install --registry=https://registry.npm.taobao.org
+# RUN npm install -g yarn
+RUN npm install -g @quasar/cli
+RUN yarn install
