@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@quasar/cli": "^1.2.1",
-    "@quasar/extras": "^1.10.6",
+    "@quasar/extras": "^1.10.11",
     "axios": "^0.21.1",
     "core-js": "^3.14.0",
     "dexie": "^3.0.3",
@@ -22,7 +22,7 @@
     "lottie-web": "^5.7.11",
     "normalize-url": "^6.0.1",
     "qrcode": "^1.4.4",
-    "quasar": "^1.15.20",
+    "quasar": "^1.15.23",
     "ssri": "^6.0.2",
     "v-distpicker": "^1.2.12",
     "vue-i18n": "^8.24.4",
