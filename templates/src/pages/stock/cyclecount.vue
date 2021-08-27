@@ -136,11 +136,11 @@
 
 <script>
 
-import {date, exportFile, LocalStorage, SessionStorage} from "quasar";
-import {getauth, getfile, postauth} from "boot/axios_request";
+import { date, exportFile, LocalStorage, SessionStorage } from 'quasar'
+import { getauth, getfile, postauth } from 'boot/axios_request'
 
 export default {
-name: "cyclyecount",
+  name: 'cyclyecount',
   data () {
     return {
       openid: '',
@@ -178,7 +178,7 @@ name: "cyclyecount",
     getList () {
       var _this = this
       if (LocalStorage.has('auth')) {
-        getauth(_this.pathname+'?ordering=bin_name', {
+        getauth(_this.pathname + '?ordering=bin_name', {
         }).then(res => {
           var dataDetail = []
           res.results.forEach(item => {
@@ -193,7 +193,7 @@ name: "cyclyecount",
             dataDetail.push(dataChang)
           })
           _this.table_list = dataDetail
-          var dataDetail = []
+          dataDetail = []
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -229,7 +229,7 @@ name: "cyclyecount",
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_previous, {
         }).then(res => {
-          var dataDetail =[]
+          var dataDetail = []
           res.results.forEach(item => {
             var dataChang = {
               bin_name: item.bin_name,
@@ -241,7 +241,7 @@ name: "cyclyecount",
             dataDetail.push(dataChang)
           })
           _this.table_list = dataDetail
-          var dataDetail =[]
+          dataDetail = []
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -262,16 +262,16 @@ name: "cyclyecount",
           var dataDetail = []
           res.results.forEach(item => {
             var dataChang = {
-              bin_name:item.bin_name,
-              goods_code:item.goods_code,
-              goods_qty:item.goods_qty,
-              physical_inventory:0,
-              difference:item.goods_qty
+              bin_name: item.bin_name,
+              goods_code: item.goods_code,
+              goods_qty: item.goods_qty,
+              physical_inventory: 0,
+              difference: item.goods_qty
             }
             dataDetail.push(dataChang)
           })
           _this.table_list = dataDetail
-          var dataDetail = []
+          dataDetail = []
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -396,4 +396,3 @@ name: "cyclyecount",
 }
 
 </script>
-
