@@ -1,20 +1,11 @@
 FROM python:3.9
 
 WORKDIR /GreaterWMS/
-RUN sed -i s/deb.debian.org/mirrors.163.com/g /etc/apt/sources.list
 RUN apt-get clean
 RUN apt-get update && apt-get install build-essential -y
-RUN python3 -m pip install --upgrade pip -i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
+RUN python3 -m pip install --upgrade pip
 RUN apt install -y libmariadbd-dev
-
-#安装Twisted依赖
-# COPY ./Twisted-20.3.0.tar.bz2 .
-# RUN tar -xjvf Twisted-20.3.0.tar.bz2
-# RUN cd Twisted-20.3.0 && python3 setup.py install
-# RUN cd /GreaterWMS
-
 #安装项目依赖包
 COPY ./requirements.txt .
-RUN pip3 install -U 'Twisted[tls,http2]' -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
-RUN pip3 install mysqlclient -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
-RUN pip3 install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
+RUN pip3 install -U 'Twisted[tls,http2]'
+RUN pip3 install -r requirements.txt
