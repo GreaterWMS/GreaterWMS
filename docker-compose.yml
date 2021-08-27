@@ -3,9 +3,9 @@ networks:
   basic:
 services:
   world:
-    container_name: greaterwms_v2.0.24
-    image: registry.cn-hangzhou.aliyuncs.com/cow11023/greaterwms:v2.0.24 #国内用户使用的总镜像
-    #image: silence2022/greaterwms:v2.0.24 #全球用户使用的总镜像
+    container_name: greaterwms_v2.0.25
+    image: registry.cn-hangzhou.aliyuncs.com/cow11023/greaterwms:v2.0.25 #国内用户使用的总镜像
+    #image: silence2022/greaterwms:v2.0.25 #全球用户使用的总镜像
     ports:
       - "8008:8008"
     volumes:
