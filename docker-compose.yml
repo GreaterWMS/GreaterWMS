@@ -1,0 +1,23 @@
+version: '2'
+networks:
+  basic:
+services:
+  world:
+    container_name: greaterwms_v2.0.25
+    image: registry.cn-hangzhou.aliyuncs.com/cow11023/greaterwms:v2.0.25 #国内用户使用的总镜像
+    #image: silence2022/greaterwms:v2.0.25 #全球用户使用的总镜像
+    ports:
+      - "8008:8008"
+    volumes:
+      - ./greaterwms/settings.py:/GreaterWMS/greaterwms/settings.py:rw #挂载数据库配置文件
+      - ./templates:/GreaterWMS/templates:rw #挂载前端文件
+      - ./db.sqlite3:/GreaterWMS/db.sqlite3:rw #数据库持久化存储
+    command:
+      - /bin/bash
+      - -c
+      - |
+        #直接运行脚本
+        ./backend_start.sh
+
+    networks:
+      - basic
