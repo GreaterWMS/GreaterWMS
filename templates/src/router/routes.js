@@ -149,6 +149,11 @@ const routes = [
             path: 'cyclecount',
             name: 'cyclecount',
             component: () => import('pages/stock/cyclecount.vue'),
+          },
+          {
+            path: 'cyclecountrecorder',
+            name: 'cyclecountrecorder',
+            component: () => import('pages/stock/cyclecountrecorder.vue'),
           }
         ]
       },
