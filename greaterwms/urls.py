@@ -40,6 +40,7 @@ urlpatterns = [
     path('binset/', include('binset.urls')),
     path('binsize/', include('binsize.urls')),
     path('binproperty/', include('binproperty.urls')),
+    path('cyclecount/', include('cyclecount.urls')),
     path('chat/', include('chat.urls')),
     path('capital/', include('capital.urls')),
     path('driver/', include('driver.urls')),

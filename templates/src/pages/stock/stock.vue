@@ -29,7 +29,12 @@
         <transition appear enter-active-class="animated zoomIn">
           <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="cyclecount" :label="$t('stock.view_stocklist.cyclecount')" icon="all_inbox" to="/stock/cyclecount" exact/>
+                         " name="cyclecount" :label="$t('cyclecount')" icon="img:statics/stock/cyclecount.png" to="/stock/cyclecount" exact/>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          $q.localStorage.getItem('staff_type') !== 'Customer'
+                         " name="cyclecountrecorder" :label="$t('cyclecountrecorder')" icon="img:statics/stock/cyclecountrecorder.png" to="/stock/cyclecountrecorder" exact/>
         </transition>
       </q-tabs>
     </div>

@@ -19,18 +19,30 @@
       >
         <template v-slot:top>
           <q-btn-group push>
-            <q-btn :label="$t('stock.view_stocklist.cyclecount')" icon="cloud_download" @click="downloadData()">
+            <q-btn :label="$t('stock.view_stocklist.cyclecount')" icon='refresh' @click="downloadData()">
               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('stock.view_stocklist.cyclecounttip') }}
               </q-tooltip>
             </q-btn>
+            <q-btn :label="$t('stock.view_stocklist.recyclecount')" icon='repeat' @click="downloadData()">
+              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('stock.view_stocklist.recyclecounttip') }}
+              </q-tooltip>
+            </q-btn>
+            <q-btn :label="$t('stock.view_stocklist.downloadcyclecount')" icon='cloud_download' @click="downloadData()">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('stock.view_stocklist.downloadcyclecounttip') }}
+              </q-tooltip>
+            </q-btn>
           </q-btn-group>
           <q-space />
-          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
-            <template v-slot:append>
-              <q-icon name="search" @click="getSearchList()"/>
-            </template>
-          </q-input>
+          <q-btn-group push>
+            <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="downloadData()">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('stock.view_stocklist.cyclecountresulttip') }}
+              </q-tooltip>
+            </q-btn>
+          </q-btn-group>
         </template>
         <template v-slot:body="props">
           <q-tr :props="props">
@@ -53,9 +65,9 @@
               <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'Outbound'
                              "
-                     round flat push color="purple" icon="move_to_inbox" @click="BinMove(props.row)">
+                     round flat push color="purple" icon="repeat" @click="BinMove(props.row)">
                 <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                  {{ $t('movetobin') }}
+                  {{ $t('stock.view_stocklist.recyclecounttip') }}
                 </q-tooltip>
               </q-btn>
             </q-td>
@@ -146,7 +158,7 @@ export default {
       openid: '',
       login_name: '',
       authin: '0',
-      pathname: 'stock/bin/',
+      pathname: 'cyclecount/',
       pathname_previous: '',
       pathname_next: '',
       separator: 'cell',
@@ -178,7 +190,7 @@ export default {
     getList () {
       var _this = this
       if (LocalStorage.has('auth')) {
-        getauth(_this.pathname + '?ordering=bin_name', {
+        getauth(_this.pathname, {
         }).then(res => {
           var dataDetail = []
           res.results.forEach(item => {
