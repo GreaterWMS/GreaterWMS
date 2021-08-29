@@ -19,13 +19,25 @@
       >
         <template v-slot:top>
           <q-btn-group push>
-            <q-btn :label="$t('submit')" icon='refresh' @click="downloadData()">
+            <q-btn :label="$t('refresh')" icon='refresh' @click="getList()">
               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('submit') }}
+                {{ $t('refresh') }}
+              </q-tooltip>
+            </q-btn>
+            <q-btn :label="$t('stock.view_stocklist.downloadcyclecount')" icon='cloud_download' @click="downloadData()">
+              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('stock.view_stocklist.downloadcyclecounttip') }}
               </q-tooltip>
             </q-btn>
           </q-btn-group>
           <q-space />
+          <q-btn-group push>
+            <q-btn color='purple' :label="$t('stock.view_stocklist.daychoice')" @click="downloadData()">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('stock.view_stocklist.daychoicetip') }}
+              </q-tooltip>
+            </q-btn>
+          </q-btn-group>
         </template>
         <template v-slot:body="props">
           <q-tr :props="props">
@@ -41,15 +53,8 @@
             <q-td key="physical_inventory" :props="props">
               {{ props.row.physical_inventory }}
             </q-td>
-            <q-td key="action" :props="props" style="width: 50px">
-              <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                              $q.localStorage.getItem('staff_type') !== 'Outbound'
-                             "
-                     round flat push color="purple" icon="repeat" @click="BinMove(props.row)">
-                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
-                  {{ $t('stock.view_stocklist.recyclecounttip') }}
-                </q-tooltip>
-              </q-btn>
+            <q-td key="difference" :props="props">
+              {{ props.row.difference }}
             </q-td>
           </q-tr>
         </template>
@@ -151,9 +156,9 @@ export default {
       columns: [
         { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
         { name: 'goods_code', label: this.$t('stock.view_stocklist.goods_code'), field: 'goods_code', align: 'center' },
-        { name: 'goods_qty', label: this.$t('stock.view_stocklist.on_hand_inventory'), field: 'goods_qty', align: 'center' },
+        { name: 'goods_qty', label: this.$t('stock.view_stocklist.history_inventory'), field: 'goods_qty', align: 'center' },
         { name: 'physical_inventory', label: this.$t('stock.view_stocklist.physical_inventory'), field: 'physical_inventory', align: 'center' },
-        { name: 'action', label: this.$t('action'), align: 'right' }
+        { name: 'difference', label: this.$t('stock.view_stocklist.difference'), field: 'difference', align: 'center' }
       ],
       filter: '',
       pagination: {
@@ -375,9 +380,9 @@ export default {
   mounted () {
     var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 195) + 'px'
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 195 + '' + 'px'
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
   updated () {

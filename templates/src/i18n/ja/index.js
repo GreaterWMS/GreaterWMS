@@ -77,6 +77,7 @@ export default {
   frombin: '場所から',
   movetobin: 'ライブラリを移動',
   cyclecount: '動的棚卸し',
+  cyclecountrecorder: '在庫記録',
   search: 'キーワード検索',
   creater: '作成者',
   createtime: '作成時間',
@@ -298,11 +299,20 @@ export default {
       pick_stock: 'ピッキングする数量',
       picked_stock: '選んだ数量',
       back_order_stock: 'バックオーダー数量',
-      cyclecount: '動的棚卸し',
-      cyclecounttip: '動的棚卸しすべて',
       on_hand_inventory: '在庫品',
+      history_inventory: '当時の在庫',
       physical_inventory: '棚卸しの数量',
-      difference: '違い'
+      difference: '違い',
+      cyclecount: '動的棚卸し',
+      recyclecount: 'リサイクル',
+      downloadcyclecount: 'カウントテーブル',
+      cyclecountresult: '確認結果',
+      cyclecounttip: '動的在庫テーブルを生成する',
+      recyclecounttip: 'リサイクルカウントテーブルを生成する',
+      downloadcyclecounttip: '在庫テーブルのダウンロード',
+      cyclecountresulttip: '在庫結果を確認する',
+      daychoice: '日付の選択',
+      daychoicetip: '日付に対応する在庫テーブルを選択してください'
     }
   },
   warehouse: {

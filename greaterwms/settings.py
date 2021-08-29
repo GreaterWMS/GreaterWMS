@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'binproperty.apps.BinpropertyConfig',
     'customer.apps.CustomerConfig',
     'capital.apps.CapitalConfig',
+    'cyclecount.apps.CyclecountConfig',
     'warehouse.apps.WarehouseConfig',
     'goods.apps.GoodsConfig',
     'goodsunit.apps.GoodsunitConfig',

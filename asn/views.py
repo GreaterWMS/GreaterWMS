@@ -3,7 +3,8 @@ from .models import AsnListModel, AsnDetailModel
 from . import serializers
 from .page import MyPageNumberPaginationASNList
 from utils.page import MyPageNumberPagination
-from utils.datasolve import sumOfList, transportation_calculate, secret_bar_code, verify_bar_code
+from utils.datasolve import sumOfList, transportation_calculate
+from utils.fbmsg import FBMsg
 from utils.md5 import Md5
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -73,6 +74,9 @@ class AsnListViewSet(viewsets.ModelViewSet):
             return serializers.ASNListPartialUpdateSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
+
+    def notice_lang(self):
+        return FBMsg(self.request.META.get('HTTP_LANGUAGE'))
 
     def create(self, request, *args, **kwargs):
         data = self.request.data

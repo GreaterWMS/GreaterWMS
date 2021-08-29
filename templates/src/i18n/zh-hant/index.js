@@ -77,6 +77,7 @@ export default {
   frombin: '從庫位',
   movetobin: '移庫',
   cyclecount: '動態盤點',
+  cyclecountrecorder: '盤點記錄',
   search: '關鍵字搜索',
   creater: '創建人',
   createtime: '創建時間',
@@ -298,11 +299,20 @@ export default {
       pick_stock: '待揀貨數量',
       picked_stock: '已揀貨數量',
       back_order_stock: '欠貨數量',
-      cyclecount: '動態盤點',
-      cyclecounttip: '動態盤點總量',
       on_hand_inventory: '現有庫存',
+      history_inventory: '當時庫存',
       physical_inventory: '盤點數量',
-      difference: '差異'
+      difference: '差異',
+      cyclecount: '動態盤點',
+      recyclecount: '复盤',
+      downloadcyclecount: '盤點表',
+      cyclecountresult: '確認結果',
+      cyclecounttip: '生成動態盤點表',
+      recyclecounttip: '生成複盤盤點表',
+      downloadcyclecounttip: '下載盤點表',
+      cyclecountresulttip: '確認盤點結果',
+      daychoice: '日期選擇',
+      daychoicetip: '選擇對應日期的盤點表'
     }
   },
   warehouse: {
