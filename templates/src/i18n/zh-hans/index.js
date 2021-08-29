@@ -77,6 +77,7 @@ export default {
   frombin: '从库位',
   movetobin: '移库',
   cyclecount: '动态盘点',
+  cyclecountrecorder: '盘点记录',
   search: '关键字搜索',
   creater: '创建人',
   createtime: '创建时间',
@@ -298,12 +299,20 @@ export default {
       pick_stock: '待拣货数量',
       picked_stock: '已拣货数量',
       back_order_stock: '欠货数量',
-      on_hand_inventory:'现有库存',
-      physical_inventory:'盘点数量',
-      difference:'差异',
+      on_hand_inventory: '现有库存',
+      history_inventory: '当时库存',
+      physical_inventory: '盘点数量',
+      difference: '差异',
       cyclecount: '动态盘点',
-      cyclecounttip: '动态盘点所有',
-
+      recyclecount: '复盘',
+      downloadcyclecount: '盘点表',
+      cyclecountresult: '确认结果',
+      cyclecounttip: '生成动态盘点表',
+      recyclecounttip: '生成复盘盘点表',
+      downloadcyclecounttip: '下载盘点表',
+      cyclecountresulttip: '确认盘点结果',
+      daychoice: '日期选择',
+      daychoicetip: '选择对应日期的盘点表'
     }
   },
   warehouse: {
