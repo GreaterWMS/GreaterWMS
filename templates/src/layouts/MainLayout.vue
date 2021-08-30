@@ -4,7 +4,7 @@
       <q-toolbar class="main-headers text-white shadow-18 rounded-borders">
         <transition appear enter-active-class="animated zoomIn">
           <q-btn flat @click="drawerleft = !drawerleft" round dense icon="menu">
-            <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">
               {{ $t('index.hide_menu') }}
             </q-tooltip>
           </q-btn>
@@ -17,7 +17,7 @@
         <q-space />
         <transition appear enter-active-class="animated zoomIn">
           <q-btn v-show="$q.platform.is.desktop && !$q.platform.is.electron" icon="img:statics/icons/logo.png" stretch flat :label="$t('index.home')" to="/">
-            <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
               {{ $t('index.title_tip') }}
             </q-tooltip>
           </q-btn>
@@ -25,7 +25,7 @@
         <transition appear enter-active-class="animated zoomIn">
           <a v-show="$q.platform.is.desktop && !$q.platform.is.electron" href="/docs/" style="text-decoration:none; color: #c8e6c9">
             <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px">
-              <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">
                 {{ $t('index.api') }}
               </q-tooltip>
             </q-btn>
@@ -33,14 +33,14 @@
         </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-btn v-show="$q.platform.is.desktop && !$q.platform.is.electron" icon="img:statics/icons/GitHub.png" round dense flat @click="brownlink('https://github.com/Singosgu/GreaterWMS')" style="margin: 0 10px 0 10px">
-            <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">
               GitHub Link
             </q-tooltip>
           </q-btn>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-btn round dense flat color="white" icon="translate" style="margin: 0 10px 0 10px">
-            <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">
               {{ $t('index.translate') }}
             </q-tooltip>
             <q-menu>
@@ -59,7 +59,7 @@
             <q-badge v-if="read_num" color="red" text-color="white" floating>
               {{ read_num }}
             </q-badge>
-            <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">
                 {{ $t('index.unread') }}
             </q-tooltip>
           </q-btn>
@@ -72,22 +72,22 @@
                   {{ $t('index.user_center') }}
                 </div>
                   <q-btn flat rounded class="full-width" align="left" icon="connect_without_contact" :label="$t('index.change_user')" @click="login = true">
-                      <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                      <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                           {{ $t('index.change_user') }}
                       </q-tooltip>
                   </q-btn>
                   <q-btn flat rounded class="full-width" align="left" icon="list" :label="$t('index.view_my_openid')" @click="authid = true">
-                      <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                      <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                           {{ $t('index.view_my_openid') }}
                       </q-tooltip>
                   </q-btn>
                   <q-btn flat rounded class="full-width" align="left" icon="img:statics/icons/profile.png" :label="$t('index.contact_list')" @click="Friend()">
-                      <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                      <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                           {{ $t('index.contact_list') }}
                       </q-tooltip>
                   </q-btn>
                   <q-btn v-show="$q.platform.is.cordova || $q.platform.is.mobile" flat rounded class="full-width" align="left" icon="logout" :label="$t('index.logout')" @click="Logout()">
-                      <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                      <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                           {{ $t('index.contact_list') }}
                       </q-tooltip>
                   </q-btn>
@@ -106,7 +106,7 @@
                   v-close-popup
                   icon="img:statics/icons/logout.png"
                   @click="Logout()"
-                ><q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                ><q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('index.logout') }}</q-tooltip></q-btn>
               </div>
             </div>
@@ -116,14 +116,14 @@
         <template v-if="authin === '0'">
           <transition appear enter-active-class="animated zoomIn">
             <q-btn :label="$t('index.login')" color="primary" @click="login = true" style="margin-left: 10px">
-              <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">
                 {{ $t('index.login_tip') }}
               </q-tooltip>
             </q-btn>
           </transition>
           <transition appear enter-active-class="animated zoomIn">
             <q-btn :label="$t('index.register')" color="primary" @click="register = true" style="margin-left: 10px">
-              <q-tooltip content-class="bg-indigo" :offset="[15, 15]" content-style="font-size: 12px">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">
                 {{ $t('index.register_tip') }}
               </q-tooltip>
             </q-btn>
@@ -478,7 +478,7 @@
         <div>{{ receiver }}</div>
         <q-space/>
         <q-btn dense flat icon="close" v-close-popup>
-          <q-tooltip content-class="bg-indigo" :offset="[20, 20]" content-style="font-size: 12px" @click="ChatClose()">{{ $t('index.close') }}</q-tooltip>
+          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[20, 20]" content-style="font-size: 12px" @click="ChatClose()">{{ $t('index.close') }}</q-tooltip>
         </q-btn>
       </q-bar>
       <q-separator/>
@@ -522,7 +522,7 @@
             <div>{{ $t('index.unread') }}({{ read_num }})</div>
             <q-space></q-space>
             <q-btn dense flat icon="close" v-close-popup>
-                <q-tooltip content-class="bg-indigo" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.close') }}</q-tooltip>
+                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.close') }}</q-tooltip>
             </q-btn>
         </q-bar>
         <q-separator></q-separator>
@@ -551,7 +551,7 @@
         <div>{{ $t('index.your_openid') }}</div>
         <q-space></q-space>
         <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-indigo" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.close') }}</q-tooltip>
         </q-btn>
       </q-bar>
       <q-card-section class="q-pt-md">
@@ -565,7 +565,7 @@
         <div>{{ $t('index.contact_list') }}({{ friend_num }})</div>
         <q-space />
         <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-indigo" :offset="[20, 20]" content-style="font-size: 12px">关闭</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[20, 20]" content-style="font-size: 12px">关闭</q-tooltip>
         </q-btn>
       </q-bar>
       <q-separator v-show="$q.platform.is.desktop"/>
@@ -594,16 +594,16 @@
         <q-space />
         <template v-if="admin">
           <q-btn dense flat :label="$t('index.user_login')" @click="admin = false">
-              <q-tooltip content-class="bg-indigo" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.user_login') }}</q-tooltip>
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.user_login') }}</q-tooltip>
           </q-btn>
         </template>
         <template v-else-if="!admin">
           <q-btn dense flat :label="$t('index.admin_login')"  @click="admin = true">
-              <q-tooltip content-class="bg-indigo" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.admin_login') }}</q-tooltip>
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.admin_login') }}</q-tooltip>
           </q-btn>
         </template>
         <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-indigo" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.close') }}</q-tooltip>
         </q-btn>
       </q-bar>
       <q-card-section class="q-pt-md">
@@ -651,7 +651,7 @@
         <div>{{ $t('index.register_tip') }}</div>
         <q-space></q-space>
         <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-indigo" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.close') }}</q-tooltip>
         </q-btn>
       </q-bar>
       <q-card-section class="q-pt-md">
@@ -693,7 +693,7 @@
         <div>{{ $t('index.updatetitle') }}</div>
         <q-space></q-space>
         <q-btn dense flat icon="close" v-close-popup @click="NewVersionignore()">
-            <q-tooltip content-class="bg-indigo" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.close') }}</q-tooltip>
         </q-btn>
       </q-bar>
       <q-card-section class="q-pt-md">
