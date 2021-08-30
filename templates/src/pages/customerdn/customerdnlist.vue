@@ -20,17 +20,17 @@
          <template v-slot:top>
            <q-btn-group push>
              <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                  {{ $t('refreshtip') }}
                </q-tooltip>
              </q-btn>
              <q-btn :label="$t('downloaddnlist')" icon="cloud_download" @click="downloadlistData()">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('downloaddnlisttip') }}
                </q-tooltip>
              </q-btn>
              <q-btn :label="$t('downloaddndetail')" icon="cloud_download" @click="downloaddetailData()">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                  {{ $t('downloaddndetailtip') }}
                </q-tooltip>
              </q-btn>
@@ -75,12 +75,12 @@
       <template>
         <div class="q-pa-md flex flex-center">
           <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
-            <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
               {{ $t('previous') }}
             </q-tooltip>
           </q-btn>
           <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
-            <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
               {{ $t('next') }}
             </q-tooltip>
           </q-btn>
