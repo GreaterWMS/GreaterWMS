@@ -20,12 +20,12 @@
         <template v-slot:top>
           <q-btn-group push>
             <q-btn :label="$t('stock.view_stocklist.cyclecount')" icon='refresh' @click="downloadData()">
-              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('stock.view_stocklist.cyclecounttip') }}
               </q-tooltip>
             </q-btn>
             <q-btn :label="$t('stock.view_stocklist.recyclecount')" icon='repeat' @click="downloadData()">
-              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('stock.view_stocklist.recyclecounttip') }}
               </q-tooltip>
             </q-btn>
@@ -66,7 +66,7 @@
                               $q.localStorage.getItem('staff_type') !== 'Outbound'
                              "
                      round flat push color="purple" icon="repeat" @click="BinMove(props.row)">
-                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('stock.view_stocklist.recyclecounttip') }}
                 </q-tooltip>
               </q-btn>
@@ -78,12 +78,12 @@
     <template>
       <div class="q-pa-lg flex flex-center">
         <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
-          <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
             {{ $t('previous') }}
           </q-tooltip>
         </q-btn>
         <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
-          <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
             {{ $t('next') }}
           </q-tooltip>
         </q-btn>
