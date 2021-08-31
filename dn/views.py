@@ -1357,7 +1357,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                         qs.is_delete = True
                         qs.dn_status = 3
                         qs.save()
-                return Response({"detail": "success333"}, status=200)
+                return Response({"detail": "success"}, status=200)
             else:
                 raise APIException({"detail": "This Order Does Not in Release Status"})
 
