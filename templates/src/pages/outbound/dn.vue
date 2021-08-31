@@ -25,12 +25,12 @@
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
                    :label="$t('new')" icon="add" @click="newFormOpen()">
-              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('newtip') }}
               </q-tooltip>
             </q-btn>
             <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
-              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('refreshtip') }}
               </q-tooltip>
             </q-btn>
@@ -40,17 +40,17 @@
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
                    :label="$t('release')" icon="img:statics/outbound/orderrelease.png" @click="orderreleaseAllData()">
-              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('releaseallorder') }}
               </q-tooltip>
             </q-btn>
             <q-btn :label="$t('downloaddnlist')" icon="cloud_download" @click="downloadlistData()">
-              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('downloaddnlisttip') }}
               </q-tooltip>
             </q-btn>
             <q-btn :label="$t('downloaddndetail')" icon="cloud_download" @click="downloaddetailData()">
-              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('downloaddndetailtip') }}
               </q-tooltip>
             </q-btn>
@@ -95,7 +95,7 @@
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
                      round flat push color="info" icon="visibility" @click="viewData(props.row)">
-                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('printthisdn') }}
                 </q-tooltip>
               </q-btn>
@@ -105,7 +105,7 @@
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
                      round flat push color="positive" icon="img:statics/outbound/order.png" @click="neworderData(props.row)">
-                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('confirmorder') }}
                 </q-tooltip>
               </q-btn>
@@ -115,7 +115,7 @@
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
                      round flat push color="positive" icon="img:statics/outbound/orderrelease.png" @click="orderreleaseData(props.row)">
-                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('releaseorder') }}
                 </q-tooltip>
               </q-btn>
@@ -125,7 +125,7 @@
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
                      round flat push color="secondary" icon="print" @click="PrintPickingList(props.row)">
-                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('print') }}
                 </q-tooltip>
               </q-btn>
@@ -135,7 +135,7 @@
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
                      round flat push color="purple" icon="img:statics/outbound/picked.png" @click="pickedData(props.row)">
-                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('confirmpicked') }}
                 </q-tooltip>
               </q-btn>
@@ -145,7 +145,7 @@
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
                      round flat push color="dark" icon="rv_hookup" @click="DispatchDN(props.row)">
-                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('dispatch') }}
                 </q-tooltip>
               </q-btn>
@@ -155,7 +155,7 @@
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
                      round flat push color="info" icon="img:statics/outbound/receiving.png" @click="PODData(props.row)">
-                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('outbound.pod') }}
                 </q-tooltip>
               </q-btn>
@@ -165,7 +165,7 @@
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
                      round flat push color="purple" icon="edit" @click="editData(props.row)">
-                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('edit') }}
                 </q-tooltip>
               </q-btn>
@@ -175,13 +175,13 @@
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
                      round flat push color="dark" icon="delete" @click="deleteData(props.row)">
-                <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('delete') }}
                 </q-tooltip>
               </q-btn>
             </q-td>
             <template v-if="props.row.transportation_fee.detail !== []">
-              <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 <q-list>
                   <div v-for="(transportation_fee, index) in props.row.transportation_fee.detail" :key="index">
                     <q-item v-ripple>
@@ -201,12 +201,12 @@
     <template>
       <div class="q-pa-md flex flex-center">
         <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
-          <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
             {{ $t('previous') }}
           </q-tooltip>
         </q-btn>
         <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
-          <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
             {{ $t('next') }}
           </q-tooltip>
         </q-btn>
@@ -219,7 +219,7 @@
           <div>{{ newFormData.dn_code }}</div>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
           </q-btn>
         </q-bar>
         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
