@@ -1338,9 +1338,6 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                         PickingListModel.objects.bulk_create(picking_list, batch_size=100)
                         qs.dn_status = 3
                         qs.save()
-                        return Response({"detail": "success"}, status=200)
-                    else:
-                        raise APIException({"detail": "This Order Does Not in Release Status"})
                 elif picking_list_label == 0:
                     if back_order_list_label == 1:
                         DnDetailModel.objects.bulk_create(back_order_list, batch_size=100)
@@ -1360,13 +1357,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                         qs.is_delete = True
                         qs.dn_status = 3
                         qs.save()
-                    elif back_order_list_label == 0:
-                        return Response({"detail": "success"}, status=200)
-                    else:
-                        raise APIException({"detail": "This Order Does Not in Release Status"})
-                else:
-                    raise APIException({"detail": "This Order Does Not in Release Status"})
-                return Response({"detail": "success"}, status=200)
+                return Response({"detail": "success333"}, status=200)
             else:
                 raise APIException({"detail": "This Order Does Not in Release Status"})
 
