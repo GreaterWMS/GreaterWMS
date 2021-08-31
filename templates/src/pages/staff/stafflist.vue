@@ -26,17 +26,17 @@
                             $q.localStorage.getItem('staff_type') !== 'StockControl'
                            "
                     :label="$t('new')" icon="add" @click="newForm = true">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                  {{ $t('newtip') }}
                </q-tooltip>
              </q-btn>
              <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                  {{ $t('refreshtip') }}
                </q-tooltip>
              </q-btn>
              <q-btn :label="$t('download')" icon="cloud_download" @click="downloadData()">
-               <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('downloadtip') }}
                </q-tooltip>
              </q-btn>
@@ -101,7 +101,7 @@
                                 $q.localStorage.getItem('staff_type') !== 'StockControl'
                                "
                         round flat push color="purple" icon="edit" @click="editData(props.row)">
-                   <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                     {{ $t('edit') }}
                   </q-tooltip>
                  </q-btn>
@@ -112,12 +112,12 @@
                                 $q.localStorage.getItem('staff_type') !== 'StockControl'
                                "
                         round flat push color="dark" icon="delete" @click="deleteData(props.row.id)">
-                   <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                     {{ $t('delete') }}
                   </q-tooltip>
                  </q-btn>
                  <q-btn color="teal" :label="$t('contact')" icon="contacts" @click="ChatWith(props.row.staff_name)">
-                   <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                     {{ $t('sendmessage') }}
                   </q-tooltip>
                  </q-btn>
@@ -127,12 +127,12 @@
                <template v-if="props.row.id === editid">
                  <q-td key="action" :props="props" style="width: 150px">
                  <q-btn round flat push color="secondary" icon="check" @click="editDataSubmit()">
-                   <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                     {{ $t('confirmedit') }}
                   </q-tooltip>
                  </q-btn>
                  <q-btn round flat push color="red" icon="close" @click="editDataCancel()">
-                   <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                     {{ $t('canceledit') }}
                   </q-tooltip>
                  </q-btn>
@@ -147,12 +147,12 @@
       <template>
         <div class="q-pa-lg flex flex-center">
           <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
-            <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
               {{ $t('previous') }}
             </q-tooltip>
           </q-btn>
           <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
-            <q-tooltip content-class="bg-indigo" :offset="[10, 10]" content-style="font-size: 12px">
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
               {{ $t('next') }}
             </q-tooltip>
           </q-btn>
@@ -165,7 +165,7 @@
            <div>{{ $t('newtip') }}</div>
            <q-space />
            <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+             <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
            </q-btn>
          </q-bar>
          <q-card-section style="max-height: 325px; width: 400px" class="scroll">
@@ -201,7 +201,7 @@
            <div>{{ $t('delete') }}</div>
            <q-space />
            <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+             <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
            </q-btn>
          </q-bar>
          <q-card-section style="max-height: 325px; width: 400px" class="scroll">
@@ -219,7 +219,7 @@
         <div>{{ receiver }}</div>
         <q-space/>
         <q-btn dense flat icon="close" v-close-popup>
-          <q-tooltip content-class="bg-indigo" :offset="[20, 20]" content-style="font-size: 12px" @click="ChatClose()">
+          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[20, 20]" content-style="font-size: 12px" @click="ChatClose()">
             {{ $t('index.close') }}</q-tooltip>
         </q-btn>
       </q-bar>
