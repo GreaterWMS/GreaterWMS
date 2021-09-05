@@ -54,7 +54,7 @@ yum install git
 git clone https://github.com/Singosgu/GreaterWMS.git
 //进入项目目录，利用docker-compose up -d来运行项目
 运行项目前需要修改baseurl.js的内容
-vim templates/public/static/baseurl.js 将127.0.0.1修改为服务器的IP地址
+vim templates/dist/spa/statics/baseurl.js 将127.0.0.1修改为服务器的IP地址
 docker-compose up -d
 //查看镜像运行日志
 docker logs -f greaterwms:v2.0.25
