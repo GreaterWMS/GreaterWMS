@@ -112,6 +112,7 @@ def register(request, *args, **kwargs):
                                 os.makedirs(os.path.join(settings.BASE_DIR, 'media/' + transaction_code))
                                 os.makedirs(os.path.join(settings.BASE_DIR, 'media/' + transaction_code + "/win32"))
                                 os.makedirs(os.path.join(settings.BASE_DIR, 'media/' + transaction_code + "/linux"))
+                                os.makedirs(os.path.join(settings.BASE_DIR, 'media/' + transaction_code + "/darwin"))
                             ret = FBMsg.ret()
                             ret['ip'] = ip
                             data['openid'] = transaction_code
