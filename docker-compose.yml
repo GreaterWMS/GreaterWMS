@@ -11,7 +11,8 @@ services:
     volumes:
       - ./greaterwms/settings.py:/GreaterWMS/greaterwms/settings.py:rw #挂载数据库配置文件
       - ./templates:/GreaterWMS/templates:rw #挂载前端文件
-      - ./db.sqlite3:/GreaterWMS/db.sqlite3:rw #数据库持久化存储
+      #- ./db.sqlite3:/GreaterWMS/db.sqlite3:rw #数据库持久化存储
+      -./backend_start.sh:/GreaterWMS/backend_start.sh #挂载数据库初始化的脚本
     command:
       - /bin/bash
       - -c

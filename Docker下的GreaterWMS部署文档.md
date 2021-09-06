@@ -58,6 +58,8 @@ vim templates/dist/spa/statics/baseurl.js 将127.0.0.1修改为服务器的IP地
 docker-compose up -d
 //查看镜像运行日志
 docker logs -f greaterwms:v2.0.25
+//backend_start.sh 功能说明
+//用于数据库初始化和运行程序，完成数据库初始化后建议用户注销前面两行代码
 ```
 
 7. 适用于二次开发
