@@ -47,17 +47,23 @@ apt-get install git
 yum install git
 ```
 
-6. 适用于长期保存数据(需要在用户机器上存放代码)
+6. 适用于长期保存数据(需要在用户服务器上存放代码)
 
 ```
 //拉取代码
 git clone https://github.com/Singosgu/GreaterWMS.git
 //进入项目目录，利用docker-compose up -d来运行项目
-运行项目前需要修改baseurl.js的内容
-vim templates/dist/spa/statics/baseurl.js 将127.0.0.1修改为服务器的IP地址
+//运行项目前需要修改baseurl.js的内容
+vim templates/dist/spa/statics/baseurl.js //将127.0.0.1修改为服务器的IP地址
 docker-compose up -d
 //查看镜像运行日志
 docker logs -f greaterwms:v2.0.25
+<<<<<<< Updated upstream
+=======
+//备注：backend_start.sh功能说明
+  //用于数据库迁移的操作，当初始化完成时用户可以手动注释掉前面两段代码
+  //daphne -p 8008 greaterwms.asgi:application为运行后端程序的命令
+>>>>>>> Stashed changes
 ```
 
 7. 适用于二次开发
