@@ -47,7 +47,7 @@ apt-get install git
 yum install git
 ```
 
-6. 适用于长期保存数据(需要在用户机器上存放代码)
+6. 适用于长期保存数据(需要在用户服务器上存放代码)
 
 ```
 //拉取代码
@@ -58,6 +58,9 @@ vim templates/dist/spa/statics/baseurl.js 将127.0.0.1修改为服务器的IP地
 docker-compose up -d
 //查看镜像运行日志
 docker logs -f greaterwms:v2.0.25
+//backend_start.sh功能说明
+//用于数据库迁移的操作，当初始化完成时用户可以手动注释掉前面两段代码
+//daphne -b 0.0.0.0 -p 8008 greaterwms.asgi:application为运行后端程序的命令
 ```
 
 7. 适用于二次开发
