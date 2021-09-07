@@ -71,12 +71,12 @@ docker logs -f greaterwms:v2.0.25
 ```
 # 后端基础镜像只有在 requirements.txt 变化后重新编译，其他情况无需变化
 #构建后端基础镜像（国内用户）,这里的版本号是指内部调试时使用的版本号，非正式版，每次更新后面的版本号建议都增加
-docker build -f ./docker_env(CN)/web/DockerfileBuild -t registry.cn-hangzhou.aliyuncs.com/cow11023/greaterwms_web_build:v1.0 .
+docker build -f ./docker_env\(CN\)/backend/DockerfileBuild -t registry.cn-hangzhou.aliyuncs.com/cow11023/greaterwms_backend_build:v1.0 .
 #构建后端基础镜像（全球用户）
-docker build -f ./docker_env(EN)/backend/DockerfileBuild -t silence2022/greaterwms_backend_build:v1.0 .
-#构建成功以后需要在再构建总镜像并上传到仓库建议用户可以直接使用我的总镜像,这里的版本号指正式发布的版本号
+docker build -f ./docker_env\(EN\)/backend/DockerfileBuild -t registry.cn-hangzhou.aliyuncs.com/cow11023/greaterwms_backend_build:v1.0 .
+#构建成功以后需要在再构建总镜像并上传到仓库，建议用户可以直接使用我的总镜像,这里的版本号指正式发布的版本号
 docker build -t greaterwms:v2.0.25 . 
 docker push 仓库地址
-#待完善
+#建议用户用自己的仓库作为打包的镜像存放地址，docker-compose.yml中的地址是仅作为对外展示，不接收用户修改后再上传
 ```
 
