@@ -2,26 +2,42 @@ version: '2'
 networks:
   basic:
 services:
-  world:
-    container_name: greaterwms_v2.0.25
-    image: registry.cn-hangzhou.aliyuncs.com/cow11023/greaterwms:v2.0.25 #国内用户使用的总镜像
-    #image: silence2022/greaterwms:v2.0.25 #全球用户使用的总镜像
-    ports:
-      - "8008:8008"
+  web:
+    build:
+      context: ./
+      #dockerfile: ./docker_env(EN)/web/Dockerfile #全球用户使用
+      dockerfile: ./docker_env(CN)/web/Dockerfile #国内用户使用
+    container_name: greaterwms_web_v2.0.25
+    restart: always
     volumes:
-      - ./greaterwms/settings.py:/GreaterWMS/greaterwms/settings.py:rw #挂载数据库配置文件
-      - ./templates:/GreaterWMS/templates:rw #挂载前端文件
-<<<<<<< Updated upstream
-      - ./db.sqlite3:/GreaterWMS/db.sqlite3:rw #数据库持久化存储
-=======
-      - ./backend_start.sh:/GreaterWMS/backend_start.sh ##挂载数据库迁移文件
->>>>>>> Stashed changes
+      - ./web_start.sh:/GreaterWMS/web_start.sh:rw
+      - ./templates:/GreaterWMS/templates:rw
+    ports:
+      - '8080:8080'
+    command:
+     - /bin/bash
+     - -c
+     - |
+       #运行前端程序
+       bash web_start.sh
+  backend:
+    build:
+      context: ./
+      #dockerfile: ./docker_env(EN)/backend/Dockerfile #全球用户使用
+      dockerfile: ./docker_env(CN)/backend/Dockerfile #国内用户使用
+    container_name: greaterwms_backend_v2.0.25
+    restart: always
+    volumes:
+      - ./:/GreaterWMS/:rw #将前目录挂载到容器下
+    ports:
+      - '8008:8008'      
     command:
       - /bin/bash
       - -c
       - |
         #直接运行脚本
         bash backend_start.sh
-
+    depends_on:
+      - web
     networks:
       - basic

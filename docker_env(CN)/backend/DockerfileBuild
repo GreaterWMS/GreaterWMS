@@ -7,10 +7,6 @@ RUN apt-get update && apt-get install build-essential -y
 RUN python3 -m pip install --upgrade pip -i http://mirrors.aliyun.com/pypi/simple --trusted-host mirrors.aliyun.com
 RUN apt install -y libmariadbd-dev
 #安装项目依赖包
-<<<<<<< Updated upstream
-COPY requirements.txt .
-=======
 COPY . .
->>>>>>> Stashed changes
 RUN pip3 install -U 'Twisted[tls,http2]' -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
 RUN pip3 install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
