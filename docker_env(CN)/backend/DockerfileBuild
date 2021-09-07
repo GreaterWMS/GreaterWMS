@@ -14,6 +14,6 @@ RUN apt install -y libmariadbd-dev
 # RUN cd /GreaterWMS
 
 #安装项目依赖包
-COPY ./requirements.txt .
+COPY requirements.txt .
 RUN pip3 install -U 'Twisted[tls,http2]' -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
 RUN pip3 install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
