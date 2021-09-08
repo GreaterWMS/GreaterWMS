@@ -1,6 +1,9 @@
 FROM silence2022/greaterwms_backend_build:v1.0
-RUN mkdir -p /GreaterWMS/templates
-WORKDIR /GreaterWMS
-COPY templates/ .
+USER root
+WORKDIR /GreaterWMS/
+COPY . .
+RUN cd /GreaterWMS/templates
+RUN npm install -g yarn
+RUN npm install -g @quasar/cli
 RUN yarn install
-RUN quasar -d
+EXPOSE 8080
