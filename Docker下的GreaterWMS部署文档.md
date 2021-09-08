@@ -7,11 +7,11 @@ Docker下使用GreaterWMS（本文档适用于具备Docker基础的用户使用�
 	//如果提示没有curl再执行sudo apt install curl 或 yum -y install curl
 ```
 
-2. 配置加速器（国内）
+2. 配置加速器（国内）//国内加速，全球用户则不需要配加速器
 
 ```
 	sudo mkdir -p /etc/docker
-sudo tee /etc/docker/daemon.json <<-'EOF' ##国内加速，全球用户则不需要配加速器
+sudo tee /etc/docker/daemon.json <<-'EOF' 
 {
   "registry-mirrors": ["https://w61q8mf4.mirror.aliyuncs.com"]
 }
@@ -29,7 +29,24 @@ sudo systemctl restart docker
 	sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-4. 利用docker直接试运行项目（非二次开发，用户试用，无需从github上克隆项目）
+4. 验证docker是否安装成功
+
+```
+    //查看docker版本
+	docker -v 
+	docker version 20.10.8, build 3967b7d //看到这个就表示docker安装成功了
+	//查看docker-compose版本
+	docker-compose -v
+	docker-compose version 1.16.1, build 6d1ac21 //看到这个表示docker-compose安装成功
+	
+	//查看docker服务状态
+   sudo systemctl status docker
+   //若服务状态为stop或是failed，请尝试启动dokcer
+   sudo systemctl start docker
+   
+```
+
+5. 利用docker直接试运行项目（非二次开发，用户本机试用，无需从github上克隆项目，也无需服务器，运行以下命令前请确保docker服务已正常启动）
 
 ```
 //直接docker run 国内用户使用
