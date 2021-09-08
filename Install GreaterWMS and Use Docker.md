@@ -12,7 +12,30 @@ Deploy greaterwms under docker (this document is applicable to users with docker
    	sudo curl -L "https://get.daocloud.io/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
    	sudo chmod +x /usr/local/bin/docker-compose
 
-3. Use docker to directly test run the project (non secondary development, user trial, no need to clone the project from GitHub)
+3. Verify that docker is installed successfully
+
+   //view docker version
+   
+   ```
+   docker -v 
+   Docker version 20.10.8, build 3967b7d //You can see this, which indicates that the docker installation is successful
+   ```
+   
+   //查看docker-compose版本
+   
+   ```
+   docker-compose -v docker-compose version 1.16.1, build 6d1ac21 //This indicates that the docker compose installation is successful
+   ```
+   
+   //Verify that the docker service is started
+   
+   sudo systemctl status docker
+   
+   //If docker service is stop or failed, please try to start docker first
+   
+   sudo systemctl start docker
+   
+4. Use docker to directly test run the project (non secondary development, user trial, no need to clone the project from GitHub)
 
    ```
    docker run -itd --name greaterwms_v2.0.25 -p 8008:8008 -d silence2022/greaterwms:v2.0.25
