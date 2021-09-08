@@ -14,12 +14,7 @@ services:
       - ./templates:/GreaterWMS/templates:rw
     ports:
       - '8080:8080'
-    command:
-     - /bin/bash
-     - -c
-     - |
-       #运行前端程序
-       bash web_start.sh
+    command: bash web_start.sh
   backend:
     build:
       context: ./
@@ -31,12 +26,7 @@ services:
       - ./:/GreaterWMS/:rw #将前目录挂载到容器下
     ports:
       - '8008:8008'      
-    command:
-      - /bin/bash
-      - -c
-      - |
-        #直接运行脚本
-        bash backend_start.sh
+    command:  bash backend_start.sh
     depends_on:
       - web
     networks:
