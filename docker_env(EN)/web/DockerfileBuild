@@ -1,7 +1,0 @@
-FROM node:14
-WORKDIR /GreaterWMS/
-COPY . .
-# yarn 默认已经安装
-# RUN npm install -g yarn
-RUN npm install -g @quasar/cli
-RUN yarn install

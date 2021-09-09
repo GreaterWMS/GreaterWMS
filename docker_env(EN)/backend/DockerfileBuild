@@ -1,9 +1,0 @@
-FROM python:3.9
-WORKDIR /GreaterWMS/
-RUN apt-get update && apt-get install build-essential -y
-RUN python3 -m pip install --upgrade pip
-RUN apt install -y libmariadbd-dev
-#安装项目依赖包
-COPY . .
-RUN pip3 install -U 'Twisted[tls,http2]'
-RUN pip3 install -r requirements.txt
