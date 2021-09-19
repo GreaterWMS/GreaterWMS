@@ -72,7 +72,7 @@ class CyclecountModeDayViewSet(viewsets.ModelViewSet):
         data = self.request.data
         data['openid'] = self.request.auth.openid
         print(timezone.now())
-        if CyclecountModeDayModel.objects.filter(openid=data['openid'], is_delete=False).exists():
+        if CyclecountModeDayModel.objects.filter(openid=data['openid']).exists():
             raise APIException({"detail": "Data exists"})
         else:
             serializer = self.get_serializer(data=data)
@@ -122,9 +122,9 @@ class FileDownloadView(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid)
             else:
-                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, id=id)
         else:
             return CyclecountModeDayModel.objects.none()
 
