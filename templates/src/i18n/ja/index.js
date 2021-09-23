@@ -76,6 +76,7 @@ export default {
   downloadtip: 'すべてのデータをダウンロードする',
   frombin: '場所から',
   movetobin: 'ライブラリを移動',
+  uptobin: 'が棚に上がる',
   cyclecount: '動的棚卸し',
   cyclecountrecorder: '在庫記録',
   search: 'キーワード検索',

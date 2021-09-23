@@ -76,6 +76,7 @@ export default {
   downloadtip: '下载所有数据',
   frombin: '从库位',
   movetobin: '移库',
+  uptobin: '上架',
   cyclecount: '动态盘点',
   cyclecountrecorder: '盘点记录',
   search: '关键字搜索',

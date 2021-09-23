@@ -76,6 +76,7 @@ export default {
   downloadtip: 'Download All Data',
   frombin: 'From Bin',
   movetobin: 'Move to Bin',
+  uptobin: 'Up to Bin',
   cyclecount: 'Cycle Count',
   cyclecountrecorder: 'Count Recorder',
   search: 'Search Word',
