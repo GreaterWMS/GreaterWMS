@@ -76,6 +76,7 @@ export default {
   downloadtip: '下載所有數據',
   frombin: '從庫位',
   movetobin: '移庫',
+  uptobin: '上架',
   cyclecount: '動態盤點',
   cyclecountrecorder: '盤點記錄',
   search: '關鍵字搜索',
