@@ -54,7 +54,9 @@ export default {
     staff: 'ユーザー管理',
     driver: 'ドライバー管理',
     customerdn: '顧客の注文',
-    supplierasn: 'サプライヤーの注文'
+    supplierasn: 'サプライヤーの注文',
+    uploadcenter: 'アップロードセンター',
+    downloadcenter: 'ダウンロードセンター'
   },
   contact: 'すぐに連絡する',
   sendmessage: '彼にメッセージを送信してください',
@@ -76,7 +78,7 @@ export default {
   downloadtip: 'すべてのデータをダウンロードする',
   frombin: '場所から',
   movetobin: 'ライブラリを移動',
-  uptobin: 'が棚に上がる',
+  putaway: '荷物が棚に上がる',
   cyclecount: '動的棚卸し',
   cyclecountrecorder: '在庫記録',
   search: 'キーワード検索',
@@ -139,6 +141,11 @@ export default {
       customer_level: '顧客レベル'
     }
   },
+  dashboards: {
+    outbound_statements: '出庫報告書',
+    inbound_statements: '受入報告書',
+    stock_statements: '在庫報告書'
+  },
   finance: {
     capital: '固定資産',
     freight: '輸送コスト',
@@ -169,6 +176,16 @@ export default {
       dn_code: '注文号',
       contact: '連絡先情報'
     }
+  },
+  upload_center: {
+    uploadinbound: '入庫ファイルをアップロードする',
+    uploadfiles: 'ファイルをアップロード',
+    upload: 'アップロード',
+    uploadcapitalfile: '資産リストをアップロードする',
+    uploadcustomerfile: '顧客リストをアップロードする',
+    uploadfreightfile: '運送リストをアップロードする',
+    uploadgoodslistfile: '商品表をアップロードする',
+    uploadsupplierfile: 'サプライヤーリストをアップロードする'
   },
   goods: {
     goods_list: '製品リスト',
