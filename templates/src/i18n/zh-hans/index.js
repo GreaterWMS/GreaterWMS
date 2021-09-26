@@ -54,7 +54,9 @@ export default {
     staff: '用户管理',
     driver: '司机管理',
     customerdn: '客户订单',
-    supplierasn: '供应商订单'
+    supplierasn: '供应商订单',
+    uploadcenter: '上传中心',
+    downloadcenter: '下载中心'
   },
   contact: '立即沟通',
   sendmessage: '给他发一条消息',
@@ -76,7 +78,7 @@ export default {
   downloadtip: '下载所有数据',
   frombin: '从库位',
   movetobin: '移库',
-  uptobin: '上架',
+  putaway: '上架',
   cyclecount: '动态盘点',
   cyclecountrecorder: '盘点记录',
   search: '关键字搜索',
@@ -139,6 +141,11 @@ export default {
       customer_level: '客户等级'
     }
   },
+  dashboards: {
+    outbound_statements: '出库报表',
+    inbound_statements: '收货报表',
+    stock_statements: '库存报表'
+  },
   finance: {
     capital: '固定资产',
     freight: '运费管理',
@@ -169,6 +176,21 @@ export default {
       dn_code: '提货订单号',
       contact: '联系方式'
     }
+  },
+  upload_center: {
+    uploadinbound: '上传入库文件',
+    uploadfiles: '上传文件',
+    upload: '上传',
+    uploadcapitalfile: '上传资产清单',
+    uploadcustomerfile: '上传客户清单',
+    uploadfreightfile: '上传运输清单',
+    uploadgoodslistfile: '上传商品表格清单',
+    uploadsupplierfile: '上传供应商清单'
+  },
+  download_center: {
+    downloadinbound: '下载入库列表',
+    downloadfiles: '下载文件',
+    download: '下载'
   },
   goods: {
     goods_list: '商品列表',

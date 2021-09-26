@@ -54,7 +54,9 @@ export default {
     staff: 'Staff',
     driver: 'Driver',
     customerdn: 'Customer DN',
-    supplierasn: 'Supplieer ASN'
+    supplierasn: 'Supplieer ASN',
+    uploadcenter: 'UploadCenter',
+    downloadcenter: 'DownloadCenter'
   },
   contact: 'Contact',
   sendmessage: 'Send A Message',
@@ -76,7 +78,7 @@ export default {
   downloadtip: 'Download All Data',
   frombin: 'From Bin',
   movetobin: 'Move to Bin',
-  uptobin: 'Up to Bin',
+  putaway: 'PutAway',
   cyclecount: 'Cycle Count',
   cyclecountrecorder: 'Count Recorder',
   search: 'Search Word',
@@ -139,6 +141,11 @@ export default {
       customer_level: 'Customer Level'
     }
   },
+  dashboards: {
+    outbound_statements: 'OutboundStatements',
+    inbound_statements: 'InboundStatements',
+    stock_statements: 'StockStatements'
+  },
   finance: {
     capital: 'Capital',
     freight: 'Freight',
@@ -169,6 +176,16 @@ export default {
       dn_code: 'DN Code',
       contact: 'Contact'
     }
+  },
+  upload_center: {
+    uploadinbound: 'UploadInbound',
+    uploadfiles: 'UploadFile',
+    upload: 'Upload',
+    uploadcapitalfile: 'UploadCapitalFile',
+    uploadcustomerfile: 'Uploadcustomerfile',
+    uploadfreightfile: 'UploadFreightFile',
+    uploadgoodslistfile: 'UploadGoodslistFile',
+    uploadsupplierfile: 'UploadSupplierFile'
   },
   goods: {
     goods_list: 'Goods List',
