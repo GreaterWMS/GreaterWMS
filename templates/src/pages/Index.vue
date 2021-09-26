@@ -16,7 +16,7 @@ export default {
     }
   },
   mounted: function () {
-    var page = database.getInstance().get().a
+    var page = database.getInstance().get().linechart
     page.toArray().then(res => {
       if (res.length > 0) {
         this.cleardata = []
