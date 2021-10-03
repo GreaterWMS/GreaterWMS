@@ -16,7 +16,7 @@ export default {
     }
   },
   mounted: function () {
-    var page = database.getInstance().get().linechart
+    var page = database.getInstance().get().test
     page.toArray().then(res => {
       if (res.length > 0) {
         this.cleardata = []
@@ -28,13 +28,7 @@ export default {
       } else {
         page.add({
           id: 1,
-          a: 'next',
-          b: '',
-          c: 'previous',
-          d: '',
-          e: '',
-          f: '',
-          g: ''
+          test: 'next'
         })
       }
     })
