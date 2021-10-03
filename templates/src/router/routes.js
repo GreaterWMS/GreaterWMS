@@ -15,9 +15,19 @@ const routes = [
         component: () => import('pages/dashboard/dashboard.vue'),
         children: [
           {
-            path: 'v1',
-            name: 'v1',
-            component: () => import('pages/dashboard/v1.vue')
+            path: 'linechart',
+            name: 'linechart',
+            component: () => import('pages/dashboard/linechart.vue')
+          },
+          {
+            path: 'barchart',
+            name: 'barchart',
+            component: () => import('pages/dashboard/barchart.vue')
+          },
+          {
+            path: 'piechart',
+            name: 'piechart',
+            component: () => import('pages/dashboard/piechart.vue')
           }
         ]
       },
@@ -148,12 +158,12 @@ const routes = [
           {
             path: 'cyclecount',
             name: 'cyclecount',
-            component: () => import('pages/stock/cyclecount.vue'),
+            component: () => import('pages/stock/cyclecount.vue')
           },
           {
             path: 'cyclecountrecorder',
             name: 'cyclecountrecorder',
-            component: () => import('pages/stock/cyclecountrecorder.vue'),
+            component: () => import('pages/stock/cyclecountrecorder.vue')
           }
         ]
       },
@@ -407,6 +417,30 @@ const routes = [
         path: 'scan_cyclecount',
         name: 'scan_cyclecount',
         component: () => import('pages/scan/cyclecount.vue')
+      },
+      {
+        path: 'uploadcenter',
+        name: 'uploadcenter',
+        component: () => import('pages/uploadcenter/upload.vue'),
+        children: [
+          {
+            path: 'uploadinbound',
+            name: 'uploadinbound',
+            component: () => import('pages/uploadcenter/uploadlist.vue')
+          }
+        ]
+      },
+      {
+        path: 'downloadcenter',
+        name: 'downloadcenter',
+        component: () => import('pages/downloadcenter/download.vue'),
+        children: [
+          {
+            path: 'downloadinbound',
+            name: 'downloadinbound',
+            component: () => import('pages/downloadcenter/downloadinbound')
+          }
+        ]
       }
     ]
   }
