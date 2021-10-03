@@ -54,7 +54,9 @@ export default {
     staff: '用戶管理',
     driver: '司機管理',
     customerdn: '客戶訂單',
-    supplierasn: '供應商訂單'
+    supplierasn: '供應商訂單',
+    uploadcenter: '上傳中心 ',
+    downloadcenter: '下載中心'
   },
   contact: '立即溝通',
   sendmessage: '給他發一條消息',
@@ -76,7 +78,7 @@ export default {
   downloadtip: '下載所有數據',
   frombin: '從庫位',
   movetobin: '移庫',
-  uptobin: '上架',
+  putaway: '上架',
   cyclecount: '動態盤點',
   cyclecountrecorder: '盤點記錄',
   search: '關鍵字搜索',
@@ -139,6 +141,11 @@ export default {
       customer_level: '客戶等級'
     }
   },
+  dashboards: {
+    outbound_statements: '出庫報表',
+    inbound_statements: '收穫報表',
+    stock_statements: '庫存報表'
+  },
   finance: {
     capital: '固定資產',
     freight: '運輸費用',
@@ -169,6 +176,16 @@ export default {
       dn_code: '發貨單號',
       contact: '聯繫方式'
     }
+  },
+  upload_center: {
+    uploadinbound: '上傳入庫清單',
+    uploadfiles: '上傳文件',
+    upload: '上傳',
+    uploadcapitalfile: '上傳資產清單',
+    uploadcustomerfile: '上傳客戶清單',
+    uploadfreightfile: '上傳運輸清單',
+    uploadgoodslistfile: '上傳商品清單',
+    uploadsupplierfile: '上傳供應商清單'
   },
   goods: {
     goods_list: '商品列表',
