@@ -147,6 +147,19 @@
         <q-list>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
+                          $q.localStorage.getItem('staff_type') !== 'dashboard'
+                         "
+                  v-if="$q.platform.is.desktop"
+                  clickable to="/dashboard/linechart" @click="linkChange('dashboard')" v-ripple exact :active="link === 'dashboard'" :class="{ 'my-menu-link': link === 'dashboard' }">
+            <q-item-section avatar>
+              <q-icon name="img:/statics/dashboard/statement.png" />
+            </q-item-section>
+            <q-item-section>
+              {{ $t('menuItem.dashboard') }}
+            </q-item-section>
+          </q-item>
+          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
                   v-if="$q.platform.is.desktop"
@@ -267,6 +280,21 @@
             </q-item-section>
             <q-item-section>
               {{ $t('menuItem.driver') }}
+            </q-item-section>
+          </q-item>
+          <q-separator v-show="$q.platform.is.desktop"/>
+          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
+                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
+                          $q.localStorage.getItem('staff_type') !== 'StockControl'
+                         "
+                  v-if="$q.platform.is.desktop"
+                  clickable to="/uploadcenter/uploadinbound" @click="linkChange('uploadinbound')" v-ripple exact :active="link === 'uploadinbound'" :class="{ 'my-menu-link': link === 'uploadinbound' }">
+            <q-item-section avatar>
+              <q-icon name="img:statics/uploadcenter/uploadcenter.png" />
+            </q-item-section>
+            <q-item-section>
+              {{ $t('menuItem.uploadcenter') }}
             </q-item-section>
           </q-item>
           <q-separator v-show="$q.platform.is.desktop"/>
