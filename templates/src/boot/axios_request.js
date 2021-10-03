@@ -3,8 +3,8 @@ import axios from 'axios'
 import { LocalStorage, Notify } from 'quasar'
 import { i18n } from './i18n'
 
-const baseurl = 'http://127.0.0.1:8008/'
-const wsurl = 'ws://127.0.0.1:8008/'
+const baseurl = window.g.BaseUrl
+const wsurl = window.g.WsUrl
 
 const axiosInstance = axios.create({
   baseURL: baseurl,
