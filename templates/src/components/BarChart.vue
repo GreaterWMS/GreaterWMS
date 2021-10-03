@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import {database} from "src/db/database";
+import { database } from '../db/database'
 
 export default {
   name: 'BarChart',
@@ -39,7 +39,7 @@ export default {
             ['Walnut Brownie', 72.4, 53.9, 39.1, 53.3],
             ['Walnut Brownie', 72.4, 53.9, 39.1, 53.3],
             ['Walnut Brownie', 72.4, 53.9, 39.1, 53.3],
-            ['Walnut Brownie', 72.4, 53.9, 39.1, 53.3],
+            ['Walnut Brownie', 72.4, 53.9, 39.1, 53.3]
           ]
         },
         grid: {
@@ -97,7 +97,6 @@ export default {
       const linkSource = this.bar_chart.getDataURL()
       const downloadLink = document.createElement('a')
       document.body.appendChild(downloadLink)
-
       downloadLink.href = linkSource
       downloadLink.target = '_self'
       downloadLink.download = 'BarChart.png'
