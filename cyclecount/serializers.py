@@ -5,6 +5,7 @@ from utils import datasolve
 class CyclecountGetSerializer(serializers.ModelSerializer):
     creater = serializers.CharField(read_only=True, required=False)
     create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d')
+    update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     class Meta:
         model = CyclecountModeDayModel
         exclude = ['openid']
