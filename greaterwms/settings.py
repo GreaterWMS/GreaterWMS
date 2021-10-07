@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'customer.apps.CustomerConfig',
     'capital.apps.CapitalConfig',
     'cyclecount.apps.CyclecountConfig',
+    'dashboard.apps.DashboardConfig',
     'warehouse.apps.WarehouseConfig',
     'goods.apps.GoodsConfig',
     'goodsunit.apps.GoodsunitConfig',
