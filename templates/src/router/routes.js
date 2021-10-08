@@ -15,6 +15,11 @@ const routes = [
         component: () => import('pages/dashboard/dashboard.vue'),
         children: [
           {
+            path: 'inbounddashboard',
+            name: 'inbounddashboard',
+            component: () => import('pages/dashboard/inbound.vue')
+          },
+          {
             path: 'linechart',
             name: 'linechart',
             component: () => import('pages/dashboard/linechart.vue')
