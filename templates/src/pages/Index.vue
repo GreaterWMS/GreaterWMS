@@ -6,6 +6,7 @@
 <script>
 import LottieWebCimo from 'components/lottie-web-cimo'
 import { database } from '../db/database'
+import { LocalStorage } from 'quasar'
 
 export default {
   name: 'PageIndex',
@@ -32,6 +33,8 @@ export default {
         })
       }
     })
+  },
+  watch () {
   }
 }
 </script>

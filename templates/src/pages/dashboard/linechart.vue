@@ -7,7 +7,7 @@
 <script>
 import LineChart from 'components/LineChart'
 import { getauth } from 'boot/axios_request'
-import { database } from 'src/db/database'
+import { database } from '../../db/database'
 import { LocalStorage } from 'quasar'
 export default {
   name: 'linechart',
