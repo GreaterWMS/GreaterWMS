@@ -1,6 +1,6 @@
 # 聚商汇WMS--开源仓库管理系统
 
-<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/picfile/blob/master/logo.png?raw=true"/></div></p>
+<p><div align=center><img width="150" height="150" src="https://github.com/Singosgu/GreaterWMS/blob/master/static/img/logo.png?raw=true?raw=true"/></div></p>
 
 ---
 
