@@ -1,7 +1,8 @@
 <template>
-  <div :style="{width: width, height: height}">
-          <bar-chart style="height: 200px"></bar-chart>
-  </div>
+  <q-card  :style="{width: width, height: height}">
+    <q-btn>111</q-btn>
+    <bar-chart></bar-chart>
+  </q-card>
 </template>
 <script>
 import BarChart from 'components/BarChart'
