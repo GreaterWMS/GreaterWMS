@@ -144,7 +144,14 @@ export default {
   dashboards: {
     outbound_statements: '出庫報表',
     inbound_statements: '收穫報表',
-    stock_statements: '庫存報表'
+    total_sales: '總銷量',
+    category_sales_ranking: '品類銷量排名',
+    sales_volume_ranking: '銷售額排名',
+    sales_volumes_ranking: '銷售數量排名',
+    total_receipts: '縂收貨數',
+    category_receipt_ranking: '收貨品類排名',
+    receiving_quantity_ranking: '收貨數量排名',
+    Receiving_amount_ranking: '收貨額排名'
   },
   finance: {
     capital: '固定資產',
@@ -181,11 +188,12 @@ export default {
     uploadinbound: '上傳入庫清單',
     uploadfiles: '上傳文件',
     upload: '上傳',
-    uploadcapitalfile: '上傳資產清單',
     uploadcustomerfile: '上傳客戶清單',
-    uploadfreightfile: '上傳運輸清單',
     uploadgoodslistfile: '上傳商品清單',
-    uploadsupplierfile: '上傳供應商清單'
+    uploadsupplierfile: '上傳供應商清單',
+    downloadgoodstemplate: '下載商品模板',
+    downloadcustomertemplate: '下載客戶模板',
+    downloadsuppliertemplate: '下載供應商模板'
   },
   goods: {
     goods_list: '商品列表',
