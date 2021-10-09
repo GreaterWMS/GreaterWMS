@@ -6,6 +6,7 @@ def list_file_headers():
         'asn_status',
         'total_weight',
         'total_volume',
+        'total_cost',
         'supplier',
         'creater',
         'create_time',
@@ -18,6 +19,7 @@ def list_cn_data_header():
         ('asn_status', u'ASN状态'),
         ('total_weight', u'总重量'),
         ('total_volume', u'总体积'),
+        ('total_volume', u'总成本'),
         ('supplier', u'供应商'),
         ('creater', u'创建人'),
         ('create_time', u'创建时间'),
@@ -30,6 +32,7 @@ def list_en_data_header():
         ('asn_status', u'ASN Status'),
         ('total_weight', u'Total Weight'),
         ('total_volume', u'Total Volume'),
+        ('total_volume', u'Total Cost'),
         ('supplier', u'Supplier'),
         ('creater', u'Creater'),
         ('create_time', u'Create Time'),
@@ -50,6 +53,7 @@ def detail_file_headers():
         'goods_damage_qty',
         'goods_weight',
         'goods_volume',
+        'goods_cost',
         'creater',
         'create_time',
         'update_time'
@@ -69,6 +73,7 @@ def detail_cn_data_header():
         ('goods_damage_qty', u'破损数量'),
         ('goods_weight', u'商品重量'),
         ('goods_volume', u'商品体积'),
+        ('goods_cost', u'商品成本'),
         ('creater', u'创建人'),
         ('create_time', u'创建时间'),
         ('update_time', u'更新时间')
@@ -88,6 +93,7 @@ def detail_en_data_header():
         ('goods_damage_qty', u'Goods Damage Qty'),
         ('goods_weight', u'Goods Weight'),
         ('goods_volume', u'Goods Volume'),
+        ('goods_cost', u'Goods Cost'),
         ('creater', u'Creater'),
         ('create_time', u'Create Time'),
         ('update_time', u'Update Time')
