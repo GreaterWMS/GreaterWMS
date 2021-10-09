@@ -144,7 +144,14 @@ export default {
   dashboards: {
     outbound_statements: '出庫報告書',
     inbound_statements: '受入報告書',
-    stock_statements: '在庫報告書'
+    total_sales: '総売上高',
+    category_sales_ranking: '商品別販売ランキング',
+    sales_volume_ranking: '売上ランキング',
+    sales_volumes_ranking: '売り上げランキング',
+    total_receipts: '総受入量',
+    category_receipt_ranking: '品類受入ランキング',
+    receiving_quantity_ranking: '受入数量ランキング',
+    Receiving_amount_ranking: '受入額ランキング'
   },
   finance: {
     capital: '固定資産',
@@ -181,11 +188,12 @@ export default {
     uploadinbound: '入庫ファイルをアップロードする',
     uploadfiles: 'ファイルをアップロード',
     upload: 'アップロード',
-    uploadcapitalfile: '資産リストをアップロードする',
     uploadcustomerfile: '顧客リストをアップロードする',
-    uploadfreightfile: '運送リストをアップロードする',
     uploadgoodslistfile: '商品表をアップロードする',
-    uploadsupplierfile: 'サプライヤーリストをアップロードする'
+    uploadsupplierfile: 'サプライヤーリストをアップロードする',
+    downloadgoodstemplate: '商品テンプレートをダウンロード',
+    downloadcustomertemplate: 'クライアントテンプレートをダウンロード',
+    downloadsuppliertemplate: 'ベンダーテンプレートをダウンロード'
   },
   goods: {
     goods_list: '製品リスト',
