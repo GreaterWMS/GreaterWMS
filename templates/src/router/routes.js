@@ -20,8 +20,8 @@ const routes = [
             component: () => import('pages/dashboard/outbound.vue')
           },
           {
-            path: 'inbound',
-            name: 'inbound',
+            path: 'inbounddashboard',
+            name: 'inbounddashboard',
             component: () => import('pages/dashboard/inbound.vue')
           }
         ]
