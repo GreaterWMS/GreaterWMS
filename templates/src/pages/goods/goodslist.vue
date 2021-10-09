@@ -585,19 +585,20 @@
         <q-card id="printMe" style="width: 500px;height:250px">
           <q-card-section>
             <div class="row" style="height: 50px">
-              <div class="col-3">
-                <img src="/templates/public/statics/goods/logo.png">
+              <div class="col-3" >
+                <img src='/statics/goods/logo.png'  style="width: 60px;height: 50px;margin-top: 5px">
               </div>
               <div class="col-9" style="height: 50px;float: contour;margin-top: 10px" >
-                <p style="font-size: 20px;font-weight: 550">{{$t('goods.view_goodslist.goods_code') + ':'}}</p>
+                <p style="font-size: 20px;font-weight: 550">{{$t('goods.view_goodslist.goods_code') + ':' + goods_code}}</p>
               </div>
             </div>
             <hr>
             <div class="row">
-              <div class="col-8">
-                <p style="font-size: 20px;font-weight: 550">{{$t('goods.view_goodslist.goods_desc') + ':'}}</p>
+              <div class="col-8" style="margin-top: 30px">
+                <p style="font-size: 20px;font-weight: 550">{{$t('goods.view_goodslist.goods_name') + ':'}}</p>
+                <p style="font-size: 20px;font-weight: 550">{{goods_desc}}</p>
               </div>
-              <div class="col-4">
+              <div class="col-4" style="margin-top: 25px">
                 <img :src="bar_code" style="width: 70%"/>
               </div>
             </div>
@@ -619,6 +620,8 @@ export default {
   name: 'Pagegoodslist',
   data () {
     return {
+      goods_code: '',
+      goods_desc: '',
       openid: '',
       login_name: '',
       authin: '0',
@@ -964,6 +967,8 @@ export default {
     },
     viewData (e) {
       var _this = this
+      _this.goods_code = e.goods_code
+      _this.goods_desc = e.goods_desc
       console.log(e)
       var QRCode = require('qrcode')
       QRCode.toDataURL(e.bar_code, [{

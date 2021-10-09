@@ -310,6 +310,7 @@ export default {
     view_stocklist: {
       goods_code: 'Goods Code',
       goods_desc: 'Goods Desc',
+      goods_name: 'Goods Name',
       goods_qty: 'Total Qty',
       onhand_stock: 'On hand',
       can_order_stock: 'Can Order',
