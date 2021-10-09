@@ -9,69 +9,69 @@
       >
         <template v-slot:top>
           <div class="q-pa-md">
-            <div class="q-gutter-md row items-start">
-              <q-uploader
-                style="width:300px;height:200px"
-                :url = capitalfile_pathname
-                :label="$t('upload_center.uploadcapitalfile') + '  ' + '(for <10M size)'"
-                accept=".csv, xlsx,xls/*"
-                :filter="checkFileSize"
-                @rejected="onRejected"
-                @added="getfileinfo"
-              />
+            <div style="height: 250px">
+              <div class="row">
+                <q-btn-group  style="margin-left: 20px">
+                  <q-btn :label="$t('upload_center.downloadgoodstemplate')" icon="cloud_download" @click="downloadgoodstemplate()">
+                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                      {{ $t('upload_center.downloadgoodstemplate') }}
+                    </q-tooltip>
+                  </q-btn>
+                  <q-btn :label="$t('upload_center.downloadcustomertemplate')" icon="cloud_download" @click="downloadcustomertemplate()">
+                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                      {{ $t('upload_center.downloadcustomertemplate') }}
+                    </q-tooltip>
+                  </q-btn>
+                  <q-btn :label="$t('upload_center.downloadsuppliertemplate')" icon="cloud_download" @click="downloadsuppliertemplate()">
+                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                      {{ $t('upload_center.downloadsuppliertemplate') }}
+                    </q-tooltip>
+                  </q-btn>
+                </q-btn-group>
+              </div>
+          <div class="row items-start"  style="padding-top: 100px">
+            <div class="q-pa-md">
+              <div class="q-gutter-md row items-start">
+                <q-uploader
+                  style="width:300px;height:200px"
+                  :url = goodslistfile_pathname
+                  :label="$t('upload_center.uploadgoodslistfile') + '  ' + '(for <10M size)'"
+                  accept=".csv, xlsx,xls/*"
+                  :filter="checkFileSize"
+                  @rejected="onRejected"
+                  @added="getfileinfo"
+                />
+              </div>
+            </div>
+            <div class="q-pa-md">
+              <div class="q-gutter-md row items-start">
+                <q-uploader
+                  style="width:300px;height:200px"
+                  :url = customerfile_pathname
+                  :label="$t('upload_center.uploadcustomerfile') + '  ' + '(for <10M size)'"
+                  accept=".csv, xlsx,xls/*"
+                  :filter="checkFileSize"
+                  @rejected="onRejected"
+                  @added="getfileinfo"
+                />
+              </div>
+            </div>
+            <div class="q-pa-md">
+              <div class="q-gutter-md row items-start">
+                <q-uploader
+                  style="width:300px;height:200px"
+                  :url = supplierfile_pathname
+                  :label="$t('upload_center.uploadsupplierfile') + '  ' + '(for <10M size)'"
+                  accept=".csv, xlsx,xls/*"
+                  :filter="checkFileSize"
+                  @rejected="onRejected"
+                  @added="getfileinfo"
+                />
+              </div>
             </div>
           </div>
-          <div class="q-pa-md">
-            <div class="q-gutter-md row items-start">
-              <q-uploader
-                style="width:300px;height:200px"
-                :url = customerfile_pathname
-                :label="$t('upload_center.uploadcustomerfile') + '  ' + '(for <10M size)'"
-                accept=".csv, xlsx,xls/*"
-                :filter="checkFileSize"
-                @rejected="onRejected"
-                @added="getfileinfo"
-              />
-            </div>
+
           </div>
-          <div class="q-pa-md">
-            <div class="q-gutter-md row items-start">
-              <q-uploader
-                style="width:300px;height:200px"
-                :url = freightfile_pathname
-                :label="$t('upload_center.uploadfreightfile') + '  ' + '(for <10M size)'"
-                accept=".csv, xlsx,xls/*"
-                :filter="checkFileSize"
-                @rejected="onRejected"
-                @added="getfileinfo"
-              />
-            </div>
-          </div>
-          <div class="q-pa-md">
-            <div class="q-gutter-md row items-start">
-              <q-uploader
-                style="width:300px;height:200px"
-                :url = goodslistfile_pathname
-                :label="$t('upload_center.uploadgoodslistfile') + '  ' + '(for <10M size)'"
-                accept=".csv, xlsx,xls/*"
-                :filter="checkFileSize"
-                @rejected="onRejected"
-                @added="getfileinfo"
-              />
-            </div>
-          </div>
-          <div class="q-pa-md">
-            <div class="q-gutter-md row items-start">
-              <q-uploader
-                style="width:300px;height:200px"
-                :url = supplierfile_pathname
-                :label="$t('upload_center.uploadsupplierfile') + '  ' + '(for <10M size)'"
-                accept=".csv, xlsx,xls/*"
-                :filter="checkFileSize"
-                @rejected="onRejected"
-                @added="getfileinfo"
-              />
-            </div>
           </div>
         </template>
       </q-table>
@@ -82,6 +82,7 @@
 
 <script>
 import { baseurl } from 'boot/axios_request'
+import { LocalStorage, openURL } from 'quasar'
 export default {
   name: 'Pagecapital',
   data () {
@@ -109,6 +110,39 @@ export default {
     },
     getfileinfo (files) {
       console.log(files)
+    },
+    downloadgoodstemplate () {
+      if (LocalStorage.has('lang')) {
+        if (LocalStorage.getItem('lang') === 'zh-hans') {
+          openURL('media/upload_example/goodslist_cn.xlsx')
+        } else {
+          openURL('media/upload_example/goodslist_en.xlsx')
+        }
+      } else {
+        openURL('media/upload_example/goodslist_en.xlsx')
+      }
+    },
+    downloadcustomertemplate () {
+      if (LocalStorage.has('lang')) {
+        if (LocalStorage.getItem('lang') === 'zh-hans') {
+          openURL('media/upload_example/customer_cn.xlsx')
+        } else {
+          openURL('media/upload_example/customer_en.xlsx')
+        }
+      } else {
+        openURL('media/upload_example/customer_en.xlsx')
+      }
+    },
+    downloadsuppliertemplate () {
+      if (LocalStorage.has('lang')) {
+        if (LocalStorage.getItem('lang') === 'zh-hans') {
+          openURL('media/upload_example/supplier_cn.xlsx')
+        } else {
+          openURL('media/upload_example/supplier_en.xlsx')
+        }
+      } else {
+        openURL('media/upload_example/supplier_en.xlsx')
+      }
     }
   },
   mounted () {
