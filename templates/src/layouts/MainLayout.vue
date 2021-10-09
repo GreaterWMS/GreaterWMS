@@ -140,7 +140,7 @@
                           $q.localStorage.getItem('staff_type') !== 'dashboard'
                          "
                   v-if="$q.platform.is.desktop"
-                  clickable to="/dashboard/linechart" @click="linkChange('dashboard')" v-ripple exact :active="link === 'dashboard'" :class="{ 'my-menu-link': link === 'dashboard' }">
+                  clickable to="/dashboard/outbounddashboard" @click="linkChange('outbounddashboard')" v-ripple exact :active="link === 'outbounddashboard'" :class="{ 'my-menu-link': link === 'outbounddashboard' }">
             <q-item-section avatar>
               <q-icon name="auto_graph" />
             </q-item-section>

@@ -144,7 +144,14 @@ export default {
   dashboards: {
     outbound_statements: '出库报表',
     inbound_statements: '收货报表',
-    stock_statements: '库存报表'
+    total_sales: '总销量',
+    category_sales_ranking: '品类销量排名',
+    sales_volume_ranking: '销售额排名',
+    sales_volumes_ranking: '销售数量排名',
+    total_receipts: '总收货量',
+    category_receipt_ranking: '品类收货排名',
+    receiving_quantity_ranking: '收货数量排名',
+    Receiving_amount_ranking: '收货额排名'
   },
   finance: {
     capital: '固定资产',
@@ -181,11 +188,12 @@ export default {
     uploadinbound: '上传入库文件',
     uploadfiles: '上传文件',
     upload: '上传',
-    uploadcapitalfile: '上传资产清单',
     uploadcustomerfile: '上传客户清单',
-    uploadfreightfile: '上传运输清单',
     uploadgoodslistfile: '上传商品表格清单',
-    uploadsupplierfile: '上传供应商清单'
+    uploadsupplierfile: '上传供应商清单',
+    downloadgoodstemplate: '下载商品模板',
+    downloadcustomertemplate: '下载客户模板',
+    downloadsuppliertemplate: '下载供应商模板'
   },
   download_center: {
     downloadinbound: '下载入库列表',
