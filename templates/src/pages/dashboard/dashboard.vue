@@ -14,7 +14,7 @@
             <transition appear enter-active-class="animated zoomIn">
               <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="inbound" :label="$t('dashboards.inbound_statements')" icon="img:statics/dashboard/in_statement.png" to="/dashboard/inbound" exact/>
+                         " name="inbounddashboard" :label="$t('dashboards.inbound_statements')" icon="img:statics/dashboard/in_statement.png" to="/dashboard/inbounddashboard" exact/>
             </transition>
           </q-tabs>
         </div>
