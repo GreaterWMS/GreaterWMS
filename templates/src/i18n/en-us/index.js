@@ -43,7 +43,7 @@ export default {
     update: 'Update Now'
   },
   menuItem: {
-    dashboard: 'Report Center',
+    dashboard: 'Dashboard',
     inbound: 'Inbound',
     outbound: 'Outbound',
     stock: 'Inventory',
@@ -55,8 +55,8 @@ export default {
     driver: 'Driver',
     customerdn: 'Customer DN',
     supplierasn: 'Supplieer ASN',
-    uploadcenter: 'UploadCenter',
-    downloadcenter: 'DownloadCenter'
+    uploadcenter: 'Upload Center',
+    downloadcenter: 'Download Center'
   },
   contact: 'Contact',
   sendmessage: 'Send A Message',
@@ -186,14 +186,14 @@ export default {
   },
   upload_center: {
     uploadinbound: 'UploadInbound',
-    uploadfiles: 'UploadFile',
+    uploadfiles: 'Upload',
     upload: 'Upload',
     uploadcustomerfile: 'Uploadcustomerfile',
     uploadgoodslistfile: 'UploadGoodslistFile',
     uploadsupplierfile: 'UploadSupplierFile',
-    downloadgoodstemplate: 'DownloadGoodsTemplate',
-    downloadcustomertemplate: 'DownloadCustomerTemplate',
-    downloadsuppliertemplate: 'DownloadSupplierTemplate'
+    downloadgoodstemplate: 'GoodsExample',
+    downloadcustomertemplate: 'CustomerExample',
+    downloadsuppliertemplate: 'SupplierExample'
   },
   goods: {
     goods_list: 'Goods List',
@@ -221,7 +221,8 @@ export default {
       goods_specs: 'Goods Specs',
       goods_origin: 'Goods Origin',
       goods_cost: 'Goods Cost',
-      goods_price: 'Goods Price'
+      goods_price: 'Goods Price',
+      print_goods_label: 'Print Goods Label'
     },
     view_unit: {
       goods_unit: 'Goods Unit'

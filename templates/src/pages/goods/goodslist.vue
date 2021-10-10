@@ -350,9 +350,9 @@
                               $q.localStorage.getItem('staff_type') !== 'Outbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                        round flat push color="info" icon="visibility" @click="viewData(props.row)">
+                        round flat push color="info" icon="print" @click="viewData(props.row)">
                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                     {{ $t('printthisasn') }}
+                     {{ $t('goods.view_goodslist.print_goods_label') }}
                    </q-tooltip>
                  </q-btn>
                  <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
