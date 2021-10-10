@@ -182,14 +182,12 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                 post_data_list = []
                 weight_list = []
                 volume_list = []
-                cost_list = []
                 for j in range(len(data['goods_code'])):
                     goods_detail = goods.objects.filter(openid=self.request.auth.openid,
                                                         goods_code=str(data['goods_code'][j]),
                                                         is_delete=False).first()
                     goods_weight = round(goods_detail.goods_weight * int(data['goods_qty'][j]) / 1000, 4)
                     goods_volume = round(goods_detail.unit_volume * int(data['goods_qty'][j]), 4)
-                    goods_cost = round(goods_detail.goods_cost * int(data['goods_qty'][j]), 2)
                     if stocklist.objects.filter(openid=self.request.auth.openid, goods_code=str(data['goods_code'][j])).exists():
                         goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
                                                  goods_code=str(data['goods_code'][j])).first()
@@ -209,15 +207,12 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                                                goods_qty=int(data['goods_qty'][j]),
                                                goods_weight=goods_weight,
                                                goods_volume=goods_volume,
-                                               goods_cost=goods_cost,
                                                creater=str(data['creater']))
                     post_data_list.append(post_data)
                     weight_list.append(goods_weight)
                     volume_list.append(goods_volume)
-                    cost_list.append(goods_cost)
                 total_weight = sumOfList(weight_list, len(weight_list))
                 total_volume = sumOfList(volume_list, len(volume_list))
-                total_cost = sumOfList(cost_list, len(cost_list))
                 supplier_city = supplier.objects.filter(openid=self.request.auth.openid,
                                                         supplier_name=str(data['supplier']),
                                                         is_delete=False).first().supplier_city
@@ -246,7 +241,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                 AsnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
                 AsnListModel.objects.filter(openid=self.request.auth.openid, asn_code=str(data['asn_code'])).update(
                     supplier=str(data['supplier']), total_weight=total_weight, total_volume=total_volume,
-                    total_cost=total_cost, transportation_fee=transportation_res)
+                    transportation_fee=transportation_res)
                 return Response({"detail": "success"}, status=200)
             else:
                 raise APIException({"detail": "Supplier does not exists"})
@@ -593,14 +588,9 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
                                                            asn_status=3, supplier=str(data['supplier']),
                                                            goods_code=str(
                                                                data['goodsData'][j].get('goods_code'))).first()
-                goods_detail = goods.objects.filter(openid=self.request.auth.openid,
-                                                    goods_code=str(data['goodsData'][j].get('goods_code')),
-                                                    is_delete=False).first()
                 if int(data['goodsData'][j].get('goods_actual_qty')) == 0:
                     asn_detail.goods_actual_qty = int(data['goodsData'][j].get('goods_actual_qty'))
                     asn_detail.goods_shortage_qty = asn_detail.goods_qty
-                    asn_detail.goods_cost = 0
-                    qs.total_cost = qs.total_cost - (asn_detail.goods_shortage_qty * goods_detail.goods_cost)
                     goods_qty_change.goods_qty = goods_qty_change.goods_qty - asn_detail.goods_qty
                     goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
                     asn_detail.asn_status = 5
@@ -614,8 +604,6 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
                     if goods_qty_check > 0:
                         asn_detail.goods_shortage_qty = goods_qty_check
                         asn_detail.goods_more_qty = 0
-                        asn_detail.goods_cost = asn_detail.goods_cost - (asn_detail.goods_shortage_qty * goods_detail.goods_cost)
-                        qs.total_cost = qs.total_cost - (asn_detail.goods_shortage_qty * goods_detail.goods_cost)
                         goods_qty_change.goods_qty = goods_qty_change.goods_qty - goods_qty_check
                         goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
                         goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
@@ -627,8 +615,6 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
                     elif goods_qty_check < 0:
                         asn_detail.goods_shortage_qty = 0
                         asn_detail.goods_more_qty = abs(goods_qty_check)
-                        asn_detail.goods_cost = asn_detail.goods_cost + (asn_detail.goods_more_qty * goods_detail.goods_cost)
-                        qs.total_cost = qs.total_cost + (asn_detail.goods_more_qty * goods_detail.goods_cost)
                         goods_qty_change.goods_qty = goods_qty_change.goods_qty + abs(goods_qty_check)
                         goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
                         goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
