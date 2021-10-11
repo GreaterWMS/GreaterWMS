@@ -185,15 +185,15 @@ export default {
     }
   },
   upload_center: {
-    uploadinbound: 'UploadInbound',
+    uploadinbound: 'Upload Inbound',
     uploadfiles: 'Upload',
     upload: 'Upload',
-    uploadcustomerfile: 'Uploadcustomerfile',
-    uploadgoodslistfile: 'UploadGoodslistFile',
-    uploadsupplierfile: 'UploadSupplierFile',
-    downloadgoodstemplate: 'GoodsExample',
-    downloadcustomertemplate: 'CustomerExample',
-    downloadsuppliertemplate: 'SupplierExample'
+    uploadcustomerfile: 'Upload Customerfile',
+    uploadgoodslistfile: 'Upload GoodslistFile',
+    uploadsupplierfile: 'Upload SupplierFile',
+    downloadgoodstemplate: 'Goods Example',
+    downloadcustomertemplate: 'Customer Example',
+    downloadsuppliertemplate: 'Supplier Example'
   },
   goods: {
     goods_list: 'Goods List',
