@@ -11,7 +11,7 @@
           <div class="q-pa-md">
             <div style="height: 250px">
               <div class="row">
-                <q-btn-group  style="margin-left: 20px">
+                <q-btn-group>
                   <q-btn :label="$t('upload_center.downloadgoodstemplate')" icon="cloud_download" @click="downloadgoodstemplate()">
                     <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                       {{ $t('upload_center.downloadgoodstemplate') }}
@@ -29,49 +29,56 @@
                   </q-btn>
                 </q-btn-group>
               </div>
-          <div class="row items-start"  style="padding-top: 100px">
-            <div class="q-pa-md">
-              <div class="q-gutter-md row items-start">
-                <q-uploader
-                  style="width:300px;height:200px"
-                  :url = goodslistfile_pathname
-                  :label="$t('upload_center.uploadgoodslistfile') + '  ' + '(for <10M size)'"
-                  accept=".csv, xlsx,xls/*"
-                  :filter="checkFileSize"
-                  @rejected="onRejected"
-                  @added="getfileinfo"
-                />
-              </div>
+              <temmlate v--slot:body="props">
+                <q-tr :props="props">
+                  <q-td key="uploadgoodslistfile" :props="prpos">
+                    <div class="q-pa-md">
+                      <div class="q-gutter-md row items-start">
+                        <q-uploader
+                          style="width:300px;height:200px"
+                          :url = goodslistfile_pathname
+                          :label="$t('upload_center.uploadgoodslistfile') + '  ' + '(for <10M size)'"
+                          accept=".xlsx,csv,xls/*"
+                          :filter="checkFileSize"
+                          @rejected="onRejected"
+                          @added="getfileinfo"
+                        />
+                      </div>
+                    </div>
+                  </q-td>
+                  <q-td key="uploadcustomerfile" :props="props">
+                    <div class="q-pa-md">
+                      <div class="q-gutter-md row items-start">
+                        <q-uploader
+                          style="width:300px;height:200px"
+                          :url = customerfile_pathname
+                          :label="$t('upload_center.uploadcustomerfile') + '  ' + '(for <10M size)'"
+                          accept=".xlsx,csv,xls/*"
+                          :filter="checkFileSize"
+                          @rejected="onRejected"
+                          @added="getfileinfo"
+                        />
+                      </div>
+                    </div>
+                  </q-td>
+                  <q-td key="uploadsupplierfile" :props="props">
+                    <div class="q-pa-md">
+                      <div class="q-gutter-md row items-start">
+                        <q-uploader
+                          style="width:300px;height:200px"
+                          :url = supplierfile_pathname
+                          :label="$t('upload_center.uploadsupplierfile') + '  ' + '(for <10M size)'"
+                          accept=".xlsx,csv,xls/*"
+                          :filter="checkFileSize"
+                          @rejected="onRejected"
+                          @added="getfileinfo"
+                        />
+                      </div>
+                    </div>
+                  </q-td>
+                </q-tr>
+              </temmlate>
             </div>
-            <div class="q-pa-md">
-              <div class="q-gutter-md row items-start">
-                <q-uploader
-                  style="width:300px;height:200px"
-                  :url = customerfile_pathname
-                  :label="$t('upload_center.uploadcustomerfile') + '  ' + '(for <10M size)'"
-                  accept=".csv, xlsx,xls/*"
-                  :filter="checkFileSize"
-                  @rejected="onRejected"
-                  @added="getfileinfo"
-                />
-              </div>
-            </div>
-            <div class="q-pa-md">
-              <div class="q-gutter-md row items-start">
-                <q-uploader
-                  style="width:300px;height:200px"
-                  :url = supplierfile_pathname
-                  :label="$t('upload_center.uploadsupplierfile') + '  ' + '(for <10M size)'"
-                  accept=".csv, xlsx,xls/*"
-                  :filter="checkFileSize"
-                  @rejected="onRejected"
-                  @added="getfileinfo"
-                />
-              </div>
-            </div>
-          </div>
-
-          </div>
           </div>
         </template>
       </q-table>
