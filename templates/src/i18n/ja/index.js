@@ -222,7 +222,8 @@ export default {
       goods_specs: '製品仕様',
       goods_origin: '製品の起源',
       goods_cost: '製品コスト',
-      goods_price: '製品価格'
+      goods_price: '製品価格',
+      print_goods_label: '商品のラベルを印刷します'
     },
     view_unit: {
       goods_unit: '製品単位'
