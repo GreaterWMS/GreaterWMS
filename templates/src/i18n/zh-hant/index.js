@@ -222,7 +222,8 @@ export default {
       goods_specs: '商品規格',
       goods_origin: '商品產地',
       goods_cost: '商品成本',
-      goods_price: '商品價格'
+      goods_price: '商品價格',
+      print_goods_label: '打印商品標簽'
     },
     view_unit: {
       goods_unit: '商品單位'
