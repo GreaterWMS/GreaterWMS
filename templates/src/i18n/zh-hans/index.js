@@ -227,7 +227,8 @@ export default {
       goods_specs: '商品规格',
       goods_origin: '商品产地',
       goods_cost: '商品成本',
-      goods_price: '商品价格'
+      goods_price: '商品价格',
+      print_goods_label: '打印商品标签'
     },
     view_unit: {
       goods_unit: '商品单位'
