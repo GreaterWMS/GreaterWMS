@@ -185,7 +185,7 @@ export default {
     }
   },
   upload_center: {
-    uploadinbound: '上傳入庫清單',
+    initializeupload: '初始化上傳',
     uploadfiles: '上傳文件',
     upload: '上傳',
     uploadcustomerfile: '上傳客戶清單',
@@ -193,7 +193,11 @@ export default {
     uploadsupplierfile: '上傳供應商清單',
     downloadgoodstemplate: '下載商品模板',
     downloadcustomertemplate: '下載客戶模板',
-    downloadsuppliertemplate: '下載供應商模板'
+    downloadsuppliertemplate: '下載供應商模板',
+    addupload: '新增上傳'
+  },
+  community_mall: {
+    communitymall: '社區商城'
   },
   goods: {
     goods_list: '商品列表',
