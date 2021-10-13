@@ -2,7 +2,7 @@
   <q-card class="shadow-11" :style={height:height}>
     <q-card-section>
       <div class="text-h6 text-grey-8 text-weight-bolder">
-        Bar Chart
+        {{selected_product + $t('index.chart')}}
         <q-select outlined v-model="selected_product"
                   class="bg-white float-right q-mb-sm " style="width:300px;"
                   :options="product_options" label="Select Product"/>
@@ -25,16 +25,14 @@ export default {
       selected_product: this.$t('dashboards.total_receipts'),
       data: [
         { product: this.$t('dashboards.total_receipts'), 2015: 43.3, 2016: 85.8, 2017: 93.7, 2018: 100, 2019: 100, 2020: 100, 2021: 100, 2022: 100, 2023: 100, 2024: 100, 2025: 100 },
-        { product: this.$t('dashboards.category_receipt_ranking'), 2015: 83.1, 2016: 73.4, 2017: 55.1 },
-        { product: this.$t('dashboards.receiving_quantity_ranking'), 2015: 86.4, 2016: 65.2, 2017: 82.5 },
-        { product: this.$t('dashboards.Receiving_amount_ranking'), 2015: 72.4, 2016: 53.9, 2017: 39.1 }
+        { product: this.$t('dashboards.category_receipt_ranking'), 2015: 83.1, 2016: 73.4, 2017: 55.1, 2018: 100, 2019: 100, 2020: 100, 2021: 100, 2022: 100, 2023: 100, 2024: 100, 2025: 100 },
+        { product: this.$t('dashboards.receiving_quantity_ranking'), 2015: 86.4, 2016: 65.2, 2017: 82.5, 2018: 100, 2019: 100, 2020: 100, 2021: 100, 2022: 100, 2023: 100, 2024: 100, 2025: 100 },
+        { product: this.$t('dashboards.Receiving_amount_ranking'), 2015: 72.4, 2016: 53.9, 2017: 39.1, 2018: 100, 2019: 100, 2020: 100, 2021: 100, 2022: 100, 2023: 100, 2024: 100, 2025: 100 }
       ],
       product_options: [this.$t('dashboards.total_receipts'), this.$t('dashboards.receiving_quantity_ranking'), this.$t('dashboards.Receiving_amount_ranking')]
     }
   },
   methods: {
-    getBarChartOptions () {
-    }
   },
   computed: {
     getBarChartOptions () {
