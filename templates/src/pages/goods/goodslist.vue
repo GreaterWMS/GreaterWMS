@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <transition appear enter-active-class="animated fadeIn">
+    <div>
+      <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-column-table shadow-24"
         :data="table_list"
@@ -17,600 +17,600 @@
         flat
         bordered
       >
-        <template v-slot:top>
-          <q-btn-group push>
-            <q-btn :label="$t('new')" icon="add" @click="newForm = true">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('newtip') }}
-              </q-tooltip>
-            </q-btn>
-            <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('refreshtip') }}
-              </q-tooltip>
-            </q-btn>
-            <q-btn :label="$t('download')" icon="cloud_download" @click="downloadData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+         <template v-slot:top>
+           <q-btn-group push>
+             <q-btn :label="$t('new')" icon="add" @click="newForm = true">
+               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                 {{ $t('newtip') }}
+               </q-tooltip>
+             </q-btn>
+             <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
+               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                 {{ $t('refreshtip') }}
+               </q-tooltip>
+             </q-btn>
+             <q-btn :label="$t('download')" icon="cloud_download" @click="downloadData()">
+               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('downloadtip') }}
-              </q-tooltip>
-            </q-btn>
-          </q-btn-group>
-          <q-space />
-          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
-            <template v-slot:append>
-              <q-icon name="search" @click="getSearchList()"/>
-            </template>
-          </q-input>
-        </template>
-        <template v-slot:body="props">
-          <q-tr :props="props">
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_code" :props="props">
-                <q-input dense
-                         outlined
-                         square
-                         v-model="editFormData.goods_code"
-                         :label="$t('goods.view_goodslist.goods_code')"
-                         autofocus
-                         :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Code']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_code" :props="props">
-                {{ props.row.goods_code }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_desc" :props="props">
-                <q-input dense
-                         outlined
-                         square
-                         v-model="editFormData.goods_desc"
-                         :label="$t('goods.view_goodslist.goods_desc')"
-                         :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Description']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_desc" :props="props">
-                {{ props.row.goods_desc }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_supplier" :props="props">
-                <q-select dense
+               </q-tooltip>
+             </q-btn>
+           </q-btn-group>
+           <q-space />
+           <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
+             <template v-slot:append>
+               <q-icon name="search" @click="getSearchList()"/>
+             </template>
+           </q-input>
+         </template>
+         <template v-slot:body="props">
+           <q-tr :props="props">
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_code" :props="props">
+                 <q-input dense
                           outlined
                           square
-                          v-model="editFormData.goods_supplier"
-                          :options="supplier_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('goods.view_goodslist.goods_supplier')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_supplier" :props="props">
-                {{ props.row.goods_supplier }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_weight" :props="props">
-                <q-input dense
-                         outlined
-                         square
-                         v-model.number="editFormData.goods_weight"
-                         type="number"
-                         :label="$t('goods.view_goodslist.goods_weight')"
-                         :rules="[ val => val && val > 0 || 'Goods Weight Must Greater Than 0']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_weight" :props="props">
-                {{ props.row.goods_weight }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_w" :props="props">
-                <q-input dense
-                         outlined
-                         square
-                         v-model.number="editFormData.goods_w"
-                         type="number"
-                         :label="$t('goods.view_goodslist.goods_w')"
-                         :rules="[ val => val && val > 0 || 'Goods Width Must Greater Than 0']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_w" :props="props">
-                {{ props.row.goods_w }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_d" :props="props">
-                <q-input dense
-                         outlined
-                         square
-                         v-model.number="editFormData.goods_d"
-                         type="number"
-                         :label="$t('goods.view_goodslist.goods_d')"
-                         :rules="[ val => val && val > 0 || 'Goods Depth Must Greater Than 0']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_d" :props="props">
-                {{ props.row.goods_d }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_h" :props="props">
-                <q-input dense
-                         outlined
-                         square
-                         v-model.number="editFormData.goods_h"
-                         type="number"
-                         :label="$t('goods.view_goodslist.goods_h')"
-                         :rules="[ val => val && val > 0 || 'Goods Height Must Greater Than 0']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_h" :props="props">
-                {{ props.row.goods_h }}
-              </q-td>
-            </template>
-            <q-td key="unit_volume" :props="props">
-              {{ props.row.unit_volume }}
-            </q-td>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_unit" :props="props">
-                <q-select dense
+                          v-model="editFormData.goods_code"
+                          :label="$t('goods.view_goodslist.goods_code')"
+                          autofocus
+                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Code']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_code" :props="props">
+                 {{ props.row.goods_code }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_desc" :props="props">
+                 <q-input dense
                           outlined
                           square
-                          v-model="editFormData.goods_unit"
-                          :options="goods_unit_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('goods.view_goodslist.goods_unit')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Unit']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_unit" :props="props">
-                {{ props.row.goods_unit }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_class" :props="props">
-                <q-select dense
+                          v-model="editFormData.goods_desc"
+                          :label="$t('goods.view_goodslist.goods_desc')"
+                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Description']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_desc" :props="props">
+                 {{ props.row.goods_desc }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_supplier" :props="props">
+                 <q-select dense
+                           outlined
+                           square
+                           v-model="editFormData.goods_supplier"
+                           :options="supplier_list"
+                           transition-show="scale"
+                           transition-hide="scale"
+                           :label="$t('goods.view_goodslist.goods_supplier')"
+                           :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_supplier" :props="props">
+                 {{ props.row.goods_supplier }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_weight" :props="props">
+                 <q-input dense
                           outlined
                           square
-                          v-model="editFormData.goods_class"
-                          :options="goods_class_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('goods.view_goodslist.goods_class')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Class']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_class" :props="props">
-                {{ props.row.goods_class }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_brand" :props="props">
-                <q-select dense
+                          v-model.number="editFormData.goods_weight"
+                          type="number"
+                          :label="$t('goods.view_goodslist.goods_weight')"
+                          :rules="[ val => val && val > 0 || 'Goods Weight Must Greater Than 0']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_weight" :props="props">
+                 {{ props.row.goods_weight }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_w" :props="props">
+                 <q-input dense
                           outlined
                           square
-                          v-model="editFormData.goods_brand"
-                          :options="goods_brand_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('goods.view_goodslist.goods_brand')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Brand']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_brand" :props="props">
-                {{ props.row.goods_brand }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_color" :props="props">
-                <q-select dense
+                          v-model.number="editFormData.goods_w"
+                          type="number"
+                          :label="$t('goods.view_goodslist.goods_w')"
+                          :rules="[ val => val && val > 0 || 'Goods Width Must Greater Than 0']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_w" :props="props">
+                 {{ props.row.goods_w }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_d" :props="props">
+                 <q-input dense
                           outlined
                           square
-                          v-model="editFormData.goods_color"
-                          :options="goods_color_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('goods.view_goodslist.goods_color')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Color']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_color" :props="props">
-                {{ props.row.goods_color }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_shape" :props="props">
-                <q-select dense
+                          v-model.number="editFormData.goods_d"
+                          type="number"
+                          :label="$t('goods.view_goodslist.goods_d')"
+                          :rules="[ val => val && val > 0 || 'Goods Depth Must Greater Than 0']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_d" :props="props">
+                 {{ props.row.goods_d }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_h" :props="props">
+                 <q-input dense
                           outlined
                           square
-                          v-model="editFormData.goods_shape"
-                          :options="goods_shape_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('goods.view_goodslist.goods_shape')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Shape']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_shape" :props="props">
-                {{ props.row.goods_shape }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_specs" :props="props">
-                <q-select dense
+                          v-model.number="editFormData.goods_h"
+                          type="number"
+                          :label="$t('goods.view_goodslist.goods_h')"
+                          :rules="[ val => val && val > 0 || 'Goods Height Must Greater Than 0']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_h" :props="props">
+                 {{ props.row.goods_h }}
+               </q-td>
+             </template>
+             <q-td key="unit_volume" :props="props">
+               {{ props.row.unit_volume }}
+             </q-td>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_unit" :props="props">
+                 <q-select dense
+                           outlined
+                           square
+                           v-model="editFormData.goods_unit"
+                           :options="goods_unit_list"
+                           transition-show="scale"
+                           transition-hide="scale"
+                           :label="$t('goods.view_goodslist.goods_unit')"
+                           :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Unit']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_unit" :props="props">
+                 {{ props.row.goods_unit }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_class" :props="props">
+                 <q-select dense
+                           outlined
+                           square
+                           v-model="editFormData.goods_class"
+                           :options="goods_class_list"
+                           transition-show="scale"
+                           transition-hide="scale"
+                           :label="$t('goods.view_goodslist.goods_class')"
+                           :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Class']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_class" :props="props">
+                 {{ props.row.goods_class }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_brand" :props="props">
+                 <q-select dense
+                           outlined
+                           square
+                           v-model="editFormData.goods_brand"
+                           :options="goods_brand_list"
+                           transition-show="scale"
+                           transition-hide="scale"
+                           :label="$t('goods.view_goodslist.goods_brand')"
+                           :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Brand']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_brand" :props="props">
+                 {{ props.row.goods_brand }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_color" :props="props">
+                 <q-select dense
+                           outlined
+                           square
+                           v-model="editFormData.goods_color"
+                           :options="goods_color_list"
+                           transition-show="scale"
+                           transition-hide="scale"
+                           :label="$t('goods.view_goodslist.goods_color')"
+                           :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Color']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_color" :props="props">
+                 {{ props.row.goods_color }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_shape" :props="props">
+                 <q-select dense
+                           outlined
+                           square
+                           v-model="editFormData.goods_shape"
+                           :options="goods_shape_list"
+                           transition-show="scale"
+                           transition-hide="scale"
+                           :label="$t('goods.view_goodslist.goods_shape')"
+                           :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Shape']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_shape" :props="props">
+                 {{ props.row.goods_shape }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_specs" :props="props">
+                 <q-select dense
+                           outlined
+                           square
+                           v-model="editFormData.goods_specs"
+                           :options="goods_specs_list"
+                           transition-show="scale"
+                           transition-hide="scale"
+                           :label="$t('goods.view_goodslist.goods_specs')"
+                           :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Specs']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_specs" :props="props">
+                 {{ props.row.goods_specs }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_origin" :props="props">
+                 <q-select dense
+                           outlined
+                           square
+                           v-model="editFormData.goods_origin"
+                           :options="goods_origin_list"
+                           transition-show="scale"
+                           transition-hide="scale"
+                           :label="$t('goods.view_goodslist.goods_origin')"
+                           :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Origin']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_origin" :props="props">
+                 {{ props.row.goods_origin }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_cost" :props="props">
+                 <q-input dense
                           outlined
                           square
-                          v-model="editFormData.goods_specs"
-                          :options="goods_specs_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('goods.view_goodslist.goods_specs')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Specs']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_specs" :props="props">
-                {{ props.row.goods_specs }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_origin" :props="props">
-                <q-select dense
+                          v-model.number="editFormData.goods_cost"
+                          type="number"
+                          :label="$t('goods.view_goodslist.goods_cost')"
+                          :rules="[ val => val && val > 0 || 'Please Enter the Goods Cost']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_cost" :props="props">
+                 {{ props.row.goods_cost }}
+               </q-td>
+             </template>
+             <template v-if="props.row.id === editid">
+               <q-td key="goods_price" :props="props">
+                 <q-input dense
                           outlined
                           square
-                          v-model="editFormData.goods_origin"
-                          :options="goods_origin_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('goods.view_goodslist.goods_origin')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Origin']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_origin" :props="props">
-                {{ props.row.goods_origin }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_cost" :props="props">
-                <q-input dense
-                         outlined
-                         square
-                         v-model.number="editFormData.goods_cost"
-                         type="number"
-                         :label="$t('goods.view_goodslist.goods_cost')"
-                         :rules="[ val => val && val > 0 || 'Please Enter the Goods Cost']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_cost" :props="props">
-                {{ props.row.goods_cost }}
-              </q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_price" :props="props">
-                <q-input dense
-                         outlined
-                         square
-                         v-model.number="editFormData.goods_price"
-                         type="number"
-                         :label="$t('goods.view_goodslist.goods_price')"
-                         :rules="[ val => val && val > 0 || 'Please Enter the Goods Price']"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="goods_price" :props="props">
-                {{ props.row.goods_price }}
-              </q-td>
-            </template>
-            <q-td key="creater" :props="props">
-              {{ props.row.creater }}
-            </q-td>
-            <q-td key="create_time" :props="props">
-              {{ props.row.create_time }}
-            </q-td>
-            <q-td key="update_time" :props="props">
-              {{ props.row.update_time }}
-            </q-td>
-            <template v-if="!editMode">
-              <q-td key="action" :props="props" style="width: 100px">
-                <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                          v-model.number="editFormData.goods_price"
+                          type="number"
+                          :label="$t('goods.view_goodslist.goods_price')"
+                          :rules="[ val => val && val > 0 || 'Please Enter the Goods Price']"
+                 />
+               </q-td>
+             </template>
+             <template v-else-if="props.row.id !== editid">
+               <q-td key="goods_price" :props="props">
+                 {{ props.row.goods_price }}
+               </q-td>
+             </template>
+             <q-td key="creater" :props="props">
+               {{ props.row.creater }}
+             </q-td>
+             <q-td key="create_time" :props="props">
+               {{ props.row.create_time }}
+             </q-td>
+             <q-td key="update_time" :props="props">
+               {{ props.row.update_time }}
+             </q-td>
+             <template v-if="!editMode">
+               <q-td key="action" :props="props" style="width: 100px">
+                 <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
                               $q.localStorage.getItem('staff_type') !== 'Outbound' &&
                               $q.localStorage.getItem('staff_type') !== 'StockControl'
                              "
-                       round flat push color="info" icon="print" @click="viewData(props.row)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('goods.view_goodslist.print_goods_label') }}
-                  </q-tooltip>
-                </q-btn>
-                <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                        round flat push color="info" icon="print" @click="viewData(props.row)">
+                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                     {{ $t('goods.view_goodslist.print_goods_label') }}
+                   </q-tooltip>
+                 </q-btn>
+                 <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
+                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                     {{ $t('edit') }}
                   </q-tooltip>
-                </q-btn>
-                <q-btn round flat push color="dark" icon="delete" @click="deleteData(props.row.id)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                 </q-btn>
+                 <q-btn round flat push color="dark" icon="delete" @click="deleteData(props.row.id)">
+                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                     {{ $t('delete') }}
                   </q-tooltip>
-                </q-btn>
-              </q-td>
-            </template>
-            <template v-else-if="editMode">
-              <template v-if="props.row.id === editid">
-                <q-td key="action" :props="props" style="width: 100px">
-                  <q-btn round flat push color="secondary" icon="check" @click="editDataSubmit()">
-                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                      {{ $t('confirmedit') }}
-                    </q-tooltip>
-                  </q-btn>
-                  <q-btn round flat push color="red" icon="close" @click="editDataCancel()">
-                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                      {{ $t('canceledit') }}
-                    </q-tooltip>
-                  </q-btn>
-                </q-td>
-              </template>
-              <template v-else-if="props.row.id !== editid"></template>
-            </template>
-          </q-tr>
-        </template>
-      </q-table>
-    </transition>
-    <template>
-      <div class="q-pa-lg flex flex-center">
-        <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
-          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-            {{ $t('previous') }}
-          </q-tooltip>
-        </q-btn>
-        <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
-          <q-tooltip content-class="vbg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-            {{ $t('next') }}
-          </q-tooltip>
-        </q-btn>
-        <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
-      </div>
-    </template>
-    <q-dialog v-model="newForm">
-      <q-card class="shadow-24">
-        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-          <div>{{ $t('newtip') }}</div>
-          <q-space />
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
+                 </q-btn>
+               </q-td>
+               </template>
+             <template v-else-if="editMode">
+               <template v-if="props.row.id === editid">
+                 <q-td key="action" :props="props" style="width: 100px">
+                 <q-btn round flat push color="secondary" icon="check" @click="editDataSubmit()">
+                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                    {{ $t('confirmedit') }}
+                  </q-tooltip>
+                 </q-btn>
+                 <q-btn round flat push color="red" icon="close" @click="editDataCancel()">
+                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                    {{ $t('canceledit') }}
+                  </q-tooltip>
+                 </q-btn>
+               </q-td>
+               </template>
+                <template v-else-if="props.row.id !== editid"></template>
+             </template>
+           </q-tr>
+         </template>
+        </q-table>
+      </transition>
+      <template>
+        <div class="q-pa-lg flex flex-center">
+          <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
+            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+              {{ $t('previous') }}
+            </q-tooltip>
           </q-btn>
-        </q-bar>
-        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-          <q-input dense
-                   outlined
-                   square
-                   v-model="newFormData.goods_code"
-                   :label="$t('goods.view_goodslist.goods_code')"
-                   autofocus
-                   :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Code']"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model="newFormData.goods_desc"
-                   :label="$t('goods.view_goodslist.goods_desc')"
-                   :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Description']"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_supplier"
-                    :options="supplier_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_supplier')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier']"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model.number="newFormData.goods_weight"
-                   type="number"
-                   :label="$t('goods.view_goodslist.goods_weight')"
-                   :rules="[ val => val && val > 0 || 'Goods Weight Must Greater Than 0']"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model.number="newFormData.goods_w"
-                   type="number"
-                   :label="$t('goods.view_goodslist.goods_w')"
-                   :rules="[ val => val && val > 0 || 'Goods Width Must Greater Than 0']"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model.number="newFormData.goods_d"
-                   type="number"
-                   :label="$t('goods.view_goodslist.goods_d')"
-                   :rules="[ val => val && val > 0 || 'Goods Depth Must Greater Than 0']"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model.number="newFormData.goods_h"
-                   type="number"
-                   :label="$t('goods.view_goodslist.goods_h')"
-                   :rules="[ val => val && val > 0 || 'Goods Height Must Greater Than 0']"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_unit"
-                    :options="goods_unit_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_unit')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Unit']"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_class"
-                    :options="goods_class_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_class')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Class']"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_brand"
-                    :options="goods_brand_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_brand')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Brand']"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_color"
-                    :options="goods_color_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_color')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Color']"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_shape"
-                    :options="goods_shape_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_shape')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Shape']"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_specs"
-                    :options="goods_specs_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_specs')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Specs']"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_origin"
-                    :options="goods_origin_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_origin')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Origin']"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model.number="newFormData.goods_cost"
-                   type="number"
-                   :label="$t('goods.view_goodslist.goods_cost')"
-                   :rules="[ val => val && val > 0 || 'Please Enter The Goods Cost']"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model.number="newFormData.goods_price"
-                   type="number"
-                   :label="$t('goods.view_goodslist.goods_price')"
-                   :rules="[ val => val && val > 0 || 'Please Enter The Goods Price']"
-                   @keyup.enter="newDataSubmit()"/>
-        </q-card-section>
-        <div style="float: right; padding: 15px 15px 15px 0">
-          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
-          <q-btn color="primary" @click="newDataSubmit()">{{ $t('submit') }}</q-btn>
-        </div>
-      </q-card>
-    </q-dialog>
-    <q-dialog v-model="deleteForm">
-      <q-card class="shadow-24">
-        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-          <div>{{ $t('delete') }}</div>
-          <q-space />
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+          <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
+            <q-tooltip content-class="vbg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+              {{ $t('next') }}
+            </q-tooltip>
           </q-btn>
-        </q-bar>
-        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-          {{ $t('deletetip') }}
-        </q-card-section>
-        <div style="float: right; padding: 15px 15px 15px 0">
-          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="deleteDataCancel()">{{ $t('cancel') }}</q-btn>
-          <q-btn color="primary" @click="deleteDataSubmit()">{{ $t('submit') }}</q-btn>
+          <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
         </div>
-      </q-card>
-    </q-dialog>
-    <q-dialog v-model="viewForm">
-      <div id="printMe" style="width: 400px;height:230px;background-color: white">
-        <q-card-section>
-          <div class="row" style="height: 50px">
-            <div class="col-3">
-              <img src='/statics/goods/logo.png'  style="width: 60px;height: 50px;margin-top: 5px;margin-left: 5px">
+      </template>
+      <q-dialog v-model="newForm">
+       <q-card class="shadow-24">
+         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+           <div>{{ $t('newtip') }}</div>
+           <q-space />
+           <q-btn dense flat icon="close" v-close-popup>
+             <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
+           </q-btn>
+         </q-bar>
+         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+           <q-input dense
+                    outlined
+                    square
+                    v-model="newFormData.goods_code"
+                    :label="$t('goods.view_goodslist.goods_code')"
+                    autofocus
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Code']"
+                    @keyup.enter="newDataSubmit()"/>
+           <q-input dense
+                    outlined
+                    square
+                    v-model="newFormData.goods_desc"
+                    :label="$t('goods.view_goodslist.goods_desc')"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Description']"
+                    @keyup.enter="newDataSubmit()"/>
+           <q-select dense
+                     outlined
+                     square
+                     v-model="newFormData.goods_supplier"
+                     :options="supplier_list"
+                     transition-show="scale"
+                     transition-hide="scale"
+                     :label="$t('goods.view_goodslist.goods_supplier')"
+                     :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier']"
+                     @keyup.enter="newDataSubmit()"/>
+           <q-input dense
+                    outlined
+                    square
+                    v-model.number="newFormData.goods_weight"
+                    type="number"
+                    :label="$t('goods.view_goodslist.goods_weight')"
+                    :rules="[ val => val && val > 0 || 'Goods Weight Must Greater Than 0']"
+                    @keyup.enter="newDataSubmit()"/>
+           <q-input dense
+                    outlined
+                    square
+                    v-model.number="newFormData.goods_w"
+                    type="number"
+                    :label="$t('goods.view_goodslist.goods_w')"
+                    :rules="[ val => val && val > 0 || 'Goods Width Must Greater Than 0']"
+                    @keyup.enter="newDataSubmit()"/>
+           <q-input dense
+                    outlined
+                    square
+                    v-model.number="newFormData.goods_d"
+                    type="number"
+                    :label="$t('goods.view_goodslist.goods_d')"
+                    :rules="[ val => val && val > 0 || 'Goods Depth Must Greater Than 0']"
+                    @keyup.enter="newDataSubmit()"/>
+           <q-input dense
+                    outlined
+                    square
+                    v-model.number="newFormData.goods_h"
+                    type="number"
+                    :label="$t('goods.view_goodslist.goods_h')"
+                    :rules="[ val => val && val > 0 || 'Goods Height Must Greater Than 0']"
+                    @keyup.enter="newDataSubmit()"/>
+           <q-select dense
+                     outlined
+                     square
+                     v-model="newFormData.goods_unit"
+                     :options="goods_unit_list"
+                     transition-show="scale"
+                     transition-hide="scale"
+                     :label="$t('goods.view_goodslist.goods_unit')"
+                     :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Unit']"
+                     @keyup.enter="newDataSubmit()"/>
+           <q-select dense
+                     outlined
+                     square
+                     v-model="newFormData.goods_class"
+                     :options="goods_class_list"
+                     transition-show="scale"
+                     transition-hide="scale"
+                     :label="$t('goods.view_goodslist.goods_class')"
+                     :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Class']"
+                     @keyup.enter="newDataSubmit()"/>
+           <q-select dense
+                     outlined
+                     square
+                     v-model="newFormData.goods_brand"
+                     :options="goods_brand_list"
+                     transition-show="scale"
+                     transition-hide="scale"
+                     :label="$t('goods.view_goodslist.goods_brand')"
+                     :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Brand']"
+                     @keyup.enter="newDataSubmit()"/>
+           <q-select dense
+                     outlined
+                     square
+                     v-model="newFormData.goods_color"
+                     :options="goods_color_list"
+                     transition-show="scale"
+                     transition-hide="scale"
+                     :label="$t('goods.view_goodslist.goods_color')"
+                     :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Color']"
+                     @keyup.enter="newDataSubmit()"/>
+           <q-select dense
+                     outlined
+                     square
+                     v-model="newFormData.goods_shape"
+                     :options="goods_shape_list"
+                     transition-show="scale"
+                     transition-hide="scale"
+                     :label="$t('goods.view_goodslist.goods_shape')"
+                     :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Shape']"
+                     @keyup.enter="newDataSubmit()"/>
+           <q-select dense
+                     outlined
+                     square
+                     v-model="newFormData.goods_specs"
+                     :options="goods_specs_list"
+                     transition-show="scale"
+                     transition-hide="scale"
+                     :label="$t('goods.view_goodslist.goods_specs')"
+                     :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Specs']"
+                     @keyup.enter="newDataSubmit()"/>
+           <q-select dense
+                     outlined
+                     square
+                     v-model="newFormData.goods_origin"
+                     :options="goods_origin_list"
+                     transition-show="scale"
+                     transition-hide="scale"
+                     :label="$t('goods.view_goodslist.goods_origin')"
+                     :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Origin']"
+                     @keyup.enter="newDataSubmit()"/>
+           <q-input dense
+                    outlined
+                    square
+                    v-model.number="newFormData.goods_cost"
+                    type="number"
+                    :label="$t('goods.view_goodslist.goods_cost')"
+                    :rules="[ val => val && val > 0 || 'Please Enter The Goods Cost']"
+                    @keyup.enter="newDataSubmit()"/>
+           <q-input dense
+                    outlined
+                    square
+                    v-model.number="newFormData.goods_price"
+                    type="number"
+                    :label="$t('goods.view_goodslist.goods_price')"
+                    :rules="[ val => val && val > 0 || 'Please Enter The Goods Price']"
+                    @keyup.enter="newDataSubmit()"/>
+         </q-card-section>
+         <div style="float: right; padding: 15px 15px 15px 0">
+           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
+           <q-btn color="primary" @click="newDataSubmit()">{{ $t('submit') }}</q-btn>
+         </div>
+       </q-card>
+     </q-dialog>
+      <q-dialog v-model="deleteForm">
+       <q-card class="shadow-24">
+         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+           <div>{{ $t('delete') }}</div>
+           <q-space />
+           <q-btn dense flat icon="close" v-close-popup>
+             <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+           </q-btn>
+         </q-bar>
+         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+           {{ $t('deletetip') }}
+         </q-card-section>
+         <div style="float: right; padding: 15px 15px 15px 0">
+           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="deleteDataCancel()">{{ $t('cancel') }}</q-btn>
+           <q-btn color="primary" @click="deleteDataSubmit()">{{ $t('submit') }}</q-btn>
+         </div>
+       </q-card>
+     </q-dialog>
+      <q-dialog v-model="viewForm">
+        <div id="printMe" style="width: 400px;height:230px;background-color: white">
+          <q-card-section>
+            <div class="row" style="height: 50px">
+              <div class="col-3">
+                <img src='/statics/goods/logo.png'  style="width: 60px;height: 50px;margin-top: 5px;margin-left: 5px">
+              </div>
+              <div class="col-9" style="height: 50px;float: contour;margin-top: 10px" >
+                <p style="font-size: 20px;font-weight: 550">{{$t('goods.view_goodslist.goods_code') + ':' + goods_code}}</p>
+              </div>
             </div>
-            <div class="col-9" style="height: 50px;float: contour;margin-top: 10px" >
-              <p style="font-size: 20px;font-weight: 550">{{$t('goods.view_goodslist.goods_code') + ':' + goods_code}}</p>
+            <hr>
+            <div class="row">
+              <div class="col-8" style="margin-top: 30px;padding-left: 3%">
+                <p style="font-size: 20px;font-weight: 550">{{$t('goods.view_goodslist.goods_name') + ':'}}</p>
+                <p style="font-size: 20px;font-weight: 550">{{goods_desc}}</p>
+              </div>
+              <div class="col-4" style="margin-top: 25px;">
+                <img :src="bar_code" style="width: 70%;margin-left: 23px"/>
+              </div>
             </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-8" style="margin-top: 30px;padding-left: 3%">
-              <p style="font-size: 20px;font-weight: 550">{{$t('goods.view_goodslist.goods_name') + ':'}}</p>
-              <p style="font-size: 20px;font-weight: 550">{{goods_desc}}</p>
-            </div>
-            <div class="col-4" style="margin-top: 25px;">
-              <img :src="bar_code" style="width: 70%;margin-left: 23px"/>
-            </div>
-          </div>
-        </q-card-section>
-      </div>
-      <div style="float: right; padding: 15px 15px 15px 0">
-        <q-btn color="primary" icon="print" v-print="printObj">print</q-btn>
-      </div>
-    </q-dialog>
-  </div>
+          </q-card-section>
+        </div>
+        <div style="float: right; padding: 15px 15px 15px 0">
+          <q-btn color="primary" icon="print" v-print="printObj">print</q-btn>
+        </div>
+      </q-dialog>
+    </div>
 </template>
-<router-view />
+    <router-view />
 
 <script>
 import { getauth, postauth, putauth, deleteauth, getfile } from 'boot/axios_request'
@@ -972,11 +972,11 @@ export default {
       console.log(e)
       var QRCode = require('qrcode')
       QRCode.toDataURL(e.bar_code, [{
-          errorCorrectionLevel: 'H',
-          mode: 'byte',
-          version: '2',
-          type: 'image/jpeg'
-        }]
+        errorCorrectionLevel: 'H',
+        mode: 'byte',
+        version: '2',
+        type: 'image/jpeg'
+      }]
       ).then(url => {
         _this.bar_code = url
       }).catch(err => {

@@ -29,7 +29,7 @@ export default {
         { product: this.$t('dashboards.sales_volume_ranking'), 2015: 86.4, 2016: 65.2, 2017: 82.5 },
         { product: this.$t('dashboards.sales_volumes_ranking'), 2015: 72.4, 2016: 53.9, 2017: 39.1 }
       ],
-      product_options: [this.$t('dashboards.total_sales'), this.$t('dashboards.category_sales_ranking'), this.$t('dashboards.sales_volume_ranking'), this.$t('dashboards.sales_volumes_ranking')]
+      product_options: [this.$t('dashboards.total_sales'), this.$t('dashboards.sales_volume_ranking'), this.$t('dashboards.sales_volumes_ranking')]
     }
   },
   methods: {
