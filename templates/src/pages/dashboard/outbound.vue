@@ -1,17 +1,17 @@
 <template>
-<q-card class="shadow-11" :style={height:height}>
-  <q-card-section>
-    <div class="text-h6 text-grey-8 text-weight-bolder">
-      Bar Chart
-      <q-select outlined v-model="selected_product"
-                class="bg-white float-right q-mb-sm " style="width:300px;"
-                :options="product_options" label="Select Product"/>
-    </div>
-  </q-card-section>
-  <q-card-section class="q-pa-none">
-    <IEcharts :option="getBarChartOptions" :resizable="true" style="height: 600px; width: 100%"/>
-  </q-card-section>
-</q-card>
+  <q-card class="shadow-1" :style={height:height}>
+    <q-card-section>
+      <div class="text-h6 text-grey-8 text-weight-bolder">
+        {{selected_product + $t('index.chart')}}
+        <q-select outlined v-model="selected_product"
+                  class="bg-white float-right q-mb-sm " style="width:300px;"
+                  :options="product_options" label="Select Product"/>
+      </div>
+    </q-card-section>
+    <q-card-section class="q-pa-none">
+      <IEcharts :option="getBarChartOptions" :resizable="true" style="height: 600px; width: 100%"/>
+    </q-card-section>
+  </q-card>
 </template>
 
 <script>
@@ -33,18 +33,14 @@ export default {
     }
   },
   methods: {
-    getBarChartOptions () {
-    }
   },
   computed: {
     getBarChartOptions () {
-      console.log(1)
       const _this = this
       let buisness
       const filtered_data = _this.data.filter(function (item) {
         return item.product === _this.selected_product
       })
-      console.log(filtered_data)
       return {
         grid: {
           bottom: '1%'
@@ -57,7 +53,7 @@ export default {
         },
         tooltip: {},
         dataset: {
-          dimensions: ['product', '2015', '2016', '2017'],
+          dimensions: ['product', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
           source: filtered_data
         },
         buisness,
