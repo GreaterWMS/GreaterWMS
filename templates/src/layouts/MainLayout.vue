@@ -279,7 +279,7 @@
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
                   v-if="$q.platform.is.desktop"
-                  clickable to="/uploadcenter/uploadinbound" @click="linkChange('uploadinbound')" v-ripple exact :active="link === 'uploadinbound'" :class="{ 'my-menu-link': link === 'uploadinbound' }">
+                  clickable to="/uploadcenter/initializeupload" @click="linkChange('uploadcenter')" v-ripple exact :active="link === 'uploadcenter'" :class="{ 'my-menu-link': link === 'uploadcenter' }">
             <q-item-section avatar>
               <q-icon name="file_upload" />
             </q-item-section>
