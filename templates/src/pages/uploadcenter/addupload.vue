@@ -6,10 +6,12 @@
         row-key="id"
         :table-style="{ height: height }"
         flat
+        :columns="columns"
+        hide-bottom
       >
         <template v-slot:top>
           <div class="q-pa-md">
-            <div style="height: 250px">
+            <div>
               <div class="row">
                 <q-btn-group>
                   <q-btn :label="$t('upload_center.downloadgoodstemplate')" icon="cloud_download" @click="downloadgoodstemplate()">
@@ -37,11 +39,10 @@
                         style="width:300px;height:200px"
                         :url = goodslistfile_pathname
                         :method="post"
-                        :headers="[{name:'token',valye:token}]"
+                        :headers="[{name:'token',value:token}, {name: 'language', value: lang}]"
                         :field-name="(file)=>file"
                         :label="$t('upload_center.uploadgoodslistfile')"
                         accept=".xlsx,csv,xls/*"
-                        :filter="checkFileSize"
                         @rejected="onRejected"
                         @added="getfileinfo"
                       />
@@ -55,11 +56,10 @@
                         style="width:300px;height:200px"
                         :url = customerfile_pathname
                         :method="post"
-                        :headers="[{name:'token',valye:token}]"
+                        :headers="[{name: 'token',value: token}, {name: 'language', value: lang}]"
                         :field-name="(file)=>'file'"
                         :label="$t('upload_center.uploadcustomerfile')"
                         accept=".xlsx,csv,xls/*"
-                        :filter="checkFileSize"
                         @rejected="onRejected"
                         @added="getfileinfo"
                       />
@@ -73,11 +73,10 @@
                         style="width:300px;height:200px"
                         :url = supplierfile_pathname
                         :method="post"
-                        :headers="[{name:'token',valye:token}]"
+                        :headers="[{name:'token',value:token}, {name: 'language', value: lang}]"
                         :field-name="(file)=>file"
                         :label="$t('upload_center.uploadsupplierfile')"
                         accept=".xlsx,csv,xls/*"
-                        :filter="checkFileSize"
                         @rejected="onRejected"
                         @added="getfileinfo"
                       />
@@ -98,10 +97,12 @@
 import { baseurl } from 'boot/axios_request'
 import { LocalStorage, openURL } from 'quasar'
 export default {
-  name: 'Pagecapital',
+  name: 'Pageaddupload',
   data () {
     return {
       height: '',
+      token: LocalStorage.getItem('openid'),
+      lang: LocalStorage.getItem('lang'),
       capitalfile_pathname: baseurl + 'uploadfile/capitalfile/',
       customerfile_pathname: baseurl + 'uploadfile/customerfile/',
       freightfile_pathname: baseurl + 'uploadfile/freightfile/',
@@ -110,9 +111,6 @@ export default {
     }
   },
   methods: {
-    checkFileSize (files) {
-      return files.filter(file => file.size < 10485760)
-    },
     checkFileType (files) {
       return files.filter(file => file.type === '.xlsx, xls,csv/*')
     },
@@ -162,9 +160,9 @@ export default {
   mounted () {
     var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 260) + 'px'
+      _this.height = String(_this.$q.screen.height - 500) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 260 + '' + 'px'
+      _this.height = _this.$q.screen.height - 500 + '' + 'px'
     }
   },
   updated () {

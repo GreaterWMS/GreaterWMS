@@ -6,12 +6,14 @@
         row-key="id"
         :table-style="{ height: height }"
         flat
+        :columns="columns"
+        hide-bottom
       >
         <template v-slot:top>
           <div class="q-pa-md">
-            <div style="height: 250px">
+            <div>
               <div class="row">
-                <q-btn-group>
+                <q-btn-group style="margin-left: 17px">
                   <q-btn :label="$t('upload_center.downloadgoodstemplate')" icon="cloud_download" @click="downloadgoodstemplate()">
                     <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                       {{ $t('upload_center.downloadgoodstemplate') }}
@@ -29,63 +31,60 @@
                   </q-btn>
                 </q-btn-group>
               </div>
-                <q-tr :props="props">
-                  <q-td key="uploadgoodslistfile" :props="prpos">
-                    <div class="q-pa-md">
-                      <div class="q-gutter-md row items-start">
-                        <q-uploader
-                          style="width:300px;height:200px"
-                          :url = goodslistfile_pathname
-                          :method="post"
-                          :headers="[{name:'token',valye:token}]"
-                          :field-name="(file)=>'file'"
-                          :label="$t('upload_center.uploadgoodslistfile')"
-                          accept=".xlsx,csv,xls/*"
-                          :filter="checkFileSize"
-                          @rejected="onRejected"
-                          @added="getfileinfo"
-                        />
-                      </div>
+              <q-tr :props="props">
+                <q-td key="uploadgoodslistfile" :props="prpos">
+                  <div class="q-pa-md">
+                    <div class="q-gutter-md row items-start">
+                      <q-uploader
+                        style="width:300px;height:200px"
+                        :url = goodslistfile_pathname
+                        :method="post"
+                        :headers="[{name:'token',value:token}, {name: 'language', value: lang}]"
+                        :field-name="(file)=>'file'"
+                        :label="$t('upload_center.uploadgoodslistfile')"
+                        accept=".xlsx,csv,xls/*"
+                        @rejected="onRejected"
+                        @added="getfileinfo"
+                      />
                     </div>
-                  </q-td>
-                  <q-td key="uploadcustomerfile" :props="props">
-                    <div class="q-pa-md">
-                      <div class="q-gutter-md row items-start">
-                        <q-uploader
-                          style="width:300px;height:200px"
-                          :url = customerfile_pathname
-                          :method="post"
-                          :headers="[{name:'token',valye:token}]"
-                          :field-name="(file)=>'file'"
-                          :label="$t('upload_center.uploadcustomerfile')"
-                          accept=".xlsx,csv,xls/*"
-                          :filter="checkFileSize"
-                          @rejected="onRejected"
-                          @added="getfileinfo"
-                        />
-                      </div>
+                  </div>
+                </q-td>
+                <q-td key="uploadcustomerfile" :props="props">
+                  <div class="q-pa-md">
+                    <div class="q-gutter-md row items-start">
+                      <q-uploader
+                        style="width:300px;height:200px"
+                        :url = customerfile_pathname
+                        :method="post"
+                        :headers="[{name:'token',value:token}, {name: 'language', value: lang}]"
+                        :field-name="(file)=>'file'"
+                        :label="$t('upload_center.uploadcustomerfile')"
+                        accept=".xlsx,csv,xls/*"
+                        @rejected="onRejected"
+                        @added="getfileinfo"
+                      />
                     </div>
-                  </q-td>
-                  <q-td key="uploadsupplierfile" :props="props">
-                    <div class="q-pa-md">
-                      <div class="q-gutter-md row items-start">
-                        <q-uploader
-                          style="width:300px;height:200px"
-                          :url = supplierfile_pathname
-                          :method="post"
-                          :headers="[{name:'token',valye:token}]"
-                          :field-name="(file)=>'file'"
-                          :label="$t('upload_center.uploadsupplierfile')"
-                          accept=".xlsx,csv,xls/*"
-                          :filter="checkFileSize"
-                          @rejected="onRejected"
-                          @added="getfileinfo"
-                        />
-                      </div>
+                  </div>
+                </q-td>
+                <q-td key="uploadsupplierfile" :props="props">
+                  <div class="q-pa-md">
+                    <div class="q-gutter-md row items-start">
+                      <q-uploader
+                        style="width:300px;height:200px"
+                        :url = supplierfile_pathname
+                        :method="post"
+                        :headers="[{name:'token',value:token}, {name: 'language', value: lang}]"
+                        :field-name="(file)=>'file'"
+                        :label="$t('upload_center.uploadsupplierfile')"
+                        accept=".xlsx,csv,xls/*"
+                        @rejected="onRejected"
+                        @added="getfileinfo"
+                      />
                     </div>
-                  </q-td>
-                </q-tr>
-          </div>
+                  </div>
+                </q-td>
+              </q-tr>
+            </div>
           </div>
         </template>
       </q-table>
@@ -102,6 +101,8 @@ export default {
   data () {
     return {
       height: '',
+      token: LocalStorage.getItem('openid'),
+      lang: LocalStorage.getItem('lang'),
       capitalfile_pathname: baseurl + 'uploadfile/capitalfile/',
       customerfile_pathname: baseurl + 'uploadfile/customerfile/',
       freightfile_pathname: baseurl + 'uploadfile/freightfile/',
@@ -110,9 +111,6 @@ export default {
     }
   },
   methods: {
-    checkFileSize (files) {
-      return files.filter(file => file.size < 10485760)
-    },
     checkFileType (files) {
       return files.filter(file => file.type === '.xlsx, xls,csv/*')
     },
@@ -162,9 +160,9 @@ export default {
   mounted () {
     var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 260) + 'px'
+      _this.height = String(_this.$q.screen.height - 500) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 260 + '' + 'px'
+      _this.height = _this.$q.screen.height - 500 + '' + 'px'
     }
   },
   updated () {
