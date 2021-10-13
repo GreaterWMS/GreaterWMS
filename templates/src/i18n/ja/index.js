@@ -185,7 +185,7 @@ export default {
     }
   },
   upload_center: {
-    uploadinbound: '入庫ファイルをアップロードする',
+    initializeupload: 'アップロードを初期化',
     uploadfiles: 'ファイルをアップロード',
     upload: 'アップロード',
     uploadcustomerfile: '顧客リストをアップロードする',
@@ -193,7 +193,11 @@ export default {
     uploadsupplierfile: 'サプライヤーリストをアップロードする',
     downloadgoodstemplate: '商品テンプレートをダウンロード',
     downloadcustomertemplate: 'クライアントテンプレートをダウンロード',
-    downloadsuppliertemplate: 'ベンダーテンプレートをダウンロード'
+    downloadsuppliertemplate: 'ベンダーテンプレートをダウンロード',
+    addupload: 'アップロード'
+  },
+  community_mall: {
+    communitymall: 'コミュニティ'
   },
   goods: {
     goods_list: '製品リスト',
