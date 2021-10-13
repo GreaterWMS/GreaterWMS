@@ -429,30 +429,6 @@ const routes = [
             component: () => import('pages/uploadcenter/addupload.vue')
           }
         ]
-      },
-      {
-        path: 'downloadcenter',
-        name: 'downloadcenter',
-        component: () => import('pages/downloadcenter/download.vue'),
-        children: [
-          {
-            path: 'downloadinbound',
-            name: 'downloadinbound',
-            component: () => import('pages/downloadcenter/downloadinbound')
-          }
-        ]
-      },
-      {
-        path: 'communitymall',
-        name: 'communitymall',
-        component: () => import('pages/communitymall/communitymall.vue'),
-        children: [
-          {
-            path: 'cm',
-            name: 'cm',
-            component: () => import('pages/communitymall/cm.vue')
-          }
-        ]
       }
     ]
   }
