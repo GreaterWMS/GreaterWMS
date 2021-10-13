@@ -185,7 +185,7 @@ export default {
     }
   },
   upload_center: {
-    uploadinbound: '上传入库文件',
+    initializeupload: '初始化上传',
     uploadfiles: '上传文件',
     upload: '上传',
     uploadcustomerfile: '上传客户清单',
@@ -193,12 +193,16 @@ export default {
     uploadsupplierfile: '上传供应商清单',
     downloadgoodstemplate: '下载商品模板',
     downloadcustomertemplate: '下载客户模板',
-    downloadsuppliertemplate: '下载供应商模板'
+    downloadsuppliertemplate: '下载供应商模板',
+    addupload: '新增上传'
   },
   download_center: {
     downloadinbound: '下载入库列表',
     downloadfiles: '下载文件',
     download: '下载'
+  },
+  community_mall: {
+    communitymall: '社区商城'
   },
   goods: {
     goods_list: '商品列表',
