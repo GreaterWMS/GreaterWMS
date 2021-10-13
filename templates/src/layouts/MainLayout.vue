@@ -287,20 +287,6 @@
               {{ $t('menuItem.uploadcenter') }}
             </q-item-section>
           </q-item>
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                          $q.localStorage.getItem('staff_type') !== 'StockControl'
-                         "
-                  v-if="$q.platform.is.desktop"
-                  clickable to="/communitymall/cm" @click="linkChange('communitymall')" v-ripple exact :active="link === 'communitymall'" :class="{ 'my-menu-link': link === 'communitymall' }">
-            <q-item-section avatar>
-              <q-icon name="img:statics/communitymall/communitymall.png" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('community_mall.communitymall') }}
-            </q-item-section>
-          </q-item>
           <q-separator v-show="$q.platform.is.desktop"/>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Supervisor' &&
