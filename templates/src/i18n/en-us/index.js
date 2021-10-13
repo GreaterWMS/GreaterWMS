@@ -142,16 +142,14 @@ export default {
     }
   },
   dashboards: {
-    outbound_statements: 'OutboundStatements',
-    inbound_statements: 'InboundStatements',
-    total_sales: 'TotalSales',
-    category_sales_ranking: 'CategorySalesRanking',
-    sales_volume_ranking: 'SalesVolumeRanking',
-    sales_volumes_ranking: 'SalesVolumesRanking',
-    total_receipts: 'TotalReceipts',
-    category_receipt_ranking: 'CategoryReceiptRanking',
-    receiving_quantity_ranking: 'ReceivingQuantityRanking',
-    Receiving_amount_ranking: 'ReceivingAmountRanking'
+    outbound_statements: 'Outbound',
+    inbound_statements: 'Inbound',
+    total_sales: 'Total Sales',
+    sales_volume_ranking: 'Sales Volume Ranking',
+    sales_volumes_ranking: 'Sales Volumes Ranking',
+    total_receipts: 'Total Receipts',
+    receiving_quantity_ranking: 'Receiving Quantity Ranking',
+    Receiving_amount_ranking: 'Receiving Amount Ranking'
   },
   finance: {
     capital: 'Capital',
@@ -185,7 +183,7 @@ export default {
     }
   },
   upload_center: {
-    uploadinbound: 'Upload Inbound',
+    initializeupload: 'Initialize upload',
     uploadfiles: 'Upload',
     upload: 'Upload',
     uploadcustomerfile: 'Upload Customerfile',
@@ -193,7 +191,11 @@ export default {
     uploadsupplierfile: 'Upload SupplierFile',
     downloadgoodstemplate: 'Goods Example',
     downloadcustomertemplate: 'Customer Example',
-    downloadsuppliertemplate: 'Supplier Example'
+    downloadsuppliertemplate: 'Supplier Example',
+    addupload: 'Add Upload'
+  },
+  community_mall: {
+    communitymall: 'Community Mall'
   },
   goods: {
     goods_list: 'Goods List',
