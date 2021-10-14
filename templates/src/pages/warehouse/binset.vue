@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <transition appear enter-active-class="animated fadeIn">
+  <div>
+    <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-column-table shadow-24"
         :data="table_list"
@@ -17,216 +17,253 @@
         flat
         bordered
       >
-         <template v-slot:top>
-           <q-btn-group push>
-             <q-btn :label="$t('new')" icon="add" @click="newForm = true">
-               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                 {{ $t('newtip') }}
-               </q-tooltip>
-             </q-btn>
-             <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
-               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                 {{ $t('refreshtip') }}
-               </q-tooltip>
-             </q-btn>
-             <q-btn :label="$t('download')" icon="cloud_download" @click="downloadData()">
-               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                 {{ $t('downloadtip') }}
-               </q-tooltip>
-             </q-btn>
-           </q-btn-group>
-           <q-space />
-           <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
-             <template v-slot:append>
-               <q-icon name="search" @click="getSearchList()"/>
-             </template>
-           </q-input>
-         </template>
-         <template v-slot:body="props">
-           <q-tr :props="props">
-             <template v-if="props.row.id === editid">
-               <q-td key="bin_name" :props="props">
-                 <q-input dense
+        <template v-slot:top>
+          <q-btn-group push>
+            <q-btn :label="$t('new')" icon="add" @click="newForm = true">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('newtip') }}
+              </q-tooltip>
+            </q-btn>
+            <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('refreshtip') }}
+              </q-tooltip>
+            </q-btn>
+            <q-btn :label="$t('download')" icon="cloud_download" @click="downloadData()">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('downloadtip') }}
+              </q-tooltip>
+            </q-btn>
+          </q-btn-group>
+          <q-space />
+          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
+            <template v-slot:append>
+              <q-icon name="search" @click="getSearchList()"/>
+            </template>
+          </q-input>
+        </template>
+        <template v-slot:body="props">
+          <q-tr :props="props">
+            <template v-if="props.row.id === editid">
+              <q-td key="bin_name" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model="editFormData.bin_name"
+                         :label="$t('warehouse.view_binset.bin_name')"
+                         autofocus
+                         :rules="[ val => val && val.length > 0 || 'Please Enter the Bin_name']"
+                />
+              </q-td>
+            </template>
+            <template v-else-if="props.row.id !== editid">
+              <q-td key="bin_name" :props="props">
+                {{ props.row.bin_name }}
+              </q-td>
+            </template>
+            <template v-if="props.row.id === editid">
+              <q-td key="bin_size" :props="props">
+                <q-select dense
                           outlined
                           square
-                          v-model="editFormData.bin_name"
-                          :label="$t('warehouse.view_binset.bin_name')"
-                          autofocus
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Bin_name']"
-                 />
-               </q-td>
-             </template>
-             <template v-else-if="props.row.id !== editid">
-               <q-td key="bin_name" :props="props">
-                 {{ props.row.bin_name }}
-               </q-td>
-             </template>
-             <template v-if="props.row.id === editid">
-               <q-td key="bin_size" :props="props">
-                 <q-select dense
-                           outlined
-                           square
-                           v-model="editFormData.bin_size"
-                           :options="bin_size_list"
-                           transition-show="scale"
-                           transition-hide="scale"
-                           :label="$t('warehouse.view_binset.bin_size')"
-                           :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Size']"
-                 />
-               </q-td>
-             </template>
-             <template v-else-if="props.row.id !== editid">
-               <q-td key="bin_size" :props="props">
-                 {{ props.row.bin_size }}
-               </q-td>
-             </template>
-             <template v-if="props.row.id === editid">
-               <q-td key="bin_property" :props="props">
-                 <q-select dense
-                           outlined
-                           square
-                           v-model="editFormData.bin_property"
-                           :options="bin_property_list"
-                           transition-show="scale"
-                           transition-hide="scale"
-                           :label="$t('warehouse.view_binset.bin_property')"
-                           :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Property']"
-                 />
-               </q-td>
-             </template>
-             <template v-else-if="props.row.id !== editid">
-               <q-td key="bin_property" :props="props">
-                 {{ props.row.bin_property }}
-               </q-td>
-             </template>
-             <q-td key="empty_label" :props="props">
-               {{ props.row.empty_label }}
-             </q-td>
-             <q-td key="creater" :props="props">
-               {{ props.row.creater }}
-             </q-td>
-             <q-td key="create_time" :props="props">
-               {{ props.row.create_time }}
-             </q-td>
-             <q-td key="update_time" :props="props">
-               {{ props.row.update_time }}
-             </q-td>
-             <template v-if="!editMode">
-               <q-td key="action" :props="props" style="width: 100px">
-                 <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
-                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('edit') }}
+                          v-model="editFormData.bin_size"
+                          :options="bin_size_list"
+                          transition-show="scale"
+                          transition-hide="scale"
+                          :label="$t('warehouse.view_binset.bin_size')"
+                          :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Size']"
+                />
+              </q-td>
+            </template>
+            <template v-else-if="props.row.id !== editid">
+              <q-td key="bin_size" :props="props">
+                {{ props.row.bin_size }}
+              </q-td>
+            </template>
+            <template v-if="props.row.id === editid">
+              <q-td key="bin_property" :props="props">
+                <q-select dense
+                          outlined
+                          square
+                          v-model="editFormData.bin_property"
+                          :options="bin_property_list"
+                          transition-show="scale"
+                          transition-hide="scale"
+                          :label="$t('warehouse.view_binset.bin_property')"
+                          :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Property']"
+                />
+              </q-td>
+            </template>
+            <template v-else-if="props.row.id !== editid">
+              <q-td key="bin_property" :props="props">
+                {{ props.row.bin_property }}
+              </q-td>
+            </template>
+            <q-td key="empty_label" :props="props">
+              {{ props.row.empty_label }}
+            </q-td>
+            <q-td key="creater" :props="props">
+              {{ props.row.creater }}
+            </q-td>
+            <q-td key="create_time" :props="props">
+              {{ props.row.create_time }}
+            </q-td>
+            <q-td key="update_time" :props="props">
+              {{ props.row.update_time }}
+            </q-td>
+            <template v-if="!editMode">
+              <q-td key="action" :props="props" style="width: 100px">
+                <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                              $q.localStorage.getItem('staff_type') !== 'Customer' &&
+                              $q.localStorage.getItem('staff_type') !== 'Outbound' &&
+                              $q.localStorage.getItem('staff_type') !== 'StockControl'
+                             "
+                       round flat push color="info" icon="print" @click="viewData(props.row)">
+                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                    {{ $t('goods.view_goodslist.print_goods_label') }}
                   </q-tooltip>
-                 </q-btn>
-                 <q-btn round flat push color="dark" icon="delete" @click="deleteData(props.row.id)">
-                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('delete') }}
+                </q-btn>
+                <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
+                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                    {{ $t('edit') }}2222
                   </q-tooltip>
-                 </q-btn>
-               </q-td>
-               </template>
-             <template v-else-if="editMode">
-               <template v-if="props.row.id === editid">
-                 <q-td key="action" :props="props" style="width: 100px">
-                 <q-btn round flat push color="secondary" icon="check" @click="editDataSubmit()">
-                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('confirmedit') }}
+                </q-btn>
+                <q-btn round flat push color="dark" icon="delete" @click="deleteData(props.row.id)">
+                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                    {{ $t('delete') }}1111
                   </q-tooltip>
-                 </q-btn>
-                 <q-btn round flat push color="red" icon="close" @click="editDataCancel()">
-                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('canceledit') }}
-                  </q-tooltip>
-                 </q-btn>
-               </q-td>
-               </template>
-                <template v-else-if="props.row.id !== editid"></template>
-             </template>
-           </q-tr>
-         </template>
-        </q-table>
-      </transition>
-      <template>
-        <div class="q-pa-lg flex flex-center">
-          <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
-            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-              {{ $t('previous') }}
-            </q-tooltip>
+                </q-btn>
+              </q-td>
+            </template>
+            <template v-else-if="editMode">
+              <template v-if="props.row.id === editid">
+                <q-td key="action" :props="props" style="width: 100px">
+                  <q-btn round flat push color="secondary" icon="check" @click="editDataSubmit()">
+                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                      {{ $t('confirmedit') }}
+                    </q-tooltip>
+                  </q-btn>
+                  <q-btn round flat push color="red" icon="close" @click="editDataCancel()">
+                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                      {{ $t('canceledit') }}
+                    </q-tooltip>
+                  </q-btn>
+                </q-td>
+              </template>
+              <template v-else-if="props.row.id !== editid"></template>
+            </template>
+          </q-tr>
+        </template>
+      </q-table>
+    </transition>
+    <template>
+      <div class="q-pa-lg flex flex-center">
+        <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
+          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+            {{ $t('previous') }}
+          </q-tooltip>
+        </q-btn>
+        <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
+          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+            {{ $t('next') }}
+          </q-tooltip>
+        </q-btn>
+        <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
+      </div>
+    </template>
+    <q-dialog v-model="newForm">
+      <q-card class="shadow-24">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ $t('newtip') }}</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
           </q-btn>
-          <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
-            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-              {{ $t('next') }}
-            </q-tooltip>
-          </q-btn>
-          <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
-        </div>
-      </template>
-      <q-dialog v-model="newForm">
-       <q-card class="shadow-24">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>{{ $t('newtip') }}</div>
-           <q-space />
-           <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
-           </q-btn>
-         </q-bar>
-         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-           <q-input dense
+        </q-bar>
+        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+          <q-input dense
+                   outlined
+                   square
+                   v-model="newFormData.bin_name"
+                   :label="$t('warehouse.view_binset.bin_name')"
+                   autofocus
+                   :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Name']"
+                   @keyup.enter="newDataSubmit()"/>
+          <q-select dense
                     outlined
                     square
-                    v-model="newFormData.bin_name"
-                    :label="$t('warehouse.view_binset.bin_name')"
-                    autofocus
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Name']"
-                    @keyup.enter="newDataSubmit()"/>
-           <q-select dense
-                     outlined
-                     square
-                     v-model="newFormData.bin_size"
-                     :options="bin_size_list"
-                     transition-show="scale"
-                     transition-hide="scale"
-                     :label="$t('warehouse.view_binset.bin_size')"
-                     :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Size']"
-                     />
-           <q-select dense
-                     outlined
-                     square
-                     v-model="newFormData.bin_property"
-                     :options="bin_property_list"
-                     transition-show="scale"
-                     transition-hide="scale"
-                     :label="$t('warehouse.view_binset.bin_property')"
-                     :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Property']"
-                    />
-         </q-card-section>
-         <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
-           <q-btn color="primary" @click="newDataSubmit()">{{ $t('submit') }}</q-btn>
-         </div>
-       </q-card>
-     </q-dialog>
-      <q-dialog v-model="deleteForm">
-       <q-card class="shadow-24">
-         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-           <div>{{ $t('delete') }}</div>
-           <q-space />
-           <q-btn dense flat icon="close" v-close-popup>
-             <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
-           </q-btn>
-         </q-bar>
-         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-           {{ $t('deletetip') }}
-         </q-card-section>
-         <div style="float: right; padding: 15px 15px 15px 0">
-           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="deleteDataCancel()">{{ $t('cancel') }}</q-btn>
-           <q-btn color="primary" @click="deleteDataSubmit()">{{ $t('submit') }}</q-btn>
-         </div>
-       </q-card>
-     </q-dialog>
-    </div>
+                    v-model="newFormData.bin_size"
+                    :options="bin_size_list"
+                    transition-show="scale"
+                    transition-hide="scale"
+                    :label="$t('warehouse.view_binset.bin_size')"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Size']"
+          />
+          <q-select dense
+                    outlined
+                    square
+                    v-model="newFormData.bin_property"
+                    :options="bin_property_list"
+                    transition-show="scale"
+                    transition-hide="scale"
+                    :label="$t('warehouse.view_binset.bin_property')"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Property']"
+          />
+        </q-card-section>
+        <div style="float: right; padding: 15px 15px 15px 0">
+          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
+          <q-btn color="primary" @click="newDataSubmit()">{{ $t('submit') }}</q-btn>
+        </div>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="deleteForm">
+      <q-card class="shadow-24">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ $t('delete') }}</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
+          </q-btn>
+        </q-bar>
+        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+          {{ $t('deletetip') }}
+        </q-card-section>
+        <div style="float: right; padding: 15px 15px 15px 0">
+          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="deleteDataCancel()">{{ $t('cancel') }}</q-btn>
+          <q-btn color="primary" @click="deleteDataSubmit()">{{ $t('submit') }}</q-btn>
+        </div>
+      </q-card>
+    </q-dialog>
+    <q-dialog v-model="viewForm">
+      <div id="printMe" style="width: 400px;height:280px;background-color: white">
+        <q-card-section>
+          <div class="row" style="height: 50px">
+            <div class="col-3">
+              <img src='/statics/goods/logo.png'  style="width: 60px;height: 50px;margin-top: 5px;margin-left: 5px">
+            </div>
+            <div class="col-9" style="height: 50px;float: contour;margin-top: 10px" >
+              <p style="font-size: 20px;font-weight: 550">{{$t('warehouse.view_binset.bin_name') + ':' + bin_name}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-8" style="margin-top: 30px;padding-left: 3%">
+              <p style="font-size: 20px;font-weight: 550">{{$t('warehouse.view_binset.bin_property') + ':'}}</p>
+              <p style="font-size: 20px;font-weight: 550">{{bin_property}}</p>
+            </div>
+            <div class="col-4" style="margin-top: 25px;">
+              <img :src="bar_code" style="width: 70%;margin-left: 23px"/>
+            </div>
+          </div>
+        </q-card-section>
+      </div>
+      <div style="float: right; padding: 15px 15px 15px 0">
+        <q-btn color="primary" icon="print" v-print="printObj">print</q-btn>
+      </div>
+    </q-dialog>
+  </div>
 </template>
-    <router-view />
+<router-view />
 
 <script>
 import { date, exportFile, LocalStorage } from 'quasar'
@@ -236,6 +273,8 @@ export default {
   name: 'Pagebinset',
   data () {
     return {
+      bin_name: '',
+      bin_property: '',
       openid: '',
       login_name: '',
       authin: '0',
@@ -248,6 +287,11 @@ export default {
       table_list: [],
       bin_size_list: [],
       bin_property_list: [],
+      viewForm: false,
+      printObj: {
+        id: 'printMe',
+        popTitle: this.$t('inbound.asn')
+      },
       columns: [
         { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
         { name: 'bin_size', label: this.$t('warehouse.view_binset.bin_size'), field: 'bin_size', align: 'center' },
@@ -478,6 +522,24 @@ export default {
           })
         }
       })
+    },
+    viewData (e) {
+      var _this = this
+      var QRCode = require('qrcode')
+      QRCode.toDataURL(e.bin_name, [{
+          errorCorrectionLevel: 'H',
+          mode: 'byte',
+          version: '2',
+          type: 'image/jpeg'
+        }]
+      ).then(url => {
+        _this.bin_name = e.bin_name
+        _this.bin_property = e.bin_property
+        _this.bar_code = url
+      }).catch(err => {
+        console.error(err)
+      })
+      _this.viewForm = true
     }
   },
   created () {
