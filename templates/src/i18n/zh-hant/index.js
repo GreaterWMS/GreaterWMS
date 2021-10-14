@@ -40,7 +40,8 @@ export default {
     download: '下載',
     updatetitle: '升級就緒',
     updatedesc: '版本已經升級準備就緒',
-    update: '馬上更新'
+    update: '馬上更新',
+    chart: '報表'
   },
   menuItem: {
     dashboard: '報表中心',
