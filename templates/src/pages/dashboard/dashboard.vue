@@ -20,7 +20,7 @@
         </div>
       </div>
     </template>
-    <div class="main-table">
+    <div class="main-table2">
       <router-view />
     </div>
   </q-page>
