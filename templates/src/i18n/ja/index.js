@@ -40,7 +40,8 @@ export default {
     download: 'ダウンロード',
     updatetitle: 'アップグレードの準備ができました',
     updatedesc: 'バージョンをアップグレードする準備ができました',
-    update: '今すぐ写新'
+    update: '今すぐ写新',
+    chart: 'レポート'
   },
   menuItem: {
     dashboard: 'レポートセンター',
