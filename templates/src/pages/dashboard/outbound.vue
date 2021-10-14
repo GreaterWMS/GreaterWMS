@@ -8,8 +8,8 @@
                   :options="product_options" label="Select Product"/>
       </div>
     </q-card-section>
-    <q-card-section class="q-pa-none">
-      <IEcharts :option="getBarChartOptions" :resizable="true" style="height: 600px; width: 100%"/>
+    <q-card-section>
+      <IEcharts :option="getBarChartOptions" :resizable="true" :style="{height:height2, width: width}"/>
     </q-card-section>
   </q-card>
 </template>
@@ -22,6 +22,8 @@ export default {
   data () {
     return {
       height: '',
+      height2: '',
+      width: '100%',
       selected_product: this.$t('dashboards.total_sales'),
       data: [
         { product: this.$t('dashboards.total_sales'), 2015: 43.3, 2016: 85.8, 2017: 93.7, 2018: 100, 2019: 100, 2020: 100, 2021: 100, 2022: 100, 2023: 100, 2024: 100, 2025: 100 },
@@ -210,6 +212,11 @@ export default {
       _this.height = String(_this.$q.screen.height - 200) + 'px'
     } else {
       _this.height = _this.$q.screen.height - 200 + '' + 'px'
+    }
+    if (_this.$q.platform.is.electron) {
+      _this.height2 = String(_this.$q.screen.height * 0.65) + 'px'
+    } else {
+      _this.height2 = _this.$q.screen.height * 0.65 + '' + 'px'
     }
   },
   components: {
