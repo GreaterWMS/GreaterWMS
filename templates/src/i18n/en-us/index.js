@@ -40,7 +40,8 @@ export default {
     download: 'Download',
     updatetitle: 'Update Ready',
     updatedesc: 'Version Can Update Now',
-    update: 'Update Now'
+    update: 'Update Now',
+    chart: ''
   },
   menuItem: {
     dashboard: 'Dashboard',
