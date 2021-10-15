@@ -4,3 +4,4 @@ authorization.txt
 db.sqlite3
 .idea/
 delete.py
+*.xlsx
