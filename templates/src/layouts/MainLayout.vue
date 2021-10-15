@@ -305,96 +305,96 @@
               {{ $t('menuItem.customerdn') }}
             </q-item-section>
           </q-item>
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                          $q.localStorage.getItem('staff_type') !== 'StockControl'
-                         "
-                  v-if="$q.platform.is.cordova"
-            clickable to="/scan_sorting" @click="linkChange('scan_sorting')" v-ripple exact :active="link === 'scan_sorting'" :class="{ 'my-menu-link': link === 'scan_sorting' }">
-            <q-item-section avatar>
-              <q-icon name="img:statics/inbound/preloadstock.png" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('scan.scan_sorting') }}
-            </q-item-section>
-          </q-item>
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'StockControl'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--            clickable to="/scan_sorting" @click="linkChange('scan_sorting')" v-ripple exact :active="link === 'scan_sorting'" :class="{ 'my-menu-link': link === 'scan_sorting' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="img:statics/inbound/preloadstock.png" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('scan.scan_sorting') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Outbound' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'StockControl'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--            clickable to="/scan_uptobin" @click="linkChange('scan_uptobin')" v-ripple exact :active="link === 'scan_uptobin'" :class="{ 'my-menu-link': link === 'scan_uptobin' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="img:statics/inbound/presortstock.png" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('scan.scan_uptobin') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'StockControl'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--            clickable to="/scan_picking" @click="linkChange('scan_picking')" v-ripple exact :active="link === 'scan_picking'" :class="{ 'my-menu-link': link === 'scan_picking' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="img:statics/outbound/picked.png" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('scan.scan_picking') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'StockControl'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--                  clickable to="/scan_shipping" @click="linkChange('scan_shipping')" v-ripple exact :active="link === 'scan_shipping'" :class="{ 'my-menu-link': link === 'scan_shipping' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="rv_hookup" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('dispatch') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Outbound'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--            clickable to="/scan_movetobin" @click="linkChange('scan_movetobin')" v-ripple exact :active="link === 'scan_movetobin'" :class="{ 'my-menu-link': link === 'scan_movetobin' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="move_to_inbox" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('movetobin') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Outbound'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--                  clickable to="/scan_cyclecount" @click="linkChange('scan_cyclecount')" v-ripple exact :active="link === 'scan_cyclecount'" :class="{ 'my-menu-link': link === 'scan_cyclecount' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="move_to_inbox" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('cyclecount') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+          <q-separator v-show="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile" />
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                          $q.localStorage.getItem('staff_type') !== 'StockControl'
-                         "
-                  v-if="$q.platform.is.cordova"
-            clickable to="/scan_uptobin" @click="linkChange('scan_uptobin')" v-ripple exact :active="link === 'scan_uptobin'" :class="{ 'my-menu-link': link === 'scan_uptobin' }">
-            <q-item-section avatar>
-              <q-icon name="img:statics/inbound/presortstock.png" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('scan.scan_uptobin') }}
-            </q-item-section>
-          </q-item>
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                          $q.localStorage.getItem('staff_type') !== 'StockControl'
-                         "
-                  v-if="$q.platform.is.cordova"
-            clickable to="/scan_picking" @click="linkChange('scan_picking')" v-ripple exact :active="link === 'scan_picking'" :class="{ 'my-menu-link': link === 'scan_picking' }">
-            <q-item-section avatar>
-              <q-icon name="img:statics/outbound/picked.png" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('scan.scan_picking') }}
-            </q-item-section>
-          </q-item>
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                          $q.localStorage.getItem('staff_type') !== 'StockControl'
-                         "
-                  v-if="$q.platform.is.cordova"
-                  clickable to="/scan_shipping" @click="linkChange('scan_shipping')" v-ripple exact :active="link === 'scan_shipping'" :class="{ 'my-menu-link': link === 'scan_shipping' }">
-            <q-item-section avatar>
-              <q-icon name="rv_hookup" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('dispatch') }}
-            </q-item-section>
-          </q-item>
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
-                  v-if="$q.platform.is.cordova"
-            clickable to="/scan_movetobin" @click="linkChange('scan_movetobin')" v-ripple exact :active="link === 'scan_movetobin'" :class="{ 'my-menu-link': link === 'scan_movetobin' }">
-            <q-item-section avatar>
-              <q-icon name="move_to_inbox" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('movetobin') }}
-            </q-item-section>
-          </q-item>
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                          $q.localStorage.getItem('staff_type') !== 'Outbound'
-                         "
-                  v-if="$q.platform.is.cordova"
-                  clickable to="/scan_cyclecount" @click="linkChange('scan_cyclecount')" v-ripple exact :active="link === 'scan_cyclecount'" :class="{ 'my-menu-link': link === 'scan_cyclecount' }">
-            <q-item-section avatar>
-              <q-icon name="move_to_inbox" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('cyclecount') }}
-            </q-item-section>
-          </q-item>
-          <q-separator v-show="$q.platform.is.cordova" />
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Outbound'
-                         "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
             clickable to="/scan_asn" @click="linkChange('scan_asn')" v-ripple exact :active="link === 'scan_asn'" :class="{ 'my-menu-link': link === 'scan_asn' }">
             <q-item-section avatar>
               <q-icon name="img:statics/inbound/asn.png" />
@@ -407,7 +407,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
             clickable to="/scan_dn" @click="linkChange('scan_dn')" v-ripple exact :active="link === 'scan_dn'" :class="{ 'my-menu-link': link === 'scan_dn' }">
             <q-item-section avatar>
               <q-icon name="img:statics/outbound/dnlist.png" />
@@ -416,13 +416,13 @@
               {{ $t('scan.scan_dn') }}
             </q-item-section>
           </q-item>
-          <q-separator v-show="$q.platform.is.cordova"/>
+          <q-separator v-show="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"/>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
             clickable to="/scan_emptybin" @click="linkChange('scan_emptybin')" v-ripple exact :active="link === 'scan_emptybin'" :class="{ 'my-menu-link': link === 'scan_emptybin' }">
             <q-item-section avatar>
               <q-icon name="all_out" />
@@ -434,7 +434,7 @@
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
             clickable to="/scan_stockbinlist" @click="linkChange('scan_stockbinlist')" v-ripple exact :active="link === 'scan_stockbinlist'" :class="{ 'my-menu-link': link === 'scan_stockbinlist' }">
             <q-item-section avatar>
               <q-icon name="img:statics/warehouse/binset.png" />
@@ -446,7 +446,7 @@
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
             clickable to="/scan_stocklist" @click="linkChange('scan_stocklist')" v-ripple exact :active="link === 'scan_stocklist'" :class="{ 'my-menu-link': link === 'scan_stocklist' }">
             <q-item-section avatar>
               <q-icon name="img:statics/stock/stocklist.png" />
@@ -458,7 +458,7 @@
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Supplier'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
             clickable to="/scan_goodslist" @click="linkChange('scan_goodslist')" v-ripple exact :active="link === 'scan_goodslist'" :class="{ 'my-menu-link': link === 'scan_goodslist' }">
             <q-item-section avatar>
               <q-icon name="img:statics/goods/goodslist.png" />
@@ -471,7 +471,7 @@
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Supplier'
                          "
-                  v-if="$q.platform.is.cordova || $q.platform.is.mobile"
+                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
             clickable to="/scan_stafflist" @click="linkChange('scan_stafflist')" v-ripple exact :active="link === 'scan_stafflist'" :class="{ 'my-menu-link': link === 'scan_stafflist' }">
             <q-item-section avatar>
               <q-icon name="perm_contact_calendar" />
@@ -752,6 +752,7 @@ var ws
 export default {
   data () {
     return {
+      device: '',
       lang: this.$i18n.locale,
       verCheck: false,
       version: '',
@@ -1250,6 +1251,9 @@ export default {
   },
   mounted () {
     var _this = this
+    if (window.device) {
+      _this.device = window.device
+    }
     if (_this.$q.platform.is.electron) {
       if (LocalStorage.has('openid')) {
         versioncheck('vcheck/' + '?openid=' + LocalStorage.getItem('openid') + '&platform=' + process.platform).then(res => {
