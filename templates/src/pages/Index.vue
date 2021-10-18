@@ -20,13 +20,13 @@
             </q-card-actions>
             <q-separator vertical></q-separator>
             <q-card-actions class="col-6" align="center">
-              <q-btn icon="img:statics/icons/car.png" :label="$t('scan.scan_shipping')" stack flat color="black" size="xl"/>
+              <q-btn icon="img:statics/icons/Loading.png" :label="$t('scan.scan_shipping')" stack flat color="black" size="xl"/>
             </q-card-actions>
           </q-card-section>
           <q-separator></q-separator>
           <q-card-section horizontal>
             <q-card-actions class="col-6" align="center">
-              <q-btn icon="img:statics/icons/movetobin.png" :label="$t('scan.scan_movetobin')" stack flat color="black" size="xl" />
+              <q-btn icon="img:statics/icons/movetobin1.png" :label="$t('scan.scan_movetobin')" stack flat color="black" size="xl" />
             </q-card-actions>
             <q-separator vertical></q-separator>
             <q-card-actions class="col-6" align="center">
