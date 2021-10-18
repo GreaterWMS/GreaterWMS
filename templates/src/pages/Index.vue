@@ -51,7 +51,5 @@ export default {
       }
     })
   },
-  watch () {
-  }
 }
 </script>

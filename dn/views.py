@@ -19,8 +19,10 @@ from stock.models import StockBinModel as stockbin
 from driver.models import ListModel as driverlist
 from driver.models import DispatchListModel as driverdispatch
 from scanner.models import ListModel as scanner
+from cyclecount.models import QTYRecorder as qtychangerecorder
 from cyclecount.models import CyclecountModeDayModel as cyclecount
 from django.db.models import Q
+from django.db.models import Sum
 from utils.md5 import Md5
 import re
 from .serializers import FileListRenderSerializer, FileDetailRenderSerializer
@@ -192,7 +194,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                                                         is_delete=False).first()
                     goods_weight = round(goods_detail.goods_weight * int(data['goods_qty'][j]) / 1000, 4)
                     goods_volume = round(goods_detail.unit_volume * int(data['goods_qty'][j]), 4)
-                    goods_cost = round(goods_detail.goods_cost * int(data['goods_qty'][j]), 4)
+                    goods_cost = round(goods_detail.goods_cost * int(data['goods_qty'][j]), 2)
                     if stocklist.objects.filter(openid=self.request.auth.openid, goods_code=str(data['goods_code'][j]),
                                                 can_order_stock__gte=0).exists():
                         goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
@@ -211,12 +213,15 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                                               goods_qty=int(data['goods_qty'][j]),
                                               goods_weight=goods_weight,
                                               goods_volume=goods_volume,
+                                              goods_cost=goods_cost,
                                               creater=str(data['creater']))
                     weight_list.append(goods_weight)
                     volume_list.append(goods_volume)
+                    cost_list.append(goods_cost)
                     post_data_list.append(post_data)
                 total_weight = sumOfList(weight_list, len(weight_list))
                 total_volume = sumOfList(volume_list, len(volume_list))
+                total_cost = sumOfList(cost_list, len(cost_list))
                 customer_city = customer.objects.filter(openid=self.request.auth.openid,
                                                         customer_name=str(data['customer']),
                                                         is_delete=False).first().customer_city
@@ -245,7 +250,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                 DnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
                 DnListModel.objects.filter(openid=self.request.auth.openid, dn_code=str(data['dn_code'])).update(
                     customer=str(data['customer']), total_weight=total_weight, total_volume=total_volume,
-                    transportation_fee=transportation_res)
+                    total_cost=total_cost, transportation_fee=transportation_res)
                 return Response({"detail": "success"}, status=200)
             else:
                 raise APIException({"detail": "customer does not exists"})
@@ -283,12 +288,14 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                 post_data_list = []
                 weight_list = []
                 volume_list = []
+                cost_list = []
                 for j in range(len(data['goods_code'])):
                     goods_detail = goods.objects.filter(openid=self.request.auth.openid,
                                                         goods_code=str(data['goods_code'][j]),
                                                         is_delete=False).first()
                     goods_weight = round(goods_detail.goods_weight * int(data['goods_qty'][j]) / 1000, 4)
                     goods_volume = round(goods_detail.unit_volume * int(data['goods_qty'][j]), 4)
+                    goods_cost = round(goods_detail.goods_cost * int(data['goods_qty'][j]), 2)
                     if stocklist.objects.filter(openid=self.request.auth.openid, goods_code=str(data['goods_code'][j]),
                                                 can_order_stock__gt=0).exists():
                         goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
@@ -307,12 +314,15 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                                               goods_qty=int(data['goods_qty'][j]),
                                               goods_weight=goods_weight,
                                               goods_volume=goods_volume,
+                                              goods_cost=goods_cost,
                                               creater=str(data['creater']))
                     weight_list.append(goods_weight)
                     volume_list.append(goods_volume)
+                    cost_list.append(goods_cost)
                     post_data_list.append(post_data)
                 total_weight = sumOfList(weight_list, len(weight_list))
                 total_volume = sumOfList(volume_list, len(volume_list))
+                total_cost = sumOfList(cost_list, len(cost_list))
                 customer_city = customer.objects.filter(openid=self.request.auth.openid,
                                                         customer_name=str(data['customer']),
                                                         is_delete=False).first().customer_city
@@ -343,7 +353,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                 DnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
                 DnListModel.objects.filter(openid=self.request.auth.openid, dn_code=str(data['dn_code'])).update(
                     customer=str(data['customer']), total_weight=total_weight, total_volume=total_volume,
-                    transportation_fee=transportation_res)
+                    total_cost=total_cost, transportation_fee=transportation_res)
                 return Response({"detail": "success"}, status=200)
             else:
                 raise APIException({"detail": "Customer does not exists"})
@@ -539,6 +549,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
             back_order_list_label = 0
             back_order_goods_weight_list = []
             back_order_goods_volume_list = []
+            back_order_goods_cost_list = []
             back_order_base_code = DnListModel.objects.filter(openid=self.request.auth.openid,
                                                               is_delete=False).order_by('-id').first().dn_code
             dn_last_code = re.findall(r'\d+', str(back_order_base_code), re.IGNORECASE)
@@ -546,6 +557,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
             bar_code = Md5.md5(back_order_dn_code)
             total_weight = qs[v].total_weight
             total_volume = qs[v].total_volume
+            total_cost = qs[v].total_cost
             for i in range(len(dn_detail_list)):
                 goods_detail = goods.objects.filter(openid=self.request.auth.openid,
                                                     goods_code=str(dn_detail_list[i].goods_code),
@@ -610,6 +622,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                             back_order_goods_volume = round(goods_detail.unit_volume * dn_back_order_qty, 4)
                             back_order_goods_weight = round(
                                 (goods_detail.goods_weight * dn_back_order_qty) / 1000, 4)
+                            back_order_goods_cost = round(goods_detail.goods_cost * dn_back_order_qty, 2)
                             back_order_list.append(DnDetailModel(dn_code=back_order_dn_code,
                                                                  dn_status=2,
                                                                  customer=qs[v].customer,
@@ -617,6 +630,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                  goods_qty=dn_back_order_qty,
                                                                  goods_weight=back_order_goods_weight,
                                                                  goods_volume=back_order_goods_volume,
+                                                                 goods_cost=back_order_goods_cost,
                                                                  creater=self.request.auth.name,
                                                                  back_order_label=True,
                                                                  openid=self.request.auth.openid,
@@ -624,12 +638,16 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                             back_order_list_label = 1
                             total_weight = total_weight - back_order_goods_weight
                             total_volume = total_volume - back_order_goods_volume
+                            total_cost = total_cost - back_order_goods_cost
                             dn_detail_list[i].goods_weight = dn_detail_list[i].goods_weight - \
                                                              back_order_goods_weight
                             dn_detail_list[i].goods_volume = dn_detail_list[i].goods_volume - \
                                                              back_order_goods_volume
+                            dn_detail_list[i].goods_cost = dn_detail_list[i].goods_cost - \
+                                                             back_order_goods_cost
                             back_order_goods_weight_list.append(back_order_goods_weight)
                             back_order_goods_volume_list.append(back_order_goods_volume)
+                            back_order_goods_cost_list.append(back_order_goods_cost)
                             goods_qty_change.save()
                             dn_detail_list[i].save()
                         else:
@@ -668,6 +686,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                             back_order_goods_volume = round(goods_detail.unit_volume * dn_back_order_qty, 4)
                             back_order_goods_weight = round(
                                 (goods_detail.goods_weight * dn_back_order_qty) / 1000, 4)
+                            back_order_goods_cost = round(goods_detail.goods_cost * dn_back_order_qty, 2)
                             back_order_list.append(DnDetailModel(dn_code=back_order_dn_code,
                                                                  dn_status=2,
                                                                  customer=qs[v].customer,
@@ -675,6 +694,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                  goods_qty=dn_back_order_qty,
                                                                  goods_weight=back_order_goods_weight,
                                                                  goods_volume=back_order_goods_volume,
+                                                                 goods_cost=back_order_goods_cost,
                                                                  creater=self.request.auth.name,
                                                                  back_order_label=True,
                                                                  openid=self.request.auth.openid,
@@ -682,12 +702,16 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                             back_order_list_label = 1
                             total_weight = total_weight - back_order_goods_weight
                             total_volume = total_volume - back_order_goods_volume
+                            total_cost = total_cost - back_order_goods_cost
                             dn_detail_list[i].goods_weight = dn_detail_list[i].goods_weight - \
                                                              back_order_goods_weight
                             dn_detail_list[i].goods_volume = dn_detail_list[i].goods_volume - \
                                                              back_order_goods_volume
+                            dn_detail_list[i].goods_cost = dn_detail_list[i].goods_cost - \
+                                                             back_order_goods_cost
                             back_order_goods_weight_list.append(back_order_goods_weight)
                             back_order_goods_volume_list.append(back_order_goods_volume)
+                            back_order_goods_cost_list.append(back_order_goods_cost)
                             dn_detail_list[i].save()
                     elif dn_detail_list[i].goods_qty == can_pick_qty:
                         for j in range(len(goods_bin_stock_list)):
@@ -827,6 +851,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                         back_order_goods_volume = round(goods_detail.unit_volume * dn_detail_list[i].goods_qty, 4)
                         back_order_goods_weight = round(
                             (goods_detail.goods_weight * dn_detail_list[i].goods_qty) / 1000, 4)
+                        back_order_goods_cost = round(goods_detail.goods_cost * dn_detail_list[i].goods_qty, 2)
                         back_order_list.append(DnDetailModel(dn_code=back_order_dn_code,
                                                              dn_status=2,
                                                              customer=qs[v].customer,
@@ -834,6 +859,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                              goods_qty=dn_detail_list[i].goods_qty,
                                                              goods_weight=back_order_goods_weight,
                                                              goods_volume=back_order_goods_volume,
+                                                             goods_cost=back_order_goods_cost,
                                                              creater=self.request.auth.name,
                                                              back_order_label=True,
                                                              openid=self.request.auth.openid,
@@ -841,8 +867,10 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                         back_order_list_label = 1
                         total_weight = total_weight - back_order_goods_weight
                         total_volume = total_volume - back_order_goods_volume
+                        total_cost = total_cost - back_order_goods_cost
                         back_order_goods_weight_list.append(back_order_goods_weight)
                         back_order_goods_volume_list.append(back_order_goods_volume)
+                        back_order_goods_cost_list.append(back_order_goods_cost)
                         dn_detail_list[i].is_delete = True
                         dn_detail_list[i].save()
                         goods_qty_change.save()
@@ -856,6 +884,8 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                         len(back_order_goods_volume_list))
                     back_order_total_weight = sumOfList(back_order_goods_weight_list,
                                                         len(back_order_goods_weight_list))
+                    back_order_total_cost = sumOfList(back_order_goods_cost_list,
+                                                        len(back_order_goods_cost_list))
                     customer_city = customer.objects.filter(openid=self.request.auth.openid,
                                                             customer_name=str(qs[v].customer),
                                                             is_delete=False).first().customer_city
@@ -907,6 +937,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                dn_status=2,
                                                total_weight=back_order_total_weight,
                                                total_volume=back_order_total_volume,
+                                               total_cost=back_order_total_cost,
                                                customer=qs[v].customer,
                                                creater=self.request.auth.name,
                                                bar_code=bar_code,
@@ -919,6 +950,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                     DnDetailModel.objects.bulk_create(back_order_list, batch_size=100)
                     qs[v].total_weight = total_weight
                     qs[v].total_volume = total_volume
+                    qs[v].total_cost = total_cost
                     qs[v].transportation_fee = transportation_res
                     qs[v].dn_status = 3
                     qs[v].save()
@@ -936,6 +968,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                dn_status=2,
                                                total_weight=qs[v].total_weight,
                                                total_volume=qs[v].total_volume,
+                                               total_cost=qs[v].total_cost,
                                                customer=qs[v].customer,
                                                creater=self.request.auth.name,
                                                bar_code=bar_code,
@@ -970,12 +1003,14 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                 back_order_list_label = 0
                 back_order_goods_weight_list = []
                 back_order_goods_volume_list = []
+                back_order_goods_cost_list = []
                 back_order_base_code = DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False).order_by('-id').first().dn_code
                 dn_last_code = re.findall(r'\d+', str(back_order_base_code), re.IGNORECASE)
                 back_order_dn_code = 'DN' + str(int(dn_last_code[0]) + 1).zfill(8)
                 bar_code = Md5.md5(back_order_dn_code)
                 total_weight = qs.total_weight
                 total_volume = qs.total_volume
+                total_cost = qs.total_cost
                 for i in range(len(dn_detail_list)):
                     goods_detail = goods.objects.filter(openid=self.request.auth.openid,
                                                         goods_code=str(dn_detail_list[i].goods_code),
@@ -1040,6 +1075,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                 back_order_goods_volume = round(goods_detail.unit_volume * dn_back_order_qty, 4)
                                 back_order_goods_weight = round(
                                     (goods_detail.goods_weight * dn_back_order_qty) / 1000, 4)
+                                back_order_goods_cost = round(goods_detail.goods_cost * dn_back_order_qty, 2)
                                 back_order_list.append(DnDetailModel(dn_code=back_order_dn_code,
                                                                      dn_status=2,
                                                                      customer=qs.customer,
@@ -1047,6 +1083,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                      goods_qty=dn_back_order_qty,
                                                                      goods_weight=back_order_goods_weight,
                                                                      goods_volume=back_order_goods_volume,
+                                                                     goods_coste=back_order_goods_cost,
                                                                      creater=self.request.auth.name,
                                                                      back_order_label=True,
                                                                      openid=self.request.auth.openid,
@@ -1054,12 +1091,16 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                 back_order_list_label = 1
                                 total_weight = total_weight - back_order_goods_weight
                                 total_volume = total_volume - back_order_goods_volume
+                                total_cost = total_cost - back_order_goods_cost
                                 dn_detail_list[i].goods_weight = dn_detail_list[i].goods_weight - \
                                                                  back_order_goods_weight
                                 dn_detail_list[i].goods_volume = dn_detail_list[i].goods_volume - \
                                                                  back_order_goods_volume
+                                dn_detail_list[i].goods_cost = dn_detail_list[i].goods_cost - \
+                                                                 back_order_goods_cost
                                 back_order_goods_weight_list.append(back_order_goods_weight)
                                 back_order_goods_volume_list.append(back_order_goods_volume)
+                                back_order_goods_cost_list.append(back_order_goods_cost)
                                 goods_qty_change.save()
                                 dn_detail_list[i].save()
                             else:
@@ -1098,6 +1139,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                 back_order_goods_volume = round(goods_detail.unit_volume * dn_back_order_qty, 4)
                                 back_order_goods_weight = round(
                                     (goods_detail.goods_weight * dn_back_order_qty) / 1000, 4)
+                                back_order_goods_cost = round(goods_detail.goods_cost * dn_back_order_qty, 2)
                                 back_order_list.append(DnDetailModel(dn_code=back_order_dn_code,
                                                                      dn_status=2,
                                                                      customer=qs.customer,
@@ -1105,6 +1147,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                      goods_qty=dn_back_order_qty,
                                                                      goods_weight=back_order_goods_weight,
                                                                      goods_volume=back_order_goods_volume,
+                                                                     goods_cost=back_order_goods_cost,
                                                                      creater=self.request.auth.name,
                                                                      back_order_label=True,
                                                                      openid=self.request.auth.openid,
@@ -1112,12 +1155,16 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                 back_order_list_label = 1
                                 total_weight = total_weight - back_order_goods_weight
                                 total_volume = total_volume - back_order_goods_volume
+                                total_cost = total_cost - back_order_goods_cost
                                 dn_detail_list[i].goods_weight = dn_detail_list[i].goods_weight - \
                                                                  back_order_goods_weight
                                 dn_detail_list[i].goods_volume = dn_detail_list[i].goods_volume - \
                                                                  back_order_goods_volume
+                                dn_detail_list[i].goods_cost = dn_detail_list[i].goods_cost - \
+                                                                 back_order_goods_cost
                                 back_order_goods_weight_list.append(back_order_goods_weight)
                                 back_order_goods_volume_list.append(back_order_goods_volume)
+                                back_order_goods_cost_list.append(back_order_goods_cost)
                                 dn_detail_list[i].save()
                         elif dn_detail_list[i].goods_qty == can_pick_qty:
                             for j in range(len(goods_bin_stock_list)):
@@ -1246,6 +1293,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                             goods_qty_change.back_order_stock = goods_qty_change.back_order_stock + dn_detail_list[i].goods_qty
                             back_order_goods_volume = round(goods_detail.unit_volume * dn_detail_list[i].goods_qty, 4)
                             back_order_goods_weight = round((goods_detail.goods_weight * dn_detail_list[i].goods_qty) / 1000, 4)
+                            back_order_goods_cost = round(goods_detail.goods_cost * dn_detail_list[i].goods_qty, 2)
                             back_order_list.append(DnDetailModel(dn_code=back_order_dn_code,
                                                                  dn_status=2,
                                                                  customer=qs.customer,
@@ -1253,6 +1301,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                  goods_qty=dn_detail_list[i].goods_qty,
                                                                  goods_weight=back_order_goods_weight,
                                                                  goods_volume=back_order_goods_volume,
+                                                                 goods_cost=back_order_goods_cost,
                                                                  creater=self.request.auth.name,
                                                                  back_order_label=True,
                                                                  openid=self.request.auth.openid,
@@ -1260,8 +1309,10 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                             back_order_list_label = 1
                             total_weight = total_weight - back_order_goods_weight
                             total_volume = total_volume - back_order_goods_volume
+                            total_cost = total_cost - back_order_goods_cost
                             back_order_goods_weight_list.append(back_order_goods_weight)
                             back_order_goods_volume_list.append(back_order_goods_volume)
+                            back_order_goods_cost_list.append(back_order_goods_cost)
                             dn_detail_list[i].is_delete = True
                             dn_detail_list[i].save()
                             goods_qty_change.save()
@@ -1275,6 +1326,8 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                             len(back_order_goods_volume_list))
                         back_order_total_weight = sumOfList(back_order_goods_weight_list,
                                                             len(back_order_goods_weight_list))
+                        back_order_total_cost = sumOfList(back_order_goods_cost_list,
+                                                            len(back_order_goods_cost_list))
                         customer_city = customer.objects.filter(openid=self.request.auth.openid,
                                                                 customer_name=str(qs.customer),
                                                                 is_delete=False).first().customer_city
@@ -1323,6 +1376,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                    dn_status=2,
                                                    total_weight=back_order_total_weight,
                                                    total_volume=back_order_total_volume,
+                                                   total_cost=back_order_total_cost,
                                                    customer=qs.customer,
                                                    creater=self.request.auth.name,
                                                    bar_code=bar_code,
@@ -1335,6 +1389,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                         DnDetailModel.objects.bulk_create(back_order_list, batch_size=100)
                         qs.total_weight = total_weight
                         qs.total_volume = total_volume
+                        qs.total_cost = total_cost
                         qs.transportation_fee = transportation_res
                         qs.dn_status = 3
                         qs.save()
@@ -1350,6 +1405,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                    dn_status=2,
                                                    total_weight=qs.total_weight,
                                                    total_volume=qs.total_volume,
+                                                   total_cost=qs.total_cost,
                                                    customer=qs.customer,
                                                    creater=self.request.auth.name,
                                                    bar_code=bar_code,
@@ -1489,21 +1545,22 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                 pick_qty_change = PickingListModel.objects.filter(openid=self.request.auth.openid,
                                                                   dn_code=str(data['dn_code']),
                                                                   t_code=str(data['goodsData'][j].get('t_code'))).first()
+                qtychangerecorder.objects.create(openid=self.request.auth.openid,
+                                                 bin_name=bin_qty_change.bin_name,
+                                                 goods_code=bin_qty_change.goods_code,
+                                                 goods_qty=0 - int(data['goodsData'][j].get('pick_qty')),
+                                                 creater=self.request.auth.name
+                                                 )
                 cur_date = timezone.now().date()
-                line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
-                                                      bin_name=bin_qty_change.bin_name,
-                                                      goods_code=bin_qty_change.goods_code,
-                                                      create_time=cur_date)
-                if line_data.exists():
-                    line_data.goods_qty = line_data.goods_qty + int(data['goodsData'][j].get('pick_qty'))
-                    line_data.save()
-                else:
-                    cyclecount.objects.create(openid=self.request.auth.openid,
-                                              bin_name=bin_qty_change.bin_name,
-                                              goods_code=bin_qty_change.goods_code,
-                                              goods_qty=int(data['goodsData'][j].get('pick_qty')),
-                                              creater=self.request.auth.name
-                                              )
+                bin_stock = stockbin.objects.filter(openid=self.request.auth.openid,
+                                                    bin_name=str(data['bin_name']),
+                                                    goods_code=str(data['goods_code']),
+                                                    ).aggregate(sum=Sum('goods_qty'))["sum"]
+                cycle_qty = bin_stock - int(data['goodsData'][j].get('pick_qty'))
+                cyclecount.objects.filter(openid=self.request.auth.openid,
+                                          bin_name=bin_qty_change.bin_name,
+                                          goods_code=bin_qty_change.goods_code,
+                                          create_time__gte=cur_date).update(goods_qty=cycle_qty)
                 if int(data['goodsData'][j].get('pick_qty')) == pick_qty_change.pick_qty:
                     goods_qty_change.pick_stock = goods_qty_change.pick_stock - int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock + int(data['goodsData'][j].get('pick_qty'))
@@ -1584,12 +1641,9 @@ class DnDispatchViewSet(viewsets.ModelViewSet):
                                                                 goods_code=dn_detail[i].goods_code).first()
                     goods_qty_change.goods_qty = goods_qty_change.goods_qty - dn_detail[i].picked_qty
                     goods_qty_change.onhand_stock = goods_qty_change.onhand_stock - dn_detail[i].picked_qty
-                    if goods_qty_change.goods_qty - dn_detail[i].picked_qty > 0:
-                        goods_qty_change.can_order_stock = goods_qty_change.goods_qty + dn_detail[i].picked_qty
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock - dn_detail[i].picked_qty
                     dn_detail[i].dn_status = 5
                     dn_detail[i].intransit_qty = dn_detail[i].picked_qty
-                    dn_detail[i].picked_qty = 0
                     dn_detail[i].save()
                     goods_qty_change.save()
                     if goods_qty_change.goods_qty == 0 and goods_qty_change.back_order_stock == 0:
