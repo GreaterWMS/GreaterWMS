@@ -384,6 +384,10 @@ export default {
     scan_uptobin: '棚まで',
     scan_picking: 'ピッキング',
     scan_shipping: 'ディスパッチ',
+    scan_movetobin: 'ライブラリを移動',
+    scan_inventory: '棚卸しをする',
+    scan_goodsquery: '商品の照会',
+    scan_locationquery: 'データベースの検索',
     view_binmove: {
       goods_code: '製品コード',
       onhand_stock: '既存の在庫',
