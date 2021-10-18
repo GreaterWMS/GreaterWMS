@@ -6,7 +6,7 @@ class WarehouseGetSerializer(serializers.ModelSerializer):
     warehouse_name = serializers.CharField(read_only=True, required=False)
     warehouse_city = serializers.CharField(read_only=True, required=False)
     warehouse_address = serializers.CharField(read_only=True, required=False)
-    warehouse_contact = serializers.IntegerField(read_only=True, required=False)
+    warehouse_contact = serializers.CharField(read_only=True, required=False)
     warehouse_manager = serializers.CharField(read_only=True, required=False)
     creater = serializers.CharField(read_only=True, required=False)
     create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
@@ -22,7 +22,7 @@ class WarehousePostSerializer(serializers.ModelSerializer):
     warehouse_name = serializers.CharField(read_only=False,  required=True, validators=[datasolve.data_validate])
     warehouse_city = serializers.CharField(read_only=False,  required=True, validators=[datasolve.data_validate])
     warehouse_address = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
-    warehouse_contact = serializers.IntegerField(read_only=False, required=True, validators=[datasolve.data_validate])
+    warehouse_contact = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     warehouse_manager = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     class Meta:
@@ -34,7 +34,7 @@ class WarehouseUpdateSerializer(serializers.ModelSerializer):
     warehouse_name = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     warehouse_city = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     warehouse_address = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
-    warehouse_contact = serializers.IntegerField(read_only=False, required=True, validators=[datasolve.data_validate])
+    warehouse_contact = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     warehouse_manager = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     class Meta:
@@ -46,7 +46,7 @@ class WarehousePartialUpdateSerializer(serializers.ModelSerializer):
     warehouse_name = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     warehouse_city = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     warehouse_address = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
-    warehouse_contact = serializers.IntegerField(read_only=False, required=False, validators=[datasolve.data_validate])
+    warehouse_contact = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     warehouse_manager = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     class Meta:
