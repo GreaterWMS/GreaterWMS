@@ -87,8 +87,7 @@
                  <q-input dense
                           outlined
                           square
-                          v-model.number="editFormData.company_contact"
-                          type="number"
+                          v-model="editFormData.company_contact"
                           :label="$t('baseinfo.view_company.company_contact')"
                           :rules="[ val => val && val > 0 || 'Please Enter The Company Contact']"
                  />
@@ -209,8 +208,7 @@
            <q-input dense
                     outlined
                     square
-                    v-model.number="newFormData.company_contact"
-                    type="number"
+                    v-model="newFormData.company_contact"
                     :label="$t('baseinfo.view_company.company_contact')"
                     :rules="[ val => val && val > 0 || 'Please Enter The Company Contact']"
                     @keyup.enter="newDataSubmit()"/>

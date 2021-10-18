@@ -19,11 +19,13 @@ from stock.models import StockBinModel as stockbin
 from driver.models import ListModel as driverlist
 from driver.models import DispatchListModel as driverdispatch
 from scanner.models import ListModel as scanner
+from cyclecount.models import CyclecountModeDayModel as cyclecount
 from django.db.models import Q
 from utils.md5 import Md5
 import re
 from .serializers import FileListRenderSerializer, FileDetailRenderSerializer
 from django.http import StreamingHttpResponse
+from django.utils import timezone
 from .files import FileListRenderCN, FileListRenderEN, FileDetailRenderCN, FileDetailRenderEN
 from rest_framework.settings import api_settings
 
@@ -183,12 +185,14 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                 post_data_list = []
                 weight_list = []
                 volume_list = []
+                cost_list = []
                 for j in range(len(data['goods_code'])):
                     goods_detail = goods.objects.filter(openid=self.request.auth.openid,
                                                         goods_code=str(data['goods_code'][j]),
                                                         is_delete=False).first()
                     goods_weight = round(goods_detail.goods_weight * int(data['goods_qty'][j]) / 1000, 4)
                     goods_volume = round(goods_detail.unit_volume * int(data['goods_qty'][j]), 4)
+                    goods_cost = round(goods_detail.goods_cost * int(data['goods_qty'][j]), 4)
                     if stocklist.objects.filter(openid=self.request.auth.openid, goods_code=str(data['goods_code'][j]),
                                                 can_order_stock__gte=0).exists():
                         goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
@@ -1485,6 +1489,21 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                 pick_qty_change = PickingListModel.objects.filter(openid=self.request.auth.openid,
                                                                   dn_code=str(data['dn_code']),
                                                                   t_code=str(data['goodsData'][j].get('t_code'))).first()
+                cur_date = timezone.now().date()
+                line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
+                                                      bin_name=bin_qty_change.bin_name,
+                                                      goods_code=bin_qty_change.goods_code,
+                                                      create_time=cur_date)
+                if line_data.exists():
+                    line_data.goods_qty = line_data.goods_qty + int(data['goodsData'][j].get('pick_qty'))
+                    line_data.save()
+                else:
+                    cyclecount.objects.create(openid=self.request.auth.openid,
+                                              bin_name=bin_qty_change.bin_name,
+                                              goods_code=bin_qty_change.goods_code,
+                                              goods_qty=int(data['goodsData'][j].get('pick_qty')),
+                                              creater=self.request.auth.name
+                                              )
                 if int(data['goodsData'][j].get('pick_qty')) == pick_qty_change.pick_qty:
                     goods_qty_change.pick_stock = goods_qty_change.pick_stock - int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock + int(data['goodsData'][j].get('pick_qty'))

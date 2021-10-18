@@ -80,8 +80,7 @@
                  <q-input dense
                           outlined
                           square
-                          type="number"
-                          v-model.number="editFormData.contact"
+                          v-model="editFormData.contact"
                           :label="$t('driver.view_driver.contact')"
                  />
                </q-td>
@@ -178,8 +177,7 @@
            <q-input dense
                     outlined
                     square
-                    type="number"
-                    v-model.number="newFormData.contact"
+                    v-model="newFormData.contact"
                     :label="$t('driver.view_driver.contact')"
                     :rules="[ val => val && val > 0 || 'Please Enter The Contact']"
                     @keyup.enter="newDataSubmit()"/>

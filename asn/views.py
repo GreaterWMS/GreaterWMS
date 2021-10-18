@@ -19,10 +19,12 @@ from stock.models import StockListModel as stocklist
 from stock.models import StockBinModel as stockbin
 from binset.models import ListModel as binset
 from scanner.models import ListModel as scanner
+from cyclecount.models import CyclecountModeDayModel as cyclecount
 from django.db.models import Q
 import re
 from .serializers import FileListRenderSerializer, FileDetailRenderSerializer
 from django.http import StreamingHttpResponse
+from django.utils import timezone
 from .files import FileListRenderCN, FileListRenderEN, FileDetailRenderCN, FileDetailRenderEN
 from rest_framework.settings import api_settings
 
@@ -727,6 +729,21 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                     t_code=Md5.md5(str(data['goods_code'])),
                                                     create_time=qs.create_time
                                                     )
+                            cur_date = timezone.now().date()
+                            line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
+                                                                  bin_name=str(data['bin_name']),
+                                                                  goods_code=str(data['goods_code']),
+                                                                  create_time=cur_date)
+                            if line_data.exists():
+                                line_data.goods_qty = line_data.goods_qty + int(data['qty'])
+                                line_data.save()
+                            else:
+                                cyclecount.objects.create(openid=self.request.auth.openid,
+                                                          bin_name=str(data['bin_name']),
+                                                          goods_code=str(data['goods_code']),
+                                                          goods_qty=int(data['qty']),
+                                                          creater=str(data['creater'])
+                                                          )
                             if bin_detail.empty_label == True:
                                 bin_detail.empty_label = False
                                 bin_detail.save()

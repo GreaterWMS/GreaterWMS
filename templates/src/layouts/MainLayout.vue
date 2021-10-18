@@ -3,7 +3,7 @@
     <q-header reveal elevated class="bg-primary text-white">
       <q-toolbar class="main-headers text-white shadow-18 rounded-borders">
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn flat @click="drawerleft = !drawerleft" round dense icon="menu">
+          <q-btn flat v-show="device !== 2" @click="drawerleft = !drawerleft" round dense icon="menu">
             <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">
               {{ $t('index.hide_menu') }}
             </q-tooltip>
@@ -16,7 +16,7 @@
         </transition>
         <q-space />
         <transition appear enter-active-class="animated zoomIn">
-          <a v-show="$q.platform.is.desktop && !$q.platform.is.electron" href="/docs/" style="text-decoration:none; color: #c8e6c9">
+          <a v-show="device !== 2 && device !== 1 &&!$q.platform.is.electron" href="/docs/" style="text-decoration:none; color: #c8e6c9">
             <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">
                 {{ $t('index.api') }}
@@ -25,7 +25,7 @@
           </a>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn v-show="$q.platform.is.desktop && !$q.platform.is.electron" icon="img:statics/icons/GitHub.png" round dense flat @click="brownlink('https://github.com/Singosgu/GreaterWMS')" style="margin: 0 10px 0 10px">
+          <q-btn v-show="device === 0 &&!$q.platform.is.electron" icon="img:statics/icons/GitHub.png" round dense flat @click="brownlink('https://github.com/Singosgu/GreaterWMS')" style="margin: 0 10px 0 10px">
             <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">
               GitHub Link
             </q-tooltip>
@@ -85,7 +85,7 @@
                       </q-tooltip>
                   </q-btn>
                 </div>
-                <q-separator v-show="$q.platform.is.desktop" vertical inset class="q-mx-lg" />
+                <q-separator v-show="device === 0" vertical inset class="q-mx-lg" />
               <div class="column items-center" v-show="$q.platform.is.desktop">
                 <q-avatar size="72px">
                     <q-img src="statics/staff/stafftype.png"></q-img>
@@ -136,10 +136,9 @@
       >
         <q-list>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'dashboard'
+                          $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
-                  v-if="$q.platform.is.desktop"
+                  v-if="device=== 0"
                   clickable to="/dashboard/outbounddashboard" @click="linkChange('outbounddashboard')" v-ripple exact :active="link === 'outbounddashboard'" :class="{ 'my-menu-link': link === 'outbounddashboard' }">
             <q-item-section avatar>
               <q-icon name="auto_graph" />
@@ -148,11 +147,12 @@
               {{ $t('menuItem.dashboard') }}
             </q-item-section>
           </q-item>
+          <q-separator v-show="device === 0" />
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
-                  v-if="$q.platform.is.desktop"
+                  v-if="device === 0"
             clickable to="/inbound/asn" @click="linkChange('inbound')" v-ripple exact :active="link === 'inbound'" :class="{ 'my-menu-link': link === 'inbound' }">
             <q-item-section avatar>
               <q-icon name="speaker_notes" />
@@ -165,7 +165,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Inbound'
                          "
-                  v-if="$q.platform.is.desktop"
+                  v-if="device === 0"
             clickable to="/outbound/dn" @click="linkChange('outbound')" v-ripple exact :active="link === 'outbound'" :class="{ 'my-menu-link': link === 'outbound' }">
             <q-item-section avatar>
               <q-icon name="rv_hookup" />
@@ -177,7 +177,7 @@
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
-                  v-if="$q.platform.is.desktop"
+                  v-if="device !== 2"
             clickable to="/stock/stocklist" @click="linkChange('stock')" v-ripple exact :active="link === 'stock'" :class="{ 'my-menu-link': link === 'stock' }">
             <q-item-section avatar>
               <q-icon name="multiline_chart" />
@@ -186,14 +186,14 @@
               {{ $t('menuItem.stock') }}
             </q-item-section>
           </q-item>
-          <q-separator v-show="$q.platform.is.desktop"/>
+          <q-separator v-show="device !== 2"/>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer' &&
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-                  v-if="$q.platform.is.desktop"
+                  v-if="device !== 2"
             clickable to="/finance/capitallist" @click="linkChange('finance')" v-ripple exact :active="link === 'finance'" :class="{ 'my-menu-link': link === 'finance' }">
             <q-item-section avatar>
               <q-icon name="devices_other" />
@@ -207,7 +207,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
-                  v-if="$q.platform.is.desktop"
+                  v-if="device !== 2"
                   clickable to="/goods/goodslist" @click="linkChange('goods')" v-ripple exact :active="link === 'goods'" :class="{ 'my-menu-link': link === 'goods' }">
             <q-item-section avatar>
               <q-icon name="shop_two" />
@@ -222,7 +222,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Outbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-                  v-if="$q.platform.is.desktop"
+                  v-if="device !== 2"
             clickable to="/baseinfo/company" @click="linkChange('baseinfo')" v-ripple exact :active="link === 'baseinfo'" :class="{ 'my-menu-link': link === 'baseinfo' }">
             <q-item-section avatar>
               <q-icon name="info" />
@@ -236,7 +236,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
-                  v-if="$q.platform.is.desktop"
+                  v-if="device !== 2"
             clickable to="/warehouse/warehouseset" @click="linkChange('warehouse')" v-ripple exact :active="link === 'warehouse'" :class="{ 'my-menu-link': link === 'warehouse' }">
             <q-item-section avatar>
               <q-icon name="settings" />
@@ -245,11 +245,11 @@
               {{ $t('menuItem.warehouse') }}
             </q-item-section>
           </q-item>
-          <q-separator v-show="$q.platform.is.desktop"/>
+          <q-separator v-show="device !== 2"/>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
                           $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
-                  v-if="$q.platform.is.desktop"
+                  v-if="device !== 2"
             clickable to="/staff/stafflist" @click="linkChange('staff')" v-ripple exact :active="link === 'staff'" :class="{ 'my-menu-link': link === 'staff' }">
             <q-item-section avatar>
               <q-icon name="assignment_ind" />
@@ -263,7 +263,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound' &&
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
-                  v-if="$q.platform.is.desktop"
+                  v-if="device !== 2"
             clickable to="/driver/driverlist" @click="linkChange('driver')" v-ripple exact :active="link === 'driver'" :class="{ 'my-menu-link': link === 'driver' }">
             <q-item-section avatar>
               <q-icon name="transfer_within_a_station" />
@@ -272,13 +272,11 @@
               {{ $t('menuItem.driver') }}
             </q-item-section>
           </q-item>
-          <q-separator v-show="$q.platform.is.desktop"/>
+          <q-separator v-show="device === 0"/>
           <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                          $q.localStorage.getItem('staff_type') !== 'StockControl'
+                          $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
-                  v-if="$q.platform.is.desktop"
+                  v-if="device === 0"
                   clickable to="/uploadcenter/initializeupload" @click="linkChange('uploadcenter')" v-ripple exact :active="link === 'uploadcenter'" :class="{ 'my-menu-link': link === 'uploadcenter' }">
             <q-item-section avatar>
               <q-icon name="file_upload" />
@@ -287,24 +285,24 @@
               {{ $t('menuItem.uploadcenter') }}
             </q-item-section>
           </q-item>
-          <q-separator v-show="$q.platform.is.desktop"/>
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Supervisor' &&
-                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                          $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                          $q.localStorage.getItem('staff_type') !== 'StockControl' &&
-                          $q.localStorage.getItem('staff_type') !== 'Manager' &&
-                          $q.localStorage.getItem('staff_type') !== 'Admin'
-                         "
-                  v-if="$q.platform.is.desktop"
-            clickable to="/customerdn" @click="linkChange('customerdn')" v-ripple exact :active="link === 'customerdn'" :class="{ 'my-menu-link': link === 'customerdn' }">
-            <q-item-section avatar>
-              <q-icon name="img:statics/outbound/dnlist.png" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('menuItem.customerdn') }}
-            </q-item-section>
-          </q-item>
+<!--          <q-separator v-show="device !== 2"/>-->
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Supervisor' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Outbound' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'StockControl' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Manager' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Admin'-->
+<!--                         "-->
+<!--                  v-if="device !== 2"-->
+<!--            clickable to="/customerdn" @click="linkChange('customerdn')" v-ripple exact :active="link === 'customerdn'" :class="{ 'my-menu-link': link === 'customerdn' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="img:statics/outbound/dnlist.png" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('menuItem.customerdn') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
 <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&-->
 <!--                          $q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
 <!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
@@ -389,98 +387,98 @@
 <!--              {{ $t('cyclecount') }}-->
 <!--            </q-item-section>-->
 <!--          </q-item>-->
-          <q-separator v-show="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile" />
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Outbound'
-                         "
-                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
-            clickable to="/scan_asn" @click="linkChange('scan_asn')" v-ripple exact :active="link === 'scan_asn'" :class="{ 'my-menu-link': link === 'scan_asn' }">
-            <q-item-section avatar>
-              <q-icon name="img:statics/inbound/asn.png" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('scan.scan_asn') }}
-            </q-item-section>
-          </q-item>
-                    <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Outbound'
-                         "
-                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
-            clickable to="/scan_dn" @click="linkChange('scan_dn')" v-ripple exact :active="link === 'scan_dn'" :class="{ 'my-menu-link': link === 'scan_dn' }">
-            <q-item-section avatar>
-              <q-icon name="img:statics/outbound/dnlist.png" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('scan.scan_dn') }}
-            </q-item-section>
-          </q-item>
-          <q-separator v-show="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"/>
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                          $q.localStorage.getItem('staff_type') !== 'Outbound'
-                         "
-                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
-            clickable to="/scan_emptybin" @click="linkChange('scan_emptybin')" v-ripple exact :active="link === 'scan_emptybin'" :class="{ 'my-menu-link': link === 'scan_emptybin' }">
-            <q-item-section avatar>
-              <q-icon name="all_out" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('stock.emptybin') }}
-            </q-item-section>
-          </q-item>
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         "
-                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
-            clickable to="/scan_stockbinlist" @click="linkChange('scan_stockbinlist')" v-ripple exact :active="link === 'scan_stockbinlist'" :class="{ 'my-menu-link': link === 'scan_stockbinlist' }">
-            <q-item-section avatar>
-              <q-icon name="img:statics/warehouse/binset.png" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('stock.stockbinlist') }}
-            </q-item-section>
-          </q-item>
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         "
-                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
-            clickable to="/scan_stocklist" @click="linkChange('scan_stocklist')" v-ripple exact :active="link === 'scan_stocklist'" :class="{ 'my-menu-link': link === 'scan_stocklist' }">
-            <q-item-section avatar>
-              <q-icon name="img:statics/stock/stocklist.png" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('stock.stocklist') }}
-            </q-item-section>
-          </q-item>
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Supplier'
-                         "
-                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
-            clickable to="/scan_goodslist" @click="linkChange('scan_goodslist')" v-ripple exact :active="link === 'scan_goodslist'" :class="{ 'my-menu-link': link === 'scan_goodslist' }">
-            <q-item-section avatar>
-              <q-icon name="img:statics/goods/goodslist.png" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('goods.goods_list') }}
-            </q-item-section>
-          </q-item>
-          <q-separator v-show="$q.platform.is.cordova || $q.platform.is.mobile"/>
-          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Supplier'
-                         "
-                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"
-            clickable to="/scan_stafflist" @click="linkChange('scan_stafflist')" v-ripple exact :active="link === 'scan_stafflist'" :class="{ 'my-menu-link': link === 'scan_stafflist' }">
-            <q-item-section avatar>
-              <q-icon name="perm_contact_calendar" />
-            </q-item-section>
-            <q-item-section>
-              {{ $t('staff.staff') }}
-            </q-item-section>
-          </q-item>
-          <q-separator v-show="$q.platform.is.cordova || $q.platform.is.mobile"/>
+<!--          <q-separator v-show="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile" />-->
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Outbound'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--            clickable to="/scan_asn" @click="linkChange('scan_asn')" v-ripple exact :active="link === 'scan_asn'" :class="{ 'my-menu-link': link === 'scan_asn' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="img:statics/inbound/asn.png" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('scan.scan_asn') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--                    <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Outbound'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--            clickable to="/scan_dn" @click="linkChange('scan_dn')" v-ripple exact :active="link === 'scan_dn'" :class="{ 'my-menu-link': link === 'scan_dn' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="img:statics/outbound/dnlist.png" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('scan.scan_dn') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--          <q-separator v-show="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"/>-->
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Outbound'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--            clickable to="/scan_emptybin" @click="linkChange('scan_emptybin')" v-ripple exact :active="link === 'scan_emptybin'" :class="{ 'my-menu-link': link === 'scan_emptybin' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="all_out" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('stock.emptybin') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Customer'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--            clickable to="/scan_stockbinlist" @click="linkChange('scan_stockbinlist')" v-ripple exact :active="link === 'scan_stockbinlist'" :class="{ 'my-menu-link': link === 'scan_stockbinlist' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="img:statics/warehouse/binset.png" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('stock.stockbinlist') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Customer'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--            clickable to="/scan_stocklist" @click="linkChange('scan_stocklist')" v-ripple exact :active="link === 'scan_stocklist'" :class="{ 'my-menu-link': link === 'scan_stocklist' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="img:statics/stock/stocklist.png" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('stock.stocklist') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Supplier'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--            clickable to="/scan_goodslist" @click="linkChange('scan_goodslist')" v-ripple exact :active="link === 'scan_goodslist'" :class="{ 'my-menu-link': link === 'scan_goodslist' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="img:statics/goods/goodslist.png" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('goods.goods_list') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--          <q-separator v-show="$q.platform.is.cordova || $q.platform.is.mobile"/>-->
+<!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&-->
+<!--                          $q.localStorage.getItem('staff_type') !== 'Supplier'-->
+<!--                         "-->
+<!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
+<!--            clickable to="/scan_stafflist" @click="linkChange('scan_stafflist')" v-ripple exact :active="link === 'scan_stafflist'" :class="{ 'my-menu-link': link === 'scan_stafflist' }">-->
+<!--            <q-item-section avatar>-->
+<!--              <q-icon name="perm_contact_calendar" />-->
+<!--            </q-item-section>-->
+<!--            <q-item-section>-->
+<!--              {{ $t('staff.staff') }}-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--          <q-separator v-show="$q.platform.is.cordova || $q.platform.is.mobile"/>-->
         </q-list>
       </q-scroll-area>
     </q-drawer>
@@ -752,7 +750,7 @@ var ws
 export default {
   data () {
     return {
-      device: '',
+      device: 0,
       lang: this.$i18n.locale,
       verCheck: false,
       version: '',
@@ -1252,7 +1250,15 @@ export default {
   mounted () {
     var _this = this
     if (window.device) {
-      _this.device = window.device
+      if (window.device.manufacturer === 'Urovo' || window.device.manufacturer === 'Zebra Technologies') {
+        _this.device = 2
+      } else {
+        _this.device = 1
+      }
+    } else {
+      if (_this.$q.platform.is.mobile) {
+        _this.device = 1
+      }
     }
     if (_this.$q.platform.is.electron) {
       if (LocalStorage.has('openid')) {

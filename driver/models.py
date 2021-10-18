@@ -3,7 +3,7 @@ from django.db import models
 class ListModel(models.Model):
     driver_name = models.CharField(max_length=255, verbose_name="Driver Name")
     license_plate = models.CharField(max_length=255, verbose_name="License Plate")
-    contact = models.BigIntegerField(default=0, verbose_name="Contact Number")
+    contact = models.CharField(max_length=255, verbose_name="Contact Number")
     creater = models.CharField(max_length=255, verbose_name="Who Created")
     openid = models.CharField(max_length=255, verbose_name="Openid")
     is_delete = models.BooleanField(default=False, verbose_name='Delete Label')
