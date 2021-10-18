@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center">
-    <lottie-web-cimo v-show="device === 2" ref="lottie_web" style="width: 40%; max-width: 70%"/>
-    <div class="q-pa-md" v-show="device !== 2" style="height: 100%; max-width: 100%">
+    <lottie-web-cimo v-show="device !== 2" ref="lottie_web" style="width: 40%; max-width: 70%"/>
+    <div class="q-pa-md" v-show="device === 2" style="height: 100%; max-width: 100%">
       <div class="q-gutter-x-md q-gutter-y-xl">
         <q-btn icon="phone" v-for="n in 8" :key="n" label="Stacked" stack flat color="black" />
       </div>
