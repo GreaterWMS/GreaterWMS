@@ -1714,7 +1714,7 @@ export default {
         _this.supplier_detail = res.supplier_detail
         _this.viewAsn = e.asn_code
         var QRCode = require('qrcode')
-        QRCode.toDataURL(e.bar_code, [{
+        QRCode.toDataURL(e.asn_code, [{
           errorCorrectionLevel: 'H',
           mode: 'byte',
           version: '2',

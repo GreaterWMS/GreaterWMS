@@ -2,7 +2,7 @@ from django.db import models
 
 class CyclecountModeDayModel(models.Model):
     openid = models.CharField(max_length=255, verbose_name="Openid")
-    cyclecount_status = models.IntegerField(default=1, verbose_name="Cycle Count Status")
+    cyclecount_status = models.IntegerField(default=0, verbose_name="Cycle Count Status")
     bin_name = models.CharField(max_length=255, verbose_name="Bin Name")
     goods_code = models.CharField(max_length=255, verbose_name="Goods Code")
     goods_qty = models.BigIntegerField(default=0, verbose_name="On Hand Stock")

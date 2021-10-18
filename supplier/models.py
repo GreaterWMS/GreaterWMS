@@ -4,7 +4,7 @@ class ListModel(models.Model):
     supplier_name = models.CharField(max_length=255, verbose_name="Supplier Name")
     supplier_city = models.CharField(max_length=255, verbose_name="Supplier City")
     supplier_address = models.CharField(max_length=255, verbose_name="Supplier Address")
-    supplier_contact = models.BigIntegerField(default=0, verbose_name="Supplier Contact")
+    supplier_contact = models.CharField(max_length=255, verbose_name="Supplier Contact")
     supplier_manager = models.CharField(max_length=255, verbose_name="Supplier Manager")
     supplier_level = models.BigIntegerField(default=1, verbose_name="Supplier Level")
     creater = models.CharField(max_length=255, verbose_name="Who Created")

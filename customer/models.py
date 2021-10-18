@@ -4,7 +4,7 @@ class ListModel(models.Model):
     customer_name = models.CharField(max_length=255, verbose_name="Customer Name")
     customer_city = models.CharField(max_length=255, verbose_name="Customer City")
     customer_address = models.CharField(max_length=255, verbose_name="Customer Address")
-    customer_contact = models.BigIntegerField(default=0, verbose_name="Customer Contact")
+    customer_contact = models.CharField(max_length=255, verbose_name="Customer Contact")
     customer_manager = models.CharField(max_length=255, verbose_name="Customer Manager")
     customer_level = models.BigIntegerField(default=1, verbose_name="Customer Level")
     creater = models.CharField(max_length=255, verbose_name="Who Created")
