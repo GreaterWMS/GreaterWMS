@@ -19,8 +19,10 @@ from stock.models import StockListModel as stocklist
 from stock.models import StockBinModel as stockbin
 from binset.models import ListModel as binset
 from scanner.models import ListModel as scanner
+from cyclecount.models import QTYRecorder as qtychangerecorder
 from cyclecount.models import CyclecountModeDayModel as cyclecount
 from django.db.models import Q
+from django.db.models import Sum
 import re
 from .serializers import FileListRenderSerializer, FileDetailRenderSerializer
 from django.http import StreamingHttpResponse
@@ -729,14 +731,29 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                     t_code=Md5.md5(str(data['goods_code'])),
                                                     create_time=qs.create_time
                                                     )
+                            qtychangerecorder.objects.create(openid=self.request.auth.openid,
+                                                             mode_code=qs.asn_code,
+                                                             bin_name=str(data['bin_name']),
+                                                             goods_code=str(data['goods_code']),
+                                                             goods_qty=int(data['qty']),
+                                                             creater=str(data['creater'])
+                                                             )
                             cur_date = timezone.now().date()
                             line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
                                                                   bin_name=str(data['bin_name']),
                                                                   goods_code=str(data['goods_code']),
-                                                                  create_time=cur_date)
+                                                                  create_time__gte=cur_date)
+                            bin_check = stockbin.objects.filter(openid=self.request.auth.openid,
+                                                                bin_name=str(data['bin_name']),
+                                                                goods_code=str(data['goods_code']),
+                                                                )
+                            if bin_check.exists():
+                                bin_stock = bin_check.aggregate(sum=Sum('goods_qty'))["sum"]
+                            else:
+                                bin_stock = 0
                             if line_data.exists():
-                                line_data.goods_qty = line_data.goods_qty + int(data['qty'])
-                                line_data.save()
+                                line_data.goods_qty = bin_stock + int(data['qty'])
+                                line_data.update(goods_qty=line_data.goods_qty)
                             else:
                                 cyclecount.objects.create(openid=self.request.auth.openid,
                                                           bin_name=str(data['bin_name']),
@@ -761,6 +778,36 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                 goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['qty'])
                             else:
                                 goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(data['qty'])
+                            qtychangerecorder.objects.create(openid=self.request.auth.openid,
+                                                             mode_code=qs.asn_code,
+                                                             bin_name=str(data['bin_name']),
+                                                             goods_code=str(data['goods_code']),
+                                                             goods_qty=int(data['qty']),
+                                                             creater=str(data['creater'])
+                                                             )
+                            cur_date = timezone.now().date()
+                            line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
+                                                                  bin_name=str(data['bin_name']),
+                                                                  goods_code=str(data['goods_code']),
+                                                                  create_time__gte=cur_date)
+                            bin_check = stockbin.objects.filter(openid=self.request.auth.openid,
+                                                                bin_name=str(data['bin_name']),
+                                                                goods_code=str(data['goods_code']),
+                                                                )
+                            if bin_check.exists():
+                                bin_stock = bin_check.aggregate(sum=Sum('goods_qty'))["sum"]
+                            else:
+                                bin_stock = 0
+                            if line_data.exists():
+                                line_data.goods_qty = bin_stock + int(data['qty'])
+                                line_data.update(goods_qty=line_data.goods_qty)
+                            else:
+                                cyclecount.objects.create(openid=self.request.auth.openid,
+                                                          bin_name=str(data['bin_name']),
+                                                          goods_code=str(data['goods_code']),
+                                                          goods_qty=int(data['qty']),
+                                                          creater=str(data['creater'])
+                                                          )
                             qs.save()
                             goods_qty_change.save()
                             if AsnDetailModel.objects.filter(openid=self.request.auth.openid,
