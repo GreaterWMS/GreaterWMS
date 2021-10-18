@@ -5,7 +5,7 @@ from utils import datasolve
 class DriverGetSerializer(serializers.ModelSerializer):
     driver_name = serializers.CharField(read_only=True, required=False)
     license_plate = serializers.CharField(read_only=True, required=False)
-    contact = serializers.IntegerField(read_only=True, required=False)
+    contact = serializers.CharField(read_only=True, required=False)
     create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     class Meta:
@@ -16,7 +16,7 @@ class DriverGetSerializer(serializers.ModelSerializer):
 class DriverPostSerializer(serializers.ModelSerializer):
     openid = serializers.CharField(read_only=False, required=False, validators=[datasolve.openid_validate])
     driver_name = serializers.CharField(read_only=False,  required=True, validators=[datasolve.data_validate])
-    contact = serializers.IntegerField(read_only=False, required=True, validators=[datasolve.data_validate])
+    contact = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     license_plate = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     class Meta:
@@ -27,7 +27,7 @@ class DriverPostSerializer(serializers.ModelSerializer):
 class DriverUpdateSerializer(serializers.ModelSerializer):
     driver_name = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     license_plate = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
-    contact = serializers.IntegerField(read_only=False, required=True, validators=[datasolve.data_validate])
+    contact = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     class Meta:
         model = ListModel
@@ -37,7 +37,7 @@ class DriverUpdateSerializer(serializers.ModelSerializer):
 class DriverPartialUpdateSerializer(serializers.ModelSerializer):
     driver_name = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     license_plate = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
-    contact = serializers.IntegerField(read_only=False, required=False, validators=[datasolve.data_validate])
+    contact = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     class Meta:
         model = ListModel
@@ -47,7 +47,7 @@ class DriverPartialUpdateSerializer(serializers.ModelSerializer):
 class DispatchListGetSerializer(serializers.ModelSerializer):
     driver_name = serializers.CharField(read_only=True, required=False)
     dn_code = serializers.CharField(read_only=True, required=False)
-    contact = serializers.IntegerField(read_only=True, required=False)
+    contact = serializers.CharField(read_only=True, required=False)
     creater = serializers.CharField(read_only=True, required=False)
     create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
@@ -59,7 +59,7 @@ class DispatchListGetSerializer(serializers.ModelSerializer):
 class FileRenderSerializer(serializers.ModelSerializer):
     driver_name = serializers.CharField(read_only=False, required=False)
     license_palate = serializers.IntegerField(read_only=False, required=False)
-    contact = serializers.FloatField(read_only=False, required=False)
+    contact = serializers.CharField(read_only=False, required=False)
     creater = serializers.CharField(read_only=False, required=False)
     create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')

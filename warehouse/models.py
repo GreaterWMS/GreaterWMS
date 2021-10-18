@@ -4,7 +4,7 @@ class ListModel(models.Model):
     warehouse_name = models.CharField(max_length=255, verbose_name="Warehouse Name")
     warehouse_city = models.CharField(max_length=255, verbose_name="Warehouse City")
     warehouse_address = models.CharField(max_length=255, verbose_name="Warehouse Address")
-    warehouse_contact = models.BigIntegerField(default=0, verbose_name="Warehouse Contact")
+    warehouse_contact = models.CharField(max_length=255, verbose_name="Warehouse Contact")
     warehouse_manager = models.CharField(max_length=255, verbose_name="Warehouse Manager")
     creater = models.CharField(max_length=255, verbose_name="Who Created")
     openid = models.CharField(max_length=255, verbose_name="Openid")
