@@ -318,7 +318,8 @@ export default {
       editFormData: {},
       editMode: false,
       deleteForm: false,
-      deleteid: 0
+      deleteid: 0,
+      bar_code: ''
     }
   },
   methods: {
