@@ -5,7 +5,7 @@
         {{selected_product + $t('index.chart')}}
         <q-select outlined v-model="selected_product"
                   class="bg-white float-right q-mb-sm " style="width:300px;"
-                  :options="product_options" label="Select Product" @select="getList()"/>
+                  :options="product_options" label="Select Product" />
       </div>
     </q-card-section>
     <q-card-section>
@@ -22,7 +22,7 @@ export default {
   name: 'charts',
   data () {
     return {
-      pathname: 'dashboard/receipts/',
+      pathname: 'dashboard/',
       height: '',
       height2: '',
       width: '100%',
@@ -33,16 +33,16 @@ export default {
         legend: {},
         tooltip: {},
         dataset: {
-          dimensions: ['product', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
-          source: [
-            { product: '2015', 2015: 43.3, 2016: 85.8, 2017: 93.7, 2018: 85.8, 2019: 85.8, 2020: 85.8, 2021: 85.8, 2022: 85.8, 2023: 85.8, 2024: 85.8 }
-          ]
+          dimensions: [],
+          source: []
         },
         xAxis: {
           type: 'category',
           axisLabel: {
             rotate: 45
-          }
+          },
+          nameLocation: 'middle',
+          nameGap: 78
         },
         yAxis: {
           type: 'value',
@@ -53,313 +53,23 @@ export default {
             }
           }
         },
-        series: [
-          {
-            type: 'bar',
-            barWidth: '6%',
-            barGap: '60%',
-            barCategoryGap: '10%',
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: '6%',
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: '6%',
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: '6%',
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: '6%',
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: '6%',
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: '6%',
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: '6%',
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: '6%',
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: '6%',
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          }
-        ]
+        series: []
       },
       selected_product: this.$t('dashboards.total_receipts'),
-      data: [
-        { product: this.$t('dashboards.total_receipts'), 2015: 43.3, 2016: 85.8, 2017: 93.7, 2018: 100, 2019: 100, 2020: 100, 2021: 100, 2022: 100, 2023: 100, 2024: 100, 2025: 100 }
-      ],
       product_options: [this.$t('dashboards.total_receipts')]
     }
   },
   methods: {
     getList () {
       var _this = this
-      getauth(_this.pathname, {
+      getauth(_this.pathname + 'receipts/', {
       }).then(res => {
-        console.log(res)
+        _this.barChartOption.dataset = res.dataset
+        _this.barChartOption.series = res.series
       }).catch(err => {
         console.log(err)
       })
     }
-  },
-  computed: {
-    getBarChartOptions () {
-      var _this = this
-      let buisness
-      const filtered_data = _this.data.filter(function (item) {
-        console.log(item.product)
-        return item.product === _this.selected_product
-      })
-      console.log(filtered_data)
-      return {
-        grid: {
-          bottom: '1%'
-        },
-        xAxis: {
-          type: 'category',
-          axisLabel: {},
-          nameLocation: 'middle',
-          nameGap: 78
-        },
-        tooltip: {},
-        dataset: {
-          dimensions: ['product', '2015', '2016', '2017'],
-          source: { product: '总销量', 2015: 43.3, 2016: 85.8, 2017: 93.7, 2018: 100, 2019: 100, 2020: 100, 2021: 100, 2022: 100, 2023: 100, 2024: 100, 2025: 100 }
-        },
-        buisness,
-        yAxis: {
-          type: 'value',
-          splitLine: {
-            show: true,
-            lineStyle: {
-              type: [30, 20]
-            }
-          }
-        },
-        series: [
-          {
-            type: 'bar',
-            barWidth: 80,
-            barGap: '70%',
-            barCategoryGap: '10%',
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: 80,
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: 80,
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: 80,
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: 80,
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: 80,
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: 80,
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: 80,
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: 80,
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          },
-          {
-            type: 'bar',
-            barWidth: 80,
-            itemStyle: {
-              normal: {
-                label: {
-                  show: true,
-                  position: 'top'
-                }
-              }
-            }
-          }
-        ]
-      }
-    }
-
   },
   mounted () {
     var _this = this
@@ -373,6 +83,7 @@ export default {
     } else {
       _this.height2 = _this.$q.screen.height * 0.85 + '' + 'px'
     }
+    _this.getList()
   },
   components: {
     IEcharts
