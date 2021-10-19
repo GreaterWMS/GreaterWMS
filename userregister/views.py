@@ -125,7 +125,7 @@ def register(request, *args, **kwargs):
                                                    company_name='GreaterWMS',
                                                    company_city=str(random.choice(randomcity)),
                                                    company_address='People’s Square # 666 Room 1F',
-                                                   company_contact=int(randomPhone()),
+                                                   company_contact=str(randomPhone()),
                                                    company_manager='Elvis.Shi',
                                                    creater='DemoData'
                                                    )
@@ -134,7 +134,7 @@ def register(request, *args, **kwargs):
                                                      warehouse_name='Center Warehouse',
                                                      warehouse_city=str(random.choice(randomcity)),
                                                      warehouse_address='People’s Square # 666 Room 2F',
-                                                     warehouse_contact=int(randomPhone()),
+                                                     warehouse_contact=str(randomPhone()),
                                                      warehouse_manager='Tim.Yao',
                                                      creater='DemoData'
                                                      )
@@ -145,7 +145,7 @@ def register(request, *args, **kwargs):
                                                      supplier_name='Supplier Name-' + str(supplier_data),
                                                      supplier_city=str(random.choice(randomcity)),
                                                      supplier_address='Address-' + str(supplier_data),
-                                                     supplier_contact=int(randomPhone()),
+                                                     supplier_contact=str(randomPhone()),
                                                      supplier_manager=str(random.choice(randomname)),
                                                      creater='DemoData'
                                                      )
@@ -158,7 +158,7 @@ def register(request, *args, **kwargs):
                                                      customer_name='Customer Name-' + str(customer_data),
                                                      customer_city=str(random.choice(randomcity)),
                                                      customer_address='Address-' + str(customer_data),
-                                                     customer_contact=int(randomPhone()),
+                                                     customer_contact=str(randomPhone()),
                                                      customer_manager=str(random.choice(randomname)),
                                                      creater='DemoData'
                                                      )
@@ -179,6 +179,7 @@ def register(request, *args, **kwargs):
                                 demo_data = driver(openid=transaction_code,
                                                    driver_name='Driver Name-' + str(driver_data),
                                                    license_plate="".join(random.choice("0123456789") for i in range(8)),
+                                                   contact=str(randomPhone()),
                                                    creater='DemoData'
                                                    )
                                 driver_data_list.append(demo_data)

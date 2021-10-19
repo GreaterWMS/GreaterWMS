@@ -51,10 +51,11 @@ class CyclecountModeDayViewSet(viewsets.ModelViewSet):
         if self.request.user:
             if id is None:
                 return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid,
-                                                             create_time__gte=timezone.now().date())
+                                                             create_time__gte=timezone.now().date() - timezone.timedelta(days=1))
             else:
                 return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid,
-                                                             id=id)
+                                                             create_time__gte=timezone.now().date() - timezone.timedelta(
+                                                                 days=1), id=id)
         else:
             return CyclecountModeDayModel.objects.none()
 
