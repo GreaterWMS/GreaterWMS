@@ -382,6 +382,10 @@ export default {
     scan_uptobin: 'Up To Bin',
     scan_picking: 'Picking',
     scan_shipping: 'Dispatch',
+    scan_movetobin: 'Move To Bin',
+    scan_inventory: 'Inventory',
+    scan_goodsquery: 'Goods Query',
+    scan_locationquery: 'Location Query',
     view_binmove: {
       goods_code: 'Goods Code',
       onhand_stock: 'OnHand Stock',
