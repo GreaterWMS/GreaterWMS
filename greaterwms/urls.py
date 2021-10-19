@@ -43,6 +43,7 @@ urlpatterns = [
     path('cyclecount/', include('cyclecount.urls')),
     path('chat/', include('chat.urls')),
     path('capital/', include('capital.urls')),
+    path('dashboard/', include('dashboard.urls')),
     path('driver/', include('driver.urls')),
     path('stock/', include('stock.urls')),
     path('company/', include('company.urls')),
