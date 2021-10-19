@@ -6,7 +6,6 @@
         row-key="id"
         :table-style="{ height: height }"
         flat
-        :columns="columns"
         hide-bottom
       >
         <template v-slot:top>
@@ -31,14 +30,14 @@
                   </q-btn>
                 </q-btn-group>
               </div>
-              <q-tr :props="props">
-                <q-td key="uploadgoodslistfile" :props="prpos">
+              <q-tr>
+                <q-td key="uploadgoodslistfile">
                   <div class="q-pa-md">
                     <div class="q-gutter-md row items-start">
                       <q-uploader
                         style="width:300px;height:200px"
                         :url = goodslistfile_pathname
-                        :method="post"
+                        method="post"
                         :headers="[{name:'token',value:token}, {name: 'language', value: lang}]"
                         :field-name="(file)=>'file'"
                         :label="$t('upload_center.uploadgoodslistfile')"
@@ -49,13 +48,13 @@
                     </div>
                   </div>
                 </q-td>
-                <q-td key="uploadcustomerfile" :props="props">
+                <q-td key="uploadcustomerfile">
                   <div class="q-pa-md">
                     <div class="q-gutter-md row items-start">
                       <q-uploader
                         style="width:300px;height:200px"
                         :url = customerfile_pathname
-                        :method="post"
+                        method="post"
                         :headers="[{name:'token',value:token}, {name: 'language', value: lang}]"
                         :field-name="(file)=>'file'"
                         :label="$t('upload_center.uploadcustomerfile')"
@@ -66,13 +65,13 @@
                     </div>
                   </div>
                 </q-td>
-                <q-td key="uploadsupplierfile" :props="props">
+                <q-td key="uploadsupplierfile">
                   <div class="q-pa-md">
                     <div class="q-gutter-md row items-start">
                       <q-uploader
                         style="width:300px;height:200px"
                         :url = supplierfile_pathname
-                        :method="post"
+                        method="post"
                         :headers="[{name:'token',value:token}, {name: 'language', value: lang}]"
                         :field-name="(file)=>'file'"
                         :label="$t('upload_center.uploadsupplierfile')"

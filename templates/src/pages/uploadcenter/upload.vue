@@ -28,7 +28,12 @@
 
 <script>
 export default {
-  name: 'upload'
+  name: 'upload',
+  data () {
+    return {
+      detaillink: ''
+    }
+  }
 }
 </script>
 
