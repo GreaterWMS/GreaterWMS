@@ -1,9 +1,49 @@
 <template>
-  <q-page class="flex flex-center">
-    <lottie-web-cimo v-show="device !== 2" ref="lottie_web" style="width: 40%; max-width: 70%"/>
-    <div class="q-pa-md" v-show="device === 2" style="height: 100%; max-width: 100%">
+  <q-page class="flex">
+    <lottie-web-cimo v-show="device === 2" ref="lottie_web" style="width: 40%; max-width: 70%"/>
+    <div class="q-pa-md" v-show="device !== 2" :style="{height: height,width: width}">
       <div class="q-gutter-x-md q-gutter-y-xl">
-        <q-btn icon="phone" v-for="n in 8" :key="n" label="Stacked" stack flat color="black" />
+        <q-card flat>
+        <q-card-section horizontal>
+          <q-card-actions class="col-6" align="center">
+            <q-btn icon="img:statics/inbound/preloadstock.png" :label="$t('scan.scan_sorting')" stack flat color="black" size="xl"/>
+          </q-card-actions>
+          <q-separator vertical></q-separator>
+          <q-card-actions class="col-6" align="center">
+            <q-btn icon="img:statics/inbound/presortstock.png" :label="$t('scan.scan_uptobin')" stack flat color="black" size="xl"/>
+          </q-card-actions>
+        </q-card-section>
+          <q-separator></q-separator>
+          <q-card-section horizontal>
+            <q-card-actions class="col-6" align="center">
+              <q-btn icon="img:statics/outbound/picked.png" :label="$t('scan.scan_picking')" stack flat color="black" size="xl" />
+            </q-card-actions>
+            <q-separator vertical></q-separator>
+            <q-card-actions class="col-6" align="center">
+              <q-btn icon="img:statics/icons/car.png" :label="$t('scan.scan_shipping')" stack flat color="black" size="xl"/>
+            </q-card-actions>
+          </q-card-section>
+          <q-separator></q-separator>
+          <q-card-section horizontal>
+            <q-card-actions class="col-6" align="center">
+              <q-btn icon="img:statics/icons/movetobin.png" :label="$t('scan.scan_movetobin')" stack flat color="black" size="xl" />
+            </q-card-actions>
+            <q-separator vertical></q-separator>
+            <q-card-actions class="col-6" align="center">
+              <q-btn icon="img:statics/stock/cyclecount.png" :label="$t('scan.scan_inventory')" stack flat color="black" size="xl" />
+            </q-card-actions>
+          </q-card-section>
+          <q-separator></q-separator>
+          <q-card-section horizontal>
+            <q-card-actions class="col-6" align="center">
+              <q-btn icon="img:statics/goods/goodslist.png" :label="$t('scan.scan_goodsquery')" stack flat color="black" size="xl" />
+            </q-card-actions>
+            <q-separator vertical></q-separator>
+            <q-card-actions class="col-6" align="center">
+              <q-btn icon="img:statics/stock/stocklist.png" :label="$t('scan.scan_locationquery')" stack flat color="black" size="xl" />
+            </q-card-actions>
+          </q-card-section>
+        </q-card>
       </div>
     </div>
   </q-page>
@@ -18,7 +58,9 @@ export default {
   data () {
     return {
       cleardata: [],
-      device: 0
+      device: 0,
+      height: '',
+      width: '100%'
     }
   },
   mounted: function () {
@@ -50,6 +92,11 @@ export default {
         })
       }
     })
-  },
+    if (_this.$q.platform.is.electron) {
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
+    } else {
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
+    }
+  }
 }
 </script>
