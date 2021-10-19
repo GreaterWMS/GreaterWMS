@@ -697,7 +697,8 @@ export default {
       editFormData: {},
       editMode: false,
       deleteForm: false,
-      deleteid: 0
+      deleteid: 0,
+      bar_code: ''
     }
   },
   methods: {
@@ -969,11 +970,11 @@ export default {
       var _this = this
       var QRCode = require('qrcode')
       QRCode.toDataURL(e.goods_code, [{
-          errorCorrectionLevel: 'H',
-          mode: 'byte',
-          version: '2',
-          type: 'image/jpeg'
-        }]
+        errorCorrectionLevel: 'H',
+        mode: 'byte',
+        version: '2',
+        type: 'image/jpeg'
+      }]
       ).then(url => {
         _this.goods_code = e.goods_code
         _this.goods_desc = e.goods_desc
