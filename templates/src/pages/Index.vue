@@ -93,9 +93,9 @@ export default {
       }
     })
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + 'px'
+      _this.height = String(_this.$q.screen.height) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + '' + 'px'
+      _this.height = _this.$q.screen.height + '' + 'px'
     }
   }
 }
