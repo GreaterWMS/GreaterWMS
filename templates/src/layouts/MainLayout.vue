@@ -757,7 +757,7 @@ export default {
       updateNow: false,
       processpercent: 0,
       downloadprocess: false,
-      container_height: '',
+      container_height: this.$q.screen.height + '' + 'px',
       langOptions: [
         { value: 'en-us', label: 'English' },
         { value: 'zh-hans', label: '中文简体' },
@@ -1220,11 +1220,6 @@ export default {
   },
   created () {
     var _this = this
-    if (_this.$q.platform.is.cordova || _this.$q.platform.is.mobile) {
-      _this.container_height = _this.$q.screen.height - 90 + '' + 'px'
-    } else {
-      _this.container_height = _this.$q.screen.height
-    }
     if (_this.$q.localStorage.has('openid')) {
       _this.openid = _this.$q.localStorage.getItem('openid')
     } else {
