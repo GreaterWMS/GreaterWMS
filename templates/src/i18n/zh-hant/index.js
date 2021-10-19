@@ -383,7 +383,11 @@ export default {
     scan_sorting: '分揀',
     scan_uptobin: '上架',
     scan_picking: '揀貨',
-    scan_shipping: '發貨',
+    scan_shipping: '裝車發貨',
+    scan_movetobin: '移庫',
+    scan_inventory: '盤點',
+    scan_goodsquery: '貨物查詢',
+    scan_locationquery: '庫位查詢',
     view_binmove: {
       goods_code: '產品名稱',
       onhand_stock: '現有庫存',
