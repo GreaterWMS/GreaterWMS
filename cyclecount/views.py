@@ -1,3 +1,4 @@
+from dateutil.relativedelta import relativedelta
 from django.http import StreamingHttpResponse
 from django.utils import timezone
 from rest_framework import viewsets
@@ -6,6 +7,7 @@ from .files import FileRenderCN, FileRenderEN
 from .models import CyclecountModeDayModel
 from . import serializers
 from utils.page import MyPageNumberPagination
+from .page import CycleCountPageNumberPagination
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
@@ -34,6 +36,57 @@ class CyclecountModeDayViewSet(viewsets.ModelViewSet):
         update:
             Update a data（put：update）
     """
+    pagination_class = CycleCountPageNumberPagination
+    filter_backends = [DjangoFilterBackend, OrderingFilter, ]
+    ordering_fields = ['id', "create_time", "update_time", ]
+    filter_class = Filter
+
+    def get_project(self):
+        try:
+            id = self.kwargs.get('pk')
+            return id
+        except:
+            return None
+
+    def get_queryset(self):
+        id = self.get_project()
+        if self.request.user:
+            cur_date = timezone.now()
+            delt_date = relativedelta(days=1)
+            if id is None:
+                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=0,
+                                                             create_time__gte=str((cur_date -delt_date).date()) + ' 00:00:00',
+                                                             create_time__lte=str((cur_date + delt_date).date()) + ' 00:00:00')
+            else:
+                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=0,
+                                                             create_time__gte=str((cur_date - delt_date).date()) + ' 00:00:00',
+                                                             create_time__lte=str((cur_date + delt_date).date()) + ' 00:00:00', id=id)
+        else:
+            return CyclecountModeDayModel.objects.none()
+
+    def get_serializer_class(self):
+        if self.action in ['list']:
+            return serializers.CyclecountGetSerializer
+        elif self.action in ['create']:
+            return serializers.CyclecountPostSerializer
+        else:
+            return self.http_method_not_allowed(request=self.request)
+
+    def create(self, request, *args, **kwargs):
+        data = self.request.data
+        for i in range(len(data)):
+            print(data[i])
+            CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid,
+                                                  t_code=data[i]['t_code']).update(
+                physical_inventory=data[i]['physical_inventory'], cyclecount_status=1,
+                difference=data[i]['physical_inventory'] - data[i]['goods_qty'])
+        return Response({"detail": "success"}, status=200)
+
+class CyclecountModeAllViewSet(viewsets.ModelViewSet):
+    """
+        list:
+            Response a data list（get）
+    """
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
@@ -49,63 +102,32 @@ class CyclecountModeDayViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         id = self.get_project()
         if self.request.user:
-            if id is None:
-                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid,
-                                                             create_time__gte=timezone.now().date() - timezone.timedelta(days=1))
+            date_choice = self.request.GET.get('create_time', '')
+            if date_choice:
+                if id is None:
+                    return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=1,
+                                                                 create_time__gte=str(date_choice) + ' 00:00:00',
+                                                                 create_time__lte=str(date_choice) + ' 23:59:59')
+                else:
+                    return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=1,
+                                                                 create_time__gte=str(date_choice) + ' 00:00:00',
+                                                                 create_time__lte=str(date_choice) + ' 23:59:59',
+                                                                 id=id)
             else:
-                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid,
-                                                             create_time__gte=timezone.now().date() - timezone.timedelta(
-                                                                 days=1), id=id)
+                if id is None:
+                    return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=1)
+                else:
+                    return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=1,
+                                                                 id=id)
         else:
             return CyclecountModeDayModel.objects.none()
 
     def get_serializer_class(self):
         if self.action in ['list']:
             return serializers.CyclecountGetSerializer
-        elif self.action in ['create']:
-            return serializers.CyclecountPostSerializer
-        elif self.action in ['update']:
-            return serializers.CyclecountUpdateSerializer
-        elif self.action in ['partial_update']:
-            return serializers.CyclecountUpdateSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
 
-    def create(self, request, *args, **kwargs):
-        data = self.request.data
-        data['openid'] = self.request.auth.openid
-        if CyclecountModeDayModel.objects.filter(openid=data['openid']).exists():
-            raise APIException({"detail": "Data exists"})
-        else:
-            serializer = self.get_serializer(data=data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            headers = self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=200, headers=headers)
-
-    def update(self, request, pk):
-        qs = self.get_object()
-        if qs.openid != self.request.auth.openid:
-            raise APIException({"detail": "Cannot update data which not yours"})
-        else:
-            data = self.request.data
-            serializer = self.get_serializer(qs, data=data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            headers = self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=200, headers=headers)
-
-    def partial_update(self, request, pk):
-        qs = self.get_object()
-        if qs.openid != self.request.auth.openid:
-            raise APIException({"detail": "Cannot partial_update data which not yours"})
-        else:
-            data = self.request.data
-            serializer = self.get_serializer(qs, data=data, partial=True)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            headers = self.get_success_headers(serializer.data)
-            return Response(serializer.data, status=200, headers=headers)
 
 class FileDownloadView(viewsets.ModelViewSet):
     renderer_classes = (FileRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
@@ -162,4 +184,58 @@ class FileDownloadView(viewsets.ModelViewSet):
             content_type="text/csv"
         )
         response['Content-Disposition'] = "attachment; filename='cyclecount_{}.csv'".format(str(dt.strftime('%Y%m%d%H%M%S%f')))
+        return response
+
+class FileDownloadAllView(viewsets.ModelViewSet):
+    renderer_classes = (FileRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
+    filter_backends = [DjangoFilterBackend, OrderingFilter, ]
+    ordering_fields = ['id', "create_time"]
+    filter_class = Filter
+
+    def get_project(self):
+        try:
+            id = self.kwargs.get('pk')
+            return id
+        except:
+            return None
+
+    def get_queryset(self):
+        id = self.get_project()
+        if self.request.user:
+            if id is None:
+                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid)
+            else:
+                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, id=id)
+        else:
+            return CyclecountModeDayModel.objects.none()
+
+    def get_serializer_class(self):
+        if self.action in ['list']:
+            return serializers.FileRenderSerializer
+        else:
+            return self.http_method_not_allowed(request=self.request)
+
+    def get_lang(self, data):
+        lang = self.request.META.get('HTTP_LANGUAGE')
+        if lang:
+            if lang == 'zh-hans':
+                return FileRenderCN().render(data)
+            else:
+                return FileRenderEN().render(data)
+        else:
+            return FileRenderEN().render(data)
+
+    def list(self, request, *args, **kwargs):
+        from datetime import datetime
+        dt = datetime.now()
+        data = (
+            FileRenderSerializer(instance).data
+            for instance in self.filter_queryset(self.get_queryset())
+        )
+        renderer = self.get_lang(data)
+        response = StreamingHttpResponse(
+            renderer,
+            content_type="text/csv"
+        )
+        response['Content-Disposition'] = "attachment; filename='cyclecountall_{}.csv'".format(str(dt.strftime('%Y%m%d%H%M%S%f')))
         return response
