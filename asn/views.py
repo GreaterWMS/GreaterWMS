@@ -806,7 +806,8 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                           bin_name=str(data['bin_name']),
                                                           goods_code=str(data['goods_code']),
                                                           goods_qty=int(data['qty']),
-                                                          creater=str(data['creater'])
+                                                          creater=str(data['creater']),
+                                                          t_code=Md5.md5(str(data['bin_name']))
                                                           )
                             qs.save()
                             goods_qty_change.save()

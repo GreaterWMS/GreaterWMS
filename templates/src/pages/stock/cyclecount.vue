@@ -23,11 +23,6 @@
                 {{ $t('stock.view_stocklist.cyclecounttip') }}
               </q-tooltip>
             </q-btn>
-            <q-btn :label="$t('stock.view_stocklist.recyclecount')" icon='repeat' @click="downloadData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('stock.view_stocklist.recyclecounttip') }}
-              </q-tooltip>
-            </q-btn>
             <q-btn :label="$t('stock.view_stocklist.downloadcyclecount')" icon='cloud_download' @click="downloadData()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('stock.view_stocklist.downloadcyclecounttip') }}
@@ -36,7 +31,7 @@
           </q-btn-group>
           <q-space />
           <q-btn-group push>
-            <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="downloadData()">
+            <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCount()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('stock.view_stocklist.cyclecountresulttip') }}
               </q-tooltip>
@@ -55,16 +50,23 @@
               {{ props.row.goods_qty }}
             </q-td>
             <q-td key="physical_inventory" :props="props">
-              {{ props.row.physical_inventory }}
+              <q-input dense
+                         outlined
+                         square
+                         v-model.number="props.row.physical_inventory"
+                         type="number"
+                         :label="$t('stock.view_stocklist.physical_inventory')"
+                         :rules="[ val => val && val > 0 || val == 0 || 'Count QTY Must Greater Than 0']"
+                />
             </q-td>
             <q-td key="difference" :props="props">
-              {{ props.row.difference}}
+              {{ props.row.physical_inventory - props.row.goods_qty }}
             </q-td>
             <q-td key="action" :props="props" style="width: 50px">
               <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Inbound' &&
                               $q.localStorage.getItem('staff_type') !== 'Outbound'
                              "
-                     round flat push color="purple" icon="repeat" @click="BinMove(props.row)">
+                     round flat push color="purple" icon="repeat" @click="props.row.physical_inventory = 0">
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                   {{ $t('stock.view_stocklist.recyclecounttip') }}
                 </q-tooltip>
@@ -85,7 +87,7 @@
 <script>
 
 import { date, exportFile, LocalStorage } from 'quasar'
-import { getauth, getfile } from 'boot/axios_request'
+import { getauth, getfile, postauth } from 'boot/axios_request'
 
 export default {
   name: 'cyclyecount',
@@ -112,7 +114,7 @@ export default {
       ],
       pagination: {
         page: 1,
-        rowsPerPage: '30'
+        rowsPerPage: '10000'
       },
       options: []
     }
@@ -123,7 +125,6 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname, {
         }).then(res => {
-          console.log(res)
           _this.table_list = res.results
         }).catch(err => {
           _this.$q.notify({
@@ -139,13 +140,32 @@ export default {
       var _this = this
       _this.getList()
     },
+    ConfirmCount () {
+      var _this = this
+      if (LocalStorage.has('auth')) {
+        postauth(_this.pathname, _this.table_list).then(res => {
+          _this.$q.notify({
+            message: 'Success Confirm Cycle Count',
+            icon: 'check',
+            color: 'green'
+          })
+        }).catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          })
+        })
+      } else {
+      }
+    },
     downloadData () {
       var _this = this
-      getfile('stock/filebinlist/?lang=' + LocalStorage.getItem('lang')).then(res => {
+      getfile('cyclecount/filecyclecountday/?lang=' + LocalStorage.getItem('lang')).then(res => {
         var timeStamp = Date.now()
         var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS')
         const status = exportFile(
-          'stockbinlist_' + formattedString + '.csv',
+          'cyclecountday_' + formattedString + '.csv',
           '\uFEFF' + res.data,
           'text/csv'
         )
