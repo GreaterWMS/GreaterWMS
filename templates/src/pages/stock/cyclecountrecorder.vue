@@ -19,23 +19,26 @@
       >
         <template v-slot:top>
           <q-btn-group push>
-            <q-btn :label="$t('refresh')" icon='refresh' @click="getList()">
+            <q-btn :label="$t('refresh')" icon='refresh' @click="reFresh()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('refresh') }}
-              </q-tooltip>
-            </q-btn>
-            <q-btn :label="$t('stock.view_stocklist.downloadcyclecount')" icon='cloud_download' @click="downloadData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('stock.view_stocklist.downloadcyclecounttip') }}
               </q-tooltip>
             </q-btn>
           </q-btn-group>
           <q-space />
           <q-btn-group push>
-            <q-btn color='purple' :label="$t('stock.view_stocklist.daychoice')" @click="downloadData()">
+            <q-btn color='purple' :label="$t('stock.view_stocklist.daychoice')">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('stock.view_stocklist.daychoicetip') }}
               </q-tooltip>
+              <q-popup-proxy @before-show="updateProxy" transition-show="scale" transition-hide="scale">
+                <q-date v-model="proxyDate">
+                  <div class="row items-center justify-end q-gutter-sm">
+                    <q-btn :label="$t('index.cancel')" color="primary" flat v-close-popup />
+                    <q-btn :label="$t('index.submit')" color="primary" @click="save" v-close-popup />
+                  </div>
+                </q-date>
+              </q-popup-proxy>
             </q-btn>
           </q-btn-group>
         </template>
@@ -75,75 +78,23 @@
         <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
       </div>
     </template>
-    <q-dialog v-model="moveForm">
-      <q-card class="shadow-24">
-        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-          <div>{{ movedata.goods_code }} {{ $t('frombin') }} {{ movedata.bin_name }}</div>
-          <q-space />
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
-          </q-btn>
-        </q-bar>
-        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-          <q-input dense
-                   outlined
-                   square
-                   debounce="500"
-                   v-model.number="movedata.move_qty"
-                   type="number"
-                   :label="$t('stock.view_stocklist.goods_qty')"
-                   style="margin-bottom: 5px"
-                   :rules="[ val => val && val > 0 || 'Please Enter the Qty, It must > 0']"
-                   @keyup.enter="MoveToBinSubmit()">
-            <template v-slot:before>
-              <q-select dense
-                        outlined
-                        square
-                        use-input
-                        hide-selected
-                        fill-input
-                        v-model="movedata.move_to_bin"
-                        :label="$t('warehouse.view_binset.bin_name')"
-                        :options="options"
-                        @filter="filterFn"
-                        @keyup.enter="MoveToBinSubmit()">
-                <template v-slot:no-option>
-                  <q-item>
-                    <q-item-section class="text-grey">
-                      No results
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-if="movedata.move_to_bin" v-slot:append>
-                  <q-icon name="cancel" @click.stop="movedata.move_to_bin = ''" class="cursor-pointer" />
-                </template>
-              </q-select>
-            </template>
-          </q-input>
-        </q-card-section>
-        <div style="float: right; padding: 15px 15px 15px 0">
-          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="MoveToBinCancel()">{{ $t('cancel') }}</q-btn>
-          <q-btn color="primary" @click="MoveToBinSubmit()">{{ $t('submit') }}</q-btn>
-        </div>
-      </q-card>
-    </q-dialog>
   </div>
 </template>
   <router-view />
 
 <script>
 
-import { date, exportFile, LocalStorage, SessionStorage } from 'quasar'
-import { getauth, getfile, postauth } from 'boot/axios_request'
+import { date, LocalStorage, SessionStorage } from 'quasar'
+import { getauth } from 'boot/axios_request'
 
 export default {
-  name: 'cyclyecount',
+  name: 'cyclyecountrecorder',
   data () {
     return {
       openid: '',
       login_name: '',
       authin: '0',
-      pathname: 'cyclecount/',
+      pathname: 'cyclecount/cyclecountrecorder/',
       pathname_previous: '',
       pathname_next: '',
       separator: 'cell',
@@ -166,46 +117,21 @@ export default {
         rowsPerPage: '30'
       },
       options: [],
-      moveForm: false,
-      movedata: {}
+      date: '',
+      proxyDate: ''
     }
   },
   methods: {
     getList () {
       var _this = this
       if (LocalStorage.has('auth')) {
-        getauth(_this.pathname, {
-        }).then(res => {
-          var dataDetail = []
-          res.results.forEach(item => {
-            console.log(item)
-            var dataChang = {
-              bin_name: item.bin_name,
-              goods_code: item.goods_code,
-              goods_qty: item.goods_qty,
-              physical_inventory: 0,
-              difference: item.goods_qty
-            }
-            dataDetail.push(dataChang)
-          })
-          _this.table_list = dataDetail
-          dataDetail = []
-          _this.pathname_previous = res.previous
-          _this.pathname_next = res.next
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      } else {
-      }
-    },
-    getSearchList () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname + '?bin_name__icontains=' + _this.filter, {
+        let result_date = date.formatDate(_this.date, 'YYYY-MM-DD')
+        let timeStamp = Date.now()
+        let formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
+        if (_this.date === formattedString) {
+          result_date = ''
+        }
+        getauth(_this.pathname + '?create_time=' + result_date, {
         }).then(res => {
           _this.table_list = res.results
           _this.pathname_previous = res.previous
@@ -225,19 +151,7 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_previous, {
         }).then(res => {
-          var dataDetail = []
-          res.results.forEach(item => {
-            var dataChang = {
-              bin_name: item.bin_name,
-              goods_code: item.goods_code,
-              goods_qty: item.goods_qty,
-              physical_inventory: 0,
-              difference: item.goods_qty
-            }
-            dataDetail.push(dataChang)
-          })
-          _this.table_list = dataDetail
-          dataDetail = []
+          _this.table_list = res.results
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -255,19 +169,7 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_next, {
         }).then(res => {
-          var dataDetail = []
-          res.results.forEach(item => {
-            var dataChang = {
-              bin_name: item.bin_name,
-              goods_code: item.goods_code,
-              goods_qty: item.goods_qty,
-              physical_inventory: 0,
-              difference: item.goods_qty
-            }
-            dataDetail.push(dataChang)
-          })
-          _this.table_list = dataDetail
-          dataDetail = []
+          _this.table_list = res.results
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -282,35 +184,11 @@ export default {
     },
     reFresh () {
       var _this = this
+      let timeStamp = Date.now()
+      let formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
+      _this.date = formattedString
+      console.log(_this.date)
       _this.getList()
-    },
-    BinMove (e) {
-      var _this = this
-      _this.moveForm = true
-      _this.movedata = e
-    },
-    MoveToBinCancel () {
-      var _this = this
-      _this.moveForm = false
-      _this.movedata = {}
-    },
-    MoveToBinSubmit () {
-      var _this = this
-      postauth(_this.pathname + _this.movedata.id + '/', _this.movedata).then(res => {
-        _this.getList()
-        _this.MoveToBinCancel()
-        _this.$q.notify({
-          message: 'Bin Moving Success',
-          icon: 'check',
-          color: 'green'
-        })
-      }).catch(err => {
-        _this.$q.notify({
-          message: err.detail,
-          icon: 'close',
-          color: 'negative'
-        })
-      })
     },
     filterFn (val, update, abort) {
       var _this = this
@@ -336,24 +214,14 @@ export default {
         })
       })
     },
-    downloadData () {
+    updateProxy () {
       var _this = this
-      getfile('stock/filebinlist/?lang=' + LocalStorage.getItem('lang')).then(res => {
-        var timeStamp = Date.now()
-        var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS')
-        const status = exportFile(
-          'stockbinlist_' + formattedString + '.csv',
-          '\uFEFF' + res.data,
-          'text/csv'
-        )
-        if (status !== true) {
-          _this.$q.notify({
-            message: 'Browser denied file download...',
-            color: 'negative',
-            icon: 'warning'
-          })
-        }
-      })
+      _this.proxyDate = _this.date
+    },
+    save () {
+      var _this = this
+      _this.date = _this.proxyDate
+      _this.getList()
     }
   },
   created () {
@@ -372,6 +240,9 @@ export default {
     }
     if (LocalStorage.has('auth')) {
       _this.authin = '1'
+      let timeStamp = Date.now()
+      let formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
+      _this.date = formattedString
       _this.getList()
     } else {
       _this.authin = '0'
