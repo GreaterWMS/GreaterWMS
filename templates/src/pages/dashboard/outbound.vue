@@ -62,13 +62,15 @@ export default {
   methods: {
     getList () {
       var _this = this
-      getauth(_this.pathname + 'sales/', {
-      }).then(res => {
-        _this.barChartOption.dataset = res.dataset
-        _this.barChartOption.series = res.series
-      }).catch(err => {
-        console.log(err)
-      })
+      if (_this.$q.localStorage.has('auth')) {
+        getauth(_this.pathname + 'sales/', {
+        }).then(res => {
+          _this.barChartOption.dataset = res.dataset
+          _this.barChartOption.series = res.series
+        }).catch(err => {
+          console.log(err)
+        })
+      } else {}
     }
   },
   mounted () {
