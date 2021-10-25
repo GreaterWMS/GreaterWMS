@@ -52,7 +52,7 @@
                           v-model="editFormData.capital_name"
                           :label="$t('finance.view_capital.capital_name')"
                           autofocus
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Capital Name']"
+                          :rules="[ val => val && val.length > 0 || error1]"
                  />
                </q-td>
              </template>
@@ -69,7 +69,7 @@
                           v-model.number="editFormData.capital_qty"
                           type="number"
                           :label="$t('finance.view_capital.capital_qty')"
-                          :rules="[ val => val && val > 0 || 'Capital Qty width must greater than 0']"
+                          :rules="[ val => val && val > 0 || error2]"
                  />
                </q-td>
              </template>
@@ -86,7 +86,7 @@
                           v-model.number="editFormData.capital_cost"
                           type="number"
                           :label="$t('finance.view_capital.capital_cost')"
-                          :rules="[ val => val && val > 0 || 'Capital Cost depth must greater than 0']"
+                          :rules="[ val => val && val > 0 || error3]"
                  />
                </q-td>
              </template>
@@ -170,7 +170,7 @@
                     v-model="newFormData.capital_name"
                     :label="$t('finance.view_capital.capital_name')"
                     autofocus
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Capital Name']"
+                    :rules="[ val => val && val.length > 0 || error1]"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
@@ -178,7 +178,7 @@
                     v-model.number="newFormData.capital_qty"
                     type="number"
                     :label="$t('finance.view_capital.capital_qty')"
-                    :rules="[ val => val && val > 0 || 'Capital Qty width must greater than 0']"
+                    :rules="[ val => val && val > 0 || error2]"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
@@ -186,7 +186,7 @@
                     v-model.number="newFormData.capital_cost"
                     type="number"
                     :label="$t('finance.view_capital.capital_cost')"
-                    :rules="[ val => val && val > 0 || 'Capital Cost depth must greater than 0']"
+                    :rules="[ val => val && val > 0 || error3]"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
@@ -260,7 +260,10 @@ export default {
       editFormData: {},
       editMode: false,
       deleteForm: false,
-      deleteid: 0
+      deleteid: 0,
+      error1: this.$t('finance.view_capital.error1'),
+      error2: this.$t('finance.view_capital.error2'),
+      error3: this.$t('finance.view_capital.error3')
     }
   },
   methods: {
