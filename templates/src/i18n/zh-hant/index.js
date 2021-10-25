@@ -123,7 +123,12 @@ export default {
       company_city: '所在城市',
       company_address: '地址',
       company_contact: '聯繫方式',
-      company_manager: '負責人'
+      company_manager: '負責人',
+      error1: '請輸入公司名稱',
+      error2: '請輸入公司所在城市',
+      error3: '請輸入公司地址',
+      error4: '請輸入公司聯係人',
+      error5: '請輸入公司負責人'
     },
     view_supplier: {
       supplier_name: '供應商名稱',
@@ -131,7 +136,13 @@ export default {
       supplier_address: '地址',
       supplier_contact: '聯繫方式',
       supplier_manager: '負責人',
-      supplier_level: '供應商等級'
+      supplier_level: '供應商等級',
+      error1: '請輸入供應商名稱',
+      error2: '請輸入供應商所在城市',
+      error3: '請輸入供應商地址',
+      error4: '請輸入供應商聯係人',
+      error5: '請輸入供應商負責人',
+      error6: '請輸入供應商級別'
     },
     view_customer: {
       customer_name: '客戶名稱',
@@ -139,7 +150,13 @@ export default {
       customer_address: '地址',
       customer_contact: '聯繫方式',
       customer_manager: '負責人',
-      customer_level: '客戶等級'
+      customer_level: '客戶等級',
+      error1: '請輸入客戶名稱',
+      error2: '請輸入客戶所在城市',
+      error3: '請輸入客戶地址',
+      error4: '請輸入客戶聯係人',
+      error5: '請輸入客戶負責人',
+      error6: '請輸入客戶級別'
     }
   },
   dashboards: {
@@ -160,7 +177,10 @@ export default {
     view_capital: {
       capital_name: '固定資產名稱',
       capital_qty: '數量',
-      capital_cost: '金額'
+      capital_cost: '金額',
+      error1: '請輸入資產名稱',
+      error2: '資產數量必須大於0',
+      error3: '資產金額必須大於0'
     },
     view_freight: {
       transportation_supplier: '承運商',
@@ -168,12 +188,21 @@ export default {
       receiver_city: '目的地',
       weight_fee: '重量運費',
       volume_fee: '體積運費',
-      min_payment: '最小費用'
+      min_payment: '最小費用',
+      error1: '請輸入承運商',
+      error2: '請輸入始發城市',
+      error3: '請輸入收穫城市',
+      error4: '單公斤運費必須大於0',
+      error5: '但立方米運費必須大於0',
+      error6: '最小運費必須大於0'
     }
   },
   driver: {
     driver: '司機管理',
     dispatchlist: '提貨記錄',
+    error1: '請輸入司機名稱',
+    error2: '請輸入車牌號',
+    error3: '請輸入聯係人',
     view_driver: {
       driver_name: '司機姓名',
       license_plate: '車牌號',
@@ -228,28 +257,44 @@ export default {
       goods_origin: '商品產地',
       goods_cost: '商品成本',
       goods_price: '商品價格',
-      print_goods_label: '打印商品標簽'
+      print_goods_label: '打印商品標簽',
+      error1: '請輸入商品編碼',
+      error2: '請輸入商品描述',
+      error3: '請輸入商品的供應商',
+      error4: '商品重量必須大於0',
+      error5: '商品長度必須大於0',
+      error6: '商品寬度必須大於0',
+      error7: '商品高度必須大於0',
+      error8: '請輸入商品成本',
+      error9: '請輸入商品價格'
     },
     view_unit: {
-      goods_unit: '商品單位'
+      goods_unit: '商品單位',
+      error1: '請輸入商品單位'
     },
     view_class: {
-      goods_class: '商品類別'
+      goods_class: '商品類別',
+      error1: '請輸入商品類別'
     },
     view_color: {
-      goods_color: '商品顏色'
+      goods_color: '商品顏色',
+      error1: '請輸入商品顔色'
     },
     view_brand: {
-      goods_brand: '商品品牌'
+      goods_brand: '商品品牌',
+      error1: '請輸入商品品牌'
     },
     view_shape: {
-      goods_shape: '商品形狀'
+      goods_shape: '商品形狀',
+      error1: '請輸入商品形狀'
     },
     view_specs: {
-      goods_specs: '商品規格'
+      goods_specs: '商品規格',
+      error1: '請輸入商品規格'
     },
     view_origin: {
-      goods_origin: '商品產地'
+      goods_origin: '商品產地',
+      error1: '請輸入商品產地'
     }
   },
   inbound: {
@@ -262,6 +307,9 @@ export default {
     more: '多到貨',
     asnfinish: '收貨明細',
     asndone: '收貨完成',
+    view_sortstock: {
+      error1: '請輸入數量，數量必須大於0'
+    },
     view_asn: {
       asn_code: '到貨通知書單號',
       asn_status: '到貨通知書狀態',
@@ -306,7 +354,9 @@ export default {
     check_code: '驗證碼',
     view_staff: {
       staff_name: '員工名稱',
-      staff_type: '員工類型'
+      staff_type: '員工類型',
+      error1: '請輸入員工姓名',
+      error2: '請輸入員工類型'
     }
   },
   stock: {
@@ -345,7 +395,8 @@ export default {
       downloadcyclecounttip: '下載盤點表',
       cyclecountresulttip: '確認盤點結果',
       daychoice: '日期選擇',
-      daychoicetip: '選擇對應日期的盤點表'
+      daychoicetip: '選擇對應日期的盤點表',
+      error1: '計數數量必須大於0'
     }
   },
   warehouse: {
@@ -358,19 +409,31 @@ export default {
       warehouse_city: '所在城市',
       warehouse_address: '地址',
       warehouse_contact: '聯繫方式',
-      warehouse_manager: '負責人'
+      warehouse_manager: '負責人',
+      error1: '請輸入倉庫名稱',
+      error2: '請輸入倉庫所在城市',
+      error3: '請輸入倉庫地址',
+      error4: '請輸入倉庫聯係方式給',
+      error5: '請輸入倉庫負責人'
     },
     view_binset: {
       bin_name: '庫位名稱',
       bin_size: '庫位尺寸',
       bin_property: '庫位屬性',
-      empty_label: '空庫位標識'
+      empty_label: '空庫位標識',
+      error1: '請輸入庫位名稱',
+      error2: '請輸入庫位尺寸',
+      error3: '請輸入庫位屬性'
     },
     view_binsize: {
       bin_size: '庫位尺寸',
       bin_size_w: '庫位長度(單位:毫米)',
       bin_size_d: '庫位寬度(單位:毫米)',
-      bin_size_h: '庫位高度(單位:毫米)'
+      bin_size_h: '庫位高度(單位:毫米)',
+      error1: '請輸入庫位尺寸',
+      error2: '庫位長度必須大於0',
+      error3: '庫位寬度必須大於0',
+      error4: '庫位高度必須大於0'
     },
     view_property: {
       bin_property: '庫位屬性'
