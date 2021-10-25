@@ -231,7 +231,7 @@
                     :options="customer_list"
                     :label="$t('baseinfo.view_customer.customer_name')"
                     style="margin-bottom: 5px"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Customer']"
+                    :rules="[ val => val && val.length > 0 || error1]"
                     @keyup.enter="newDataSubmit()"/>
           <q-input dense
                    outlined
@@ -599,7 +599,7 @@
                     :options="customer_list"
                     :label="$t('baseinfo.view_customer.customer_name')"
                     style="margin-bottom: 5px"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the customer']"
+                    :rules="[ val => val && val.length > 0 || error1]"
                     @keyup.enter="editDataSubmit()"/>
           <q-input dense
                    outlined
@@ -1314,7 +1314,8 @@ export default {
       printPL: {
         id: 'printPL',
         popTitle: 'Picking List'
-      }
+      },
+      error1: this.$t('baseinfo.view_supplier.error1')
     }
   },
   methods: {
