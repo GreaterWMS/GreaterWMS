@@ -194,7 +194,7 @@
                       :options="supplier_list"
                       :label="$t('baseinfo.view_supplier.supplier_name')"
                       style="margin-bottom: 5px"
-                      :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier']"
+                      :rules="[ val => val && val.length > 0 || error1]"
                       @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
@@ -562,7 +562,7 @@
                       :options="supplier_list"
                       :label="$t('baseinfo.view_supplier.supplier_name')"
                       style="margin-bottom: 5px"
-                      :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier']"
+                      :rules="[ val => val && val.length > 0 || error1]"
                       @keyup.enter="editDataSubmit()"/>
            <q-input dense
                     outlined
@@ -1143,7 +1143,8 @@ export default {
         id: 'printMe',
         popTitle: this.$t('inbound.asn')
       },
-      devi: window.device
+      devi: window.device,
+      error1: this.$t('baseinfo.view_supplier.error1')
     }
   },
   methods: {
