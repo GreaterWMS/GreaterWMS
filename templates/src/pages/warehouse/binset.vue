@@ -52,7 +52,7 @@
                          v-model="editFormData.bin_name"
                          :label="$t('warehouse.view_binset.bin_name')"
                          autofocus
-                         :rules="[ val => val && val.length > 0 || 'Please Enter the Bin_name']"
+                         :rules="[ val => val && val.length > 0 || error1]"
                 />
               </q-td>
             </template>
@@ -71,7 +71,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                           :label="$t('warehouse.view_binset.bin_size')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Size']"
+                          :rules="[ val => val && val.length > 0 || error2]"
                 />
               </q-td>
             </template>
@@ -90,7 +90,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                           :label="$t('warehouse.view_binset.bin_property')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Property']"
+                          :rules="[ val => val && val.length > 0 || error3]"
                 />
               </q-td>
             </template>
@@ -187,7 +187,7 @@
                    v-model="newFormData.bin_name"
                    :label="$t('warehouse.view_binset.bin_name')"
                    autofocus
-                   :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Name']"
+                   :rules="[ val => val && val.length > 0 || error1]"
                    @keyup.enter="newDataSubmit()"/>
           <q-select dense
                     outlined
@@ -197,7 +197,7 @@
                     transition-show="scale"
                     transition-hide="scale"
                     :label="$t('warehouse.view_binset.bin_size')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Size']"
+                    :rules="[ val => val && val.length > 0 || error2]"
           />
           <q-select dense
                     outlined
@@ -207,7 +207,7 @@
                     transition-show="scale"
                     transition-hide="scale"
                     :label="$t('warehouse.view_binset.bin_property')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Bin Property']"
+                    :rules="[ val => val && val.length > 0 || error3]"
           />
         </q-card-section>
         <div style="float: right; padding: 15px 15px 15px 0">
@@ -319,7 +319,10 @@ export default {
       editMode: false,
       deleteForm: false,
       deleteid: 0,
-      bar_code: ''
+      bar_code: '',
+      error1: this.$t('warehouse.view_binset.error1'),
+      error2: this.$t('warehouse.view_binset.error2'),
+      error3: this.$t('warehouse.view_binset.error3')
     }
   },
   methods: {
@@ -528,11 +531,11 @@ export default {
       var _this = this
       var QRCode = require('qrcode')
       QRCode.toDataURL(e.bin_name, [{
-          errorCorrectionLevel: 'H',
-          mode: 'byte',
-          version: '2',
-          type: 'image/jpeg'
-        }]
+        errorCorrectionLevel: 'H',
+        mode: 'byte',
+        version: '2',
+        type: 'image/jpeg'
+      }]
       ).then(url => {
         _this.bin_name = e.bin_name
         _this.bin_property = e.bin_property

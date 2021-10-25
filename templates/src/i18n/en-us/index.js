@@ -123,7 +123,12 @@ export default {
       company_city: 'Company City',
       company_address: 'Company Address',
       company_contact: 'Company Contact',
-      company_manager: 'Company Manager'
+      company_manager: 'Company Manager',
+      error1: 'Please Enter The Company Name',
+      error2: 'Please Enter The Company City',
+      error3: 'Please Enter The Company Address',
+      error4: 'Please Enter The Company Contact',
+      error5: 'Please Enter The Company Manager'
     },
     view_supplier: {
       supplier_name: 'Supplier Name',
@@ -131,7 +136,13 @@ export default {
       supplier_address: 'Supplier Address',
       supplier_contact: 'Supplier Contact',
       supplier_manager: 'Supplier Manager',
-      supplier_level: 'Supplier Level'
+      supplier_level: 'Supplier Level',
+      error1: 'Please Enter the Supplier Name',
+      error2: 'Please Enter the Supplier City',
+      error3: 'Please Enter the Supplier Address',
+      error4: 'Please Enter the Supplier Contact',
+      error5: 'Please Enter the Supplier Manager',
+      error6: 'Please Enter the Supplier Level'
     },
     view_customer: {
       customer_name: 'Customer Name',
@@ -139,7 +150,13 @@ export default {
       customer_address: 'Customer Address',
       customer_contact: 'Customer Contact',
       customer_manager: 'Customer Manager',
-      customer_level: 'Customer Level'
+      customer_level: 'Customer Level',
+      error1: 'Please Enter the Customer Name',
+      error2: 'Please Enter the Customer City',
+      error3: 'Please Enter the Customer Address',
+      error4: 'Please Enter the Customer Contact',
+      error5: 'Please Enter the Customer Manager',
+      error6: 'Please Enter the Customer Level'
     }
   },
   dashboards: {
@@ -158,7 +175,10 @@ export default {
     view_capital: {
       capital_name: 'Cpaital Name',
       capital_qty: 'Capital Qty',
-      capital_cost: 'Capital Cost'
+      capital_cost: 'Capital Cost',
+      error1: 'Please Enter the Capital Name',
+      error2: 'Capital Qty width must greater than 0',
+      error3: 'Capital Cost depth must greater than 0'
     },
     view_freight: {
       transportation_supplier: 'Transportation Supplier',
@@ -166,12 +186,21 @@ export default {
       receiver_city: 'Receiver City',
       weight_fee: 'Weight Fee',
       volume_fee: 'Volume Fee',
-      min_payment: 'Min Payment'
+      min_payment: 'Min Payment',
+      error1: 'Please Enter the Transportation Supplier',
+      error2: 'Please Enter the Send City',
+      error3: 'Please Enter the Receiver City',
+      error4: 'Weight Fee must greater than 0',
+      error5: 'Volume Fee must greater than 0',
+      error6: 'Min Payment must greater than 0'
     }
   },
   driver: {
     driver: 'Driver',
     dispatchlist: 'Dispatch List',
+    error1: 'Please Enter the Driver Name',
+    error2: 'Please Enter the License Plate',
+    error3: 'Please Enter The Contact',
     view_driver: {
       driver_name: 'Driver Name',
       license_plate: 'License Plate',
@@ -225,28 +254,44 @@ export default {
       goods_origin: 'Goods Origin',
       goods_cost: 'Goods Cost',
       goods_price: 'Goods Price',
-      print_goods_label: 'Print Goods Label'
+      print_goods_label: 'Print Goods Label',
+      error1: 'Please Enter the Goods Code',
+      error2: 'Please Enter the Goods Description',
+      error3: 'Please Enter the Supplier',
+      error4: 'Goods Weight Must Greater Than 0',
+      error5: 'Goods Width Must Greater Than 0',
+      error6: 'Goods Depth Must Greater Than 0',
+      error7: 'Goods Height Must Greater Than 0',
+      error8: 'Please Enter the Goods Cost',
+      error9: 'Please Enter the Goods Price'
     },
     view_unit: {
-      goods_unit: 'Goods Unit'
+      goods_unit: 'Goods Unit',
+      error1: 'Please Enter Goods Unit'
     },
     view_class: {
-      goods_class: 'Goods Class'
+      goods_class: 'Goods Class',
+      error1: 'Please Enter Goods Class'
     },
     view_color: {
-      goods_color: 'Goods Color'
+      goods_color: 'Goods Color',
+      error1: 'Please Enter Goods Color'
     },
     view_brand: {
-      goods_brand: 'Goods Brand'
+      goods_brand: 'Goods Brand',
+      error1: 'Please Enter Goods Brand'
     },
     view_shape: {
-      goods_shape: 'Goods Shape'
+      goods_shape: 'Goods Shape',
+      error1: 'Please Enter Goods Shape'
     },
     view_specs: {
-      goods_specs: 'Goods Specs'
+      goods_specs: 'Goods Specs',
+      error1: 'Please Enter Goods Specs'
     },
     view_origin: {
-      goods_origin: 'Goods Origin'
+      goods_origin: 'Goods Origin',
+      error1: 'Please Enter Goods Origin'
     }
   },
   inbound: {
@@ -259,6 +304,9 @@ export default {
     more: 'More QTY',
     asnfinish: 'Receiving List',
     asndone: 'Finish Receiving',
+    view_sortstock: {
+      error1: 'Please Enter The Quantity Must Be Greater Than 0'
+    },
     view_asn: {
       asn_code: 'ASN Code',
       asn_status: 'ASN Status',
@@ -303,7 +351,9 @@ export default {
     check_code: 'Check Code',
     view_staff: {
       staff_name: 'Staff Name',
-      staff_type: 'Staff Type'
+      staff_type: 'Staff Type',
+      error1: 'Please Enter The Staff Name',
+      error2: 'Please Enter The Staff Type'
     }
   },
   stock: {
@@ -343,7 +393,8 @@ export default {
       downloadcyclecounttip: 'Download Cycle Count Table',
       cyclecountresulttip: 'Confirm The Cycle Count Result',
       daychoice: 'Date Selection',
-      daychoicetip: 'Select The Cycle Count Table Corresponding To The Date'
+      daychoicetip: 'Select The Cycle Count Table Corresponding To The Date',
+      error1: 'Count Quantity Must Be Greater Than 0'
     }
   },
   warehouse: {
@@ -351,6 +402,13 @@ export default {
     binset: 'Bin Set',
     binsize: 'Bin Size',
     property: 'Bin Property',
+    view_warehouseset: {
+      error1: 'Please Enter the Warehouse Name',
+      error2: 'Please Enter The Warehouse City',
+      error3: 'Please Enter The Warehouse Address',
+      error4: 'Please Enter the Warehouse Contact',
+      error5: 'Please Enter The Warehouse Manager'
+    },
     view_warehouse: {
       warehouse_name: 'Warehouse Name',
       warehouse_city: 'Warehouse City',
@@ -362,13 +420,20 @@ export default {
       bin_name: 'Bin Name',
       bin_size: 'Bin Size',
       bin_property: 'Bin Property',
-      empty_label: 'Empty Label'
+      empty_label: 'Empty Label',
+      error1: 'Please Enter the Bin_name',
+      error2: 'Please Enter the Bin Size',
+      error3: 'Please Enter the Bin Property'
     },
     view_binsize: {
       bin_size: 'Bin Size',
       bin_size_w: 'Bin Size Wide(Unit:mm)',
       bin_size_d: 'Bin Size Depth(Unit:mm)',
-      bin_size_h: 'Bin Size Height(Unit:mm)'
+      bin_size_h: 'Bin Size Height(Unit:mm)',
+      error1: 'Please Enter the Bin_size',
+      error2: 'Bin Size width must greater than 0',
+      error3: 'Bin Size depth must greater than 0',
+      error4: 'Bin Size height must greater than 0'
     },
     view_property: {
       bin_property: 'Bin Property'
