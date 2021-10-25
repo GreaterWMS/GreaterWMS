@@ -123,7 +123,12 @@ export default {
       company_city: '所在城市',
       company_address: '地址',
       company_contact: '联系方式',
-      company_manager: '负责人'
+      company_manager: '负责人',
+      error1: '请输入公司名称',
+      error2: '请输入公司所在城市',
+      error3: '请输入公司地址',
+      error4: '请输入公司联系人',
+      error5: '请输入公司负责人'
     },
     view_supplier: {
       supplier_name: '供应商名称',
@@ -131,7 +136,13 @@ export default {
       supplier_address: '地址',
       supplier_contact: '联系方式',
       supplier_manager: '负责人',
-      supplier_level: '供应商等级'
+      supplier_level: '供应商等级',
+      error1: '请输入供应商名称',
+      error2: '请输入供应商所在城市',
+      error3: '请输入供应商地址',
+      error4: '请输入供应商联系人',
+      error5: '请输入供应商负责人',
+      error6: '请输入供应商级别'
     },
     view_customer: {
       customer_name: '客户名称',
@@ -139,7 +150,13 @@ export default {
       customer_address: '地址',
       customer_contact: '联系方式',
       customer_manager: '负责人',
-      customer_level: '客户等级'
+      customer_level: '客户等级',
+      error1: '请输入客户名称',
+      error2: '请输入客户所在城市',
+      error3: '请输入客户地址',
+      error4: '请输入客户联系人',
+      error5: '请输入客户经理',
+      error6: '请输入客户级别'
     }
   },
   dashboards: {
@@ -160,7 +177,10 @@ export default {
     view_capital: {
       capital_name: '固定资产名称',
       capital_qty: '数量',
-      capital_cost: '金额'
+      capital_cost: '金额',
+      error1: '请输入资产名称',
+      error2: '资产数量必须大于0',
+      error3: '资产金额必须大于0'
     },
     view_freight: {
       transportation_supplier: '承运商',
@@ -168,12 +188,21 @@ export default {
       receiver_city: '到货城市',
       weight_fee: '单公斤运费',
       volume_fee: '单立方米运费',
-      min_payment: '最小运费'
+      min_payment: '最小运费',
+      error1: '请输入承运商',
+      error2: '请输入发送城市',
+      error3: '请输入接收城市',
+      error4: '单公斤运费用必须大于0',
+      error5: '单立方米运费用必须大于0',
+      error6: '最小运费必须大于0'
     }
   },
   driver: {
     driver: '司机管理',
     dispatchlist: '提货记录',
+    error1: '请输入司机姓名',
+    error2: '请输入车牌号',
+    error3: '请输入联系人',
     view_driver: {
       driver_name: '司机姓名',
       license_plate: '车牌号',
@@ -233,28 +262,44 @@ export default {
       goods_origin: '商品产地',
       goods_cost: '商品成本',
       goods_price: '商品价格',
-      print_goods_label: '打印商品标签'
+      print_goods_label: '打印商品标签',
+      error1: '请输入商品编码',
+      error2: '请输入商品描述',
+      error3: '请输入商品的供应商',
+      error4: '商品重量必须大于0',
+      error5: '商品长度必须大于0',
+      error6: '商品宽度必须大于0',
+      error7: '商品高度必须大于0',
+      error8: '请输入商品成本',
+      error9: '请输入商品价格'
     },
     view_unit: {
-      goods_unit: '商品单位'
+      goods_unit: '商品单位',
+      error1: '请输入商品单位'
     },
     view_class: {
-      goods_class: '商品类别'
+      goods_class: '商品类别',
+      error1: '请输入商品类别'
     },
     view_color: {
-      goods_color: '商品颜色'
+      goods_color: '商品颜色',
+      error1: '请输入商品颜色'
     },
     view_brand: {
-      goods_brand: '商品品牌'
+      goods_brand: '商品品牌',
+      error1: '请输入商品品牌'
     },
     view_shape: {
-      goods_shape: '商品形状'
+      goods_shape: '商品形状',
+      error1: '请输入商品形状'
     },
     view_specs: {
-      goods_specs: '商品规格'
+      goods_specs: '商品规格',
+      error1: '请输入商品规格'
     },
     view_origin: {
-      goods_origin: '商品产地'
+      goods_origin: '商品产地',
+      error1: '请输入商品产地'
     }
   },
   inbound: {
@@ -267,6 +312,9 @@ export default {
     more: '多到货',
     asnfinish: '收货明细',
     asndone: '收货完成',
+    view_sortstock: {
+      error1: '请输入数量，数量必须大于0'
+    },
     view_asn: {
       asn_code: '到货通知书单号',
       asn_status: '到货通知书状态',
@@ -311,7 +359,9 @@ export default {
     check_code: '验证码',
     view_staff: {
       staff_name: '员工名称',
-      staff_type: '员工类型'
+      staff_type: '员工类型',
+      error1: '请输入员工姓名',
+      error2: '请输入员工类型'
     }
   },
   stock: {
@@ -350,7 +400,8 @@ export default {
       downloadcyclecounttip: '下载盘点表',
       cyclecountresulttip: '确认盘点结果',
       daychoice: '日期选择',
-      daychoicetip: '选择对应日期的盘点表'
+      daychoicetip: '选择对应日期的盘点表',
+      error1: '计数数量必须大于0'
     }
   },
   warehouse: {
@@ -358,6 +409,13 @@ export default {
     binset: '库位设置',
     binsize: '库位尺寸',
     property: '库位属性',
+    view_warehouseset: {
+      error1: '请输入仓库名称',
+      error2: '请输入仓库所在城市',
+      error3: '请输入仓库地址',
+      error4: '请输入仓库联系方式',
+      error5: '请输入仓库的负责人'
+    },
     view_warehouse: {
       warehouse_name: '仓库名称',
       warehouse_city: '所在城市',
@@ -369,13 +427,20 @@ export default {
       bin_name: '库位名称',
       bin_size: '库位尺寸',
       bin_property: '库位属性',
-      empty_label: '空库位标识'
+      empty_label: '空库位标识',
+      error1: '请输入库位名称',
+      error2: '请输入库位尺寸',
+      error3: '请输入库位属性'
     },
     view_binsize: {
       bin_size: '库位尺寸',
       bin_size_w: '库位长度(单位:毫米)',
       bin_size_d: '库位宽度(单位:毫米)',
-      bin_size_h: '库位高度(单位:毫米)'
+      bin_size_h: '库位高度(单位:毫米)',
+      error1: '请输入库位尺寸',
+      error2: '库位长度必须大于0',
+      error3: '库位宽度必须大于0',
+      error4: '库位高度必须大于0'
     },
     view_property: {
       bin_property: '库位属性'

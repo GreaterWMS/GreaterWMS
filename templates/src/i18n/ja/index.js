@@ -123,7 +123,12 @@ export default {
       company_city: '都市名',
       company_address: '住所',
       company_contact: '連絡先情報',
-      company_manager: '担当者'
+      company_manager: '担当者',
+      error1: '会社名を入力してください。',
+      error2: '会社のある都市を入力してください。',
+      error3: '会社の住所を入力してください。',
+      error4: '会社の連絡先を入力してください。',
+      error5: '社長を入力してください。'
     },
     view_supplier: {
       supplier_name: 'サプライヤー名',
@@ -131,7 +136,13 @@ export default {
       supplier_address: '住所',
       supplier_contact: '連絡先情報',
       supplier_manager: '担当者',
-      supplier_level: 'サプライヤーレベル'
+      supplier_level: 'サプライヤーレベル',
+      error1: 'サプライヤー名を入力してください。',
+      error2: 'サプライヤーがいる都市を入力してください。',
+      error3: 'サプライヤーの住所を入力してください。',
+      error4: 'サプライヤーの連絡先を入力してください。',
+      error5: 'サプライヤーマネージャーを入力してください。',
+      error6: 'サプライヤーのレベルを入力してください。'
     },
     view_customer: {
       customer_name: '顧客名',
@@ -139,7 +150,13 @@ export default {
       customer_address: '住所',
       customer_contact: '連絡先情報',
       customer_manager: '担当者',
-      customer_level: '顧客レベル'
+      customer_level: '顧客レベル',
+      error1: '顧客名を入力してください。',
+      error2: 'お客様のところの都市を入力してください。',
+      error3: 'お客様の住所を入力してください。',
+      error4: '取引先の連絡先を入力してください。',
+      error5: 'クライアントマネージャーを入力してください。',
+      error6: '顧客レベルを入力してください。'
     }
   },
   dashboards: {
@@ -160,7 +177,10 @@ export default {
     view_capital: {
       capital_name: '固定資産名',
       capital_qty: '数量',
-      capital_cost: '費用'
+      capital_cost: '費用',
+      error1: '資産名を入力してください。',
+      error2: '資産の数は必ず0を超えなければならない。',
+      error3: '資産金額は0を超えなければならない。'
     },
     view_freight: {
       transportation_supplier: '輸送業者',
@@ -168,12 +188,21 @@ export default {
       receiver_city: '目的地の都市',
       weight_fee: '重量コスト',
       volume_fee: 'ボリュームコスト',
-      min_payment: '最小コスト'
+      min_payment: '最小コスト',
+      error1: '運送業者を入力してください',
+      error2: '送信都市を入力してください。',
+      error3: '受信都市を入力してください。',
+      error4: '一キロ当たりの運送費は0を超えなければなりません。',
+      error5: '一立方メートルの運送費は必ず0を超えなければなりません。',
+      error6: '最小運賃は0より大きくなければなりません。'
     }
   },
   driver: {
     driver: 'ドライバー管理',
     dispatchlist: '配達記録',
+    error1: '運転手の名前を入力してください。',
+    error2: '車のナンバーを入力してください',
+    error3: '連絡先を入力してください',
     view_driver: {
       driver_name: 'ドライバー名',
       license_plate: 'ナンバープレート番号',
@@ -228,28 +257,44 @@ export default {
       goods_origin: '製品の起源',
       goods_cost: '製品コスト',
       goods_price: '製品価格',
-      print_goods_label: '商品のラベルを印刷します'
+      print_goods_label: '商品のラベルを印刷します',
+      error1: '商品コードを入力してください。',
+      error2: '商品の説明を入力してください。',
+      error3: '商品の仕入先を入力してください。',
+      error4: '商品の重さは0より大きくなければなりません。',
+      error5: '商品の長さは0より大きくなければなりません。',
+      error6: '商品の幅は0より大きくなければなりません。',
+      error7: '商品の高さは0より大きくなければなりません。',
+      error8: '商品のコストを入力してください。',
+      error9: '商品の価格を入力してください。'
     },
     view_unit: {
-      goods_unit: '製品単位'
+      goods_unit: '製品単位',
+      error1: '商品単位を入力してください。'
     },
     view_class: {
-      goods_class: '製品カテゴリ'
+      goods_class: '製品カテゴリ',
+      error1: '商品の種類を入力してください。'
     },
     view_color: {
-      goods_color: '製品の色'
+      goods_color: '製品の色',
+      error1: '商品の色を入力してください。'
     },
     view_brand: {
-      goods_brand: '製品ブランド'
+      goods_brand: '製品ブランド',
+      error1: '商品のブランドを入力してください。'
     },
     view_shape: {
-      goods_shape: '製品の形'
+      goods_shape: '製品の形',
+      error1: '商品の形状を入力してください。'
     },
     view_specs: {
-      goods_specs: '製品仕様'
+      goods_specs: '製品仕様',
+      error1: '商品の仕様を入力してください。'
     },
     view_origin: {
-      goods_origin: '製品の起源'
+      goods_origin: '製品の起源',
+      error1: '商品の産地を入力してください。'
     }
   },
   inbound: {
@@ -262,6 +307,9 @@ export default {
     more: 'より多くの量',
     asnfinish: '収货明フィルター',
     asndone: '領収書が完了しました',
+    view_sortstock: {
+      error1: '数量を入力してください。数量は必ず0より大きくしてください。'
+    },
     view_asn: {
       asn_code: '采购単単号',
       asn_status: '采购単様态',
@@ -306,7 +354,9 @@ export default {
     check_code: '验证码',
     view_staff: {
       staff_name: 'スタッフ名',
-      staff_type: 'スタッフクラス型'
+      staff_type: 'スタッフクラス型',
+      error1: '数量を入力してください。数量は必ず0より大きくしてください。',
+      error2: '従業員の名前を入力してください。'
     }
   },
   stock: {
@@ -345,7 +395,8 @@ export default {
       downloadcyclecounttip: '在庫テーブルのダウンロード',
       cyclecountresulttip: '在庫結果を確認する',
       daychoice: '日付の選択',
-      daychoicetip: '日付に対応する在庫テーブルを選択してください'
+      daychoicetip: '日付に対応する在庫テーブルを選択してください',
+      error1: 'カウントは0より大きくしなければなりません。'
     }
   },
   warehouse: {
@@ -353,6 +404,13 @@ export default {
     binset: 'ロケーション設定',
     binsize: 'ロケーションサイズ',
     property: 'ロケーション属性',
+    view_warehouseset: {
+      error1: '倉庫名を入力してください。',
+      error2: '倉庫がある都市を入力してください。',
+      error3: '倉庫の住所を入力してください。',
+      error4: '倉庫の連絡先を入力してください。',
+      error5: '倉庫の担当者を入力してください。'
+    },
     view_warehouse: {
       warehouse_name: '倉庫名',
       warehouse_city: '都市名',
@@ -364,13 +422,20 @@ export default {
       bin_name: 'ロケーション名称',
       bin_size: 'ロケーションサイズ',
       bin_property: 'ロケーション属性',
-      empty_label: '空ロケーションマーク'
+      empty_label: '空ロケーションマーク',
+      error1: 'ライブラリ名を入力してください。',
+      error2: 'ライブラリのサイズを入力してください。',
+      error3: 'ライブラリの属性を入力してください。'
     },
     view_binsize: {
       bin_size: 'ロケーションサイズ',
       bin_size_w: 'ロケーション長さ(単位 :んん)',
       bin_size_d: 'ロケーション幅(単位 :んん)',
-      bin_size_h: 'ロケーション高さ(単位 :んん)'
+      bin_size_h: 'ロケーション高さ(単位 :んん)',
+      error1: 'ライブラリのサイズを入力してください。',
+      error2: 'ライブラリのビット長は0より大きくなければなりません。',
+      error3: 'ライブラリの幅は0より大きい必要があります。',
+      error4: 'ライブラリの高さは0より大きくなければなりません。'
     },
     view_property: {
       bin_property: 'ロケーション属性'
