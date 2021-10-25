@@ -52,7 +52,7 @@
                          v-model="editFormData.goods_code"
                          :label="$t('goods.view_goodslist.goods_code')"
                          autofocus
-                         :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Code']"
+                         :rules="[ val => val && val.length > 0 || error1]"
                 />
               </q-td>
             </template>
@@ -68,7 +68,7 @@
                          square
                          v-model="editFormData.goods_desc"
                          :label="$t('goods.view_goodslist.goods_desc')"
-                         :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Description']"
+                         :rules="[ val => val && val.length > 0 || error2]"
                 />
               </q-td>
             </template>
@@ -87,7 +87,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                           :label="$t('goods.view_goodslist.goods_supplier')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier']"
+                          :rules="[ val => val && val.length > 0 || error3]"
                 />
               </q-td>
             </template>
@@ -104,7 +104,7 @@
                          v-model.number="editFormData.goods_weight"
                          type="number"
                          :label="$t('goods.view_goodslist.goods_weight')"
-                         :rules="[ val => val && val > 0 || 'Goods Weight Must Greater Than 0']"
+                         :rules="[ val => val && val > 0 || error4]"
                 />
               </q-td>
             </template>
@@ -121,7 +121,7 @@
                          v-model.number="editFormData.goods_w"
                          type="number"
                          :label="$t('goods.view_goodslist.goods_w')"
-                         :rules="[ val => val && val > 0 || 'Goods Width Must Greater Than 0']"
+                         :rules="[ val => val && val > 0 || error5]"
                 />
               </q-td>
             </template>
@@ -138,7 +138,7 @@
                          v-model.number="editFormData.goods_d"
                          type="number"
                          :label="$t('goods.view_goodslist.goods_d')"
-                         :rules="[ val => val && val > 0 || 'Goods Depth Must Greater Than 0']"
+                         :rules="[ val => val && val > 0 || error6]"
                 />
               </q-td>
             </template>
@@ -155,7 +155,7 @@
                          v-model.number="editFormData.goods_h"
                          type="number"
                          :label="$t('goods.view_goodslist.goods_h')"
-                         :rules="[ val => val && val > 0 || 'Goods Height Must Greater Than 0']"
+                         :rules="[ val => val && val > 0 || error7]"
                 />
               </q-td>
             </template>
@@ -177,7 +177,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                           :label="$t('goods.view_goodslist.goods_unit')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Unit']"
+                          :rules="[ val => val && val.length > 0 || error8]"
                 />
               </q-td>
             </template>
@@ -196,7 +196,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                           :label="$t('goods.view_goodslist.goods_class')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Class']"
+                          :rules="[ val => val && val.length > 0 || error9]"
                 />
               </q-td>
             </template>
@@ -215,7 +215,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                           :label="$t('goods.view_goodslist.goods_brand')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Brand']"
+                          :rules="[ val => val && val.length > 0 || error10]"
                 />
               </q-td>
             </template>
@@ -234,7 +234,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                           :label="$t('goods.view_goodslist.goods_color')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Color']"
+                          :rules="[ val => val && val.length > 0 || error11]"
                 />
               </q-td>
             </template>
@@ -253,7 +253,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                           :label="$t('goods.view_goodslist.goods_shape')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Shape']"
+                          :rules="[ val => val && val.length > 0 || error812]"
                 />
               </q-td>
             </template>
@@ -272,7 +272,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                           :label="$t('goods.view_goodslist.goods_specs')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Specs']"
+                          :rules="[ val => val && val.length > 0 || error13]"
                 />
               </q-td>
             </template>
@@ -291,7 +291,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                           :label="$t('goods.view_goodslist.goods_origin')"
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Origin']"
+                          :rules="[ val => val && val.length > 0 || error14]"
                 />
               </q-td>
             </template>
@@ -308,7 +308,7 @@
                          v-model.number="editFormData.goods_cost"
                          type="number"
                          :label="$t('goods.view_goodslist.goods_cost')"
-                         :rules="[ val => val && val > 0 || 'Please Enter the Goods Cost']"
+                         :rules="[ val => val && val > 0 || error15]"
                 />
               </q-td>
             </template>
@@ -325,7 +325,7 @@
                          v-model.number="editFormData.goods_price"
                          type="number"
                          :label="$t('goods.view_goodslist.goods_price')"
-                         :rules="[ val => val && val > 0 || 'Please Enter the Goods Price']"
+                         :rules="[ val => val && val > 0 || error16]"
                 />
               </q-td>
             </template>
@@ -419,14 +419,14 @@
                    v-model="newFormData.goods_code"
                    :label="$t('goods.view_goodslist.goods_code')"
                    autofocus
-                   :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Code']"
+                   :rules="[ val => val && val.length > 0 || error1]"
                    @keyup.enter="newDataSubmit()"/>
           <q-input dense
                    outlined
                    square
                    v-model="newFormData.goods_desc"
                    :label="$t('goods.view_goodslist.goods_desc')"
-                   :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Description']"
+                   :rules="[ val => val && val.length > 0 || error2]"
                    @keyup.enter="newDataSubmit()"/>
           <q-select dense
                     outlined
@@ -436,7 +436,7 @@
                     transition-show="scale"
                     transition-hide="scale"
                     :label="$t('goods.view_goodslist.goods_supplier')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier']"
+                    :rules="[ val => val && val.length > 0 || error3]"
                     @keyup.enter="newDataSubmit()"/>
           <q-input dense
                    outlined
@@ -444,7 +444,7 @@
                    v-model.number="newFormData.goods_weight"
                    type="number"
                    :label="$t('goods.view_goodslist.goods_weight')"
-                   :rules="[ val => val && val > 0 || 'Goods Weight Must Greater Than 0']"
+                   :rules="[ val => val && val > 0 || error4]"
                    @keyup.enter="newDataSubmit()"/>
           <q-input dense
                    outlined
@@ -452,7 +452,7 @@
                    v-model.number="newFormData.goods_w"
                    type="number"
                    :label="$t('goods.view_goodslist.goods_w')"
-                   :rules="[ val => val && val > 0 || 'Goods Width Must Greater Than 0']"
+                   :rules="[ val => val && val > 0 || error5]"
                    @keyup.enter="newDataSubmit()"/>
           <q-input dense
                    outlined
@@ -460,7 +460,7 @@
                    v-model.number="newFormData.goods_d"
                    type="number"
                    :label="$t('goods.view_goodslist.goods_d')"
-                   :rules="[ val => val && val > 0 || 'Goods Depth Must Greater Than 0']"
+                   :rules="[ val => val && val > 0 || error6]"
                    @keyup.enter="newDataSubmit()"/>
           <q-input dense
                    outlined
@@ -468,7 +468,7 @@
                    v-model.number="newFormData.goods_h"
                    type="number"
                    :label="$t('goods.view_goodslist.goods_h')"
-                   :rules="[ val => val && val > 0 || 'Goods Height Must Greater Than 0']"
+                   :rules="[ val => val && val > 0 || error7]"
                    @keyup.enter="newDataSubmit()"/>
           <q-select dense
                     outlined
@@ -478,7 +478,7 @@
                     transition-show="scale"
                     transition-hide="scale"
                     :label="$t('goods.view_goodslist.goods_unit')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Unit']"
+                    :rules="[ val => val && val.length > 0 || error8]"
                     @keyup.enter="newDataSubmit()"/>
           <q-select dense
                     outlined
@@ -488,7 +488,7 @@
                     transition-show="scale"
                     transition-hide="scale"
                     :label="$t('goods.view_goodslist.goods_class')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Class']"
+                    :rules="[ val => val && val.length > 0 || error9]"
                     @keyup.enter="newDataSubmit()"/>
           <q-select dense
                     outlined
@@ -498,7 +498,7 @@
                     transition-show="scale"
                     transition-hide="scale"
                     :label="$t('goods.view_goodslist.goods_brand')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Brand']"
+                    :rules="[ val => val && val.length > 0 || error10]"
                     @keyup.enter="newDataSubmit()"/>
           <q-select dense
                     outlined
@@ -508,7 +508,7 @@
                     transition-show="scale"
                     transition-hide="scale"
                     :label="$t('goods.view_goodslist.goods_color')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Color']"
+                    :rules="[ val => val && val.length > 0 || error11]"
                     @keyup.enter="newDataSubmit()"/>
           <q-select dense
                     outlined
@@ -518,7 +518,7 @@
                     transition-show="scale"
                     transition-hide="scale"
                     :label="$t('goods.view_goodslist.goods_shape')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Shape']"
+                    :rules="[ val => val && val.length > 0 || error12]"
                     @keyup.enter="newDataSubmit()"/>
           <q-select dense
                     outlined
@@ -528,7 +528,7 @@
                     transition-show="scale"
                     transition-hide="scale"
                     :label="$t('goods.view_goodslist.goods_specs')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Specs']"
+                    :rules="[ val => val && val.length > 0 || error13]"
                     @keyup.enter="newDataSubmit()"/>
           <q-select dense
                     outlined
@@ -538,7 +538,7 @@
                     transition-show="scale"
                     transition-hide="scale"
                     :label="$t('goods.view_goodslist.goods_origin')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter The Goods Origin']"
+                    :rules="[ val => val && val.length > 0 || error14]"
                     @keyup.enter="newDataSubmit()"/>
           <q-input dense
                    outlined
@@ -546,7 +546,7 @@
                    v-model.number="newFormData.goods_cost"
                    type="number"
                    :label="$t('goods.view_goodslist.goods_cost')"
-                   :rules="[ val => val && val > 0 || 'Please Enter The Goods Cost']"
+                   :rules="[ val => val && val > 0 || error15]"
                    @keyup.enter="newDataSubmit()"/>
           <q-input dense
                    outlined
@@ -554,7 +554,7 @@
                    v-model.number="newFormData.goods_price"
                    type="number"
                    :label="$t('goods.view_goodslist.goods_price')"
-                   :rules="[ val => val && val > 0 || 'Please Enter The Goods Price']"
+                   :rules="[ val => val && val > 0 || error16]"
                    @keyup.enter="newDataSubmit()"/>
         </q-card-section>
         <div style="float: right; padding: 15px 15px 15px 0">
@@ -698,7 +698,23 @@ export default {
       editMode: false,
       deleteForm: false,
       deleteid: 0,
-      bar_code: ''
+      bar_code: '',
+      error1: this.$t('goods.view_goodslist.error1'),
+      error2: this.$t('goods.view_goodslist.error2'),
+      error3: this.$t('goods.view_goodslist.error3'),
+      error4: this.$t('goods.view_goodslist.error4'),
+      error5: this.$t('goods.view_goodslist.error5'),
+      error6: this.$t('goods.view_goodslist.error6'),
+      error7: this.$t('goods.view_goodslist.error7'),
+      error8: this.$t('goods.view_unit.error1'),
+      error9: this.$t('goods.view_class.error1'),
+      error10: this.$t('goods.view_brand.error1'),
+      error11: this.$t('goods.view_color.error1'),
+      error12: this.$t('goods.view_shape.error1'),
+      error13: this.$t('goods.view_specs.error1'),
+      error14: this.$t('goods.view_origin.error1'),
+      error15: this.$t('goods.view_goodslist.error8'),
+      error16: this.$t('goods.view_goodslist.error9')
     }
   },
   methods: {
