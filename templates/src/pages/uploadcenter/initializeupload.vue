@@ -119,40 +119,46 @@ export default {
         message: `${rejectedEntries.length} file(s) did not pass validation constraints`
       })
     },
-    getfileinfo (files) {
-      console.log(files)
+    getfileinfo (file) {
+      console.log(file)
+    },
+    electronOpenLink (url) {
+      const { shell } = require('electron')
+      shell.openExternal(url)
     },
     downloadgoodstemplate () {
+      var _this = this
       if (LocalStorage.has('lang')) {
         if (LocalStorage.getItem('lang') === 'zh-hans') {
-          openURL('media/upload_example/goodslist_cn.xlsx')
+          _this.electronOpenLink('https://www.baidu.com')
+          // openURL(baseurl + 'media/upload_example/goodslist_cn.xlsx')
         } else {
-          openURL('media/upload_example/goodslist_en.xlsx')
+          openURL(baseurl + 'media/upload_example/goodslist_en.xlsx')
         }
       } else {
-        openURL('media/upload_example/goodslist_en.xlsx')
+        openURL(baseurl + 'media/upload_example/goodslist_en.xlsx')
       }
     },
     downloadcustomertemplate () {
       if (LocalStorage.has('lang')) {
         if (LocalStorage.getItem('lang') === 'zh-hans') {
-          openURL('media/upload_example/customer_cn.xlsx')
+          openURL(baseurl + 'media/upload_example/customer_cn.xlsx')
         } else {
-          openURL('media/upload_example/customer_en.xlsx')
+          openURL(baseurl + 'media/upload_example/customer_en.xlsx')
         }
       } else {
-        openURL('media/upload_example/customer_en.xlsx')
+        openURL(baseurl + 'media/upload_example/customer_en.xlsx')
       }
     },
     downloadsuppliertemplate () {
       if (LocalStorage.has('lang')) {
         if (LocalStorage.getItem('lang') === 'zh-hans') {
-          openURL('media/upload_example/supplier_cn.xlsx')
+          openURL(baseurl + 'media/upload_example/supplier_cn.xlsx')
         } else {
-          openURL('media/upload_example/supplier_en.xlsx')
+          openURL(baseurl + 'media/upload_example/supplier_en.xlsx')
         }
       } else {
-        openURL('media/upload_example/supplier_en.xlsx')
+        openURL(baseurl + 'media/upload_example/supplier_en.xlsx')
       }
     }
   },
