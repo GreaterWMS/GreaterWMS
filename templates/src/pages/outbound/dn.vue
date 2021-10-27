@@ -1056,6 +1056,9 @@
           <div>{{ $t('print') }}</div>
           <q-space />
         </q-bar>
+        <div class="col-4" style="margin-top: 5%;">
+          <img :src="bar_code" style="width: 21%;margin-left: 70%"/>
+        </div>
         <q-markup-table>
           <thead>
           <tr>
@@ -1860,6 +1863,19 @@ export default {
     },
     PrintPickingList (e) {
       var _this = this
+      var QRCode = require('qrcode')
+      QRCode.toDataURL(e.dn_code, [{
+        errorCorrectionLevel: 'H',
+        mode: 'byte',
+        version: '2',
+        type: 'image/jpeg'
+      }]
+      ).then(url => {
+        _this.bar_code = url
+      }).catch(err => {
+        console.error(err)
+      })
+      _this.viewPLForm = true
       getauth(_this.pathname + 'pickinglist/' + e.id + '/').then(res => {
         _this.pickinglist_print_table = []
         _this.picklist_check = 0
