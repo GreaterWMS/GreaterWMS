@@ -7,7 +7,6 @@
         row-key="id"
         :separator="separator"
         :loading="loading"
-        :filter="filter"
         :columns="columns"
         hide-bottom
         :pagination.sync="pagination"
@@ -18,14 +17,22 @@
         bordered
       >
         <template v-slot:top>
+          {{ device }}
           <q-btn-group push>
-            <q-btn :label="$t('submit')" icon='refresh' @click="downloadData()">
+            <q-btn :label="$t('stock.view_stocklist.cyclecount')" icon='refresh' @click="getList()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('submit') }}
+                {{ $t('stock.view_stocklist.cyclecounttip') }}
               </q-tooltip>
             </q-btn>
           </q-btn-group>
           <q-space />
+          <q-btn-group push>
+            <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCount()">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('stock.view_stocklist.cyclecountresulttip') }}
+              </q-tooltip>
+            </q-btn>
+          </q-btn-group>
         </template>
         <template v-slot:body="props">
           <q-tr :props="props">
@@ -35,100 +42,19 @@
             <q-td key="goods_code" :props="props">
               {{ props.row.goods_code }}
             </q-td>
-            <q-td key="goods_qty" :props="props">
-              {{ props.row.goods_qty }}
-            </q-td>
             <q-td key="physical_inventory" :props="props">
-              {{ props.row.physical_inventory }}
-            </q-td>
-            <q-td key="action" :props="props" style="width: 50px">
-              <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                              $q.localStorage.getItem('staff_type') !== 'Outbound'
-                             "
-                     round flat push color="purple" icon="repeat" @click="BinMove(props.row)">
-                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                  {{ $t('stock.view_stocklist.recyclecounttip') }}
-                </q-tooltip>
-              </q-btn>
+              {{props.row.physical_inventory}}
             </q-td>
           </q-tr>
         </template>
       </q-table>
     </transition>
-    <template>
-      <div class="q-pa-lg flex flex-center">
-        <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
-          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-            {{ $t('previous') }}
-          </q-tooltip>
-        </q-btn>
-        <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
-          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-            {{ $t('next') }}
-          </q-tooltip>
-        </q-btn>
-        <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
-      </div>
-    </template>
-    <q-dialog v-model="moveForm">
-      <q-card class="shadow-24">
-        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-          <div>{{ movedata.goods_code }} {{ $t('frombin') }} {{ movedata.bin_name }}</div>
-          <q-space />
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
-          </q-btn>
-        </q-bar>
-        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-          <q-input dense
-                   outlined
-                   square
-                   debounce="500"
-                   v-model.number="movedata.move_qty"
-                   type="number"
-                   :label="$t('stock.view_stocklist.goods_qty')"
-                   style="margin-bottom: 5px"
-                   :rules="[ val => val && val > 0 || error1]"
-                   @keyup.enter="MoveToBinSubmit()">
-            <template v-slot:before>
-              <q-select dense
-                        outlined
-                        square
-                        use-input
-                        hide-selected
-                        fill-input
-                        v-model="movedata.move_to_bin"
-                        :label="$t('warehouse.view_binset.bin_name')"
-                        :options="options"
-                        @filter="filterFn"
-                        @keyup.enter="MoveToBinSubmit()">
-                <template v-slot:no-option>
-                  <q-item>
-                    <q-item-section class="text-grey">
-                      No results
-                    </q-item-section>
-                  </q-item>
-                </template>
-                <template v-if="movedata.move_to_bin" v-slot:append>
-                  <q-icon name="cancel" @click.stop="movedata.move_to_bin = ''" class="cursor-pointer" />
-                </template>
-              </q-select>
-            </template>
-          </q-input>
-        </q-card-section>
-        <div style="float: right; padding: 15px 15px 15px 0">
-          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="MoveToBinCancel()">{{ $t('cancel') }}</q-btn>
-          <q-btn color="primary" @click="MoveToBinSubmit()">{{ $t('submit') }}</q-btn>
-        </div>
-      </q-card>
-    </q-dialog>
   </div>
 </template>
-  <router-view />
-
+<router-view />
 <script>
 
-import { date, exportFile, LocalStorage, SessionStorage } from 'quasar'
+import { date, exportFile, LocalStorage } from 'quasar'
 import { getauth, getfile, postauth } from 'boot/axios_request'
 
 export default {
@@ -139,8 +65,6 @@ export default {
       login_name: '',
       authin: '0',
       pathname: 'cyclecount/',
-      pathname_previous: '',
-      pathname_next: '',
       separator: 'cell',
       loading: false,
       height: '',
@@ -151,19 +75,15 @@ export default {
       columns: [
         { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
         { name: 'goods_code', label: this.$t('stock.view_stocklist.goods_code'), field: 'goods_code', align: 'center' },
-        { name: 'goods_qty', label: this.$t('stock.view_stocklist.on_hand_inventory'), field: 'goods_qty', align: 'center' },
-        { name: 'physical_inventory', label: this.$t('stock.view_stocklist.physical_inventory'), field: 'physical_inventory', align: 'center' },
-        { name: 'action', label: this.$t('action'), align: 'right' }
+        { name: 'physical_inventory', label: this.$t('stock.view_stocklist.physical_inventory'), field: 'physical_inventory', align: 'center' }
       ],
-      filter: '',
       pagination: {
         page: 1,
-        rowsPerPage: '30'
+        rowsPerPage: '10000'
       },
       options: [],
-      moveForm: false,
-      movedata: {},
-      error1: this.$t('inbound.view_sortstock.error1')
+      error1: this.$t('stock.view_stocklist.error1'),
+      device: window.device
     }
   },
   methods: {
@@ -172,100 +92,7 @@ export default {
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname, {
         }).then(res => {
-          var dataDetail = []
-          res.results.forEach(item => {
-            console.log(item)
-            var dataChang = {
-              bin_name: item.bin_name,
-              goods_code: item.goods_code,
-              goods_qty: item.goods_qty,
-              physical_inventory: 0,
-              difference: item.goods_qty
-            }
-            dataDetail.push(dataChang)
-          })
-          _this.table_list = dataDetail
-          dataDetail = []
-          _this.pathname_previous = res.previous
-          _this.pathname_next = res.next
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      } else {
-      }
-    },
-    getSearchList () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname + '?bin_name__icontains=' + _this.filter, {
-        }).then(res => {
           _this.table_list = res.results
-          _this.pathname_previous = res.previous
-          _this.pathname_next = res.next
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      } else {
-      }
-    },
-    getListPrevious () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname_previous, {
-        }).then(res => {
-          var dataDetail = []
-          res.results.forEach(item => {
-            var dataChang = {
-              bin_name: item.bin_name,
-              goods_code: item.goods_code,
-              goods_qty: item.goods_qty,
-              physical_inventory: 0,
-              difference: item.goods_qty
-            }
-            dataDetail.push(dataChang)
-          })
-          _this.table_list = dataDetail
-          dataDetail = []
-          _this.pathname_previous = res.previous
-          _this.pathname_next = res.next
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      } else {
-      }
-    },
-    getListNext () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname_next, {
-        }).then(res => {
-          var dataDetail = []
-          res.results.forEach(item => {
-            var dataChang = {
-              bin_name: item.bin_name,
-              goods_code: item.goods_code,
-              goods_qty: item.goods_qty,
-              physical_inventory: 0,
-              difference: item.goods_qty
-            }
-            dataDetail.push(dataChang)
-          })
-          _this.table_list = dataDetail
-          dataDetail = []
-          _this.pathname_previous = res.previous
-          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -280,49 +107,15 @@ export default {
       var _this = this
       _this.getList()
     },
-    BinMove (e) {
+    ConfirmCount () {
       var _this = this
-      _this.moveForm = true
-      _this.movedata = e
-    },
-    MoveToBinCancel () {
-      var _this = this
-      _this.moveForm = false
-      _this.movedata = {}
-    },
-    MoveToBinSubmit () {
-      var _this = this
-      postauth(_this.pathname + _this.movedata.id + '/', _this.movedata).then(res => {
-        _this.getList()
-        _this.MoveToBinCancel()
-        _this.$q.notify({
-          message: 'Bin Moving Success',
-          icon: 'check',
-          color: 'green'
-        })
-      }).catch(err => {
-        _this.$q.notify({
-          message: err.detail,
-          icon: 'close',
-          color: 'negative'
-        })
-      })
-    },
-    filterFn (val, update, abort) {
-      var _this = this
-      if (val.length < 1) {
-        abort()
-        return
-      }
-      update(() => {
-        const needle = val.toLowerCase()
-        getauth('binset/?bin_name__icontains=' + needle).then(res => {
-          var binlist = []
-          res.results.forEach(detail => {
-            binlist.push(detail.bin_name)
+      if (LocalStorage.has('auth')) {
+        postauth(_this.pathname, _this.table_list).then(res => {
+          _this.$q.notify({
+            message: 'Success Confirm Cycle Count',
+            icon: 'check',
+            color: 'green'
           })
-          SessionStorage.set('bin_name', binlist)
-          _this.options = SessionStorage.getItem('bin_name')
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -330,15 +123,16 @@ export default {
             color: 'negative'
           })
         })
-      })
+      } else {
+      }
     },
     downloadData () {
       var _this = this
-      getfile('stock/filebinlist/?lang=' + LocalStorage.getItem('lang')).then(res => {
+      getfile('cyclecount/filecyclecountday/?lang=' + LocalStorage.getItem('lang')).then(res => {
         var timeStamp = Date.now()
         var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS')
         const status = exportFile(
-          'stockbinlist_' + formattedString + '.csv',
+          'cyclecountday_' + formattedString + '.csv',
           '\uFEFF' + res.data,
           'text/csv'
         )
@@ -376,9 +170,9 @@ export default {
   mounted () {
     var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 195) + 'px'
+      _this.height = String(_this.$q.screen.height - 115) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 195 + '' + 'px'
+      _this.height = _this.$q.screen.height - 115 + '' + 'px'
     }
   },
   updated () {

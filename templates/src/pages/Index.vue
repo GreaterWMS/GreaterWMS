@@ -6,7 +6,7 @@
         <q-card flat>
         <q-card-section horizontal>
           <q-card-actions class="col-6" align="center">
-            <q-btn icon="img:statics/inbound/preloadstock.png" :label="$t('scan.scan_sorting')" stack flat color="black" size="xl"/>
+            <q-btn icon="img:statics/inbound/preloadstock.png" :label="$t('scan.scan_sorting')" stack flat color="black" size="xl" to="scan_sorting"/>
           </q-card-actions>
           <q-separator vertical></q-separator>
           <q-card-actions class="col-6" align="center">
@@ -30,17 +30,17 @@
             </q-card-actions>
             <q-separator vertical></q-separator>
             <q-card-actions class="col-6" align="center">
-              <q-btn icon="img:statics/stock/cyclecount.png" :label="$t('scan.scan_inventory')" stack flat color="black" size="xl" />
+              <q-btn icon="img:statics/stock/cyclecount.png" :label="$t('scan.scan_inventory')" stack flat color="black" size="xl" to="scan_cyclecount"/>
             </q-card-actions>
           </q-card-section>
           <q-separator></q-separator>
           <q-card-section horizontal>
             <q-card-actions class="col-6" align="center">
-              <q-btn icon="img:statics/goods/goodslist.png" :label="$t('scan.scan_goodsquery')" stack flat color="black" size="xl" />
+              <q-btn icon="img:statics/goods/goodslist.png" :label="$t('scan.scan_goodsquery')" stack flat color="black" size="xl" to="scan_goodslist"/>
             </q-card-actions>
             <q-separator vertical></q-separator>
             <q-card-actions class="col-6" align="center">
-              <q-btn icon="img:statics/stock/stocklist.png" :label="$t('scan.scan_locationquery')" stack flat color="black" size="xl" />
+              <q-btn icon="img:statics/stock/stocklist.png" :label="$t('scan.scan_locationquery')" stack flat color="black" size="xl" to="scan_stockbinlist"/>
             </q-card-actions>
           </q-card-section>
         </q-card>

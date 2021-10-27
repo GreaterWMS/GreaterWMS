@@ -2,10 +2,7 @@ import Dexie from 'dexie'
 
 export const db = new Dexie('database')
 db.version(1).stores({
-  test: 'id, test',
-  linechart: 'id, legend, xAxis, serise',
-  barchart: 'id, dataset, xAxis, serise ',
-  piechart: 'id, data, value, name'
+  test: 'id, test'
 })
 db.delete()
 db.open()

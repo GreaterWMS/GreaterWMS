@@ -253,7 +253,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                           :label="$t('goods.view_goodslist.goods_shape')"
-                          :rules="[ val => val && val.length > 0 || error812]"
+                          :rules="[ val => val && val.length > 0 || error12]"
                 />
               </q-td>
             </template>
