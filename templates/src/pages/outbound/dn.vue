@@ -231,7 +231,7 @@
                     :options="customer_list"
                     :label="$t('baseinfo.view_customer.customer_name')"
                     style="margin-bottom: 5px"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Customer']"
+                    :rules="[ val => val && val.length > 0 || error1]"
                     @keyup.enter="newDataSubmit()"/>
           <q-input dense
                    outlined
@@ -599,7 +599,7 @@
                     :options="customer_list"
                     :label="$t('baseinfo.view_customer.customer_name')"
                     style="margin-bottom: 5px"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the customer']"
+                    :rules="[ val => val && val.length > 0 || error1]"
                     @keyup.enter="editDataSubmit()"/>
           <q-input dense
                    outlined
@@ -1056,6 +1056,9 @@
           <div>{{ $t('print') }}</div>
           <q-space />
         </q-bar>
+        <div class="col-4" style="margin-top: 5%;">
+          <img :src="bar_code" style="width: 21%;margin-left: 70%"/>
+        </div>
         <q-markup-table>
           <thead>
           <tr>
@@ -1314,7 +1317,8 @@ export default {
       printPL: {
         id: 'printPL',
         popTitle: 'Picking List'
-      }
+      },
+      error1: this.$t('baseinfo.view_supplier.error1')
     }
   },
   methods: {
@@ -1859,6 +1863,19 @@ export default {
     },
     PrintPickingList (e) {
       var _this = this
+      var QRCode = require('qrcode')
+      QRCode.toDataURL(e.dn_code, [{
+        errorCorrectionLevel: 'H',
+        mode: 'byte',
+        version: '2',
+        type: 'image/jpeg'
+      }]
+      ).then(url => {
+        _this.bar_code = url
+      }).catch(err => {
+        console.error(err)
+      })
+      _this.viewPLForm = true
       getauth(_this.pathname + 'pickinglist/' + e.id + '/').then(res => {
         _this.pickinglist_print_table = []
         _this.picklist_check = 0
