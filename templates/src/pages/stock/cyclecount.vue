@@ -56,7 +56,7 @@
                          v-model.number="props.row.physical_inventory"
                          type="number"
                          :label="$t('stock.view_stocklist.physical_inventory')"
-                         :rules="[ val => val && val > 0 || val == 0 || 'Count QTY Must Greater Than 0']"
+                         :rules="[ val => val && val > 0 || val == 0 || error1]"
                 />
             </q-td>
             <q-td key="difference" :props="props">
@@ -116,7 +116,8 @@ export default {
         page: 1,
         rowsPerPage: '10000'
       },
-      options: []
+      options: [],
+      error1: this.$t('stock.view_stocklist.error1')
     }
   },
   methods: {
