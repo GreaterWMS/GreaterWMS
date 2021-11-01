@@ -69,17 +69,28 @@ class CyclecountModeDayViewSet(viewsets.ModelViewSet):
             return serializers.CyclecountGetSerializer
         elif self.action in ['create']:
             return serializers.CyclecountPostSerializer
+        elif self.action in ['update']:
+            return serializers.CyclecountUpdateSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
 
     def create(self, request, *args, **kwargs):
         data = self.request.data
         for i in range(len(data)):
-            print(data[i])
             CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid,
                                                   t_code=data[i]['t_code']).update(
                 physical_inventory=data[i]['physical_inventory'], cyclecount_status=1,
                 difference=data[i]['physical_inventory'] - data[i]['goods_qty'])
+        return Response({"detail": "success"}, status=200)
+
+    def update(self, request, *args, **kwargs):
+        data = self.request.data
+        for i in range(len(data)):
+            scan_count_data = CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid,
+                                                  t_code=data[i]['t_code']).first()
+            scan_count_data.physical_inventory = scan_count_data.physical_inventory + data[i]['physical_inventory']
+            scan_count_data.difference = data[i]['physical_inventory'] - data[i]['goods_qty']
+            scan_count_data.save()
         return Response({"detail": "success"}, status=200)
 
 class CyclecountModeAllViewSet(viewsets.ModelViewSet):

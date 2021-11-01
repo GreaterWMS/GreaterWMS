@@ -974,6 +974,18 @@
     dir-compare "^2.4.0"
     fs-extra "^9.0.1"
 
+"@fortawesome/fontawesome-common-types@^0.2.36":
+  version "0.2.36"
+  resolved "https://registry.nlark.com/@fortawesome/fontawesome-common-types/download/@fortawesome/fontawesome-common-types-0.2.36.tgz#b44e52db3b6b20523e0c57ef8c42d315532cb903"
+  integrity sha1-tE5S2ztrIFI+DFfvjELTFVMsuQM=
+
+"@fortawesome/free-solid-svg-icons@^5.15.3":
+  version "5.15.4"
+  resolved "https://registry.nlark.com/@fortawesome/free-solid-svg-icons/download/@fortawesome/free-solid-svg-icons-5.15.4.tgz#2a68f3fc3ddda12e52645654142b9e4e8fbb6cc5"
+  integrity sha1-Kmjz/D3doS5SZFZUFCueTo+7bMU=
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.2.36"
+
 "@gar/promisify@^1.0.1":
   version "1.1.2"
   resolved "https://registry.nlark.com/@gar/promisify/download/@gar/promisify-1.1.2.tgz"
@@ -3407,6 +3419,11 @@ cookie-signature@1.0.6:
   resolved "https://registry.npm.taobao.org/cookie-signature/download/cookie-signature-1.0.6.tgz"
   integrity sha1-4wOogrNCzD7oylE6eZmXNNqzriw=
 
+cookie-storage@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.nlark.com/cookie-storage/download/cookie-storage-6.1.0.tgz#291b2f662d961be44f999626593421cbfcf23790"
+  integrity sha1-KRsvZi2WG+RPmZYmWTQhy/zyN5A=
+
 cookie@0.4.0:
   version "0.4.0"
   resolved "https://registry.npm.taobao.org/cookie/download/cookie-0.4.0.tgz"
@@ -3428,6 +3445,11 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.nlark.com/copy-descriptor/download/copy-descriptor-0.1.1.tgz"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
+
+copy-text-to-clipboard@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npm.taobao.org/copy-text-to-clipboard/download/copy-text-to-clipboard-3.0.1.tgz#8cbf8f90e0a47f12e4a24743736265d157bce69c"
+  integrity sha1-jL+PkOCkfxLkokdDc2Jl0Ve85pw=
 
 copy-webpack-plugin@6.3.2:
   version "6.3.2"
@@ -3453,6 +3475,11 @@ core-js-compat@^3.16.0, core-js-compat@^3.16.2, core-js-compat@^3.6.5:
   dependencies:
     browserslist "^4.17.1"
     semver "7.0.0"
+
+core-js@^3.11.0:
+  version "3.19.0"
+  resolved "https://registry.npmmirror.com/core-js/download/core-js-3.19.0.tgz#9e40098a9bc326c7e81b486abbd5e12b9d275176"
+  integrity sha1-nkAJipvDJsfoG0hqu9XhK50nUXY=
 
 core-js@^3.14.0, core-js@^3.6.5:
   version "3.18.1"
@@ -7179,12 +7206,7 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "^3.0.0"
 
-lodash.throttle@4.1.1:
-  version "4.1.1"
-  resolved "https://registry.npm.taobao.org/lodash.throttle/download/lodash.throttle-4.1.1.tgz"
-  integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
-
-lodash.throttle@latest:
+lodash.throttle@4.1.1, lodash.throttle@latest:
   version "4.1.1"
   resolved "https://registry.npm.taobao.org/lodash.throttle/download/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
   integrity sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ=
@@ -7660,6 +7682,11 @@ multimatch@5.0.0:
     array-union "^2.1.0"
     arrify "^2.0.1"
     minimatch "^3.0.4"
+
+mutation-observer@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/mutation-observer/download/mutation-observer-1.0.3.tgz#42e9222b101bca82e5ba9d5a7acf4a14c0f263d0"
+  integrity sha1-QukiKxAbyoLlup1aes9KFMDyY9A=
 
 mute-stream@0.0.8:
   version "0.0.8"
@@ -10328,6 +10355,11 @@ supports-color@^8.0.0:
   dependencies:
     has-flag "^4.0.0"
 
+svelte-fa@^2.2.1:
+  version "2.3.3"
+  resolved "https://registry.nlark.com/svelte-fa/download/svelte-fa-2.3.3.tgz#b136b32f397ec64fb708b8a6ff5578bdd65f5be7"
+  integrity sha1-sTazLzl+xk+3CLim/1V4vdZfW+c=
+
 svgo@^1.0.0:
   version "1.3.2"
   resolved "https://registry.npmmirror.com/svgo/download/svgo-1.3.2.tgz?cache=0&sync_timestamp=1632431939586&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fsvgo%2Fdownload%2Fsvgo-1.3.2.tgz"
@@ -11070,6 +11102,18 @@ vary@^1, vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.nlark.com/vary/download/vary-1.1.2.tgz"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+vconsole@^3.9.4:
+  version "3.9.4"
+  resolved "https://registry.npmmirror.com/vconsole/download/vconsole-3.9.4.tgz?cache=0&sync_timestamp=1635252962357&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fvconsole%2Fdownload%2Fvconsole-3.9.4.tgz#a54356b12fc63456503762f687a65f9c470f968d"
+  integrity sha1-pUNWsS/GNFZQN2L2h6ZfnEcPlo0=
+  dependencies:
+    "@fortawesome/free-solid-svg-icons" "^5.15.3"
+    cookie-storage "^6.1.0"
+    copy-text-to-clipboard "^3.0.1"
+    core-js "^3.11.0"
+    mutation-observer "^1.0.3"
+    svelte-fa "^2.2.1"
 
 vendors@^1.0.0:
   version "1.0.4"

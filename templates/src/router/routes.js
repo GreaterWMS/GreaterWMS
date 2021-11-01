@@ -414,6 +414,11 @@ const routes = [
         component: () => import('pages/scan/cyclecount.vue')
       },
       {
+        path: 'zebra_cyclecount',
+        name: 'zebra_cyclecount',
+        component: () => import('pages/scan/zebra_cyclecount.vue')
+      },
+      {
         path: 'uploadcenter',
         name: 'uploadcenter',
         component: () => import('pages/uploadcenter/upload.vue'),

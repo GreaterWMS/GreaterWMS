@@ -58,7 +58,7 @@
                           v-model="editFormData.staff_name"
                           :label="$t('staff.view_staff.staff_name')"
                           autofocus
-                          :rules="[ val => val && val.length > 0 || error1]"
+                          :rules="[ val => val && val.length > 0 || 'Please Enter The Staff Name']"
                  />
                </q-td>
              </template>
@@ -77,7 +77,7 @@
                            transition-show="scale"
                            transition-hide="scale"
                            :label="$t('staff.view_staff.staff_type')"
-                           :rules="[ val => val && val.length > 0 || error2]"
+                           :rules="[ val => val && val.length > 0 || 'Please Enter The Staff Type']"
                  />
                </q-td>
              </template>
@@ -175,7 +175,7 @@
                     v-model="newFormData.staff_name"
                     :label="$t('staff.view_staff.staff_name')"
                     autofocus
-                    :rules="[ val => val && val.length > 0 || error1]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter The Staff Name']"
                     @keyup.enter="newDataSubmit()"/>
            <q-select dense
                      outlined
@@ -185,7 +185,7 @@
                      transition-show="scale"
                      transition-hide="scale"
                      :label="$t('staff.view_staff.staff_type')"
-                     :rules="[ val => val && val.length > 0 || error2]"
+                     :rules="[ val => val && val.length > 0 || 'Please Enter The Staff Type']"
                      @keyup.enter="newDataSubmit()"
                      style="margin-top: 5px"/>
          </q-card-section>
@@ -310,9 +310,7 @@ export default {
       chat: false,
       chat_list: [],
       chat_text: '',
-      chat_next: null,
-      error1: this.$t('staff.view_staff.error1'),
-      error2: this.$t('staff.view_staff.error2')
+      chat_next: null
     }
   },
   methods: {

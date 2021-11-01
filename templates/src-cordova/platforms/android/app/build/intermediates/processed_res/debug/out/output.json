@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "applicationId": "org.greaterwms.app",
+  "variantType": "BASE_APK",
+  "elements": [
+    {
+      "outputType": {
+        "type": "PROCESSED_RES"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 20026,
+        "versionName": "2.0.26",
+        "outputFile": "app-debug.apk",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "resources-debug.ap_",
+      "properties": {
+        "packageId": "org.greaterwms.app",
+        "split": "",
+        "minSdkVersion": "22"
+      }
+    }
+  ]
+}

@@ -116,7 +116,7 @@
                     type="number"
                     :label="$t('stock.view_stocklist.goods_qty')"
                     style="margin-bottom: 5px"
-                    :rules="[ val => val && val > 0 || error1]"
+                    :rules="[ val => val && val > 0 || 'Please Enter the Qty, It must > 0']"
                     @keyup.enter="MoveToBinSubmit()">
              <template v-slot:before>
                <q-select dense
@@ -195,8 +195,7 @@ export default {
       },
       options: [],
       moveForm: false,
-      movedata: {},
-      error1: this.$t('inbound.view_sortstock.error1')
+      movedata: {}
     }
   },
   methods: {

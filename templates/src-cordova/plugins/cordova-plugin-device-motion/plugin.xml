@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+           id="cordova-plugin-device-motion"
+      version="2.0.1">
+
+    <name>Device Motion</name>
+    <description>[DEPRECATED] Cordova Device Motion Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,device,motion</keywords>
+    <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-device-motion.git</repo>
+    <issue>https://issues.apache.org/jira/browse/CB/component/12320636</issue>
+
+    <js-module src="www/Acceleration.js" name="Acceleration">
+        <clobbers target="Acceleration" />
+    </js-module>
+
+    <js-module src="www/accelerometer.js" name="accelerometer">
+        <clobbers target="navigator.accelerometer" />
+    </js-module>
+
+    <info>
+        [DEPRECATED] - cordova-plugin-device-motion
+        With the W3C Device Motion and Orientation API now being supported on iOS, Android and Windows devices, this plugin is not needed any more. Read more about the API at https://www.w3.org/TR/2016/CR-orientation-event-20160818/ 
+    </info>
+
+    <!-- firefoxos -->
+    <platform name="firefoxos">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="firefoxos-package" value="Accelerometer" />
+            </feature>
+        </config-file>
+
+        <js-module src="src/firefoxos/accelerometer.js" name="accelerometer-impl">
+          <runs />
+        </js-module>
+    </platform>
+
+    <!-- android -->
+    <platform name="android">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/devicemotion" />
+
+    </platform>
+
+    <!-- amazon-fireos -->
+    <platform name="amazon-fireos">
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/AccelListener.java" target-dir="src/org/apache/cordova/devicemotion" />
+
+    </platform>
+
+    <!-- ubuntu -->
+    <platform name="ubuntu">
+        <header-file src="src/ubuntu/accelerometer.h" />
+        <source-file src="src/ubuntu/accelerometer.cpp" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="ios-package" value="CDVAccelerometer"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVAccelerometer.h" />
+        <source-file src="src/ios/CDVAccelerometer.m" />
+
+        <framework src="CoreMotion.framework" />
+    </platform>
+
+    <!-- blackberry10 -->
+    <platform name="blackberry10">
+        <config-file target="www/config.xml" parent="/widget">
+            <feature name="Accelerometer" value="Accelerometer"/>
+        </config-file>
+        <source-file src="src/blackberry10/index.js" target-dir="Accelerometer" />
+    </platform>
+
+    <!-- wp7 -->
+    <platform name="wp7">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="wp-package" value="Accelerometer"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_SENSORS" />
+        </config-file>
+
+        <source-file src="src/wp/Accelerometer.cs" />
+    </platform>
+
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Accelerometer">
+                <param name="wp-package" value="Accelerometer"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_SENSORS" />
+        </config-file>
+
+        <source-file src="src/wp/Accelerometer.cs" />
+    </platform>
+
+    <!-- windows8 -->
+    <platform name="windows8">
+        <js-module src="src/windows/AccelerometerProxy.js" name="AccelerometerProxy">
+            <runs />
+        </js-module>
+    </platform>
+
+    <!-- windows -->
+    <platform name="windows">
+        <js-module src="src/windows/AccelerometerProxy.js" name="AccelerometerProxy">
+            <runs />
+        </js-module>
+    </platform>
+
+    <!-- tizen -->
+    <platform name="tizen">
+        <js-module src="src/tizen/AccelerometerProxy.js" name="AccelerometerProxy">
+            <runs/>
+        </js-module>
+    </platform>
+
+    <!-- browser -->
+    <platform name="browser">
+        <js-module src="src/browser/AccelerometerProxy.js" name="AccelerometerProxy">
+            <runs/>
+        </js-module>
+    </platform>
+</plugin>

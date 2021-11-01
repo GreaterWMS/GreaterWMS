@@ -217,35 +217,35 @@
                     v-model="newFormData.supplier_name"
                     :label="$t('baseinfo.view_supplier.supplier_name')"
                     autofocus
-                    :rules="[ val => val && val.length > 0 || error1]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier Name']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.supplier_city"
                     :label="$t('baseinfo.view_supplier.supplier_city')"
-                    :rules="[ val => val && val.length > 0 || error2]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier City']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.supplier_address"
                     :label="$t('baseinfo.view_supplier.supplier_address')"
-                    :rules="[ val => val && val.length > 0 || error3]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier Address']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.supplier_contact"
                     :label="$t('baseinfo.view_supplier.supplier_contact')"
-                    :rules="[ val => val && val > 0 || error4]"
+                    :rules="[ val => val && val > 0 || 'Please Enter the Supplier Contact']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.supplier_manager"
                     :label="$t('baseinfo.view_supplier.supplier_manager')"
-                    :rules="[ val => val && val.length > 0 || error5]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier Manager']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
@@ -253,7 +253,7 @@
                     v-model.number="newFormData.supplier_level"
                     type="number"
                     :label="$t('baseinfo.view_supplier.supplier_level')"
-                    :rules="[ val => val && val > 0 || error6]"
+                    :rules="[ val => val && val > 0 || 'Please Enter the Supplier Level']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
@@ -333,13 +333,7 @@ export default {
       editFormData: {},
       editMode: false,
       deleteForm: false,
-      deleteid: 0,
-      error1: this.$t('baseinfo.view_supplier.error1'),
-      error2: this.$t('baseinfo.view_supplier.error1'),
-      error3: this.$t('baseinfo.view_supplier.error1'),
-      error4: this.$t('baseinfo.view_supplier.error1'),
-      error5: this.$t('baseinfo.view_supplier.error1'),
-      error6: this.$t('baseinfo.view_supplier.error1')
+      deleteid: 0
     }
   },
   methods: {
