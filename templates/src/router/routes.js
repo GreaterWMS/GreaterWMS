@@ -418,6 +418,77 @@ const routes = [
         name: 'zebra_cyclecount',
         component: () => import('pages/scan/zebra_cyclecount.vue')
       },
+      // urova
+      {
+        path: 'urovo_stafflist',
+        name: 'urovo_stafflist',
+        component: () => import('pages/scan/urovo_stafflist.vue')
+      },
+      {
+        path: 'urovo_goodslist',
+        name: 'urovo_goodslist',
+        component: () => import('pages/scan/urovo_goodslist.vue')
+      },
+      {
+        path: 'urovo_stocklist',
+        name: 'urovo_stocklist',
+        component: () => import('pages/scan/urovo_stocklist.vue')
+      },
+      {
+        path: 'urovo_stockbinlist',
+        name: 'urovo_stockbinlist',
+        component: () => import('pages/scan/urovo_stockbinlist.vue')
+      },
+      {
+        path: 'urovo_emptybin',
+        name: 'urovo_emptybin',
+        component: () => import('pages/scan/urovo_emptybin.vue')
+      },
+      {
+        path: 'urovo_movetobin',
+        name: 'urovo_movetobin',
+        component: () => import('pages/scan/urovo_movetobin.vue')
+      },
+      {
+        path: 'urovo_shipping',
+        name: 'urovo_shipping',
+        component: () => import('pages/scan/urovo_shipping.vue')
+      },
+      {
+        path: 'urovo_picking',
+        name: 'urovo_picking',
+        component: () => import('pages/scan/urovo_picking.vue')
+      },
+      {
+        path: 'urovo_uptobin',
+        name: 'urovo_uptobin',
+        component: () => import('pages/scan/urovo_uptobin.vue')
+      },
+      {
+        path: 'urovo_sorting',
+        name: 'urovo_sorting',
+        component: () => import('pages/scan/urovo_sorting.vue')
+      },
+      {
+        path: 'urovo_asn',
+        name: 'urovo_asn',
+        component: () => import('pages/scan/urovo_asn.vue')
+      },
+      {
+        path: 'urovo_dn',
+        name: 'urovo_dn',
+        component: () => import('pages/scan/urovo_dn.vue')
+      },
+      {
+        path: 'urovo_cyclecount',
+        name: 'urovo_cyclecount',
+        component: () => import('pages/scan/urovo_cyclecount.vue')
+      },
+      {
+        path: 'urovo_cyclecount',
+        name: 'urovo_cyclecount',
+        component: () => import('pages/scan/zebra_cyclecount.vue')
+      },
       {
         path: 'uploadcenter',
         name: 'uploadcenter',
