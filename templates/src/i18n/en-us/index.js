@@ -239,6 +239,7 @@ export default {
     view_goodslist: {
       goods_code: 'Goods Code',
       goods_desc: 'Goods Desc',
+      goods_name: 'Goods Name',
       goods_supplier: 'Goods Supplier',
       goods_weight: 'Goods Weight(Unit:g)',
       goods_w: 'Goods Width(Unit:mm)',

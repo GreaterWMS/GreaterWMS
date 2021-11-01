@@ -1864,7 +1864,7 @@ export default {
     PrintPickingList (e) {
       var _this = this
       var QRCode = require('qrcode')
-      QRCode.toDataURL(e.dn_code, [{
+      QRCode.toDataURL(e.bar_code, [{
         errorCorrectionLevel: 'H',
         mode: 'byte',
         version: '2',

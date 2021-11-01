@@ -349,68 +349,68 @@ const routes = [
         ]
       },
       {
-        path: 'scan_stafflist',
-        name: 'scan_stafflist',
+        path: 'zebra_stafflist',
+        name: 'zebra_stafflist',
         component: () => import('pages/scan/zebra_stafflist.vue')
       },
       {
-        path: 'scan_goodslist',
-        name: 'scan_goodslist',
+        path: 'zebra_goodslist',
+        name: 'zebra_goodslist',
         component: () => import('pages/scan/zebra_goodslist.vue')
       },
       {
-        path: 'scan_stocklist',
-        name: 'scan_stocklist',
+        path: 'zebra_stocklist',
+        name: 'zebra_stocklist',
         component: () => import('pages/scan/zebra_stocklist.vue')
       },
       {
-        path: 'scan_stockbinlist',
-        name: 'scan_stockbinlist',
+        path: 'zebra_stockbinlist',
+        name: 'zebra_stockbinlist',
         component: () => import('pages/scan/zebra_stockbinlist.vue')
       },
       {
-        path: 'scan_emptybin',
-        name: 'scan_emptybin',
+        path: 'zebra_emptybin',
+        name: 'zebra_emptybin',
         component: () => import('pages/scan/zebra_emptybin.vue')
       },
       {
-        path: 'scan_movetobin',
-        name: 'scan_movetobin',
+        path: 'zebra_movetobin',
+        name: 'zebra_movetobin',
         component: () => import('pages/scan/zebra_movetobin.vue')
       },
       {
-        path: 'scan_shipping',
-        name: 'scan_shipping',
+        path: 'zebra_shipping',
+        name: 'zebra_shipping',
         component: () => import('pages/scan/zebra_shipping.vue')
       },
       {
-        path: 'scan_picking',
-        name: 'scan_picking',
+        path: 'zebra_picking',
+        name: 'zebra_picking',
         component: () => import('pages/scan/zebra_picking.vue')
       },
       {
-        path: 'scan_uptobin',
-        name: 'scan_uptobin',
+        path: 'zebra_uptobin',
+        name: 'zebra_uptobin',
         component: () => import('pages/scan/zebra_uptobin.vue')
       },
       {
-        path: 'scan_sorting',
-        name: 'scan_sorting',
+        path: 'zebra_sorting',
+        name: 'zebra_sorting',
         component: () => import('pages/scan/zebra_sorting.vue')
       },
       {
-        path: 'scan_asn',
-        name: 'scan_asn',
+        path: 'zebra_asn',
+        name: 'zebra_asn',
         component: () => import('pages/scan/zebra_asn.vue')
       },
       {
-        path: 'scan_dn',
-        name: 'scan_dn',
+        path: 'zebra_dn',
+        name: 'zebra_dn',
         component: () => import('pages/scan/zebra_dn.vue')
       },
       {
-        path: 'scan_cyclecount',
-        name: 'scan_cyclecount',
+        path: 'zebra_cyclecount',
+        name: 'zebra_cyclecount',
         component: () => import('pages/scan/zebra_cyclecount.vue')
       },
       {
