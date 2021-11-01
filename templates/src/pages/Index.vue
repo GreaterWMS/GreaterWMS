@@ -1,12 +1,12 @@
 <template>
-  <q-page :class="{'flex': device === 2, 'flex flex-center': device !== 2}">
+  <q-page :class="{'flex': device === 2, 'flex flex-center': device !== 2,}">
     <lottie-web-cimo v-show="device !== 2" ref="lottie_web" style="width: 40%; max-width: 70%"/>
     <div v-show="device === 2" :style="{height: height,width: width}">
       <div class="q-gutter-x-md q-gutter-y-xl">
         <q-card flat>
         <q-card-section horizontal>
           <q-card-actions class="col-6" align="center">
-            <q-btn v-show="device_name !== '' || device_name !== 'Zebra Technologies'" icon="img:statics/inbound/preloadstock.png" :label="$t('scan.scan_sorting')" stack flat color="black" size="xl" to="scan_sorting"/>
+            <q-btn icon="img:statics/inbound/preloadstock.png" :label="$t('scan.scan_sorting')" stack flat color="black" size="xl" to="zebra_sorting"/>
           </q-card-actions>
           <q-separator vertical></q-separator>
           <q-card-actions class="col-6" align="center">
@@ -30,18 +30,17 @@
             </q-card-actions>
             <q-separator vertical></q-separator>
             <q-card-actions class="col-6" align="center">
-              <q-btn  v-show="device_name !== '' && device_name !== 'Zebra Technologies'" icon="img:statics/stock/cyclecount.png" :label="$t('scan.scan_inventory')" stack flat color="black" size="xl" to="scan_cyclecount"/>
-              <q-btn  v-show="device_name !== '' && device_name !== 'Urovo'" icon="img:statics/stock/cyclecount.png" :label="$t('scan.scan_inventory')" stack flat color="black" size="xl" to="zebra_cyclecount"/>
+              <q-btn icon="img:statics/stock/cyclecount.png" :label="$t('scan.scan_inventory')" stack flat color="black" size="xl" to="zebra_cyclecount"/>
             </q-card-actions>
           </q-card-section>
           <q-separator></q-separator>
           <q-card-section horizontal>
             <q-card-actions class="col-6" align="center">
-              <q-btn icon="img:statics/goods/goodslist.png" :label="$t('scan.scan_goodsquery')" stack flat color="black" size="xl" />
+              <q-btn icon="img:statics/goods/goodslist.png" :label="$t('scan.scan_goodsquery')" stack flat color="black" size="xl" to="zebra_goodslist"/>
             </q-card-actions>
             <q-separator vertical></q-separator>
             <q-card-actions class="col-6" align="center">
-              <q-btn icon="img:statics/stock/stocklist.png" :label="$t('scan.scan_locationquery')" stack flat color="black" size="xl" />
+              <q-btn icon="img:statics/stock/stocklist.png" :label="$t('scan.scan_locationquery')" stack flat color="black" size="xl" to="zebra_stockbinlist"/>
             </q-card-actions>
           </q-card-section>
         </q-card>
@@ -60,7 +59,6 @@ export default {
     return {
       cleardata: [],
       device: 0,
-      device_name: '',
       height: '',
       width: '100%'
     }
@@ -69,7 +67,6 @@ export default {
     var _this = this
     if (window.device) {
       if (window.device.manufacturer === 'Urovo' || window.device.manufacturer === 'Zebra Technologies') {
-        _this.device_name = window.device.manufacturer
         _this.device = 2
       } else {
         _this.device = 1

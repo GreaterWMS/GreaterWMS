@@ -47,7 +47,7 @@
                           v-model="editFormData.goods_origin"
                           :label="$t('goods.view_goodslist.goods_origin')"
                           autofocus
-                          :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Origin']"
+                          :rules="[ val => val && val.length > 0 || error1]"
                  />
                </q-td>
              </template>
@@ -131,7 +131,7 @@
                     v-model="newFormData.goods_origin"
                     :label="$t('goods.view_goodslist.goods_origin')"
                     autofocus
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Goods Origin']"
+                    :rules="[ val => val && val.length > 0 || error1]"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
@@ -200,7 +200,8 @@ export default {
       editFormData: {},
       editMode: false,
       deleteForm: false,
-      deleteid: 0
+      deleteid: 0,
+      error1: this.$t('goods.view_origin.error1')
     }
   },
   methods: {

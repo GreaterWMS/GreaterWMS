@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <transition appear enter-active-class="animated fadeIn">
+  <div>
+    <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-column-table shadow-24"
         :data="table_list"
@@ -17,78 +17,62 @@
         flat
         bordered
       >
-         <template v-slot:top>
-           <q-btn-group push>
-             <q-btn :label="$t('refresh')" @click="reFresh()" />
-           </q-btn-group>
-           <q-space />
-           <q-input class="cordova-search" outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
-             <template v-slot:append>
-               <q-icon name="search" @click="getSearchList()"/>
-             </template>
-           </q-input>
-         </template>
-         <template v-slot:body="props">
-           <q-tr :props="props">
-             <q-td key="bin_name" :props="props">
-               {{ props.row.bin_name }}
-             </q-td>
-             <q-td key="goods_code" :props="props">
-               {{ props.row.goods_code }}
-             </q-td>
-             <q-td key="goods_desc" :props="props">
-               {{ props.row.goods_desc }}
-             </q-td>
-             <q-td key="goods_qty" :props="props">
-               {{ props.row.goods_qty }}
-             </q-td>
-             <q-td key="pick_qty" :props="props">
-               {{ props.row.pick_qty }}
-             </q-td>
-             <q-td key="picked_qty" :props="props">
-               {{ props.row.picked_qty }}
-             </q-td>
-             <q-td key="bin_size" :props="props">
-               {{ props.row.bin_size }}
-             </q-td>
-             <q-td key="bin_property" :props="props">
-               {{ props.row.bin_property }}
-             </q-td>
-             <q-td key="create_time" :props="props">
-               {{ props.row.create_time }}
-             </q-td>
-             <q-td key="update_time" :props="props">
-               {{ props.row.update_time }}
-             </q-td>
-           </q-tr>
-         </template>
-        </q-table>
-      </transition>
-      <template>
-        <div class="q-pa-lg flex flex-center cordova-footer">
-          <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
-            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-              {{ $t('previous') }}
-            </q-tooltip>
-          </q-btn>
-          <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
-            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-              {{ $t('next') }}
-            </q-tooltip>
-          </q-btn>
-          <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
-        </div>
-      </template>
-    </div>
+        <template v-slot:top>
+          <q-btn-group push>
+            <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
+              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                {{ $t('refreshtip') }}
+              </q-tooltip>
+            </q-btn>
+          </q-btn-group>
+          <q-space />
+        </template>
+        <template v-slot:body="props">
+          <q-tr :props="props">
+            <q-td key="bin_name" :props="props">
+              {{ props.row.bin_name }}
+            </q-td>
+            <q-td key="goods_code" :props="props">
+              {{ props.row.goods_code }}
+            </q-td>
+            <q-td key="goods_desc" :props="props">
+              {{ props.row.goods_desc }}
+            </q-td>
+            <q-td key="goods_qty" :props="props">
+              {{ props.row.goods_qty }}
+            </q-td>
+            <q-td key="pick_qty" :props="props">
+              {{ props.row.pick_qty }}
+            </q-td>
+            <q-td key="picked_qty" :props="props">
+              {{ props.row.picked_qty }}
+            </q-td>
+            <q-td key="bin_size" :props="props">
+              {{ props.row.bin_size }}
+            </q-td>
+            <q-td key="bin_property" :props="props">
+              {{ props.row.bin_property }}
+            </q-td>
+            <q-td key="create_time" :props="props">
+              {{ props.row.create_time }}
+            </q-td>
+            <q-td key="update_time" :props="props">
+              {{ props.row.update_time }}
+            </q-td>
+          </q-tr>
+        </template>
+      </q-table>
+    </transition>
+  </div>
 </template>
-    <router-view />
+<router-view />
 
 <script>
 import { getauth, getfile, postauth } from 'boot/axios_request'
 import { date, exportFile, SessionStorage, LocalStorage } from 'quasar'
 
 export default {
-  name: 'Pagestockbinlist_scan',
+  name: 'Pagestockbinlist',
   data () {
     return {
       openid: '',
@@ -123,7 +107,8 @@ export default {
       },
       options: [],
       moveForm: false,
-      movedata: {}
+      movedata: {},
+      error1: this.$t('inbound.view_sortstock.error1')
     }
   },
   methods: {
@@ -216,27 +201,13 @@ export default {
     MoveToBinSubmit () {
       var _this = this
       postauth(_this.pathname + _this.movedata.id + '/', _this.movedata).then(res => {
-        if (res.status_code === 400) {
-          _this.$q.notify({
-            message: 'Please Enter the words',
-            icon: 'close',
-            color: 'negative'
-          })
-        } else if (res.status_code === 500) {
-          _this.$q.notify({
-            message: res.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        } else {
-          _this.getList()
-          _this.MoveToBinCancel()
-          _this.$q.notify({
-            message: 'Bin Moving Success',
-            icon: 'check',
-            color: 'green'
-          })
-        }
+        _this.getList()
+        _this.MoveToBinCancel()
+        _this.$q.notify({
+          message: 'Bin Moving Success',
+          icon: 'check',
+          color: 'green'
+        })
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
@@ -311,10 +282,11 @@ export default {
     }
   },
   mounted () {
-    if (this.$q.platform.is.electron) {
-      this.height = String(this.$q.screen.height - 170) + 'px'
+    var _this = this
+    if (_this.$q.platform.is.electron) {
+      _this.height = String(_this.$q.screen.height - 115) + 'px'
     } else {
-      this.height = this.$q.screen.height - 170 + '' + 'px'
+      _this.height = _this.$q.screen.height - 115 + '' + 'px'
     }
   },
   updated () {
