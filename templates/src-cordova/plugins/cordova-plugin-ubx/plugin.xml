@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-ubx" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>cordova-plugin-ubx</name>
+    <js-module name="Uplugin" src="www/Uplugin.js">
+        <clobbers target="Uplugin"/>
+    </js-module>
+    <!--添加Android平台  -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <!-- JS调用时的名字 -->
+            <feature name="Uplugin">
+                <!-- value：的值是对应的插件中ToastDemo.java存放的路径 -->
+                <param name="android-package" value="com.ubx.cordova.plugin.Uplugin"/>
+            </feature>
+        </config-file>
+        <!-- src:是插件里存放对应.java的路径， target-dir:安装插件时把.java文件存放的位置，要和上面的value路径对应 -->
+        <source-file src="src/android/Uplugin.java" target-dir="src/ubx/cordova/plugin" />
+        <source-file src="src/android/platform_sdk_v4.1.0326.jar" target-dir="libs"/>
+    </platform>
+</plugin>

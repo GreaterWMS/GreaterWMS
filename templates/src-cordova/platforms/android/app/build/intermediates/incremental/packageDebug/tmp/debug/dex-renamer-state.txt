@@ -1,0 +1,10 @@
+#Mon Nov 01 11:47:21 CST 2021
+path.2=classes.dex
+path.1=classes_0.dex
+path.0=classes.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+base.2=E\:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=E\:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\dex\\debug\\mergeLibDexDebug\\classes_0.dex
+base.0=E\:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\classes.dex
