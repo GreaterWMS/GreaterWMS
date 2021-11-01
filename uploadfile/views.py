@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from utils.datasolve import data_validate
 from utils.datasolve import is_number
+from utils.md5 import Md5
 from goods.models import ListModel as goodslist
 from goodsunit.models import ListModel as goodsunit
 from goodsclass.models import ListModel as goodsclass
@@ -146,6 +147,7 @@ class GoodlistfileViewSet(views.APIView):
                                                  goods_origin=str(data_list[i][14]).strip(),
                                                  goods_cost=data_list[i][15],
                                                  goods_price=data_list[i][16],
+                                                 bar_code=Md5.md5(str(data_list[i][0]).strip()),
                                                  creater=self.request.auth.name
                                                  )
                 goods_unit_list = df.drop_duplicates(subset=[data_header.get('goods_unit')], keep='first').loc[:,
