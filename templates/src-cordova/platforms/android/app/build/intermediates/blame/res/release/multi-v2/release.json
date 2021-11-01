@@ -1,0 +1,1429 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ru_values-ru.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ru\\values-ru.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-en-rAU_values-en-rAU.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-en-rAU\\values-en-rAU.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-az_values-az.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-az\\values-az.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-th_values-th.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-th\\values-th.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-pt-rPT_values-pt-rPT.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-pt-rPT\\values-pt-rPT.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-uz_values-uz.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-uz\\values-uz.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-is_values-is.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-is\\values-is.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-nb_values-nb.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-nb\\values-nb.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-fr_values-fr.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-fr\\values-fr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-lv_values-lv.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-lv\\values-lv.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-gl_values-gl.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-gl\\values-gl.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-fi_values-fi.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-fi\\values-fi.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-hy_values-hy.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-hy\\values-hy.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-fr-rCA_values-fr-rCA.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-fr-rCA\\values-fr-rCA.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-et_values-et.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-et\\values-et.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-as_values-as.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-as\\values-as.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-zu_values-zu.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-zu\\values-zu.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-af_values-af.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-af\\values-af.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-lt_values-lt.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-lt\\values-lt.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-lo_values-lo.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-lo\\values-lo.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-v21_values-v21.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,13",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,159,223,290,354,470,596,722,850,1022",
+                        "endLines": "2,3,4,5,6,7,8,9,12,17",
+                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
+                        "endOffsets": "154,218,285,349,465,591,717,845,1017,1355"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,14,18,22,25",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,159,223,290,354,470,927,1221,1516,1688",
+                        "endLines": "2,3,4,5,6,7,14,18,24,29",
+                        "endColumns": "103,63,66,63,115,125,125,127,12,12",
+                        "endOffsets": "154,218,285,349,465,591,1048,1344,1683,2021"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\6c105360245f769c088976d97fc5a6ce\\media-1.0.0\\res\\values-v21\\values-v21.xml",
+                    "from": {
+                        "startLines": "2,5,8,11",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,223,386,554",
+                        "endLines": "4,7,10,13",
+                        "endColumns": "12,12,12,12",
+                        "endOffsets": "218,381,549,716"
+                    },
+                    "to": {
+                        "startLines": "8,11,15,19",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "596,764,1053,1349",
+                        "endLines": "10,13,17,21",
+                        "endColumns": "12,12,12,12",
+                        "endOffsets": "759,922,1216,1511"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ko_values-ko.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ko\\values-ko.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ta_values-ta.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ta\\values-ta.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-iw_values-iw.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-iw\\values-iw.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-zh-rTW_values-zh-rTW.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-zh-rTW\\values-zh-rTW.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-or_values-or.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-or\\values-or.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-kk_values-kk.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-kk\\values-kk.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ka_values-ka.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ka\\values-ka.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-mr_values-mr.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-mr\\values-mr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-pl_values-pl.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-pl\\values-pl.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-bs_values-bs.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-bs\\values-bs.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-sv_values-sv.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-sv\\values-sv.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-de_values-de.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-de\\values-de.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-tl_values-tl.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-tl\\values-tl.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-v24_values-v24.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\6c105360245f769c088976d97fc5a6ce\\media-1.0.0\\res\\values-v24\\values-v24.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,121,182,248",
+                        "endColumns": "65,60,65,66",
+                        "endOffsets": "116,177,243,310"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-pt-rBR_values-pt-rBR.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-pt-rBR\\values-pt-rBR.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-te_values-te.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-te\\values-te.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ja_values-ja.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ja\\values-ja.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-sq_values-sq.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-sq\\values-sq.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-km_values-km.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-km\\values-km.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-b+sr+Latn_values-b+sr+Latn.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-b+sr+Latn\\values-b+sr+Latn.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-sl_values-sl.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-sl\\values-sl.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-mk_values-mk.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-mk\\values-mk.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-el_values-el.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-el\\values-el.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-cs_values-cs.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-cs\\values-cs.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-bn_values-bn.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-bn\\values-bn.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ml_values-ml.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ml\\values-ml.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-it_values-it.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-it\\values-it.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-be_values-be.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-be\\values-be.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-da_values-da.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-da\\values-da.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ky_values-ky.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ky\\values-ky.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-si_values-si.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-si\\values-si.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-es_values-es.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-es\\values-es.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-bg_values-bg.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-bg\\values-bg.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-v16_values-v16.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-kn_values-kn.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-kn\\values-kn.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-tr_values-tr.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-tr\\values-tr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ms_values-ms.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ms\\values-ms.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-mn_values-mn.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-mn\\values-mn.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-eu_values-eu.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-eu\\values-eu.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ur_values-ur.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ur\\values-ur.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-nl_values-nl.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-nl\\values-nl.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-en-rIN_values-en-rIN.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-en-rIN\\values-en-rIN.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ar_values-ar.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ar\\values-ar.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-my_values-my.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-my\\values-my.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ro_values-ro.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ro\\values-ro.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "4,2,3",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "203,55,144",
+                        "endColumns": "63,88,58",
+                        "endOffsets": "262,139,198"
+                    },
+                    "to": {
+                        "startLines": "86,87,88",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "5174,5238,5327",
+                        "endColumns": "63,88,58",
+                        "endOffsets": "5233,5322,5381"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\6c105360245f769c088976d97fc5a6ce\\media-1.0.0\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,144,215,288,341,394,447,500,560,626,748,809,875",
+                        "endColumns": "88,70,72,52,52,52,52,59,65,121,60,65,66",
+                        "endOffsets": "139,210,283,336,389,442,495,555,621,743,804,870,937"
+                    },
+                    "to": {
+                        "startLines": "5,6,8,32,33,34,35,84,95,97,98,103,105",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "248,337,466,2079,2132,2185,2238,5044,5775,5951,6073,6335,6530",
+                        "endColumns": "88,70,72,52,52,52,52,59,65,121,60,65,66",
+                        "endOffsets": "332,403,534,2127,2180,2233,2286,5099,5836,6068,6129,6396,6592"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\2ded99d3d5abd0dc2e952828ff38685a\\coordinatorlayout-1.0.0\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,102,3,13",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,5935,116,724",
+                        "endLines": "2,104,12,101",
+                        "endColumns": "60,12,24,24",
+                        "endOffsets": "111,6075,719,5930"
+                    },
+                    "to": {
+                        "startLines": "2,108,118,128",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,6736,7179,7787",
+                        "endLines": "2,110,127,216",
+                        "endColumns": "60,12,24,24",
+                        "endOffsets": "111,6876,7782,12993"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,83,84,88,89,90,91,98,141,173,210",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,187,245,319,389,457,529,599,660,734,807,868,929,991,1055,1117,1178,1246,1346,1406,1472,1545,1614,1671,1723,1785,1857,1933,1998,2057,2116,2176,2236,2296,2356,2416,2476,2536,2596,2656,2716,2775,2835,2895,2955,3015,3075,3135,3195,3255,3315,3375,3434,3494,3554,3613,3672,3731,3790,3849,3908,3943,3978,4033,4096,4151,4209,4266,4316,4377,4434,4468,4503,4538,4608,4679,4796,4997,5107,5308,5437,5509,5576,5874,8780,10845,12605",
+                        "endLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,82,83,87,88,89,90,97,140,172,209,216",
+                        "endColumns": "68,62,57,73,69,67,71,69,60,73,72,60,60,61,63,61,60,67,99,59,65,72,68,56,51,61,71,75,64,58,58,59,59,59,59,59,59,59,59,59,59,58,59,59,59,59,59,59,59,59,59,59,58,59,59,58,58,58,58,58,58,34,34,54,62,54,57,56,49,60,56,33,34,34,69,70,116,12,109,12,128,71,66,24,24,24,24,24",
+                        "endOffsets": "119,182,240,314,384,452,524,594,655,729,802,863,924,986,1050,1112,1173,1241,1341,1401,1467,1540,1609,1666,1718,1780,1852,1928,1993,2052,2111,2171,2231,2291,2351,2411,2471,2531,2591,2651,2711,2770,2830,2890,2950,3010,3070,3130,3190,3250,3310,3370,3429,3489,3549,3608,3667,3726,3785,3844,3903,3938,3973,4028,4091,4146,4204,4261,4311,4372,4429,4463,4498,4533,4603,4674,4791,4992,5102,5303,5432,5504,5571,5869,8775,10840,12600,12977"
+                    },
+                    "to": {
+                        "startLines": "3,4,7,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,85,89,90,91,96,99,104,106,107,111,217,260,292,329",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "116,185,408,539,613,683,751,823,893,954,1028,1101,1162,1223,1285,1349,1411,1472,1540,1640,1700,1766,1839,1908,1965,2017,2291,2363,2439,2504,2563,2622,2682,2742,2802,2862,2922,2982,3042,3102,3162,3222,3281,3341,3401,3461,3521,3581,3641,3701,3761,3821,3881,3940,4000,4060,4119,4178,4237,4296,4355,4414,4449,4484,4539,4602,4657,4715,4772,4822,4883,4940,4974,5009,5104,5386,5457,5574,5841,6134,6401,6597,6669,6881,12998,15904,17969,19729",
+                        "endLines": "3,4,7,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,85,89,90,94,96,102,104,106,107,117,259,291,328,335",
+                        "endColumns": "68,62,57,73,69,67,71,69,60,73,72,60,60,61,63,61,60,67,99,59,65,72,68,56,51,61,71,75,64,58,58,59,59,59,59,59,59,59,59,59,59,58,59,59,59,59,59,59,59,59,59,59,58,59,59,58,58,58,58,58,58,34,34,54,62,54,57,56,49,60,56,33,34,34,69,70,116,12,109,12,128,71,66,24,24,24,24,24",
+                        "endOffsets": "180,243,461,608,678,746,818,888,949,1023,1096,1157,1218,1280,1344,1406,1467,1535,1635,1695,1761,1834,1903,1960,2012,2074,2358,2434,2499,2558,2617,2677,2737,2797,2857,2917,2977,3037,3097,3157,3217,3276,3336,3396,3456,3516,3576,3636,3696,3756,3816,3876,3935,3995,4055,4114,4173,4232,4291,4350,4409,4444,4479,4534,4597,4652,4710,4767,4817,4878,4935,4969,5004,5039,5169,5452,5569,5770,5946,6330,6525,6664,6731,7174,15899,17964,19724,20101"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-en-rCA_values-en-rCA.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-hr_values-hr.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-hr\\values-hr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-pa_values-pa.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-pa\\values-pa.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ne_values-ne.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ne\\values-ne.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-zh-rCN_values-zh-rCN.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-zh-rCN\\values-zh-rCN.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-fa_values-fa.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-fa\\values-fa.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-zh-rHK_values-zh-rHK.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-zh-rHK\\values-zh-rHK.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-am_values-am.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-am\\values-am.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-uk_values-uk.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-uk\\values-uk.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-ca_values-ca.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-ca\\values-ca.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-gu_values-gu.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-gu\\values-gu.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-in_values-in.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-in\\values-in.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-en-rXC_values-en-rXC.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-en-rXC\\values-en-rXC.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "202",
+                        "endOffsets": "253"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-sr_values-sr.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-sr\\values-sr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-sk_values-sk.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-sk\\values-sk.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-sw_values-sw.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-sw\\values-sw.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-vi_values-vi.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-vi\\values-vi.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-es-rUS_values-es-rUS.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-es-rUS\\values-es-rUS.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-hi_values-hi.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-hi\\values-hi.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-pt_values-pt.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-pt\\values-pt.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-hu_values-hu.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-hu\\values-hu.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\git_desktop\\GreaterWMS\\templates\\src-cordova\\platforms\\android\\app\\build\\intermediates\\res\\merged\\release\\values-en-rGB_values-en-rGB.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\Elvis\\.gradle\\caches\\transforms-2\\files-2.1\\57b7f42ffa61e27821b7c87274482ce6\\core-1.1.0\\res\\values-en-rGB\\values-en-rGB.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -12,7 +12,7 @@ from . import views
 schema_view = get_schema_view(
    openapi.Info(
        title="GreaterWMS--API Docs",
-       default_version='v2.0.26',
+       default_version='v2.0.27',
        description=
        """
         openid:
@@ -31,6 +31,7 @@ def return_static(request, path, insecure=True, **kwargs):
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
+    path('area_v2/', include('area.urls')),
     path('', TemplateView.as_view(template_name='dist/spa/index.html')),
     path('vcheck/', views.vcheck, name='vcheck'),
     path('myip/', views.myip, name='myip'),
@@ -40,13 +41,13 @@ urlpatterns = [
     path('binset/', include('binset.urls')),
     path('binsize/', include('binsize.urls')),
     path('binproperty/', include('binproperty.urls')),
-    path('cyclecount/', include('cyclecount.urls')),
     path('chat/', include('chat.urls')),
     path('capital/', include('capital.urls')),
-    path('dashboard/', include('dashboard.urls')),
     path('driver/', include('driver.urls')),
     path('stock/', include('stock.urls')),
     path('company/', include('company.urls')),
+    path('cyclecount/', include('cyclecount.urls')),
+    path('dashboard/', include('dashboard.urls')),
     path('supplier/', include('supplier.urls')),
     path('customer/', include('customer.urls')),
     path('warehouse/', include('warehouse.urls')),
@@ -58,6 +59,7 @@ urlpatterns = [
     path('goodsshape/', include('goodsshape.urls')),
     path('goodsspecs/', include('goodsspecs.urls')),
     path('goodsorigin/', include('goodsorigin.urls')),
+    path('scanner/', include('scanner.urls')),
     path('payment/', include('payment.urls')),
     path('login/', include('userlogin.urls')),
     path('register/', include('userregister.urls')),

@@ -1,0 +1,130 @@
+org/apache/cordova/PermissionHelper.java
+ org.apache.cordova.PermissionHelper
+org/apache/cordova/CordovaWebViewImpl.java
+ org.apache.cordova.CordovaWebViewImpl
+ org.apache.cordova.CordovaWebViewImpl$1
+ org.apache.cordova.CordovaWebViewImpl$2
+ org.apache.cordova.CordovaWebViewImpl$3
+ org.apache.cordova.CordovaWebViewImpl$EngineClient
+ org.apache.cordova.CordovaWebViewImpl$EngineClient$1
+ org.apache.cordova.CordovaWebViewImpl$EngineClient$1$1
+ org.apache.cordova.CordovaWebViewImpl$WrapperView
+org/apache/cordova/CordovaResourceApi.java
+ org.apache.cordova.CordovaResourceApi
+ org.apache.cordova.CordovaResourceApi$OpenForReadResult
+org/apache/cordova/CordovaPreferences.java
+ org.apache.cordova.CordovaPreferences
+org/apache/cordova/engine/SystemExposedJsApi.java
+ org.apache.cordova.engine.SystemExposedJsApi
+org/apache/cordova/CordovaWebViewEngine.java
+ org.apache.cordova.CordovaWebViewEngine
+ org.apache.cordova.CordovaWebViewEngine$Client
+ org.apache.cordova.CordovaWebViewEngine$EngineView
+org/apache/cordova/CallbackMap.java
+ org.apache.cordova.CallbackMap
+org/apache/cordova/CordovaDialogsHelper.java
+ org.apache.cordova.CordovaDialogsHelper
+ org.apache.cordova.CordovaDialogsHelper$1
+ org.apache.cordova.CordovaDialogsHelper$2
+ org.apache.cordova.CordovaDialogsHelper$3
+ org.apache.cordova.CordovaDialogsHelper$4
+ org.apache.cordova.CordovaDialogsHelper$5
+ org.apache.cordova.CordovaDialogsHelper$6
+ org.apache.cordova.CordovaDialogsHelper$7
+ org.apache.cordova.CordovaDialogsHelper$8
+ org.apache.cordova.CordovaDialogsHelper$9
+ org.apache.cordova.CordovaDialogsHelper$Result
+org/apache/cordova/CordovaArgs.java
+ org.apache.cordova.CordovaArgs
+org/apache/cordova/CordovaInterface.java
+ org.apache.cordova.CordovaInterface
+org/apache/cordova/CoreAndroid.java
+ org.apache.cordova.CoreAndroid
+ org.apache.cordova.CoreAndroid$1
+ org.apache.cordova.CoreAndroid$2
+ org.apache.cordova.CoreAndroid$3
+ org.apache.cordova.CoreAndroid$4
+ org.apache.cordova.CoreAndroid$5
+org/apache/cordova/engine/SystemWebViewEngine.java
+ org.apache.cordova.engine.SystemWebViewEngine
+ org.apache.cordova.engine.SystemWebViewEngine$1
+ org.apache.cordova.engine.SystemWebViewEngine$2
+org/apache/cordova/BuildConfig.java
+ org.apache.cordova.BuildConfig
+org/apache/cordova/CordovaBridge.java
+ org.apache.cordova.CordovaBridge
+org/apache/cordova/PluginResult.java
+ org.apache.cordova.PluginResult
+ org.apache.cordova.PluginResult$Status
+org/apache/cordova/ResumeCallback.java
+ org.apache.cordova.ResumeCallback
+org/apache/cordova/BuildHelper.java
+ org.apache.cordova.BuildHelper
+org/apache/cordova/Config.java
+ org.apache.cordova.Config
+org/apache/cordova/engine/SystemWebView.java
+ org.apache.cordova.engine.SystemWebView
+org/apache/cordova/ExposedJsApi.java
+ org.apache.cordova.ExposedJsApi
+org/apache/cordova/engine/SystemWebChromeClient.java
+ org.apache.cordova.engine.SystemWebChromeClient
+ org.apache.cordova.engine.SystemWebChromeClient$1
+ org.apache.cordova.engine.SystemWebChromeClient$2
+ org.apache.cordova.engine.SystemWebChromeClient$3
+ org.apache.cordova.engine.SystemWebChromeClient$4
+org/apache/cordova/ConfigXmlParser.java
+ org.apache.cordova.ConfigXmlParser
+org/apache/cordova/LOG.java
+ org.apache.cordova.LOG
+org/apache/cordova/engine/SystemCookieManager.java
+ org.apache.cordova.engine.SystemCookieManager
+org/apache/cordova/engine/SystemWebViewClient.java
+ org.apache.cordova.engine.SystemWebViewClient
+org/apache/cordova/CordovaInterfaceImpl.java
+ org.apache.cordova.CordovaInterfaceImpl
+ org.apache.cordova.CordovaInterfaceImpl$ActivityResultHolder
+org/apache/cordova/PluginManager.java
+ org.apache.cordova.PluginManager
+org/apache/cordova/CordovaPlugin.java
+ org.apache.cordova.CordovaPlugin
+org/apache/cordova/CordovaActivity.java
+ org.apache.cordova.CordovaActivity
+ org.apache.cordova.CordovaActivity$1
+ org.apache.cordova.CordovaActivity$2
+ org.apache.cordova.CordovaActivity$3
+ org.apache.cordova.CordovaActivity$4
+ org.apache.cordova.CordovaActivity$4$1
+org/apache/cordova/CordovaClientCertRequest.java
+ org.apache.cordova.CordovaClientCertRequest
+org/apache/cordova/Whitelist.java
+ org.apache.cordova.Whitelist
+ org.apache.cordova.Whitelist$URLPattern
+org/apache/cordova/PluginEntry.java
+ org.apache.cordova.PluginEntry
+org/apache/cordova/ICordovaClientCertRequest.java
+ org.apache.cordova.ICordovaClientCertRequest
+org/apache/cordova/NativeToJsMessageQueue.java
+ org.apache.cordova.NativeToJsMessageQueue
+ org.apache.cordova.NativeToJsMessageQueue$BridgeMode
+ org.apache.cordova.NativeToJsMessageQueue$EvalBridgeMode
+ org.apache.cordova.NativeToJsMessageQueue$EvalBridgeMode$1
+ org.apache.cordova.NativeToJsMessageQueue$JsMessage
+ org.apache.cordova.NativeToJsMessageQueue$LoadUrlBridgeMode
+ org.apache.cordova.NativeToJsMessageQueue$LoadUrlBridgeMode$1
+ org.apache.cordova.NativeToJsMessageQueue$NoOpBridgeMode
+ org.apache.cordova.NativeToJsMessageQueue$OnlineEventsBridgeMode
+ org.apache.cordova.NativeToJsMessageQueue$OnlineEventsBridgeMode$1
+ org.apache.cordova.NativeToJsMessageQueue$OnlineEventsBridgeMode$2
+ org.apache.cordova.NativeToJsMessageQueue$OnlineEventsBridgeMode$OnlineEventsBridgeModeDelegate
+org/apache/cordova/CordovaHttpAuthHandler.java
+ org.apache.cordova.CordovaHttpAuthHandler
+org/apache/cordova/CordovaWebView.java
+ org.apache.cordova.CordovaWebView
+org/apache/cordova/ICordovaCookieManager.java
+ org.apache.cordova.ICordovaCookieManager
+org/apache/cordova/ICordovaHttpAuthHandler.java
+ org.apache.cordova.ICordovaHttpAuthHandler
+org/apache/cordova/CallbackContext.java
+ org.apache.cordova.CallbackContext
+org/apache/cordova/AuthenticationToken.java
+ org.apache.cordova.AuthenticationToken

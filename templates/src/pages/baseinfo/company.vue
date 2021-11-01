@@ -189,35 +189,35 @@
                     v-model="newFormData.company_name"
                     :label="$t('baseinfo.view_company.company_name')"
                     autofocus
-                    :rules="[ val => val && val.length > 0 || error1]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter The Company Name']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.company_city"
                     :label="$t('baseinfo.view_company.company_city')"
-                    :rules="[ val => val && val.length > 0 || error2]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter The Company City']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.company_address"
                     :label="$t('baseinfo.view_company.company_address')"
-                    :rules="[ val => val && val.length > 0 || error3]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter The Company Address']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.company_contact"
                     :label="$t('baseinfo.view_company.company_contact')"
-                    :rules="[ val => val && val > 0 || error4]"
+                    :rules="[ val => val && val > 0 || 'Please Enter The Company Contact']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.company_manager"
                     :label="$t('baseinfo.view_company.company_manager')"
-                    :rules="[ val => val && val.length > 0 || error5]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter The company_manager']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
@@ -295,12 +295,7 @@ export default {
       editFormData: {},
       editMode: false,
       deleteForm: false,
-      deleteid: 0,
-      error1: this.$t('baseinfo.view_company.error1'),
-      error2: this.$t('baseinfo.view_company.error1'),
-      error3: this.$t('baseinfo.view_company.error1'),
-      error4: this.$t('baseinfo.view_company.error1'),
-      error5: this.$t('baseinfo.view_company.error1')
+      deleteid: 0
     }
   },
   methods: {

@@ -217,35 +217,35 @@
                     v-model="newFormData.customer_name"
                     :label="$t('baseinfo.view_customer.customer_name')"
                     autofocus
-                    :rules="[ val => val && val.length > 0 || error1]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Customer Name']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.customer_city"
                     :label="$t('baseinfo.view_customer.customer_city')"
-                    :rules="[ val => val && val.length > 0 || error2]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Customer City']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.customer_address"
                     :label="$t('baseinfo.view_customer.customer_address')"
-                    :rules="[ val => val && val.length > 0 || error3]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Customer Address']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.customer_contact"
                     :label="$t('baseinfo.view_customer.customer_contact')"
-                    :rules="[ val => val && val > 0 || error4]"
+                    :rules="[ val => val && val > 0 || 'Please Enter the Customer Contact']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.customer_manager"
                     :label="$t('baseinfo.view_customer.customer_manager')"
-                    :rules="[ val => val && val.length > 0 || error5]"
+                    :rules="[ val => val && val.length > 0 || 'Please Enter the Customer Manager']"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
@@ -253,7 +253,7 @@
                     v-model.number="newFormData.customer_level"
                     type="number"
                     :label="$t('baseinfo.view_customer.customer_level')"
-                    :rules="[ val => val && val > 0 || error6]"
+                    :rules="[ val => val && val > 0 || 'Please Enter the Customer Level']"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
@@ -333,13 +333,7 @@ export default {
       editFormData: {},
       editMode: false,
       deleteForm: false,
-      deleteid: 0,
-      error1: this.$t('baseinfo.view_customer.error1'),
-      error2: this.$t('baseinfo.view_customer.error2'),
-      error3: this.$t('baseinfo.view_customer.error3'),
-      error4: this.$t('baseinfo.view_customer.error4'),
-      error5: this.$t('baseinfo.view_customer.error5'),
-      error6: this.$t('baseinfo.view_customer.error6')
+      deleteid: 0
     }
   },
   methods: {
