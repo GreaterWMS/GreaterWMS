@@ -165,21 +165,21 @@
                     v-model="newFormData.driver_name"
                     :label="$t('driver.view_driver.driver_name')"
                     autofocus
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the Driver Name']"
+                    :rules="[ val => val && val.length > 0 || error1]"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.license_plate"
                     :label="$t('driver.view_driver.license_plate')"
-                    :rules="[ val => val && val.length > 0 || 'Please Enter the License Plate']"
+                    :rules="[ val => val && val.length > 0 || error2]"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.contact"
                     :label="$t('driver.view_driver.contact')"
-                    :rules="[ val => val && val > 0 || 'Please Enter The Contact']"
+                    :rules="[ val => val && val > 0 || error3]"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
@@ -253,7 +253,10 @@ export default {
       editFormData: {},
       editMode: false,
       deleteForm: false,
-      deleteid: 0
+      deleteid: 0,
+      error1: this.$t('driver.error1'),
+      error2: this.$t('driver.error2'),
+      error3: this.$t('driver.error3')
     }
   },
   methods: {
