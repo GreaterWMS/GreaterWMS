@@ -4,15 +4,15 @@
     <div v-show="device === 2" :style="{height: height,width: width}">
       <div class="q-gutter-x-md q-gutter-y-xl">
         <q-card flat>
-        <q-card-section horizontal>
-          <q-card-actions class="col-6" align="center">
-            <q-btn v-show="device_name !== '' || device_name !== 'Zebra Technologies'" icon="img:statics/inbound/preloadstock.png" :label="$t('scan.scan_sorting')" stack flat color="black" size="xl" to="scan_sorting"/>
-          </q-card-actions>
-          <q-separator vertical></q-separator>
-          <q-card-actions class="col-6" align="center">
-            <q-btn icon="img:statics/inbound/presortstock.png" :label="$t('scan.scan_uptobin')" stack flat color="black" size="xl"/>
-          </q-card-actions>
-        </q-card-section>
+          <q-card-section horizontal>
+            <q-card-actions class="col-6" align="center">
+              <q-btn v-show="device_name !== '' || device_name !== 'Zebra Technologies'" icon="img:statics/inbound/preloadstock.png" :label="$t('scan.scan_sorting')" stack flat color="black" size="xl" to="scan_sorting"/>
+            </q-card-actions>
+            <q-separator vertical></q-separator>
+            <q-card-actions class="col-6" align="center">
+              <q-btn icon="img:statics/inbound/presortstock.png" :label="$t('scan.scan_uptobin')" stack flat color="black" size="xl"/>
+            </q-card-actions>
+          </q-card-section>
           <q-separator></q-separator>
           <q-card-section horizontal>
             <q-card-actions class="col-6" align="center">
