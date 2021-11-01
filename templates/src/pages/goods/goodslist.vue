@@ -985,7 +985,7 @@ export default {
     viewData (e) {
       var _this = this
       var QRCode = require('qrcode')
-      QRCode.toDataURL(e.goods_code, [{
+      QRCode.toDataURL(e.bar_code, [{
         errorCorrectionLevel: 'H',
         mode: 'byte',
         version: '2',
