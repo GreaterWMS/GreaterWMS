@@ -1954,7 +1954,7 @@ export default {
         _this.customer_detail = res.customer_detail
         _this.viewdn = e.dn_code
         var QRCode = require('qrcode')
-        QRCode.toDataURL(e.dn_code, [{
+        QRCode.toDataURL(e.bar_code, [{
           errorCorrectionLevel: 'H',
           mode: 'byte',
           version: '2',
