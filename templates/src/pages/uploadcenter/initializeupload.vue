@@ -122,16 +122,14 @@ export default {
     getfileinfo (file) {
       console.log(file)
     },
-    electronOpenLink (url) {
-      const { shell } = require('electron')
-      shell.openExternal(url)
-    },
+    // electronOpenLink (url) {
+    //   const { shell } = require('electron')
+    //   shell.openExternal(url)
+    // },
     downloadgoodstemplate () {
-      var _this = this
       if (LocalStorage.has('lang')) {
         if (LocalStorage.getItem('lang') === 'zh-hans') {
-          _this.electronOpenLink('https://www.baidu.com')
-          // openURL(baseurl + 'media/upload_example/goodslist_cn.xlsx')
+          openURL(baseurl + 'media/upload_example/goodslist_cn.xlsx')
         } else {
           openURL(baseurl + 'media/upload_example/goodslist_en.xlsx')
         }
