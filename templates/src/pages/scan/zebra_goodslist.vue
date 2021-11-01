@@ -19,28 +19,13 @@
       >
         <template v-slot:top>
           <q-btn-group push>
-            <q-btn :label="$t('new')" icon="add" @click="newForm = true">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('newtip') }}
-              </q-tooltip>
-            </q-btn>
             <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('refreshtip') }}
               </q-tooltip>
             </q-btn>
-            <q-btn :label="$t('download')" icon="cloud_download" @click="downloadData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('downloadtip') }}
-              </q-tooltip>
-            </q-btn>
           </q-btn-group>
           <q-space />
-          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
-            <template v-slot:append>
-              <q-icon name="search" @click="getSearchList()"/>
-            </template>
-          </q-input>
         </template>
         <template v-slot:body="props">
           <q-tr :props="props">
@@ -343,47 +328,6 @@
             <q-td key="update_time" :props="props">
               {{ props.row.update_time }}
             </q-td>
-            <template v-if="!editMode">
-              <q-td key="action" :props="props" style="width: 100px">
-                <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                              $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                              $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                              $q.localStorage.getItem('staff_type') !== 'StockControl'
-                             "
-                       round flat push color="info" icon="print" @click="viewData(props.row)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('goods.view_goodslist.print_goods_label') }}
-                  </q-tooltip>
-                </q-btn>
-                <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('edit') }}
-                  </q-tooltip>
-                </q-btn>
-                <q-btn round flat push color="dark" icon="delete" @click="deleteData(props.row.id)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('delete') }}
-                  </q-tooltip>
-                </q-btn>
-              </q-td>
-            </template>
-            <template v-else-if="editMode">
-              <template v-if="props.row.id === editid">
-                <q-td key="action" :props="props" style="width: 100px">
-                  <q-btn round flat push color="secondary" icon="check" @click="editDataSubmit()">
-                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                      {{ $t('confirmedit') }}
-                    </q-tooltip>
-                  </q-btn>
-                  <q-btn round flat push color="red" icon="close" @click="editDataCancel()">
-                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                      {{ $t('canceledit') }}
-                    </q-tooltip>
-                  </q-btn>
-                </q-td>
-              </template>
-              <template v-else-if="props.row.id !== editid"></template>
-            </template>
           </q-tr>
         </template>
       </q-table>
@@ -395,219 +339,8 @@
             {{ $t('previous') }}
           </q-tooltip>
         </q-btn>
-        <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
-          <q-tooltip content-class="vbg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-            {{ $t('next') }}
-          </q-tooltip>
-        </q-btn>
-        <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
       </div>
     </template>
-    <q-dialog v-model="newForm">
-      <q-card class="shadow-24">
-        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-          <div>{{ $t('newtip') }}</div>
-          <q-space />
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
-          </q-btn>
-        </q-bar>
-        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-          <q-input dense
-                   outlined
-                   square
-                   v-model="newFormData.goods_code"
-                   :label="$t('goods.view_goodslist.goods_code')"
-                   autofocus
-                   :rules="[ val => val && val.length > 0 || error1]"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model="newFormData.goods_desc"
-                   :label="$t('goods.view_goodslist.goods_desc')"
-                   :rules="[ val => val && val.length > 0 || error2]"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_supplier"
-                    :options="supplier_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_supplier')"
-                    :rules="[ val => val && val.length > 0 || error3]"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model.number="newFormData.goods_weight"
-                   type="number"
-                   :label="$t('goods.view_goodslist.goods_weight')"
-                   :rules="[ val => val && val > 0 || error4]"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model.number="newFormData.goods_w"
-                   type="number"
-                   :label="$t('goods.view_goodslist.goods_w')"
-                   :rules="[ val => val && val > 0 || error5]"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model.number="newFormData.goods_d"
-                   type="number"
-                   :label="$t('goods.view_goodslist.goods_d')"
-                   :rules="[ val => val && val > 0 || error6]"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model.number="newFormData.goods_h"
-                   type="number"
-                   :label="$t('goods.view_goodslist.goods_h')"
-                   :rules="[ val => val && val > 0 || error7]"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_unit"
-                    :options="goods_unit_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_unit')"
-                    :rules="[ val => val && val.length > 0 || error8]"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_class"
-                    :options="goods_class_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_class')"
-                    :rules="[ val => val && val.length > 0 || error9]"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_brand"
-                    :options="goods_brand_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_brand')"
-                    :rules="[ val => val && val.length > 0 || error10]"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_color"
-                    :options="goods_color_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_color')"
-                    :rules="[ val => val && val.length > 0 || error11]"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_shape"
-                    :options="goods_shape_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_shape')"
-                    :rules="[ val => val && val.length > 0 || error12]"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_specs"
-                    :options="goods_specs_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_specs')"
-                    :rules="[ val => val && val.length > 0 || error13]"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.goods_origin"
-                    :options="goods_origin_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('goods.view_goodslist.goods_origin')"
-                    :rules="[ val => val && val.length > 0 || error14]"
-                    @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model.number="newFormData.goods_cost"
-                   type="number"
-                   :label="$t('goods.view_goodslist.goods_cost')"
-                   :rules="[ val => val && val > 0 || error15]"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-input dense
-                   outlined
-                   square
-                   v-model.number="newFormData.goods_price"
-                   type="number"
-                   :label="$t('goods.view_goodslist.goods_price')"
-                   :rules="[ val => val && val > 0 || error16]"
-                   @keyup.enter="newDataSubmit()"/>
-        </q-card-section>
-        <div style="float: right; padding: 15px 15px 15px 0">
-          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
-          <q-btn color="primary" @click="newDataSubmit()">{{ $t('submit') }}</q-btn>
-        </div>
-      </q-card>
-    </q-dialog>
-    <q-dialog v-model="deleteForm">
-      <q-card class="shadow-24">
-        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-          <div>{{ $t('delete') }}</div>
-          <q-space />
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
-          </q-btn>
-        </q-bar>
-        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-          {{ $t('deletetip') }}
-        </q-card-section>
-        <div style="float: right; padding: 15px 15px 15px 0">
-          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="deleteDataCancel()">{{ $t('cancel') }}</q-btn>
-          <q-btn color="primary" @click="deleteDataSubmit()">{{ $t('submit') }}</q-btn>
-        </div>
-      </q-card>
-    </q-dialog>
-    <q-dialog v-model="viewForm">
-      <div id="printMe" style="width: 400px;height:280px;background-color: white">
-        <q-card-section>
-          <div class="row" style="height: 50px">
-            <div class="col-3">
-              <img src='/statics/goods/logo.png'  style="width: 60px;height: 50px;margin-top: 5px;margin-left: 5px">
-            </div>
-            <div class="col-9" style="height: 50px;float: contour;margin-top: 10px" >
-              <p style="font-size: 20px;font-weight: 550">{{$t('goods.view_goodslist.goods_code') + ':' + goods_code}}</p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-8" style="margin-top: 30px;padding-left: 3%">
-              <p style="font-size: 20px;font-weight: 550">{{$t('goods.view_goodslist.goods_name') + ':'}}</p>
-              <p style="font-size: 20px;font-weight: 550">{{goods_desc}}</p>
-            </div>
-            <div class="col-4" style="margin-top: 25px;">
-              <img :src="bar_code" style="width: 70%;margin-left: 23px"/>
-            </div>
-          </div>
-        </q-card-section>
-      </div>
-      <div style="float: right; padding: 15px 15px 15px 0">
-        <q-btn color="primary" icon="print" v-print="printObj">print</q-btn>
-      </div>
-    </q-dialog>
   </div>
 </template>
 <router-view />
@@ -615,7 +348,53 @@
 <script>
 import { getauth, postauth, putauth, deleteauth, getfile } from 'boot/axios_request'
 import { date, exportFile, LocalStorage } from 'quasar'
+var sendCommandResults = 'false'
+var scans = []
 
+function sendCommand (extraName, extraValue) {
+  console.log('Sending Command: ' + extraName + ', ' + JSON.stringify(extraValue))
+  var broadcastExtras = {}
+  broadcastExtras[extraName] = extraValue
+  broadcastExtras.SEND_RESULT = sendCommandResults
+  window.plugins.intentShim.sendBroadcast({
+    action: 'com.symbol.datawedge.api.ACTION',
+    extras: broadcastExtras
+  },
+  function () { },
+  function () { }
+  )
+}
+
+function unregisterBroadcastReceiver () {
+  window.plugins.intentShim.unregisterBroadcastReceiver()
+}
+function commandReceived (commandText) {
+  document.getElementById('info_lastApiMessage').innerHTML = commandText
+}
+function enumerateScanners (enumeratedScanners) {
+  var humanReadableScannerList = ''
+  for (var i = 0; i < enumeratedScanners.length; i++) {
+    console.log('Scanner found: name= ' + enumeratedScanners[i].SCANNER_NAME + ', id=' + enumeratedScanners[i].SCANNER_INDEX + ', connected=' + enumeratedScanners[i].SCANNER_CONNECTION_STATE)
+    humanReadableScannerList += enumeratedScanners[i].SCANNER_NAME
+    if (i < enumeratedScanners.length - 1) { humanReadableScannerList += ', ' }
+  }
+  document.getElementById('info_availableScanners').innerHTML = humanReadableScannerList
+}
+function activeProfile (theActiveProfile) {
+  document.getElementById('info_activeProfile').innerHTML = theActiveProfile
+}
+function barcodeScanned (scanData, timeOfScan) {
+  var scannedData = scanData.extras['com.symbol.datawedge.data_string']
+  var scannedType = scanData.extras['com.symbol.datawedge.label_type']
+  console.log('Scan: ' + scannedData)
+  scans.unshift({ data: scannedData, decoder: scannedType, timeAtDecode: timeOfScan })
+  console.log(scans)
+  var scanDisplay = ''
+  for (var i = 0; i < scans.length; i++) {
+    scanDisplay += '<b><small>' + scans[i].decoder + ' (' + scans[i].timeAtDecode + ')</small></b><br>' + scans[i].data + '<br><br>'
+  }
+  document.getElementById('scannedBarcodes').innerHTML = scanDisplay
+}
 export default {
   name: 'Pagegoodslist',
   data () {
@@ -665,8 +444,7 @@ export default {
         { name: 'goods_price', label: this.$t('goods.view_goodslist.goods_price'), field: 'goods_price', align: 'center' },
         { name: 'creater', label: this.$t('creater'), field: 'creater', align: 'center' },
         { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
-        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' },
-        { name: 'action', label: this.$t('action'), align: 'right' }
+        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' }
       ],
       filter: '',
       pagination: {
@@ -714,26 +492,17 @@ export default {
       error13: this.$t('goods.view_specs.error1'),
       error14: this.$t('goods.view_origin.error1'),
       error15: this.$t('goods.view_goodslist.error8'),
-      error16: this.$t('goods.view_goodslist.error9')
+      error16: this.$t('goods.view_goodslist.error9'),
+      scandata: ''
     }
   },
   methods: {
     getList () {
       var _this = this
       if (LocalStorage.has('auth')) {
-        getauth(_this.pathname, {
+        getauth(_this.pathname + '?goodscode=' + _this.scandata, {
         }).then(res => {
           _this.table_list = res.results
-          _this.goods_unit_list = res.goods_unit_list
-          _this.goods_class_list = res.goods_class_list
-          _this.goods_brand_list = res.goods_brand_list
-          _this.goods_color_list = res.goods_color_list
-          _this.goods_shape_list = res.goods_shape_list
-          _this.goods_specs_list = res.goods_specs_list
-          _this.goods_origin_list = res.goods_origin_list
-          _this.supplier_list = res.supplier_list
-          _this.pathname_previous = res.previous
-          _this.pathname_next = res.next
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -1001,6 +770,189 @@ export default {
       _this.viewForm = true
     }
   },
+  reFresh () {
+    var _this = this
+    _this.getList()
+  },
+  updateBatteryStatus (status) {
+    this.batteryStatus = `Level: ${status.level}, plugged: ${status.isPlugged}`
+  },
+  scanEvents () {
+    var _this = this
+    document.addEventListener('deviceready', _this.onDeviceReady, false)
+  },
+  onDeviceReady () {
+    this.receivedEvent('deviceready')
+    document.getElementById('scanButton').addEventListener('touchstart', this.startSoftTrigger)
+    document.getElementById('scanButton').addEventListener('click', this.startSoftTrigger)
+    // document.getElementById('disableScanningButton').addEventListener('click', this.disableEnableScanning)
+    document.getElementById('scanButton').addEventListener('touchend', this.stopSoftTrigger)
+    document.getElementById('scanButton').style.display = 'none'
+    document.getElementById('header_lastApiMessage').style.display = 'none'
+    document.getElementById('info_lastApiMessage').style.display = 'none'
+    document.getElementById('chk_ean8').disabled = true
+    document.getElementById('chk_ean13').disabled = true
+    document.getElementById('chk_code39').disabled = true
+    document.getElementById('chk_code128').disabled = true
+    this.registerBroadcastReceiver()
+    this.determineVersion()
+  },
+  onPause: function () {
+    console.log('Paused')
+    unregisterBroadcastReceiver()
+  },
+  onResume () {
+    console.log('Resumed')
+    this.registerBroadcastReceiver()
+  },
+  receivedEvent (id) {
+    console.log('Received Event: ' + id)
+  },
+  startSoftTrigger () {
+    sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'START_SCANNING')
+  },
+  stopSoftTrigger () {
+    sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'STOP_SCANNING')
+  },
+  determineVersion () {
+    sendCommand('com.symbol.datawedge.api.GET_VERSION_INFO', '')
+  },
+  setDecoders () {
+    var ean8Decoder = '' + document.getElementById('chk_ean8').checked
+    var ean13Decoder = '' + document.getElementById('chk_ean13').checked
+    var code39Decoder = '' + document.getElementById('chk_code39').checked
+    var code128Decoder = '' + document.getElementById('chk_code128').checked
+    //  Set the new configuration
+    var profileConfig = {
+      PROFILE_NAME: 'wms',
+      PROFILE_ENABLED: 'true',
+      CONFIG_MODE: 'UPDATE',
+      PLUGIN_CONFIG: {
+        PLUGIN_NAME: 'BARCODE',
+        PARAM_LIST: {
+          // "current-device-id": this.selectedScannerId,
+          scanner_selection: 'auto',
+          decoder_ean8: '' + ean8Decoder,
+          decoder_ean13: '' + ean13Decoder,
+          decoder_code128: '' + code128Decoder,
+          decoder_code39: '' + code39Decoder
+        }
+      }
+    }
+    sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
+  },
+  registerBroadcastReceiver () {
+    window.plugins.intentShim.registerBroadcastReceiver({
+      filterActions: [
+        'com.greaterwms.app.ACTION',
+        'com.symbol.datawedge.api.RESULT_ACTION'
+      ],
+      filterCategories: [
+        'android.intent.category.DEFAULT'
+      ]
+    },
+    function (intent) {
+      console.log('Received Intent: ' + JSON.stringify(intent))
+      // eslint-disable-next-line no-prototype-builtins
+      if (intent.extras.hasOwnProperty('RESULT_INFO')) {
+        var commandResult = intent.extras.RESULT + ' (' +
+            intent.extras.COMMAND.substring(intent.extras.COMMAND.lastIndexOf('.') + 1, intent.extras.COMMAND.length) + ')'// + JSON.stringify(intent.extras.RESULT_INFO);
+        commandReceived(commandResult.toLowerCase())
+      }
+      // eslint-disable-next-line no-prototype-builtins
+      if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_VERSION_INFO')) {
+        //  The version has been returned (DW 6.3 or higher).  Includes the DW version along with other subsystem versions e.g MX
+        var versionInfo = intent.extras['com.symbol.datawedge.api.RESULT_GET_VERSION_INFO']
+        console.log('Version Info: ' + JSON.stringify(versionInfo))
+        var datawedgeVersion = versionInfo.DATAWEDGE
+        console.log('Datawedge version: ' + datawedgeVersion)
+        //  Fire events sequentially so the application can gracefully degrade the functionality available on earlier DW versions
+        if (datawedgeVersion >= '6.3') {
+          console.log('Datawedge 6.3 APIs are available')
+          //  Create a profile for our application
+          sendCommand('com.symbol.datawedge.api.CREATE_PROFILE', 'wms')
+          document.getElementById('info_datawedgeVersion').innerHTML = '6.3.  Please configure profile manually.  See ReadMe for more details.'
+          //  Although we created the profile we can only configure it with DW 6.4.
+          sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
+          //  Enumerate the available scanners on the device
+          sendCommand('com.symbol.datawedge.api.ENUMERATE_SCANNERS', '')
+          //  Functionality of the scan button is available
+          document.getElementById('scanButton').style.display = 'block'
+        }
+        if (datawedgeVersion >= '6.4') {
+          console.log('Datawedge 6.4 APIs are available')
+          //  Documentation states the ability to set a profile config is only available from DW 6.4.
+          //  For our purposes, this includes setting the decoders and configuring the associated app / output params of the profile.
+          document.getElementById('info_datawedgeVersion').innerHTML = '6.4.'
+          document.getElementById('info_datawedgeVersion').classList.remove('attention')
+          //  Decoders are now available
+          document.getElementById('chk_ean8').disabled = false
+          document.getElementById('chk_ean13').disabled = false
+          document.getElementById('chk_code39').disabled = false
+          document.getElementById('chk_code128').disabled = false
+          //  Configure the created profile (associated app and keyboard plugin)
+          var profileConfig = {
+            PROFILE_NAME: 'wms',
+            PROFILE_ENABLED: 'true',
+            CONFIG_MODE: 'UPDATE',
+            PLUGIN_CONFIG: {
+              PLUGIN_NAME: 'BARCODE',
+              RESET_CONFIG: 'true',
+              PARAM_LIST: {}
+            },
+            APP_LIST: [{
+              PACKAGE_NAME: 'com.greaterwms.app',
+              ACTIVITY_LIST: ['*']
+            }]
+          }
+          sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
+          //  Configure the created profile (intent plugin)
+          var profileConfig2 = {
+            PROFILE_NAME: 'wms',
+            PROFILE_ENABLED: 'true',
+            CONFIG_MODE: 'UPDATE',
+            PLUGIN_CONFIG: {
+              PLUGIN_NAME: 'INTENT',
+              RESET_CONFIG: 'true',
+              PARAM_LIST: {
+                intent_output_enabled: 'true',
+                intent_action: 'com.greaterwms.app.ACTION',
+                intent_delivery: '2'
+              }
+            }
+          }
+          sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig2)
+          //  Give some time for the profile to settle then query its value
+          setTimeout(function () {
+            sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
+          }, 1000)
+        }
+        if (datawedgeVersion >= '6.5') {
+          console.log('Datawedge 6.5 APIs are available')
+          document.getElementById('info_datawedgeVersion').innerHTML = '6.5 or higher.'
+          //  Instruct the API to send
+          sendCommandResults = 'true'
+          document.getElementById('header_lastApiMessage').style.display = 'block'
+          document.getElementById('info_lastApiMessage').style.display = 'block'
+        }
+        // eslint-disable-next-line no-prototype-builtins
+      } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS')) {
+        //  Return from our request to enumerate the available scanners
+        var enumeratedScannersObj = intent.extras['com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS']
+        enumerateScanners(enumeratedScannersObj)
+        // eslint-disable-next-line no-prototype-builtins
+      } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE')) {
+        //  Return from our request to obtain the active profile
+        var activeProfileObj = intent.extras['com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE']
+        activeProfile(activeProfileObj)
+        // eslint-disable-next-line no-prototype-builtins
+      } else if (!intent.extras.hasOwnProperty('RESULT_INFO')) {
+        //  A barcode has been scanned
+        barcodeScanned(intent, new Date().toLocaleString())
+      }
+    }
+    )
+  },
   created () {
     var _this = this
     if (LocalStorage.has('openid')) {
@@ -1025,9 +977,9 @@ export default {
   mounted () {
     var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + 'px'
+      _this.height = String(_this.$q.screen.height - 115) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + '' + 'px'
+      _this.height = _this.$q.screen.height - 115 + '' + 'px'
     }
   },
   updated () {
