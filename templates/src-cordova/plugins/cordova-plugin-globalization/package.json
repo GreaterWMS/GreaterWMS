@@ -1,0 +1,65 @@
+{
+  "name": "cordova-plugin-globalization",
+  "version": "1.11.0",
+  "description": "Cordova Globalization Plugin",
+  "types": "./types/index.d.ts",
+  "cordova": {
+    "id": "cordova-plugin-globalization",
+    "platforms": [
+      "android",
+      "amazon-fireos",
+      "ubuntu",
+      "firefoxos",
+      "ios",
+      "wp7",
+      "wp8",
+      "windows",
+      "tizen",
+      "blackberry10"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apache/cordova-plugin-globalization"
+  },
+  "bugs": {
+    "url": "https://issues.apache.org/jira/browse/CB"
+  },
+  "keywords": [
+    "cordova",
+    "globalization",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-amazon-fireos",
+    "cordova-ubuntu",
+    "cordova-firefoxos",
+    "cordova-ios",
+    "cordova-wp7",
+    "cordova-wp8",
+    "cordova-windows",
+    "cordova-tizen",
+    "cordova-blackberry10"
+  ],
+  "scripts": {
+    "test": "npm run eslint",
+    "eslint": "eslint www && eslint src && eslint tests"
+  },
+  "author": "Apache Software Foundation",
+  "license": "Apache-2.0",
+  "engines": {
+    "cordovaDependencies": {
+      "2.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "devDependencies": {
+    "eslint": "^4.0.0",
+    "eslint-config-semistandard": "^11.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}

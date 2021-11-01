@@ -71,6 +71,7 @@
            {{ IMEI }}
            {{ batteryStatus }}
            {{ barscan }}
+           <q-input v-model="barscan" value="1"/>
            <q-space />
            <q-input class="cordova-search" outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
              <template v-slot:append>
@@ -188,6 +189,8 @@ h1 {
 </style>
 <script>
 import { getauth } from 'boot/axios_request'
+import Vconsole from 'vconsole'
+const vConsole = new Vconsole()
 var sendCommandResults = 'false'
 var scans = []
 
@@ -289,24 +292,6 @@ export default {
       var _this = this
       if (_this.$q.localStorage.has('auth')) {
         getauth(_this.pathname_previous, {
-        }).then(res => {
-          _this.table_list = res.results
-          _this.pathname_previous = res.previous
-          _this.pathname_next = res.next
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      } else {
-      }
-    },
-    getListNext () {
-      var _this = this
-      if (_this.$q.localStorage.has('auth')) {
-        getauth(_this.pathname_next, {
         }).then(res => {
           _this.table_list = res.results
           _this.pathname_previous = res.previous

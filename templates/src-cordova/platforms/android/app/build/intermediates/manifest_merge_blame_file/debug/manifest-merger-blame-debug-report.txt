@@ -1,0 +1,169 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="org.greaterwms.app"
+4    android:hardwareAccelerated="true"
+5    android:versionCode="20026"
+6    android:versionName="2.0.26" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="22"
+9-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+10        android:targetSdkVersion="29" />
+10-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+11
+12    <supports-screens
+12-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:5-191
+13        android:anyDensity="true"
+13-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:23-48
+14        android:largeScreens="true"
+14-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:49-76
+15        android:normalScreens="true"
+15-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:77-105
+16        android:resizeable="true"
+16-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:106-131
+17        android:smallScreens="true"
+17-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:132-159
+18        android:xlargeScreens="true" />
+18-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:160-188
+19
+20    <uses-permission android:name="android.permission.INTERNET" />
+20-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:4:5-67
+20-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:4:22-64
+21    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+21-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:23:5-81
+21-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:23:22-78
+22    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+22-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:24:5-80
+22-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:24:22-77
+23    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+23-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:25:5-83
+23-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:25:22-80
+24    <uses-permission android:name="android.permission.READ_CONTACTS" />
+24-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:26:5-72
+24-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:26:22-69
+25    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+25-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:27:5-73
+25-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:27:22-70
+26    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+26-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:28:5-71
+26-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:28:22-68
+27    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+27-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:29:5-81
+27-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:29:22-78
+28    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+28-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:30:5-79
+28-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:30:22-76
+29
+30    <uses-feature
+30-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:31:5-90
+31        android:name="android.hardware.location.gps"
+31-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:31:19-63
+32        android:required="true" />
+32-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:31:64-87
+33
+34    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+34-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:32:5-71
+34-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:32:22-68
+35    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+35-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:33:5-80
+35-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:33:22-77
+36    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+36-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:34:5-75
+36-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:34:22-72
+37    <uses-permission android:name="android.permission.RECORD_VIDEO" />
+37-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:35:5-71
+37-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:35:22-68
+38    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+38-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:36:5-79
+38-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:36:22-76
+39    <uses-permission android:name="android.permission.VIBRATE" />
+39-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:37:5-66
+39-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:37:22-63
+40
+41    <application
+41-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:5:5-22:19
+42        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+42-->[androidx.core:core:1.1.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\57b7f42ffa61e27821b7c87274482ce6\core-1.1.0\AndroidManifest.xml:24:18-86
+43        android:debuggable="true"
+44        android:hardwareAccelerated="true"
+44-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:5:18-52
+45        android:icon="@mipmap/ic_launcher"
+45-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:5:53-87
+46        android:label="@string/app_name"
+46-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:5:88-120
+47        android:supportsRtl="true"
+47-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:5:121-147
+48        android:usesCleartextTraffic="true" >
+48-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:5:148-183
+49        <activity
+49-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:9-15:20
+50            android:name="org.greaterwms.app.MainActivity"
+50-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:205-232
+51            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
+51-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:19-135
+52            android:label="@string/activity_name"
+52-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:136-173
+53            android:launchMode="singleTop"
+53-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:174-204
+54            android:theme="@android:style/Theme.DeviceDefault.NoActionBar"
+54-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:233-295
+55            android:windowSoftInputMode="adjustResize" >
+55-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:296-338
+56            <intent-filter android:label="@string/launcher_name" >
+56-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:7:13-10:29
+56-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:7:28-65
+57                <action android:name="android.intent.action.MAIN" />
+57-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:8:17-69
+57-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:8:25-66
+58
+59                <category android:name="android.intent.category.LAUNCHER" />
+59-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:9:17-77
+59-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:9:27-74
+60            </intent-filter>
+61            <intent-filter>
+61-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:11:13-14:29
+62                <action android:name="com.darryncampbell.cordova.plugin.intent.ACTION" />
+62-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:12:17-90
+62-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:12:25-87
+63
+64                <category android:name="android.intent.category.DEFAULT" />
+64-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:13:17-76
+64-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:13:27-73
+65            </intent-filter>
+66        </activity>
+67
+68        <provider
+69            android:name="org.apache.cordova.camera.FileProvider"
+69-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:16:149-202
+70            android:authorities="org.greaterwms.app.cordova.plugin.camera.provider"
+70-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:16:19-88
+71            android:exported="false"
+71-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:16:89-113
+72            android:grantUriPermissions="true" >
+72-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:16:114-148
+73            <meta-data
+73-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:17:13-123
+74                android:name="android.support.FILE_PROVIDER_PATHS"
+74-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:17:24-74
+75                android:resource="@xml/camera_provider_paths" />
+75-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:17:75-120
+76        </provider>
+77        <provider
+78            android:name="com.darryncampbell.cordova.plugin.intent.CordovaPluginIntentFileProvider"
+78-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:19:168-255
+79            android:authorities="org.greaterwms.app.darryncampbell.cordova.plugin.intent.fileprovider"
+79-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:19:19-107
+80            android:exported="false"
+80-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:19:108-132
+81            android:grantUriPermissions="true" >
+81-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:19:133-167
+82            <meta-data
+82-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:17:13-123
+83                android:name="android.support.FILE_PROVIDER_PATHS"
+83-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:17:24-74
+84                android:resource="@xml/provider_paths" />
+84-->E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:17:75-120
+85        </provider>
+86    </application>
+87
+88</manifest>

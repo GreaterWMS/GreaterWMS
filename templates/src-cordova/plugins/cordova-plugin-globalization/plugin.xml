@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+           id="cordova-plugin-globalization"
+      version="1.11.0">
+    <name>Globalization</name>
+    <description>Cordova Globalization Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,globalization</keywords>
+    <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-globalization.git</repo>
+    <issue>https://issues.apache.org/jira/browse/CB/component/12320649</issue>
+
+    <js-module src="www/GlobalizationError.js" name="GlobalizationError">
+        <clobbers target="window.GlobalizationError" />
+    </js-module>
+
+    <js-module src="www/globalization.js" name="globalization">
+        <clobbers target="navigator.globalization" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Globalization">
+                <param name="android-package" value="org.apache.cordova.globalization.Globalization" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/Globalization.java" target-dir="src/org/apache/cordova/globalization" />
+        <source-file src="src/android/GlobalizationError.java" target-dir="src/org/apache/cordova/globalization" />
+    </platform>
+
+    <!-- amazon-fireos -->
+    <platform name="amazon-fireos">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Globalization">
+                <param name="android-package" value="org.apache.cordova.globalization.Globalization" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/Globalization.java" target-dir="src/org/apache/cordova/globalization" />
+        <source-file src="src/android/GlobalizationError.java" target-dir="src/org/apache/cordova/globalization" />
+    </platform>
+
+   <!-- ubuntu -->
+   <platform name="ubuntu">
+       <header-file src="src/ubuntu/globalization.h" />
+       <source-file src="src/ubuntu/globalization.cpp" />
+
+       <js-module src="www/ubuntu/globalization.js" name="Globalization1">
+           <merges target="navigator.globalization" />
+       </js-module>
+   </platform>
+
+    <!-- firefoxos -->
+    <platform name="firefoxos">
+        <js-module src="src/firefoxos/GlobalizationProxy.js" name="GlobalizationProxy">
+            <runs />
+        </js-module>
+		<asset src="www/firefoxos/locales" target="locales" />
+		<asset src="www/firefoxos/l10n.js" target="js/l10n.js" />
+		<asset src="www/firefoxos/l10n_date.js" target="js/l10n_date.js" />
+    </platform>
+
+   <!-- ios -->
+   <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Globalization">
+                <param name="ios-package" value="CDVGlobalization" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/CDVGlobalization.h" />
+        <source-file src="src/ios/CDVGlobalization.m" />
+    </platform>
+
+    <!-- wp7 -->
+    <platform name="wp7">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Globalization">
+                <param name="wp-package" value="Globalization"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/wp/Globalization.cs" />
+    </platform>
+
+    <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Globalization">
+                <param name="wp-package" value="Globalization"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/wp/Globalization.cs" />
+        <source-file src="src/windows/GlobalizationProxy/GlobalizationProxy/Globalization/GlobalizationApiTypes.cs" />
+        <source-file src="src/windows/GlobalizationProxy/GlobalizationProxy/Globalization/GlobalizationImpl.cs" />
+    </platform>
+
+    <!-- windows8 -->
+    <platform name="windows8">
+        <js-module src="src/windows/GlobalizationProxy.js" name="GlobalizationProxy">
+            <runs/>
+        </js-module>
+        <framework src="src/windows/GlobalizationProxy.winmd" custom="true"/>
+    </platform>
+
+    <!-- windows -->
+    <platform name="windows">
+        <js-module src="src/windows/GlobalizationProxy.js" name="GlobalizationProxy">
+            <runs/>
+        </js-module>
+        <framework src="src/windows/GlobalizationProxy.winmd" custom="true"/>
+    </platform>
+
+    <!-- tizen -->
+    <platform name="tizen">
+        <js-module src="src/tizen/GlobalizationProxy.js" name="GlobalizationProxy">
+            <runs/>
+        </js-module>
+    </platform>
+
+    <!-- blackberry10 -->
+    <platform name="blackberry10">
+        <source-file src="src/blackberry10/index.js" target-dir="Globalization" />
+        <lib-file src="src/blackberry10/native/device/libGlobalization.so" arch="device" />
+        <lib-file src="src/blackberry10/native/simulator/libGlobalization.so" arch="simulator" />
+    </platform>
+
+    <!-- browser -->
+    <platform name="browser">
+        <js-module src="www/browser/moment.js" name="moment">
+            <runs/>
+        </js-module>
+        <js-module src="src/browser/GlobalizationProxy.js" name="GlobalizationProxy">
+            <runs/>
+        </js-module>
+    </platform>
+</plugin>

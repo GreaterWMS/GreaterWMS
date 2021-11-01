@@ -1,0 +1,279 @@
+-- Merging decision tree log ---
+provider#org.apache.cordova.camera.FileProvider
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:16:9-18:20
+	android:grantUriPermissions
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:16:114-148
+	android:authorities
+		INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:16:19-88
+	android:exported
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:16:89-113
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:16:149-202
+provider#com.darryncampbell.cordova.plugin.intent.CordovaPluginIntentFileProvider
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:19:9-21:20
+	android:grantUriPermissions
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:19:133-167
+	android:authorities
+		INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:19:19-107
+	android:exported
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:19:108-132
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:19:168-255
+manifest
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:2:1-38:12
+MERGED from [:CordovaLib] E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\CordovaLib\build\intermediates\library_manifest\release\AndroidManifest.xml:20:1-27:12
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\dbd7f3404e398769a436df133f9c22a0\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.media:media:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\6c105360245f769c088976d97fc5a6ce\media-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\91da5248c1ab9082b2647158b4c6fb12\fragment-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\862d618c4a74a92713659a4de235cf27\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\76797c4c057edbfa73c24afedd30b782\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\4ebe54eb21a46b11de1c8b6a98382879\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\4316c9e9e14dde16bd0af0cff2b7f84d\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\2ded99d3d5abd0dc2e952828ff38685a\coordinatorlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\ff593eb994a251d8dac437ca978af2af\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\6c61fe4d7cb61834524be14a3e240790\slidingpanelayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\9da2b99caf4161acc264c5b7c456ef74\customview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\e75985f4058d660aa5c80167b45ff8ca\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\e490a983018a8fe5e052ac1e6757d8cf\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core:1.1.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\57b7f42ffa61e27821b7c87274482ce6\core-1.1.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\e6bb7e01f8e83b7b07e98d45a8a1ae6f\versionedparcelable-1.1.0\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\8008323a081a55c8d30e79b17b1f2566\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\ae74097148c08bdff7bea4d1d637dc7b\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\1be9dbcc62c36236b61cf6fa2fd00fc3\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\b5f94b08bd83bda043bbd50468125e86\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\bbc9e02901b00dc5016df21c7d21b0fe\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\717503a52f9edadde65d4582b0de6ed5\lifecycle-viewmodel-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\b194165e6cb6e3bf344f1f61ed4fa83f\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\367a660fa20cb00ec09dd86cb4f5513d\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\2095fef3b3cb6004da604f438865388a\core-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\b8939781ced048a1fb4e2d944fa2aae9\lifecycle-runtime-2.0.0\AndroidManifest.xml:17:1-22:12
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:2:1-38:12
+	package
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:2:102-130
+		INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:2:74-101
+		INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+	android:hardwareAccelerated
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:2:11-45
+	xmlns:android
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:2:131-189
+	android:versionCode
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:2:46-73
+		INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+supports-screens
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:5-191
+	android:largeScreens
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:49-76
+	android:smallScreens
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:132-159
+	android:normalScreens
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:77-105
+	android:xlargeScreens
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:160-188
+	android:resizeable
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:106-131
+	android:anyDensity
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:3:23-48
+uses-permission#android.permission.INTERNET
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:4:5-67
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:4:22-64
+application
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:5:5-22:19
+MERGED from [androidx.core:core:1.1.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\57b7f42ffa61e27821b7c87274482ce6\core-1.1.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.1.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\57b7f42ffa61e27821b7c87274482ce6\core-1.1.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\e6bb7e01f8e83b7b07e98d45a8a1ae6f\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\e6bb7e01f8e83b7b07e98d45a8a1ae6f\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.1.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\57b7f42ffa61e27821b7c87274482ce6\core-1.1.0\AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:5:121-147
+	android:label
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:5:88-120
+	android:hardwareAccelerated
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:5:18-52
+	android:icon
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:5:53-87
+	android:usesCleartextTraffic
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:5:148-183
+activity#org.greaterwms.app.MainActivity
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:9-15:20
+	android:label
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:136-173
+	android:launchMode
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:174-204
+	android:windowSoftInputMode
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:296-338
+	android:configChanges
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:19-135
+	android:theme
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:233-295
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:6:205-232
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:7:13-10:29
+	android:label
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:7:28-65
+action#android.intent.action.MAIN
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:8:17-69
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:8:25-66
+category#android.intent.category.LAUNCHER
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:9:17-77
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:9:27-74
+intent-filter#action:name:com.darryncampbell.cordova.plugin.intent.ACTION+category:name:android.intent.category.DEFAULT
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:11:13-14:29
+action#com.darryncampbell.cordova.plugin.intent.ACTION
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:12:17-90
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:12:25-87
+category#android.intent.category.DEFAULT
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:13:17-76
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:13:27-73
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:23:5-81
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:23:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:24:5-80
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:24:22-77
+uses-permission#android.permission.REQUEST_INSTALL_PACKAGES
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:25:5-83
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:25:22-80
+uses-permission#android.permission.READ_CONTACTS
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:26:5-72
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:26:22-69
+uses-permission#android.permission.WRITE_CONTACTS
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:27:5-73
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:27:22-70
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:28:5-71
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:28:22-68
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:29:5-81
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:29:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:30:5-79
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:30:22-76
+uses-feature#android.hardware.location.gps
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:31:5-90
+	android:required
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:31:64-87
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:31:19-63
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:32:5-71
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:32:22-68
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:33:5-80
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:33:22-77
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:34:5-75
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:34:22-72
+uses-permission#android.permission.RECORD_VIDEO
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:35:5-71
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:35:22-68
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:36:5-79
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:36:22-76
+uses-permission#android.permission.VIBRATE
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:37:5-66
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:37:22-63
+uses-sdk
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+MERGED from [:CordovaLib] E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\CordovaLib\build\intermediates\library_manifest\release\AndroidManifest.xml:25:5-44
+MERGED from [:CordovaLib] E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\CordovaLib\build\intermediates\library_manifest\release\AndroidManifest.xml:25:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\dbd7f3404e398769a436df133f9c22a0\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\dbd7f3404e398769a436df133f9c22a0\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\6c105360245f769c088976d97fc5a6ce\media-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.media:media:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\6c105360245f769c088976d97fc5a6ce\media-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\91da5248c1ab9082b2647158b4c6fb12\fragment-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\91da5248c1ab9082b2647158b4c6fb12\fragment-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\862d618c4a74a92713659a4de235cf27\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\862d618c4a74a92713659a4de235cf27\legacy-support-core-ui-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\76797c4c057edbfa73c24afedd30b782\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\76797c4c057edbfa73c24afedd30b782\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\4ebe54eb21a46b11de1c8b6a98382879\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\4ebe54eb21a46b11de1c8b6a98382879\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\4316c9e9e14dde16bd0af0cff2b7f84d\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\4316c9e9e14dde16bd0af0cff2b7f84d\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\2ded99d3d5abd0dc2e952828ff38685a\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\2ded99d3d5abd0dc2e952828ff38685a\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\ff593eb994a251d8dac437ca978af2af\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\ff593eb994a251d8dac437ca978af2af\drawerlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\6c61fe4d7cb61834524be14a3e240790\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\6c61fe4d7cb61834524be14a3e240790\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\9da2b99caf4161acc264c5b7c456ef74\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.customview:customview:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\9da2b99caf4161acc264c5b7c456ef74\customview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\e75985f4058d660aa5c80167b45ff8ca\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\e75985f4058d660aa5c80167b45ff8ca\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\e490a983018a8fe5e052ac1e6757d8cf\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\e490a983018a8fe5e052ac1e6757d8cf\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.1.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\57b7f42ffa61e27821b7c87274482ce6\core-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.1.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\57b7f42ffa61e27821b7c87274482ce6\core-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\e6bb7e01f8e83b7b07e98d45a8a1ae6f\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\e6bb7e01f8e83b7b07e98d45a8a1ae6f\versionedparcelable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\8008323a081a55c8d30e79b17b1f2566\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\8008323a081a55c8d30e79b17b1f2566\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\ae74097148c08bdff7bea4d1d637dc7b\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\ae74097148c08bdff7bea4d1d637dc7b\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\1be9dbcc62c36236b61cf6fa2fd00fc3\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\1be9dbcc62c36236b61cf6fa2fd00fc3\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\b5f94b08bd83bda043bbd50468125e86\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\b5f94b08bd83bda043bbd50468125e86\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\bbc9e02901b00dc5016df21c7d21b0fe\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\bbc9e02901b00dc5016df21c7d21b0fe\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\717503a52f9edadde65d4582b0de6ed5\lifecycle-viewmodel-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\717503a52f9edadde65d4582b0de6ed5\lifecycle-viewmodel-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\b194165e6cb6e3bf344f1f61ed4fa83f\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\b194165e6cb6e3bf344f1f61ed4fa83f\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\367a660fa20cb00ec09dd86cb4f5513d\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\367a660fa20cb00ec09dd86cb4f5513d\lifecycle-livedata-core-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\2095fef3b3cb6004da604f438865388a\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\2095fef3b3cb6004da604f438865388a\core-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\b8939781ced048a1fb4e2d944fa2aae9\lifecycle-runtime-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.0.0] C:\Users\Elvis\.gradle\caches\transforms-2\files-2.1\b8939781ced048a1fb4e2d944fa2aae9\lifecycle-runtime-2.0.0\AndroidManifest.xml:20:5-44
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+		INJECTED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:17:13-123
+	android:resource
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:17:75-120
+	android:name
+		ADDED from E:\git_desktop\GreaterWMS\templates\src-cordova\platforms\android\app\src\main\AndroidManifest.xml:17:24-74
