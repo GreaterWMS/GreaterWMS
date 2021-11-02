@@ -48,7 +48,7 @@
         <q-separator vertical />
         <template v-if="authin === '1'">
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn round dense flat color="white" icon="notifications" @click="read = true" style="margin: 0 10px 0 10px">
+          <q-btn v-show="device !== 2" round dense flat color="white" icon="notifications" @click="read = true" style="margin: 0 10px 0 10px">
             <q-badge v-if="read_num" color="red" text-color="white" floating>
               {{ read_num }}
             </q-badge>
@@ -74,7 +74,7 @@
                           {{ $t('index.view_my_openid') }}
                       </q-tooltip>
                   </q-btn>
-                  <q-btn flat rounded class="full-width" align="left" icon="img:statics/icons/profile.png" :label="$t('index.contact_list')" @click="Friend()">
+                  <q-btn v-show="device !== 2" flat rounded class="full-width" align="left" icon="img:statics/icons/profile.png" :label="$t('index.contact_list')" @click="Friend()">
                       <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                           {{ $t('index.contact_list') }}
                       </q-tooltip>
