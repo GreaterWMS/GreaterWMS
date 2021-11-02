@@ -12,7 +12,7 @@ from . import views
 schema_view = get_schema_view(
    openapi.Info(
        title="GreaterWMS--API Docs",
-       default_version='v2.0.27',
+       default_version='v2.1.0',
        description=
        """
         openid:
