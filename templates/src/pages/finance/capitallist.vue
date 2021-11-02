@@ -152,6 +152,7 @@
               {{ $t('next') }}
             </q-tooltip>
           </q-btn>
+          <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
         </div>
       </template>
       <q-dialog v-model="newForm">
