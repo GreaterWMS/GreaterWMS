@@ -31,7 +31,6 @@ def return_static(request, path, insecure=True, **kwargs):
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('area_v2/', include('area.urls')),
     path('', TemplateView.as_view(template_name='dist/spa/index.html')),
     path('vcheck/', views.vcheck, name='vcheck'),
     path('myip/', views.myip, name='myip'),
