@@ -20,30 +20,39 @@
            <q-btn-group push>
              <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()" />
            </q-btn-group>
-           <q-space />
-          <q-btn-group push>
-            <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCount()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('stock.view_stocklist.cyclecountresulttip') }}
-              </q-tooltip>
-            </q-btn>
-          </q-btn-group>
          </template>
          <template v-slot:body="props">
            <q-tr :props="props">
-            <q-td key="bin_name" :props="props" :class="{ 'scan-background': bin_scan !== '' && bin_scan === props.row.bin_name }">
-              {{ props.row.bin_name }}
-            </q-td>
-            <q-td key="goods_code" :props="props">
-              {{ props.row.goods_code }}
-            </q-td>
-            <q-td key="physical_inventory" :props="props">
-              {{ props.row.physical_inventory }}
-            </q-td>
-            <q-td key="action" :props="props" style="width: 50px">
-              <q-btn round flat push color="purple" icon="repeat" @click="props.row.physical_inventory = 0">
-              </q-btn>
-            </q-td>
+             <q-td key="bin_name" :props="props">
+               {{ props.row.bin_name }}
+             </q-td>
+             <q-td key="goods_code" :props="props">
+               {{ props.row.goods_code }}
+             </q-td>
+             <q-td key="goods_desc" :props="props">
+               {{ props.row.goods_desc }}
+             </q-td>
+             <q-td key="goods_qty" :props="props">
+               {{ props.row.goods_qty }}
+             </q-td>
+             <q-td key="pick_qty" :props="props">
+               {{ props.row.pick_qty }}
+             </q-td>
+             <q-td key="picked_qty" :props="props">
+               {{ props.row.picked_qty }}
+             </q-td>
+             <q-td key="bin_size" :props="props">
+               {{ props.row.bin_size }}
+             </q-td>
+             <q-td key="bin_property" :props="props">
+               {{ props.row.bin_property }}
+             </q-td>
+             <q-td key="create_time" :props="props">
+               {{ props.row.create_time }}
+             </q-td>
+             <q-td key="update_time" :props="props">
+               {{ props.row.update_time }}
+             </q-td>
           </q-tr>
          </template>
         </q-table>
@@ -58,12 +67,9 @@
     <router-view />
 
 <script>
-import { getauth, putauth } from 'boot/axios_request'
-import { LocalStorage } from 'quasar'
-import Vconsole from "vconsole"
-if (process.env.NODE_ENV !== 'production') {
-  const vConsole = new Vconsole()
-}
+import { getauth } from 'boot/axios_request'
+import Vconsole from 'vconsole'
+const vConsole = new Vconsole()
 
 function getDeviceinfo () {
   Uplugin.getDeviceID('',
@@ -82,7 +88,6 @@ function startBarcode () {
       document.getElementById('scannedBarcodes').value = ''
       document.getElementById('scannedBarcodes').value = res
       document.getElementById('scannedBarcodes').dispatchEvent(new Event('input'))
-      console.log(1, res)
     },
     function (err) {
       console.log(err)
@@ -102,13 +107,13 @@ function stopBarcode () {
 }
 
 export default {
-  name: 'Pageurovo_cyclecount',
+  name: 'Pageurovo_locationquery',
   data () {
     return {
       openid: '',
       login_name: '',
       authin: '0',
-      pathname: 'cyclecount/',
+      pathname: 'stock/bin/',
       separator: 'cell',
       loading: false,
       height: '',
@@ -116,8 +121,14 @@ export default {
       columns: [
         { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
         { name: 'goods_code', label: this.$t('stock.view_stocklist.goods_code'), field: 'goods_code', align: 'center' },
-        { name: 'physical_inventory', label: this.$t('stock.view_stocklist.physical_inventory'), field: 'physical_inventory', align: 'center' },
-        { name: 'action', label: this.$t('action'), align: 'right' }
+        { name: 'goods_desc', label: this.$t('stock.view_stocklist.goods_desc'), field: 'onhand_stock', align: 'center' },
+        { name: 'goods_qty', label: this.$t('stock.view_stocklist.onhand_stock'), field: 'goods_qty', align: 'center' },
+        { name: 'pick_qty', label: this.$t('stock.view_stocklist.pick_stock'), field: 'pick_qty', align: 'center' },
+        { name: 'picked_qty', label: this.$t('stock.view_stocklist.picked_stock'), field: 'picked_qty', align: 'center' },
+        { name: 'bin_size', label: this.$t('warehouse.view_binset.bin_size'), field: 'bin_size', align: 'center' },
+        { name: 'bin_property', label: this.$t('warehouse.view_binset.bin_property'), field: 'bin_property', align: 'center' },
+        { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
+        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' }
       ],
       filter: '',
       pagination: {
@@ -128,25 +139,19 @@ export default {
       IMEI: window.device,
       batteryStatus: 'determining...',
       barscan: '',
-      bin_scan: '',
-      goods_scan: ''
+      bin_scan: ''
     }
   },
   methods: {
     datachange () {
       var _this = this
-      console.log(3, document.getElementById('scannedBarcodes').value)
       if (_this.$q.localStorage.has('auth')) {
         getauth('scanner/?bar_code=' + _this.barscan, {
         }).then(res => {
-          console.log(2, res)
           _this.barscan = res.results[0].code
           if (res.results[0].mode === 'BINSET') {
             _this.bin_scan = res.results[0].code
-            _this.goods_scan = ''
-          } else if (res.results[0].mode === 'GOODS') {
-            _this.goods_scan = res.results[0].code
-            _this.countAdd(_this.goods_scan)
+            _this.getList(res.results[0].code)
           }
         }).catch(err => {
           _this.$q.notify({
@@ -158,18 +163,10 @@ export default {
       } else {
       }
     },
-    countAdd (e) {
-      var _this = this
-      _this.table_list.filter(function (value, index, array) {
-        if (value.bin_name === _this.bin_scan && value.goods_code === e) {
-          _this.table_list[index].physical_inventory += 1
-        }
-      })
-    },
-    getList () {
+    getList (e) {
       var _this = this
       if (_this.$q.localStorage.has('auth')) {
-        getauth(_this.pathname, {
+        getauth(_this.pathname + '?bin_name=' + e, {
         }).then(res => {
           _this.table_list = res.results
         }).catch(err => {
@@ -186,28 +183,6 @@ export default {
       var _this = this
       _this.barscan = ''
       _this.bin_scan = ''
-      _this.goods_scan = ''
-      _this.getList()
-    },
-    ConfirmCount () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        putauth(_this.pathname, _this.table_list).then(res => {
-          _this.table_list = []
-          _this.$q.notify({
-            message: 'Success Confirm Cycle Count',
-            icon: 'check',
-            color: 'green'
-          })
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      } else {
-      }
     },
     updateBatteryStatus (status) {
       var _this = this
@@ -252,8 +227,6 @@ export default {
     _this.height = this.$q.screen.height - 175 + '' + 'px'
     _this.barscan = ''
     _this.bin_scan = ''
-    _this.goods_scan = ''
-    _this.getList()
     _this.scanEvents()
     getDeviceinfo()
   },
