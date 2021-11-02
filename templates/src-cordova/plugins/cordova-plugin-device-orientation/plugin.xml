@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements.  See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership.  The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied.  See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-device-orientation"
+    version="2.0.1">
+
+    <name>Device Orientation</name>
+    <description>[DEPRECATED] Cordova Device Orientation Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,device,orientation</keywords>
+    <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-device-orientation.git</repo>
+    <issue>https://issues.apache.org/jira/browse/CB/component/12320637</issue>
+
+    <js-module src="www/CompassError.js" name="CompassError">
+        <clobbers target="CompassError" />
+    </js-module>
+
+    <js-module src="www/CompassHeading.js" name="CompassHeading">
+        <clobbers target="CompassHeading" />
+    </js-module>
+
+    <js-module src="www/compass.js" name="compass">
+        <clobbers target="navigator.compass" />
+    </js-module>
+
+    <info>
+        [DEPRECATED] - cordova-plugin-device-orientation
+        With the W3C Device Motion and Orientation API now being supported on iOS, Android and Windows devices, this plugin is not needed any more. Read more about the API at https://www.w3.org/TR/2016/CR-orientation-event-20160818/ 
+    </info>
+
+    <!-- firefoxos -->
+    <platform name="firefoxos">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Compass">
+                <param name="firefoxos-package" value="Compass" />
+            </feature>
+        </config-file>
+
+        <js-module src="src/firefoxos/compass.js" name="compass-impl">
+          <runs />
+        </js-module>
+    </platform>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+	        <feature name="Compass">
+	            <param name="android-package" value="org.apache.cordova.deviceorientation.CompassListener"/>
+	        </feature>
+	    </config-file>
+
+	    <config-file target="AndroidManifest.xml" parent="/*">
+	        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        </config-file>
+
+	    <source-file src="src/android/CompassListener.java" target-dir="src/org/apache/cordova/deviceorientation" />
+    </platform>
+
+    <!-- amazon-fireos -->
+    <platform name="amazon-fireos">
+        <config-file target="res/xml/config.xml" parent="/*">
+	        <feature name="Compass">
+	            <param name="android-package" value="org.apache.cordova.deviceorientation.CompassListener"/>
+	        </feature>
+	    </config-file>
+
+	    <config-file target="AndroidManifest.xml" parent="/*">
+	        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        </config-file>
+
+	    <source-file src="src/android/CompassListener.java" target-dir="src/org/apache/cordova/deviceorientation" />
+    </platform>
+
+    <!-- ubuntu -->
+    <platform name="ubuntu">
+        <header-file src="src/ubuntu/compass.h" />
+        <source-file src="src/ubuntu/compass.cpp" />
+        <config-file target="config.xml" parent="/*">
+            <feature name="DeviceOrientation">
+                <param policy_group="sensors" policy_version="1" />
+            </feature>
+        </config-file>
+    </platform>
+
+    <!-- blackberry10 -->
+    <platform name="blackberry10">
+        <config-file target="www/config.xml" parent="/widget">
+            <feature name="Compass" value="Compass" />
+        </config-file>
+        <source-file src="src/blackberry10/index.js" target-dir="Compass" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Compass">
+                <param name="ios-package" value="CDVCompass"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVCompass.h" />
+        <source-file src="src/ios/CDVCompass.m" />
+
+        <framework src="CoreLocation.framework" />
+    </platform>
+
+    <!-- wp7 -->
+    <platform name="wp7">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Compass">
+                <param name="wp-package" value="Compass"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_SENSORS" />
+        </config-file>
+
+        <source-file src="src/wp/Compass.cs" />
+    </platform>
+
+        <!-- wp8 -->
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Compass">
+                <param name="wp-package" value="Compass"/>
+            </feature>
+        </config-file>
+
+        <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_SENSORS" />
+        </config-file>
+
+        <source-file src="src/wp/Compass.cs" />
+    </platform>
+
+        <!-- windows -->
+    <platform name="windows">
+        <js-module src="src/windows/CompassProxy.js" name="CompassProxy">
+            <runs />
+        </js-module>
+    </platform>
+
+    <!-- tizen -->
+    <platform name="tizen">
+        <js-module src="src/tizen/CompassProxy.js" name="CompassProxy">
+            <runs/>
+        </js-module>
+    </platform>
+
+    <!-- browser -->
+    <platform name="browser">
+        <js-module src="src/browser/CompassProxy.js" name="CompassProxy">
+            <runs/>
+        </js-module>
+    </platform>
+</plugin>

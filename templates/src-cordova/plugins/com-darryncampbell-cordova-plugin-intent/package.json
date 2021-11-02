@@ -1,0 +1,23 @@
+{
+  "name": "com-darryncampbell-cordova-plugin-intent",
+  "version": "2.1.0",
+  "description": "General purpose intent shim layer for cordova appliations on Android.  Handles various techniques for sending and receiving intents.",
+  "main": "intentShim.js",
+  "cordova": {
+    "id": "com-darryncampbell-cordova-plugin-intent",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darryncampbell/darryncampbell-cordova-plugin-intent.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+	"cordova-android",
+    "Intent"
+  ],
+  "author": "Darryn Campbell",
+  "license": "MIT"
+}

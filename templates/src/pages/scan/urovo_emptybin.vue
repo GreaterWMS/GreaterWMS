@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <transition appear enter-active-class="animated fadeIn">
+    <div>
+      <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-table shadow-24"
         :data="table_list"
@@ -16,11 +16,11 @@
         flat
         bordered
       >
-        <template v-slot:top>
-          <q-btn-group push>
-            <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()" />
-          </q-btn-group>
-          <q-space />
+         <template v-slot:top>
+           <q-btn-group push>
+             <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()" />
+           </q-btn-group>
+           <q-space />
           <q-btn-group push>
             <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCount()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
@@ -28,9 +28,9 @@
               </q-tooltip>
             </q-btn>
           </q-btn-group>
-        </template>
-        <template v-slot:body="props">
-          <q-tr :props="props">
+         </template>
+         <template v-slot:body="props">
+           <q-tr :props="props">
             <q-td key="bin_name" :props="props" :class="{ 'scan-background': bin_scan !== '' && bin_scan === props.row.bin_name }">
               {{ props.row.bin_name }}
             </q-td>
@@ -45,62 +45,69 @@
               </q-btn>
             </q-td>
           </q-tr>
-        </template>
-      </q-table>
-    </transition>
-    <template>
-      <div class="q-pa-lg flex cordova-footer">
-        <input id="scannedBarcodes" v-model="barscan" type="text" @input="datachange()" readonly disabled/>
-      </div>
-    </template>
-  </div>
+         </template>
+        </q-table>
+      </transition>
+      <template>
+        <div class="q-pa-lg flex cordova-footer">
+            <input id="scannedBarcodes" v-model="barscan" type="text" @input="datachange()" readonly disabled/>
+        </div>
+      </template>
+    </div>
 </template>
-<router-view />
+    <router-view />
 
 <script>
 import { getauth, putauth } from 'boot/axios_request'
 import Vconsole from 'vconsole'
 import { LocalStorage } from 'quasar'
 const vConsole = new Vconsole()
-var sendCommandResults = 'false'
 
-function sendCommand (extraName, extraValue) {
-  var broadcastExtras = {}
-  broadcastExtras[extraName] = extraValue
-  broadcastExtras.SEND_RESULT = sendCommandResults
-  window.plugins.intentShim.sendBroadcast({
-    action: 'com.symbol.datawedge.api.ACTION',
-    extras: broadcastExtras
-  },
-  function () { },
-  function () { }
-  )
-}
-
-function unregisterBroadcastReceiver () {
-  window.plugins.intentShim.unregisterBroadcastReceiver()
-}
-function commandReceived (commandText) {
-}
-function enumerateScanners (enumeratedScanners) {
-  // eslint-disable-next-line no-unused-vars
-  var humanReadableScannerList = []
-  for (var i = 0; i < enumeratedScanners.length; i++) {
-    humanReadableScannerList += enumeratedScanners[i].SCANNER_NAME
-    if (i < enumeratedScanners.length - 1) { humanReadableScannerList += ', ' }
-  }
-}
-function activeProfile (theActiveProfile) {
-}
-function barcodeScanned (scanData, timeOfScan) {
+function getDeviceID () {
   var scannedData = scanData.extras['com.symbol.datawedge.data_string']
   document.getElementById('scannedBarcodes').value = ''
   document.getElementById('scannedBarcodes').value = scannedData
   document.getElementById('scannedBarcodes').dispatchEvent(new Event('input'))
 }
 
+function getDeviceinfo () {
+  Uplugin.getDeviceID('',
+    function (res) {
+      console.log(res)
+    },
+    function (err) {
+      console.log(err)
+    }
+  )
+}
+
+function startBarcode () {
+  Uplugin.getBarcode('start',
+    function (res) {
+      document.getElementById('scannedBarcodes').value = ''
+      document.getElementById('scannedBarcodes').value = res
+      document.getElementById('scannedBarcodes').dispatchEvent(new Event('input'))
+      console.log(1, res)
+    },
+    function (err) {
+      console.log(err)
+    }
+  )
+}
+
+function stopBarcode () {
+  Uplugin.getBarcode('stop',
+    function (res) {
+      console.log(res)
+    },
+    function (err) {
+      console.log(err)
+    }
+  )
+}
+
 export default {
-  name: 'Pagezebra_cyclecount',
+  name: 'Pageurovo_cyclecount',
   data () {
     return {
       openid: '',
@@ -133,9 +140,11 @@ export default {
   methods: {
     datachange () {
       var _this = this
+      console.log(3, document.getElementById('scannedBarcodes').value)
       if (_this.$q.localStorage.has('auth')) {
         getauth('scanner/?bar_code=' + _this.barscan, {
         }).then(res => {
+          console.log(2, res)
           _this.barscan = res.results[0].code
           if (res.results[0].mode === 'BINSET') {
             _this.bin_scan = res.results[0].code
@@ -213,131 +222,12 @@ export default {
       document.addEventListener('deviceready', _this.onDeviceReady, false)
     },
     onDeviceReady () {
-      var _this = this
-      _this.receivedEvent('deviceready')
-      _this.registerBroadcastReceiver()
-      _this.determineVersion()
+      startBarcode()
     },
     onPause: function () {
-      unregisterBroadcastReceiver()
+      stopBarcode()
     },
     onResume () {
-      var _this = this
-      _this.registerBroadcastReceiver()
-    },
-    receivedEvent (id) {
-    },
-    startSoftTrigger () {
-      sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'START_SCANNING')
-    },
-    stopSoftTrigger () {
-      sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'STOP_SCANNING')
-    },
-    determineVersion () {
-      sendCommand('com.symbol.datawedge.api.GET_VERSION_INFO', '')
-    },
-    setDecoders () {
-      //  Set the new configuration
-      var profileConfig = {
-        PROFILE_NAME: 'wms',
-        PROFILE_ENABLED: 'true',
-        CONFIG_MODE: 'UPDATE',
-        PLUGIN_CONFIG: {
-          PLUGIN_NAME: 'BARCODE',
-          PARAM_LIST: {
-            // "current-device-id": this.selectedScannerId,
-            scanner_selection: 'auto'
-          }
-        }
-      }
-      sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
-    },
-    registerBroadcastReceiver () {
-      window.plugins.intentShim.registerBroadcastReceiver({
-        filterActions: [
-          'com.greaterwms.app.ACTION',
-          'com.symbol.datawedge.api.RESULT_ACTION'
-        ],
-        filterCategories: [
-          'android.intent.category.DEFAULT'
-        ]
-      },
-      function (intent) {
-        // eslint-disable-next-line no-prototype-builtins
-        if (intent.extras.hasOwnProperty('RESULT_INFO')) {
-          var commandResult = intent.extras.RESULT + ' (' +
-              intent.extras.COMMAND.substring(intent.extras.COMMAND.lastIndexOf('.') + 1, intent.extras.COMMAND.length) + ')'// + JSON.stringify(intent.extras.RESULT_INFO);
-          commandReceived(commandResult.toLowerCase())
-        }
-        // eslint-disable-next-line no-prototype-builtins
-        if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_VERSION_INFO')) {
-          //  The version has been returned (DW 6.3 or higher).  Includes the DW version along with other subsystem versions e.g MX
-          var versionInfo = intent.extras['com.symbol.datawedge.api.RESULT_GET_VERSION_INFO']
-          var datawedgeVersion = versionInfo.DATAWEDGE
-          //  Fire events sequentially so the application can gracefully degrade the functionality available on earlier DW versions
-          if (datawedgeVersion >= '6.3') {
-            sendCommand('com.symbol.datawedge.api.CREATE_PROFILE', 'wms')
-            sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
-            sendCommand('com.symbol.datawedge.api.ENUMERATE_SCANNERS', '')
-          }
-          if (datawedgeVersion >= '6.4') {
-            var profileConfig = {
-              PROFILE_NAME: 'wms',
-              PROFILE_ENABLED: 'true',
-              CONFIG_MODE: 'UPDATE',
-              PLUGIN_CONFIG: {
-                PLUGIN_NAME: 'BARCODE',
-                RESET_CONFIG: 'true',
-                PARAM_LIST: {}
-              },
-              APP_LIST: [{
-                PACKAGE_NAME: 'com.greaterwms.app',
-                ACTIVITY_LIST: ['*']
-              }]
-            }
-            sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
-            //  Configure the created profile (intent plugin)
-            var profileConfig2 = {
-              PROFILE_NAME: 'wms',
-              PROFILE_ENABLED: 'true',
-              CONFIG_MODE: 'UPDATE',
-              PLUGIN_CONFIG: {
-                PLUGIN_NAME: 'INTENT',
-                RESET_CONFIG: 'true',
-                PARAM_LIST: {
-                  intent_output_enabled: 'true',
-                  intent_action: 'com.greaterwms.app.ACTION',
-                  intent_delivery: '2'
-                }
-              }
-            }
-            sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig2)
-            //  Give some time for the profile to settle then query its value
-            setTimeout(function () {
-              sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
-            }, 1000)
-          }
-          if (datawedgeVersion >= '6.5') {
-            //  Instruct the API to send
-            sendCommandResults = 'true'
-          }
-          // eslint-disable-next-line no-prototype-builtins
-        } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS')) {
-          //  Return from our request to enumerate the available scanners
-          var enumeratedScannersObj = intent.extras['com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS']
-          enumerateScanners(enumeratedScannersObj)
-          // eslint-disable-next-line no-prototype-builtins
-        } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE')) {
-          //  Return from our request to obtain the active profile
-          var activeProfileObj = intent.extras['com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE']
-          activeProfile(activeProfileObj)
-          // eslint-disable-next-line no-prototype-builtins
-        } else if (!intent.extras.hasOwnProperty('RESULT_INFO')) {
-          //  A barcode has been scanned
-          barcodeScanned(intent, new Date().toLocaleString())
-        }
-      }
-      )
     }
   },
   created () {
@@ -369,6 +259,7 @@ export default {
     _this.goods_scan = ''
     _this.getList()
     _this.scanEvents()
+    getDeviceinfo()
   },
   updated () {
   },

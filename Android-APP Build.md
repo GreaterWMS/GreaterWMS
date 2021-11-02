@@ -21,7 +21,7 @@ cordova plugin add cordova-plugin-device
 cordova plugin add cordova-plugin-battery-status
 cordova plugin add cordova-plugin-camera
 cordova plugin add com-darryncampbell-cordova-plugin-intent
-cordova plugin add https://github.com/Singosgu/cordova-plugin-ubx.git
+cordova plugin add https://gitee.com/Singosgu/cordova-plugin-ubx.git
 # 修改适配问题的文件，templates\src-cordova\platforms\android\app\src\main\java\org\apache\cordova\camera\FileProvider.java
 第21行的android.support.v4.content.FileProvider，修改为androidx.core.content.FileProvider
 # 修改适配问题的文件，templates\src-cordova\platforms\android\app\src\main\java\org\apache\cordova\camera\CameraLauncher.java
