@@ -1,0 +1,42 @@
+{
+  "name": "cordova-plugin-geolocation",
+  "version": "4.1.0",
+  "description": "Cordova Geolocation Plugin",
+  "cordova": {
+    "id": "cordova-plugin-geolocation",
+    "platforms": [
+      "android",
+      "ios",
+      "windows"
+    ]
+  },
+  "repository": "github:apache/cordova-plugin-geolocation",
+  "bugs": "https://github.com/apache/cordova-plugin-geolocation/issues",
+  "keywords": [
+    "cordova",
+    "geolocation",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows"
+  ],
+  "scripts": {
+    "test": "npm run lint",
+    "lint": "eslint ."
+  },
+  "author": "Apache Software Foundation",
+  "license": "Apache-2.0",
+  "engines": {
+    "cordovaDependencies": {
+      "3.0.0": {
+        "cordova-android": ">=6.3.0"
+      },
+      "5.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "devDependencies": {
+    "@cordova/eslint-config": "^3.0.0"
+  }
+}
