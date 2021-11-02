@@ -418,6 +418,11 @@ const routes = [
         name: 'zebra_cyclecount',
         component: () => import('pages/scan/zebra_cyclecount.vue')
       },
+      {
+        path: 'zebra_locationquery',
+        name: 'zebra_locationquery',
+        component: () => import('pages/scan/zebra_locationquery.vue')
+      },
       // urova
       {
         path: 'urovo_stafflist',
@@ -485,9 +490,9 @@ const routes = [
         component: () => import('pages/scan/urovo_cyclecount.vue')
       },
       {
-        path: 'urovo_cyclecount',
-        name: 'urovo_cyclecount',
-        component: () => import('pages/scan/zebra_cyclecount.vue')
+        path: 'urovo_locationquery',
+        name: 'urovo_locationquery',
+        component: () => import('pages/scan/urovo_locationquery.vue')
       },
       {
         path: 'uploadcenter',

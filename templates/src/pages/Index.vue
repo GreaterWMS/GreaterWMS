@@ -42,8 +42,8 @@
           <q-separator></q-separator>
           <q-card-section horizontal>
             <q-card-actions class="col-6" align="center">
-              <q-btn v-show="device_name !== '' && device_name === 'Zebra Technologies'" icon="img:statics/goods/goodslist.png" :label="$t('scan.scan_goodsquery')" stack flat color="black" size="xl" to="zebra_goodsquery"/>
-              <q-btn v-show="device_name !== '' && device_name === 'Urovo'" icon="img:statics/goods/goodslist.png" :label="$t('scan.scan_goodsquery')" stack flat color="black" size="xl" to="urovo_goodsquery"/>
+              <q-btn v-show="device_name !== '' && device_name === 'Zebra Technologies'" icon="img:statics/goods/goodslist.png" :label="$t('scan.scan_goodsquery')" stack flat color="black" size="xl" to="zebra_goodslist"/>
+              <q-btn v-show="device_name !== '' && device_name === 'Urovo'" icon="img:statics/goods/goodslist.png" :label="$t('scan.scan_goodsquery')" stack flat color="black" size="xl" to="urovo_goodslist"/>
             </q-card-actions>
             <q-separator vertical></q-separator>
             <q-card-actions class="col-6" align="center">
