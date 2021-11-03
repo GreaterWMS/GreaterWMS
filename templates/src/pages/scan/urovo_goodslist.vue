@@ -99,7 +99,9 @@
 <script>
 import { getauth } from 'boot/axios_request'
 import Vconsole from 'vconsole'
-const vConsole = new Vconsole()
+if (process.env.NODE_ENV !== 'production') {
+  const vConsole = new Vconsole()
+}
 
 function getDeviceinfo () {
   Uplugin.getDeviceID('',
