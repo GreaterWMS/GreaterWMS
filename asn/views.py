@@ -542,6 +542,9 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
     """
         create:
             Finish Sorted
+
+        update:
+            All Sorted
     """
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
@@ -559,14 +562,16 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return AsnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid,
+                                                asn_code=self.request.GET.get('asn_code'),
+                                                is_delete=False)
             else:
                 return AsnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
             return AsnListModel.objects.none()
 
     def get_serializer_class(self):
-        if self.action in ['create']:
+        if self.action in ['create', 'update']:
             return serializers.ASNSortedPostSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
@@ -648,6 +653,85 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
                 qs.asn_status = 5
             qs.save()
             return Response({"detail": "success"}, status=200)
+
+    def update(self, request, *args, **kwargs):
+        qs = self.get_queryset()
+        for j in range(len(qs)):
+            if qs[j].asn_status != 3:
+                raise APIException({"detail": "This ASN Status Is Not 3"})
+            else:
+                data = self.request.data
+                for i in range(len(data['goodsData'])):
+                    check_data = {
+                        'openid': self.request.auth.openid,
+                        'asn_code': str(data['asn_code']),
+                        'supplier': str(data['supplier']),
+                        'goods_code': str(data['goodsData'][i].get('goods_code')),
+                        'goods_qty': int(data['goodsData'][i].get('goods_actual_qty')),
+                        'creater': str(data['creater'])
+                    }
+                    serializer = self.get_serializer(data=check_data)
+                    serializer.is_valid(raise_exception=True)
+                for j in range(len(data['goodsData'])):
+                    goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
+                                                                goods_code=str(
+                                                                    data['goodsData'][j].get('goods_code'))).first()
+                    asn_detail = AsnDetailModel.objects.filter(openid=self.request.auth.openid,
+                                                               asn_code=str(data['asn_code']),
+                                                               asn_status=3, supplier=str(data['supplier']),
+                                                               goods_code=str(
+                                                                   data['goodsData'][j].get('goods_code'))).first()
+                    goods_detail = goods.objects.filter(openid=self.request.auth.openid,
+                                                        goods_code=str(data['goodsData'][j].get('goods_code')),
+                                                        is_delete=False).first()
+                    if int(data['goodsData'][j].get('goods_actual_qty')) == 0:
+                        asn_detail.goods_actual_qty = int(data['goodsData'][j].get('goods_actual_qty'))
+                        asn_detail.goods_shortage_qty = asn_detail.goods_qty
+                        asn_detail.goods_cost = 0
+                        qs[j].total_cost = qs[j].total_cost - (asn_detail.goods_shortage_qty * goods_detail.goods_cost)
+                        goods_qty_change.goods_qty = goods_qty_change.goods_qty - asn_detail.goods_qty
+                        goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
+                        asn_detail.asn_status = 5
+                        asn_detail.save()
+                        goods_qty_change.save()
+                        if goods_qty_change.goods_qty == 0 and goods_qty_change.back_order_stock == 0:
+                            goods_qty_change.delete()
+                    else:
+                        asn_detail.goods_actual_qty = int(data['goodsData'][j].get('goods_actual_qty'))
+                        goods_qty_check = asn_detail.goods_qty - int(data['goodsData'][j].get('goods_actual_qty'))
+                        if goods_qty_check > 0:
+                            asn_detail.goods_shortage_qty = goods_qty_check
+                            asn_detail.goods_more_qty = 0
+                            asn_detail.goods_cost = asn_detail.goods_cost - (asn_detail.goods_shortage_qty * goods_detail.goods_cost)
+                            qs[j].total_cost = qs[j].total_cost - (asn_detail.goods_shortage_qty * goods_detail.goods_cost)
+                            goods_qty_change.goods_qty = goods_qty_change.goods_qty - goods_qty_check
+                            goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
+                            goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
+                        elif goods_qty_check == 0:
+                            asn_detail.goods_shortage_qty = 0
+                            asn_detail.goods_more_qty = 0
+                            goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - int(data['goodsData'][j].get('goods_actual_qty'))
+                            goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
+                        elif goods_qty_check < 0:
+                            asn_detail.goods_shortage_qty = 0
+                            asn_detail.goods_more_qty = abs(goods_qty_check)
+                            asn_detail.goods_cost = asn_detail.goods_cost + (asn_detail.goods_more_qty * goods_detail.goods_cost)
+                            qs[j].total_cost = qs[j].total_cost + (asn_detail.goods_more_qty * goods_detail.goods_cost)
+                            goods_qty_change.goods_qty = goods_qty_change.goods_qty + abs(goods_qty_check)
+                            goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
+                            goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
+                        asn_detail.asn_status = 4
+                        asn_detail.save()
+                        goods_qty_change.save()
+                        if goods_qty_change.goods_qty == 0 and goods_qty_change.back_order_stock == 0:
+                            goods_qty_change.delete()
+                if AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=str(data['asn_code']),
+                                                          asn_status=4, supplier=str(data['supplier'])).exists():
+                    qs[j].asn_status = 4
+                else:
+                    qs[j].asn_status = 5
+                qs[j].save()
+                return Response({"detail": "success"}, status=200)
 
 class MoveToBinViewSet(viewsets.ModelViewSet):
     """
