@@ -22,8 +22,9 @@ re_path(r'^preload/(?P<pk>\d+)/$', views.AsnPreLoadViewSet.as_view({
 re_path(r'^presort/(?P<pk>\d+)/$', views.AsnPreSortViewSet.as_view({
     'post': 'create',
 }), name="presort_1"),
+path(r'sorted/', views.AsnSortedViewSet.as_view({"put": "update"}), name="sorted"),
 re_path(r'^sorted/(?P<pk>\d+)/$', views.AsnSortedViewSet.as_view({
-    'post': 'create',
+    'post': 'create'
 }), name="sorted_1"),
 re_path(r'^movetobin/(?P<pk>\d+)/$', views.MoveToBinViewSet.as_view({
     'post': 'create',
