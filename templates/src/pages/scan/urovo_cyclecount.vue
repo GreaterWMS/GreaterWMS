@@ -60,7 +60,7 @@
 <script>
 import { getauth, putauth } from 'boot/axios_request'
 import { LocalStorage } from 'quasar'
-import Vconsole from "vconsole"
+import Vconsole from 'vconsole'
 if (process.env.NODE_ENV !== 'production') {
   const vConsole = new Vconsole()
 }
