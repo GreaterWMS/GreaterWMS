@@ -28,7 +28,7 @@ class ReceiptsViewSet(viewsets.ModelViewSet):
         list:
             Response a data list（all）
     """
-    pagination_class = []
+    pagination_class = None
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
     filter_class = AsnDetailFilter
@@ -117,7 +117,7 @@ class SalesViewSet(viewsets.ModelViewSet):
         list:
             Response a data list（all）
     """
-    pagination_class = []
+    pagination_class = None
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
     filter_class = DnDetailFilter
