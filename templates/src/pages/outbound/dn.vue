@@ -587,7 +587,7 @@
           <div>{{ newFormData.dn_code }}</div>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
           </q-btn>
         </q-bar>
         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
@@ -955,7 +955,7 @@
           <div>{{ $t('delete') }}</div>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
           </q-btn>
         </q-bar>
         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
@@ -973,7 +973,7 @@
           <div>{{ $t('confirmorder') }}</div>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
           </q-btn>
         </q-bar>
         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
@@ -991,7 +991,7 @@
           <div>{{ $t('releaseorder') }}</div>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
           </q-btn>
         </q-bar>
         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
@@ -1093,7 +1093,7 @@
           <div>{{ pickFormData.dn_code }}</div>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
           </q-btn>
         </q-bar>
         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
@@ -1134,7 +1134,7 @@
           <div>{{ dispatchFormData.dn_code }}</div>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
           </q-btn>
         </q-bar>
         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
@@ -1174,7 +1174,7 @@
           <div>{{ $t('outbound.dn') }}: {{ podFormData.dn_code }}</div>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
           </q-btn>
         </q-bar>
         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
@@ -1188,6 +1188,10 @@
                      type="number"
                      :label="$t('outbound.view_dn.delivery_actual_qty')"
                      style="margin-bottom: 5px"
+                     :rules="[
+                       val => val !== null && val !== '' && val > 0 || error2
+                     ]"
+                     @keyup="value=value.replace(/^(0+)|[^\d]+/g,'')"
             >
               <template v-slot:after>
                 <q-input dense
@@ -1197,6 +1201,11 @@
                          v-model.number="item.delivery_damage_qty"
                          type="number"
                          :label="$t('outbound.view_dn.delivery_damage_qty')"
+                         style="margin-top: 11%"
+                         :rules="[
+                           val => item.delivery_damage_qty < item.intransit_qty && val !== null && val !== '' || error2
+                         ]"
+                         @keyup="value=value.replace(/^(0+)|[^\d]+/g,'')"
                 >
                 </q-input>
               </template>
@@ -1318,7 +1327,8 @@ export default {
         id: 'printPL',
         popTitle: 'Picking List'
       },
-      error1: this.$t('baseinfo.view_supplier.error1')
+      error1: this.$t('baseinfo.view_customer.error1'),
+      error2: this.$t('notice.valerror')
     }
   },
   methods: {
