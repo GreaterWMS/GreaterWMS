@@ -109,6 +109,27 @@
                 label-position="bottom"
                 label-class="bg-white text-black"
                 :label="$t('scan.scan_goodsquery')"
+                v-show="device_name === 'Urovo'"
+                to="urovr_goodslist"
+                :style="{
+                         'margin-top': fab7.top,
+                         'margin-bottom': fab7.bottom,
+                         'margin-left': fab7.left,
+                         'margin-right': fab7.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/goods/goodslist.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="bg-white text-black"
+                :label="$t('scan.scan_goodsquery')"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_goodslist"
                 :style="{
                          'margin-top': fab7.top,
                          'margin-bottom': fab7.bottom,
@@ -127,6 +148,28 @@
                 label-class="bg-white text-black"
                 icon="img:statics/stock/cyclecount.png"
                 :label="$t('scan.scan_inventory')"
+                v-show="device_name === 'Urovo'"
+                to="urovo_cyclecount"
+                :style="{
+                         'margin-top': fab6.top,
+                         'margin-bottom': fab6.bottom,
+                         'margin-left': fab6.left,
+                         'margin-right': fab6.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/stock/cyclecount.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="bg-white text-black"
+                icon="img:statics/stock/cyclecount.png"
+                :label="$t('scan.scan_inventory')"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_cyclecount"
                 :style="{
                          'margin-top': fab6.top,
                          'margin-bottom': fab6.bottom,
@@ -144,6 +187,27 @@
                 label-position="bottom"
                 label-class="bg-white text-black"
                 :label="$t('scan.scan_movetobin')"
+                v-show="device_name === 'Urovo'"
+                to="urovo_movetobin"
+                :style="{
+                         'margin-top': fab5.top,
+                         'margin-bottom': fab5.bottom,
+                         'margin-left': fab5.left,
+                         'margin-right': fab5.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/icons/movetobin.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="bg-white text-black"
+                :label="$t('scan.scan_movetobin')"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_movetobin"
                 :style="{
                          'margin-top': fab5.top,
                          'margin-bottom': fab5.bottom,
@@ -161,6 +225,27 @@
                 label-position="bottom"
                 label-class="bg-white text-black"
                 :label="$t('scan.scan_shipping')"
+                v-show="device_name === 'Urovo'"
+                to="urovo_shipping"
+                :style="{
+                         'margin-top': fab4.top,
+                         'margin-bottom': fab4.bottom,
+                         'margin-left': fab4.left,
+                         'margin-right': fab4.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/icons/car.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="bg-white text-black"
+                :label="$t('scan.scan_shipping')"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_shipping"
                 :style="{
                          'margin-top': fab4.top,
                          'margin-bottom': fab4.bottom,
@@ -178,6 +263,27 @@
                 label-position="bottom"
                 label-class="bg-white text-black"
                 :label="$t('scan.scan_picking')"
+                v-show="device_name === 'Urovo'"
+                to="urovo_picking"
+                :style="{
+                         'margin-top': fab3.top,
+                         'margin-bottom': fab3.bottom,
+                         'margin-left': fab3.left,
+                         'margin-right': fab3.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/outbound/picked.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="bg-white text-black"
+                :label="$t('scan.scan_picking')"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_picking"
                 :style="{
                          'margin-top': fab3.top,
                          'margin-bottom': fab3.bottom,
@@ -195,6 +301,27 @@
                 label-position="bottom"
                 label-class="bg-white text-black"
                 :label="$t('scan.scan_uptobin')"
+                v-show="device_name === 'Urovo'"
+                to="urovo_uptobin"
+                :style="{
+                         'margin-top': fab2.top,
+                         'margin-bottom': fab2.bottom,
+                         'margin-left': fab2.left,
+                         'margin-right': fab2.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/inbound/presortstock.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="bg-white text-black"
+                :label="$t('scan.scan_uptobin')"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_uptobin"
                 :style="{
                          'margin-top': fab2.top,
                          'margin-bottom': fab2.bottom,
@@ -212,6 +339,27 @@
                 label-position="bottom"
                 label-class="bg-white text-black"
                 :label="$t('scan.scan_sorting')"
+                v-show="device_name === 'Urovo'"
+                to="urovo_sorting"
+                :style="{
+                         'margin-top': fab1.top,
+                         'margin-bottom': fab1.bottom,
+                         'margin-left': fab1.left,
+                         'margin-right': fab1.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/inbound/preloadstock.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="bg-white text-black"
+                :label="$t('scan.scan_sorting')"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_sorting"
                 :style="{
                          'margin-top': fab1.top,
                          'margin-bottom': fab1.bottom,
@@ -244,7 +392,7 @@ export default {
       device_name: '',
       height: '',
       width: '100%',
-      fab: false,
+      fab: true,
       touchheight: ((this.$q.screen.width - 50) / 5) + '' + 'px',
       touchwidth: ((this.$q.screen.width - 50) / 5) + '' + 'px',
       fab1: {
