@@ -80,7 +80,7 @@
     </template>
   </div>
 </template>
-  <router-view />
+<router-view />
 
 <script>
 
@@ -126,8 +126,8 @@ export default {
       var _this = this
       if (LocalStorage.has('auth')) {
         let result_date = date.formatDate(_this.date, 'YYYY-MM-DD')
-        let timeStamp = Date.now()
-        let formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
+        const timeStamp = Date.now()
+        const formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
         if (_this.date === formattedString) {
           result_date = ''
         }
@@ -184,8 +184,8 @@ export default {
     },
     reFresh () {
       var _this = this
-      let timeStamp = Date.now()
-      let formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
+      const timeStamp = Date.now()
+      const formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
       _this.date = formattedString
       console.log(_this.date)
       _this.getList()
@@ -221,7 +221,15 @@ export default {
     save () {
       var _this = this
       _this.date = _this.proxyDate
-      _this.getList()
+      if (_this.date == null) {
+        _this.$q.notify({
+          message: 'err.date',
+          icon: 'close',
+          color: 'negative'
+        })
+      } else {
+        _this.getList()
+      }
     }
   },
   created () {
@@ -240,8 +248,8 @@ export default {
     }
     if (LocalStorage.has('auth')) {
       _this.authin = '1'
-      let timeStamp = Date.now()
-      let formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
+      const timeStamp = Date.now()
+      const formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
       _this.date = formattedString
       _this.getList()
     } else {
