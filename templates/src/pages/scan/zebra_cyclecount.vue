@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <transition appear enter-active-class="animated fadeIn">
+  <div>
+    <transition appear enter-active-class="animated fadeIn">
       <q-table
         class="my-sticky-header-table shadow-24"
         :data="table_list"
@@ -16,11 +16,11 @@
         flat
         bordered
       >
-         <template v-slot:top>
-           <q-btn-group push>
-             <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()" />
-           </q-btn-group>
-           <q-space />
+        <template v-slot:top>
+          <q-btn-group push>
+            <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()" />
+          </q-btn-group>
+          <q-space />
           <q-btn-group push>
             <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCount()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
@@ -28,9 +28,9 @@
               </q-tooltip>
             </q-btn>
           </q-btn-group>
-         </template>
-         <template v-slot:body="props">
-           <q-tr :props="props">
+        </template>
+        <template v-slot:body="props">
+          <q-tr :props="props">
             <q-td key="bin_name" :props="props" :class="{ 'scan-background': bin_scan !== '' && bin_scan === props.row.bin_name }">
               {{ props.row.bin_name }}
             </q-td>
@@ -45,23 +45,25 @@
               </q-btn>
             </q-td>
           </q-tr>
-         </template>
-        </q-table>
-      </transition>
-      <template>
-        <div class="q-pa-lg flex cordova-footer">
-            <input id="scannedBarcodes" v-model="barscan" type="text" @input="datachange()" readonly disabled/>
-        </div>
-      </template>
-    </div>
+        </template>
+      </q-table>
+    </transition>
+    <template>
+      <div class="q-pa-lg flex cordova-footer">
+        <input id="scannedBarcodes" v-model="barscan" type="text" @input="datachange()" readonly disabled/>
+      </div>
+    </template>
+  </div>
 </template>
-    <router-view />
+<router-view />
 
 <script>
 import { getauth, putauth } from 'boot/axios_request'
 import Vconsole from 'vconsole'
 import { LocalStorage } from 'quasar'
-const vConsole = new Vconsole()
+if (process.env.NODE_ENV !== 'production') {
+  const vConsole = new Vconsole()
+}
 var sendCommandResults = 'false'
 
 function sendCommand (extraName, extraValue) {
@@ -69,11 +71,11 @@ function sendCommand (extraName, extraValue) {
   broadcastExtras[extraName] = extraValue
   broadcastExtras.SEND_RESULT = sendCommandResults
   window.plugins.intentShim.sendBroadcast({
-    action: 'com.symbol.datawedge.api.ACTION',
-    extras: broadcastExtras
-  },
-  function () { },
-  function () { }
+      action: 'com.symbol.datawedge.api.ACTION',
+      extras: broadcastExtras
+    },
+    function () { },
+    function () { }
   )
 }
 
@@ -254,89 +256,89 @@ export default {
     },
     registerBroadcastReceiver () {
       window.plugins.intentShim.registerBroadcastReceiver({
-        filterActions: [
-          'com.greaterwms.app.ACTION',
-          'com.symbol.datawedge.api.RESULT_ACTION'
-        ],
-        filterCategories: [
-          'android.intent.category.DEFAULT'
-        ]
-      },
-      function (intent) {
-        // eslint-disable-next-line no-prototype-builtins
-        if (intent.extras.hasOwnProperty('RESULT_INFO')) {
-          var commandResult = intent.extras.RESULT + ' (' +
-                    intent.extras.COMMAND.substring(intent.extras.COMMAND.lastIndexOf('.') + 1, intent.extras.COMMAND.length) + ')'// + JSON.stringify(intent.extras.RESULT_INFO);
-          commandReceived(commandResult.toLowerCase())
-        }
-        // eslint-disable-next-line no-prototype-builtins
-        if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_VERSION_INFO')) {
-        //  The version has been returned (DW 6.3 or higher).  Includes the DW version along with other subsystem versions e.g MX
-          var versionInfo = intent.extras['com.symbol.datawedge.api.RESULT_GET_VERSION_INFO']
-          var datawedgeVersion = versionInfo.DATAWEDGE
-          //  Fire events sequentially so the application can gracefully degrade the functionality available on earlier DW versions
-          if (datawedgeVersion >= '6.3') {
-            sendCommand('com.symbol.datawedge.api.CREATE_PROFILE', 'wms')
-            sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
-            sendCommand('com.symbol.datawedge.api.ENUMERATE_SCANNERS', '')
+          filterActions: [
+            'com.greaterwms.app.ACTION',
+            'com.symbol.datawedge.api.RESULT_ACTION'
+          ],
+          filterCategories: [
+            'android.intent.category.DEFAULT'
+          ]
+        },
+        function (intent) {
+          // eslint-disable-next-line no-prototype-builtins
+          if (intent.extras.hasOwnProperty('RESULT_INFO')) {
+            var commandResult = intent.extras.RESULT + ' (' +
+              intent.extras.COMMAND.substring(intent.extras.COMMAND.lastIndexOf('.') + 1, intent.extras.COMMAND.length) + ')'// + JSON.stringify(intent.extras.RESULT_INFO);
+            commandReceived(commandResult.toLowerCase())
           }
-          if (datawedgeVersion >= '6.4') {
-            var profileConfig = {
-              PROFILE_NAME: 'wms',
-              PROFILE_ENABLED: 'true',
-              CONFIG_MODE: 'UPDATE',
-              PLUGIN_CONFIG: {
-                PLUGIN_NAME: 'BARCODE',
-                RESET_CONFIG: 'true',
-                PARAM_LIST: {}
-              },
-              APP_LIST: [{
-                PACKAGE_NAME: 'com.greaterwms.app',
-                ACTIVITY_LIST: ['*']
-              }]
+          // eslint-disable-next-line no-prototype-builtins
+          if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_VERSION_INFO')) {
+            //  The version has been returned (DW 6.3 or higher).  Includes the DW version along with other subsystem versions e.g MX
+            var versionInfo = intent.extras['com.symbol.datawedge.api.RESULT_GET_VERSION_INFO']
+            var datawedgeVersion = versionInfo.DATAWEDGE
+            //  Fire events sequentially so the application can gracefully degrade the functionality available on earlier DW versions
+            if (datawedgeVersion >= '6.3') {
+              sendCommand('com.symbol.datawedge.api.CREATE_PROFILE', 'wms')
+              sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
+              sendCommand('com.symbol.datawedge.api.ENUMERATE_SCANNERS', '')
             }
-            sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
-            //  Configure the created profile (intent plugin)
-            var profileConfig2 = {
-              PROFILE_NAME: 'wms',
-              PROFILE_ENABLED: 'true',
-              CONFIG_MODE: 'UPDATE',
-              PLUGIN_CONFIG: {
-                PLUGIN_NAME: 'INTENT',
-                RESET_CONFIG: 'true',
-                PARAM_LIST: {
-                  intent_output_enabled: 'true',
-                  intent_action: 'com.greaterwms.app.ACTION',
-                  intent_delivery: '2'
+            if (datawedgeVersion >= '6.4') {
+              var profileConfig = {
+                PROFILE_NAME: 'wms',
+                PROFILE_ENABLED: 'true',
+                CONFIG_MODE: 'UPDATE',
+                PLUGIN_CONFIG: {
+                  PLUGIN_NAME: 'BARCODE',
+                  RESET_CONFIG: 'true',
+                  PARAM_LIST: {}
+                },
+                APP_LIST: [{
+                  PACKAGE_NAME: 'com.greaterwms.app',
+                  ACTIVITY_LIST: ['*']
+                }]
+              }
+              sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
+              //  Configure the created profile (intent plugin)
+              var profileConfig2 = {
+                PROFILE_NAME: 'wms',
+                PROFILE_ENABLED: 'true',
+                CONFIG_MODE: 'UPDATE',
+                PLUGIN_CONFIG: {
+                  PLUGIN_NAME: 'INTENT',
+                  RESET_CONFIG: 'true',
+                  PARAM_LIST: {
+                    intent_output_enabled: 'true',
+                    intent_action: 'com.greaterwms.app.ACTION',
+                    intent_delivery: '2'
+                  }
                 }
               }
+              sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig2)
+              //  Give some time for the profile to settle then query its value
+              setTimeout(function () {
+                sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
+              }, 1000)
             }
-            sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig2)
-            //  Give some time for the profile to settle then query its value
-            setTimeout(function () {
-              sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
-            }, 1000)
+            if (datawedgeVersion >= '6.5') {
+              //  Instruct the API to send
+              sendCommandResults = 'true'
+            }
+            // eslint-disable-next-line no-prototype-builtins
+          } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS')) {
+            //  Return from our request to enumerate the available scanners
+            var enumeratedScannersObj = intent.extras['com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS']
+            enumerateScanners(enumeratedScannersObj)
+            // eslint-disable-next-line no-prototype-builtins
+          } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE')) {
+            //  Return from our request to obtain the active profile
+            var activeProfileObj = intent.extras['com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE']
+            activeProfile(activeProfileObj)
+            // eslint-disable-next-line no-prototype-builtins
+          } else if (!intent.extras.hasOwnProperty('RESULT_INFO')) {
+            //  A barcode has been scanned
+            barcodeScanned(intent, new Date().toLocaleString())
           }
-          if (datawedgeVersion >= '6.5') {
-            //  Instruct the API to send
-            sendCommandResults = 'true'
-          }
-        // eslint-disable-next-line no-prototype-builtins
-        } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS')) {
-        //  Return from our request to enumerate the available scanners
-          var enumeratedScannersObj = intent.extras['com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS']
-          enumerateScanners(enumeratedScannersObj)
-        // eslint-disable-next-line no-prototype-builtins
-        } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE')) {
-        //  Return from our request to obtain the active profile
-          var activeProfileObj = intent.extras['com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE']
-          activeProfile(activeProfileObj)
-        // eslint-disable-next-line no-prototype-builtins
-        } else if (!intent.extras.hasOwnProperty('RESULT_INFO')) {
-        //  A barcode has been scanned
-          barcodeScanned(intent, new Date().toLocaleString())
         }
-      }
       )
     }
   },
