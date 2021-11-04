@@ -414,11 +414,6 @@ const routes = [
         component: () => import('pages/scan/zebra_cyclecount.vue')
       },
       {
-        path: 'zebra_cyclecount',
-        name: 'zebra_cyclecount',
-        component: () => import('pages/scan/zebra_cyclecount.vue')
-      },
-      {
         path: 'zebra_locationquery',
         name: 'zebra_locationquery',
         component: () => import('pages/scan/zebra_locationquery.vue')

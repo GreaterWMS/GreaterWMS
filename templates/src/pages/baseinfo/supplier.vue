@@ -335,11 +335,11 @@ export default {
       deleteForm: false,
       deleteid: 0,
       error1: this.$t('baseinfo.view_supplier.error1'),
-      error2: this.$t('baseinfo.view_supplier.error1'),
-      error3: this.$t('baseinfo.view_supplier.error1'),
-      error4: this.$t('baseinfo.view_supplier.error1'),
-      error5: this.$t('baseinfo.view_supplier.error1'),
-      error6: this.$t('baseinfo.view_supplier.error1')
+      error2: this.$t('baseinfo.view_supplier.error2'),
+      error3: this.$t('baseinfo.view_supplier.error3'),
+      error4: this.$t('baseinfo.view_supplier.error4'),
+      error5: this.$t('baseinfo.view_supplier.error5'),
+      error6: this.$t('baseinfo.view_supplier.error6')
     }
   },
   methods: {
