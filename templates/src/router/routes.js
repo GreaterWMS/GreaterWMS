@@ -349,11 +349,6 @@ const routes = [
         ]
       },
       {
-        path: 'zebra_stafflist',
-        name: 'zebra_stafflist',
-        component: () => import('pages/scan/zebra_stafflist.vue')
-      },
-      {
         path: 'zebra_goodslist',
         name: 'zebra_goodslist',
         component: () => import('pages/scan/zebra_goodslist.vue')
@@ -362,16 +357,6 @@ const routes = [
         path: 'zebra_stocklist',
         name: 'zebra_stocklist',
         component: () => import('pages/scan/zebra_stocklist.vue')
-      },
-      {
-        path: 'zebra_stockbinlist',
-        name: 'zebra_stockbinlist',
-        component: () => import('pages/scan/zebra_stockbinlist.vue')
-      },
-      {
-        path: 'zebra_emptybin',
-        name: 'zebra_emptybin',
-        component: () => import('pages/scan/zebra_emptybin.vue')
       },
       {
         path: 'zebra_movetobin',
@@ -399,14 +384,9 @@ const routes = [
         component: () => import('pages/scan/zebra_sorting.vue')
       },
       {
-        path: 'zebra_asn',
-        name: 'zebra_asn',
-        component: () => import('pages/scan/zebra_asn.vue')
-      },
-      {
-        path: 'zebra_dn',
-        name: 'zebra_dn',
-        component: () => import('pages/scan/zebra_dn.vue')
+        path: 'zebra_cyclecount',
+        name: 'zebra_cyclecount',
+        component: () => import('pages/scan/zebra_cyclecount.vue')
       },
       {
         path: 'zebra_cyclecount',
@@ -420,11 +400,6 @@ const routes = [
       },
       // urova
       {
-        path: 'urovo_stafflist',
-        name: 'urovo_stafflist',
-        component: () => import('pages/scan/urovo_stafflist.vue')
-      },
-      {
         path: 'urovo_goodslist',
         name: 'urovo_goodslist',
         component: () => import('pages/scan/urovo_goodslist.vue')
@@ -433,16 +408,6 @@ const routes = [
         path: 'urovo_stocklist',
         name: 'urovo_stocklist',
         component: () => import('pages/scan/urovo_stocklist.vue')
-      },
-      {
-        path: 'urovo_stockbinlist',
-        name: 'urovo_stockbinlist',
-        component: () => import('pages/scan/urovo_stockbinlist.vue')
-      },
-      {
-        path: 'urovo_emptybin',
-        name: 'urovo_emptybin',
-        component: () => import('pages/scan/urovo_emptybin.vue')
       },
       {
         path: 'urovo_movetobin',
@@ -468,16 +433,6 @@ const routes = [
         path: 'urovo_sorting',
         name: 'urovo_sorting',
         component: () => import('pages/scan/urovo_sorting.vue')
-      },
-      {
-        path: 'urovo_asn',
-        name: 'urovo_asn',
-        component: () => import('pages/scan/urovo_asn.vue')
-      },
-      {
-        path: 'urovo_dn',
-        name: 'urovo_dn',
-        component: () => import('pages/scan/urovo_dn.vue')
       },
       {
         path: 'urovo_cyclecount',
