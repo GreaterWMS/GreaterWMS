@@ -458,6 +458,7 @@ export default {
     }
   },
   notice: {
+    valerror: '請輸入正確的值',
     unknow_error: '未知錯誤',
     network_error: '網絡異常',
     400: '錯誤請求(400)',

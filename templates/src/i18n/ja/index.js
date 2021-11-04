@@ -460,6 +460,7 @@ export default {
     }
   },
   notice: {
+    valerror: '正しい値を入力してください',
     unknow_error: '未知の間違い',
     network_error: 'ネットワーク異常',
     400: '不正なリクエスト（400）',

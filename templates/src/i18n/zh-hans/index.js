@@ -140,7 +140,7 @@ export default {
       error1: '请输入供应商名称',
       error2: '请输入供应商所在城市',
       error3: '请输入供应商地址',
-      error4: '请输入供应商联系人',
+      error4: '请输入联系方式',
       error5: '请输入供应商负责人',
       error6: '请输入供应商级别'
     },
@@ -154,7 +154,7 @@ export default {
       error1: '请输入客户名称',
       error2: '请输入客户所在城市',
       error3: '请输入客户地址',
-      error4: '请输入客户联系人',
+      error4: '请输入联系人',
       error5: '请输入客户经理',
       error6: '请输入客户级别'
     }
@@ -465,6 +465,7 @@ export default {
     }
   },
   notice: {
+    valerror: '请输入正确的值',
     unknow_error: '未知错误',
     network_error: '网络异常',
     400: '错误请求(400)',
