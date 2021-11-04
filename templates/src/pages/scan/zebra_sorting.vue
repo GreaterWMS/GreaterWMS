@@ -31,14 +31,14 @@
         </template>
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="bin_name" :props="props" :class="{ 'scan-background': bin_scan !== '' && bin_scan === props.row.bin_name }">
-              {{ props.row.bin_name }}
-            </q-td>
             <q-td key="goods_code" :props="props">
               {{ props.row.goods_code }}
             </q-td>
-            <q-td key="physical_inventory" :props="props">
-              {{ props.row.physical_inventory }}
+            <q-td key="goods_qty" :props="props">
+              {{ props.row.goods_qty }}
+            </q-td>
+            <q-td key="goods_actual_qty" :props="props">
+              {{ props.row.goods_actual_qty }}
             </q-td>
             <q-td key="action" :props="props" style="width: 50px">
               <q-btn round flat push color="purple" icon="repeat" @click="props.row.physical_inventory = 0">
@@ -58,10 +58,12 @@
 <router-view />
 
 <script>
-import { getauth, putauth } from 'boot/axios_request'
-import Vconsole from 'vconsole'
+import { getauth, postauth, putauth } from 'boot/axios_request'
 import { LocalStorage } from 'quasar'
-const vConsole = new Vconsole()
+import Vconsole from 'vconsole'
+if (process.env.NODE_ENV !== 'production') {
+  const vConsole = new Vconsole()
+}
 var sendCommandResults = 'false'
 
 function sendCommand (extraName, extraValue) {
@@ -100,21 +102,27 @@ function barcodeScanned (scanData, timeOfScan) {
 }
 
 export default {
-  name: 'Pagezebra_cyclecount',
+  name: 'Pageurovo_asn',
   data () {
     return {
       openid: '',
       login_name: '',
       authin: '0',
-      pathname: 'cyclecount/',
+      pathname: 'asn/detail/?asn_status=3&ordering=-id',
       separator: 'cell',
       loading: false,
       height: '',
       table_list: [],
+      sorted_list: {
+        asn_code: '',
+        supplier: '',
+        goodsData: [],
+        creater: ''
+      },
       columns: [
-        { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
-        { name: 'goods_code', label: this.$t('stock.view_stocklist.goods_code'), field: 'goods_code', align: 'center' },
-        { name: 'physical_inventory', label: this.$t('stock.view_stocklist.physical_inventory'), field: 'physical_inventory', align: 'center' },
+        { name: 'goods_code', label: this.$t('goods.view_goodslist.goods_code'), field: 'goods_code', align: 'left' },
+        { name: 'goods_qty', label: this.$t('inbound.view_asn.goods_qty'), field: 'goods_qty', align: 'center' },
+        { name: 'goods_actual_qty', label: this.$t('inbound.view_asn.goods_actual_qty'), field: 'goods_actual_qty', align: 'center' },
         { name: 'action', label: this.$t('action'), align: 'right' }
       ],
       filter: '',
@@ -126,7 +134,7 @@ export default {
       IMEI: window.device,
       batteryStatus: 'determining...',
       barscan: '',
-      bin_scan: '',
+      asn_scan: '',
       goods_scan: ''
     }
   },
@@ -134,8 +142,7 @@ export default {
     datachange () {
       var _this = this
       if (_this.$q.localStorage.has('auth')) {
-        getauth('scanner/?bar_code=' + _this.barscan, {
-        }).then(res => {
+        getauth('scanner/?bar_code=' + _this.barscan, {}).then(res => {
           _this.barscan = res.results[0].code
           if (res.results[0].mode === 'BINSET') {
             _this.bin_scan = res.results[0].code
@@ -165,8 +172,7 @@ export default {
     getList () {
       var _this = this
       if (_this.$q.localStorage.has('auth')) {
-        getauth(_this.pathname, {
-        }).then(res => {
+        getauth(_this.pathname, {}).then(res => {
           _this.table_list = res.results
         }).catch(err => {
           _this.$q.notify({
@@ -365,7 +371,7 @@ export default {
     window.addEventListener('batterystatus', _this.updateBatteryStatus, false)
     _this.height = this.$q.screen.height - 175 + '' + 'px'
     _this.barscan = ''
-    _this.bin_scan = ''
+    _this.asn_scan = ''
     _this.goods_scan = ''
     _this.getList()
     _this.scanEvents()

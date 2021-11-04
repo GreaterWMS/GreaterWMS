@@ -51,13 +51,14 @@
             </q-td>
             <q-td key="physical_inventory" :props="props">
               <q-input dense
-                         outlined
-                         square
-                         v-model.number="props.row.physical_inventory"
-                         type="number"
-                         :label="$t('stock.view_stocklist.physical_inventory')"
-                         :rules="[ val => val && val > 0 || val == 0 || error1]"
-                />
+                       outlined
+                       square
+                       v-model.number="props.row.physical_inventory"
+                       type="number"
+                       :label="$t('stock.view_stocklist.physical_inventory')"
+                       :rules="[ val => val && val > 0 || val == 0 || error1]"
+                       @keyup="value=value.replace(/^(0+)|[^\d]+/g,'')"
+              />
             </q-td>
             <q-td key="difference" :props="props">
               {{ props.row.physical_inventory - props.row.goods_qty }}

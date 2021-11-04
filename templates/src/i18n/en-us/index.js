@@ -459,6 +459,7 @@ export default {
     }
   },
   notice: {
+    valerror: 'Please enter the correct value',
     unknow_error: 'Unknow Error',
     network_error: 'Network Abnormal',
     400: 'Bad request (400)',
