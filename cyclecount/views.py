@@ -36,7 +36,7 @@ class CyclecountModeDayViewSet(viewsets.ModelViewSet):
         update:
             Update a data（put：update）
     """
-    pagination_class = CycleCountPageNumberPagination
+    pagination_class = None
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
     filter_class = Filter
