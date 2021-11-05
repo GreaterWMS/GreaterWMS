@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.megster.ble.redbear.chat" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>RedBear Chat</name>
+    <description>
+        A sample app from a phone to RedBear Labs BLE hardware.
+    </description>
+    <author href="http://github.com/don">
+        Don Coleman
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+</widget>

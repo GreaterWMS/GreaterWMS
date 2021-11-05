@@ -1,0 +1,14 @@
+{
+  "name": "cordova-plugin-screen-orientation-tests",
+  "version": "3.0.2",
+  "description": "",
+  "cordova": {
+    "id": "cordova-plugin-screen-orientation-tests",
+    "platforms": []
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "",
+  "license": "Apache 2.0"
+}

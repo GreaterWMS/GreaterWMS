@@ -1,0 +1,26 @@
+{
+  "name": "cordova-plugin-app-version",
+  "version": "0.1.12",
+  "description": "Cordova plugin to return the version number of the current app",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sampart/cordova-plugin-app-version.git"
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "app",
+    "version",
+    "appversion",
+    "plugin"
+  ],
+  "author": "whiteoctober",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sampart/cordova-plugin-app-version/issues"
+  },
+  "homepage": "https://github.com/sampart/cordova-plugin-app-version#readme"
+}
