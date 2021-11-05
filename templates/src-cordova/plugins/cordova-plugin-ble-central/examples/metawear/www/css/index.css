@@ -1,0 +1,95 @@
+body {
+    font-family: "Helvetica Neue";
+    font-weight: lighter;
+    color: #2a2a2a;
+    background-color: #f0f0ff;
+    
+    -webkit-appearance: none;  
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); 
+    
+    -webkit-touch-callout: none; -webkit-user-select: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    margin: 15px;
+    -webkit-appearance:none;    
+    font-size: 1.2em;
+}
+
+/* TODO */
+input[type=range] {
+    width: 100%;
+}
+
+#mainPage {
+    text-align:center;
+}
+
+#detailPage {
+    text-align:center;
+    font-size: 2em;
+}
+
+#detailPage div {
+    margin: 20px;
+}
+
+#detailPage button {
+    margin-top: 40px;
+    font-size: 0.6em; /* undo 2em from parent */
+}
+
+ul {
+    list-style: none;
+    border-bottom: 1px solid #d3d3d3;    
+    text-align: left;
+}
+
+li {
+    margin-left: -40px;
+    padding: 5px;        
+    padding-top: 10px;
+    min-height: 50px;
+    border-top: 1px solid #d3d3d3;    
+    font-size: 0.9em;
+}
+
+button {
+    -webkit-appearance: none;
+    font-size: 1.5em;
+    border-radius: 0;
+}
+
+#resultDiv {
+    font: 16px "Source Sans", helvetica, arial, sans-serif;
+    font-weight: 200;
+    display: block;
+    -webkit-border-radius: 6px;
+    width: 100%;
+    height: 140px;
+    text-align: left;    
+    overflow: auto;
+}
+
+.haptic {
+    font-size: 0.5em;
+}
+
+.buttonDiv {
+    padding: 0px;
+    margin: 0px;
+    font-size: 2em;
+}
+
+#detailPage .haptic button {
+    margin-top: 15px;    
+}
+
+input[type="number"] {
+   width:50px;
+}

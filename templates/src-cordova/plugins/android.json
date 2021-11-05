@@ -10,29 +10,26 @@
     "com-darryncampbell-cordova-plugin-intent": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
+    "com.verso.cordova.clipboard": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
     "cordova-plugin-battery-status": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-ble-central": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
     "cordova-plugin-camera": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "org.greaterwms.app"
     },
-    "cordova-plugin-console": {
-      "PACKAGE_NAME": "org.greaterwms.app"
-    },
-    "cordova-plugin-contacts": {
-      "PACKAGE_NAME": "org.greaterwms.app"
-    },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "org.greaterwms.app"
-    },
-    "cordova-plugin-device-motion": {
-      "PACKAGE_NAME": "org.greaterwms.app"
-    },
-    "cordova-plugin-device-orientation": {
-      "PACKAGE_NAME": "org.greaterwms.app"
-    },
-    "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
     "cordova-plugin-file": {
@@ -45,10 +42,10 @@
       "GPS_REQUIRED": "true",
       "PACKAGE_NAME": "org.greaterwms.app"
     },
-    "cordova-plugin-globalization": {
+    "cordova-plugin-insomnia": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
-    "cordova-plugin-inappbrowser": {
+    "cordova-plugin-keyboard": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
     "cordova-plugin-media": {
@@ -58,6 +55,9 @@
       "PACKAGE_NAME": "org.greaterwms.app"
     },
     "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-screen-orientation": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
     "cordova-plugin-splashscreen": {
@@ -74,7 +74,14 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "phonegap-nfc": {
+      "PACKAGE_NAME": "org.greaterwms.app"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    }
+  }
 }

@@ -1,0 +1,118 @@
+= 1.2.0 =
+iOS allow tag read and write in same session #419
+
+= 1.1.2 =
+Android Fix null pointer exception and possible crash #415 Thanks pschlang 
+iOS Notify Cordova on Successful Tag Write - #408 Thanks H0schi 
+iOS NDEF tags with no messages causes Read Failed #416
+
+= 1.1.1 =
+CoreNFC Framework is optional #400 Thanks M3skar and wux-shuto
+
+= 1.1.0 =
+Implement nfc.write for iOS
+New iOS specific APIs
+ * scanNdef
+ * scanTag
+ * cancelScan    
+Deprecated old iOS APIs
+ * beginSession
+ * invalidate
+Remove usage of UIWebView and WKWebView. Send event data to Javascript via the channel callback.
+
+= 1.0.4 =
+Added TAG string for iOS entitlement compatibility #376 Thanks ActionZachson
+Add DeviceCapability proximity for Windows 10 builds #358 #265 Thanks DirkHeinke
+Fix issue with AndroidManifest.xml #372 by LuisEGR
+Fix error in documentation arrayBufferToString doesn't exist #356 Thanks JohnMcLear
+
+= 1.0.3 =
+Remove ES6 code from phonegap-nfc.js #325
+
+= 1.0.2 =
+Add reader mode for Android #326 #198
+Add es6 to jshint config, remove strict mode, cleanup jshint errors #325
+
+= 1.0.1 =
+Replace webview.sendJavascript with channel on Android Fixes #196 #249 #225 #263 Thanks jmorille
+Update code that removes event listener #257
+NFC events not firing on first scan Fixes #217 #324 Thanks homer-jay
+
+= 1.0.0 =
+Add new commands nfc.connect, nfc.tranceive, nfc.close to support sending raw commands to NFC tags on Android.
+ Support tag types: NfcA (ISO 14443-3A), NfcB (ISO 14443-3B), NfcF (JIS 6319-4), NfcV (ISO 15693), and IsoDep (ISO 14443-4) #320
+
+= 0.7.3 =
+Bump version for npm issues
+
+= 0.7.2 =
+Add support for WKWebView #288 Thanks andreamaioli
+
+= 0.7.1 =
+Automatically Add NFC entitlement for iOS #285 Thanks andreamaioli
+
+= 0.7.0 =
+Add iOS support #139
+Fixed language code field length detection #219 Thanks homer-jay
+Fixed java.util.ConcurrentModificationException #231 Thanks João Gonçalves (Chuckytuh)
+Documentation fixes #224 Thanks Tom Brückner (derwaldgeist)
+
+= 0.6.6 =
+Update Windows platforms (includes Windows Phone 8.1)
+ * tag event contains nested ndefMessage object #215
+ * support unformatted tags with addTagDiscoveredListener & removeTagDiscoveredListener #204
+ * implement showSettings #147
+ * better error messages when NFC is disabled #213
+ * use NDEF parsing and encoding code from www/phonegap-nfc.js (remove duplication)
+ * update documentation
+
+= 0.6.5 =
+Add nfc.showSettings for Android and BlackBerry 10 #147
+Fix package name for Blackberry 10
+
+= 0.6.4 =
+Fix Android compile issue #192
+
+= 0.6.3 =
+Drop support for Cordova 2.9 #192
+Move plugin to NPM #194
+
+= 0.6.2 =
+Add support for Windows Phone 8.1 and Windows 8.1 @jlkalberer #182
+Update share on BlackBerry 10.2 #172
+Fix callback for enabled on Android #169
+Fix documentation @lezardrouge #180
+Fix documentation @JohnMcLear #171
+
+= 0.6.1 =
+Add ndef.tnfToString Fixes #145
+Add ndef.androidApplicationRecord(packageName) Fixes #161
+Add more documentation for NO_NFC and NFC_DISABLED error codes Fixes #160
+Ensure window.nfc is undefined on unsupported platforms like iOS. Fixes #151 & 152 from Jakob Witte Larsen @jakobwitte
+Check if NFC is enabled #146 & #154 from David Froehlich @didlich
+
+= 0.6.0 =
+Change signature for remove*Listener methods. Fixes #142
+
+= 0.5.1 =
+nfc.makeReadOnly Fixes #6
+Better encoding and decoding of UTF-8 strings. Fixes #102
+
+= 0.5.0 =
+remove listeners for Android implemented by Axel Nennker @AxelNennker #129
+bug fix in stopNfc() from Michal Letynski @mletynski #125 #126
+
+= 0.4.9 =
+handleNfcFromIntentFilter is android only
+add isType helper #103
+
+= 0.4.8 =
+Fix IllegalArgumentException #110
+Update documentation about filtering mime types #71 and #72
+Add onLoad for Android #105 and #99
+Build better JSON from @didlich #113
+
+= 0.4.7 =
+Rewrite BlackBerry10 implementation for Cordova 3.0
+Remove unused Android Ant scripts
+Update documentation

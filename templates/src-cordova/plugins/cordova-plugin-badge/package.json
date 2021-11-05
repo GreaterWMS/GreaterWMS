@@ -1,0 +1,54 @@
+{
+  "name": "cordova-plugin-badge",
+  "version": "0.8.8",
+  "description": "Shows the count of unread messages as a badge on the app icon.",
+  "cordova": {
+    "id": "cordova-plugin-badge",
+    "platforms": [
+      "ios",
+      "osx",
+      "android",
+      "browser",
+      "windows"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katzer/cordova-plugin-badge.git"
+  },
+  "keywords": [
+    "appplant",
+    "badge",
+    "shortcutbadger",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-osx",
+    "cordova-android",
+    "cordova-browser",
+    "cordova-windows"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=6.0.0"
+    },
+    {
+      "name": "apple-ios",
+      "version": ">=10.0.0"
+    },
+    {
+      "name": "cordova-android",
+      "version": ">=4"
+    },
+    {
+      "name": "cordova-plugman",
+      "version": ">=4.2.0"
+    }
+  ],
+  "author": "Sebastián Katzer",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/katzer/cordova-plugin-badge/issues"
+  },
+  "homepage": "https://github.com/katzer/cordova-plugin-badge#readme"
+}

@@ -59,7 +59,7 @@
         <splash height="1136" src="res/screen/ios/screen-iphone-portrait-568h_2x.png" width="640" />
         <splash height="2732" src="res/screen/ios/Default@2x~universal~anyany.png" width="2732" />
     </platform>
-    <preference name="SplashScreenDelay" value="2000" />
+    <preference name="SplashScreenDelay" value="3000" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <allow-navigation href="about:*" />
 </widget>

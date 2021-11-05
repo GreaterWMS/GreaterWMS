@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-insomnia"
+        version="4.3.0">
+
+  <name>Insomnia (prevent screen sleep)</name>
+
+  <description>
+    Prevent the screen of the mobile device from falling asleep.
+  </description>
+
+  <license>MIT</license>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0"/>
+  </engines>
+
+  <js-module src="www/Insomnia.js" name="Insomnia">
+    <clobbers target="window.plugins.insomnia" />
+  </js-module>
+
+  <platform name="ios">
+
+    <config-file target="config.xml" parent="/*">
+      <feature name="Insomnia">
+        <param name="ios-package" value="Insomnia"/>
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/Insomnia.h"/>
+    <source-file src="src/ios/Insomnia.m"/>
+  </platform>
+
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Insomnia">
+                <param name="wp-package" value="Insomnia"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/wp8/Insomnia.cs" />
+    </platform>
+
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Insomnia">
+        <param name="android-package" value="nl.xservices.plugins.Insomnia" />
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/nl/xservices/plugins/Insomnia.java" target-dir="src/nl/xservices/plugins"/>
+  </platform>
+
+  <platform name="browser">
+    <js-module src="src/browser/Insomnia.js" name="InsomniaProxy">
+      <merges target="window.plugins.insomnia" />
+    </js-module>
+  </platform>
+
+  <platform name="firefoxos">
+    <js-module src="src/firefoxos/insomnia.js" name="InsomniaProxy">
+      <runs />
+    </js-module>
+  </platform>
+  
+  <platform name="windows">
+    <js-module src="src/windows/InsomniaProxy.js" name="InsomniaProxy">
+      <runs />
+    </js-module>
+  </platform>  
+
+</plugin>
