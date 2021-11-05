@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project name="PhoneGap NFC Plugin Webworks" default="dist" basedir=".">
+
+  <property name="platform" value="webworks"/>
+  <property name="src.dir" location="src"/>
+  <property name="dist.dir" location="../../dist"/>
+  <property name="www.dir" location="../../www"/>
+
+  <target name="jar" description="build a new version of phonegap-nfc.jar">
+    <jar destfile="${dist.dir}/phonegap-nfc-${platform}.jar" basedir="${src.dir}"/>
+  </target>
+
+  <target name="javascript" description="copy javascript to dist directory">
+    <copy file="${www.dir}/phonegap-nfc.js" todir="${dist.dir}"/>
+  </target>
+
+  <target name="dist" depends="jar,javascript" description="jar and js for distribution">
+    <echo>Built phonegap-nfc-${platform} for distribution</echo>
+  </target>
+
+  <target name="clean" description="clean up">
+    <delete dir="${dist.dir}"/>
+  </target>
+</project>
