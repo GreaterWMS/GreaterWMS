@@ -39,54 +39,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-ubx": {
-    "source": {
-      "type": "registry",
-      "id": "https://gitee.com/Singosgu/cordova-plugin-ubx.git"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-console": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-console"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-contacts": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-contacts@3.0.1"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-device-motion": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-device-motion"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-device-orientation": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-device-orientation"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-dialogs": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-dialogs"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "cordova-plugin-file": {
     "source": {
       "type": "registry",
@@ -107,22 +59,6 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-geolocation@4.1.0"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-globalization": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-globalization"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
-  "cordova-plugin-inappbrowser": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-inappbrowser@5.0.0"
     },
     "is_top_level": true,
     "variables": {}
@@ -162,7 +98,7 @@
   "cordova-plugin-vibration": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-vibration"
+      "id": "cordova-plugin-vibration@^3.1.1"
     },
     "is_top_level": true,
     "variables": {}
@@ -171,6 +107,86 @@
     "source": {
       "type": "registry",
       "id": "cordova-plugin-statusbar@2.4.3"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-insomnia": {
+    "source": {
+      "type": "registry",
+      "id": "https://www.github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-keyboard": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-keyboard"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "phonegap-nfc": {
+    "source": {
+      "type": "registry",
+      "id": "phonegap-nfc"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ble-central": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-ble-central"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-screen-orientation": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-screen-orientation"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "es6-promise-plugin": {
+    "source": {
+      "type": "registry",
+      "id": "es6-promise-plugin@^4.1.0"
+    },
+    "is_top_level": false,
+    "variables": {}
+  },
+  "cordova-plugin-badge": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-badge"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-app-version": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-app-version"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "com.verso.cordova.clipboard": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/RTeran/CordovaClipboard.git"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-plugin-ubx": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/Singosgu/cordova-plugin-ubx.git"
     },
     "is_top_level": true,
     "variables": {}

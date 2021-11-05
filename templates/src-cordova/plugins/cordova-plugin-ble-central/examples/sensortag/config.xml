@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.megster.sensortag" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>SensorTag</name>
+    <description>
+        Use Cordova Bluetooth Plugin to read values from TI SensorTag
+    </description>
+    <author href="https://github.com/don">
+           Don Coleman
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="orientation" value="portrait" />    
+</widget>

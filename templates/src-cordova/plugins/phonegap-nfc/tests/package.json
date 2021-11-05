@@ -1,0 +1,14 @@
+{
+  "name": "com.chariotsolutions.nfc.plugin.tests",
+  "version": "0.0.1-dev",
+  "description": "Tests for phonegap-nfc",
+  "cordova": {
+    "id": "phonegap-nfc-tests",
+    "platforms": []
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Don Coleman <don.coleman@gmail.com>",
+  "license": "MIT"
+}
