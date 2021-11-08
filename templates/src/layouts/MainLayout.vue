@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="hhh LpR lFf" :style="{ height: $q.screen.height, width: $q.screen.width }">
+  <q-layout view="hHh LpR fFf" :style="{ height: $q.screen.height, width: $q.screen.width }">
     <q-header reveal elevated class="bg-primary text-white">
       <q-toolbar class="main-headers text-white shadow-18 rounded-borders">
         <transition appear enter-active-class="animated zoomIn">
@@ -139,7 +139,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
                   v-if="device=== 0"
-                  clickable to="/dashboard/outbounddashboard" @click="linkChange('outbounddashboard')" v-ripple exact :active="link === 'outbounddashboard'" :class="{ 'my-menu-link': link === 'outbounddashboard' }">
+                  clickable to="/dashboard/outbounddashboard" @click="linkChange('outbounddashboard')" v-ripple exact :active="link === 'outbounddashboard' && link !== ''" :class="{ 'my-menu-link': link === 'outbounddashboard' && link !== '' }">
             <q-item-section avatar>
               <q-icon name="auto_graph" />
             </q-item-section>
@@ -153,7 +153,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
                   v-if="device === 0"
-            clickable to="/inbound/asn" @click="linkChange('inbound')" v-ripple exact :active="link === 'inbound'" :class="{ 'my-menu-link': link === 'inbound' }">
+            clickable to="/inbound/asn" @click="linkChange('inbound')" v-ripple exact :active="link === 'inbound' && link !== ''" :class="{ 'my-menu-link': link === 'inbound' && link !== '' }">
             <q-item-section avatar>
               <q-icon name="speaker_notes" />
             </q-item-section>
@@ -166,7 +166,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Inbound'
                          "
                   v-if="device === 0"
-            clickable to="/outbound/dn" @click="linkChange('outbound')" v-ripple exact :active="link === 'outbound'" :class="{ 'my-menu-link': link === 'outbound' }">
+            clickable to="/outbound/dn" @click="linkChange('outbound')" v-ripple exact :active="link === 'outbound' && link !== ''" :class="{ 'my-menu-link': link === 'outbound' && link !== '' }">
             <q-item-section avatar>
               <q-icon name="rv_hookup" />
             </q-item-section>
@@ -178,7 +178,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
                   v-if="device !== 2"
-            clickable to="/stock/stocklist" @click="linkChange('stock')" v-ripple exact :active="link === 'stock'" :class="{ 'my-menu-link': link === 'stock' }">
+            clickable to="/stock/stocklist" @click="linkChange('stock')" v-ripple exact :active="link === 'stock' && link !== ''" :class="{ 'my-menu-link': link === 'stock' && link !== '' }">
             <q-item-section avatar>
               <q-icon name="multiline_chart" />
             </q-item-section>
@@ -194,7 +194,7 @@
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
                   v-if="device !== 2"
-            clickable to="/finance/capitallist" @click="linkChange('finance')" v-ripple exact :active="link === 'finance'" :class="{ 'my-menu-link': link === 'finance' }">
+            clickable to="/finance/capitallist" @click="linkChange('finance')" v-ripple exact :active="link === 'finance' && link !== ''" :class="{ 'my-menu-link': link === 'finance' && link !== '' }">
             <q-item-section avatar>
               <q-icon name="devices_other" />
             </q-item-section>
@@ -208,7 +208,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
                   v-if="device !== 2"
-                  clickable to="/goods/goodslist" @click="linkChange('goods')" v-ripple exact :active="link === 'goods'" :class="{ 'my-menu-link': link === 'goods' }">
+                  clickable to="/goods/goodslist" @click="linkChange('goods')" v-ripple exact :active="link === 'goods' && link !== ''" :class="{ 'my-menu-link': link === 'goods' && link !== '' }">
             <q-item-section avatar>
               <q-icon name="shop_two" />
             </q-item-section>
@@ -223,7 +223,7 @@
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
                   v-if="device !== 2"
-            clickable to="/baseinfo/company" @click="linkChange('baseinfo')" v-ripple exact :active="link === 'baseinfo'" :class="{ 'my-menu-link': link === 'baseinfo' }">
+            clickable to="/baseinfo/company" @click="linkChange('baseinfo')" v-ripple exact :active="link === 'baseinfo' && link !== ''" :class="{ 'my-menu-link': link === 'baseinfo' && link !== '' }">
             <q-item-section avatar>
               <q-icon name="info" />
             </q-item-section>
@@ -237,7 +237,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Outbound'
                          "
                   v-if="device !== 2"
-            clickable to="/warehouse/warehouseset" @click="linkChange('warehouse')" v-ripple exact :active="link === 'warehouse'" :class="{ 'my-menu-link': link === 'warehouse' }">
+            clickable to="/warehouse/warehouseset" @click="linkChange('warehouse')" v-ripple exact :active="link === 'warehouse' && link !== ''" :class="{ 'my-menu-link': link === 'warehouse' && link !== '' }">
             <q-item-section avatar>
               <q-icon name="settings" />
             </q-item-section>
@@ -250,7 +250,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
                   v-if="device !== 2"
-            clickable to="/staff/stafflist" @click="linkChange('staff')" v-ripple exact :active="link === 'staff'" :class="{ 'my-menu-link': link === 'staff' }">
+            clickable to="/staff/stafflist" @click="linkChange('staff')" v-ripple exact :active="link === 'staff' && link !== ''" :class="{ 'my-menu-link': link === 'staff' && link !== '' }">
             <q-item-section avatar>
               <q-icon name="assignment_ind" />
             </q-item-section>
@@ -264,7 +264,7 @@
                           $q.localStorage.getItem('staff_type') !== 'StockControl'
                          "
                   v-if="device !== 2"
-            clickable to="/driver/driverlist" @click="linkChange('driver')" v-ripple exact :active="link === 'driver'" :class="{ 'my-menu-link': link === 'driver' }">
+            clickable to="/driver/driverlist" @click="linkChange('driver')" v-ripple exact :active="link === 'driver' && link !== ''" :class="{ 'my-menu-link': link === 'driver' && link !== '' }">
             <q-item-section avatar>
               <q-icon name="transfer_within_a_station" />
             </q-item-section>
@@ -277,7 +277,7 @@
                           $q.localStorage.getItem('staff_type') !== 'Customer'
                          "
                   v-if="device === 0"
-                  clickable to="/uploadcenter/initializeupload" @click="linkChange('uploadcenter')" v-ripple exact :active="link === 'uploadcenter'" :class="{ 'my-menu-link': link === 'uploadcenter' }">
+                  clickable to="/uploadcenter/initializeupload" @click="linkChange('uploadcenter')" v-ripple exact :active="link === 'uploadcenter' && link !== ''" :class="{ 'my-menu-link': link === 'uploadcenter' && link !== '' }">
             <q-item-section avatar>
               <q-icon name="file_upload" />
             </q-item-section>
@@ -486,7 +486,9 @@
        height: container_height,
        width: $q.screen.width
     }">
-      <router-view />
+      <q-page class="flex flex-top">
+        <router-view />
+      </q-page>
     </q-page-container>
     <q-dialog v-model="chat">
     <q-card style="width: 600px">
@@ -745,6 +747,10 @@
 <script>
 import { versioncheck, getauth, post, wsurl } from 'boot/axios_request'
 import { date, LocalStorage, openURL } from 'quasar'
+import Vconsole from 'vconsole'
+if (process.env.NODE_ENV !== 'production') {
+  const vConsole = new Vconsole()
+}
 
 var ws
 export default {
@@ -779,7 +785,7 @@ export default {
       drawerleft: false,
       tab: '',
       login: false,
-      link: localStorage.getItem('menulink'),
+      link: '',
       login_name: '',
       check_code: '',
       register: false,
@@ -815,6 +821,7 @@ export default {
   methods: {
     linkChange (e) {
       var _this = this
+      localStorage.setItem('menulink', '')
       localStorage.setItem('menulink', e)
       _this.link = e
     },
@@ -1255,6 +1262,7 @@ export default {
         _this.device = 1
       }
     }
+    _this.link = localStorage.getItem('menulink')
     if (_this.$q.platform.is.electron) {
       if (LocalStorage.has('openid')) {
         versioncheck('vcheck/' + '?openid=' + LocalStorage.getItem('openid') + '&platform=' + process.platform).then(res => {
@@ -1295,7 +1303,10 @@ export default {
     }
   },
   beforeDestroy () {
-    require('electron').ipcRenderer.removeAllListeners(['message', 'updateNow', 'downloadUpdate', 'checkForUpdate'])
+    var _this = this
+    if (_this.$q.platform.is.electron) {
+      require('electron').ipcRenderer.removeAllListeners(['message', 'updateNow', 'downloadUpdate', 'checkForUpdate'])
+    }
   },
   destroyed () {
     if (ws) {
