@@ -98,7 +98,7 @@ export default {
   downloadasnlisttip: '到着通知リストのダウンロード',
   downloadasndetailtip: '到着通知の詳細をダウンロードする',
   printthisasn: '到着通知を表示',
-  confirmdelivery: 'ASNが到着したことを確認します',
+  confirmdelivery: 'が到着したことを確認します',
   finishloading: 'アンロードが完了したことを確認します',
   confirmsorted: '並べ替えが完了したことを確認します',
   downloaddnlist: 'ダウンロードリスト',
@@ -114,6 +114,7 @@ export default {
   confirmpicked: 'ピッキングが完了したことの確認',
   dispatch: '輸送する',
   deletebackorder: 'バックオーダーを削除する',
+  confirminventoryresults: '在庫結果の確認',
   baseinfo: {
     company_info: '会社情報',
     supplier: 'サプライヤー',
@@ -396,7 +397,8 @@ export default {
       cyclecountresulttip: '在庫結果を確認する',
       daychoice: '日付の選択',
       daychoicetip: '日付に対応する在庫テーブルを選択してください',
-      error1: 'カウントは0より大きくしなければなりません。'
+      error1: 'カウントは0より大きくしなければなりません。',
+      dateerror: '間違った日付が選択されました'
     }
   },
   warehouse: {
@@ -404,6 +406,7 @@ export default {
     binset: 'ロケーション設定',
     binsize: 'ロケーションサイズ',
     property: 'ロケーション属性',
+    printbin: '場所ラベルを印刷する',
     view_warehouseset: {
       error1: '倉庫名を入力してください。',
       error2: '倉庫がある都市を入力してください。',
@@ -463,6 +466,7 @@ export default {
     valerror: '正しい値を入力してください',
     unknow_error: '未知の間違い',
     network_error: 'ネットワーク異常',
+    cyclecounterror: 'データなし',
     400: '不正なリクエスト（400）',
     401: '認証が取得されていません（401）',
     403: 'アクセスが拒否されました（403）',

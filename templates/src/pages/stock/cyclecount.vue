@@ -31,7 +31,7 @@
           </q-btn-group>
           <q-space />
           <q-btn-group push>
-            <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCount()">
+            <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCounts()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('stock.view_stocklist.cyclecountresulttip') }}
               </q-tooltip>
@@ -51,13 +51,14 @@
             </q-td>
             <q-td key="physical_inventory" :props="props">
               <q-input dense
-                         outlined
-                         square
-                         v-model.number="props.row.physical_inventory"
-                         type="number"
-                         :label="$t('stock.view_stocklist.physical_inventory')"
-                         :rules="[ val => val && val > 0 || val == 0 || error1]"
-                />
+                       outlined
+                       square
+                       v-model.number="props.row.physical_inventory"
+                       type="number"
+                       :label="$t('stock.view_stocklist.physical_inventory')"
+                       :rules="[ val => val && val > 0 || val == 0 || error1]"
+                       @keyup="value=value.replace(/^(0+)|[^\d]+/g,'')"
+              />
             </q-td>
             <q-td key="difference" :props="props">
               {{ props.row.physical_inventory - props.row.goods_qty }}
@@ -81,9 +82,27 @@
         <q-btn flat push color="dark" :label="$t('no_data')"></q-btn>
       </div>
     </template>
+    <q-dialog v-model="CountFrom">
+      <q-card class="shadow-24">
+        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+          <div>{{ $t('confirminventoryresults') }}</div>
+          <q-space />
+          <q-btn dense flat icon="close" v-close-popup>
+            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
+          </q-btn>
+        </q-bar>
+        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
+          {{ $t('deletetip') }}
+        </q-card-section>
+        <div style="float: right; padding: 15px 15px 15px 0">
+          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="preloadDataCancel()">{{ $t('cancel') }}</q-btn>
+          <q-btn color="primary" @click="ConfirmCount()">{{ $t('submit') }}</q-btn>
+        </div>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
-  <router-view />
+<router-view />
 <script>
 
 import { date, exportFile, LocalStorage } from 'quasar'
@@ -117,10 +136,21 @@ export default {
         rowsPerPage: '10000'
       },
       options: [],
-      error1: this.$t('stock.view_stocklist.error1')
+      error1: this.$t('stock.view_stocklist.error1'),
+      CountFrom: false
     }
   },
   methods: {
+    // ad () {
+    //   var _this = this
+    //   var bef = _this.props.row.physical_inventory
+    //   var last = _this.props.row.goods_qty
+    //   var add = bef - last
+    //   var adds = String(add).indexOf('.') + 1
+    //   if (bef - last) {
+    //
+    //   }
+    // },
     getList () {
       var _this = this
       if (LocalStorage.has('auth')) {
@@ -144,21 +174,34 @@ export default {
     ConfirmCount () {
       var _this = this
       if (LocalStorage.has('auth')) {
-        postauth(_this.pathname, _this.table_list).then(res => {
+        if (this.table_list.length === 0) {
           _this.$q.notify({
-            message: 'Success Confirm Cycle Count',
-            icon: 'check',
-            color: 'green'
-          })
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
+            message: _this.$t('notice.cyclecounterror'),
             icon: 'close',
             color: 'negative'
           })
-        })
+        } else {
+          postauth(_this.pathname, _this.table_list).then(res => {
+            _this.CountFrom = false
+            _this.$q.notify({
+              message: 'Success Confirm Cycle Count',
+              icon: 'check',
+              color: 'green'
+            })
+          }).catch(err => {
+            _this.$q.notify({
+              message: err.detail,
+              icon: 'close',
+              color: 'negative'
+            })
+          })
+        }
       } else {
       }
+    },
+    preloadDataCancel () {
+      var _this = this
+      _this.CountFrom = false
     },
     downloadData () {
       var _this = this
@@ -178,6 +221,10 @@ export default {
           })
         }
       })
+    },
+    ConfirmCounts () {
+      var _this = this
+      _this.CountFrom = true
     }
   },
   created () {
