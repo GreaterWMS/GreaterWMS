@@ -114,6 +114,7 @@ export default {
   confirmpicked: 'Confirm Picked',
   dispatch: 'Dispatch & Shipping',
   deletebackorder: 'Delete Back Order',
+  confirminventoryresults: 'Confirm Inventory Results',
   baseinfo: {
     company_info: 'Company Info',
     supplier: 'Supplier',
@@ -395,7 +396,8 @@ export default {
       cyclecountresulttip: 'Confirm The Cycle Count Result',
       daychoice: 'Date Selection',
       daychoicetip: 'Select The Cycle Count Table Corresponding To The Date',
-      error1: 'Count Quantity Must Be Greater Than 0'
+      error1: 'Count Quantity Must Be Greater Than 0',
+      dateerror: 'Incorrect Date Selected'
     }
   },
   warehouse: {
@@ -403,6 +405,7 @@ export default {
     binset: 'Bin Set',
     binsize: 'Bin Size',
     property: 'Bin Property',
+    printbin: 'Print Bin Label',
     view_warehouseset: {
       error1: 'Please Enter the Warehouse Name',
       error2: 'Please Enter The Warehouse City',
@@ -462,6 +465,7 @@ export default {
     valerror: 'Please enter the correct value',
     unknow_error: 'Unknow Error',
     network_error: 'Network Abnormal',
+    cyclecounterror: 'No Data',
     400: 'Bad request (400)',
     401: 'Authorization not obtained (401)',
     403: 'Access denied (403)',
