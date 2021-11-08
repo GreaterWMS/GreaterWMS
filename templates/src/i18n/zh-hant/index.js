@@ -98,7 +98,7 @@ export default {
   downloadasnlisttip: '下載到貨通知書列表',
   downloadasndetailtip: '下載到貨通知書明細',
   printthisasn: '查看到貨通知書',
-  confirmdelivery: '確認ASN已經到貨 ',
+  confirmdelivery: '確認已經到貨 ',
   finishloading: '確認卸貨完成 ',
   confirmsorted: '確認分揀完成 ',
   downloaddnlist: '下載列表',
@@ -114,6 +114,7 @@ export default {
   confirmpicked: '確認揀貨完成',
   dispatch: '發貨',
   deletebackorder: '刪除欠貨訂單',
+  confirminventoryresults: '確認盤點結果',
   baseinfo: {
     company_info: '公司信息',
     supplier: '供應商',
@@ -396,7 +397,8 @@ export default {
       cyclecountresulttip: '確認盤點結果',
       daychoice: '日期選擇',
       daychoicetip: '選擇對應日期的盤點表',
-      error1: '計數數量必須大於0'
+      error1: '計數數量必須大於0',
+      dateerror: '選擇的日期不正確'
     }
   },
   warehouse: {
@@ -404,6 +406,7 @@ export default {
     binset: '庫位設置',
     binsize: '庫位尺寸',
     property: '庫位屬性',
+    printbin: '打印庫位標簽',
     view_warehouse: {
       warehouse_name: '倉庫名稱',
       warehouse_city: '所在城市',
@@ -461,6 +464,7 @@ export default {
     valerror: '請輸入正確的值',
     unknow_error: '未知錯誤',
     network_error: '網絡異常',
+    cyclecounterror: '沒有數據',
     400: '錯誤請求(400)',
     401: '未取得授權(401)',
     403: '拒絕訪問(403)',
