@@ -1,78 +1,392 @@
 <template>
-  <div>
-    <transition appear enter-active-class="animated fadeIn">
-      <q-table
-        class="my-sticky-header-table shadow-24"
-        :data="table_list"
-        row-key="id"
-        :separator="separator"
-        :loading="loading"
-        :columns="columns"
-        hide-bottom
-        :pagination.sync="pagination"
-        no-data-label="No data"
-        no-results-label="No data you want"
-        :table-style="{ height: height }"
-        flat
-        bordered
-      >
-        <template v-slot:top>
-          <q-btn-group push>
-            <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()" />
-          </q-btn-group>
-        </template>
-        <template v-slot:body="props">
-          <q-tr :props="props">
-            <q-td key="bin_name" :props="props">
-              {{ props.row.bin_name }}
-            </q-td>
-            <q-td key="goods_code" :props="props">
-              {{ props.row.goods_code }}
-            </q-td>
-            <q-td key="goods_desc" :props="props">
-              {{ props.row.goods_desc }}
-            </q-td>
-            <q-td key="goods_qty" :props="props">
-              {{ props.row.goods_qty }}
-            </q-td>
-            <q-td key="pick_qty" :props="props">
-              {{ props.row.pick_qty }}
-            </q-td>
-            <q-td key="picked_qty" :props="props">
-              {{ props.row.picked_qty }}
-            </q-td>
-            <q-td key="bin_size" :props="props">
-              {{ props.row.bin_size }}
-            </q-td>
-            <q-td key="bin_property" :props="props">
-              {{ props.row.bin_property }}
-            </q-td>
-            <q-td key="create_time" :props="props">
-              {{ props.row.create_time }}
-            </q-td>
-            <q-td key="update_time" :props="props">
-              {{ props.row.update_time }}
-            </q-td>
-          </q-tr>
-        </template>
-      </q-table>
-    </transition>
-    <template>
-      <div class="q-pa-lg flex cordova-footer">
-        <input id="scannedBarcodes" v-model="barscan" type="text" @input="datachange()" readonly disabled/>
-      </div>
-    </template>
-  </div>
+    <q-page>
+    <div v-show="!fab" class="q-pa-md row items-start q-gutter-md">
+      <q-card class="shadow-24" :style="{ width: width,  height: height }">
+      <q-card-section>
+        <q-btn-group push>
+          <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()" />
+        </q-btn-group>
+      </q-card-section>
+        <q-scroll-area
+          :thumb-style="thumbStyle"
+          :bar-style="barStyle"
+          :style="{height: scroll_height, width: width}"
+        >
+          <q-markup-table>
+            <thead>
+              <tr>
+                <th class="text-left">{{ bin_name_label }}</th>
+                <th class="text-right">{{ goods_code_label }}</th>
+                <th class="text-right">{{ goods_desc_label }}</th>
+                <th class="text-right">{{ goods_qty_label }}</th>
+                <th class="text-right">{{ pick_qty_label }}</th>
+                <th class="text-right">{{ picked_qty_label }}</th>
+                <th class="text-right">{{ bin_size_label }}</th>
+                <th class="text-right">{{ bin_property_label }}</th>
+                <th class="text-right">{{ create_time_label }}</th>
+                <th class="text-right">{{ update_time_label }}</th>
+              </tr>
+            </thead>
+            <tbody>
+            <template>
+              <tr v-for='(item, index) in table_list' :key='index'>
+                <td class="text-left">{{ item.bin_name }}</td>
+                <td class="text-right">{{ item.goods_code }}</td>
+                <td class="text-right">{{ item.goods_desc }}</td>
+                <td class="text-right">{{ item.goods_qty }}</td>
+                <td class="text-right">{{ item.pick_qty }}</td>
+                <td class="text-right">{{ item.picked_qty }}</td>
+                <td class="text-right">{{ item.bin_size }}</td>
+                <td class="text-right">{{ item.bin_property }}</td>
+                <td class="text-right">{{ item.create_time }}</td>
+                <td class="text-right">{{ item.update_time }}</td>
+              </tr>
+              </template>
+            </tbody>
+          </q-markup-table>
+        </q-scroll-area>
+      </q-card>
+      <input id="scannedBarcodes" v-model="barscan" type="text" @input="datachange()" readonly disabled/>
+    </div>
+      <q-page-sticky v-show="device === 2" position="bottom-right" :offset="[18, 18]">
+            <q-fab
+              v-model="fab"
+              icon="add"
+              direction="up"
+              color="accent"
+              vertical-actions-align="left"
+            >
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_locationquery')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Urovo'"
+                to="urovo_locationquery"
+                :style="{
+                         'margin-top': fab8.top,
+                         'margin-bottom': fab8.bottom,
+                         'margin-left': fab8.left,
+                         'margin-right': fab8.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/stock/stocklist.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_locationquery')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_locationquery"
+                :style="{
+                         'margin-top': fab8.top,
+                         'margin-bottom': fab8.bottom,
+                         'margin-left': fab8.left,
+                         'margin-right': fab8.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/stock/stocklist.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_goodsquery')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Urovo'"
+                to="urovo_goodslist"
+                :style="{
+                         'margin-top': fab7.top,
+                         'margin-bottom': fab7.bottom,
+                         'margin-left': fab7.left,
+                         'margin-right': fab7.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/goods/goodslist.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_goodsquery')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_goodslist"
+                :style="{
+                         'margin-top': fab7.top,
+                         'margin-bottom': fab7.bottom,
+                         'margin-left': fab7.left,
+                         'margin-right': fab7.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/goods/goodslist.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                icon="img:statics/stock/cyclecount.png"
+                :label="$t('scan.scan_inventory')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Urovo'"
+                to="urovo_cyclecount"
+                :style="{
+                         'margin-top': fab6.top,
+                         'margin-bottom': fab6.bottom,
+                         'margin-left': fab6.left,
+                         'margin-right': fab6.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/stock/cyclecount.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                icon="img:statics/stock/cyclecount.png"
+                :label="$t('scan.scan_inventory')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_cyclecount"
+                :style="{
+                         'margin-top': fab6.top,
+                         'margin-bottom': fab6.bottom,
+                         'margin-left': fab6.left,
+                         'margin-right': fab6.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/stock/cyclecount.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_movetobin')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Urovo'"
+                to="urovo_movetobin"
+                :style="{
+                         'margin-top': fab5.top,
+                         'margin-bottom': fab5.bottom,
+                         'margin-left': fab5.left,
+                         'margin-right': fab5.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/icons/movetobin.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_movetobin')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_movetobin"
+                :style="{
+                         'margin-top': fab5.top,
+                         'margin-bottom': fab5.bottom,
+                         'margin-left': fab5.left,
+                         'margin-right': fab5.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/icons/movetobin.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_shipping')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Urovo'"
+                to="urovo_shipping"
+                :style="{
+                         'margin-top': fab4.top,
+                         'margin-bottom': fab4.bottom,
+                         'margin-left': fab4.left,
+                         'margin-right': fab4.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/icons/car.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_shipping')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_shipping"
+                :style="{
+                         'margin-top': fab4.top,
+                         'margin-bottom': fab4.bottom,
+                         'margin-left': fab4.left,
+                         'margin-right': fab4.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/icons/car.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_picking')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Urovo'"
+                to="urovo_picking"
+                :style="{
+                         'margin-top': fab3.top,
+                         'margin-bottom': fab3.bottom,
+                         'margin-left': fab3.left,
+                         'margin-right': fab3.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/outbound/picked.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_picking')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_picking"
+                :style="{
+                         'margin-top': fab3.top,
+                         'margin-bottom': fab3.bottom,
+                         'margin-left': fab3.left,
+                         'margin-right': fab3.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/outbound/picked.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_uptobin')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Urovo'"
+                to="urovo_uptobin"
+                :style="{
+                         'margin-top': fab2.top,
+                         'margin-bottom': fab2.bottom,
+                         'margin-left': fab2.left,
+                         'margin-right': fab2.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/inbound/presortstock.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_uptobin')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_uptobin"
+                :style="{
+                         'margin-top': fab2.top,
+                         'margin-bottom': fab2.bottom,
+                         'margin-left': fab2.left,
+                         'margin-right': fab2.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/inbound/presortstock.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_sorting')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Urovo'"
+                to="urovo_sorting"
+                :style="{
+                         'margin-top': fab1.top,
+                         'margin-bottom': fab1.bottom,
+                         'margin-left': fab1.left,
+                         'margin-right': fab1.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/inbound/preloadstock.png" />
+              </q-fab-action>
+              <q-fab-action
+                square
+                flat
+                external-label
+                label-position="bottom"
+                label-class="text-black"
+                :label="$t('scan.scan_sorting')"
+                label-style="background-color:transparent"
+                v-show="device_name === 'Zebra Technologies'"
+                to="zebra_sorting"
+                :style="{
+                         'margin-top': fab1.top,
+                         'margin-bottom': fab1.bottom,
+                         'margin-left': fab1.left,
+                         'margin-right': fab1.right,
+                         'height': touchheight,
+                         'width': touchwidth
+              }">
+                <q-img src="statics/inbound/preloadstock.png" />
+              </q-fab-action>
+            </q-fab>
+          </q-page-sticky>
+    </q-page>
 </template>
 <router-view />
 
 <script>
-import { getauth, putauth } from 'boot/axios_request'
-import Vconsole from 'vconsole'
-import { LocalStorage } from 'quasar'
-if (process.env.NODE_ENV !== 'production') {
-  const vConsole = new Vconsole()
-}
+import { getauth } from 'boot/axios_request'
+
 var sendCommandResults = 'false'
 
 function sendCommand (extraName, extraValue) {
@@ -80,11 +394,11 @@ function sendCommand (extraName, extraValue) {
   broadcastExtras[extraName] = extraValue
   broadcastExtras.SEND_RESULT = sendCommandResults
   window.plugins.intentShim.sendBroadcast({
-      action: 'com.symbol.datawedge.api.ACTION',
-      extras: broadcastExtras
-    },
-    function () { },
-    function () { }
+    action: 'com.symbol.datawedge.api.ACTION',
+    extras: broadcastExtras
+  },
+  function () { },
+  function () { }
   )
 }
 
@@ -111,7 +425,7 @@ function barcodeScanned (scanData, timeOfScan) {
 }
 
 export default {
-  name: 'Pageurovo_locationquery',
+  name: 'Pagezebra_locationquery',
   data () {
     return {
       openid: '',
@@ -120,27 +434,92 @@ export default {
       pathname: 'stock/bin/',
       separator: 'cell',
       loading: false,
+      device: 0,
+      device_name: '',
+      width: '',
       height: '',
+      scroll_height: '',
       table_list: [],
-      columns: [
-        { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
-        { name: 'goods_code', label: this.$t('stock.view_stocklist.goods_code'), field: 'goods_code', align: 'center' },
-        { name: 'goods_desc', label: this.$t('stock.view_stocklist.goods_desc'), field: 'onhand_stock', align: 'center' },
-        { name: 'goods_qty', label: this.$t('stock.view_stocklist.onhand_stock'), field: 'goods_qty', align: 'center' },
-        { name: 'pick_qty', label: this.$t('stock.view_stocklist.pick_stock'), field: 'pick_qty', align: 'center' },
-        { name: 'picked_qty', label: this.$t('stock.view_stocklist.picked_stock'), field: 'picked_qty', align: 'center' },
-        { name: 'bin_size', label: this.$t('warehouse.view_binset.bin_size'), field: 'bin_size', align: 'center' },
-        { name: 'bin_property', label: this.$t('warehouse.view_binset.bin_property'), field: 'bin_property', align: 'center' },
-        { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
-        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' }
-      ],
+      bin_name_label: this.$t('warehouse.view_binset.bin_name'),
+      goods_code_label: this.$t('stock.view_stocklist.goods_code'),
+      goods_desc_label: this.$t('stock.view_stocklist.goods_desc'),
+      goods_qty_label: this.$t('stock.view_stocklist.onhand_stock'),
+      pick_qty_label: this.$t('stock.view_stocklist.pick_stock'),
+      picked_qty_label: this.$t('stock.view_stocklist.picked_stock'),
+      bin_size_label: this.$t('warehouse.view_binset.bin_size'),
+      bin_property_label: this.$t('warehouse.view_binset.bin_property'),
+      create_time_label: this.$t('createtime'),
+      update_time_label: this.$t('updatetime'),
       filter: '',
       pagination: {
         page: 1,
         rowsPerPage: '10000'
       },
-      screenq: this.$q.screen,
-      IMEI: window.device,
+      thumbStyle: {
+        right: '4px',
+        borderRadius: '5px',
+        backgroundColor: '#027be3',
+        width: '5px',
+        opacity: 0.75
+      },
+      barStyle: {
+        right: '2px',
+        borderRadius: '9px',
+        backgroundColor: '#027be3',
+        width: '9px',
+        opacity: 0.2
+      },
+      fab: false,
+      touchheight: ((this.$q.screen.width - 50) / 5) + '' + 'px',
+      touchwidth: ((this.$q.screen.width - 50) / 5) + '' + 'px',
+      fab1: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      fab2: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      fab3: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      fab4: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      fab5: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      fab6: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      fab7: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
+      fab8: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: ''
+      },
       batteryStatus: 'determining...',
       barscan: '',
       bin_scan: ''
@@ -155,10 +534,7 @@ export default {
           _this.barscan = res.results[0].code
           if (res.results[0].mode === 'BINSET') {
             _this.bin_scan = res.results[0].code
-            _this.goods_scan = ''
-          } else if (res.results[0].mode === 'GOODS') {
-            _this.goods_scan = res.results[0].code
-            _this.countAdd(_this.goods_scan)
+            _this.getList(res.results[0].code)
           }
         }).catch(err => {
           _this.$q.notify({
@@ -170,18 +546,10 @@ export default {
       } else {
       }
     },
-    countAdd (e) {
-      var _this = this
-      _this.table_list.filter(function (value, index, array) {
-        if (value.bin_name === _this.bin_scan && value.goods_code === e) {
-          _this.table_list[index].physical_inventory += 1
-        }
-      })
-    },
-    getList () {
+    getList (e) {
       var _this = this
       if (_this.$q.localStorage.has('auth')) {
-        getauth(_this.pathname, {
+        getauth(_this.pathname + '?max_page=10000&bin_name=' + e, {
         }).then(res => {
           _this.table_list = res.results
         }).catch(err => {
@@ -198,27 +566,6 @@ export default {
       var _this = this
       _this.barscan = ''
       _this.bin_scan = ''
-      _this.goods_scan = ''
-      _this.getList()
-    },
-    ConfirmCount () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        putauth(_this.pathname, _this.table_list).then(res => {
-          _this.$q.notify({
-            message: 'Success Confirm Cycle Count',
-            icon: 'check',
-            color: 'green'
-          })
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      } else {
-      }
     },
     updateBatteryStatus (status) {
       var _this = this
@@ -270,89 +617,89 @@ export default {
     },
     registerBroadcastReceiver () {
       window.plugins.intentShim.registerBroadcastReceiver({
-          filterActions: [
-            'com.greaterwms.app.ACTION',
-            'com.symbol.datawedge.api.RESULT_ACTION'
-          ],
-          filterCategories: [
-            'android.intent.category.DEFAULT'
-          ]
-        },
-        function (intent) {
-          // eslint-disable-next-line no-prototype-builtins
-          if (intent.extras.hasOwnProperty('RESULT_INFO')) {
-            var commandResult = intent.extras.RESULT + ' (' +
+        filterActions: [
+          'com.greaterwms.app.ACTION',
+          'com.symbol.datawedge.api.RESULT_ACTION'
+        ],
+        filterCategories: [
+          'android.intent.category.DEFAULT'
+        ]
+      },
+      function (intent) {
+        // eslint-disable-next-line no-prototype-builtins
+        if (intent.extras.hasOwnProperty('RESULT_INFO')) {
+          var commandResult = intent.extras.RESULT + ' (' +
               intent.extras.COMMAND.substring(intent.extras.COMMAND.lastIndexOf('.') + 1, intent.extras.COMMAND.length) + ')'// + JSON.stringify(intent.extras.RESULT_INFO);
-            commandReceived(commandResult.toLowerCase())
+          commandReceived(commandResult.toLowerCase())
+        }
+        // eslint-disable-next-line no-prototype-builtins
+        if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_VERSION_INFO')) {
+          //  The version has been returned (DW 6.3 or higher).  Includes the DW version along with other subsystem versions e.g MX
+          var versionInfo = intent.extras['com.symbol.datawedge.api.RESULT_GET_VERSION_INFO']
+          var datawedgeVersion = versionInfo.DATAWEDGE
+          //  Fire events sequentially so the application can gracefully degrade the functionality available on earlier DW versions
+          if (datawedgeVersion >= '6.3') {
+            sendCommand('com.symbol.datawedge.api.CREATE_PROFILE', 'wms')
+            sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
+            sendCommand('com.symbol.datawedge.api.ENUMERATE_SCANNERS', '')
           }
-          // eslint-disable-next-line no-prototype-builtins
-          if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_VERSION_INFO')) {
-            //  The version has been returned (DW 6.3 or higher).  Includes the DW version along with other subsystem versions e.g MX
-            var versionInfo = intent.extras['com.symbol.datawedge.api.RESULT_GET_VERSION_INFO']
-            var datawedgeVersion = versionInfo.DATAWEDGE
-            //  Fire events sequentially so the application can gracefully degrade the functionality available on earlier DW versions
-            if (datawedgeVersion >= '6.3') {
-              sendCommand('com.symbol.datawedge.api.CREATE_PROFILE', 'wms')
-              sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
-              sendCommand('com.symbol.datawedge.api.ENUMERATE_SCANNERS', '')
+          if (datawedgeVersion >= '6.4') {
+            var profileConfig = {
+              PROFILE_NAME: 'wms',
+              PROFILE_ENABLED: 'true',
+              CONFIG_MODE: 'UPDATE',
+              PLUGIN_CONFIG: {
+                PLUGIN_NAME: 'BARCODE',
+                RESET_CONFIG: 'true',
+                PARAM_LIST: {}
+              },
+              APP_LIST: [{
+                PACKAGE_NAME: 'com.greaterwms.app',
+                ACTIVITY_LIST: ['*']
+              }]
             }
-            if (datawedgeVersion >= '6.4') {
-              var profileConfig = {
-                PROFILE_NAME: 'wms',
-                PROFILE_ENABLED: 'true',
-                CONFIG_MODE: 'UPDATE',
-                PLUGIN_CONFIG: {
-                  PLUGIN_NAME: 'BARCODE',
-                  RESET_CONFIG: 'true',
-                  PARAM_LIST: {}
-                },
-                APP_LIST: [{
-                  PACKAGE_NAME: 'com.greaterwms.app',
-                  ACTIVITY_LIST: ['*']
-                }]
-              }
-              sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
-              //  Configure the created profile (intent plugin)
-              var profileConfig2 = {
-                PROFILE_NAME: 'wms',
-                PROFILE_ENABLED: 'true',
-                CONFIG_MODE: 'UPDATE',
-                PLUGIN_CONFIG: {
-                  PLUGIN_NAME: 'INTENT',
-                  RESET_CONFIG: 'true',
-                  PARAM_LIST: {
-                    intent_output_enabled: 'true',
-                    intent_action: 'com.greaterwms.app.ACTION',
-                    intent_delivery: '2'
-                  }
+            sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
+            //  Configure the created profile (intent plugin)
+            var profileConfig2 = {
+              PROFILE_NAME: 'wms',
+              PROFILE_ENABLED: 'true',
+              CONFIG_MODE: 'UPDATE',
+              PLUGIN_CONFIG: {
+                PLUGIN_NAME: 'INTENT',
+                RESET_CONFIG: 'true',
+                PARAM_LIST: {
+                  intent_output_enabled: 'true',
+                  intent_action: 'com.greaterwms.app.ACTION',
+                  intent_delivery: '2'
                 }
               }
-              sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig2)
-              //  Give some time for the profile to settle then query its value
-              setTimeout(function () {
-                sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
-              }, 1000)
             }
-            if (datawedgeVersion >= '6.5') {
-              //  Instruct the API to send
-              sendCommandResults = 'true'
-            }
-            // eslint-disable-next-line no-prototype-builtins
-          } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS')) {
-            //  Return from our request to enumerate the available scanners
-            var enumeratedScannersObj = intent.extras['com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS']
-            enumerateScanners(enumeratedScannersObj)
-            // eslint-disable-next-line no-prototype-builtins
-          } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE')) {
-            //  Return from our request to obtain the active profile
-            var activeProfileObj = intent.extras['com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE']
-            activeProfile(activeProfileObj)
-            // eslint-disable-next-line no-prototype-builtins
-          } else if (!intent.extras.hasOwnProperty('RESULT_INFO')) {
-            //  A barcode has been scanned
-            barcodeScanned(intent, new Date().toLocaleString())
+            sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig2)
+            //  Give some time for the profile to settle then query its value
+            setTimeout(function () {
+              sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
+            }, 1000)
           }
+          if (datawedgeVersion >= '6.5') {
+            //  Instruct the API to send
+            sendCommandResults = 'true'
+          }
+          // eslint-disable-next-line no-prototype-builtins
+        } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS')) {
+          //  Return from our request to enumerate the available scanners
+          var enumeratedScannersObj = intent.extras['com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS']
+          enumerateScanners(enumeratedScannersObj)
+          // eslint-disable-next-line no-prototype-builtins
+        } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE')) {
+          //  Return from our request to obtain the active profile
+          var activeProfileObj = intent.extras['com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE']
+          activeProfile(activeProfileObj)
+          // eslint-disable-next-line no-prototype-builtins
+        } else if (!intent.extras.hasOwnProperty('RESULT_INFO')) {
+          //  A barcode has been scanned
+          barcodeScanned(intent, new Date().toLocaleString())
         }
+      }
       )
     }
   },
@@ -378,8 +725,65 @@ export default {
   },
   mounted () {
     var _this = this
+    if (window.device) {
+      if (window.device.manufacturer === 'Urovo' || window.device.manufacturer === 'Zebra Technologies') {
+        _this.device_name = window.device.manufacturer
+        _this.device = 2
+      } else {
+        _this.device = 1
+      }
+    } else {
+      if (_this.$q.platform.is.mobile) {
+        _this.device = 1
+      }
+    }
+    if (_this.$q.platform.is.electron) {
+      _this.height = String(_this.$q.screen.height) + 'px'
+    } else if (_this.$q.platform.is.cordova) {
+      if (window.device) {
+        window.plugins.insomnia.keepAwake()
+        if (window.device.manufacturer === 'Urovo' || window.device.manufacturer === 'Zebra Technologies') {
+          _this.fab1.top = '0px'
+          _this.fab1.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
+          _this.fab1.left = (((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) + '' + 'px'
+          _this.fab1.right = '0px'
+          _this.fab2.top = '0px'
+          _this.fab2.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
+          _this.fab2.left = ((((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) / 2) + '' + 'px'
+          _this.fab2.right = '0px'
+          _this.fab3.top = '0px'
+          _this.fab3.bottom = '0px'
+          _this.fab3.left = '-0px'
+          _this.fab3.right = '0px'
+          _this.fab4.top = ((_this.$q.screen.width - 50) / 5) + '' + 'px'
+          _this.fab4.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
+          _this.fab4.left = (((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) + '' + 'px'
+          _this.fab4.right = '0px'
+          _this.fab5.top = '0px'
+          _this.fab5.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
+          _this.fab5.left = ((((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) / 2) + '' + 'px'
+          _this.fab5.right = '0px'
+          _this.fab6.top = '0px'
+          _this.fab6.bottom = '0px'
+          _this.fab6.left = '0px'
+          _this.fab6.right = '0px'
+          _this.fab7.top = ((_this.$q.screen.width - 50) / 5) + '' + 'px'
+          _this.fab7.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
+          _this.fab7.left = (((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) + '' + 'px'
+          _this.fab7.right = '0px'
+          _this.fab8.top = '0px'
+          _this.fab8.bottom = ((_this.$q.screen.width - 50) / 8) + '' + 'px'
+          _this.fab8.left = ((((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) / 2) + '' + 'px'
+          _this.fab8.right = '0px'
+        }
+      }
+    } else {
+      _this.height = _this.$q.screen.height + '' + 'px'
+    }
     window.addEventListener('batterystatus', _this.updateBatteryStatus, false)
-    _this.height = this.$q.screen.height - 175 + '' + 'px'
+    _this.width = _this.$q.screen.width * 0.9 + '' + 'px'
+    _this.height = _this.$q.screen.height - 125 + '' + 'px'
+    _this.scroll_height = _this.$q.screen.height - 225 + '' + 'px'
     _this.barscan = ''
     _this.bin_scan = ''
     _this.scanEvents()
