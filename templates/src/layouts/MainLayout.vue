@@ -486,9 +486,7 @@
        height: container_height,
        width: $q.screen.width
     }">
-      <q-page class="flex flex-top">
         <router-view />
-      </q-page>
     </q-page-container>
     <q-dialog v-model="chat">
     <q-card style="width: 600px">
