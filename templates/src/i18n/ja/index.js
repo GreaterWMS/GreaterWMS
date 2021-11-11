@@ -467,6 +467,7 @@ export default {
     unknow_error: '未知の間違い',
     network_error: 'ネットワーク異常',
     cyclecounterror: 'データなし',
+    userererror: 'ユーザー名は既に存在します',
     400: '不正なリクエスト（400）',
     401: '認証が取得されていません（401）',
     403: 'アクセスが拒否されました（403）',

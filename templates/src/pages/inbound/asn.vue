@@ -64,10 +64,10 @@
               {{ props.row.asn_status }}
             </q-td>
             <q-td key="total_weight" :props="props">
-              {{ props.row.total_weight }}
+              {{ props.row.total_weight.toFixed(4) }}
             </q-td>
             <q-td key="total_volume" :props="props">
-              {{ props.row.total_volume }}
+              {{ props.row.total_volume.toFixed(4) }}
             </q-td>
             <q-td key="supplier" :props="props">
               {{ props.row.supplier }}

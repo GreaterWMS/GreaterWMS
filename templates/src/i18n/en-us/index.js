@@ -466,6 +466,7 @@ export default {
     unknow_error: 'Unknow Error',
     network_error: 'Network Abnormal',
     cyclecounterror: 'No Data',
+    userererror: 'Username Already Exists',
     400: 'Bad request (400)',
     401: 'Authorization not obtained (401)',
     403: 'Access denied (403)',
