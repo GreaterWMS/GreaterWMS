@@ -465,6 +465,7 @@ export default {
     unknow_error: '未知錯誤',
     network_error: '網絡異常',
     cyclecounterror: '沒有數據',
+    userererror: '用戶名已存在',
     400: '錯誤請求(400)',
     401: '未取得授權(401)',
     403: '拒絕訪問(403)',
