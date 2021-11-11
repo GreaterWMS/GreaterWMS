@@ -472,6 +472,7 @@ export default {
     unknow_error: '未知错误',
     network_error: '网络异常',
     cyclecounterror: '没有数据',
+    userererror: '用户名已存在',
     400: '错误请求(400)',
     401: '未取得授权(401)',
     403: '拒绝访问(403)',
