@@ -120,7 +120,7 @@
                              "
                        round flat push color="info" icon="print" @click="viewData(props.row)">
                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('goods.view_goodslist.print_goods_label') }}
+                    {{ $t('warehouse.printbin') }}
                   </q-tooltip>
                 </q-btn>
                 <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
