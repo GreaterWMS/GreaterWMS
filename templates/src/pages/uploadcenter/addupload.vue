@@ -160,9 +160,9 @@ export default {
   mounted () {
     var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 500) + 'px'
+      _this.height = String(_this.$q.screen.height - 480) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 500 + '' + 'px'
+      _this.height = _this.$q.screen.height - 480 + '' + 'px'
     }
   },
   updated () {
