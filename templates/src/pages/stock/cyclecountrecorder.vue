@@ -126,8 +126,8 @@ export default {
       var _this = this
       if (LocalStorage.has('auth')) {
         let result_date = date.formatDate(_this.date, 'YYYY-MM-DD')
-        const timeStamp = Date.now()
-        const formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
+        let timeStamp = Date.now()
+        let formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
         if (_this.date === formattedString) {
           result_date = ''
         }
@@ -184,8 +184,8 @@ export default {
     },
     reFresh () {
       var _this = this
-      const timeStamp = Date.now()
-      const formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
+      let timeStamp = Date.now()
+      let formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
       _this.date = formattedString
       console.log(_this.date)
       _this.getList()
@@ -197,7 +197,7 @@ export default {
         return
       }
       update(() => {
-        const needle = val.toLowerCase()
+        let needle = val.toLowerCase()
         getauth('binset/?bin_name__icontains=' + needle).then(res => {
           var binlist = []
           res.results.forEach(detail => {
