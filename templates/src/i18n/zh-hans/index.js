@@ -98,7 +98,7 @@ export default {
   downloadasnlisttip: '下载到货通知书列表',
   downloadasndetailtip: '下载到货通知书明细',
   printthisasn: '查看到货通知书',
-  confirmdelivery: '确认ASN已经到货',
+  confirmdelivery: '确认已经到货',
   finishloading: '确认卸货完成',
   confirmsorted: '确认分拣完成',
   downloaddnlist: '下载列表',
@@ -114,6 +114,7 @@ export default {
   confirmpicked: '确认拣货完成',
   dispatch: '装车发货',
   deletebackorder: '删除欠货订单',
+  confirminventoryresults: '确认盘点结果',
   baseinfo: {
     company_info: '公司信息',
     supplier: '供应商',
@@ -401,7 +402,8 @@ export default {
       cyclecountresulttip: '确认盘点结果',
       daychoice: '日期选择',
       daychoicetip: '选择对应日期的盘点表',
-      error1: '计数数量必须大于0'
+      error1: '计数数量必须大于0',
+      dateerror: '选择的日期不正确'
     }
   },
   warehouse: {
@@ -409,6 +411,7 @@ export default {
     binset: '库位设置',
     binsize: '库位尺寸',
     property: '库位属性',
+    printbin: '打印库位标签',
     view_warehouseset: {
       error1: '请输入仓库名称',
       error2: '请输入仓库所在城市',
@@ -468,6 +471,8 @@ export default {
     valerror: '请输入正确的值',
     unknow_error: '未知错误',
     network_error: '网络异常',
+    cyclecounterror: '没有数据',
+    userererror: '用户名已存在',
     400: '错误请求(400)',
     401: '未取得授权(401)',
     403: '拒绝访问(403)',

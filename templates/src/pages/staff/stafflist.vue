@@ -405,22 +405,35 @@ export default {
     },
     newDataSubmit () {
       var _this = this
-      _this.RandomCheckCode()
-      postauth(_this.pathname, _this.newFormData).then(res => {
-        _this.getList()
-        _this.newDataCancel()
-        _this.$q.notify({
-          message: 'Success Create',
-          icon: 'check',
-          color: 'green'
+      var staffs = []
+      _this.table_list.forEach(i => {
+        staffs.push(i.staff_name)
+      })
+      console.log(staffs)
+      if (staffs.indexOf(this.newFormData.staff_name) === -1) {
+        _this.RandomCheckCode()
+        postauth(_this.pathname, _this.newFormData).then(res => {
+          _this.getList()
+          _this.newDataCancel()
+          _this.$q.notify({
+            message: 'Success Create',
+            icon: 'check',
+            color: 'green'
+          })
+        }).catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          })
         })
-      }).catch(err => {
+      } else {
         _this.$q.notify({
-          message: err.detail,
+          message: _this.$t('notice.userererror'),
           icon: 'close',
           color: 'negative'
         })
-      })
+      }
     },
     newDataCancel () {
       var _this = this
