@@ -465,8 +465,29 @@ export default {
     valerror: 'Please enter the correct value',
     unknow_error: 'Unknow Error',
     network_error: 'Network Abnormal',
+    nullerror: '',
     cyclecounterror: 'No Data',
     userererror: 'Username Already Exists',
+    capitalerror: 'Fixed Asset Name Already Exists',
+    goodserror: {
+      goods_listerror: 'The Product Code Already Exists',
+      goods_uniterror: 'Commodity Unit Already Exists',
+      goods_classerror: 'The Product Category Already Exists',
+      goods_colorerror: 'Product Color Already Exists',
+      goods_branderror: 'The Product Brand Already Exists',
+      goods_shapeerror: 'The Product Shape Already Exists',
+      goods_specserror: 'Product Specifications Already Exists',
+      goods_originerror: 'The Origin Of The Goods Already Exists'
+    },
+    baseinfoerror: {
+      companyerror: 'Company Name Already Exists',
+      customererror: 'Customer Name Already Exists',
+      suppliererror: 'Supplier Name Already Exists'
+    },
+    warehouseerror: {
+      binseterror: 'The Location Name Already Exists',
+      binsizeerror: 'Location Size Already Exists'
+    },
     400: 'Bad request (400)',
     401: 'Authorization not obtained (401)',
     403: 'Access denied (403)',

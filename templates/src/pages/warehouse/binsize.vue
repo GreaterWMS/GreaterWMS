@@ -372,22 +372,40 @@ export default {
     },
     newDataSubmit () {
       var _this = this
-      _this.newFormData.creater = _this.login_name
-      postauth(_this.pathname, _this.newFormData).then(res => {
-        _this.getList()
-        _this.newDataCancel()
-        _this.$q.notify({
-          message: 'Success Create',
-          icon: 'check',
-          color: 'green'
+      var binsizes = []
+      _this.table_list.forEach(i => {
+        binsizes.push(i.bin_size)
+      })
+      if (binsizes.indexOf(_this.newFormData.bin_size) === -1 && _this.newFormData.bin_size.length !== 0) {
+        _this.newFormData.creater = _this.login_name
+        postauth(_this.pathname, _this.newFormData).then(res => {
+          _this.getList()
+          _this.newDataCancel()
+          _this.$q.notify({
+            message: 'Success Create',
+            icon: 'check',
+            color: 'green'
+          })
+        }).catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          })
         })
-      }).catch(err => {
+      } else if (binsizes.indexOf(_this.newFormData.bin_size) !== -1) {
         _this.$q.notify({
-          message: err.detail,
+          message: _this.$t('notice.warehouseerror.binsizeerror'),
           icon: 'close',
           color: 'negative'
         })
-      })
+      } else if (_this.newFormData.bin_size.length === 0) {
+        _this.$q.notify({
+          message: _this.$t('warehouse.view_binsize.error1'),
+          icon: 'close',
+          color: 'negative'
+        })
+      }
     },
     newDataCancel () {
       var _this = this
