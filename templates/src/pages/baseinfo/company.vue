@@ -398,6 +398,7 @@ export default {
           color: 'negative'
         })
       }
+      companies = []
     },
     newDataCancel () {
       var _this = this
