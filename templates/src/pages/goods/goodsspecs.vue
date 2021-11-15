@@ -317,6 +317,7 @@ export default {
           color: 'negative'
         })
       }
+      goodsspecses = []
     },
     newDataCancel () {
       var _this = this

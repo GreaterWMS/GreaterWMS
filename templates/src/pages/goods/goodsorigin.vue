@@ -317,6 +317,7 @@ export default {
           color: 'negative'
         })
       }
+      goodsorigins = []
     },
     newDataCancel () {
       var _this = this
