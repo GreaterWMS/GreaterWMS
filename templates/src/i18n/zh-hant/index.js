@@ -464,8 +464,29 @@ export default {
     valerror: '請輸入正確的值',
     unknow_error: '未知錯誤',
     network_error: '網絡異常',
+    nullerror: '',
     cyclecounterror: '沒有數據',
     userererror: '用戶名已存在',
+    capitalerror: '固定資產名稱已存在',
+    goodserror: {
+      goods_listerror: '商品編碼已存在',
+      goods_uniterror: '商品單位已存在',
+      goods_classerror: '商品類別已存在',
+      goods_colorerror: '商品顔色已存在',
+      goods_branderror: '商品品牌已存在',
+      goods_shapeerror: '商品形狀已存在',
+      goods_specserror: '商品規格已存在',
+      goods_originerror: '商品產地已存在'
+    },
+    baseinfoerror: {
+      companyerror: '公司名稱已存在',
+      customererror: '客戶名稱已存在',
+      suppliererror: '供應商名稱已存在'
+    },
+    warehouseerror: {
+      binseterror: '庫位名稱已存在',
+      binsizeerror: '庫位尺寸已存在'
+    },
     400: '錯誤請求(400)',
     401: '未取得授權(401)',
     403: '拒絕訪問(403)',

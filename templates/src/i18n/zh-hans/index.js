@@ -471,8 +471,29 @@ export default {
     valerror: '请输入正确的值',
     unknow_error: '未知错误',
     network_error: '网络异常',
+    nullerror: '',
     cyclecounterror: '没有数据',
     userererror: '用户名已存在',
+    capitalerror: '固定资产名称已存在',
+    goodserror: {
+      goods_listerror: '商品编码已存在',
+      goods_uniterror: '商品单位已存在',
+      goods_classerror: '商品类别已存在',
+      goods_colorerror: '商品颜色已存在',
+      goods_branderror: '商品品牌已存在',
+      goods_shapeerror: '商品形状已存在',
+      goods_specserror: '商品规格已存在',
+      goods_originerror: '商品产地已存在'
+    },
+    baseinfoerror: {
+      companyerror: '公司名称已存在',
+      customererror: '客户名称已存在',
+      suppliererror: '供应商名称已存在'
+    },
+    warehouseerror: {
+      binseterror: '库位名称已存在',
+      binsizeerror: '库位尺寸已存在'
+    },
     400: '错误请求(400)',
     401: '未取得授权(401)',
     403: '拒绝访问(403)',
