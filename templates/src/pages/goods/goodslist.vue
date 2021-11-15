@@ -862,6 +862,7 @@ export default {
           color: 'negative'
         })
       }
+      goodscodes = []
     },
     newDataCancel () {
       var _this = this

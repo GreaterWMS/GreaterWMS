@@ -455,6 +455,7 @@ export default {
           color: 'negative'
         })
       }
+      customers = []
     },
     newDataCancel () {
       var _this = this
