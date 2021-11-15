@@ -455,6 +455,7 @@ export default {
           color: 'negative'
         })
       }
+      suppliers = []
     },
     newDataCancel () {
       var _this = this

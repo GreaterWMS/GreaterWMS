@@ -317,6 +317,7 @@ export default {
           color: 'negative'
         })
       }
+      goodsunits = []
     },
     newDataCancel () {
       var _this = this
