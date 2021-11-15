@@ -411,6 +411,7 @@ export default {
           })
         })
       }
+      warehousesets = []
     },
     newDataCancel () {
       var _this = this
