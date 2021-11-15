@@ -421,22 +421,40 @@ export default {
     },
     newDataSubmit () {
       var _this = this
-      _this.newFormData.creater = _this.login_name
-      postauth(_this.pathname, _this.newFormData).then(res => {
-        _this.getList()
-        _this.newDataCancel()
-        _this.$q.notify({
-          message: 'Success Create',
-          icon: 'check',
-          color: 'green'
+      var customers = []
+      _this.table_list.forEach(i => {
+        customers.push(i.customer_name)
+      })
+      if (customers.indexOf(_this.newFormData.customer_name) === -1 && _this.newFormData.customer_name.length !== 0) {
+        _this.newFormData.creater = _this.login_name
+        postauth(_this.pathname, _this.newFormData).then(res => {
+          _this.getList()
+          _this.newDataCancel()
+          _this.$q.notify({
+            message: 'Success Create',
+            icon: 'check',
+            color: 'green'
+          })
+        }).catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          })
         })
-      }).catch(err => {
+      } else if (customers.indexOf(_this.newFormData.customer_name) !== -1){
         _this.$q.notify({
-          message: err.detail,
+          message: _this.$t('notice.baseinfoerror.customererror'),
           icon: 'close',
           color: 'negative'
         })
-      })
+      } else if (_this.newFormData.customer_name.length === 0) {
+        _this.$q.notify({
+          message: _this.$t('baseinfo.view_customer.error1'),
+          icon: 'close',
+          color: 'negative'
+        })
+      }
     },
     newDataCancel () {
       var _this = this

@@ -356,7 +356,7 @@ export default {
     view_staff: {
       staff_name: 'スタッフ名',
       staff_type: 'スタッフクラス型',
-      error1: '数量を入力してください。数量は必ず0より大きくしてください。',
+      error1: '従業員名を入力してください',
       error2: '従業員の名前を入力してください。'
     }
   },
@@ -468,6 +468,25 @@ export default {
     network_error: 'ネットワーク異常',
     cyclecounterror: 'データなし',
     userererror: 'ユーザー名は既に存在します',
+    goodserror: {
+      goods_listerror: '商品コードは既に存在します',
+      goods_uniterror: '商品ユニットはすでに存在します',
+      goods_classerror: '商品カテゴリはすでに存在します',
+      goods_colorerror: '商品の色はすでに存在します',
+      goods_branderror: '製品ブランドはすでに存在します',
+      goods_shapeerror: '商品の形状はすでに存在します',
+      goods_specserror: '製品仕様はすでに存在します',
+      goods_originerror: '商品の出所はすでに存在します'
+    },
+    baseinfoerror: {
+      companyerror: '会社名はすでに存在します',
+      customererror: '顧客名はすでに存在します',
+      suppliererror: 'サプライヤー名はすでに存在します'
+    },
+    warehouseerror: {
+      binseterror: 'ロケーション名は既に存在します',
+      binsizeerror: 'ロケーションサイズはすでに存在します'
+    },
     400: '不正なリクエスト（400）',
     401: '認証が取得されていません（401）',
     403: 'アクセスが拒否されました（403）',

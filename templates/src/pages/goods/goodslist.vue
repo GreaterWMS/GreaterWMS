@@ -828,22 +828,40 @@ export default {
     },
     newDataSubmit () {
       var _this = this
-      _this.newFormData.creater = _this.login_name
-      postauth(_this.pathname, _this.newFormData).then(res => {
-        _this.getList()
-        _this.newDataCancel()
-        _this.$q.notify({
-          message: 'Success Create',
-          icon: 'check',
-          color: 'green'
+      var goodscodes = []
+      _this.table_list.forEach(i => {
+        goodscodes.push(i.goods_code)
+      })
+      if (goodscodes.indexOf(_this.newFormData.goods_code) === -1 && _this.newFormData.goods_code.length !== 0) {
+        _this.newFormData.creater = _this.login_name
+        postauth(_this.pathname, _this.newFormData).then(res => {
+          _this.getList()
+          _this.newDataCancel()
+          _this.$q.notify({
+            message: 'Success Create',
+            icon: 'check',
+            color: 'green'
+          })
+        }).catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          })
         })
-      }).catch(err => {
+      } else if (goodscodes.indexOf(_this.newFormData.goods_code) !== -1) {
         _this.$q.notify({
-          message: err.detail,
+          message: _this.$t('notice.goodserror.goods_listerror'),
           icon: 'close',
           color: 'negative'
         })
-      })
+      } else if (_this.newFormData.goods_code.length === 0) {
+        _this.$q.notify({
+          message: _this.$t('goods.view_goodslist.error1'),
+          icon: 'close',
+          color: 'negative'
+        })
+      }
     },
     newDataCancel () {
       var _this = this
