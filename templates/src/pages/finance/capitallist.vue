@@ -380,6 +380,7 @@ export default {
           color: 'negative'
         })
       }
+      capitallists = []
     },
     newDataCancel () {
       var _this = this

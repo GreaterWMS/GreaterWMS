@@ -406,6 +406,7 @@ export default {
           color: 'negative'
         })
       }
+      binsizes = []
     },
     newDataCancel () {
       var _this = this
