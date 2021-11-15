@@ -409,8 +409,7 @@ export default {
       _this.table_list.forEach(i => {
         staffs.push(i.staff_name)
       })
-      console.log(staffs)
-      if (staffs.indexOf(this.newFormData.staff_name) === -1) {
+      if (staffs.indexOf(_this.newFormData.staff_name) === -1 && _this.newFormData.staff_name.length !== 0) {
         _this.RandomCheckCode()
         postauth(_this.pathname, _this.newFormData).then(res => {
           _this.getList()
@@ -427,9 +426,15 @@ export default {
             color: 'negative'
           })
         })
-      } else {
+      } else if (staffs.indexOf(_this.newFormData.staff_name) !== -1) {
         _this.$q.notify({
           message: _this.$t('notice.userererror'),
+          icon: 'close',
+          color: 'negative'
+        })
+      } else if (_this.newFormData.staff_name.length === 0) {
+        _this.$q.notify({
+          message: _this.$t('staff.view_staff.error1'),
           icon: 'close',
           color: 'negative'
         })
