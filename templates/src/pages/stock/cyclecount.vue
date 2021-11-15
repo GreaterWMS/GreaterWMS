@@ -141,16 +141,6 @@ export default {
     }
   },
   methods: {
-    // ad () {
-    //   var _this = this
-    //   var bef = _this.props.row.physical_inventory
-    //   var last = _this.props.row.goods_qty
-    //   var add = bef - last
-    //   var adds = String(add).indexOf('.') + 1
-    //   if (bef - last) {
-    //
-    //   }
-    // },
     getList () {
       var _this = this
       if (LocalStorage.has('auth')) {
@@ -174,7 +164,7 @@ export default {
     ConfirmCount () {
       var _this = this
       if (LocalStorage.has('auth')) {
-        if (this.table_list.length === 0) {
+        if (_this.table_list.length === 0) {
           _this.$q.notify({
             message: _this.$t('notice.cyclecounterror'),
             icon: 'close',
@@ -188,6 +178,7 @@ export default {
               icon: 'check',
               color: 'green'
             })
+            _this.reFresh()
           }).catch(err => {
             _this.$q.notify({
               message: err.detail,
