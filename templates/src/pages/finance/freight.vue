@@ -421,21 +421,29 @@ export default {
     newDataSubmit () {
       var _this = this
       _this.newFormData.creater = _this.login_name
-      postauth(_this.pathname, _this.newFormData).then(res => {
-        _this.getList()
-        _this.newDataCancel()
-        _this.$q.notify({
-          message: 'Success Create',
-          icon: 'check',
-          color: 'green'
+      if (_this.newFormData.transportation_supplier.length !== 0) {
+        postauth(_this.pathname, _this.newFormData).then(res => {
+          _this.getList()
+          _this.newDataCancel()
+          _this.$q.notify({
+            message: 'Success Create',
+            icon: 'check',
+            color: 'green'
+          })
+        }).catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          })
         })
-      }).catch(err => {
+      } else {
         _this.$q.notify({
-          message: err.detail,
+          message: _this.$t('finance.view_freight.error1'),
           icon: 'close',
           color: 'negative'
         })
-      })
+      }
     },
     newDataCancel () {
       var _this = this

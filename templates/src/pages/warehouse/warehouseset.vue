@@ -372,22 +372,45 @@ export default {
     },
     newDataSubmit () {
       var _this = this
-      _this.newFormData.creater = _this.login_name
-      postauth(_this.pathname, _this.newFormData).then(res => {
-        _this.getList()
-        _this.newDataCancel()
-        _this.$q.notify({
-          message: 'Success Create',
-          icon: 'check',
-          color: 'green'
-        })
-      }).catch(err => {
-        _this.$q.notify({
-          message: err.detail,
-          icon: 'close',
-          color: 'negative'
-        })
+      var warehousesets = []
+      _this.table_list.forEach(i => {
+        warehousesets.push(i.warehouse_name)
       })
+      if (warehousesets.indexOf(_this.newFormData.warehouse_name) === -1 && _this.newFormData.warehouse_name.length !== 0) {
+        _this.newFormData.creater = _this.login_name
+        postauth(_this.pathname, _this.newFormData).then(res => {
+          _this.getList()
+          _this.newDataCancel()
+          _this.$q.notify({
+            message: 'Success Create',
+            icon: 'check',
+            color: 'green'
+          })
+        }).catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          })
+        })
+      } else {
+        _this.newFormData.creater = _this.login_name
+        postauth(_this.pathname, _this.newFormData).then(res => {
+          _this.getList()
+          _this.newDataCancel()
+          _this.$q.notify({
+            message: '',
+            icon: 'close',
+            color: 'negative'
+          })
+        }).catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          })
+        })
+      }
     },
     newDataCancel () {
       var _this = this
