@@ -1,7 +1,6 @@
 <template>
     <q-page>
-    <div v-show="!fab" class="q-pa-md row items-start q-gutter-md">
-      <q-card class="shadow-24" :style="{ width: width,  height: height }">
+      <q-card v-show="!fab" class="shadow-24" :style="{ width: width,  height: height }">
       <q-card-section>
         <q-btn-group push>
           <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()" />
@@ -11,7 +10,7 @@
         <q-scroll-area
           :thumb-style="thumbStyle"
           :bar-style="barStyle"
-          :style="{height: scroll_height, width: width}"
+          :style="{ height: scroll_height, width: width }"
         >
           <q-markup-table>
             <thead>
@@ -34,9 +33,11 @@
             </tbody>
           </q-markup-table>
         </q-scroll-area>
+        <q-separator dark />
+        <q-card-actions>
+          <input id="scannedBarcodes" v-model="barscan" type="text" @input="datachange()" readonly disabled/>
+        </q-card-actions>
       </q-card>
-      <input id="scannedBarcodes" v-model="barscan" type="text" @input="datachange()" readonly disabled/>
-    </div>
       <q-page-sticky v-show="device === 2" position="bottom-right" :offset="[18, 18]">
             <q-fab
               v-model="fab"
@@ -440,14 +441,14 @@ export default {
       thumbStyle: {
         right: '4px',
         borderRadius: '5px',
-        backgroundColor: '#027be3',
+        backgroundColor: '#E0E0E0',
         width: '5px',
         opacity: 0.75
       },
       barStyle: {
         right: '2px',
         borderRadius: '9px',
-        backgroundColor: '#027be3',
+        backgroundColor: '#EEEEEE',
         width: '9px',
         opacity: 0.2
       },
@@ -692,9 +693,9 @@ export default {
       _this.height = _this.$q.screen.height + '' + 'px'
     }
     window.addEventListener('batterystatus', _this.updateBatteryStatus, false)
-    _this.width = _this.$q.screen.width * 0.9 + '' + 'px'
-    _this.height = _this.$q.screen.height - 125 + '' + 'px'
-    _this.scroll_height = _this.$q.screen.height - 225 + '' + 'px'
+    _this.width = _this.$q.screen.width * 1 + '' + 'px'
+    _this.height = _this.$q.screen.height - 50 + '' + 'px'
+    _this.scroll_height = _this.$q.screen.height - 175 + '' + 'px'
     _this.barscan = ''
     _this.asn_scan = ''
     _this.goods_scan = ''
