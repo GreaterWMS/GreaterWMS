@@ -1,7 +1,7 @@
 <template>
   <q-layout view="hHh LpR fFf" :style="{ height: $q.screen.height, width: $q.screen.width }">
     <q-header reveal elevated class="bg-primary text-white">
-      <q-toolbar class="main-headers text-white shadow-18 rounded-borders">
+      <q-toolbar :class="{'main-headers text-white shadow-18 rounded-borders': device !== 2, 'main-headers text-white rounded-borders': device === 2 }">
         <transition appear enter-active-class="animated zoomIn">
           <q-btn flat v-show="device !== 2" @click="drawerleft = !drawerleft" round dense icon="menu">
             <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">
