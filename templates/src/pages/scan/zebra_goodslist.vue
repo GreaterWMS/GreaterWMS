@@ -1,156 +1,157 @@
 <template>
   <q-page>
-    <div v-show="!fab" class="q-pa-md row items-start q-gutter-md">
-      <q-card class="my-card shadow-24" :style="{width: '100%',  height: height }">
-        <q-card-section>
-          <div class="text-h6">{{ goods_code_label }}</div>
-          <div class="text-subtitle2">{{ data_list.goods_code }}</div>
-        </q-card-section>
-        <q-separator />
-        <q-scroll-area
+    <q-card v-show="!fab" class="shadow-24" :style="{ width: width,  height: height }">
+      <q-card-section style="height: 75px">
+        <div class="text-h6">{{ goods_code_label }}</div>
+        <div class="text-subtitle2">{{ data_list.goods_code }}</div>
+      </q-card-section>
+      <q-separator />
+      <q-scroll-area
         :thumb-style="thumbStyle"
         :bar-style="barStyle"
-        :style="{height: scroll_height, width:'100%'}"
+        :style="{ height: scroll_height, width: width }"
       >
-          <q-list>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_desc_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_desc }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_supplier_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_supplier }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_weight_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_weight }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_w_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_w }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_d_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_d }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_h_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_h }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ unit_volume_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.unit_volume }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_unit_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_unit }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_class_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_class }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_brand_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_brand }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_color_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_color }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_shape_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_shape }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_specs_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_specs }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_origin_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_origin }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_cost_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_cost }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ goods_price_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.goods_price }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ creater_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.creater }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ create_time_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.create_time }}</q-item-label>
-              </q-item-section>
-            </q-item>
-            <q-item>
-              <q-item-section>
-                <q-item-label>{{ updatetime_label }}</q-item-label>
-                <q-item-label caption>{{ data_list.update_time }}</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-scroll-area>
-      </q-card>
-      <input id="scannedBarcodes" v-model="barscan" type="text" @input="datachange()" readonly disabled/>
-    </div>
-      <q-page-sticky v-show="device === 2" position="bottom-right" :offset="[18, 18]">
-            <q-fab
-              v-model="fab"
-              icon="add"
-              direction="up"
-              color="accent"
-              vertical-actions-align="left"
-            >
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_locationquery')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Urovo'"
-                to="urovo_locationquery"
-                :style="{
+        <q-list>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_desc_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_desc }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_supplier_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_supplier }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_weight_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_weight }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_w_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_w }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_d_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_d }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_h_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_h }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ unit_volume_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.unit_volume }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_unit_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_unit }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_class_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_class }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_brand_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_brand }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_color_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_color }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_shape_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_shape }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_specs_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_specs }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_origin_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_origin }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_cost_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_cost }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ goods_price_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.goods_price }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ creater_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.creater }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ create_time_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.create_time }}</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section>
+              <q-item-label>{{ updatetime_label }}</q-item-label>
+              <q-item-label caption>{{ data_list.update_time }}</q-item-label>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-scroll-area>
+      <q-separator dark />
+      <q-card-actions>
+        <input id="scannedBarcodes" v-model="barscan" type="text" @input="datachange()" readonly disabled/>
+      </q-card-actions>
+    </q-card>
+    <q-page-sticky v-show="device === 2" position="bottom-right" :offset="[18, 18]">
+      <q-fab
+        v-model="fab"
+        icon="add"
+        direction="up"
+        color="accent"
+        vertical-actions-align="left"
+      >
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_locationquery')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Urovo'"
+          to="urovo_locationquery"
+          :style="{
                          'margin-top': fab8.top,
                          'margin-bottom': fab8.bottom,
                          'margin-left': fab8.left,
@@ -158,19 +159,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/stock/stocklist.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_locationquery')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Zebra Technologies'"
-                to="zebra_locationquery"
-                :style="{
+          <q-img src="statics/stock/stocklist.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_locationquery')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Zebra Technologies'"
+          to="zebra_locationquery"
+          :style="{
                          'margin-top': fab8.top,
                          'margin-bottom': fab8.bottom,
                          'margin-left': fab8.left,
@@ -178,19 +179,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/stock/stocklist.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_goodsquery')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Urovo'"
-                to="urovo_goodslist"
-                :style="{
+          <q-img src="statics/stock/stocklist.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_goodsquery')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Urovo'"
+          to="urovo_goodslist"
+          :style="{
                          'margin-top': fab7.top,
                          'margin-bottom': fab7.bottom,
                          'margin-left': fab7.left,
@@ -198,19 +199,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/goods/goodslist.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_goodsquery')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Zebra Technologies'"
-                to="zebra_goodslist"
-                :style="{
+          <q-img src="statics/goods/goodslist.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_goodsquery')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Zebra Technologies'"
+          to="zebra_goodslist"
+          :style="{
                          'margin-top': fab7.top,
                          'margin-bottom': fab7.bottom,
                          'margin-left': fab7.left,
@@ -218,20 +219,20 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/goods/goodslist.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                icon="img:statics/stock/cyclecount.png"
-                :label="$t('scan.scan_inventory')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Urovo'"
-                to="urovo_cyclecount"
-                :style="{
+          <q-img src="statics/goods/goodslist.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          icon="img:statics/stock/cyclecount.png"
+          :label="$t('scan.scan_inventory')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Urovo'"
+          to="urovo_cyclecount"
+          :style="{
                          'margin-top': fab6.top,
                          'margin-bottom': fab6.bottom,
                          'margin-left': fab6.left,
@@ -239,20 +240,20 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/stock/cyclecount.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                icon="img:statics/stock/cyclecount.png"
-                :label="$t('scan.scan_inventory')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Zebra Technologies'"
-                to="zebra_cyclecount"
-                :style="{
+          <q-img src="statics/stock/cyclecount.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          icon="img:statics/stock/cyclecount.png"
+          :label="$t('scan.scan_inventory')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Zebra Technologies'"
+          to="zebra_cyclecount"
+          :style="{
                          'margin-top': fab6.top,
                          'margin-bottom': fab6.bottom,
                          'margin-left': fab6.left,
@@ -260,19 +261,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/stock/cyclecount.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_movetobin')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Urovo'"
-                to="urovo_movetobin"
-                :style="{
+          <q-img src="statics/stock/cyclecount.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_movetobin')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Urovo'"
+          to="urovo_movetobin"
+          :style="{
                          'margin-top': fab5.top,
                          'margin-bottom': fab5.bottom,
                          'margin-left': fab5.left,
@@ -280,19 +281,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/icons/movetobin.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_movetobin')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Zebra Technologies'"
-                to="zebra_movetobin"
-                :style="{
+          <q-img src="statics/icons/movetobin.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_movetobin')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Zebra Technologies'"
+          to="zebra_movetobin"
+          :style="{
                          'margin-top': fab5.top,
                          'margin-bottom': fab5.bottom,
                          'margin-left': fab5.left,
@@ -300,19 +301,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/icons/movetobin.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_shipping')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Urovo'"
-                to="urovo_shipping"
-                :style="{
+          <q-img src="statics/icons/movetobin.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_shipping')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Urovo'"
+          to="urovo_shipping"
+          :style="{
                          'margin-top': fab4.top,
                          'margin-bottom': fab4.bottom,
                          'margin-left': fab4.left,
@@ -320,19 +321,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/icons/car.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_shipping')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Zebra Technologies'"
-                to="zebra_shipping"
-                :style="{
+          <q-img src="statics/icons/car.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_shipping')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Zebra Technologies'"
+          to="zebra_shipping"
+          :style="{
                          'margin-top': fab4.top,
                          'margin-bottom': fab4.bottom,
                          'margin-left': fab4.left,
@@ -340,19 +341,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/icons/car.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_picking')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Urovo'"
-                to="urovo_picking"
-                :style="{
+          <q-img src="statics/icons/car.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_picking')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Urovo'"
+          to="urovo_picking"
+          :style="{
                          'margin-top': fab3.top,
                          'margin-bottom': fab3.bottom,
                          'margin-left': fab3.left,
@@ -360,19 +361,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/outbound/picked.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_picking')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Zebra Technologies'"
-                to="zebra_picking"
-                :style="{
+          <q-img src="statics/outbound/picked.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_picking')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Zebra Technologies'"
+          to="zebra_picking"
+          :style="{
                          'margin-top': fab3.top,
                          'margin-bottom': fab3.bottom,
                          'margin-left': fab3.left,
@@ -380,19 +381,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/outbound/picked.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_uptobin')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Urovo'"
-                to="urovo_uptobin"
-                :style="{
+          <q-img src="statics/outbound/picked.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_uptobin')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Urovo'"
+          to="urovo_uptobin"
+          :style="{
                          'margin-top': fab2.top,
                          'margin-bottom': fab2.bottom,
                          'margin-left': fab2.left,
@@ -400,19 +401,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/inbound/presortstock.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_uptobin')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Zebra Technologies'"
-                to="zebra_uptobin"
-                :style="{
+          <q-img src="statics/inbound/presortstock.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_uptobin')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Zebra Technologies'"
+          to="zebra_uptobin"
+          :style="{
                          'margin-top': fab2.top,
                          'margin-bottom': fab2.bottom,
                          'margin-left': fab2.left,
@@ -420,19 +421,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/inbound/presortstock.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_sorting')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Urovo'"
-                to="urovo_sorting"
-                :style="{
+          <q-img src="statics/inbound/presortstock.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_sorting')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Urovo'"
+          to="urovo_sorting"
+          :style="{
                          'margin-top': fab1.top,
                          'margin-bottom': fab1.bottom,
                          'margin-left': fab1.left,
@@ -440,19 +441,19 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/inbound/preloadstock.png" />
-              </q-fab-action>
-              <q-fab-action
-                square
-                flat
-                external-label
-                label-position="bottom"
-                label-class="text-black"
-                :label="$t('scan.scan_sorting')"
-                label-style="background-color:transparent"
-                v-show="device_name === 'Zebra Technologies'"
-                to="zebra_sorting"
-                :style="{
+          <q-img src="statics/inbound/preloadstock.png" />
+        </q-fab-action>
+        <q-fab-action
+          square
+          flat
+          external-label
+          label-position="bottom"
+          label-class="text-black"
+          :label="$t('scan.scan_sorting')"
+          label-style="background-color:transparent"
+          v-show="device_name === 'Zebra Technologies'"
+          to="zebra_sorting"
+          :style="{
                          'margin-top': fab1.top,
                          'margin-bottom': fab1.bottom,
                          'margin-left': fab1.left,
@@ -460,16 +461,17 @@
                          'height': touchheight,
                          'width': touchwidth
               }">
-                <q-img src="statics/inbound/preloadstock.png" />
-              </q-fab-action>
-            </q-fab>
-          </q-page-sticky>
+          <q-img src="statics/inbound/preloadstock.png" />
+        </q-fab-action>
+      </q-fab>
+    </q-page-sticky>
   </q-page>
 </template>
-    <router-view />
+<router-view />
 
 <script>
-import { getauth } from 'boot/axios_request'
+import { getauth, putauth } from 'boot/axios_request'
+import { LocalStorage } from 'quasar'
 
 var sendCommandResults = 'false'
 
@@ -509,7 +511,7 @@ function barcodeScanned (scanData, timeOfScan) {
 }
 
 export default {
-  name: 'Pagezebra_goodslist',
+  name: 'Pageurovo_goodslist',
   data () {
     return {
       openid: '',
@@ -519,6 +521,7 @@ export default {
       separator: 'cell',
       loading: false,
       height: '',
+      width: '',
       scroll_height: '',
       table_list: [],
       data_list: {},
@@ -545,14 +548,14 @@ export default {
       thumbStyle: {
         right: '4px',
         borderRadius: '5px',
-        backgroundColor: '#027be3',
+        backgroundColor: '#E0E0E0',
         width: '5px',
         opacity: 0.75
       },
       barStyle: {
         right: '2px',
         borderRadius: '9px',
-        backgroundColor: '#027be3',
+        backgroundColor: '#EEEEEE',
         width: '9px',
         opacity: 0.2
       },
@@ -621,9 +624,12 @@ export default {
         getauth('scanner/?bar_code=' + _this.barscan, {
         }).then(res => {
           _this.barscan = res.results[0].code
-          if (res.results[0].mode === 'GOODS') {
+          if (res.results[0].mode === 'BINSET') {
+            _this.bin_scan = res.results[0].code
+            _this.goods_scan = ''
+          } else if (res.results[0].mode === 'GOODS') {
             _this.goods_scan = res.results[0].code
-            _this.getList(res.results[0].code)
+            _this.countAdd(_this.goods_scan)
           }
         }).catch(err => {
           _this.$q.notify({
@@ -635,13 +641,20 @@ export default {
       } else {
       }
     },
-    getList (e) {
+    countAdd (e) {
+      var _this = this
+      _this.table_list.filter(function (value, index, array) {
+        if (value.bin_name === _this.bin_scan && value.goods_code === e) {
+          _this.table_list[index].physical_inventory += 1
+        }
+      })
+    },
+    getList () {
       var _this = this
       if (_this.$q.localStorage.has('auth')) {
-        getauth(_this.pathname + '?goods_code=' + e, {
+        getauth(_this.pathname, {
         }).then(res => {
           _this.table_list = res.results
-          _this.data_list = _this.table_list[0]
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,
@@ -655,7 +668,33 @@ export default {
     reFresh () {
       var _this = this
       _this.barscan = ''
+      _this.bin_scan = ''
       _this.goods_scan = ''
+      _this.getList()
+    },
+    repeatCount (e) {
+      var _this = this
+      _this.table_list[e].physical_inventory = 0
+    },
+    ConfirmCount () {
+      var _this = this
+      if (LocalStorage.has('auth')) {
+        putauth(_this.pathname, _this.table_list).then(res => {
+          _this.table_list = []
+          _this.$q.notify({
+            message: 'Success Confirm Cycle Count',
+            icon: 'check',
+            color: 'green'
+          })
+        }).catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          })
+        })
+      } else {
+      }
     },
     updateBatteryStatus (status) {
       var _this = this
@@ -871,11 +910,14 @@ export default {
       _this.height = _this.$q.screen.height + '' + 'px'
     }
     window.addEventListener('batterystatus', _this.updateBatteryStatus, false)
-    _this.height = _this.$q.screen.height - 125 + '' + 'px'
-    _this.scroll_height = _this.$q.screen.height - 225 + '' + 'px'
+    _this.width = _this.$q.screen.width * 1 + '' + 'px'
+    _this.height = _this.$q.screen.height - 50 + '' + 'px'
+    _this.scroll_height = _this.$q.screen.height - 175 + '' + 'px'
     _this.barscan = ''
     _this.goods_scan = ''
+    _this.getList('A00001')
     _this.scanEvents()
+    getDeviceinfo()
   },
   updated () {
   },
