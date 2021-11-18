@@ -41,7 +41,8 @@ export default {
     updatetitle: 'Update Ready',
     updatedesc: 'Version Can Update Now',
     update: 'Update Now',
-    chart: ''
+    chart: '',
+    current_user: 'Current User'
   },
   menuItem: {
     dashboard: 'Dashboard',
