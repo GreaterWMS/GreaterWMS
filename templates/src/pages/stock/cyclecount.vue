@@ -57,7 +57,7 @@
                        type="number"
                        :label="$t('stock.view_stocklist.physical_inventory')"
                        :rules="[ val => val && val > 0 || val == 0 || error1]"
-                       @keyup="value=value.replace(/^(0+)|[^\d]+/g,'')"
+                       @blur="value=value.replace(/^(0+)|[^\d]+/g,'')"
               />
             </q-td>
             <q-td key="difference" :props="props">
@@ -164,7 +164,8 @@ export default {
     ConfirmCount () {
       var _this = this
       if (LocalStorage.has('auth')) {
-        if (_this.table_list.length === 0) {
+        if (_this.table_list.length) {
+          _this.CountFrom = false
           _this.$q.notify({
             message: _this.$t('notice.cyclecounterror'),
             icon: 'close',
