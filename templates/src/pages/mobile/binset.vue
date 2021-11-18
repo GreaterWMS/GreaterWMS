@@ -19,19 +19,9 @@
       >
         <template v-slot:top>
           <q-btn-group push>
-            <q-btn :label="$t('new')" icon="add" @click="newForm = true">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('newtip') }}
-              </q-tooltip>
-            </q-btn>
-            <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
+            <q-btn :label="$t('refresh')" @click="reFresh()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('refreshtip') }}
-              </q-tooltip>
-            </q-btn>
-            <q-btn :label="$t('download')" icon="cloud_download" @click="downloadData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('downloadtip') }}
               </q-tooltip>
             </q-btn>
           </q-btn-group>
@@ -112,28 +102,6 @@
               {{ props.row.update_time }}
             </q-td>
             <template v-if="!editMode">
-              <q-td key="action" :props="props" style="width: 100px">
-                <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                              $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                              $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                              $q.localStorage.getItem('staff_type') !== 'StockControl'
-                             "
-                       round flat push color="info" icon="print" @click="viewData(props.row)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('warehouse.printbin') }}
-                  </q-tooltip>
-                </q-btn>
-                <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('edit') }}
-                  </q-tooltip>
-                </q-btn>
-                <q-btn round flat push color="dark" icon="delete" @click="deleteData(props.row.id)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('delete') }}
-                  </q-tooltip>
-                </q-btn>
-              </q-td>
             </template>
             <template v-else-if="editMode">
               <template v-if="props.row.id === editid">
@@ -171,51 +139,6 @@
         <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
       </div>
     </template>
-    <q-dialog v-model="newForm">
-      <q-card class="shadow-24">
-        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-          <div>{{ $t('newtip') }}</div>
-          <q-space />
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
-          </q-btn>
-        </q-bar>
-        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-          <q-input dense
-                   outlined
-                   square
-                   v-model="newFormData.bin_name"
-                   :label="$t('warehouse.view_binset.bin_name')"
-                   autofocus
-                   :rules="[ val => val && val.length > 0 || error1]"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.bin_size"
-                    :options="bin_size_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('warehouse.view_binset.bin_size')"
-                    :rules="[ val => val && val.length > 0 || error2]"
-          />
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.bin_property"
-                    :options="bin_property_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('warehouse.view_binset.bin_property')"
-                    :rules="[ val => val && val.length > 0 || error3]"
-          />
-        </q-card-section>
-        <div style="float: right; padding: 15px 15px 15px 0">
-          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
-          <q-btn color="primary" @click="newDataSubmit()">{{ $t('submit') }}</q-btn>
-        </div>
-      </q-card>
-    </q-dialog>
     <q-dialog v-model="deleteForm">
       <q-card class="shadow-24">
         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
@@ -299,8 +222,7 @@ export default {
         { name: 'empty_label', label: this.$t('warehouse.view_binset.empty_label'), field: 'empty_label', align: 'center' },
         { name: 'creater', label: this.$t('creater'), field: 'creater', align: 'center' },
         { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
-        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' },
-        { name: 'action', label: this.$t('action'), align: 'right' }
+        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' }
       ],
       filter: '',
       pagination: {

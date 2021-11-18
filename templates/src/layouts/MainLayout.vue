@@ -60,11 +60,16 @@
         <transition appear enter-active-class="animated zoomIn">
           <q-btn-dropdown stretch flat color="white-8" icon="account_circle" @click="chat = false">
             <div class="row no-wrap q-pa-md">
-              <div class="column" style="width: 200px">
-                <div class="text-h6 q-mb-md">
+              <div class="column" style="width: 180px">
+                <div v-show="device === 0" class="text-h6 q-mb-md">
                   {{ $t('index.user_center') }}
                 </div>
-                  <q-btn flat rounded class="full-width" align="left" icon="connect_without_contact" :label="$t('index.change_user')" @click="login = true">
+                <div v-show="device === 1 || device === 2" style="width: 100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">
+                  <q-img style="width: 14%;margin-left: 8.5%" src="statics/icons/users.svg"></q-img>
+                  <span style="margin-left: 8%">{{login_name}}</span>
+                </div>
+                <hr style="height: 2px;border:none;border-top:1px solid #e1e1e1;width: 100%;margin-top: 8%" />
+                <q-btn flat rounded class="full-width" align="left" icon="connect_without_contact" :label="$t('index.change_user')" @click="login = true">
                       <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                           {{ $t('index.change_user') }}
                       </q-tooltip>

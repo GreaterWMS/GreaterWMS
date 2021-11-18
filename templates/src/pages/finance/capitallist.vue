@@ -19,7 +19,7 @@
       >
          <template v-slot:top>
            <q-btn-group push>
-             <q-btn :label="$t('new')" icon="add" @click="newForm = true">
+             <q-btn v-show="device === 0" :label="$t('new')" icon="add" @click="newForm = true">
                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                  {{ $t('newtip') }}
                </q-tooltip>
@@ -226,6 +226,7 @@ export default {
   name: 'Pagecapital',
   data () {
     return {
+      device: '0',
       openid: '',
       login_name: '',
       authin: '0',
