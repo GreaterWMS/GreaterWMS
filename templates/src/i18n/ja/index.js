@@ -41,7 +41,8 @@ export default {
     updatetitle: 'アップグレードの準備ができました',
     updatedesc: 'バージョンをアップグレードする準備ができました',
     update: '今すぐ写新',
-    chart: 'レポート'
+    chart: 'レポート',
+    current_user: '現在の使用者'
   },
   menuItem: {
     dashboard: 'レポートセンター',
