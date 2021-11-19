@@ -41,7 +41,8 @@ export default {
     updatetitle: '升級就緒',
     updatedesc: '版本已經升級準備就緒',
     update: '馬上更新',
-    chart: '報表'
+    chart: '報表',
+    current_user: '當前用戶'
   },
   menuItem: {
     dashboard: '報表中心',

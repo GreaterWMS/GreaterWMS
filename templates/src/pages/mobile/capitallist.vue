@@ -19,19 +19,9 @@
       >
         <template v-slot:top>
           <q-btn-group push>
-            <q-btn :label="$t('new')" icon="add" @click="newForm = true">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('newtip') }}
-              </q-tooltip>
-            </q-btn>
-            <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
+            <q-btn :label="$t('refresh')" @click="reFresh()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('refreshtip') }}
-              </q-tooltip>
-            </q-btn>
-            <q-btn :label="$t('download')" icon="cloud_download" @click="downloadData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('downloadtip') }}
               </q-tooltip>
             </q-btn>
           </q-btn-group>
@@ -45,63 +35,56 @@
         <template v-slot:body="props">
           <q-tr :props="props">
             <template v-if="props.row.id === editid">
-              <q-td key="bin_name" :props="props">
+              <q-td key="capital_name" :props="props">
                 <q-input dense
                          outlined
                          square
-                         v-model="editFormData.bin_name"
-                         :label="$t('warehouse.view_binset.bin_name')"
+                         v-model="editFormData.capital_name"
+                         :label="$t('finance.view_capital.capital_name')"
                          autofocus
                          :rules="[ val => val && val.length > 0 || error1]"
                 />
               </q-td>
             </template>
             <template v-else-if="props.row.id !== editid">
-              <q-td key="bin_name" :props="props">
-                {{ props.row.bin_name }}
+              <q-td key="capital_name" :props="props">
+                {{ props.row.capital_name }}
               </q-td>
             </template>
             <template v-if="props.row.id === editid">
-              <q-td key="bin_size" :props="props">
-                <q-select dense
-                          outlined
-                          square
-                          v-model="editFormData.bin_size"
-                          :options="bin_size_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('warehouse.view_binset.bin_size')"
-                          :rules="[ val => val && val.length > 0 || error2]"
+              <q-td key="capital_qty" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model.number="editFormData.capital_qty"
+                         type="number"
+                         :label="$t('finance.view_capital.capital_qty')"
+                         :rules="[ val => val && val > 0 || error2]"
                 />
               </q-td>
             </template>
             <template v-else-if="props.row.id !== editid">
-              <q-td key="bin_size" :props="props">
-                {{ props.row.bin_size }}
+              <q-td key="capital_qty" :props="props">
+                {{ props.row.capital_qty }}
               </q-td>
             </template>
             <template v-if="props.row.id === editid">
-              <q-td key="bin_property" :props="props">
-                <q-select dense
-                          outlined
-                          square
-                          v-model="editFormData.bin_property"
-                          :options="bin_property_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('warehouse.view_binset.bin_property')"
-                          :rules="[ val => val && val.length > 0 || error3]"
+              <q-td key="capital_cost" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model.number="editFormData.capital_cost"
+                         type="number"
+                         :label="$t('finance.view_capital.capital_cost')"
+                         :rules="[ val => val && val > 0 || error3]"
                 />
               </q-td>
             </template>
             <template v-else-if="props.row.id !== editid">
-              <q-td key="bin_property" :props="props">
-                {{ props.row.bin_property }}
+              <q-td key="capital_cost" :props="props">
+                {{ props.row.capital_cost }}
               </q-td>
             </template>
-            <q-td key="empty_label" :props="props">
-              {{ props.row.empty_label }}
-            </q-td>
             <q-td key="creater" :props="props">
               {{ props.row.creater }}
             </q-td>
@@ -112,28 +95,6 @@
               {{ props.row.update_time }}
             </q-td>
             <template v-if="!editMode">
-              <q-td key="action" :props="props" style="width: 100px">
-                <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                              $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                              $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                              $q.localStorage.getItem('staff_type') !== 'StockControl'
-                             "
-                       round flat push color="info" icon="print" @click="viewData(props.row)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('warehouse.printbin') }}
-                  </q-tooltip>
-                </q-btn>
-                <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('edit') }}
-                  </q-tooltip>
-                </q-btn>
-                <q-btn round flat push color="dark" icon="delete" @click="deleteData(props.row.id)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('delete') }}
-                  </q-tooltip>
-                </q-btn>
-              </q-td>
             </template>
             <template v-else-if="editMode">
               <template v-if="props.row.id === editid">
@@ -148,6 +109,7 @@
                       {{ $t('canceledit') }}
                     </q-tooltip>
                   </q-btn>
+                  <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
                 </q-td>
               </template>
               <template v-else-if="props.row.id !== editid"></template>
@@ -184,35 +146,31 @@
           <q-input dense
                    outlined
                    square
-                   v-model="newFormData.bin_name"
-                   :label="$t('warehouse.view_binset.bin_name')"
+                   v-model="newFormData.capital_name"
+                   :label="$t('finance.view_capital.capital_name')"
                    autofocus
                    :rules="[ val => val && val.length > 0 || error1]"
                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.bin_size"
-                    :options="bin_size_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('warehouse.view_binset.bin_size')"
-                    :rules="[ val => val && val.length > 0 || error2]"
-          />
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.bin_property"
-                    :options="bin_property_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('warehouse.view_binset.bin_property')"
-                    :rules="[ val => val && val.length > 0 || error3]"
-          />
+          <q-input dense
+                   outlined
+                   square
+                   v-model.number="newFormData.capital_qty"
+                   type="number"
+                   :label="$t('finance.view_capital.capital_qty')"
+                   :rules="[ val => val && val > 0 || error2]"
+                   @keyup.enter="newDataSubmit()"/>
+          <q-input dense
+                   outlined
+                   square
+                   v-model.number="newFormData.capital_cost"
+                   type="number"
+                   :label="$t('finance.view_capital.capital_cost')"
+                   :rules="[ val => val && val > 0 || error3]"
+                   @keyup.enter="newDataSubmit()"/>
         </q-card-section>
         <div style="float: right; padding: 15px 15px 15px 0">
           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
-          <q-btn color="primary" @click="newDataSubmit()">{{ $t('submit') }}</q-btn>
+          <q-btn color="primary" @click="newDataSubmit()">{{$t('submit')}}</q-btn>
         </div>
       </q-card>
     </q-dialog>
@@ -230,77 +188,39 @@
         </q-card-section>
         <div style="float: right; padding: 15px 15px 15px 0">
           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="deleteDataCancel()">{{ $t('cancel') }}</q-btn>
-          <q-btn color="primary" @click="deleteDataSubmit()">{{ $t('submit') }}</q-btn>
+          <q-btn color="primary" @click="deleteDataSubmit()">{{$t('submit')}}</q-btn>
         </div>
       </q-card>
-    </q-dialog>
-    <q-dialog v-model="viewForm">
-      <div id="printMe" style="width: 400px;height:280px;background-color: white">
-        <q-card-section>
-          <div class="row" style="height: 50px">
-            <div class="col-3">
-              <img src='/statics/goods/logo.png'  style="width: 60px;height: 50px;margin-top: 5px;margin-left: 5px">
-            </div>
-            <div class="col-9" style="height: 50px;float: contour;margin-top: 10px" >
-              <p style="font-size: 20px;font-weight: 550">{{$t('warehouse.view_binset.bin_name') + ':' + bin_name}}</p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-8" style="margin-top: 30px;padding-left: 3%">
-              <p style="font-size: 20px;font-weight: 550">{{$t('warehouse.view_binset.bin_property') + ':'}}</p>
-              <p style="font-size: 20px;font-weight: 550">{{bin_property}}</p>
-            </div>
-            <div class="col-4" style="margin-top: 25px;">
-              <img :src="bar_code" style="width: 70%;margin-left: 23px"/>
-            </div>
-          </div>
-        </q-card-section>
-      </div>
-      <div style="float: right; padding: 15px 15px 15px 0">
-        <q-btn color="primary" icon="print" v-print="printObj">print</q-btn>
-      </div>
     </q-dialog>
   </div>
 </template>
 <router-view />
 
 <script>
-import { date, exportFile, LocalStorage } from 'quasar'
 import { getauth, postauth, putauth, deleteauth, getfile } from 'boot/axios_request'
+import { date, exportFile, LocalStorage } from 'quasar'
 
 export default {
-  name: 'Pagebinset',
+  name: 'Pagecapital',
   data () {
     return {
-      bin_name: '',
-      bin_property: '',
       openid: '',
       login_name: '',
       authin: '0',
-      pathname: 'binset/',
+      pathname: 'capital/',
       pathname_previous: '',
       pathname_next: '',
       separator: 'cell',
       loading: false,
       height: '',
       table_list: [],
-      bin_size_list: [],
-      bin_property_list: [],
-      viewForm: false,
-      printObj: {
-        id: 'printMe',
-        popTitle: this.$t('inbound.asn')
-      },
       columns: [
-        { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
-        { name: 'bin_size', label: this.$t('warehouse.view_binset.bin_size'), field: 'bin_size', align: 'center' },
-        { name: 'bin_property', label: this.$t('warehouse.view_binset.bin_property'), field: 'bin_property', align: 'center' },
-        { name: 'empty_label', label: this.$t('warehouse.view_binset.empty_label'), field: 'empty_label', align: 'center' },
+        { name: 'capital_name', required: true, label: this.$t('finance.view_capital.capital_name'), align: 'left', field: 'capital_cost' },
+        { name: 'capital_qty', label: this.$t('finance.view_capital.capital_qty'), field: 'capital_qty', align: 'center' },
+        { name: 'capital_cost', label: this.$t('finance.view_capital.capital_cost'), field: 'capital_cost', align: 'center' },
         { name: 'creater', label: this.$t('creater'), field: 'creater', align: 'center' },
         { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
-        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' },
-        { name: 'action', label: this.$t('action'), align: 'right' }
+        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' }
       ],
       filter: '',
       pagination: {
@@ -309,9 +229,9 @@ export default {
       },
       newForm: false,
       newFormData: {
-        bin_name: '',
-        bin_size: '',
-        bin_property: '',
+        capital_name: '',
+        capital_qty: '',
+        capital_cost: '',
         creater: ''
       },
       editid: 0,
@@ -319,10 +239,9 @@ export default {
       editMode: false,
       deleteForm: false,
       deleteid: 0,
-      bar_code: '',
-      error1: this.$t('warehouse.view_binset.error1'),
-      error2: this.$t('warehouse.view_binset.error2'),
-      error3: this.$t('warehouse.view_binset.error3')
+      error1: this.$t('finance.view_capital.error1'),
+      error2: this.$t('finance.view_capital.error2'),
+      error3: this.$t('finance.view_capital.error3')
     }
   },
   methods: {
@@ -332,8 +251,6 @@ export default {
         getauth(_this.pathname, {
         }).then(res => {
           _this.table_list = res.results
-          _this.bin_property_list = res.bin_property_list
-          _this.bin_size_list = res.bin_size_list
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -349,11 +266,9 @@ export default {
     getSearchList () {
       var _this = this
       if (LocalStorage.has('auth')) {
-        getauth(_this.pathname + '?bin_name__icontains=' + _this.filter, {
+        getauth(_this.pathname + '?capital_name__icontains=' + _this.filter, {
         }).then(res => {
           _this.table_list = res.results
-          _this.bin_property_list = res.bin_property_list
-          _this.bin_size_list = res.bin_size_list
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -372,8 +287,6 @@ export default {
         getauth(_this.pathname_previous, {
         }).then(res => {
           _this.table_list = res.results
-          _this.bin_property_list = res.bin_property_list
-          _this.bin_size_list = res.bin_size_list
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -392,8 +305,6 @@ export default {
         getauth(_this.pathname_next, {
         }).then(res => {
           _this.table_list = res.results
-          _this.bin_property_list = res.bin_property_list
-          _this.bin_size_list = res.bin_size_list
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -412,11 +323,11 @@ export default {
     },
     newDataSubmit () {
       var _this = this
-      var binsets = []
+      var capitallists = []
       _this.table_list.forEach(i => {
-        binsets.push(i.bin_name)
+        capitallists.push(i.capital_name)
       })
-      if (binsets.indexOf(_this.newFormData.bin_name) === -1 && _this.newFormData.bin_name.length !== 0) {
+      if (capitallists.indexOf(_this.newFormData.capital_name) === -1 && _this.newFormData.capital_name.length !== 0) {
         _this.newFormData.creater = _this.login_name
         postauth(_this.pathname, _this.newFormData).then(res => {
           _this.getList()
@@ -433,28 +344,28 @@ export default {
             color: 'negative'
           })
         })
-      } else if (binsets.indexOf(_this.newFormData.bin_name) !== -1) {
+      } else if (capitallists.indexOf(_this.newFormData.capital_name) !== -1) {
         _this.$q.notify({
-          message: _this.$t('notice.warehouseerror.binseterror'),
+          message: _this.$t('notice.capitalerror'),
           icon: 'close',
           color: 'negative'
         })
-      } else if (_this.newFormData.bin_name.length === 0) {
+      } else if (_this.newFormData.capital_name.length === 0) {
         _this.$q.notify({
-          message: _this.$t('warehouse.view_binset.error1'),
+          message: _this.$t('finance.view_capital.error1'),
           icon: 'close',
           color: 'negative'
         })
       }
-      binsets = []
+      capitallists = []
     },
     newDataCancel () {
       var _this = this
       _this.newForm = false
       _this.newFormData = {
-        bin_name: '',
-        bin_size: '',
-        bin_property: '',
+        capital_name: '',
+        capital_qty: '',
+        capital_cost: '',
         creater: ''
       }
     },
@@ -463,9 +374,9 @@ export default {
       _this.editMode = true
       _this.editid = e.id
       _this.editFormData = {
-        bin_name: e.bin_name,
-        bin_size: e.bin_size,
-        bin_property: e.bin_property,
+        capital_name: e.capital_name,
+        capital_qty: e.capital_qty,
+        capital_cost: e.capital_cost,
         creater: _this.login_name
       }
     },
@@ -492,10 +403,9 @@ export default {
       _this.editMode = false
       _this.editid = 0
       _this.editFormData = {
-        bin_name: '',
-        bin_size: '',
-        bin_property: '',
-        empty_label: '',
+        capital_name: '',
+        capital_qty: '',
+        capital_cost: '',
         creater: ''
       }
     },
@@ -545,24 +455,6 @@ export default {
           })
         }
       })
-    },
-    viewData (e) {
-      var _this = this
-      var QRCode = require('qrcode')
-      QRCode.toDataURL(e.bar_code, [{
-        errorCorrectionLevel: 'H',
-        mode: 'byte',
-        version: '2',
-        type: 'image/jpeg'
-      }]
-      ).then(url => {
-        _this.bin_name = e.bin_name
-        _this.bin_property = e.bin_property
-        _this.bar_code = url
-      }).catch(err => {
-        console.error(err)
-      })
-      _this.viewForm = true
     }
   },
   created () {
@@ -588,6 +480,17 @@ export default {
   },
   mounted () {
     var _this = this
+    if (window.device) {
+      if (window.device.manufacturer === 'Urovo' || window.device.manufacturer === 'Zebra Technologies') {
+        _this.device = 2
+      } else {
+        _this.device = 1
+      }
+    } else {
+      if (_this.$q.platform.is.mobile) {
+        _this.device = 1
+      }
+    }
     if (_this.$q.platform.is.electron) {
       _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
