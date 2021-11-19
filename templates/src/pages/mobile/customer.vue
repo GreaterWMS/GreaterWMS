@@ -19,19 +19,9 @@
       >
         <template v-slot:top>
           <q-btn-group push>
-            <q-btn :label="$t('new')" icon="add" @click="newForm = true">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('newtip') }}
-              </q-tooltip>
-            </q-btn>
-            <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
+            <q-btn :label="$t('refresh')" @click="reFresh()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('refreshtip') }}
-              </q-tooltip>
-            </q-btn>
-            <q-btn :label="$t('download')" icon="cloud_download" @click="downloadData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('downloadtip') }}
               </q-tooltip>
             </q-btn>
           </q-btn-group>
@@ -45,63 +35,103 @@
         <template v-slot:body="props">
           <q-tr :props="props">
             <template v-if="props.row.id === editid">
-              <q-td key="bin_name" :props="props">
+              <q-td key="customer_name" :props="props">
                 <q-input dense
                          outlined
                          square
-                         v-model="editFormData.bin_name"
-                         :label="$t('warehouse.view_binset.bin_name')"
+                         v-model="editFormData.customer_name"
+                         :label="$t('baseinfo.view_customer.customer_name')"
                          autofocus
-                         :rules="[ val => val && val.length > 0 || error1]"
+                         :rules="[ val => val && val.length > 0 || 'Please Enter the Customer Name']"
                 />
               </q-td>
             </template>
             <template v-else-if="props.row.id !== editid">
-              <q-td key="bin_name" :props="props">
-                {{ props.row.bin_name }}
+              <q-td key="customer_name" :props="props">
+                {{ props.row.customer_name }}
               </q-td>
             </template>
             <template v-if="props.row.id === editid">
-              <q-td key="bin_size" :props="props">
-                <q-select dense
-                          outlined
-                          square
-                          v-model="editFormData.bin_size"
-                          :options="bin_size_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('warehouse.view_binset.bin_size')"
-                          :rules="[ val => val && val.length > 0 || error2]"
+              <q-td key="customer_city" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model="editFormData.customer_city"
+                         :label="$t('baseinfo.view_customer.customer_city')"
+                         :rules="[ val => val && val.length > 0 || 'Please Enter the Customer City']"
                 />
               </q-td>
             </template>
             <template v-else-if="props.row.id !== editid">
-              <q-td key="bin_size" :props="props">
-                {{ props.row.bin_size }}
+              <q-td key="customer_city" :props="props">
+                {{ props.row.customer_city }}
               </q-td>
             </template>
             <template v-if="props.row.id === editid">
-              <q-td key="bin_property" :props="props">
-                <q-select dense
-                          outlined
-                          square
-                          v-model="editFormData.bin_property"
-                          :options="bin_property_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('warehouse.view_binset.bin_property')"
-                          :rules="[ val => val && val.length > 0 || error3]"
+              <q-td key="customer_address" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model="editFormData.customer_address"
+                         :label="$t('baseinfo.view_customer.customer_address')"
+                         :rules="[ val => val && val.length > 0 || 'Please Enter the Customer Address']"
                 />
               </q-td>
             </template>
             <template v-else-if="props.row.id !== editid">
-              <q-td key="bin_property" :props="props">
-                {{ props.row.bin_property }}
+              <q-td key="customer_address" :props="props">
+                {{ props.row.customer_address }}
               </q-td>
             </template>
-            <q-td key="empty_label" :props="props">
-              {{ props.row.empty_label }}
-            </q-td>
+            <template v-if="props.row.id === editid">
+              <q-td key="customer_contact" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model="editFormData.customer_contact"
+                         :label="$t('baseinfo.view_customer.customer_contact')"
+                         :rules="[ val => val && val > 0 || 'Please Enter the Customer Contact']"
+                />
+              </q-td>
+            </template>
+            <template v-else-if="props.row.id !== editid">
+              <q-td key="customer_contact" :props="props">
+                {{ props.row.customer_contact }}
+              </q-td>
+            </template>
+            <template v-if="props.row.id === editid">
+              <q-td key="customer_manager" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model="editFormData.customer_manager"
+                         :label="$t('baseinfo.view_customer.customer_manager')"
+                         :rules="[ val => val && val > 0 || 'Please Enter the Customer Manager']"
+                />
+              </q-td>
+            </template>
+            <template v-else-if="props.row.id !== editid">
+              <q-td key="customer_manager" :props="props">
+                {{ props.row.customer_manager }}
+              </q-td>
+            </template>
+            <template v-if="props.row.id === editid">
+              <q-td key="customer_level" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model.number="editFormData.customer_level"
+                         type="number"
+                         :label="$t('baseinfo.view_customer.customer_level')"
+                         :rules="[ val => val && val > 0 || 'Please Enter the Customer Level']"
+                />
+              </q-td>
+            </template>
+            <template v-else-if="props.row.id !== editid">
+              <q-td key="customer_level" :props="props">
+                {{ props.row.customer_level }}
+              </q-td>
+            </template>
             <q-td key="creater" :props="props">
               {{ props.row.creater }}
             </q-td>
@@ -112,17 +142,7 @@
               {{ props.row.update_time }}
             </q-td>
             <template v-if="!editMode">
-              <q-td key="action" :props="props" style="width: 100px">
-                <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                              $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                              $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                              $q.localStorage.getItem('staff_type') !== 'StockControl'
-                             "
-                       round flat push color="info" icon="print" @click="viewData(props.row)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('warehouse.printbin') }}
-                  </q-tooltip>
-                </q-btn>
+              <q-td v-show="device === 0" key="action" :props="props" style="width: 100px">
                 <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                     {{ $t('edit') }}
@@ -184,35 +204,51 @@
           <q-input dense
                    outlined
                    square
-                   v-model="newFormData.bin_name"
-                   :label="$t('warehouse.view_binset.bin_name')"
+                   v-model="newFormData.customer_name"
+                   :label="$t('baseinfo.view_customer.customer_name')"
                    autofocus
                    :rules="[ val => val && val.length > 0 || error1]"
                    @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.bin_size"
-                    :options="bin_size_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('warehouse.view_binset.bin_size')"
-                    :rules="[ val => val && val.length > 0 || error2]"
-          />
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.bin_property"
-                    :options="bin_property_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('warehouse.view_binset.bin_property')"
-                    :rules="[ val => val && val.length > 0 || error3]"
-          />
+          <q-input dense
+                   outlined
+                   square
+                   v-model="newFormData.customer_city"
+                   :label="$t('baseinfo.view_customer.customer_city')"
+                   :rules="[ val => val && val.length > 0 || error2]"
+                   @keyup.enter="newDataSubmit()"/>
+          <q-input dense
+                   outlined
+                   square
+                   v-model="newFormData.customer_address"
+                   :label="$t('baseinfo.view_customer.customer_address')"
+                   :rules="[ val => val && val.length > 0 || error3]"
+                   @keyup.enter="newDataSubmit()"/>
+          <q-input dense
+                   outlined
+                   square
+                   v-model="newFormData.customer_contact"
+                   :label="$t('baseinfo.view_customer.customer_contact')"
+                   :rules="[ val => val && val > 0 || error4]"
+                   @keyup.enter="newDataSubmit()"/>
+          <q-input dense
+                   outlined
+                   square
+                   v-model="newFormData.customer_manager"
+                   :label="$t('baseinfo.view_customer.customer_manager')"
+                   :rules="[ val => val && val.length > 0 || error5]"
+                   @keyup.enter="newDataSubmit()"/>
+          <q-input dense
+                   outlined
+                   square
+                   v-model.number="newFormData.customer_level"
+                   type="number"
+                   :label="$t('baseinfo.view_customer.customer_level')"
+                   :rules="[ val => val && val > 0 || error6]"
+                   @keyup.enter="newDataSubmit()"/>
         </q-card-section>
         <div style="float: right; padding: 15px 15px 15px 0">
           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
-          <q-btn color="primary" @click="newDataSubmit()">{{ $t('submit') }}</q-btn>
+          <q-btn color="primary" @click="newDataSubmit()">{{$t('submit')}}</q-btn>
         </div>
       </q-card>
     </q-dialog>
@@ -222,7 +258,7 @@
           <div>{{ $t('delete') }}</div>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip>Close</q-tooltip>
           </q-btn>
         </q-bar>
         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
@@ -230,36 +266,9 @@
         </q-card-section>
         <div style="float: right; padding: 15px 15px 15px 0">
           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="deleteDataCancel()">{{ $t('cancel') }}</q-btn>
-          <q-btn color="primary" @click="deleteDataSubmit()">{{ $t('submit') }}</q-btn>
+          <q-btn color="primary" @click="deleteDataSubmit()">{{$t('submit')}}</q-btn>
         </div>
       </q-card>
-    </q-dialog>
-    <q-dialog v-model="viewForm">
-      <div id="printMe" style="width: 400px;height:280px;background-color: white">
-        <q-card-section>
-          <div class="row" style="height: 50px">
-            <div class="col-3">
-              <img src='/statics/goods/logo.png'  style="width: 60px;height: 50px;margin-top: 5px;margin-left: 5px">
-            </div>
-            <div class="col-9" style="height: 50px;float: contour;margin-top: 10px" >
-              <p style="font-size: 20px;font-weight: 550">{{$t('warehouse.view_binset.bin_name') + ':' + bin_name}}</p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-8" style="margin-top: 30px;padding-left: 3%">
-              <p style="font-size: 20px;font-weight: 550">{{$t('warehouse.view_binset.bin_property') + ':'}}</p>
-              <p style="font-size: 20px;font-weight: 550">{{bin_property}}</p>
-            </div>
-            <div class="col-4" style="margin-top: 25px;">
-              <img :src="bar_code" style="width: 70%;margin-left: 23px"/>
-            </div>
-          </div>
-        </q-card-section>
-      </div>
-      <div style="float: right; padding: 15px 15px 15px 0">
-        <q-btn color="primary" icon="print" v-print="printObj">print</q-btn>
-      </div>
     </q-dialog>
   </div>
 </template>
@@ -270,37 +279,29 @@ import { date, exportFile, LocalStorage } from 'quasar'
 import { getauth, postauth, putauth, deleteauth, getfile } from 'boot/axios_request'
 
 export default {
-  name: 'Pagebinset',
+  name: 'Pagecustomer',
   data () {
     return {
-      bin_name: '',
-      bin_property: '',
       openid: '',
       login_name: '',
       authin: '0',
-      pathname: 'binset/',
+      pathname: 'customer/',
       pathname_previous: '',
       pathname_next: '',
       separator: 'cell',
       loading: false,
       height: '',
       table_list: [],
-      bin_size_list: [],
-      bin_property_list: [],
-      viewForm: false,
-      printObj: {
-        id: 'printMe',
-        popTitle: this.$t('inbound.asn')
-      },
       columns: [
-        { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
-        { name: 'bin_size', label: this.$t('warehouse.view_binset.bin_size'), field: 'bin_size', align: 'center' },
-        { name: 'bin_property', label: this.$t('warehouse.view_binset.bin_property'), field: 'bin_property', align: 'center' },
-        { name: 'empty_label', label: this.$t('warehouse.view_binset.empty_label'), field: 'empty_label', align: 'center' },
-        { name: 'creater', label: this.$t('creater'), field: 'creater', align: 'center' },
+        { name: 'customer_name', required: true, label: this.$t('baseinfo.view_customer.customer_name'), align: 'left', field: 'customer_name' },
+        { name: 'customer_city', label: this.$t('baseinfo.view_customer.customer_city'), field: 'customer_city', align: 'center' },
+        { name: 'customer_address', label: this.$t('baseinfo.view_customer.customer_address'), field: 'customer_address', align: 'center' },
+        { name: 'customer_contact', label: this.$t('baseinfo.view_customer.customer_contact'), field: 'customer_contact', align: 'center' },
+        { name: 'customer_manager', label: this.$t('baseinfo.view_customer.customer_manager'), align: 'center' },
+        { name: 'customer_level', label: this.$t('baseinfo.view_customer.customer_level'), field: 'customer_level', align: 'center' },
+        { name: 'creater', label: 'Creater', field: this.$t('creater'), align: 'center' },
         { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
-        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' },
-        { name: 'action', label: this.$t('action'), align: 'right' }
+        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' }
       ],
       filter: '',
       pagination: {
@@ -309,9 +310,12 @@ export default {
       },
       newForm: false,
       newFormData: {
-        bin_name: '',
-        bin_size: '',
-        bin_property: '',
+        customer_name: '',
+        customer_city: '',
+        customer_address: '',
+        customer_contact: '',
+        customer_manager: '',
+        customer_level: '',
         creater: ''
       },
       editid: 0,
@@ -319,10 +323,12 @@ export default {
       editMode: false,
       deleteForm: false,
       deleteid: 0,
-      bar_code: '',
-      error1: this.$t('warehouse.view_binset.error1'),
-      error2: this.$t('warehouse.view_binset.error2'),
-      error3: this.$t('warehouse.view_binset.error3')
+      error1: this.$t('baseinfo.view_customer.error1'),
+      error2: this.$t('baseinfo.view_customer.error2'),
+      error3: this.$t('baseinfo.view_customer.error3'),
+      error4: this.$t('baseinfo.view_customer.error4'),
+      error5: this.$t('baseinfo.view_customer.error5'),
+      error6: this.$t('baseinfo.view_customer.error6')
     }
   },
   methods: {
@@ -332,8 +338,6 @@ export default {
         getauth(_this.pathname, {
         }).then(res => {
           _this.table_list = res.results
-          _this.bin_property_list = res.bin_property_list
-          _this.bin_size_list = res.bin_size_list
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -349,11 +353,9 @@ export default {
     getSearchList () {
       var _this = this
       if (LocalStorage.has('auth')) {
-        getauth(_this.pathname + '?bin_name__icontains=' + _this.filter, {
+        getauth(_this.pathname + '?customer_name__icontains=' + _this.filter, {
         }).then(res => {
           _this.table_list = res.results
-          _this.bin_property_list = res.bin_property_list
-          _this.bin_size_list = res.bin_size_list
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -372,8 +374,6 @@ export default {
         getauth(_this.pathname_previous, {
         }).then(res => {
           _this.table_list = res.results
-          _this.bin_property_list = res.bin_property_list
-          _this.bin_size_list = res.bin_size_list
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -392,8 +392,6 @@ export default {
         getauth(_this.pathname_next, {
         }).then(res => {
           _this.table_list = res.results
-          _this.bin_property_list = res.bin_property_list
-          _this.bin_size_list = res.bin_size_list
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -412,11 +410,11 @@ export default {
     },
     newDataSubmit () {
       var _this = this
-      var binsets = []
+      var customers = []
       _this.table_list.forEach(i => {
-        binsets.push(i.bin_name)
+        customers.push(i.customer_name)
       })
-      if (binsets.indexOf(_this.newFormData.bin_name) === -1 && _this.newFormData.bin_name.length !== 0) {
+      if (customers.indexOf(_this.newFormData.customer_name) === -1 && _this.newFormData.customer_name.length !== 0) {
         _this.newFormData.creater = _this.login_name
         postauth(_this.pathname, _this.newFormData).then(res => {
           _this.getList()
@@ -433,28 +431,31 @@ export default {
             color: 'negative'
           })
         })
-      } else if (binsets.indexOf(_this.newFormData.bin_name) !== -1) {
+      } else if (customers.indexOf(_this.newFormData.customer_name) !== -1) {
         _this.$q.notify({
-          message: _this.$t('notice.warehouseerror.binseterror'),
+          message: _this.$t('notice.baseinfoerror.customererror'),
           icon: 'close',
           color: 'negative'
         })
-      } else if (_this.newFormData.bin_name.length === 0) {
+      } else if (_this.newFormData.customer_name.length === 0) {
         _this.$q.notify({
-          message: _this.$t('warehouse.view_binset.error1'),
+          message: _this.$t('baseinfo.view_customer.error1'),
           icon: 'close',
           color: 'negative'
         })
       }
-      binsets = []
+      customers = []
     },
     newDataCancel () {
       var _this = this
       _this.newForm = false
       _this.newFormData = {
-        bin_name: '',
-        bin_size: '',
-        bin_property: '',
+        customer_name: '',
+        customer_city: '',
+        customer_address: '',
+        customer_contact: '',
+        customer_manager: '',
+        customer_level: '',
         creater: ''
       }
     },
@@ -463,9 +464,12 @@ export default {
       _this.editMode = true
       _this.editid = e.id
       _this.editFormData = {
-        bin_name: e.bin_name,
-        bin_size: e.bin_size,
-        bin_property: e.bin_property,
+        customer_name: e.customer_name,
+        customer_city: e.customer_city,
+        customer_address: e.customer_address,
+        customer_contact: e.customer_contact,
+        customer_manager: e.customer_manager,
+        customer_level: e.customer_level,
         creater: _this.login_name
       }
     },
@@ -492,10 +496,12 @@ export default {
       _this.editMode = false
       _this.editid = 0
       _this.editFormData = {
-        bin_name: '',
-        bin_size: '',
-        bin_property: '',
-        empty_label: '',
+        customer_name: '',
+        customer_city: '',
+        customer_address: '',
+        customer_contact: '',
+        customer_manager: '',
+        customer_level: '',
         creater: ''
       }
     },
@@ -545,24 +551,6 @@ export default {
           })
         }
       })
-    },
-    viewData (e) {
-      var _this = this
-      var QRCode = require('qrcode')
-      QRCode.toDataURL(e.bar_code, [{
-        errorCorrectionLevel: 'H',
-        mode: 'byte',
-        version: '2',
-        type: 'image/jpeg'
-      }]
-      ).then(url => {
-        _this.bin_name = e.bin_name
-        _this.bin_property = e.bin_property
-        _this.bar_code = url
-      }).catch(err => {
-        console.error(err)
-      })
-      _this.viewForm = true
     }
   },
   created () {
