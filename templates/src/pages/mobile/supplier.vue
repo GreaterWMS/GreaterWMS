@@ -19,19 +19,9 @@
       >
         <template v-slot:top>
           <q-btn-group push>
-            <q-btn :label="$t('new')" icon="add" @click="newForm = true">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('newtip') }}
-              </q-tooltip>
-            </q-btn>
             <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                 {{ $t('refreshtip') }}
-              </q-tooltip>
-            </q-btn>
-            <q-btn :label="$t('download')" icon="cloud_download" @click="downloadData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('downloadtip') }}
               </q-tooltip>
             </q-btn>
           </q-btn-group>
@@ -45,63 +35,103 @@
         <template v-slot:body="props">
           <q-tr :props="props">
             <template v-if="props.row.id === editid">
-              <q-td key="bin_name" :props="props">
+              <q-td key="supplier_name" :props="props">
                 <q-input dense
                          outlined
                          square
-                         v-model="editFormData.bin_name"
-                         :label="$t('warehouse.view_binset.bin_name')"
+                         v-model="editFormData.supplier_name"
+                         :label="$t('baseinfo.view_supplier.supplier_name')"
                          autofocus
-                         :rules="[ val => val && val.length > 0 || error1]"
+                         :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier Name']"
                 />
               </q-td>
             </template>
             <template v-else-if="props.row.id !== editid">
-              <q-td key="bin_name" :props="props">
-                {{ props.row.bin_name }}
+              <q-td key="supplier_name" :props="props">
+                {{ props.row.supplier_name }}
               </q-td>
             </template>
             <template v-if="props.row.id === editid">
-              <q-td key="bin_size" :props="props">
-                <q-select dense
-                          outlined
-                          square
-                          v-model="editFormData.bin_size"
-                          :options="bin_size_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('warehouse.view_binset.bin_size')"
-                          :rules="[ val => val && val.length > 0 || error2]"
+              <q-td key="supplier_city" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model="editFormData.supplier_city"
+                         :label="$t('baseinfo.view_supplier.supplier_city')"
+                         :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier City']"
                 />
               </q-td>
             </template>
             <template v-else-if="props.row.id !== editid">
-              <q-td key="bin_size" :props="props">
-                {{ props.row.bin_size }}
+              <q-td key="supplier_city" :props="props">
+                {{ props.row.supplier_city }}
               </q-td>
             </template>
             <template v-if="props.row.id === editid">
-              <q-td key="bin_property" :props="props">
-                <q-select dense
-                          outlined
-                          square
-                          v-model="editFormData.bin_property"
-                          :options="bin_property_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('warehouse.view_binset.bin_property')"
-                          :rules="[ val => val && val.length > 0 || error3]"
+              <q-td key="supplier_address" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model="editFormData.supplier_address"
+                         :label="$t('baseinfo.view_supplier.supplier_address')"
+                         :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier Address']"
                 />
               </q-td>
             </template>
             <template v-else-if="props.row.id !== editid">
-              <q-td key="bin_property" :props="props">
-                {{ props.row.bin_property }}
+              <q-td key="supplier_address" :props="props">
+                {{ props.row.supplier_address }}
               </q-td>
             </template>
-            <q-td key="empty_label" :props="props">
-              {{ props.row.empty_label }}
-            </q-td>
+            <template v-if="props.row.id === editid">
+              <q-td key="supplier_contact" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model="editFormData.supplier_contact"
+                         :label="$t('baseinfo.view_supplier.supplier_contact')"
+                         :rules="[ val => val && val > 0 || 'Please Enter the Supplier Contact']"
+                />
+              </q-td>
+            </template>
+            <template v-else-if="props.row.id !== editid">
+              <q-td key="supplier_contact" :props="props">
+                {{ props.row.supplier_contact }}
+              </q-td>
+            </template>
+            <template v-if="props.row.id === editid">
+              <q-td key="supplier_manager" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model="editFormData.supplier_manager"
+                         :label="$t('baseinfo.view_supplier.supplier_manager')"
+                         :rules="[ val => val && val > 0 || 'Please Enter the Supplier Manager']"
+                />
+              </q-td>
+            </template>
+            <template v-else-if="props.row.id !== editid">
+              <q-td key="supplier_manager" :props="props">
+                {{ props.row.supplier_manager }}
+              </q-td>
+            </template>
+            <template v-if="props.row.id === editid">
+              <q-td key="supplier_level" :props="props">
+                <q-input dense
+                         outlined
+                         square
+                         v-model.number="editFormData.supplier_level"
+                         type="number"
+                         :label="$t('baseinfo.view_supplier.supplier_level')"
+                         :rules="[ val => val && val > 0 || 'Please Enter the Supplier Level']"
+                />
+              </q-td>
+            </template>
+            <template v-else-if="props.row.id !== editid">
+              <q-td key="supplier_level" :props="props">
+                {{ props.row.supplier_level }}
+              </q-td>
+            </template>
             <q-td key="creater" :props="props">
               {{ props.row.creater }}
             </q-td>
@@ -112,28 +142,6 @@
               {{ props.row.update_time }}
             </q-td>
             <template v-if="!editMode">
-              <q-td key="action" :props="props" style="width: 100px">
-                <q-btn v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                              $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                              $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                              $q.localStorage.getItem('staff_type') !== 'StockControl'
-                             "
-                       round flat push color="info" icon="print" @click="viewData(props.row)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('warehouse.printbin') }}
-                  </q-tooltip>
-                </q-btn>
-                <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('edit') }}
-                  </q-tooltip>
-                </q-btn>
-                <q-btn round flat push color="dark" icon="delete" @click="deleteData(props.row.id)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('delete') }}
-                  </q-tooltip>
-                </q-btn>
-              </q-td>
             </template>
             <template v-else-if="editMode">
               <template v-if="props.row.id === editid">
@@ -171,58 +179,13 @@
         <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
       </div>
     </template>
-    <q-dialog v-model="newForm">
-      <q-card class="shadow-24">
-        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-          <div>{{ $t('newtip') }}</div>
-          <q-space />
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
-          </q-btn>
-        </q-bar>
-        <q-card-section style="max-height: 325px; width: 400px" class="scroll">
-          <q-input dense
-                   outlined
-                   square
-                   v-model="newFormData.bin_name"
-                   :label="$t('warehouse.view_binset.bin_name')"
-                   autofocus
-                   :rules="[ val => val && val.length > 0 || error1]"
-                   @keyup.enter="newDataSubmit()"/>
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.bin_size"
-                    :options="bin_size_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('warehouse.view_binset.bin_size')"
-                    :rules="[ val => val && val.length > 0 || error2]"
-          />
-          <q-select dense
-                    outlined
-                    square
-                    v-model="newFormData.bin_property"
-                    :options="bin_property_list"
-                    transition-show="scale"
-                    transition-hide="scale"
-                    :label="$t('warehouse.view_binset.bin_property')"
-                    :rules="[ val => val && val.length > 0 || error3]"
-          />
-        </q-card-section>
-        <div style="float: right; padding: 15px 15px 15px 0">
-          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
-          <q-btn color="primary" @click="newDataSubmit()">{{ $t('submit') }}</q-btn>
-        </div>
-      </q-card>
-    </q-dialog>
     <q-dialog v-model="deleteForm">
       <q-card class="shadow-24">
         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
           <div>{{ $t('delete') }}</div>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
+            <q-tooltip>{{ $t('index.close') }}</q-tooltip>
           </q-btn>
         </q-bar>
         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
@@ -234,73 +197,38 @@
         </div>
       </q-card>
     </q-dialog>
-    <q-dialog v-model="viewForm">
-      <div id="printMe" style="width: 400px;height:280px;background-color: white">
-        <q-card-section>
-          <div class="row" style="height: 50px">
-            <div class="col-3">
-              <img src='/statics/goods/logo.png'  style="width: 60px;height: 50px;margin-top: 5px;margin-left: 5px">
-            </div>
-            <div class="col-9" style="height: 50px;float: contour;margin-top: 10px" >
-              <p style="font-size: 20px;font-weight: 550">{{$t('warehouse.view_binset.bin_name') + ':' + bin_name}}</p>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-8" style="margin-top: 30px;padding-left: 3%">
-              <p style="font-size: 20px;font-weight: 550">{{$t('warehouse.view_binset.bin_property') + ':'}}</p>
-              <p style="font-size: 20px;font-weight: 550">{{bin_property}}</p>
-            </div>
-            <div class="col-4" style="margin-top: 25px;">
-              <img :src="bar_code" style="width: 70%;margin-left: 23px"/>
-            </div>
-          </div>
-        </q-card-section>
-      </div>
-      <div style="float: right; padding: 15px 15px 15px 0">
-        <q-btn color="primary" icon="print" v-print="printObj">print</q-btn>
-      </div>
-    </q-dialog>
   </div>
 </template>
 <router-view />
 
 <script>
-import { date, exportFile, LocalStorage } from 'quasar'
 import { getauth, postauth, putauth, deleteauth, getfile } from 'boot/axios_request'
+import { date, exportFile, LocalStorage } from 'quasar'
 
 export default {
-  name: 'Pagebinset',
+  name: 'Pagesupplier',
   data () {
     return {
-      bin_name: '',
-      bin_property: '',
       openid: '',
       login_name: '',
       authin: '0',
-      pathname: 'binset/',
+      pathname: 'supplier/',
       pathname_previous: '',
       pathname_next: '',
       separator: 'cell',
       loading: false,
       height: '',
       table_list: [],
-      bin_size_list: [],
-      bin_property_list: [],
-      viewForm: false,
-      printObj: {
-        id: 'printMe',
-        popTitle: this.$t('inbound.asn')
-      },
       columns: [
-        { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
-        { name: 'bin_size', label: this.$t('warehouse.view_binset.bin_size'), field: 'bin_size', align: 'center' },
-        { name: 'bin_property', label: this.$t('warehouse.view_binset.bin_property'), field: 'bin_property', align: 'center' },
-        { name: 'empty_label', label: this.$t('warehouse.view_binset.empty_label'), field: 'empty_label', align: 'center' },
+        { name: 'supplier_name', required: true, label: this.$t('baseinfo.view_supplier.supplier_name'), align: 'left', field: 'supplier_name' },
+        { name: 'supplier_city', label: this.$t('baseinfo.view_supplier.supplier_city'), field: 'supplier_city', align: 'center' },
+        { name: 'supplier_address', label: this.$t('baseinfo.view_supplier.supplier_address'), field: 'supplier_address', align: 'center' },
+        { name: 'supplier_contact', label: this.$t('baseinfo.view_supplier.supplier_contact'), field: 'supplier_contact', align: 'center' },
+        { name: 'supplier_manager', label: this.$t('baseinfo.view_supplier.supplier_manager'), field: 'supplier_manager', align: 'center' },
+        { name: 'supplier_level', label: this.$t('baseinfo.view_supplier.supplier_level'), field: 'supplier_level', align: 'center' },
         { name: 'creater', label: this.$t('creater'), field: 'creater', align: 'center' },
         { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
-        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' },
-        { name: 'action', label: this.$t('action'), align: 'right' }
+        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' }
       ],
       filter: '',
       pagination: {
@@ -309,9 +237,12 @@ export default {
       },
       newForm: false,
       newFormData: {
-        bin_name: '',
-        bin_size: '',
-        bin_property: '',
+        supplier_name: '',
+        supplier_city: '',
+        supplier_address: '',
+        supplier_contact: '',
+        supplier_manager: '',
+        supplier_level: '',
         creater: ''
       },
       editid: 0,
@@ -319,10 +250,12 @@ export default {
       editMode: false,
       deleteForm: false,
       deleteid: 0,
-      bar_code: '',
-      error1: this.$t('warehouse.view_binset.error1'),
-      error2: this.$t('warehouse.view_binset.error2'),
-      error3: this.$t('warehouse.view_binset.error3')
+      error1: this.$t('baseinfo.view_supplier.error1'),
+      error2: this.$t('baseinfo.view_supplier.error2'),
+      error3: this.$t('baseinfo.view_supplier.error3'),
+      error4: this.$t('baseinfo.view_supplier.error4'),
+      error5: this.$t('baseinfo.view_supplier.error5'),
+      error6: this.$t('baseinfo.view_supplier.error6')
     }
   },
   methods: {
@@ -332,8 +265,6 @@ export default {
         getauth(_this.pathname, {
         }).then(res => {
           _this.table_list = res.results
-          _this.bin_property_list = res.bin_property_list
-          _this.bin_size_list = res.bin_size_list
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -349,11 +280,9 @@ export default {
     getSearchList () {
       var _this = this
       if (LocalStorage.has('auth')) {
-        getauth(_this.pathname + '?bin_name__icontains=' + _this.filter, {
+        getauth(_this.pathname + '?supplier_name__icontains=' + _this.filter, {
         }).then(res => {
           _this.table_list = res.results
-          _this.bin_property_list = res.bin_property_list
-          _this.bin_size_list = res.bin_size_list
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -372,8 +301,6 @@ export default {
         getauth(_this.pathname_previous, {
         }).then(res => {
           _this.table_list = res.results
-          _this.bin_property_list = res.bin_property_list
-          _this.bin_size_list = res.bin_size_list
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -392,8 +319,6 @@ export default {
         getauth(_this.pathname_next, {
         }).then(res => {
           _this.table_list = res.results
-          _this.bin_property_list = res.bin_property_list
-          _this.bin_size_list = res.bin_size_list
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -412,11 +337,11 @@ export default {
     },
     newDataSubmit () {
       var _this = this
-      var binsets = []
+      var suppliers = []
       _this.table_list.forEach(i => {
-        binsets.push(i.bin_name)
+        suppliers.push(i.supplier_name)
       })
-      if (binsets.indexOf(_this.newFormData.bin_name) === -1 && _this.newFormData.bin_name.length !== 0) {
+      if (suppliers.indexOf(_this.newFormData.supplier_name) === -1 && _this.newFormData.supplier_name.length !==0) {
         _this.newFormData.creater = _this.login_name
         postauth(_this.pathname, _this.newFormData).then(res => {
           _this.getList()
@@ -433,28 +358,31 @@ export default {
             color: 'negative'
           })
         })
-      } else if (binsets.indexOf(_this.newFormData.bin_name) !== -1) {
+      } else if (suppliers.indexOf(_this.newFormData.supplier_name) !== -1) {
         _this.$q.notify({
-          message: _this.$t('notice.warehouseerror.binseterror'),
+          message: _this.$t('notice.baseinfoerror.suppliererror'),
           icon: 'close',
           color: 'negative'
         })
-      } else if (_this.newFormData.bin_name.length === 0) {
+      } else if (_this.newFormData.supplier_name.length === 0) {
         _this.$q.notify({
-          message: _this.$t('warehouse.view_binset.error1'),
+          message: _this.$t('baseinfo.view_supplier.error1'),
           icon: 'close',
           color: 'negative'
         })
       }
-      binsets = []
+      suppliers = []
     },
     newDataCancel () {
       var _this = this
       _this.newForm = false
       _this.newFormData = {
-        bin_name: '',
-        bin_size: '',
-        bin_property: '',
+        supplier_name: '',
+        supplier_city: '',
+        supplier_address: '',
+        supplier_contact: '',
+        supplier_manager: '',
+        supplier_level: '',
         creater: ''
       }
     },
@@ -463,9 +391,12 @@ export default {
       _this.editMode = true
       _this.editid = e.id
       _this.editFormData = {
-        bin_name: e.bin_name,
-        bin_size: e.bin_size,
-        bin_property: e.bin_property,
+        supplier_name: e.supplier_name,
+        supplier_city: e.supplier_city,
+        supplier_address: e.supplier_address,
+        supplier_contact: e.supplier_contact,
+        supplier_manager: e.supplier_manager,
+        supplier_level: e.supplier_level,
         creater: _this.login_name
       }
     },
@@ -492,10 +423,12 @@ export default {
       _this.editMode = false
       _this.editid = 0
       _this.editFormData = {
-        bin_name: '',
-        bin_size: '',
-        bin_property: '',
-        empty_label: '',
+        supplier_name: '',
+        supplier_city: '',
+        supplier_address: '',
+        supplier_contact: '',
+        supplier_manager: '',
+        supplier_level: '',
         creater: ''
       }
     },
@@ -545,24 +478,6 @@ export default {
           })
         }
       })
-    },
-    viewData (e) {
-      var _this = this
-      var QRCode = require('qrcode')
-      QRCode.toDataURL(e.bar_code, [{
-        errorCorrectionLevel: 'H',
-        mode: 'byte',
-        version: '2',
-        type: 'image/jpeg'
-      }]
-      ).then(url => {
-        _this.bin_name = e.bin_name
-        _this.bin_property = e.bin_property
-        _this.bar_code = url
-      }).catch(err => {
-        console.error(err)
-      })
-      _this.viewForm = true
     }
   },
   created () {
