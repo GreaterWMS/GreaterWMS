@@ -239,7 +239,7 @@
         <q-card-section>
           <div class="row" style="height: 50px">
             <div class="col-3">
-              <img src='/statics/goods/logo.png'  style="width: 60px;height: 50px;margin-top: 5px;margin-left: 5px">
+              <img src='statics/goods/logo.png'  style="width: 60px;height: 50px;margin-top: 5px;margin-left: 5px">
             </div>
             <div class="col-9" style="height: 50px;float: contour;margin-top: 10px" >
               <p style="font-size: 20px;font-weight: 550">{{$t('warehouse.view_binset.bin_name') + ':' + bin_name}}</p>
