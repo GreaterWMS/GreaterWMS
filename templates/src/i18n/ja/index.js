@@ -469,6 +469,8 @@ export default {
     network_error: 'ネットワーク異常',
     cyclecounterror: 'データなし',
     userererror: 'ユーザー名は既に存在します',
+    valuenullerror: '完全なデータを入力してください',
+    loginerror: '最初にログインしてください',
     goodserror: {
       goods_listerror: '商品コードは既に存在します',
       goods_uniterror: '商品ユニットはすでに存在します',
