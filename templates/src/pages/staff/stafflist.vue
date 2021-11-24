@@ -172,7 +172,7 @@
            <q-input dense
                     outlined
                     square
-                    v-model="newFormData.staff_name"
+                    v-model.trim="newFormData.staff_name"
                     :label="$t('staff.view_staff.staff_name')"
                     autofocus
                     :rules="[ val => val && val.length > 0 || error1]"
@@ -405,6 +405,7 @@ export default {
     },
     newDataSubmit () {
       var _this = this
+      console.log(_this.newFormData.staff_name)
       var staffs = []
       _this.table_list.forEach(i => {
         staffs.push(i.staff_name)

@@ -19,7 +19,7 @@
       >
          <template v-slot:top>
            <q-btn-group push>
-             <q-btn v-show="device === 0" :label="$t('new')" icon="add" @click="newForm = true">
+             <q-btn :label="$t('new')" icon="add" @click="newForm = true">
                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                  {{ $t('newtip') }}
                </q-tooltip>
@@ -187,7 +187,6 @@
                     v-model.number="newFormData.capital_cost"
                     type="number"
                     :label="$t('finance.view_capital.capital_cost')"
-                    :rules="[ val => val && val > 0 || error3]"
                     @keyup.enter="newDataSubmit()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
@@ -347,41 +346,49 @@ export default {
     },
     newDataSubmit () {
       var _this = this
-      var capitallists = []
-      _this.table_list.forEach(i => {
-        capitallists.push(i.capital_name)
-      })
-      if (capitallists.indexOf(_this.newFormData.capital_name) === -1 && _this.newFormData.capital_name.length !== 0) {
-        _this.newFormData.creater = _this.login_name
-        postauth(_this.pathname, _this.newFormData).then(res => {
-          _this.getList()
-          _this.newDataCancel()
-          _this.$q.notify({
-            message: 'Success Create',
-            icon: 'check',
-            color: 'green'
+      if (_this.newFormData.capital_qty < 0) {
+        _this.$q.notify({
+          message: _this.$t('finance.view_capital.error2'),
+          icon: 'close',
+          color: 'negative'
+        })
+      } else {
+        var capitallists = []
+        _this.table_list.forEach(i => {
+          capitallists.push(i.capital_name)
+        })
+        if (capitallists.indexOf(_this.newFormData.capital_name) === -1 && _this.newFormData.capital_name.length !== 0) {
+          _this.newFormData.creater = _this.login_name
+          postauth(_this.pathname, _this.newFormData).then(res => {
+            _this.getList()
+            _this.newDataCancel()
+            _this.$q.notify({
+              message: 'Success Create',
+              icon: 'check',
+              color: 'green'
+            })
+          }).catch(err => {
+            _this.$q.notify({
+              message: err.detail,
+              icon: 'close',
+              color: 'negative'
+            })
           })
-        }).catch(err => {
+        } else if (capitallists.indexOf(_this.newFormData.capital_name) !== -1) {
           _this.$q.notify({
-            message: err.detail,
+            message: _this.$t('notice.capitalerror'),
             icon: 'close',
             color: 'negative'
           })
-        })
-      } else if (capitallists.indexOf(_this.newFormData.capital_name) !== -1) {
-        _this.$q.notify({
-          message: _this.$t('notice.capitalerror'),
-          icon: 'close',
-          color: 'negative'
-        })
-      } else if (_this.newFormData.capital_name.length === 0) {
-        _this.$q.notify({
-          message: _this.$t('finance.view_capital.error1'),
-          icon: 'close',
-          color: 'negative'
-        })
+        } else if (_this.newFormData.capital_name.length === 0) {
+          _this.$q.notify({
+            message: _this.$t('finance.view_capital.error1'),
+            icon: 'close',
+            color: 'negative'
+          })
+        }
+        capitallists = []
       }
-      capitallists = []
     },
     newDataCancel () {
       var _this = this
