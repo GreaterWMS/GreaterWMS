@@ -41,7 +41,7 @@ export default {
     updatetitle: 'Update Ready',
     updatedesc: 'Version Can Update Now',
     update: 'Update Now',
-    chart: '',
+    chart: ' Chart',
     current_user: 'Current User'
   },
   menuItem: {
@@ -470,6 +470,8 @@ export default {
     cyclecounterror: 'No Data',
     userererror: 'Username Already Exists',
     capitalerror: 'Fixed Asset Name Already Exists',
+    valuenullerror: 'Please Fill In The Complete Data',
+    loginerror: 'Please Log In First',
     goodserror: {
       goods_listerror: 'The Product Code Already Exists',
       goods_uniterror: 'Commodity Unit Already Exists',

@@ -92,7 +92,7 @@
   </div>
 </template>
 <router-view />
-
+<script type="text/javascript" src="../templates/src/components/xlsx.full.min.js"></script>
 <script>
 import { baseurl } from 'boot/axios_request'
 import { LocalStorage, openURL } from 'quasar'
@@ -159,6 +159,15 @@ export default {
       } else {
         openURL(baseurl + 'media/upload_example/supplier_en.xlsx')
       }
+    },
+    readWorkbookFromLocalFile (file, callback) {
+      var reader = new FileReader()
+      reader.onload = function(e) {
+        var data = e.target.result
+        var workbook = XLSX.read(data, {type: 'binary'})
+        if(callback) callback(workbook)
+      }
+      reader.readAsBinaryString(file)
     }
   },
   mounted () {

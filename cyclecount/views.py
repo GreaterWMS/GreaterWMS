@@ -211,14 +211,20 @@ class FileDownloadAllView(viewsets.ModelViewSet):
             return None
 
     def get_queryset(self):
-        id = self.get_project()
-        if self.request.user:
-            if id is None:
-                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid)
+            id = self.get_project()
+            if self.request.user:
+                cur_date = timezone.now()
+                delt_date = relativedelta(days=1)
+                if id is None:
+                    return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=0,
+                                                                 create_time__gte=str((cur_date -delt_date).date()) + ' 00:00:00',
+                                                                 create_time__lte=str((cur_date + delt_date).date()) + ' 00:00:00')
+                else:
+                    return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=0,
+                                                                 create_time__gte=str((cur_date - delt_date).date()) + ' 00:00:00',
+                                                                 create_time__lte=str((cur_date + delt_date).date()) + ' 00:00:00', id=id)
             else:
-                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, id=id)
-        else:
-            return CyclecountModeDayModel.objects.none()
+                return CyclecountModeDayModel.objects.none()
 
     def get_serializer_class(self):
         if self.action in ['list']:
