@@ -469,6 +469,8 @@ export default {
     cyclecounterror: '沒有數據',
     userererror: '用戶名已存在',
     capitalerror: '固定資產名稱已存在',
+    valuenullerror: '請填寫完整數據',
+    loginerror: '最初にログインしてください',
     goodserror: {
       goods_listerror: '商品編碼已存在',
       goods_uniterror: '商品單位已存在',
