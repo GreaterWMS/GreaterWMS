@@ -60,31 +60,32 @@
         <transition appear enter-active-class="animated zoomIn">
           <q-btn-dropdown stretch flat color="white-8" icon="account_circle" @click="chat = false">
             <div class="row no-wrap q-pa-md">
-              <div class="column" style="width: 180px">
+              <div class="column" style="width: 150px">
                 <div v-show="device === 0" class="text-h6 q-mb-md">
                   {{ $t('index.user_center') }}
                 </div>
                 <div v-show="device === 1 || device === 2" style="width: 100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">
-                  <q-img style="width: 14%;margin-left: 8.5%" src="statics/icons/users.svg"></q-img>
-                  <span style="margin-left: 8%">{{login_name}}</span>
+                  <span style="margin-left: 9%;font-weight: bold">当前用户:</span>
+                  <span style="margin-left: 6%;font-weight: bold">{{login_name}}</span>
                 </div>
-                <hr style="height: 2px;border:none;border-top:1px solid #e1e1e1;width: 100%;margin-top: 8%" />
-                <q-btn flat rounded class="full-width" align="left" icon="connect_without_contact" :label="$t('index.change_user')" @click="login = true">
+                <hr v-show="device !== 0" style="height: 2px;border:none;border-top:1px solid #e1e1e1;width: 121%;margin-left: -10.5%; margin-top: 8%" />
+                <q-btn flat rounded class="full-width" align="left" :label="$t('index.change_user')" @click="login = true">
                       <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                           {{ $t('index.change_user') }}
                       </q-tooltip>
                   </q-btn>
-                  <q-btn flat rounded class="full-width" align="left" icon="list" :label="$t('index.view_my_openid')" @click="authid = true">
+                  <q-btn flat rounded class="full-width" align="left" :label="$t('index.view_my_openid')" @click="authid = true">
                       <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                           {{ $t('index.view_my_openid') }}
                       </q-tooltip>
                   </q-btn>
-                  <q-btn v-show="device !== 2" flat rounded class="full-width" align="left" icon="img:statics/icons/profile.png" :label="$t('index.contact_list')" @click="Friend()">
+                  <q-btn v-show="device !== 2" flat rounded class="full-width" align="left" :label="$t('index.contact_list')" @click="Friend()">
                       <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                           {{ $t('index.contact_list') }}
                       </q-tooltip>
                   </q-btn>
-                  <q-btn v-show="$q.platform.is.cordova || $q.platform.is.mobile" flat rounded class="full-width" align="left" icon="logout" :label="$t('index.logout')" @click="Logout()">
+                <hr v-show="device !== 0" style="height: 2px;border:none;border-top:1px solid #e1e1e1;width: 121%;margin-left: -10.5%; margin-top: 8%" />
+                  <q-btn v-show="$q.platform.is.cordova || $q.platform.is.mobile" flat rounded class="full-width" align="left" :label="$t('index.logout')" @click="Logout()">
                       <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                           {{ $t('index.contact_list') }}
                       </q-tooltip>
@@ -940,6 +941,7 @@ export default {
           })
         }
       }
+      window.location.href = '/'
     },
     Logout () {
       var _this = this
@@ -954,6 +956,7 @@ export default {
       })
       _this.staffType()
       window.location.reload()
+      window.location.href = '/'
     },
     Register () {
       var _this = this
