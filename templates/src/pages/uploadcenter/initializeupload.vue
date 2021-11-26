@@ -92,7 +92,7 @@
   </div>
 </template>
 <router-view />
-<script type="text/javascript" src="../templates/src/components/xlsx.full.min.js"></script>
+<!--<script type="text/javascript" src="../templates/src/components/xlsx.full.min.js"></script>-->
 <script>
 import { baseurl } from 'boot/axios_request'
 import { LocalStorage, openURL } from 'quasar'
@@ -121,6 +121,8 @@ export default {
       })
     },
     getfileinfo (file) {
+      // var _this = this
+      // _this.readWorkbookFromLocalFile(file)
       console.log(file)
     },
     // electronOpenLink (url) {
@@ -128,47 +130,76 @@ export default {
     //   shell.openExternal(url)
     // },
     downloadgoodstemplate () {
-      if (LocalStorage.has('lang')) {
-        if (LocalStorage.getItem('lang') === 'zh-hans') {
-          openURL(baseurl + 'media/upload_example/goodslist_cn.xlsx')
+      var _this = this
+      if (LocalStorage.has('auth')) {
+        if (LocalStorage.has('lang')) {
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            openURL(baseurl + 'media/upload_example/goodslist_cn.xlsx')
+          } else {
+            openURL(baseurl + 'media/upload_example/goodslist_en.xlsx')
+          }
         } else {
           openURL(baseurl + 'media/upload_example/goodslist_en.xlsx')
         }
       } else {
-        openURL(baseurl + 'media/upload_example/goodslist_en.xlsx')
+        _this.$q.notify({
+          message: _this.$t('notice.loginerror'),
+          color: 'negative',
+          icon: 'warning'
+        })
       }
     },
     downloadcustomertemplate () {
-      if (LocalStorage.has('lang')) {
-        if (LocalStorage.getItem('lang') === 'zh-hans') {
-          openURL(baseurl + 'media/upload_example/customer_cn.xlsx')
+      var _this = this
+      if (LocalStorage.has('auth')) {
+        if (LocalStorage.has('lang')) {
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            openURL(baseurl + 'media/upload_example/customer_cn.xlsx')
+          } else {
+            openURL(baseurl + 'media/upload_example/customer_en.xlsx')
+          }
         } else {
           openURL(baseurl + 'media/upload_example/customer_en.xlsx')
         }
       } else {
-        openURL(baseurl + 'media/upload_example/customer_en.xlsx')
+        _this.$q.notify({
+          message: _this.$t('notice.loginerror'),
+          color: 'negative',
+          icon: 'warning'
+        })
       }
     },
     downloadsuppliertemplate () {
-      if (LocalStorage.has('lang')) {
-        if (LocalStorage.getItem('lang') === 'zh-hans') {
-          openURL(baseurl + 'media/upload_example/supplier_cn.xlsx')
+      var _this = this
+      if (LocalStorage.has('auth')) {
+        if (LocalStorage.has('lang')) {
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            openURL(baseurl + 'media/upload_example/supplier_cn.xlsx')
+          } else {
+            openURL(baseurl + 'media/upload_example/supplier_en.xlsx')
+          }
         } else {
           openURL(baseurl + 'media/upload_example/supplier_en.xlsx')
         }
       } else {
-        openURL(baseurl + 'media/upload_example/supplier_en.xlsx')
+        _this.$q.notify({
+          message: _this.$t('notice.loginerror'),
+          color: 'negative',
+          icon: 'warning'
+        })
       }
-    },
-    readWorkbookFromLocalFile (file, callback) {
-      var reader = new FileReader()
-      reader.onload = function(e) {
-        var data = e.target.result
-        var workbook = XLSX.read(data, {type: 'binary'})
-        if(callback) callback(workbook)
-      }
-      reader.readAsBinaryString(file)
     }
+    // readWorkbookFromLocalFile (file, callback) {
+    //   var reader = new FileReader()
+    //   reader.onload = function(e) {
+    //     var data = e.target.result
+    //     var workbook = XLSX.read(data, {type: 'string'})
+    //     if (callback) {
+    //       callback(workbook)
+    //     }
+    //   }
+    //   reader.readAsBinaryString(file)
+    // }
   },
   mounted () {
     var _this = this
