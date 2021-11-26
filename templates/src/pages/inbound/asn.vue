@@ -1717,11 +1717,11 @@ export default {
         _this.viewAsn = e.asn_code
         var QRCode = require('qrcode')
         QRCode.toDataURL(e.bar_code, [{
-            errorCorrectionLevel: 'H',
-            mode: 'byte',
-            version: '2',
-            type: 'image/jpeg'
-          }]
+          errorCorrectionLevel: 'H',
+          mode: 'byte',
+          version: '2',
+          type: 'image/jpeg'
+        }]
         ).then(url => {
           _this.bar_code = url
         }).catch(err => {

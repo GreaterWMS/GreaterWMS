@@ -70,6 +70,7 @@ yarn config set registry https://registry.npm.taobao.org/
 # 安装quasar环境
 npm install -g @quasar/cli
 # 安装windows构建工具
+#注意：如果安装不上请下载 Visual Studio 安装C++环境
 npm install -g windows-build-tools
 # 安装core-js依赖
 npm install -g core-js
