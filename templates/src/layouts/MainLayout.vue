@@ -749,7 +749,7 @@
   </q-layout>
 </template>
 <script>
-import { versioncheck, getauth, post, wsurl } from 'boot/axios_request'
+import { versioncheck, getauth, post, wsurl,baseurl } from 'boot/axios_request'
 import { date, LocalStorage, openURL } from 'quasar'
 import Vconsole from 'vconsole'
 if (process.env.NODE_ENV !== 'production') {
@@ -941,7 +941,7 @@ export default {
           })
         }
       }
-      window.location.href = '/'
+      _this.$router.replace('/')
     },
     Logout () {
       var _this = this
@@ -956,7 +956,7 @@ export default {
       })
       _this.staffType()
       window.location.reload()
-      window.location.href = '/'
+      _this.$router.replace('/')
     },
     Register () {
       var _this = this
