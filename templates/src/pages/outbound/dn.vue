@@ -1191,7 +1191,6 @@
                      :rules="[
                        val => val !== null && val !== '' && val > 0 || error2
                      ]"
-                     @keyup="value=value.replace(/^(0+)|[^\d]+/g,'')"
             >
               <template v-slot:after>
                 <q-input dense
@@ -1203,9 +1202,8 @@
                          :label="$t('outbound.view_dn.delivery_damage_qty')"
                          style="margin-top: 11%"
                          :rules="[
-                           val => item.delivery_damage_qty < item.intransit_qty && val !== null && val !== '' || error2
+                           val => item.delivery_damage_qty <= item.intransit_qty && val !== null && val !== '' || error2
                          ]"
-                         @keyup="value=value.replace(/^(0+)|[^\d]+/g,'')"
                 >
                 </q-input>
               </template>
