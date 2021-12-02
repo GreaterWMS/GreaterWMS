@@ -80,25 +80,9 @@
                 {{ props.row.bin_size }}
               </q-td>
             </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="bin_property" :props="props">
-                <q-select dense
-                          outlined
-                          square
-                          v-model="editFormData.bin_property"
-                          :options="bin_property_list"
-                          transition-show="scale"
-                          transition-hide="scale"
-                          :label="$t('warehouse.view_binset.bin_property')"
-                          :rules="[ val => val && val.length > 0 || error3]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="bin_property" :props="props">
                 {{ props.row.bin_property }}
               </q-td>
-            </template>
             <q-td key="empty_label" :props="props">
               {{ props.row.empty_label }}
             </q-td>
