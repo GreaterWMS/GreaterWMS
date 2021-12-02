@@ -238,6 +238,7 @@
                                 name-sanitize
                                 sent
                                 text-sanitize
+                                :stamp= "item.create_time"
                 />
                 <q-chat-message v-else
                                 :name="receiver"
@@ -245,6 +246,7 @@
                                 text-sanitize
                                 name-sanitize
                                 bg-color="grey-4"
+                                :stamp= "item.create_time"
                 />
               </div>
             </div>
