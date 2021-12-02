@@ -65,7 +65,7 @@
                   {{ $t('index.user_center') }}
                 </div>
                 <div v-show="device === 1 || device === 2" style="width: 100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">
-                  <span style="margin-left: 9%;font-weight: bold">当前用户:</span>
+                  <span style="margin-left: 9%;font-weight: bold">{{ $t('index.current_user') }}:</span>
                   <span style="margin-left: 6%;font-weight: bold">{{login_name}}</span>
                 </div>
                 <hr v-show="device !== 0" style="height: 2px;border:none;border-top:1px solid #e1e1e1;width: 121%;margin-left: -10.5%; margin-top: 8%" />
@@ -955,7 +955,6 @@ export default {
         color: 'negative'
       })
       _this.staffType()
-      window.location.reload()
       _this.$router.replace('/')
     },
     Register () {
