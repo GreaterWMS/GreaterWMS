@@ -76,10 +76,12 @@ class APIViewSet(viewsets.ModelViewSet):
 
     def update(self, request, pk):
         qs = self.get_object()
+        data = self.request.data
         if qs.openid != self.request.auth.openid:
             raise APIException({"detail": "Cannot update data which not yours"})
+        if ListModel.objects.filter(openid=self.request.auth.openid,goods_origin=data['goods_origin'], is_delete=False).exists():
+            raise APIException({"detail": "Data exists"})
         else:
-            data = self.request.data
             serializer = self.get_serializer(qs, data=data)
             serializer.is_valid(raise_exception=True)
             serializer.save()

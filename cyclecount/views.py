@@ -14,6 +14,34 @@ from rest_framework.response import Response
 from .filter import Filter
 from rest_framework.exceptions import APIException
 from .serializers import FileRenderSerializer
+from  . import models
+
+class QTYRecorderViewSet(viewsets.ModelViewSet):
+    '''
+    功能：list
+    日期：2021/12/2
+    编写:xiao
+    '''
+    pagination_class = MyPageNumberPagination
+    filter_backends = [DjangoFilterBackend, OrderingFilter, ]
+    ordering_fields = ['id', "create_time", "update_time", ]
+    # filter_class = Filter
+
+
+    def get_queryset(self):
+        # token = self.request.META.get('HTTP_TOKEN')
+        # if token is None:
+        #     raise APIException({"detail": "请登录"})
+        if self.request.user:
+            return models.QTYRecorder.objects.filter().all()
+        else:
+            return models.QTYRecorder.objects.none()
+
+    def get_serializer_class(self):
+        if self.action in ['list']:
+            return serializers.QTYRecorderSerializer
+        else:
+            return self.http_method_not_allowed(request=self.request)
 
 
 class CyclecountModeDayViewSet(viewsets.ModelViewSet):
