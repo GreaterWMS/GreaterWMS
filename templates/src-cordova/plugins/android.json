@@ -66,9 +66,6 @@
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
-    "cordova-plugin-ubx": {
-      "PACKAGE_NAME": "org.greaterwms.app"
-    },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
