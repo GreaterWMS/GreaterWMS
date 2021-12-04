@@ -10,13 +10,13 @@ constantly==15.1.0
 coreapi==2.3.3
 coreschema==0.0.4
 cryptography==3.4.6
-daphne==3.0.1
+daphne==3.0.2
 Django==3.1.13
 django-cors-headers==3.7.0
 django-filter==2.4.0
-django-silk==4.1.0
-djangorestframework==3.12.2
-djangorestframework-csv==2.1.0
+django-silk==4.2.0
+djangorestframework==3.12.4
+djangorestframework-csv==2.1.1
 drf-yasg==1.20.0
 et-xmlfile==1.1.0
 gprof2dot==2019.11.30
@@ -30,6 +30,7 @@ inflection==0.5.1
 itypes==1.2.0
 Jinja2==2.11.3
 MarkupSafe==1.1.1
+mysqlclient==2.1.0
 numpy==1.21.2
 openpyxl==3.0.9
 packaging==20.8
