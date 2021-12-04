@@ -1,0 +1,17 @@
+{
+  "name": "cordova-plugin-zebra-d",
+  "version": "1.0.0",
+  "description": "Chen Yu",
+  "cordova": {
+    "id": "cordova-plugin-zebra-d",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Chen Yu",
+  "license": "ISC"
+}
