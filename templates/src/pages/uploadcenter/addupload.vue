@@ -39,7 +39,7 @@
                         :url = goodslistfile_pathname
                         method="post"
                         :headers="[{name:'token',value:token}, {name: 'language', value: lang}]"
-                        :field-name="(file)=>file"
+                        :field-name="(file)=>'file'"
                         :label="$t('upload_center.uploadgoodslistfile')"
                         accept=".xlsx,csv,xls/*"
                         @rejected="onRejected"
@@ -73,7 +73,7 @@
                         :url = supplierfile_pathname
                         method="post"
                         :headers="[{name:'token',value:token}, {name: 'language', value: lang}]"
-                        :field-name="(file)=>file"
+                        :field-name="(file)=>'file'"
                         :label="$t('upload_center.uploadsupplierfile')"
                         accept=".xlsx,csv,xls/*"
                         @rejected="onRejected"
