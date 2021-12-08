@@ -9,6 +9,11 @@ class QTYRecorder(models.Model):
     creater = models.CharField(max_length=255, verbose_name="Who Create")
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="Create Time")
     update_time = models.DateTimeField(auto_now=True, blank=True, null=True, verbose_name="Update Time")
+    def __str__(self):
+        return self.pk
+
+
+
 
 class CyclecountModeDayModel(models.Model):
     openid = models.CharField(max_length=255, verbose_name="Openid")
