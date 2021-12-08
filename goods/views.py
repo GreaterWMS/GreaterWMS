@@ -79,6 +79,8 @@ class APIViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         data = self.request.data
         data['openid'] = self.request.auth.openid
+        if len(data['goods_code']) > 18:
+            raise APIException({"detail": "Goods Code is too long"})
         data['unit_volume'] = round(
             (float(data['goods_w']) * float(data['goods_d']) * float(data['goods_h'])) / 1000000000, 4)
         if ListModel.objects.filter(openid=data['openid'], goods_code=data['goods_code'], is_delete=False).exists():
