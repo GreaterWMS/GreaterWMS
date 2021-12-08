@@ -12,9 +12,34 @@ from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from .filter import Filter
+from .filter import QTYRecorderListFilter
 from rest_framework.exceptions import APIException
 from .serializers import FileRenderSerializer
+from .models import QTYRecorder
 
+class QTYRecorderViewSet(viewsets.ModelViewSet):
+    """
+        list:
+            Response a data list（all）
+
+    """
+
+    pagination_class = MyPageNumberPagination
+    filter_backends = [DjangoFilterBackend, OrderingFilter, ]
+    ordering_fields = ['id', "create_time", "update_time", ]
+    filter_class = QTYRecorderListFilter
+
+    def get_queryset(self):
+        if self.request.user:
+            return QTYRecorder.objects.filter(openid=self.request.auth.openid)
+        else:
+            return QTYRecorder.objects.none()
+
+    def get_serializer_class(self):
+        if self.action in ['list']:
+            return serializers.QTYRecorderSerializer
+        else:
+            return self.http_method_not_allowed(request=self.request)
 
 class CyclecountModeDayViewSet(viewsets.ModelViewSet):
     """
