@@ -1,7 +1,0 @@
-repositories {
-    google()
-    maven { url 'https://jitpack.io' }
-}
-dependencies {
-    implementation 'com.github.ltrudu:DeviceIdentifiersWrapper:0.2'
-}
