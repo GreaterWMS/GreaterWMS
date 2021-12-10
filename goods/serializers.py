@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import ListModel
 from utils import datasolve
-
+from rest_framework.exceptions import ValidationError
 
 class GoodsGetSerializer(serializers.ModelSerializer):
     goods_code = serializers.CharField(read_only=True, required=False)
@@ -34,10 +34,8 @@ class GoodsGetSerializer(serializers.ModelSerializer):
 
 class GoodsPostSerializer(serializers.ModelSerializer):
     openid = serializers.CharField(read_only=False, required=False, validators=[datasolve.openid_validate])
-    goods_code = serializers.CharField(read_only=False, required=True, max_length=18, min_length=1,
-                                       validators=[datasolve.data_validate],
-                                       error_messages={"max_length": "goods code is too long",
-                                                       "min_length": "goods code is too short "})
+    goods_code = serializers.CharField(read_only=False, required=True, max_length=15, min_length=1,
+                                       validators=[datasolve.data_validate])
     goods_desc = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     goods_supplier = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     goods_weight = serializers.FloatField(read_only=False, required=True, validators=[datasolve.data_validate])
@@ -63,11 +61,12 @@ class GoodsPostSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'create_time', 'update_time', ]
 
 
+
+
+
 class GoodsUpdateSerializer(serializers.ModelSerializer):
     goods_code = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate],
-                                       max_length=18, min_length=1,
-                                       error_messages={"max_length": "goods code is too long",
-                                                       "min_length": "goods code is too short "})
+                                       max_length=15, min_length=1)
     goods_desc = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     goods_supplier = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     goods_weight = serializers.FloatField(read_only=False, required=True, validators=[datasolve.data_validate])
@@ -92,12 +91,9 @@ class GoodsUpdateSerializer(serializers.ModelSerializer):
         exclude = ['openid', 'is_delete', ]
         read_only_fields = ['id', 'create_time', 'update_time', ]
 
-
 class GoodsPartialUpdateSerializer(serializers.ModelSerializer):
     goods_code = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate],
-                                       max_length=18, min_length=1,
-                                       error_messages={"max_length": "goods code is too long",
-                                                       "min_length": "goods code is too short "})
+                                       max_length=15, min_length=1)
     goods_desc = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     goods_supplier = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     goods_weight = serializers.FloatField(read_only=False, required=False, validators=[datasolve.data_validate])
@@ -118,11 +114,10 @@ class GoodsPartialUpdateSerializer(serializers.ModelSerializer):
     bar_code = serializers.CharField(read_only=False, required=False)
 
 
-class Meta:
-    model = ListModel
-    exclude = ['openid', 'is_delete', ]
-    read_only_fields = ['id', 'create_time', 'update_time', ]
-
+    class Meta:
+        model = ListModel
+        exclude = ['openid', 'is_delete', ]
+        read_only_fields = ['id', 'create_time', 'update_time', ]
 
 class FileRenderSerializer(serializers.ModelSerializer):
     goods_code = serializers.CharField(read_only=False, required=False)
