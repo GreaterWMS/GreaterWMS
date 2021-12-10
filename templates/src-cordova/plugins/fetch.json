@@ -182,13 +182,5 @@
     },
     "is_top_level": true,
     "variables": {}
-  },
-  "cordova-plugin-zebra-d": {
-    "source": {
-      "type": "registry",
-      "id": "https://github.com/Singosgu/cordova-plugin-zebra-d.git"
-    },
-    "is_top_level": true,
-    "variables": {}
   }
 }
