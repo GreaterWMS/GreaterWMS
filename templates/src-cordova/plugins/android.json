@@ -74,9 +74,6 @@
     },
     "phonegap-nfc": {
       "PACKAGE_NAME": "org.greaterwms.app"
-    },
-    "cordova-plugin-zebra-d": {
-      "PACKAGE_NAME": "org.greaterwms.app"
     }
   },
   "dependent_plugins": {
