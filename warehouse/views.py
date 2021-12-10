@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from .filter import Filter
 from rest_framework.exceptions import APIException
 
+
 class APIViewSet(viewsets.ModelViewSet):
     """
         retrieve:
@@ -65,7 +66,10 @@ class APIViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         data = self.request.data
         data['openid'] = self.request.auth.openid
-        if ListModel.objects.filter(openid=data['openid'], warehouse_name=data['warehouse_name'], is_delete=False).exists():
+        if len(data['warehouse_name']) > 45:
+            raise APIException({"detail": "The warehouse name is set to more than 45 characters"})
+        if ListModel.objects.filter(openid=data['openid'], warehouse_name=data['warehouse_name'],
+                                    is_delete=False).exists():
             raise APIException({"detail": "Data Exists"})
         else:
             if ListModel.objects.filter(openid=data['openid'], is_delete=False).count() >= 1:
@@ -83,6 +87,8 @@ class APIViewSet(viewsets.ModelViewSet):
             raise APIException({"detail": "Cannot update data which not yours"})
         else:
             data = self.request.data
+            if len(data['warehouse_name']) > 45:
+                raise APIException({"detail": "The warehouse name is set to more than 45 characters"})
             serializer = self.get_serializer(qs, data=data)
             serializer.is_valid(raise_exception=True)
             serializer.save()
@@ -95,6 +101,8 @@ class APIViewSet(viewsets.ModelViewSet):
             raise APIException({"detail": "Cannot partial_update data which not yours"})
         else:
             data = self.request.data
+            if len(data['warehouse_name']) > 45:
+                raise APIException({"detail": "The warehouse name is set to more than 45 characters"})
             serializer = self.get_serializer(qs, data=data, partial=True)
             serializer.is_valid(raise_exception=True)
             serializer.save()
