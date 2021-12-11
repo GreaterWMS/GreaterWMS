@@ -12,6 +12,7 @@ from django.http import StreamingHttpResponse
 from .files import FileRenderCN, FileRenderEN
 from rest_framework.settings import api_settings
 
+
 class APIViewSet(viewsets.ModelViewSet):
     """
         retrieve:
@@ -36,6 +37,28 @@ class APIViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
     filter_class = Filter
+
+    def list(self, request, *args, **kwargs):
+        if request.GET.get('staff_name') and request.GET.get('check_code'):
+            staff_name=request.GET.get('staff_name')
+            check_code=int(request.GET.get('check_code'))
+            user_obj=ListModel.objects.filter(staff_name=staff_name,is_delete=False).first()
+            if user_obj is None:
+                raise APIException({"detail": "User does not exist"})
+            if user_obj.check_code!= check_code:
+                if user_obj.error_check_code_counter == 3:
+                    user_obj.is_lock=True
+                    user_obj.save()
+                    raise APIException({"detail": "The user has been locked"})
+                user_obj.error_check_code_counter=user_obj.error_check_code_counter+1
+                user_obj.save()
+                raise APIException({"detail": "Verification code error"})
+            else:
+                user_obj.error_check_code_counter=0
+                user_obj.save()
+                return super().list(request, *args, **kwargs)
+        else:
+            return super().list(request, *args, **kwargs)
 
     def get_project(self):
         try:
@@ -113,6 +136,7 @@ class APIViewSet(viewsets.ModelViewSet):
             headers = self.get_success_headers(serializer.data)
             return Response(serializer.data, status=200, headers=headers)
 
+
 class TypeAPIViewSet(viewsets.ModelViewSet):
     """
         list:
@@ -135,8 +159,9 @@ class TypeAPIViewSet(viewsets.ModelViewSet):
         else:
             return self.http_method_not_allowed(request=self.request)
 
+
 class FileDownloadView(viewsets.ModelViewSet):
-    renderer_classes = (FileRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
+    renderer_classes = (FileRenderCN,) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]
     filter_class = Filter
@@ -186,5 +211,6 @@ class FileDownloadView(viewsets.ModelViewSet):
             renderer,
             content_type="text/csv"
         )
-        response['Content-Disposition'] = "attachment; filename='staff_{}.csv'".format(str(dt.strftime('%Y%m%d%H%M%S%f')))
+        response['Content-Disposition'] = "attachment; filename='staff_{}.csv'".format(
+            str(dt.strftime('%Y%m%d%H%M%S%f')))
         return response
