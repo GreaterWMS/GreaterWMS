@@ -21,6 +21,7 @@ class GoodscolorPostSerializer(serializers.ModelSerializer):
         exclude = ['is_delete', ]
         read_only_fields = ['id', 'create_time', 'update_time', ]
 
+
 class GoodscolorUpdateSerializer(serializers.ModelSerializer):
     goods_color = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
@@ -28,6 +29,7 @@ class GoodscolorUpdateSerializer(serializers.ModelSerializer):
         model = ListModel
         exclude = ['openid', 'is_delete', ]
         read_only_fields = ['id', 'create_time', 'update_time', ]
+
 
 class GoodscolorPartialUpdateSerializer(serializers.ModelSerializer):
     goods_color = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])

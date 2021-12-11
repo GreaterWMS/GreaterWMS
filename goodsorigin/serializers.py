@@ -29,6 +29,9 @@ class GoodsoriginUpdateSerializer(serializers.ModelSerializer):
         exclude = ['openid', 'is_delete', ]
         read_only_fields = ['id', 'create_time', 'update_time', ]
 
+
+
+
 class GoodsoriginPartialUpdateSerializer(serializers.ModelSerializer):
     goods_origin = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
