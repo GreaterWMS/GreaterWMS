@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import axios from 'axios'
-import { LocalStorage, Notify } from 'quasar'
+import { SessionStorage, LocalStorage, Notify } from 'quasar'
 import { i18n } from './i18n'
+import Bus from "./bus.js"
 
 const baseurl = window.g.BaseUrl
 const wsurl = window.g.WsUrl
@@ -36,12 +37,18 @@ const axiosFile = axios.create({
 
 axiosInstanceAuth.interceptors.request.use(
   function (config) {
-    config.headers.post['Content-Type'] = 'application/json, charset="utf-8"'
-    config.headers.patch['Content-Type'] = 'application/json, charset="utf-8"'
-    config.headers.put['Content-Type'] = 'application/json, charset="utf-8"'
-    config.headers.token = LocalStorage.getItem('openid')
-    config.headers.language = lang
-    return config
+    let auth = LocalStorage.getItem('auth');
+    let login = SessionStorage.getItem('axios_check'); 
+    if (auth || login) {
+      config.headers.post['Content-Type'] = 'application/json, charset="utf-8"'
+      config.headers.patch['Content-Type'] = 'application/json, charset="utf-8"'
+      config.headers.put['Content-Type'] = 'application/json, charset="utf-8"'
+      config.headers.token = LocalStorage.getItem('openid')
+      config.headers.language = lang
+      return config
+    }else{
+        Bus.$emit('needLogin',true)
+    }
   },
   function (error) {
     return Promise.reject(error)
@@ -167,9 +174,15 @@ axiosInstanceAuth.interceptors.response.use(
 
 axiosInstance.interceptors.request.use(
   function (config) {
-    config.headers.post['Content-Type'] = 'application/json, charset="utf-8"'
-    config.headers.language = lang
-    return config
+    let auth = LocalStorage.getItem('auth');
+    let login = SessionStorage.getItem('axios_check'); 
+    if(auth || login){
+      config.headers.post['Content-Type'] = 'application/json, charset="utf-8"'
+      config.headers.language = lang
+      return config
+    }else{
+      Bus.$emit('needLogin',true)
+    }
   },
   function (error) {
     return Promise.reject(error)
@@ -269,7 +282,13 @@ axiosInstance.interceptors.response.use(
 
 axiosInstanceVersion.interceptors.request.use(
   function (config) {
-    return config
+    let auth = LocalStorage.getItem('auth');
+    let login = SessionStorage.getItem('axios_check'); 
+    if(auth || Login){
+      return config
+    }else{
+      Bus.$emit('needLogin',true)
+    }
   },
   function (error) {
     return Promise.reject(error)
@@ -287,10 +306,16 @@ axiosInstanceVersion.interceptors.response.use(
 
 axiosFile.interceptors.request.use(
   function (config) {
-    config.headers.get['Content-Type'] = 'application/vnd.ms-excel'
-    config.headers.token = LocalStorage.getItem('openid')
-    config.headers.language = lang
-    return config
+    let auth = LocalStorage.getItem('auth');
+    let login = SessionStorage.getItem('axios_check'); 
+    if(auth || login){
+      config.headers.get['Content-Type'] = 'application/vnd.ms-excel'
+      config.headers.token = LocalStorage.getItem('openid')
+      config.headers.language = lang
+      return config
+    }else{
+      Bus.$emit('needLogin',true);
+    }
   },
   function (error) {
     return Promise.reject(error)

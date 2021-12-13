@@ -20,6 +20,7 @@ export default {
     logout: 'Logout',
     user_login: 'User Login',
     admin_login: 'Admin Login',
+    return_to_login: 'Return To Login Page',
     user_center: 'User Center',
     change_user: 'Change User',
     view_my_openid: 'View My OPENID',
@@ -164,12 +165,22 @@ export default {
   dashboards: {
     outbound_statements: 'Outbound',
     inbound_statements: 'Inbound',
+    inbound_and_outbound_statements: 'Inbound And Outbound',
     total_sales: 'Total Sales',
     sales_volume_ranking: 'Sales Volume Ranking',
     sales_volumes_ranking: 'Sales Volumes Ranking',
     total_receipts: 'Total Receipts',
     receiving_quantity_ranking: 'Receiving Quantity Ranking',
-    Receiving_amount_ranking: 'Receiving Amount Ranking'
+    Receiving_amount_ranking: 'Receiving Amount Ranking',
+    view_tradelist:{
+      mode_code: 'Mode Of Doing Business',
+      bin_name: 'Location Name',
+      goods_code: 'Goods Code',
+      goods_qty: 'Quantity On Hand',
+      creater: 'Creater',
+      update_time: 'Update Time',
+      create_time: 'Create Time'
+    }
   },
   finance: {
     capital: 'Capital',
