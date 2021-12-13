@@ -749,7 +749,7 @@
   </q-layout>
 </template>
 <script>
-import { versioncheck, getauth, post, wsurl,baseurl } from 'boot/axios_request'
+import { versioncheck, getauth, post, wsurl } from 'boot/axios_request'
 import { date, LocalStorage, openURL } from 'quasar'
 import Vconsole from 'vconsole'
 if (process.env.NODE_ENV !== 'production') {

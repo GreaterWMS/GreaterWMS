@@ -917,7 +917,6 @@ export default {
     _this.goods_scan = ''
     _this.getList('A00001')
     _this.scanEvents()
-    getDeviceinfo()
   },
   updated () {
   },
