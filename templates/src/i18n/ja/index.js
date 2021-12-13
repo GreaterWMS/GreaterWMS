@@ -20,6 +20,7 @@ export default {
     logout: 'ログインを終了',
     user_login: 'ユーザーログイン',
     admin_login: '管理者ログイン',
+    return_to_login: 'ログインページに戻る',
     user_center: 'ユーザーセンター',
     change_user: 'ユーザーの変更',
     view_my_openid: '私のOPENIDを表示',
@@ -164,6 +165,7 @@ export default {
   dashboards: {
     outbound_statements: '出庫報告書',
     inbound_statements: '受入報告書',
+    inbound_and_outbound_statements: 'インバウンドとアウトバウンド',
     total_sales: '総売上高',
     category_sales_ranking: '商品別販売ランキング',
     sales_volume_ranking: '売上ランキング',
@@ -171,7 +173,16 @@ export default {
     total_receipts: '総受入量',
     category_receipt_ranking: '品類受入ランキング',
     receiving_quantity_ranking: '受入数量ランキング',
-    Receiving_amount_ranking: '受入額ランキング'
+    Receiving_amount_ranking: '受入額ランキング',
+    view_tradelist:{
+      mode_code: '取引方式',
+      bin_name: 'ライブラリ名',
+      goods_code: '商品コード',
+      goods_qty: '既存数量',
+      creater: '作成者',
+      update_time: '更新時間',
+      create_time: '作成時間'
+    }
   },
   finance: {
     capital: '固定資産',

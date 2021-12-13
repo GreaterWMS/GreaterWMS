@@ -20,6 +20,7 @@ export default {
     logout: '退出登入',
     user_login: '用户登入',
     admin_login: '管理员登入',
+    return_to_login: '返回登入',
     user_center: '用户中心',
     change_user: '更改用户',
     view_my_openid: '查看我的OPENID',
@@ -164,6 +165,7 @@ export default {
   dashboards: {
     outbound_statements: '出库报表',
     inbound_statements: '收货报表',
+    inbound_and_outbound_statements: '收发货报表',
     total_sales: '总销量',
     category_sales_ranking: '品类销量排名',
     sales_volume_ranking: '销售额排名',
@@ -171,7 +173,16 @@ export default {
     total_receipts: '总收货量',
     category_receipt_ranking: '品类收货排名',
     receiving_quantity_ranking: '收货数量排名',
-    Receiving_amount_ranking: '收货额排名'
+    Receiving_amount_ranking: '收货额排名',
+    view_tradelist:{
+      mode_code: '交易方式',
+      bin_name: '库位名称',
+      goods_code: '商品编码',
+      goods_qty: '现有数量',
+      creater: '创建人',
+      update_time: '更新时间',
+      create_time: '创建时间'
+    }
   },
   finance: {
     capital: '固定资产',

@@ -20,6 +20,7 @@ export default {
     logout: '退出登入',
     user_login: '用戶登入',
     admin_login: '管理員登入',
+    return_to_login: '返回登入',
     user_center: '用戶中心',
     change_user: '更改用戶',
     view_my_openid: '查看我的OPENID',
@@ -164,6 +165,7 @@ export default {
   dashboards: {
     outbound_statements: '出庫報表',
     inbound_statements: '收穫報表',
+    inbound_and_outbound_statements: '收發貨報表',
     total_sales: '總銷量',
     category_sales_ranking: '品類銷量排名',
     sales_volume_ranking: '銷售額排名',
@@ -171,7 +173,16 @@ export default {
     total_receipts: '縂收貨數',
     category_receipt_ranking: '收貨品類排名',
     receiving_quantity_ranking: '收貨數量排名',
-    Receiving_amount_ranking: '收貨額排名'
+    Receiving_amount_ranking: '收貨額排名',
+    view_tradelist: {
+      mode_code: '交易方式',
+      bin_name: '庫比特名稱',
+      goods_code: '商品编码',
+      goods_qty: '商品編碼',
+      creater: '創建人',
+      update_time: '更新時間',
+      create_time: '創建時間'
+    }
   },
   finance: {
     capital: '固定資產',
