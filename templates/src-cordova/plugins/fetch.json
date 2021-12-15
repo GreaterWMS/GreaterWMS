@@ -182,5 +182,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-ubx": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/Singosgu/cordova-plugin-ubx.git"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }
