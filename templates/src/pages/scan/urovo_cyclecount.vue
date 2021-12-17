@@ -542,7 +542,7 @@ export default {
       if (_this.$q.localStorage.has('auth')) {
         getauth(_this.pathname, {
         }).then(res => {
-          _this.table_list = res.results
+          _this.table_list = res
         }).catch(err => {
           _this.$q.notify({
             message: err.detail,

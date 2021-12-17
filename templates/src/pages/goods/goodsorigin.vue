@@ -341,11 +341,13 @@ export default {
       putauth(_this.pathname + _this.editid + '/', _this.editFormData).then(res => {
         _this.editDataCancel()
         _this.getList()
-        _this.$q.notify({
-          message: 'Success Edit Data',
-          icon: 'check',
-          color: 'green'
-        })
+        if(res.status_code !== 500){
+          _this.$q.notify({
+            message: 'Success Edit Data',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
