@@ -401,7 +401,7 @@ export default {
       cyclecount: 'Cycle Count',
       recyclecount: 'Recycle',
       downloadcyclecount: 'Counting table',
-      cyclecountresult: 'Confirmation result',
+      cyclecountresult: 'Confirm result',
       cyclecounttip: 'Generate A Dynamic Cycle Count Table',
       recyclecounttip: 'Generate A Recycle Count Table',
       downloadcyclecounttip: 'Download Cycle Count Table',
