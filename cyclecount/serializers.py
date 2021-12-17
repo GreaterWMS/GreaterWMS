@@ -36,7 +36,7 @@ class QTYRecorderSerializer(serializers.ModelSerializer):
     goods_code = serializers.CharField(read_only=True,required=False)
     goods_qty = serializers.IntegerField(read_only=True,required=False)
     creater = serializers.CharField(read_only=True,required=False)
-    crete_time = serializers.DateTimeField(read_only=True,format='%Y-%m-%d %H:%M:%S')
+    create_time = serializers.DateTimeField(read_only=True,format='%Y-%m-%d %H:%M:%S')
     update_time = serializers.DateTimeField(read_only=True,format='%Y-%m-%d %H:%M:%S')
 
     class Meta:
