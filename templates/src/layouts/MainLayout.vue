@@ -602,12 +602,12 @@
     <q-dialog v-model="login" transition-show="jump-down" transition-hide="jump-up">
       <q-card style="min-width: 350px">
         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-          <q-tabs class="tabs">
-            <q-tab @click="admin = false">
+          <q-tabs v-model="activeTab" class="tabs">
+            <q-tab name="user" @click="admin = false">
               {{ $t('index.user_login') }}
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[5, 5]" content-style="font-size: 12px">{{ $t('index.user_login') }}</q-tooltip>
             </q-tab>
-            <q-tab @click="admin = true">
+            <q-tab name="admin" @click="admin = true">
               {{ $t('index.admin_login') }}
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[5, 5]" content-style="font-size: 12px">{{ $t('index.admin_login') }}</q-tooltip>
             </q-tab>
@@ -759,6 +759,7 @@ var ws;
 export default {
   data() {
     return {
+      activeTab: 'user',
       device: 0,
       lang: this.$i18n.locale,
       verCheck: false,
@@ -910,7 +911,6 @@ export default {
           _this.$q.sessionStorage.set('axios_check', 'false');
           post('login/', _this.adminlogin)
             .then(res => {
-              console.log(res);
               if (res.code === '200') {
                 _this.authin = '1';
                 _this.login = false;
@@ -928,7 +928,7 @@ export default {
                 _this.$router.push('/');
               } else {
                 _this.$q.notify({
-                  message: "No user's Data",
+                  message: res.msg,
                   icon: 'close',
                   color: 'negative'
                 });
@@ -956,7 +956,7 @@ export default {
         icon: 'check',
         color: 'negative'
       });
-      _this.staffType();
+      // _this.staffType();
       _this.$router.push('/');
     },
     Register() {
