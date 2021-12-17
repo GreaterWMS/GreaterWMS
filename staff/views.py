@@ -39,26 +39,39 @@ class APIViewSet(viewsets.ModelViewSet):
     filter_class = Filter
 
     def list(self, request, *args, **kwargs):
-        if request.GET.get('staff_name') and request.GET.get('check_code'):
-            staff_name=request.GET.get('staff_name')
-            check_code=int(request.GET.get('check_code'))
-            user_obj=ListModel.objects.filter(staff_name=staff_name,is_delete=False).first()
-            if user_obj is None:
-                raise APIException({"detail": "User does not exist"})
-            if user_obj.check_code!= check_code:
-                if user_obj.error_check_code_counter == 3:
-                    user_obj.is_lock=True
-                    user_obj.save()
-                    raise APIException({"detail": "The user has been locked"})
-                user_obj.error_check_code_counter=user_obj.error_check_code_counter+1
-                user_obj.save()
-                raise APIException({"detail": "Verification code error"})
-            else:
-                user_obj.error_check_code_counter=0
-                user_obj.save()
-                return super().list(request, *args, **kwargs)
-        else:
+        staff_name = str(request.GET.get('staff_name'))
+        check_code = request.GET.get('check_code')
+        if staff_name == None and check_code == None:
             return super().list(request, *args, **kwargs)
+        elif staff_name != None and check_code == None:
+            return super().list(request, *args, **kwargs)
+        else:
+            staff_name_obj = ListModel.objects.filter(openid=self.request.auth.openid, staff_name=staff_name,
+                                                      is_delete=False).first()
+            if staff_name_obj is None:
+                raise APIException({"detail": "The user name does not exist"})
+            elif staff_name_obj.is_lock is True:
+                raise APIException({"detail": "The user has been locked. Please contact the administrator"})
+            elif staff_name_obj.error_check_code_counter == 3:
+                staff_name_obj.is_lock = True
+                staff_name_obj.error_check_code_counter = 0
+                staff_name_obj.save()
+                raise APIException({"detail": "The user has been locked. Please contact the administrator"})
+
+            if type(check_code) == str:
+                check_code = int(check_code)
+            if check_code != None:
+                if staff_name_obj.check_code != check_code:
+                    staff_name_obj.error_check_code_counter = int(staff_name_obj.error_check_code_counter) + 1
+                    staff_name_obj.save()
+                    raise APIException({"detail": "The verification code is incorrect"})
+                else:
+                    staff_name_obj.error_check_code_counter = 0
+                    staff_name_obj.save()
+                    return super().list(request, *args, **kwargs)
+            else:
+                return super().list(request, *args, **kwargs)
+
 
     def get_project(self):
         try:
