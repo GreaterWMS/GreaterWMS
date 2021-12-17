@@ -98,7 +98,7 @@ class ReceiptsViewSet(viewsets.ModelViewSet):
         for i in receipt_res:
             series.append(bar_charts)
             dimensions.append("%s-%s" % (i['month'], i['day']))
-            receipt_res_dict.update({"%s-%s" % (i['month'], i['day']): i['number']})
+            receipt_res_dict.update({"%s-%s" % (i['month'], i['day']): round(i['number'], 2)})
         # for i in qty_res:
         #     qty_res_dict.update({i['goods_code']: i['number']})
         # for i in rank_res:
