@@ -1546,6 +1546,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                                                   dn_code=str(data['dn_code']),
                                                                   t_code=str(data['goodsData'][j].get('t_code'))).first()
                 qtychangerecorder.objects.create(openid=self.request.auth.openid,
+                                                 mode_code=dn_detail.dn_code,
                                                  bin_name=bin_qty_change.bin_name,
                                                  goods_code=bin_qty_change.goods_code,
                                                  goods_qty=0 - int(data['goodsData'][j].get('pick_qty')),
