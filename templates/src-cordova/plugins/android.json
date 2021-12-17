@@ -74,9 +74,6 @@
     },
     "phonegap-nfc": {
       "PACKAGE_NAME": "org.greaterwms.app"
-    },
-    "cordova-plugin-ubx": {
-      "PACKAGE_NAME": "org.greaterwms.app"
     }
   },
   "dependent_plugins": {
