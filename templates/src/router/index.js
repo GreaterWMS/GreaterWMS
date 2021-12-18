@@ -13,6 +13,7 @@ VueRouter.prototype.push = function (location) {
   }
 }
 
+
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
