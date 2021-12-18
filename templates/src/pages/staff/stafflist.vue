@@ -7,7 +7,6 @@
         :data="table_list"
         row-key="id"
         :separator="separator"
-        :filter="filter"
         :loading="loading"
         :columns="columns"
         hide-bottom
@@ -42,7 +41,7 @@
             </q-btn>
           </q-btn-group>
           <q-space />
-          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')">
+          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @input="getSearchList()">
             <template v-slot:append>
               <q-icon name="search" />
             </template>
@@ -319,20 +318,6 @@ export default {
       error1: this.$t('staff.view_staff.error1'),
       error2: this.$t('staff.view_staff.error2')
     };
-  },
-  watch: {
-    filter(newVal, oldVal) {
-      this.filter = newVal.trim();
-      if (this.filter) {
-        if (this.pathname_previous) {
-          this.getSearchList();
-        } else {
-          this.pathname_next = '';
-        }
-      } else {
-        this.getSearchList();
-      }
-    }
   },
   methods: {
     getList() {
