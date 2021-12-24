@@ -2,6 +2,7 @@ from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
+path(r'dnscanner/',views.SannerDnDetailView.as_view({"get":"list"}),name="dnscanner"),
 path(r'list/', views.DnListViewSet.as_view({"get": "list", "post": "create"}), name="dnlist"),
 re_path(r'^list/(?P<pk>\d+)/$', views.DnListViewSet.as_view({
     'get': 'retrieve',
@@ -38,5 +39,6 @@ re_path(r'^pod/(?P<pk>\d+)/$', views.DnPODViewSet.as_view({
     'post': 'create',
 }), name="pod_1"),
 path(r'filelist/', views.FileListDownloadView.as_view({"get": "list"}), name="dnfilelistdownload"),
-path(r'filedetail/', views.FileDetailDownloadView.as_view({"get": "list"}), name="dnfiledetaildownload")
+path(r'filedetail/', views.FileDetailDownloadView.as_view({"get": "list"}), name="dnfiledetaildownload"),
+
 ]

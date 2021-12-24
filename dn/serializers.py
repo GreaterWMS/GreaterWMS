@@ -1,6 +1,31 @@
 from rest_framework import serializers
 from .models import DnListModel, DnDetailModel, PickingListModel
 from utils import datasolve
+class SannerDnDetailGetSerializer(serializers.ModelSerializer):
+    dn_code = serializers.CharField(read_only=True, required=False)
+    dn_status = serializers.IntegerField(read_only=True, required=False)
+    customer = serializers.CharField(read_only=True, required=False)
+    goods_code = serializers.CharField(read_only=True, required=False)
+    goods_qty = serializers.IntegerField(read_only=True, required=False)
+    pick_qty = serializers.IntegerField(read_only=True, required=False)
+    picked_qty = serializers.IntegerField(read_only=True, required=False)
+    intransit_qty = serializers.IntegerField(read_only=True, required=False)
+    delivery_actual_qty = serializers.IntegerField(read_only=True, required=False)
+    delivery_shortage_qty = serializers.IntegerField(read_only=True, required=False)
+    delivery_more_qty = serializers.IntegerField(read_only=True, required=False)
+    delivery_damage_qty = serializers.IntegerField(read_only=True, required=False)
+    goods_weight = serializers.FloatField(read_only=True, required=False)
+    goods_volume = serializers.FloatField(read_only=True, required=False)
+    goods_cost = serializers.FloatField(read_only=True, required=False)
+    creater = serializers.CharField(read_only=True, required=False)
+    create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    back_order_label = serializers.BooleanField(read_only=True, required=False)
+    class Meta:
+        model = DnDetailModel
+        exclude = ['openid', 'is_delete', ]
+        read_only_fields = ['id', 'openid']
+
 
 class DNListGetSerializer(serializers.ModelSerializer):
     dn_code = serializers.CharField(read_only=True, required=False)
