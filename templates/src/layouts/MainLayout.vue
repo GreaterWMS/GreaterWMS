@@ -759,7 +759,7 @@ var ws;
 export default {
   data() {
     return {
-      activeTab: 'user',
+      activeTab: '',
       device: 0,
       lang: this.$i18n.locale,
       verCheck: false,
@@ -867,6 +867,7 @@ export default {
                   _this.login = false;
                   _this.$q.localStorage.set('auth', '1');
                   _this.$q.localStorage.set('login_name', _this.login_name);
+                  _this.$q.localStorage.set('login_mode', 'user');
                   _this.$q.notify({
                     message: 'Success Login',
                     icon: 'check',
@@ -894,14 +895,14 @@ export default {
     },
     adminLogin() {
       var _this = this;
-      if (_this.admin_name === '') {
+      if (!_this.adminlogin.name) {
         _this.$q.notify({
           message: 'Please enter the admin name',
           color: 'negative',
           icon: 'close'
         });
       } else {
-        if (_this.admin_password === '') {
+        if (!_this.adminlogin.password) {
           _this.$q.notify({
             message: 'Please enter the admin password',
             icon: 'close',
@@ -920,6 +921,7 @@ export default {
                 _this.$q.localStorage.set('auth', '1');
                 _this.$q.localStorage.set('openid', res.data.openid);
                 _this.$q.localStorage.set('login_name', _this.login_name);
+                _this.$q.localStorage.set('login_mode', 'admin');
                 _this.$q.notify({
                   message: 'Success Login',
                   icon: 'check',
@@ -1246,8 +1248,14 @@ export default {
       _this.updateNow = false;
     },
     isLoggedIn() {
+      this.activeTab = this.$q.localStorage.getItem('login_mode')
       if (this.$q.localStorage.getItem('openid')) {
         this.login = true;
+        if(this.activeTab === 'admin'){
+          this.admin = true;
+        }else{
+          this.admin = false;
+        }
       } else {
         this.register = true;
       }
