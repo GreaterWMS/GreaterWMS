@@ -30,6 +30,43 @@ from django.utils import timezone
 from .files import FileListRenderCN, FileListRenderEN, FileDetailRenderCN, FileDetailRenderEN
 from rest_framework.settings import api_settings
 
+
+class AsnDetailGoodstagView(viewsets.ModelViewSet):
+    pagination_class = MyPageNumberPagination
+    filter_backends = [DjangoFilterBackend, OrderingFilter, ]
+    ordering_fields = ['id', "create_time", "update_time", "goods_code","asn_code"]
+    filter_class = AsnDetailFilter
+    lookup_field = 'goods_code'
+    def get_project(self):
+        try:
+            goods_code = self.kwargs['goods_code']
+            return goods_code
+        except:
+            return None
+
+    def get_queryset(self):
+        goods_code = self.get_project()
+        if self.request.user:
+            if id is None:
+                return AsnDetailModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+            else:
+                return AsnDetailModel.objects.filter(openid=self.request.auth.openid, goods_code=goods_code, is_delete=False)
+        else:
+            return AsnDetailModel.objects.none()
+
+    def get_serializer_class(self):
+        if self.action in ['list', 'retrieve']:
+            return serializers.ASNDetailGetSerializer
+        elif self.action in ['create']:
+            return serializers.ASNDetailPostSerializer
+        elif self.action in ['update']:
+            return serializers.ASNDetailUpdateSerializer
+        else:
+            return self.http_method_not_allowed(request=self.request)
+
+
+
+
 class AsnListViewSet(viewsets.ModelViewSet):
     """
         retrieve:

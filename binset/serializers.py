@@ -2,6 +2,21 @@ from rest_framework import serializers
 from .models import ListModel
 from utils import datasolve
 
+class ScannerBinsetTagGetSerializer(serializers.ModelSerializer):
+    bin_name = serializers.CharField(read_only=True, required=False)
+    bin_size = serializers.CharField(read_only=True, required=False)
+    bin_property = serializers.CharField(read_only=True, required=False)
+    empty_label = serializers.BooleanField(read_only=True, required=False)
+    creater = serializers.CharField(read_only=True, required=False)
+    bar_code = serializers.CharField(read_only=True, required=False)
+    create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    class Meta:
+        model = ListModel
+        exclude = ['openid', 'is_delete', ]
+        read_only_fields = ['id', ]
+
+
 class BinsetGetSerializer(serializers.ModelSerializer):
     bin_name = serializers.CharField(read_only=True, required=False)
     bin_size = serializers.CharField(read_only=True, required=False)
