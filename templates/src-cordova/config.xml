@@ -32,7 +32,7 @@
         <splash density="port-xxhdpi" src="res/screen/android/screen-xxhdpi-portrait.png" />
         <splash density="land-xxxhdpi" src="res/screen/android/screen-xxxhdpi-landscape.png" />
         <splash density="port-xxxhdpi" src="res/screen/android/screen-xxxhdpi-portrait.png" />
-        <preference name="AndroidPersistentFileLocation" value="Compatibility" />"
+        <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     </platform>
     <platform name="ios">
         <icon height="57" src="res/ios/icon.png" width="57" />
