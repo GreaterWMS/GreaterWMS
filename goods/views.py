@@ -21,6 +21,62 @@ from .serializers import FileRenderSerializer
 from django.http import StreamingHttpResponse
 from .files import FileRenderCN, FileRenderEN
 from rest_framework.settings import api_settings
+from asn.models import AsnDetailModel
+
+class SannerGoodsTagView(viewsets.ModelViewSet):
+
+    """
+    retrieve:
+        Response a data retrieve（get）
+
+    """
+
+    pagination_class = MyPageNumberPagination
+    filter_backends = [DjangoFilterBackend, OrderingFilter, ]
+    ordering_fields = ['id', "create_time", "update_time", ]
+    filter_class = Filter
+    lookup_field = 'bar_code'
+    def get_project(self):
+        try:
+            bar_code = self.kwargs['bar_code']
+            return bar_code
+        except:
+            return None
+
+    def get_queryset(self):
+        bar_code = self.get_project()
+        if self.request.user:
+            if bar_code is None:
+                return ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+            else:
+                return ListModel.objects.filter(openid=self.request.auth.openid, bar_code=bar_code, is_delete=False)
+        else:
+            return ListModel.objects.filter().none()
+
+    def get_serializer_class(self):
+        if self.action in ['list', 'retrieve', 'destroy']:
+            return serializers.GoodsGetSerializer
+        elif self.action in ['create']:
+            return serializers.GoodsPostSerializer
+        elif self.action in ['update']:
+            return serializers.GoodsUpdateSerializer
+        elif self.action in ['partial_update']:
+            return serializers.GoodsPartialUpdateSerializer
+        else:
+            return self.http_method_not_allowed(request=self.request)
+
+    def retrieve(self, request, *args, **kwargs):
+        data=self.request.GET.get('asn_code')
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        good_detail=AsnDetailModel.objects.filter(asn_code=data,goods_code=serializer.data['goods_code']).first()
+        if good_detail is None:
+            raise APIException({"detail":"The product label does not exist"})
+        else:
+            context = {}
+            context['goods_code'] = good_detail.goods_code
+            context['goods_actual_qty'] = good_detail.goods_actual_qty
+        return Response(context, status=200)
 
 class APIViewSet(viewsets.ModelViewSet):
     """

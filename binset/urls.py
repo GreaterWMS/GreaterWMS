@@ -9,5 +9,6 @@ re_path(r'^(?P<pk>\d+)/$', views.APIViewSet.as_view({
     'put': 'update',
     'patch': 'partial_update',
     'delete': 'destroy'
-}), name="binset_1")
+}), name="binset_1"),
+path(r'scannerbintag/<str:bar_code>/',views.ScannerBinsetTagView.as_view({"get":"retrieve"}))
 ]

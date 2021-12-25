@@ -30,6 +30,53 @@ from django.http import StreamingHttpResponse
 from django.utils import timezone
 from .files import FileListRenderCN, FileListRenderEN, FileDetailRenderCN, FileDetailRenderEN
 from rest_framework.settings import api_settings
+from .serializers import SannerDnDetailGetSerializer
+
+class SannerDnDetailView(viewsets.ModelViewSet):
+
+    pagination_class = MyPageNumberPagination
+    filter_backends = [DjangoFilterBackend, OrderingFilter, ]
+    ordering_fields = ['id', "create_time", "update_time", ]
+    filter_class = DnDetailFilter
+
+    def list(self, request, *args, **kwargs):
+        bar_code = request.GET.get('bar_code')
+        print(bar_code)
+        DnList_obj=DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False,dn_status=3,bar_code=bar_code).first()
+        queryset = DnDetailModel.objects.filter(openid=self.request.auth.openid,dn_code=DnList_obj.dn_code,is_delete=False)
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def get_project(self):
+        try:
+            id = self.kwargs.get('pk')
+            return id
+        except:
+            return None
+
+    def get_queryset(self):
+        id = self.get_project()
+        if self.request.user:
+            if id is None:
+                return DnDetailModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+            else:
+                return DnDetailModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+        else:
+            return DnDetailModel.objects.none()
+
+    def get_serializer_class(self):
+        if self.action in ['list', 'retrieve', 'destroy']:
+            return serializers.SannerDnDetailGetSerializer
+        else:
+            return self.http_method_not_allowed(request=self.request)
+
+
+
 
 class DnListViewSet(viewsets.ModelViewSet):
     """
