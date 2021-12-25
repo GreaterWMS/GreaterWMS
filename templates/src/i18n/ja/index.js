@@ -468,10 +468,32 @@ export default {
     scan_inventory: '棚卸しをする',
     scan_goodsquery: '商品の照会',
     scan_locationquery: 'データベースの検索',
+    scan_goods_code: '商品コード',
+    scan_bin_name: 'ライブラリ名',
+    scan_goods_label: '商品ラベル',
+    scan_goods_label_error: '商品ラベルは存在しません',
     view_binmove: {
-      goods_code: '製品コード',
-      onhand_stock: '既存の在庫',
-      qty: '移動されたライブラリの数'
+      old_bin_name: '保管場所名',
+      new_bin_name: '新しいライブラリ名',
+      qty: 'ライブラリ数',
+      qty_error: 'スキャン数量は入荷数量より大きくない'
+    },
+    view_upToBin: {
+      goods_actual_qty: '実績入荷数量',
+      scan_qty: 'スキャン済数量',
+      scan_qty_error: 'C'
+    },
+    view_packing:{
+      order_qty: 'オーダー数量',
+      packing_qty: 'ピック数量',
+      packing_qty_error: 'ピック数量は注文数量より大きくない'
+    },
+    view_shipping: {
+      shipping_code: '出荷書番号',
+      driver_info: '運転手情報',
+      license_plate_number: 'ナンバープレート',
+      name: '名前',
+      contact_info: '連絡先'
     }
   },
   notice: {
