@@ -466,10 +466,32 @@ export default {
     scan_inventory: '盤點',
     scan_goodsquery: '貨物查詢',
     scan_locationquery: '庫位查詢',
+    scan_goods_code: '商品編碼',
+    scan_bin_name: '庫比特名稱',
+    scan_goods_label: '商品標籤',
+    scan_goods_label_error: '商品標籤不存在',
     view_binmove: {
-      goods_code: '產品名稱',
-      onhand_stock: '現有庫存',
-      qty: '移庫數量'
+      old_bin_name: '原庫比特名稱',
+      new_bin_name: '新庫比特名稱',
+      qty: '移庫數量',
+      qty_error: '移庫數量不得大於現有數量'
+    },
+    view_upToBin: {
+      goods_actual_qty: '實際到貨數量',
+      scan_qty: '已掃描數量',
+      scan_qty_error: '掃描數量不得大於到貨數量  '
+    },
+    view_packing:{
+      order_qty: '訂單數量',
+      packing_qty: '揀貨數量',
+      packing_qty_error: '揀貨數量不得大於訂單數量'
+    },
+    view_shipping: {
+      shipping_code: '發貨單號',
+      driver_info: '司機信息',
+      license_plate_number: '車牌號',
+      name: '姓名',
+      contact_info: '聯繫方式'
     }
   },
   notice: {
