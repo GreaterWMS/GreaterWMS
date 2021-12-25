@@ -7,6 +7,11 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    }
+  },
+  "dependent_plugins": {
     "com-darryncampbell-cordova-plugin-intent": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
@@ -57,6 +62,9 @@
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
     "cordova-plugin-screen-orientation": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
@@ -66,21 +74,13 @@
     "cordova-plugin-statusbar": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
+    "cordova-plugin-ubx": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "org.greaterwms.app"
-    },
     "phonegap-nfc": {
-      "PACKAGE_NAME": "org.greaterwms.app"
-    }
-  },
-  "dependent_plugins": {
-    "es6-promise-plugin": {
-      "PACKAGE_NAME": "org.greaterwms.app"
-    },
-    "cordova-plugin-ubx": {
       "PACKAGE_NAME": "org.greaterwms.app"
     }
   }

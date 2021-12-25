@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="org.greaterwms.app" version="2.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>GreaterWMS--Open Source Warehouse Management System</name>
+    <name>G-WMS</name>
     <description>GreaterWMS--Open Source Warehouse Management System</description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="mail@56yhz.com" href="https://www.56yhz.com">
+        GreaterWMS Team
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -32,6 +32,7 @@
         <splash density="port-xxhdpi" src="res/screen/android/screen-xxhdpi-portrait.png" />
         <splash density="land-xxxhdpi" src="res/screen/android/screen-xxxhdpi-landscape.png" />
         <splash density="port-xxxhdpi" src="res/screen/android/screen-xxxhdpi-portrait.png" />
+        <preference name="AndroidPersistentFileLocation" value="Compatibility" />"
     </platform>
     <platform name="ios">
         <icon height="57" src="res/ios/icon.png" width="57" />
