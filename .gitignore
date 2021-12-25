@@ -1,7 +1,7 @@
 node_modules/
 __pycache__/
-migrations/
 authorization.txt
+authorization.json
 db.sqlite3
 .idea/
 delete.py
