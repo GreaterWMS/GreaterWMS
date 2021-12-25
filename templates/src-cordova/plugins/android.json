@@ -79,6 +79,9 @@
   "dependent_plugins": {
     "es6-promise-plugin": {
       "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-ubx": {
+      "PACKAGE_NAME": "org.greaterwms.app"
     }
   }
 }
