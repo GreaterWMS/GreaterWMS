@@ -16,6 +16,45 @@ from django.http import StreamingHttpResponse
 from .files import FileRenderCN, FileRenderEN
 from rest_framework.settings import api_settings
 from utils.md5 import Md5
+from .serializers import ScannerBinsetTagGetSerializer
+
+class ScannerBinsetTagView(viewsets.ModelViewSet):
+    """
+        retrieve:
+            Response a data list（get）
+
+            http://127.0.0.1:8008/binset/scannerbintag/3d89ad23d185d5f206d860745c5c4121/
+    """
+    pagination_class = MyPageNumberPagination
+    filter_backends = [DjangoFilterBackend, OrderingFilter, ]
+    ordering_fields = ['id', "create_time", "update_time", ]
+    filter_class = Filter
+    lookup_field = 'bar_code'
+    def get_project(self):
+        try:
+            bar_code = self.kwargs['bar_code']
+            return bar_code
+        except:
+            return None
+
+    def get_queryset(self):
+        bar_code = self.get_project()
+        if self.request.user:
+            if bar_code is None:
+                return ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+            else:
+                return ListModel.objects.filter(openid=self.request.auth.openid, bar_code=bar_code, is_delete=False)
+        else:
+            return ListModel.objects.none()
+
+    def get_serializer_class(self):
+        if self.action in ['list', 'retrieve', 'destroy']:
+            return serializers.ScannerBinsetTagGetSerializer
+        else:
+            return self.http_method_not_allowed(request=self.request)
+
+
+
 
 class APIViewSet(viewsets.ModelViewSet):
     """

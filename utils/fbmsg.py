@@ -21,7 +21,7 @@ class FBMsg(object):
         err_order_fail = {"code": "1006", "msg": "订单支付失败", "data": None}
         return err_order_fail
     def err_ret():
-        err_ret = {"code": "1011", "msg": "User Name Or Password Errot", "data": None}
+        err_ret = {"code": "1011", "msg": "User Name Or Password Error", "data": None}
         return err_ret
     def err_data():
         err_data = {"code": "1012", "msg": "数据不可用", "data": None}

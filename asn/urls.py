@@ -30,5 +30,6 @@ re_path(r'^movetobin/(?P<pk>\d+)/$', views.MoveToBinViewSet.as_view({
     'post': 'create',
 }), name="movetobin_1"),
 path(r'filelist/', views.FileListDownloadView.as_view({"get": "list"}), name="asnfilelistdownload"),
-path(r'filedetail/', views.FileDetailDownloadView.as_view({"get": "list"}), name="asnfiledetaildownload")
+path(r'filedetail/', views.FileDetailDownloadView.as_view({"get": "list"}), name="asnfiledetaildownload"),
+path(r'asngoods/<str:goods_code>/', views.AsnDetailGoodstagView.as_view({"get":"retrieve"}), name="asngoods")
 ]
