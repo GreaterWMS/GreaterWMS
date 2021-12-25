@@ -172,7 +172,7 @@ export default {
     total_receipts: 'Total Receipts',
     receiving_quantity_ranking: 'Receiving Quantity Ranking',
     Receiving_amount_ranking: 'Receiving Amount Ranking',
-    view_tradelist:{
+    view_tradelist: {
       mode_code: 'Mode Of Doing Business',
       bin_name: 'Location Name',
       goods_code: 'Goods Code',
@@ -437,7 +437,7 @@ export default {
       bin_size: 'Bin Size',
       bin_property: 'Bin Property',
       empty_label: 'Empty Label',
-      error1: 'Please Enter the Bin_name',
+      error1: 'Please Enter the Bin Name',
       error2: 'Please Enter the Bin Size',
       error3: 'Please Enter the Bin Property'
     },
@@ -467,10 +467,32 @@ export default {
     scan_inventory: 'Count',
     scan_goodsquery: 'Goods',
     scan_locationquery: 'Bin',
+    scan_goods_code: 'Goods Code',
+    scan_bin_name: 'Location Name',
+    scan_goods_label: 'Goods Label',
+    scan_goods_label_error: 'Product Label Does Not Exist',
     view_binmove: {
-      goods_code: 'Goods Code',
-      onhand_stock: 'OnHand Stock',
-      qty: 'Move Qty'
+      old_bin_name: 'Old Location Name',
+      new_bin_name: 'New Location Name',
+      qty: 'Shifting Quantity',
+      qty_error: 'Quantity Shall Not Exceed Existing Quantity'
+    },
+    view_upToBin: {
+      goods_actual_qty: 'Actual Arrive Quantity',
+      scan_qty: 'Scanned Quantity',
+      scan_qty_error: 'Sanning Quantity Shall Not Exceed Arrived Quantity'
+    },
+    view_packing: {
+      order_qty: 'Order Quantity',
+      packing_qty: 'Sorting Quantity',
+      packing_qty_error: 'Sorting Quantity Shall Not Exceed Order Quantity'
+    },
+    view_shipping: {
+      shipping_code: 'Shipment Tracking Number',
+      driver_info: 'Driver Information',
+      license_plate_number: 'License Plate Number',
+      name: 'Name',
+      contact_info: 'Contact Information'
     }
   },
   notice: {

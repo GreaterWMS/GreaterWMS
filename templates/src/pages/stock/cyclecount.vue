@@ -50,7 +50,7 @@
                 type="number"
                 :label="$t('stock.view_stocklist.physical_inventory')"
                 :rules="[val => (val && val > 0) || val == 0 || error1]"
-                @blur="value = value.replace(/^(0+)|[^\d]+/g, '')"
+                @blur="blurHandler(props.row.physical_inventory)"
               />
             </q-td>
             <q-td key="difference" :props="props">{{ props.row.physical_inventory - props.row.goods_qty }}</q-td>
@@ -152,8 +152,7 @@ export default {
     },
     ConfirmCount() {
       var _this = this;
-      if (LocalStorage.has('auth')) {
-        if (_this.table_list.length) {
+        if (!_this.table_list.length) {
           _this.CountFrom = false;
           _this.$q.notify({
             message: _this.$t('notice.cyclecounterror'),
@@ -179,8 +178,6 @@ export default {
               });
             });
         }
-      } else {
-      }
     },
     preloadDataCancel() {
       var _this = this;
@@ -212,6 +209,9 @@ export default {
     ConfirmCounts() {
       var _this = this;
       _this.CountFrom = true;
+    },
+    blurHandler(val) {
+      val = val.toString().replace(/^(0+)|[^\d]+/g, '');
     }
   },
   created() {

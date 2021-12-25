@@ -19,7 +19,7 @@
                 v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="inbounddashboard"
                 :label="$t('dashboards.inbound_statements')"
-                icon="img:statics/dashboard/in_statement.png"
+                icon="img:statics/dashboard/in_statement.svg"
                 to="/dashboard/inbounddashboard"
                 exact
               />
@@ -29,7 +29,7 @@
                 v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="inboundAndOutbound"
                 :label="$t('dashboards.inbound_and_outbound_statements')"
-                icon="img:statics/dashboard/in_statement.png"
+                icon="img:statics/dashboard/in_and_out_statement.svg"
                 to="/dashboard/inboundAndOutbound"
                 exact
               />

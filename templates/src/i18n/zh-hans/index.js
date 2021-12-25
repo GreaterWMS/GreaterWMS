@@ -174,7 +174,7 @@ export default {
     category_receipt_ranking: '品类收货排名',
     receiving_quantity_ranking: '收货数量排名',
     Receiving_amount_ranking: '收货额排名',
-    view_tradelist:{
+    view_tradelist: {
       mode_code: '交易方式',
       bin_name: '库位名称',
       goods_code: '商品编码',
@@ -473,10 +473,32 @@ export default {
     scan_inventory: '盘点',
     scan_goodsquery: '货物查询',
     scan_locationquery: '库位查询',
+    scan_goods_code: '商品编码',
+    scan_bin_name: '库位名称',
+    scan_goods_label: '商品标签',
+    scan_goods_label_error: '商品标签不存在',
     view_binmove: {
-      goods_code: '产品名称',
-      onhand_stock: '现有库存',
-      qty: '移库数量'
+      old_bin_name: '原库位名称',
+      new_bin_name: '新库位名称',
+      qty: '移库数量',
+      qty_error: '移库数量不得大于现有数量'
+    },
+    view_upToBin: {
+      goods_actual_qty: '实际到货数量',
+      scan_qty: '已扫描数量',
+      scan_qty_error: '扫描数量不得大于到货数量'
+    },
+    view_picking: {
+      order_qty: '订单数量',
+      picking_qty: '拣货数量',
+      picking_qty_error: '拣货数量不得大于订单数量'
+    },
+    view_shipping: {
+      shipping_code: '发货单号',
+      driver_info: '司机信息',
+      license_plate_number: '车牌号',
+      name: '姓名',
+      contact_info: '联系方式'
     }
   },
   notice: {
