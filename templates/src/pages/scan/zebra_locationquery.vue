@@ -2,9 +2,7 @@
   <q-page>
     <q-card v-show="!fab" class="shadow-24" :style="{ width: width,  height: height }">
       <q-card-section>
-        <q-btn-group push>
-          <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()" />
-        </q-btn-group>
+          <q-input dense v-model="bin_scan" type="text" :label="bin_name_label" readonly disabled/>
       </q-card-section>
       <q-scroll-area
         :thumb-style="thumbStyle"
@@ -386,8 +384,8 @@
 <router-view />
 
 <script>
-import { getauth, putauth } from 'boot/axios_request'
-import { LocalStorage } from 'quasar'
+import { getauth } from 'boot/axios_request'
+import { LocalStorage, Platform, Screen } from 'quasar'
 
 var sendCommandResults = 'false'
 
@@ -427,7 +425,7 @@ function barcodeScanned (scanData, timeOfScan) {
 }
 
 export default {
-  name: 'Pageurovo_locationquery',
+  name: 'Pagezebra_locationquery',
   data () {
     return {
       openid: '',
@@ -436,8 +434,8 @@ export default {
       pathname: 'stock/bin/',
       separator: 'cell',
       loading: false,
-      device: 0,
-      device_name: '',
+      device: LocalStorage.getItem('device'),
+      device_name: LocalStorage.getItem('device_name'),
       width: '',
       height: '',
       scroll_height: '',
@@ -467,8 +465,8 @@ export default {
         opacity: 0.2
       },
       fab: false,
-      touchheight: ((this.$q.screen.width - 50) / 5) + '' + 'px',
-      touchwidth: ((this.$q.screen.width - 50) / 5) + '' + 'px',
+      touchheight: ((Screen.width - 50) / 5) + '' + 'px',
+      touchwidth: ((Screen.width - 50) / 5) + '' + 'px',
       fab1: {
         top: '',
         bottom: '',
@@ -517,7 +515,6 @@ export default {
         left: '',
         right: ''
       },
-      batteryStatus: 'determining...',
       barscan: '',
       bin_scan: ''
     }
@@ -525,16 +522,19 @@ export default {
   methods: {
     datachange () {
       var _this = this
-      if (_this.$q.localStorage.has('auth')) {
+      console.log(_this.barscan)
+      if (LocalStorage.has('auth')) {
         getauth('scanner/?bar_code=' + _this.barscan, {
         }).then(res => {
-          _this.barscan = res.results[0].code
           if (res.results[0].mode === 'BINSET') {
             _this.bin_scan = res.results[0].code
-            _this.goods_scan = ''
-          } else if (res.results[0].mode === 'GOODS') {
-            _this.goods_scan = res.results[0].code
-            _this.countAdd(_this.goods_scan)
+            _this.getList(res.results[0].code)
+          } else {
+            _this.notify({
+              message: 'Please Scan Right BarCode',
+              icon: 'close',
+              color: 'negative'
+            })
           }
         }).catch(err => {
           _this.$q.notify({
@@ -543,21 +543,12 @@ export default {
             color: 'negative'
           })
         })
-      } else {
       }
     },
-    countAdd (e) {
+    getList (e) {
       var _this = this
-      _this.table_list.filter(function (value, index, array) {
-        if (value.bin_name === _this.bin_scan && value.goods_code === e) {
-          _this.table_list[index].physical_inventory += 1
-        }
-      })
-    },
-    getList () {
-      var _this = this
-      if (_this.$q.localStorage.has('auth')) {
-        getauth(_this.pathname, {
+      if (LocalStorage.has('auth')) {
+        getauth(_this.pathname + '?bin_name=' + e, {
         }).then(res => {
           _this.table_list = res.results
         }).catch(err => {
@@ -567,43 +558,7 @@ export default {
             color: 'negative'
           })
         })
-      } else {
       }
-    },
-    reFresh () {
-      var _this = this
-      _this.barscan = ''
-      _this.bin_scan = ''
-      _this.goods_scan = ''
-      _this.getList()
-    },
-    repeatCount (e) {
-      var _this = this
-      _this.table_list[e].physical_inventory = 0
-    },
-    ConfirmCount () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        putauth(_this.pathname, _this.table_list).then(res => {
-          _this.table_list = []
-          _this.$q.notify({
-            message: 'Success Confirm Cycle Count',
-            icon: 'check',
-            color: 'green'
-          })
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      } else {
-      }
-    },
-    updateBatteryStatus (status) {
-      var _this = this
-      _this.batteryStatus = `Level: ${status.level}, plugged: ${status.isPlugged}`
     },
     scanEvents () {
       var _this = this
@@ -739,19 +694,19 @@ export default {
   },
   created () {
     var _this = this
-    if (_this.$q.localStorage.has('openid')) {
-      _this.openid = _this.$q.localStorage.getItem('openid')
+    if (LocalStorage.has('openid')) {
+      _this.openid = LocalStorage.getItem('openid')
     } else {
       _this.openid = ''
-      _this.$q.localStorage.set('openid', '')
+      LocalStorage.set('openid', '')
     }
-    if (_this.$q.localStorage.has('login_name')) {
-      _this.login_name = _this.$q.localStorage.getItem('login_name')
+    if (LocalStorage.has('login_name')) {
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
       _this.login_name = ''
-      _this.$q.localStorage.set('login_name', '')
+      LocalStorage.set('login_name', '')
     }
-    if (_this.$q.localStorage.has('auth')) {
+    if (LocalStorage.has('auth')) {
       _this.authin = '1'
     } else {
       _this.authin = '0'
@@ -759,78 +714,60 @@ export default {
   },
   mounted () {
     var _this = this
-    if (window.device) {
-      if (window.device.manufacturer === 'Urovo' || window.device.manufacturer === 'Zebra Technologies') {
-        _this.device_name = window.device.manufacturer
-        _this.device = 2
-      } else {
-        _this.device = 1
-      }
-    } else {
-      if (_this.$q.platform.is.mobile) {
-        _this.device = 1
-      }
-    }
-    if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height) + 'px'
-    } else if (_this.$q.platform.is.cordova) {
-      if (window.device) {
+    if (Platform.is.electron) {
+      _this.height = String(Screen.height) + 'px'
+    } else if (Platform.is.cordova) {
+      _this.device_name = LocalStorage.getItem('device_name')
+      if (LocalStorage.getItem('device') === 2) {
         window.plugins.insomnia.keepAwake()
-        if (window.device.manufacturer === 'Urovo' || window.device.manufacturer === 'Zebra Technologies') {
+        if (LocalStorage.getItem('device_name') === 'Urovo' || LocalStorage.getItem('device_name') === 'Zebra Technologies') {
           _this.fab1.top = '0px'
-          _this.fab1.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
-          _this.fab1.left = (((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) + '' + 'px'
+          _this.fab1.bottom = (0 - ((Screen.width - 50) / 5)) + '' + 'px'
+          _this.fab1.left = (((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) + '' + 'px'
           _this.fab1.right = '0px'
           _this.fab2.top = '0px'
-          _this.fab2.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
-          _this.fab2.left = ((((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) / 2) + '' + 'px'
+          _this.fab2.bottom = (0 - ((Screen.width - 50) / 5)) + '' + 'px'
+          _this.fab2.left = ((((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) / 2) + '' + 'px'
           _this.fab2.right = '0px'
           _this.fab3.top = '0px'
           _this.fab3.bottom = '0px'
           _this.fab3.left = '-0px'
           _this.fab3.right = '0px'
-          _this.fab4.top = ((_this.$q.screen.width - 50) / 5) + '' + 'px'
-          _this.fab4.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
-          _this.fab4.left = (((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) + '' + 'px'
+          _this.fab4.top = ((Screen.width - 50) / 5) + '' + 'px'
+          _this.fab4.bottom = (0 - ((Screen.width - 50) / 5)) + '' + 'px'
+          _this.fab4.left = (((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) + '' + 'px'
           _this.fab4.right = '0px'
           _this.fab5.top = '0px'
-          _this.fab5.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
-          _this.fab5.left = ((((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) / 2) + '' + 'px'
+          _this.fab5.bottom = (0 - ((Screen.width - 50) / 5)) + '' + 'px'
+          _this.fab5.left = ((((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) / 2) + '' + 'px'
           _this.fab5.right = '0px'
           _this.fab6.top = '0px'
           _this.fab6.bottom = '0px'
           _this.fab6.left = '0px'
           _this.fab6.right = '0px'
-          _this.fab7.top = ((_this.$q.screen.width - 50) / 5) + '' + 'px'
-          _this.fab7.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
-          _this.fab7.left = (((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) + '' + 'px'
+          _this.fab7.top = ((Screen.width - 50) / 5) + '' + 'px'
+          _this.fab7.bottom = (0 - ((Screen.width - 50) / 5)) + '' + 'px'
+          _this.fab7.left = (((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) + '' + 'px'
           _this.fab7.right = '0px'
           _this.fab8.top = '0px'
-          _this.fab8.bottom = ((_this.$q.screen.width - 50) / 8) + '' + 'px'
-          _this.fab8.left = ((((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) / 2) + '' + 'px'
+          _this.fab8.bottom = ((Screen.width - 50) / 8) + '' + 'px'
+          _this.fab8.left = ((((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) / 2) + '' + 'px'
           _this.fab8.right = '0px'
         }
       }
     } else {
-      _this.height = _this.$q.screen.height + '' + 'px'
+      _this.height = Screen.height + '' + 'px'
     }
-    window.addEventListener('batterystatus', _this.updateBatteryStatus, false)
-    _this.width = _this.$q.screen.width * 1 + '' + 'px'
-    _this.height = _this.$q.screen.height - 50 + '' + 'px'
-    _this.scroll_height = _this.$q.screen.height - 175 + '' + 'px'
+    _this.width = Screen.width * 1 + '' + 'px'
+    _this.height = Screen.height - 50 + '' + 'px'
+    _this.scroll_height = Screen.height - 175 + '' + 'px'
     _this.barscan = ''
     _this.bin_scan = ''
     _this.scanEvents()
-    getDeviceinfo()
-  },
-  updated () {
   },
   beforeDestroy () {
     var _this = this
-    window.removeEventListener('batterystatus', _this.updateBatteryStatus, false)
     window.removeEventListener('deviceready', _this.onDeviceReady, false)
-  },
-  destroyed () {
   }
 }
 </script>

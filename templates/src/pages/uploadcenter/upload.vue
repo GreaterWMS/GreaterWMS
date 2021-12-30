@@ -6,21 +6,19 @@
           <q-tabs v-model="detaillink">
             <transition appear enter-active-class="animated zoomIn">
               <q-route-tab
-                v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="initializeupload"
                 :label="$t('upload_center.initializeupload')"
                 icon="img:statics/uploadcenter/uploadinbound.png"
-                to="/uploadcenter/initializeupload"
+                :to="{ name: 'initializeupload' }"
                 exact
               />
             </transition>
             <transition appear enter-active-class="animated zoomIn">
               <q-route-tab
-                v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="addupload"
                 :label="$t('upload_center.addupload')"
                 icon="img:statics/uploadcenter/addupload.png"
-                to="/uploadcenter/addupload"
+                :to="{ name: 'addupload' }"
                 exact
               />
             </transition>
@@ -35,10 +33,10 @@
 <script>
 export default {
   name: 'upload',
-  data() {
+  data () {
     return {
-      detaillink: ''
-    };
+      detaillink: 'initializeupload'
+    }
   }
-};
+}
 </script>

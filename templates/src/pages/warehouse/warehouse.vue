@@ -7,24 +7,16 @@
         v-model="detaillink"
       >
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="warehouseset" :label="$t('warehouse.warehouse')" icon="img:statics/warehouse/warehouseset.png" to="/warehouse/warehouseset" exact/>
+          <q-route-tab name="warehouseset" :label="$t('warehouse.warehouse')" icon="img:statics/warehouse/warehouseset.png" :to="{ name: 'warehouseset' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="binset" :label="$t('warehouse.binset')" icon="img:statics/warehouse/binset.png" to="/warehouse/binset" exact/>
+          <q-route-tab name="binset" :label="$t('warehouse.binset')" icon="img:statics/warehouse/binset.png" :to="{ name: 'binset' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="binsize" :label="$t('warehouse.binsize')" icon="img:statics/warehouse/binsize.png" to="/warehouse/binsize" exact/>
+          <q-route-tab name="binsize" :label="$t('warehouse.binsize')" icon="img:statics/warehouse/binsize.png" :to="{ name: 'binsize' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="property" :label="$t('warehouse.property')" icon="img:statics/warehouse/property.png" to="/warehouse/property" exact/>
+          <q-route-tab name="property" :label="$t('warehouse.property')" icon="img:statics/warehouse/property.png" :to="{ name: 'property' }" exact/>
         </transition>
       </q-tabs>
     </div>
@@ -41,7 +33,7 @@ export default {
   name: 'Pagewarehouse',
   data () {
     return {
-      detaillink: 'warehouse'
+      detaillink: 'warehouseset'
     }
   },
   methods: {

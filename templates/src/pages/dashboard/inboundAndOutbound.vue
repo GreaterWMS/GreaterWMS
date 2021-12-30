@@ -57,10 +57,10 @@
 </template>
 
 <script>
-import { getauth } from 'boot/axios_request.js';
+import { getauth } from 'boot/axios_request.js'
 export default {
   name: 'PageInbAndOutb',
-  data() {
+  data () {
     return {
       pathname: 'dashboard/',
       pathname_previous: '',
@@ -84,107 +84,107 @@ export default {
         page: 1,
         rowsPerPage: '30'
       }
-    };
+    }
   },
   methods: {
-    getList() {
+    getList () {
       getauth('cyclecount/qtyrecorviewset/', {})
         .then(res => {
-          this.table_list = res.results;
-          this.pathname_previous = res.previous;
-          this.pathname_next = res.next;
+          this.table_list = res.results
+          this.pathname_previous = res.previous
+          this.pathname_next = res.next
           this.table_list.forEach((item, index) => {
-            if (item.mode_code.substr(0, 3) == 'ASN') {
-              item.mode_code = '收货';
+            if (item.mode_code.substr(0, 3) === 'ASN') {
+              item.mode_code = '收货'
             } else {
-              item.mode_code = '发货';
+              item.mode_code = '发货'
             }
-          });
+          })
         })
         .catch(err => {
           this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getSearchList() {
-      var _this = this;
+    getSearchList () {
+      var _this = this
       getauth('cyclecount/qtyrecorviewset/?' + _this.filter, {})
         .then(res => {
-          console.log(res);
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          console.log(res)
+          _this.table_list = res.results
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
           this.table_list.forEach((item, index) => {
-            if (item.mode_code.substr(0, 3) == 'ASN') {
-              item.mode_code = '收货';
+            if (item.mode_code.substr(0, 3) === 'ASN') {
+              item.mode_code = '收货'
             } else {
-              item.mode_code = '发货';
+              item.mode_code = '发货'
             }
-          });
+          })
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getListPrevious() {
+    getListPrevious () {
       if (this.$q.localStorage.has('auth')) {
         getauth(this.pathname_previous, {})
           .then(res => {
-            this.table_list = res.results;
-            this.pathname_previous = res.previous;
-            this.pathname_next = res.next;
+            this.table_list = res.results
+            this.pathname_previous = res.previous
+            this.pathname_next = res.next
           })
           .catch(err => {
             this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getListNext() {
+    getListNext () {
       if (this.$q.localStorage.has('auth')) {
         getauth(this.pathname_next, {})
           .then(res => {
-            this.table_list = res.results;
-            this.pathname_previous = res.previous;
-            this.pathname_next = res.next;
+            this.table_list = res.results
+            this.pathname_previous = res.previous
+            this.pathname_next = res.next
           })
           .catch(err => {
             this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    reFresh() {
-      this.table_list = [];
-      this.getList();
+    reFresh () {
+      this.table_list = []
+      this.getList()
     }
   },
-  created() {
-    this.getList();
+  created () {
+    this.getList()
   },
-  mounted() {
+  mounted () {
     if (this.$q.platform.is.electron) {
-      this.height = String(this.$q.screen.height - 290) + 'px';
+      this.height = String(this.$q.screen.height - 290) + 'px'
     } else {
-      this.height = this.$q.screen.height - 290 + '' + 'px';
+      this.height = this.$q.screen.height - 290 + '' + 'px'
     }
   }
-};
+}
 </script>
 
 <style></style>

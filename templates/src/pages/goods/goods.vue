@@ -7,52 +7,28 @@
         v-model="detaillink"
       >
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="goodslist" :label="$t('goods.goods_list')" icon="img:statics/goods/goodslist.png" to="/goods/goodslist" exact/>
+          <q-route-tab name="goodslist" :label="$t('goods.goods_list')" icon="img:statics/goods/goodslist.png" :to="{ name: 'goodslist' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') === 'Supplier'
-                              " name="goodslist" :label="$t('goods.goods_list')" icon="img:statics/goods/goodslist.png" to="/goods/goodslist" exact/>
+          <q-route-tab name="goodsunit" :label="$t('goods.unit')" icon="img:statics/goods/goodsunit.png" :to="{ name: 'goodsunit' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') === 'Customer'
-                              " name="goodslist" :label="$t('goods.goods_list')" icon="img:statics/goods/goodslist.png" to="/goods/goodslist" exact/>
+          <q-route-tab name="goodsclass" :label="$t('goods.class')" icon="img:statics/goods/goodsclass.png" :to="{ name: 'goodsclass' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="goodsunit" :label="$t('goods.unit')" icon="img:statics/goods/goodsunit.png" to="/goods/goodsunit" exact/>
+          <q-route-tab name="goodscolor" :label="$t('goods.color')" icon="img:statics/goods/goodscolor.png" :to="{ name: 'goodscolor' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="goodsclass" :label="$t('goods.class')" icon="img:statics/goods/goodsclass.png" to="/goods/goodsclass" exact/>
+          <q-route-tab name="goodsbrand" :label="$t('goods.brand')" icon="img:statics/goods/goodsbrand.png" :to="{ name: 'goodsbrand' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="goodscolor" :label="$t('goods.color')" icon="img:statics/goods/goodscolor.png" to="/goods/goodscolor" exact/>
+          <q-route-tab name="goodsshape" :label="$t('goods.shape')" icon="img:statics/goods/goodsshape.png" :to="{ name: 'goodsshape' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="goodsbrand" :label="$t('goods.brand')" icon="img:statics/goods/goodsbrand.png" to="/goods/goodsbrand" exact/>
+          <q-route-tab name="goodsspecs" :label="$t('goods.specs')" icon="img:statics/goods/goodsspecs.png" :to="{ name: 'goodsspecs' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="goodsshape" :label="$t('goods.shape')" icon="img:statics/goods/goodsshape.png" to="/goods/goodsshape" exact/>
-        </transition>
-        <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="goodsspecs" :label="$t('goods.specs')" icon="img:statics/goods/goodsspecs.png" to="/goods/goodsspecs" exact/>
-        </transition>
-        <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="goodsorigin" :label="$t('goods.origin')" icon="img:statics/goods/goodsorigin.png" to="/goods/goodsorigin" exact/>
+          <q-route-tab name="goodsorigin" :label="$t('goods.origin')" icon="img:statics/goods/goodsorigin.png" :to="{ name: 'goodsorigin' }" exact/>
         </transition>
       </q-tabs>
     </div>
