@@ -7,44 +7,28 @@
         v-model="detaillink"
       >
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="asn" :label="$t('inbound.asn')" icon="img:statics/inbound/asn.png" to="/inbound/asn" exact/>
+          <q-route-tab name="asn" :label="$t('inbound.asn')" icon="img:statics/inbound/asn.png" :to="{ name: 'asn' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="predeliverystock" :label="$t('inbound.predeliverystock')"  icon="img:statics/inbound/polist.png" to="/inbound/predeliverystock" exact/>
+          <q-route-tab name="predeliverystock" :label="$t('inbound.predeliverystock')"  icon="img:statics/inbound/polist.png" :to="{ name: 'predeliverystock' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="preloadstock" :label="$t('inbound.preloadstock')" icon="img:statics/inbound/preloadstock.png" to="/inbound/preloadstock" exact/>
+          <q-route-tab name="preloadstock" :label="$t('inbound.preloadstock')" icon="img:statics/inbound/preloadstock.png" :to="{ name: 'preloadstock' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="presortstock" :label="$t('inbound.presortstock')" icon="img:statics/inbound/presortstock.png" to="/inbound/presortstock" exact/>
+          <q-route-tab name="presortstock" :label="$t('inbound.presortstock')" icon="img:statics/inbound/presortstock.png" :to="{ name: 'presortstock' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="sortstock" :label="$t('inbound.sortstock')" icon="img:statics/inbound/sortstock.png" to="/inbound/sortstock" exact/>
+          <q-route-tab name="sortstock" :label="$t('inbound.sortstock')" icon="img:statics/inbound/sortstock.png" :to="{ name: 'sortstock' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="shortage" :label="$t('inbound.shortage')" icon="img:statics/inbound/shortage.png" to="/inbound/shortage" exact/>
+          <q-route-tab name="shortage" :label="$t('inbound.shortage')" icon="img:statics/inbound/shortage.png" :to="{ name: 'shortage' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="more" :label="$t('inbound.more')" icon="img:statics/inbound/more.png" to="/inbound/more" exact/>
+          <q-route-tab name="more" :label="$t('inbound.more')" icon="img:statics/inbound/more.png" :to="{ name: 'more' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="asnfinish" :label="$t('inbound.asnfinish')" icon="img:statics/inbound/asnfinish.png" to="/inbound/asnfinish" exact/>
+          <q-route-tab name="asnfinish" :label="$t('inbound.asnfinish')" icon="img:statics/inbound/asnfinish.png" :to="{ name: 'asnfinish' }" exact/>
         </transition>
       </q-tabs>
     </div>

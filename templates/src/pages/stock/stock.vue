@@ -7,34 +7,22 @@
         v-model="detaillink"
       >
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="stocklist" :label="$t('stock.stocklist')" icon="img:statics/stock/stocklist.png" to="/stock/stocklist" exact/>
+          <q-route-tab name="stocklist" :label="$t('stock.stocklist')" icon="img:statics/stock/stocklist.png" :to="{ name: 'stocklist' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="stockbinlist" :label="$t('stock.stockbinlist')" icon="img:statics/warehouse/binset.png" to="/stock/stockbinlist" exact/>
+          <q-route-tab name="stockbinlist" :label="$t('stock.stockbinlist')" icon="img:statics/warehouse/binset.png" :to="{ name: 'stockbinlist' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="emptybin" :label="$t('stock.emptybin')" icon="all_out" to="/stock/emptybin" exact/>
+          <q-route-tab name="emptybin" :label="$t('stock.emptybin')" icon="all_out" :to="{ name: 'emptybin' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="occupiedbin" :label="$t('stock.occupiedbin')" icon="all_inbox" to="/stock/occupiedbin" exact/>
+          <q-route-tab name="occupiedbin" :label="$t('stock.occupiedbin')" icon="all_inbox" :to="{ name: 'occupiedbin' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="cyclecount" :label="$t('cyclecount')" icon="img:statics/stock/cyclecount.png" to="/stock/cyclecount" exact/>
+          <q-route-tab name="cyclecount" :label="$t('cyclecount')" icon="img:statics/stock/cyclecount.png" :to="{ name: 'cyclecount' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="cyclecountrecorder" :label="$t('cyclecountrecorder')" icon="img:statics/stock/cyclecountrecorder.png" to="/stock/cyclecountrecorder" exact/>
+          <q-route-tab name="cyclecountrecorder" :label="$t('cyclecountrecorder')" icon="img:statics/stock/cyclecountrecorder.png" :to="{ name: 'cyclecountrecorder' }" exact/>
         </transition>
       </q-tabs>
     </div>
@@ -51,7 +39,7 @@ export default {
   name: 'Pagestock',
   data () {
     return {
-      detaillink: 'stock'
+      detaillink: 'stocklist'
     }
   },
   methods: {

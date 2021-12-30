@@ -6,21 +6,19 @@
           <q-tabs v-model="detaillink">
             <transition appear enter-active-class="animated zoomIn">
               <q-route-tab
-                v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="driverlist"
                 :label="$t('driver.driver')"
                 icon="img:statics/staff/driver.png"
-                to="/driver/driverlist"
+                :to="{ name: 'driverlist' }"
                 exact
               />
             </transition>
             <transition appear enter-active-class="animated zoomIn">
               <q-route-tab
-                v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="dispatchlist"
                 :label="$t('driver.dispatchlist')"
                 icon="img:statics/outbound/dispatchlist.png"
-                to="/driver/dispatchlist"
+                :to="{ name: 'dispatchlist' }"
                 exact
               />
             </transition>
@@ -35,11 +33,11 @@
 <script>
 export default {
   name: 'Pagedriver',
-  data() {
+  data () {
     return {
       detaillink: 'driverlist'
-    };
+    }
   },
   methods: {}
-};
+}
 </script>
