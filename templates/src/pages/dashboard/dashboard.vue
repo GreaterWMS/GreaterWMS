@@ -6,31 +6,28 @@
           <q-tabs v-model="detaillink">
             <transition appear enter-active-class="animated zoomIn">
               <q-route-tab
-                v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="outbounddashboard"
                 :label="$t('dashboards.outbound_statements')"
                 icon="img:statics/dashboard/out_statement.png"
-                to="/dashboard/outbounddashboard"
+                :to="{ name: 'outbounddashboard' }"
                 exact
               />
             </transition>
             <transition appear enter-active-class="animated zoomIn">
               <q-route-tab
-                v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="inbounddashboard"
                 :label="$t('dashboards.inbound_statements')"
                 icon="img:statics/dashboard/in_statement.svg"
-                to="/dashboard/inbounddashboard"
+                :to="{ name: 'inbounddashboard' }"
                 exact
               />
             </transition>
             <transition appear enter-active-class="animated zoomIn">
               <q-route-tab
-                v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="inboundAndOutbound"
                 :label="$t('dashboards.inbound_and_outbound_statements')"
                 icon="img:statics/dashboard/in_and_out_statement.svg"
-                to="/dashboard/inboundAndOutbound"
+                :to="{ name: 'inboundAndOutbound' }"
                 exact
               />
             </transition>
@@ -44,12 +41,12 @@
 
 <script>
 export default {
-  name: 'Pagecapital',
-  data() {
+  name: 'Pagedashboard',
+  data () {
     return {
-      detaillink: 'capital'
-    };
+      detaillink: 'outbounddashboard'
+    }
   },
   methods: {}
-};
+}
 </script>

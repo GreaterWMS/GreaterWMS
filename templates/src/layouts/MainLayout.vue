@@ -1,18 +1,18 @@
 <template>
   <q-layout view="hHh LpR fFf" :style="{ height: $q.screen.height, width: $q.screen.width }">
     <q-header reveal elevated class="bg-primary text-white">
-      <q-toolbar :class="{ 'main-headers text-white shadow-18 rounded-borders': device !== 2, 'main-headers text-white rounded-borders': device === 2 }">
+      <q-toolbar class="main-headers text-white shadow-18 rounded-borders">
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn flat v-show="device !== 2" @click="drawerleft = !drawerleft" round dense icon="menu">
+          <q-btn flat @click="drawerleft = !drawerleft" round dense icon="menu">
             <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">{{ $t('index.hide_menu') }}</q-tooltip>
           </q-btn>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-toolbar-title v-show="$q.platform.is.desktop" shrink class="text-weight-bold">{{ $t('index.title') }}</q-toolbar-title>
+          <q-toolbar-title shrink class="text-weight-bold">{{ $t('index.title') }}</q-toolbar-title>
         </transition>
         <q-space />
         <transition appear enter-active-class="animated zoomIn">
-          <a v-show="device !== 2 && device !== 1 && !$q.platform.is.electron" href="/docs/" style="text-decoration:none; color: #c8e6c9">
+          <a href="/docs/" style="text-decoration:none; color: #c8e6c9">
             <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">{{ $t('index.api') }}</q-tooltip>
             </q-btn>
@@ -20,7 +20,6 @@
         </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-btn
-            v-show="device === 0 && !$q.platform.is.electron"
             icon="img:statics/icons/GitHub.png"
             round
             dense
@@ -46,7 +45,7 @@
         <q-separator vertical />
         <template v-if="authin === '1'">
           <transition appear enter-active-class="animated zoomIn">
-            <q-btn v-show="device !== 2" round dense flat color="white" icon="notifications" @click="read = true" style="margin: 0 10px 0 10px">
+            <q-btn round dense flat color="white" icon="notifications" @click="read = true" style="margin: 0 10px 0 10px">
               <q-badge v-if="read_num" color="red" text-color="white" floating>{{ read_num }}</q-badge>
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">{{ $t('index.unread') }}</q-tooltip>
             </q-btn>
@@ -55,28 +54,19 @@
             <q-btn-dropdown stretch flat color="white-8" icon="account_circle" @click="chat = false">
               <div class="row no-wrap q-pa-md">
                 <div class="column" style="width: 150px">
-                  <div v-show="device === 0" class="text-h6 q-mb-md">{{ $t('index.user_center') }}</div>
-                  <div v-show="device === 1 || device === 2" style="width: 100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">
-                    <span style="margin-left: 9%;font-weight: bold">{{ $t('index.current_user') }}:</span>
-                    <span style="margin-left: 6%;font-weight: bold">{{ login_name }}</span>
-                  </div>
-                  <hr v-show="device !== 0" style="height: 2px;border:none;border-top:1px solid #e1e1e1;width: 121%;margin-left: -10.5%; margin-top: 8%" />
+                  <div class="text-h6 q-mb-md">{{ $t('index.user_center') }}</div>
                   <q-btn flat rounded class="full-width" align="left" :label="$t('index.change_user')" @click="login = true">
                     <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('index.change_user') }}</q-tooltip>
                   </q-btn>
                   <q-btn flat rounded class="full-width" align="left" :label="$t('index.view_my_openid')" @click="authid = true">
                     <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('index.view_my_openid') }}</q-tooltip>
                   </q-btn>
-                  <q-btn v-show="device !== 2" flat rounded class="full-width" align="left" :label="$t('index.contact_list')" @click="Friend()">
-                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('index.contact_list') }}</q-tooltip>
-                  </q-btn>
-                  <hr v-show="device !== 0" style="height: 2px;border:none;border-top:1px solid #e1e1e1;width: 121%;margin-left: -10.5%; margin-top: 8%" />
-                  <q-btn v-show="$q.platform.is.cordova || $q.platform.is.mobile" flat rounded class="full-width" align="left" :label="$t('index.logout')" @click="Logout()">
+                  <q-btn flat rounded class="full-width" align="left" :label="$t('index.contact_list')" @click="Friend()">
                     <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('index.contact_list') }}</q-tooltip>
                   </q-btn>
                 </div>
-                <q-separator v-show="device === 0" vertical inset class="q-mx-lg" />
-                <div class="column items-center" v-show="$q.platform.is.desktop">
+                <q-separator vertical inset class="q-mx-lg" />
+                <div class="column items-center">
                   <q-avatar size="72px"><q-img src="statics/staff/stafftype.png"></q-img></q-avatar>
                   <div class="text-subtitle1 q-mt-md q-mb-xs">{{ login_name }}</div>
                   <q-btn color="primary" :label="$t('index.logout')" push size="sm" v-close-popup icon="img:statics/icons/logout.png" @click="Logout()">
@@ -105,10 +95,8 @@
       <q-scroll-area class="fit" style="overflow-y: auto">
         <q-list>
           <q-item
-            v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
-            v-if="device === 0"
             clickable
-            to="/dashboard/outbounddashboard"
+            :to="{ name: 'outbounddashboard' }"
             @click="linkChange('outbounddashboard')"
             v-ripple
             exact
@@ -118,14 +106,10 @@
             <q-item-section avatar><q-icon name="auto_graph" /></q-item-section>
             <q-item-section>{{ $t('menuItem.dashboard') }}</q-item-section>
           </q-item>
-          <q-separator v-show="device === 0" />
+          <q-separator />
           <q-item
-            v-show="
-              $q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer' && $q.localStorage.getItem('staff_type') !== 'Outbound'
-            "
-            v-if="device === 0"
             clickable
-            to="/inbound/asn"
+            :to="{ name: 'asn' }"
             @click="linkChange('inbound')"
             v-ripple
             exact
@@ -136,12 +120,8 @@
             <q-item-section>{{ $t('menuItem.inbound') }}</q-item-section>
           </q-item>
           <q-item
-            v-show="
-              $q.localStorage.getItem('staff_type') !== 'Customer' && $q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Inbound'
-            "
-            v-if="device === 0"
             clickable
-            to="/outbound/dn"
+            :to="{ name: 'dn' }"
             @click="linkChange('outbound')"
             v-ripple
             exact
@@ -152,10 +132,8 @@
             <q-item-section>{{ $t('menuItem.outbound') }}</q-item-section>
           </q-item>
           <q-item
-            v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
-            v-if="device !== 2"
             clickable
-            to="/stock/stocklist"
+            :to="{ name: 'stocklist' }"
             @click="linkChange('stock')"
             v-ripple
             exact
@@ -165,57 +143,34 @@
             <q-item-section avatar><q-icon name="multiline_chart" /></q-item-section>
             <q-item-section>{{ $t('menuItem.stock') }}</q-item-section>
           </q-item>
-          <q-separator v-show="device !== 2" />
+          <q-separator />
           <q-item
-            v-show="
-              $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                $q.localStorage.getItem('staff_type') !== 'StockControl'
-            "
-            v-if="device !== 2"
-            clickable
-            to="/finance/capitallist"
-            @click="linkChange('finance')"
-            v-ripple
-            exact
-            :active="link === 'finance' && link !== ''"
-            :class="{ 'my-menu-link': link === 'finance' && link !== '' }"
-          >
+                  clickable
+                  :to="{ name: 'capitallist' }"
+                  @click="linkChange('finance')"
+                  v-ripple
+                  exact
+                  :active="link === 'finance' && link !== ''"
+                  :class="{ 'my-menu-link': link === 'finance' && link !== '' }"
+                >
             <q-item-section avatar><q-icon name="devices_other" /></q-item-section>
             <q-item-section>{{ $t('menuItem.finance') }}</q-item-section>
           </q-item>
           <q-item
-            v-show="
-              $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                $q.localStorage.getItem('staff_type') !== 'Outbound'
-            "
-            v-if="device !== 2"
-            clickable
-            to="/goods/goodslist"
-            @click="linkChange('goods')"
-            v-ripple
-            exact
-            :active="link === 'goods' && link !== ''"
-            :class="{ 'my-menu-link': link === 'goods' && link !== '' }"
-          >
+                  clickable
+                  :to="{ name: 'goodslist' }"
+                  @click="linkChange('goods')"
+                  v-ripple
+                  exact
+                  :active="link === 'goods' && link !== ''"
+                  :class="{ 'my-menu-link': link === 'goods' && link !== '' }"
+                >
             <q-item-section avatar><q-icon name="shop_two" /></q-item-section>
             <q-item-section>{{ $t('menuItem.goods') }}</q-item-section>
           </q-item>
           <q-item
-            v-show="
-              $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                $q.localStorage.getItem('staff_type') !== 'StockControl'
-            "
-            v-if="device !== 2"
             clickable
-            to="/baseinfo/company"
+            :to="{ name: 'company' }"
             @click="linkChange('baseinfo')"
             v-ripple
             exact
@@ -226,15 +181,8 @@
             <q-item-section>{{ $t('menuItem.baseinfo') }}</q-item-section>
           </q-item>
           <q-item
-            v-show="
-              $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                $q.localStorage.getItem('staff_type') !== 'Outbound'
-            "
-            v-if="device !== 2"
             clickable
-            to="/warehouse/warehouseset"
+            :to="{ name: 'warehouseset' }"
             @click="linkChange('warehouse')"
             v-ripple
             exact
@@ -244,12 +192,10 @@
             <q-item-section avatar><q-icon name="settings" /></q-item-section>
             <q-item-section>{{ $t('menuItem.warehouse') }}</q-item-section>
           </q-item>
-          <q-separator v-show="device !== 2" />
+          <q-separator />
           <q-item
-            v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
-            v-if="device !== 2"
             clickable
-            to="/staff/stafflist"
+            :to="{ name: 'stafflist' }"
             @click="linkChange('staff')"
             v-ripple
             exact
@@ -260,15 +206,8 @@
             <q-item-section>{{ $t('menuItem.staff') }}</q-item-section>
           </q-item>
           <q-item
-            v-show="
-              $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                $q.localStorage.getItem('staff_type') !== 'StockControl'
-            "
-            v-if="device !== 2"
             clickable
-            to="/driver/driverlist"
+            :to="{ name: 'driverlist' }"
             @click="linkChange('driver')"
             v-ripple
             exact
@@ -280,10 +219,8 @@
           </q-item>
           <q-separator v-show="device === 0" />
           <q-item
-            v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
-            v-if="device === 0"
             clickable
-            to="/uploadcenter/initializeupload"
+            :to="{ name: 'initializeupload' }"
             @click="linkChange('uploadcenter')"
             v-ripple
             exact
@@ -293,200 +230,6 @@
             <q-item-section avatar><q-icon name="file_upload" /></q-item-section>
             <q-item-section>{{ $t('menuItem.uploadcenter') }}</q-item-section>
           </q-item>
-          <!--          <q-separator v-show="device !== 2"/>-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Supervisor' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Outbound' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'StockControl' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Manager' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Admin'-->
-          <!--                         "-->
-          <!--                  v-if="device !== 2"-->
-          <!--            clickable to="/customerdn" @click="linkChange('customerdn')" v-ripple exact :active="link === 'customerdn'" :class="{ 'my-menu-link': link === 'customerdn' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="img:statics/outbound/dnlist.png" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('menuItem.customerdn') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'StockControl'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--            clickable to="/scan_sorting" @click="linkChange('scan_sorting')" v-ripple exact :active="link === 'scan_sorting'" :class="{ 'my-menu-link': link === 'scan_sorting' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="img:statics/inbound/preloadstock.png" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('scan.scan_sorting') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Outbound' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'StockControl'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--            clickable to="/scan_uptobin" @click="linkChange('scan_uptobin')" v-ripple exact :active="link === 'scan_uptobin'" :class="{ 'my-menu-link': link === 'scan_uptobin' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="img:statics/inbound/presortstock.png" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('scan.scan_uptobin') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'StockControl'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--            clickable to="/scan_picking" @click="linkChange('scan_picking')" v-ripple exact :active="link === 'scan_picking'" :class="{ 'my-menu-link': link === 'scan_picking' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="img:statics/outbound/picked.png" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('scan.scan_picking') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'StockControl'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--                  clickable to="/scan_shipping" @click="linkChange('scan_shipping')" v-ripple exact :active="link === 'scan_shipping'" :class="{ 'my-menu-link': link === 'scan_shipping' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="rv_hookup" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('dispatch') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Outbound'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--            clickable to="/scan_movetobin" @click="linkChange('scan_movetobin')" v-ripple exact :active="link === 'scan_movetobin'" :class="{ 'my-menu-link': link === 'scan_movetobin' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="move_to_inbox" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('movetobin') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Outbound'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--                  clickable to="/scan_cyclecount" @click="linkChange('scan_cyclecount')" v-ripple exact :active="link === 'scan_cyclecount'" :class="{ 'my-menu-link': link === 'scan_cyclecount' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="move_to_inbox" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('cyclecount') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-separator v-show="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile" />-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Outbound'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--            clickable to="/scan_asn" @click="linkChange('scan_asn')" v-ripple exact :active="link === 'scan_asn'" :class="{ 'my-menu-link': link === 'scan_asn' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="img:statics/inbound/asn.png" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('scan.scan_asn') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--                    <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Outbound'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--            clickable to="/scan_dn" @click="linkChange('scan_dn')" v-ripple exact :active="link === 'scan_dn'" :class="{ 'my-menu-link': link === 'scan_dn' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="img:statics/outbound/dnlist.png" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('scan.scan_dn') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-separator v-show="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"/>-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Customer' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Outbound'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--            clickable to="/scan_emptybin" @click="linkChange('scan_emptybin')" v-ripple exact :active="link === 'scan_emptybin'" :class="{ 'my-menu-link': link === 'scan_emptybin' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="all_out" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('stock.emptybin') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Customer'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--            clickable to="/scan_stockbinlist" @click="linkChange('scan_stockbinlist')" v-ripple exact :active="link === 'scan_stockbinlist'" :class="{ 'my-menu-link': link === 'scan_stockbinlist' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="img:statics/warehouse/binset.png" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('stock.stockbinlist') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Customer'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--            clickable to="/scan_stocklist" @click="linkChange('scan_stocklist')" v-ripple exact :active="link === 'scan_stocklist'" :class="{ 'my-menu-link': link === 'scan_stocklist' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="img:statics/stock/stocklist.png" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('stock.stocklist') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Supplier'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--            clickable to="/scan_goodslist" @click="linkChange('scan_goodslist')" v-ripple exact :active="link === 'scan_goodslist'" :class="{ 'my-menu-link': link === 'scan_goodslist' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="img:statics/goods/goodslist.png" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('goods.goods_list') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-separator v-show="$q.platform.is.cordova || $q.platform.is.mobile"/>-->
-          <!--          <q-item v-show="$q.localStorage.getItem('staff_type') !== 'Customer' &&-->
-          <!--                          $q.localStorage.getItem('staff_type') !== 'Supplier'-->
-          <!--                         "-->
-          <!--                  v-if="$q.platform.is.android || $q.platform.is.ios || $q.platform.has.touch || $q.platform.is.mobile"-->
-          <!--            clickable to="/scan_stafflist" @click="linkChange('scan_stafflist')" v-ripple exact :active="link === 'scan_stafflist'" :class="{ 'my-menu-link': link === 'scan_stafflist' }">-->
-          <!--            <q-item-section avatar>-->
-          <!--              <q-icon name="perm_contact_calendar" />-->
-          <!--            </q-item-section>-->
-          <!--            <q-item-section>-->
-          <!--              {{ $t('staff.staff') }}-->
-          <!--            </q-item-section>-->
-          <!--          </q-item>-->
-          <!--          <q-separator v-show="$q.platform.is.cordova || $q.platform.is.mobile"/>-->
         </q-list>
       </q-scroll-area>
     </q-drawer>
@@ -747,20 +490,17 @@
   </q-layout>
 </template>
 <script>
-import { versioncheck, getauth, post, wsurl, baseurl } from 'boot/axios_request';
-import { date, LocalStorage, openURL } from 'quasar';
-import Bus from 'boot/bus.js';
-import Vconsole from 'vconsole';
-if (process.env.NODE_ENV !== 'production') {
-  const vConsole = new Vconsole();
-}
+import { versioncheck, getauth, post, wsurl } from 'boot/axios_request'
+import { date, LocalStorage, SessionStorage, openURL, Platform } from 'quasar'
+import Bus from 'boot/bus.js'
 
-var ws;
+var ws
 export default {
-  data() {
+  data () {
     return {
       activeTab: '',
-      device: 0,
+      device: LocalStorage.getItem('device'),
+      device_name: LocalStorage.getItem('device_name'),
       lang: this.$i18n.locale,
       verCheck: false,
       version: '',
@@ -810,76 +550,70 @@ export default {
       read_previous: '',
       read_next: '',
       needLogin: ''
-    };
-  },
-  meta() {
-    var _this = this;
-    return {
-      title: _this.title
-    };
+    }
   },
   methods: {
-    linkChange(e) {
-      var _this = this;
-      localStorage.setItem('menulink', '');
-      localStorage.setItem('menulink', e);
-      _this.link = e;
+    linkChange (e) {
+      var _this = this
+      localStorage.removeItem('menulink', '')
+      localStorage.setItem('menulink', e)
+      _this.link = e
     },
-    drawerClick(e) {
-      var _this = this;
+    drawerClick (e) {
+      var _this = this
       if (_this.miniState) {
-        _this.miniState = false;
-        e.stopPropagation();
+        _this.miniState = false
+        e.stopPropagation()
       }
     },
-    brownlink(e) {
-      openURL(e);
+    brownlink (e) {
+      openURL(e)
     },
-    Login() {
-      var _this = this;
+    Login () {
+      var _this = this
       if (_this.login_name === '') {
         _this.$q.notify({
           message: 'Please enter the login name',
           color: 'negative',
           icon: 'close'
-        });
+        })
       } else {
         if (_this.openid === '') {
           _this.$q.notify({
             message: 'Please Enter The Openid',
             icon: 'close',
             color: 'negative'
-          });
+          })
         } else {
           if (_this.check_code === '') {
             _this.$q.notify({
               message: 'Please Enter The Check Code',
               icon: 'close',
               color: 'negative'
-            });
+            })
           } else {
-            _this.$q.localStorage.set('openid', _this.openid);
-            _this.$q.sessionStorage.set('axios_check', 'false');
+            LocalStorage.set('openid', _this.openid)
+            SessionStorage.set('axios_check', 'false')
             getauth('staff/?staff_name=' + _this.login_name + '&check_code=' + _this.check_code)
               .then(res => {
                 if (res.count === 1) {
-                  _this.authin = '1';
-                  _this.login = false;
-                  _this.$q.localStorage.set('auth', '1');
-                  _this.$q.localStorage.set('login_name', _this.login_name);
-                  _this.$q.localStorage.set('login_mode', 'user');
+                  _this.authin = '1'
+                  _this.login = false
+                  LocalStorage.set('auth', '1')
+                  LocalStorage.set('login_name', _this.login_name)
+                  LocalStorage.set('login_mode', 'user')
                   _this.$q.notify({
                     message: 'Success Login',
                     icon: 'check',
                     color: 'green'
-                  });
-                  _this.$router.push('/');
+                  })
+                  _this.$router.push('/')
                 } else {
                   _this.$q.notify({
                     message: "No User's Data Or Check Code Wrong",
                     icon: 'close',
                     color: 'negative'
-                  });
+                  })
                 }
               })
               .catch(err => {
@@ -887,53 +621,53 @@ export default {
                   message: err.detail,
                   icon: 'close',
                   color: 'negative'
-                });
-              });
+                })
+              })
           }
         }
       }
     },
-    adminLogin() {
-      var _this = this;
+    adminLogin () {
+      var _this = this
       if (!_this.adminlogin.name) {
         _this.$q.notify({
           message: 'Please enter the admin name',
           color: 'negative',
           icon: 'close'
-        });
+        })
       } else {
         if (!_this.adminlogin.password) {
           _this.$q.notify({
             message: 'Please enter the admin password',
             icon: 'close',
             color: 'negative'
-          });
+          })
         } else {
-          _this.$q.sessionStorage.set('axios_check', 'false');
+          SessionStorage.set('axios_check', 'false')
           post('login/', _this.adminlogin)
             .then(res => {
               if (res.code === '200') {
-                _this.authin = '1';
-                _this.login = false;
-                _this.admin = false;
-                _this.openid = res.data.openid;
-                _this.login_name = res.data.name;
-                _this.$q.localStorage.set('auth', '1');
-                _this.$q.localStorage.set('openid', res.data.openid);
-                _this.$q.localStorage.set('login_name', _this.login_name);
-                _this.$q.localStorage.set('login_mode', 'admin');
+                _this.authin = '1'
+                _this.login = false
+                _this.admin = false
+                _this.openid = res.data.openid
+                _this.login_name = res.data.name
+                LocalStorage.set('auth', '1')
+                LocalStorage.set('openid', res.data.openid)
+                LocalStorage.set('login_name', _this.login_name)
+                LocalStorage.set('login_mode', 'admin')
                 _this.$q.notify({
                   message: 'Success Login',
                   icon: 'check',
                   color: 'green'
-                });
-                _this.$router.push('/');
+                })
+                _this.$router.push('/')
               } else {
                 _this.$q.notify({
                   message: res.msg,
                   icon: 'close',
                   color: 'negative'
-                });
+                })
               }
             })
             .catch(err => {
@@ -941,57 +675,57 @@ export default {
                 message: err.detail,
                 icon: 'close',
                 color: 'negative'
-              });
-            });
+              })
+            })
         }
       }
     },
-    Logout() {
-      var _this = this;
-      _this.authin = '0';
-      _this.login_name = '';
-      _this.$q.localStorage.remove('auth');
-      _this.$q.sessionStorage.remove('axios_check');
-      _this.$q.localStorage.set('login_name', '');
+    Logout () {
+      var _this = this
+      _this.authin = '0'
+      _this.login_name = ''
+      LocalStorage.remove('auth')
+      SessionStorage.remove('axios_check')
+      LocalStorage.set('login_name', '')
       _this.$q.notify({
         message: 'Success Logout',
         icon: 'check',
         color: 'negative'
-      });
+      })
       // _this.staffType();
-      _this.$router.push('/');
+      _this.$router.push('/')
     },
-    Register() {
-      var _this = this;
-      _this.$q.sessionStorage.set('axios_check', 'false');
+    Register () {
+      var _this = this
+      SessionStorage.set('axios_check', 'false')
       post('register/', _this.registerform)
         .then(res => {
           if (res.code === '200') {
-            _this.register = false;
-            _this.openid = res.data.openid;
-            _this.login_name = _this.registerform.name;
-            _this.authin = '1';
-            _this.$q.localStorage.set('openid', res.data.openid);
-            _this.$q.localStorage.set('login_name', _this.registerform.name);
-            _this.$q.localStorage.set('auth', '1');
+            _this.register = false
+            _this.openid = res.data.openid
+            _this.login_name = _this.registerform.name
+            _this.authin = '1'
+            LocalStorage.set('openid', res.data.openid)
+            LocalStorage.set('login_name', _this.registerform.name)
+            LocalStorage.set('auth', '1')
             _this.registerform = {
               name: '',
               password1: '',
               password2: ''
-            };
+            }
             _this.$q.notify({
               message: res.msg,
               icon: 'check',
               color: 'green'
-            });
-            _this.staffType();
-            _this.$router.push('/');
+            })
+            _this.staffType()
+            _this.$router.push('/')
           } else {
             _this.$q.notify({
               message: res.msg,
               icon: 'close',
               color: 'negative'
-            });
+            })
           }
         })
         .catch(err => {
@@ -999,37 +733,36 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    staffType() {
-      var _this = this;
+    staffType () {
+      var _this = this
       getauth('staff/?staff_name=' + _this.login_name).then(res => {
-        _this.$q.localStorage.set('staff_type', res.results[0].staff_type);
-      });
+        LocalStorage.set('staff_type', res.results[0].staff_type)
+      })
     },
-    initWebSocket() {
-      var _this = this;
-      ws = new WebSocket(wsurl + '?sender=' + _this.login_name + '&receiver=' + _this.receiver + '&openid=' + _this.openid);
-      ws.onmessage = _this.websocketonmessage;
-      ws.onopen = _this.websocketonopen;
-      ws.onerror = _this.websocketonerror;
-      ws.onclose = _this.websocketclose;
+    initWebSocket () {
+      var _this = this
+      ws = new WebSocket(wsurl + '?sender=' + _this.login_name + '&receiver=' + _this.receiver + '&openid=' + _this.openid)
+      ws.onmessage = _this.websocketonmessage
+      ws.onopen = _this.websocketonopen
+      ws.onerror = _this.websocketonerror
+      ws.onclose = _this.websocketclose
     },
-    websocketonopen() {
-      console.log('Success Connect');
+    websocketonopen () {
+      console.log('Success Connect')
     },
-    websocketonerror() {
-      var _this = this;
-      _this.initWebSocket();
+    websocketonerror () {
+      var _this = this
+      _this.initWebSocket()
     },
-    websocketonmessage(e) {
-      var _this = this;
-      if (_this.$q.sessionStorage.getItem('receiver') === JSON.parse(e.data).sender) {
-        _this.chat_list.push(JSON.parse(e.data));
-      } else {
+    websocketonmessage (e) {
+      var _this = this
+      if (SessionStorage.getItem('receiver') === JSON.parse(e.data).sender) {
+        _this.chat_list.push(JSON.parse(e.data))
       }
-      _this.Readnum();
+      _this.Readnum()
       _this.$q.notify({
         message: JSON.parse(e.data).sender + ' Send you a message',
         color: 'deep-purple',
@@ -1040,332 +773,328 @@ export default {
             label: 'View',
             color: 'yellow',
             handler: () => {
-              _this.ChatWith(JSON.parse(e.data).sender);
+              _this.ChatWith(JSON.parse(e.data).sender)
             }
           }
         ]
-      });
+      })
     },
-    websocketsend() {
-      var _this = this;
-      if (_this.chat_text === '') {
-      } else {
-        ws.send(_this.chat_text);
+    websocketsend () {
+      var _this = this
+      if (_this.chat_text !== '') {
+        ws.send(_this.chat_text)
         _this.chat_list.push({
           sender: _this.sender + '-' + _this.openid,
           receiver: _this.receiver,
           detail: _this.chat_text,
           create_time: date.formatDate(Date.now(), 'YYYY-MM-DD HH:mm:ss')
-        });
-        _this.chat_text = '';
+        })
+        _this.chat_text = ''
       }
     },
-    websocketclose(e) {
-      console.log('Disconnect', e);
+    websocketclose (e) {
+      console.log('Disconnect', e)
     },
-    ChatWith(e) {
-      var _this = this;
-      _this.sender = _this.login_name;
-      _this.receiver = e;
-      _this.$q.sessionStorage.set('receiver', e);
+    ChatWith (e) {
+      var _this = this
+      _this.sender = _this.login_name
+      _this.receiver = e
+      SessionStorage.set('receiver', e)
       if (_this.sender === _this.receiver) {
         _this.$q.notify({
           message: 'Cannot Chat with yourself',
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.chat = true;
-        _this.chat_text = '';
-        _this.initWebSocket();
+        _this.chat = true
+        _this.chat_text = ''
+        _this.initWebSocket()
         getauth('chat/?' + 'sender=' + _this.sender + '&receiver=' + _this.receiver)
           .then(res => {
-            _this.chat_list = res.results.reverse();
-            _this.Readnum();
-            _this.chat_next = res.next;
+            _this.chat_list = res.results.reverse()
+            _this.Readnum()
+            _this.chat_next = res.next
           })
           .catch(err => {
-            console.log(err);
+            console.log(err)
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       }
     },
-    LoadChatList() {
-      var _this = this;
+    LoadChatList () {
+      var _this = this
       getauth(_this.chat_next)
         .then(res => {
           res.results.forEach(c => {
-            _this.chat_list.unshift(c);
-          });
-          _this.chat_next = res.next;
+            _this.chat_list.unshift(c)
+          })
+          _this.chat_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    ChatClose() {
-      var _this = this;
-      _this.receiver = '';
-      _this.$q.sessionStorage.set('receiver', '');
-      _this.chat_list = [];
-      _this.chat_text = '';
-      _this.chat_next = null;
+    ChatClose () {
+      var _this = this
+      _this.receiver = ''
+      SessionStorage.set('receiver', '')
+      _this.chat_list = []
+      _this.chat_text = ''
+      _this.chat_next = null
     },
-    Readnum() {
-      var _this = this;
+    Readnum () {
+      var _this = this
       getauth('chat/read/?' + 'sender=' + _this.login_name)
         .then(res => {
-          _this.read_previous = res.previous;
-          _this.read_next = res.next;
-          _this.read_list = res.results;
-          _this.read_num = res.count;
+          _this.read_previous = res.previous
+          _this.read_next = res.next
+          _this.read_list = res.results
+          _this.read_num = res.count
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    ReadnumPrevious() {
-      var _this = this;
+    ReadnumPrevious () {
+      var _this = this
       getauth(_this.read_previous, {})
         .then(res => {
-          _this.read_list = res.results;
-          _this.read_previous = res.previous;
-          _this.read_next = res.next;
+          _this.read_list = res.results
+          _this.read_previous = res.previous
+          _this.read_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    ReadnumNext() {
-      var _this = this;
+    ReadnumNext () {
+      var _this = this
       getauth(_this.read_next, {})
         .then(res => {
-          _this.read_list = res.results;
-          _this.read_previous = res.previous;
-          _this.read_next = res.next;
+          _this.read_list = res.results
+          _this.read_previous = res.previous
+          _this.read_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    Friend() {
-      var _this = this;
-      _this.friend = true;
+    Friend () {
+      var _this = this
+      _this.friend = true
       getauth('staff/', {})
         .then(res => {
-          _this.friend_list = res.results;
-          _this.friend_previous = res.previous;
-          _this.friend_next = res.next;
-          _this.friend_num = res.count;
+          _this.friend_list = res.results
+          _this.friend_previous = res.previous
+          _this.friend_next = res.next
+          _this.friend_num = res.count
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    Friend_previous() {
-      var _this = this;
+    Friend_previous () {
+      var _this = this
       getauth(_this.friend_previous, {})
         .then(res => {
-          _this.friend_list = res.results;
-          _this.friend_previous = res.previous;
-          _this.friend_next = res.next;
+          _this.friend_list = res.results
+          _this.friend_previous = res.previous
+          _this.friend_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    Friend_next() {
-      var _this = this;
+    Friend_next () {
+      var _this = this
       getauth(_this.friend_next, {})
         .then(res => {
-          _this.friend_list = res.results;
-          _this.friend_previous = res.previous;
-          _this.friend_next = res.next;
+          _this.friend_list = res.results
+          _this.friend_previous = res.previous
+          _this.friend_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    langChange(e) {
-      var _this = this;
-      _this.lang = e;
+    langChange (e) {
+      var _this = this
+      _this.lang = e
       window.setTimeout(() => {
-        location.reload();
-      }, 1);
+        location.reload()
+      }, 1)
     },
-    NewVersionignore() {
-      var _this = this;
-      _this.verCheck = false;
-      _this.version = '';
+    NewVersionignore () {
+      var _this = this
+      _this.verCheck = false
+      _this.version = ''
     },
-    NewVersionDownload() {
-      var _this = this;
-      _this.version = '';
-      require('electron').ipcRenderer.send('downloadUpdate');
-      console.log(_this.processpercent);
+    NewVersionDownload () {
+      var _this = this
+      _this.version = ''
+      require('electron').ipcRenderer.send('downloadUpdate')
+      console.log(_this.processpercent)
       if (_this.processpercent === 100) {
-        _this.verCheck = false;
-        _this.downloadprocess = false;
+        _this.verCheck = false
+        _this.downloadprocess = false
       } else {
-        _this.downloadprocess = true;
+        _this.downloadprocess = true
       }
     },
-    NewVersionUpdate() {
-      var _this = this;
-      require('electron').ipcRenderer.send('updateNow');
-      _this.updateNow = false;
+    NewVersionUpdate () {
+      var _this = this
+      require('electron').ipcRenderer.send('updateNow')
+      _this.updateNow = false
     },
-    isLoggedIn() {
+    isLoggedIn () {
       this.activeTab = this.$q.localStorage.getItem('login_mode')
       if (this.$q.localStorage.getItem('openid')) {
-        this.login = true;
-        if(this.activeTab === 'admin'){
-          this.admin = true;
-        }else{
-          this.admin = false;
+        this.login = true
+        if (this.activeTab === 'admin') {
+          this.admin = true
+        } else {
+          this.admin = false
         }
       } else {
-        this.register = true;
+        this.register = true
       }
     }
   },
-  created() {
-    var _this = this;
-    if (_this.$q.localStorage.has('openid')) {
-      _this.openid = _this.$q.localStorage.getItem('openid');
+  created () {
+    var _this = this
+    if (LocalStorage.has('openid')) {
+      _this.openid = LocalStorage.getItem('openid')
     } else {
-      _this.openid = '';
-      _this.$q.localStorage.set('openid', '');
+      _this.openid = ''
+      LocalStorage.set('openid', '')
     }
-    if (_this.$q.localStorage.has('login_name')) {
-      _this.login_name = _this.$q.localStorage.getItem('login_name');
+    if (LocalStorage.has('login_name')) {
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
-      _this.login_name = '';
-      _this.$q.localStorage.set('login_name', '');
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
     }
-    if (_this.$q.localStorage.has('auth')) {
-      _this.authin = '1';
-      _this.initWebSocket();
-      _this.staffType();
-      _this.Readnum();
+    if (LocalStorage.has('auth')) {
+      _this.authin = '1'
+      _this.initWebSocket()
+      _this.staffType()
+      _this.Readnum()
     } else {
-      _this.$q.localStorage.set('staff_type', 'Admin');
-      _this.authin = '0';
-      _this.isLoggedIn();
+      LocalStorage.set('staff_type', 'Admin')
+      _this.authin = '0'
+      _this.isLoggedIn()
+    }
+    if (LocalStorage.has('device')) {
+      _this.device = LocalStorage.getItem('device')
+    } else {
+      _this.device = 0
+    }
+    if (LocalStorage.has('device_name')) {
+      _this.device_name = LocalStorage.getItem('device_name')
+    } else {
+      _this.device_name = ''
     }
   },
-  mounted() {
-    var _this = this;
-    if (window.device) {
-      if (window.device.manufacturer === 'Urovo' || window.device.manufacturer === 'Zebra Technologies') {
-        _this.device = 2;
-      } else {
-        _this.device = 1;
-      }
-    } else {
-      if (_this.$q.platform.is.mobile) {
-        _this.device = 1;
-      }
-    }
-    _this.link = localStorage.getItem('menulink');
-    if (_this.$q.platform.is.electron) {
+  mounted () {
+    var _this = this
+    _this.link = localStorage.getItem('menulink')
+    if (Platform.is.electron) {
       if (LocalStorage.has('openid')) {
         versioncheck('vcheck/' + '?openid=' + LocalStorage.getItem('openid') + '&platform=' + process.platform)
           .then(res => {
             if (!res.detail) {
-              const ipcRenderer = require('electron').ipcRenderer;
+              const ipcRenderer = require('electron').ipcRenderer
               window.setTimeout(() => {
-                ipcRenderer.send('checkForUpdate', res.upurl.toString());
-              }, 1000);
+                ipcRenderer.send('checkForUpdate', res.upurl.toString())
+              }, 1000)
               ipcRenderer.on('message', (event, arg) => {
                 if (arg.cmd === 'update-available') {
-                  _this.verCheck = true;
-                  _this.version = arg.message.version;
+                  _this.verCheck = true
+                  _this.version = arg.message.version
                 } else if (arg.cmd === 'download-progress') {
-                  _this.processpercent = arg.message.percent;
+                  _this.processpercent = arg.message.percent
                 } else if (arg.cmd === 'update-downloaded') {
-                  _this.processpercent = 100;
-                  _this.verCheck = false;
-                  _this.downloadprocess = false;
-                  _this.updateNow = true;
+                  _this.processpercent = 100
+                  _this.verCheck = false
+                  _this.downloadprocess = false
+                  _this.updateNow = true
                 } else if (arg.cmd === 'check') {
-                  console.log(arg);
+                  console.log(arg)
                 }
-              });
-              clearTimeout();
+              })
+              clearTimeout()
             }
           })
           .catch(err => {
-            console.log(err);
-          });
+            console.log(err)
+          })
       }
     }
     Bus.$on('needLogin', val => {
-      _this.isLoggedIn();
-    });
+      _this.isLoggedIn()
+    })
   },
-  updated() {
+  updated () {
     if (document.getElementById('chat_scroll')) {
-      document.getElementById('chat_scroll').scrollTop = document.getElementById('chat_scroll').scrollHeight;
+      document.getElementById('chat_scroll').scrollTop = document.getElementById('chat_scroll').scrollHeight
     } else if (document.getElementById('m_chat_scroll')) {
-      document.getElementById('m_chat_scroll').scrollTop = document.getElementById('m_chat_scroll').scrollHeight;
-    } else {
+      document.getElementById('m_chat_scroll').scrollTop = document.getElementById('m_chat_scroll').scrollHeight
     }
   },
-  beforeDestroy() {
-    var _this = this;
-    if (_this.$q.platform.is.electron) {
-      require('electron').ipcRenderer.removeAllListeners(['message', 'updateNow', 'downloadUpdate', 'checkForUpdate']);
+  beforeDestroy () {
+    if (Platform.is.electron) {
+      require('electron').ipcRenderer.removeAllListeners(['message', 'updateNow', 'downloadUpdate', 'checkForUpdate'])
     }
-    Bus.$off('needLogin');
+    Bus.$off('needLogin')
   },
-  destroyed() {
+  destroyed () {
     if (ws) {
       if (ws.readyState === ws.OPEN) {
-        ws.close();
+        ws.close()
       }
     }
   },
   watch: {
-    lang(lang) {
-      var _this = this;
-      LocalStorage.set('lang', lang);
-      _this.$i18n.locale = lang;
+    lang (lang) {
+      var _this = this
+      LocalStorage.set('lang', lang)
+      _this.$i18n.locale = lang
     }
   }
-};
+}
 </script>
 <style>
 .tabs .q-tab__indicator {

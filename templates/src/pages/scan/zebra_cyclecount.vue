@@ -3,7 +3,7 @@
     <q-card v-show="!fab" class="shadow-24" :style="{ width: width,  height: height }">
       <q-card-section>
         <q-btn-group push>
-          <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()" />
+          <q-btn :label="$t('refresh')" @click="reFresh()" />
           <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCount()" />
         </q-btn-group>
       </q-card-section>
@@ -27,7 +27,9 @@
               <td class="text-left">{{ item.bin_name }}</td>
               <td class="text-right">{{ item.goods_code }}</td>
               <td class="text-right">{{ item.physical_inventory }}</td>
-              <td class="text-right"><q-btn round flat push color="purple" icon="repeat" @click="repeatCount(index)" style="width: 50px"></q-btn></td>
+              <td class="text-right">
+                <q-btn round flat push color="purple" icon="repeat" @click="repeatCount(index)" style="width: 50px" />
+              </td>
             </tr>
           </template>
           </tbody>
@@ -376,7 +378,7 @@
 
 <script>
 import { getauth, putauth } from 'boot/axios_request'
-import { LocalStorage } from 'quasar'
+import { Platform, LocalStorage, Screen } from 'quasar'
 
 var sendCommandResults = 'false'
 
@@ -424,8 +426,8 @@ export default {
       pathname: 'cyclecount/',
       separator: 'cell',
       loading: false,
-      device: 0,
-      device_name: '',
+      device: LocalStorage.getItem('device'),
+      device_name: LocalStorage.getItem('device_name'),
       width: '',
       height: '',
       scroll_height: '',
@@ -449,8 +451,8 @@ export default {
         opacity: 0.2
       },
       fab: false,
-      touchheight: ((this.$q.screen.width - 50) / 5) + '' + 'px',
-      touchwidth: ((this.$q.screen.width - 50) / 5) + '' + 'px',
+      touchheight: ((Screen.width - 50) / 5) + '' + 'px',
+      touchwidth: ((Screen.width - 50) / 5) + '' + 'px',
       fab1: {
         top: '',
         bottom: '',
@@ -508,7 +510,7 @@ export default {
   methods: {
     datachange () {
       var _this = this
-      if (_this.$q.localStorage.has('auth')) {
+      if (LocalStorage.has('auth')) {
         getauth('scanner/?bar_code=' + _this.barscan, {
         }).then(res => {
           _this.barscan = res.results[0].code
@@ -526,7 +528,6 @@ export default {
             color: 'negative'
           })
         })
-      } else {
       }
     },
     countAdd (e) {
@@ -539,7 +540,7 @@ export default {
     },
     getList () {
       var _this = this
-      if (_this.$q.localStorage.has('auth')) {
+      if (LocalStorage.has('auth')) {
         getauth(_this.pathname, {
         }).then(res => {
           _this.table_list = res.results
@@ -550,7 +551,6 @@ export default {
             color: 'negative'
           })
         })
-      } else {
       }
     },
     reFresh () {
@@ -581,7 +581,6 @@ export default {
             color: 'negative'
           })
         })
-      } else {
       }
     },
     updateBatteryStatus (status) {
@@ -722,19 +721,19 @@ export default {
   },
   created () {
     var _this = this
-    if (_this.$q.localStorage.has('openid')) {
-      _this.openid = _this.$q.localStorage.getItem('openid')
+    if (LocalStorage.has('openid')) {
+      _this.openid = LocalStorage.getItem('openid')
     } else {
       _this.openid = ''
-      _this.$q.localStorage.set('openid', '')
+      LocalStorage.set('openid', '')
     }
-    if (_this.$q.localStorage.has('login_name')) {
-      _this.login_name = _this.$q.localStorage.getItem('login_name')
+    if (LocalStorage.has('login_name')) {
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
       _this.login_name = ''
-      _this.$q.localStorage.set('login_name', '')
+      LocalStorage.set('login_name', '')
     }
-    if (_this.$q.localStorage.has('auth')) {
+    if (LocalStorage.has('auth')) {
       _this.authin = '1'
     } else {
       _this.authin = '0'
@@ -742,71 +741,59 @@ export default {
   },
   mounted () {
     var _this = this
-    if (window.device) {
-      if (window.device.manufacturer === 'Urovo' || window.device.manufacturer === 'Zebra Technologies') {
-        _this.device_name = window.device.manufacturer
-        _this.device = 2
-      } else {
-        _this.device = 1
-      }
-    } else {
-      if (_this.$q.platform.is.mobile) {
-        _this.device = 1
-      }
-    }
-    if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height) + 'px'
-    } else if (_this.$q.platform.is.cordova) {
-      if (window.device) {
+    if (Platform.is.electron) {
+      _this.height = String(Screen.height) + 'px'
+    } else if (Platform.is.cordova) {
+      _this.device_name = LocalStorage.getItem('device_name')
+      if (LocalStorage.getItem('device') === 2) {
         window.plugins.insomnia.keepAwake()
-        if (window.device.manufacturer === 'Urovo' || window.device.manufacturer === 'Zebra Technologies') {
+        if (LocalStorage.getItem('device_name') === 'Urovo' || LocalStorage.getItem('device_name') === 'Zebra Technologies') {
           _this.fab1.top = '0px'
-          _this.fab1.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
-          _this.fab1.left = (((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) + '' + 'px'
+          _this.fab1.bottom = (0 - ((Screen.width - 50) / 5)) + '' + 'px'
+          _this.fab1.left = (((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) + '' + 'px'
           _this.fab1.right = '0px'
           _this.fab2.top = '0px'
-          _this.fab2.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
-          _this.fab2.left = ((((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) / 2) + '' + 'px'
+          _this.fab2.bottom = (0 - ((Screen.width - 50) / 5)) + '' + 'px'
+          _this.fab2.left = ((((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) / 2) + '' + 'px'
           _this.fab2.right = '0px'
           _this.fab3.top = '0px'
           _this.fab3.bottom = '0px'
           _this.fab3.left = '-0px'
           _this.fab3.right = '0px'
-          _this.fab4.top = ((_this.$q.screen.width - 50) / 5) + '' + 'px'
-          _this.fab4.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
-          _this.fab4.left = (((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) + '' + 'px'
+          _this.fab4.top = ((Screen.width - 50) / 5) + '' + 'px'
+          _this.fab4.bottom = (0 - ((Screen.width - 50) / 5)) + '' + 'px'
+          _this.fab4.left = (((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) + '' + 'px'
           _this.fab4.right = '0px'
           _this.fab5.top = '0px'
-          _this.fab5.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
-          _this.fab5.left = ((((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) / 2) + '' + 'px'
+          _this.fab5.bottom = (0 - ((Screen.width - 50) / 5)) + '' + 'px'
+          _this.fab5.left = ((((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) / 2) + '' + 'px'
           _this.fab5.right = '0px'
           _this.fab6.top = '0px'
           _this.fab6.bottom = '0px'
           _this.fab6.left = '0px'
           _this.fab6.right = '0px'
-          _this.fab7.top = ((_this.$q.screen.width - 50) / 5) + '' + 'px'
-          _this.fab7.bottom = (0 - ((_this.$q.screen.width - 50) / 5)) + '' + 'px'
-          _this.fab7.left = (((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) + '' + 'px'
+          _this.fab7.top = ((Screen.width - 50) / 5) + '' + 'px'
+          _this.fab7.bottom = (0 - ((Screen.width - 50) / 5)) + '' + 'px'
+          _this.fab7.left = (((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) + '' + 'px'
           _this.fab7.right = '0px'
           _this.fab8.top = '0px'
-          _this.fab8.bottom = ((_this.$q.screen.width - 50) / 8) + '' + 'px'
-          _this.fab8.left = ((((_this.$q.screen.width - 50) / 6) - (_this.$q.screen.width / 12 * 10)) / 2) + '' + 'px'
+          _this.fab8.bottom = ((Screen.width - 50) / 8) + '' + 'px'
+          _this.fab8.left = ((((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) / 2) + '' + 'px'
           _this.fab8.right = '0px'
         }
       }
     } else {
-      _this.height = _this.$q.screen.height + '' + 'px'
+      _this.height = Screen.height + '' + 'px'
     }
     window.addEventListener('batterystatus', _this.updateBatteryStatus, false)
-    _this.width = _this.$q.screen.width * 1 + '' + 'px'
-    _this.height = _this.$q.screen.height - 50 + '' + 'px'
-    _this.scroll_height = _this.$q.screen.height - 175 + '' + 'px'
+    _this.width = Screen.width * 1 + '' + 'px'
+    _this.height = Screen.height - 50 + '' + 'px'
+    _this.scroll_height = Screen.height - 175 + '' + 'px'
     _this.barscan = ''
     _this.bin_scan = ''
     _this.goods_scan = ''
     _this.getList()
     _this.scanEvents()
-    getDeviceinfo()
   },
   updated () {
   },

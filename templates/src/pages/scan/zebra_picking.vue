@@ -769,19 +769,19 @@ export default {
   },
   created () {
     var _this = this
-    if (_this.$q.localStorage.has('openid')) {
-      _this.openid = _this.$q.localStorage.getItem('openid')
+    if (LocalStorage.has('openid')) {
+      _this.openid = LocalStorage.getItem('openid')
     } else {
       _this.openid = ''
-      _this.$q.localStorage.set('openid', '')
+      LocalStorage.set('openid', '')
     }
-    if (_this.$q.localStorage.has('login_name')) {
-      _this.login_name = _this.$q.localStorage.getItem('login_name')
+    if (LocalStorage.has('login_name')) {
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
       _this.login_name = ''
-      _this.$q.localStorage.set('login_name', '')
+      LocalStorage.set('login_name', '')
     }
-    if (_this.$q.localStorage.has('auth')) {
+    if (LocalStorage.has('auth')) {
       _this.authin = '1'
     } else {
       _this.authin = '0'
@@ -798,8 +798,6 @@ export default {
     _this.getList()
     _this.scanEvents()
   },
-  updated () {
-  },
   beforeDestroy () {
     var _this = this
     unregisterBroadcastReceiver();
@@ -808,7 +806,5 @@ export default {
     document.removeEventListener('pause', _this.onPause, false)
     document.removeEventListener('resume', _this.onResume, false)
   },
-  destroyed () {
-  }
 }
 </script>

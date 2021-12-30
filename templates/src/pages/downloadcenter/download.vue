@@ -7,9 +7,7 @@
             v-model="detaillink"
           >
             <transition appear enter-active-class="animated zoomIn">
-              <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="downloadinbound" :label="$t('download_center.downloadinbound')" icon="img:statics/downloadcenter/downloadinbound.png" to="/downloadcenter/downloadinbound" exact/>
+              <q-route-tab name="downloadinbound" :label="$t('download_center.downloadinbound')" icon="img:statics/downloadcenter/downloadinbound.png" :to="{ name: 'downloadinbound' }" exact/>
             </transition>
           </q-tabs>
         </div>

@@ -7,22 +7,10 @@
         v-model="detaillink"
       >
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                               $q.localStorage.getItem('staff_type') !== 'Supervisor' &&
-                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                               $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                               $q.localStorage.getItem('staff_type') !== 'StockControl'
-                              "
-                       name="customerdnlist" :label="$t('menuItem.customerdn')" icon="img:statics/outbound/dnlist.png" to="/customerdn/customerdnlist" exact/>
+          <q-route-tab name="customerdnlist" :label="$t('menuItem.customerdn')" icon="img:statics/outbound/dnlist.png" :to="{ name: 'customerdnlist' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                               $q.localStorage.getItem('staff_type') !== 'Supervisor' &&
-                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                               $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                               $q.localStorage.getItem('staff_type') !== 'StockControl'
-                              "
-                       name="customerpod" :label="$t('outbound.pod')" icon="img:statics/outbound/receiving.png" to="/customerdn/customerpod" exact/>
+          <q-route-tab name="customerpod" :label="$t('outbound.pod')" icon="img:statics/outbound/receiving.png" :to="{ name: 'customerpod' }" exact/>
         </transition>
       </q-tabs>
     </div>
@@ -36,10 +24,10 @@
 
 <script>
 export default {
-  name: 'Pagecustomer',
+  name: 'Pagecustomerdn',
   data () {
     return {
-      detaillink: 'customerdn'
+      detaillink: 'customerdnlist'
     }
   },
   methods: {

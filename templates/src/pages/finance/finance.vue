@@ -7,14 +7,10 @@
         v-model="detaillink"
       >
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="capitallist" :label="$t('finance.capital')" icon="img:statics/capital/capital.png" to="/finance/capitallist" exact/>
+          <q-route-tab name="capitallist" :label="$t('finance.capital')" icon="img:statics/capital/capital.png" :to="{ name: 'capitallist' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="freight" :label="$t('finance.freight')" icon="img:statics/capital/freight.png" to="/finance/freight" exact/>
+          <q-route-tab name="freight" :label="$t('finance.freight')" icon="img:statics/capital/freight.png" :to="{ name: 'freight' }" exact/>
         </transition>
       </q-tabs>
     </div>
@@ -31,7 +27,7 @@ export default {
   name: 'Pagecapital',
   data () {
     return {
-      detaillink: 'capital'
+      detaillink: 'capitallist'
     }
   },
   methods: {
