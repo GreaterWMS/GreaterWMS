@@ -7,27 +7,13 @@
         v-model="detaillink"
       >
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer'
-                         " name="stafflist" :label="$t('staff.staff')" icon="perm_contact_calendar" to="/staff/stafflist" exact/>
+          <q-route-tab name="stafflist" :label="$t('staff.staff')" icon="perm_contact_calendar" :to="{ name: 'stafflist' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                          $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                          $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                          $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                          $q.localStorage.getItem('staff_type') !== 'StockControl' &&
-                          $q.localStorage.getItem('staff_type') !== 'Supplier'
-                         " name="stafflist_check_code" :label="$t('staff.check_code')" icon="published_with_changes" to="/staff/stafflist_check_code" exact/>
+          <q-route-tab name="stafflist_check_code" :label="$t('staff.check_code')" icon="published_with_changes" :to="{ name: 'stafflist_check_code' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                               $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                               $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                               $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                               $q.localStorage.getItem('staff_type') !== 'StockControl'
-                             "
-                         name="stafftype" :label="$t('staff.view_staff.staff_type')" icon="img:statics/staff/stafftype.png" to="/staff/stafftype" exact/>
+          <q-route-tab name="stafftype" :label="$t('staff.view_staff.staff_type')" icon="img:statics/staff/stafftype.png" :to="{ name: 'stafftype' }" exact/>
         </transition>
       </q-tabs>
     </div>
@@ -44,7 +30,7 @@ export default {
   name: 'Pagestaff',
   data () {
     return {
-      detaillink: 'staff'
+      detaillink: 'stafflist'
     }
   },
   methods: {

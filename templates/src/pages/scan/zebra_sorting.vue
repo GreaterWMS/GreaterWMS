@@ -513,7 +513,7 @@ export default {
   methods: {
     datachange () {
       var _this = this
-      if (_this.$q.localStorage.has('auth')) {
+      if (LocalStorage.has('auth')) {
         getauth('scanner/?bar_code=' + _this.barscan, {
         }).then(res => {
           _this.barscan = res.results[0].code
@@ -544,7 +544,7 @@ export default {
     },
     getList () {
       var _this = this
-      if (_this.$q.localStorage.has('auth')) {
+      if (LocalStorage.has('auth')) {
         getauth(_this.pathname, {
         }).then(res => {
           _this.table_list = res.results
@@ -727,19 +727,19 @@ export default {
   },
   created () {
     var _this = this
-    if (_this.$q.localStorage.has('openid')) {
-      _this.openid = _this.$q.localStorage.getItem('openid')
+    if (LocalStorage.has('openid')) {
+      _this.openid = LocalStorage.getItem('openid')
     } else {
       _this.openid = ''
-      _this.$q.localStorage.set('openid', '')
+      LocalStorage.set('openid', '')
     }
-    if (_this.$q.localStorage.has('login_name')) {
-      _this.login_name = _this.$q.localStorage.getItem('login_name')
+    if (LocalStorage.has('login_name')) {
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
       _this.login_name = ''
-      _this.$q.localStorage.set('login_name', '')
+      LocalStorage.set('login_name', '')
     }
-    if (_this.$q.localStorage.has('auth')) {
+    if (LocalStorage.has('auth')) {
       _this.authin = '1'
     } else {
       _this.authin = '0'
@@ -810,7 +810,6 @@ export default {
     _this.asn_scan = ''
     _this.goods_scan = ''
     _this.scanEvents()
-    getDeviceinfo()
   },
   updated () {
   },
