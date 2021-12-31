@@ -40,12 +40,6 @@
             >
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('refreshtip') }}</q-tooltip>
             </q-btn>
-            <q-btn :label="$t('downloadasnlist')" icon="cloud_download" @click="downloadlistData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('downloadasnlisttip') }}</q-tooltip>
-            </q-btn>
-            <q-btn :label="$t('downloadasndetail')" icon="cloud_download" @click="downloaddetailData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('downloadasndetailtip') }}</q-tooltip>
-            </q-btn>
           </q-btn-group>
           <q-space />
           <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
@@ -181,7 +175,7 @@
       </q-table>
     </transition>
     <template>
-      <div class="q-pa-md flex flex-center">
+      <div class="q-pa-lg flex flex-center">
         <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
           <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('previous') }}</q-tooltip>
         </q-btn>
@@ -577,7 +571,7 @@
           </q-input>
         </q-card-section>
         <div style="float: right; padding: 15px 15px 15px 0">
-          <q-btn color="white" text-color="black" style="margin-right: 25px" @click=" isEdit ? editDataCancel() : newDataCancel()">{{ $t('cancel') }}</q-btn>
+          <q-btn color="white" text-color="black" style="margin-right: 25px" @click="isEdit ? editDataCancel() : newDataCancel()">{{ $t('cancel') }}</q-btn>
           <q-btn color="primary" @click="isEdit ? editDataSubmit() : newDataSubmit()">{{ $t('submit') }}</q-btn>
         </div>
       </q-card>
@@ -667,7 +661,7 @@
               <td class="text-right">{{ view.goods_qty }}</td>
               <td class="text-right">{{ view.goods_weight }}</td>
               <td class="text-right">{{ view.goods_volume }}</td>
-              <td class="text-right">{{ goodsListData[index].total_cost }}</td>
+              <td class="text-right">{{ view.goods_actual_qty }}</td>
               <td class="text-right"></td>
             </tr>
           </tbody>
@@ -831,7 +825,7 @@ export default {
             _this.pathname_previous = res.previous;
             _this.pathname_next = res.next;
             _this.goodsListData = res.results;
-            console.log(this.goodsListData,777)
+            console.log(this.goodsListData, 777);
           })
           .catch(err => {
             _this.$q.notify({
@@ -997,13 +991,13 @@ export default {
           }
         }
       }
-      if(!_this.newFormData.supplier){
+      if (!_this.newFormData.supplier) {
         cancelRequest = true;
-          _this.$q.notify({
-            message: 'Supplier Does Not Exists',
-            icon: 'close',
-            color: 'negative'
-          });
+        _this.$q.notify({
+          message: 'Supplier Does Not Exists',
+          icon: 'close',
+          color: 'negative'
+        });
       }
       if (!cancelRequest) {
         postauth(_this.pathname + 'detail/', _this.newFormData)
@@ -1253,15 +1247,15 @@ export default {
     },
     setOptions(val) {
       let _this = this;
-      if(!val){
-        this[`goodsData${this.listNumber}`].code = "";
+      if (!val) {
+        this[`goodsData${this.listNumber}`].code = '';
       }
       const needle = val.toLowerCase();
       getauth('goods/?goods_code__icontains=' + needle).then(res => {
         const goodscodelist = [];
         for (let i = 0; i < res.results.length; i++) {
           goodscodelist.push(res.results[i].goods_code);
-          if(this.listNumber){
+          if (this.listNumber) {
             if (res.results[i].goods_code === val) {
               this[`goodsData${this.listNumber}`].code = val;
             }
@@ -1358,52 +1352,6 @@ export default {
           });
         _this.viewForm = true;
       });
-    },
-    downloadlistData() {
-      var _this = this;
-      if (LocalStorage.has('auth')) {
-        getfile(_this.pathname + 'filelist/?lang=' + LocalStorage.getItem('lang')).then(res => {
-          var timeStamp = Date.now();
-          var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-          const status = exportFile(_this.pathname + 'list' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
-          if (status !== true) {
-            _this.$q.notify({
-              message: 'Browser denied file download...',
-              color: 'negative',
-              icon: 'warning'
-            });
-          }
-        });
-      } else {
-        _this.$q.notify({
-          message: _this.$t('notice.loginerror'),
-          color: 'negative',
-          icon: 'warning'
-        });
-      }
-    },
-    downloaddetailData() {
-      var _this = this;
-      if (LocalStorage.has('auth')) {
-        getfile(_this.pathname + 'filedetail/?lang=' + LocalStorage.getItem('lang')).then(res => {
-          var timeStamp = Date.now();
-          var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-          const status = exportFile(_this.pathname + 'detail' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
-          if (status !== true) {
-            _this.$q.notify({
-              message: 'Browser denied file download...',
-              color: 'negative',
-              icon: 'warning'
-            });
-          }
-        });
-      } else {
-        _this.$q.notify({
-          message: _this.$t('notice.loginerror'),
-          color: 'negative',
-          icon: 'warning'
-        });
-      }
     }
   },
   created() {

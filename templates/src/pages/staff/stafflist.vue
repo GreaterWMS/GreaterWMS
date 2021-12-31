@@ -86,7 +86,26 @@
             <q-td key="create_time" :props="props">{{ props.row.create_time }}</q-td>
             <q-td key="update_time" :props="props">{{ props.row.update_time }}</q-td>
             <template v-if="!editMode">
-              <q-td key="action" :props="props" style="width: 240px">
+              <q-td key="action" :props="props" style="width: 280px">
+                <q-btn
+                  v-show="
+                    $q.localStorage.getItem('staff_type') !== 'Supplier' &&
+                      $q.localStorage.getItem('staff_type') !== 'Customer' &&
+                      $q.localStorage.getItem('staff_type') !== 'Inbound' &&
+                      $q.localStorage.getItem('staff_type') !== 'Outbound' &&
+                      $q.localStorage.getItem('staff_type') !== 'StockControl'
+                  "
+                  round
+                  flat
+                  push
+                  color="purple"
+                  :icon="props.row.is_lock ? 'lock' : 'lock_open'"
+                  @click="unlock(props.row)"
+                >
+                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                    {{ props.row.is_lock ? $t('staff.view_staff.unlock') : $t('staff.view_staff.lock') }}
+                  </q-tooltip>
+                </q-btn>
                 <q-btn
                   v-show="
                     $q.localStorage.getItem('staff_type') !== 'Supplier' &&
@@ -322,84 +341,98 @@ export default {
   methods: {
     getList() {
       var _this = this;
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname, {})
-          .then(res => {
-            _this.table_list = res.results;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
-          })
-          .catch(err => {
-            _this.$q.notify({
-              message: err.detail,
-              icon: 'close',
-              color: 'negative'
-            });
+      getauth(_this.pathname, {})
+        .then(res => {
+          _this.table_list = res.results;
+          _this.pathname_previous = res.previous;
+          _this.pathname_next = res.next;
+        })
+        .catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
           });
-      } else {
-      }
+        });
     },
     getSearchList() {
       var _this = this;
       _this.filter = _this.filter.replace(/\s+/g, '');
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname + '?staff_name__icontains=' + _this.filter, {})
-          .then(res => {
-            _this.table_list = res.results;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
-          })
-          .catch(err => {
-            _this.$q.notify({
-              message: err.detail,
-              icon: 'close',
-              color: 'negative'
-            });
+      getauth(_this.pathname + '?staff_name__icontains=' + _this.filter, {})
+        .then(res => {
+          _this.table_list = res.results;
+          _this.pathname_previous = res.previous;
+          _this.pathname_next = res.next;
+        })
+        .catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
           });
-      } else {
-      }
+        });
     },
     getListPrevious() {
       var _this = this;
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname_previous, {})
-          .then(res => {
-            _this.table_list = res.results;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
-          })
-          .catch(err => {
-            _this.$q.notify({
-              message: err.detail,
-              icon: 'close',
-              color: 'negative'
-            });
+      getauth(_this.pathname_previous, {})
+        .then(res => {
+          _this.table_list = res.results;
+          _this.pathname_previous = res.previous;
+          _this.pathname_next = res.next;
+        })
+        .catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
           });
-      } else {
-      }
+        });
     },
     getListNext() {
       var _this = this;
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname_next, {})
-          .then(res => {
-            _this.table_list = res.results;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
-          })
-          .catch(err => {
-            _this.$q.notify({
-              message: err.detail,
-              icon: 'close',
-              color: 'negative'
-            });
+      getauth(_this.pathname_next, {})
+        .then(res => {
+          _this.table_list = res.results;
+          _this.pathname_previous = res.previous;
+          _this.pathname_next = res.next;
+        })
+        .catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
           });
-      } else {
-      }
+        });
     },
     reFresh() {
       var _this = this;
       _this.getList();
+    },
+    unlock(val) {
+      putauth(this.pathname + val.id + '/', {
+        is_lock: !val.is_lock,
+        staff_name: val.staff_name,
+        staff_type: val.staff_type
+      })
+        .then(res => {
+          this.getList();
+          let message = 'Success unlocked';
+          if (!val.is_lock) {
+            message = 'Success locked';
+          }
+          this.$q.notify({
+            message: message,
+            icon: 'check',
+            color: 'green'
+          });
+        })
+        .catch(err => {
+          this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          });
+        });
     },
     RandomCheckCode() {
       var _this = this;
@@ -415,6 +448,7 @@ export default {
     newDataSubmit() {
       var _this = this;
       var staffs = [];
+      _this.newFormData.is_lock = false;
       _this.table_list.forEach(i => {
         staffs.push(i.staff_name);
       });
