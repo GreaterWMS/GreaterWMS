@@ -153,13 +153,13 @@ export default {
       }
     },
     setHeight() {
-      setTimeout(() => {
+      this.$nextTick(()=>{
         if (this.$q.platform.is.electron) {
           this.height = String(this.$q.screen.height - 185) + 'px';
         } else {
           this.height = this.$q.screen.height - 185 + '' + 'px';
         }
-      },20);
+      })
     }
   },
   mounted() {
