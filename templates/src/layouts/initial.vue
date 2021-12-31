@@ -41,7 +41,6 @@ export default {
       LocalStorage.set('device', 0)
       _this.webto = '/web'
     }
-    console.log(_this.webto)
     _this.$router.push(_this.webto)
   }
 }

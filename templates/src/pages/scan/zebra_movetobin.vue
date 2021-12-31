@@ -1,8 +1,12 @@
 <template>
-    <q-card class="shadow-24" :style="{ width: width,  height: height }">
+    <q-card v-show="!fab" flat :style="{ width: width,  height: height }">
       <q-card-section>
-        <q-input dense  v-model="frombin" type="text" label="From:" readonly disabled/>
-        <q-input dense v-model="tobin" type="text" label="To:" readonly disabled/>
+        <q-bar class="bg-white q-mb-sm shadow-1 ">
+          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ frombin }}</div>
+        </q-bar>
+        <q-bar class="bg-white shadow-1 ">
+          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ tobin }}</div>
+        </q-bar>
       </q-card-section>
       <q-scroll-area
         :thumb-style="thumbStyle"
@@ -20,7 +24,7 @@
           <tbody>
             <template>
               <tr v-for='(item, index) in table_list' :key='index'>
-                <td class="text-right">{{ item.goods_code }}</td>
+                <td class="text-left">{{ item.goods_code }}</td>
                 <td class="text-right">{{ item.goods_qty }}</td>
                 <td class="text-right">{{ item.move_qty }}</td>
               </tr>
@@ -44,15 +48,13 @@ export default {
       login_name: '',
       authin: '0',
       pathname: 'cyclecount/',
-      device: LocalStorage.getItem('device'),
-      device_name: LocalStorage.getItem('device_name'),
       width: '',
       height: '',
       scroll_height: '',
       table_list: [],
       goods_code_label: this.$t('stock.view_stocklist.goods_code'),
       goods_qty_label: this.$t('stock.view_stocklist.onhand_stock'),
-      move_qty_label: '移库数量',
+      move_qty_label: 'Move Qty',
       thumbStyle: {
         right: '4px',
         borderRadius: '5px',
@@ -112,6 +114,23 @@ export default {
       }
     }
   },
+  computed: {
+    fab: {
+      get () {
+        return this.$store.state.datashare.fab
+      }
+    }
+    // barscan: {
+    //   get () {
+    //     console.log('scaned_x', this.$store.state.datashare.barscan)
+    //     return this.$store.state.datashare.barscan
+    //   },
+    //   set (val) {
+    //     console.log('scaned_y', val)
+    //     this.$store.commit('datashare/updateBarscan', val)
+    //   }
+    // }
+  },
   created () {
     var _this = this
     if (LocalStorage.has('openid')) {
@@ -136,7 +155,7 @@ export default {
     var _this = this
     _this.width = Screen.width * 1 + '' + 'px'
     _this.height = Screen.height - 50 + '' + 'px'
-    _this.scroll_height = Screen.height - 225 + '' + 'px'
+    _this.scroll_height = Screen.height - 200 + '' + 'px'
   }
 }
 </script>
