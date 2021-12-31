@@ -31,9 +31,9 @@
         </template>
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="mode_code" :props="props">{{ props.row.mode_code }}</q-td>
-            <q-td key="bin_name" :props="props">{{ props.row.bin_name }}</q-td>
             <q-td key="goods_code" :props="props">{{ props.row.goods_code }}</q-td>
+            <q-td key="bin_name" :props="props">{{ props.row.bin_name }}</q-td>
+            <q-td key="mode_code" :props="props">{{ props.row.mode_code }}</q-td>
             <q-td key="goods_qty" :props="props">{{ props.row.goods_qty }}</q-td>
             <q-td key="creater" :props="props">{{ props.row.creater }}</q-td>
             <q-td key="create_time" :props="props">{{ props.row.create_time }}</q-td>
@@ -57,10 +57,10 @@
 </template>
 
 <script>
-import { getauth } from 'boot/axios_request.js'
+import { getauth } from 'boot/axios_request.js';
 export default {
   name: 'PageInbAndOutb',
-  data () {
+  data() {
     return {
       pathname: 'dashboard/',
       pathname_previous: '',
@@ -72,9 +72,9 @@ export default {
       filter: '',
       staff_type_list: ['Manager', 'Inbound', 'Outbound', 'Supervisor', 'StockControl', 'Customer', 'Supplier'],
       columns: [
-        { name: 'mode_code', required: true, label: this.$t('dashboards.view_tradelist.mode_code'), align: 'left', field: 'mode_code' },
+        { name: 'goods_code', label: this.$t('dashboards.view_tradelist.goods_code'), field: 'goods_code', align: 'left' },
         { name: 'bin_name', label: this.$t('dashboards.view_tradelist.bin_name'), field: 'bin_name', align: 'center' },
-        { name: 'goods_code', label: this.$t('dashboards.view_tradelist.goods_code'), field: 'goods_code', align: 'center' },
+        { name: 'mode_code', required: true, label: this.$t('dashboards.view_tradelist.mode_code'), align: 'center', field: 'mode_code' },
         { name: 'goods_qty', label: this.$t('dashboards.view_tradelist.goods_qty'), field: 'goods_qty', align: 'center' },
         { name: 'creater', label: this.$t('dashboards.view_tradelist.creater'), field: 'creater', align: 'center' },
         { name: 'create_time', label: this.$t('dashboards.view_tradelist.create_time'), field: 'create_time', align: 'center' },
@@ -84,107 +84,107 @@ export default {
         page: 1,
         rowsPerPage: '30'
       }
-    }
+    };
   },
   methods: {
-    getList () {
+    getList() {
       getauth('cyclecount/qtyrecorviewset/', {})
         .then(res => {
-          this.table_list = res.results
-          this.pathname_previous = res.previous
-          this.pathname_next = res.next
+          this.table_list = res.results;
+          this.pathname_previous = res.previous;
+          this.pathname_next = res.next;
           this.table_list.forEach((item, index) => {
-            if (item.mode_code.substr(0, 3) === 'ASN') {
-              item.mode_code = '收货'
+            if (item.mode_code.substr(0, 3) == 'ASN') {
+              item.mode_code = this.$t('dashboards.view_tradelist.inbound');
             } else {
-              item.mode_code = '发货'
+              item.mode_code = this.$t('dashboards.view_tradelist.outbound');
             }
-          })
+          });
         })
         .catch(err => {
           this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          })
-        })
+          });
+        });
     },
-    getSearchList () {
-      var _this = this
-      getauth('cyclecount/qtyrecorviewset/?' + _this.filter, {})
+    getSearchList() {
+      var _this = this;
+      getauth('cyclecount/qtyrecorviewset/?goods_code__icontains='+ _this.filter, {})
         .then(res => {
-          console.log(res)
-          _this.table_list = res.results
-          _this.pathname_previous = res.previous
-          _this.pathname_next = res.next
+          _this.table_list = res.results;
+          _this.pathname_previous = res.previous;
+          _this.pathname_next = res.next;
           this.table_list.forEach((item, index) => {
-            if (item.mode_code.substr(0, 3) === 'ASN') {
-              item.mode_code = '收货'
+            if (item.mode_code.substr(0, 3) == 'ASN') {
+              item.mode_code = this.$t('dashboards.view_tradelist.inbound');
             } else {
-              item.mode_code = '发货'
+              item.mode_code = this.$t('dashboards.view_tradelist.outbound');
             }
-          })
+          });
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          })
-        })
+          });
+        });
     },
-    getListPrevious () {
+    getListPrevious() {
       if (this.$q.localStorage.has('auth')) {
         getauth(this.pathname_previous, {})
           .then(res => {
-            this.table_list = res.results
-            this.pathname_previous = res.previous
-            this.pathname_next = res.next
+            this.table_list = res.results;
+            this.pathname_previous = res.previous;
+            this.pathname_next = res.next;
           })
           .catch(err => {
             this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            })
-          })
+            });
+          });
       } else {
       }
     },
-    getListNext () {
+    getListNext() {
       if (this.$q.localStorage.has('auth')) {
         getauth(this.pathname_next, {})
           .then(res => {
-            this.table_list = res.results
-            this.pathname_previous = res.previous
-            this.pathname_next = res.next
+            this.table_list = res.results;
+            this.pathname_previous = res.previous;
+            this.pathname_next = res.next;
           })
           .catch(err => {
             this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            })
-          })
+            });
+          });
       } else {
       }
     },
-    reFresh () {
-      this.table_list = []
-      this.getList()
+    reFresh() {
+      this.table_list = [];
+      this.getList();
     }
   },
-  created () {
-    this.getList()
+  created() {
+    this.getList();
   },
-  mounted () {
+  mounted() {
     if (this.$q.platform.is.electron) {
-      this.height = String(this.$q.screen.height - 290) + 'px'
+      this.height = String(this.$q.screen.height - 290) + 'px';
     } else {
-      this.height = this.$q.screen.height - 290 + '' + 'px'
+      this.height = this.$q.screen.height - 290 + '' + 'px';
     }
   }
-}
+};
 </script>
 
-<style></style>
+<style>
+</style>

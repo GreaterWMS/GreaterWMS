@@ -5,6 +5,7 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    index_title: '仓库管理平台',
     webtitle: '聚商汇WMS--开源仓库管理系统',
     home: '首页',
     title: '聚商汇WMS',
@@ -181,7 +182,9 @@ export default {
       goods_qty: '现有数量',
       creater: '创建人',
       update_time: '更新时间',
-      create_time: '创建时间'
+      create_time: '创建时间',
+      inbound: '收货',
+      outbound: '发货'
     }
   },
   finance: {
@@ -240,9 +243,10 @@ export default {
     addupload: '新增上传'
   },
   download_center: {
-    downloadinbound: '下载入库列表',
-    downloadfiles: '下载文件',
-    download: '下载'
+    createTime: '创建时间',
+    reset: '重置',
+    start: '开始',
+    end: '结束'
   },
   community_mall: {
     communitymall: '社区商城'
@@ -374,7 +378,9 @@ export default {
       staff_name: '员工名称',
       staff_type: '员工类型',
       error1: '请输入员工姓名',
-      error2: '请输入员工类型'
+      error2: '请输入员工类型',
+      lock: '锁定',
+      unlock: '解锁'
     }
   },
   stock: {

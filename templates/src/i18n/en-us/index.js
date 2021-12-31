@@ -5,6 +5,7 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    index_title: 'Warehouse Management Platform',
     webtitle: 'GreaterWMS--Open Source Warehouse Management System',
     home: 'Home',
     title: 'GreaterWMS',
@@ -179,7 +180,9 @@ export default {
       goods_qty: 'Quantity On Hand',
       creater: 'Creater',
       update_time: 'Update Time',
-      create_time: 'Create Time'
+      create_time: 'Create Time',
+      inbound: 'Inbound',
+      outbound: 'Outbound'
     }
   },
   finance: {
@@ -236,6 +239,12 @@ export default {
     downloadcustomertemplate: 'Customer Example',
     downloadsuppliertemplate: 'Supplier Example',
     addupload: 'Add Upload'
+  },
+  download_center: {
+    createTime: 'Create Time',
+    reset: 'reset',
+    start: 'start',
+    end: 'end'
   },
   community_mall: {
     communitymall: 'Community Mall'
@@ -367,7 +376,9 @@ export default {
       staff_name: 'Staff Name',
       staff_type: 'Staff Type',
       error1: 'Please Enter The Staff Name',
-      error2: 'Please Enter The Staff Type'
+      error2: 'Please Enter The Staff Type',
+      lock: 'lock',
+      unlock: 'unlock'
     }
   },
   stock: {
