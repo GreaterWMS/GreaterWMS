@@ -5,6 +5,7 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    index_title: '倉庫管理平臺',
     webtitle: 'GreaterWMS--開源倉庫管理系統',
     home: '首頁',
     title: 'GreaterWMS',
@@ -181,7 +182,9 @@ export default {
       goods_qty: '商品編碼',
       creater: '創建人',
       update_time: '更新時間',
-      create_time: '創建時間'
+      create_time: '創建時間',
+      inbound: '收貨',
+      outbound: '发貨'
     }
   },
   finance: {
@@ -238,6 +241,12 @@ export default {
     downloadcustomertemplate: '下載客戶模板',
     downloadsuppliertemplate: '下載供應商模板',
     addupload: '新增上傳'
+  },
+  download_center: {
+    createTime: '創建時間',
+    reset: '重置',
+    start: '開始',
+    end: '結束'
   },
   community_mall: {
     communitymall: '社區商城'
@@ -369,7 +378,9 @@ export default {
       staff_name: '員工名稱',
       staff_type: '員工類型',
       error1: '請輸入員工姓名',
-      error2: '請輸入員工類型'
+      error2: '請輸入員工類型',
+      lock: '鎖定',
+      unlock: '解鎖'
     }
   },
   stock: {

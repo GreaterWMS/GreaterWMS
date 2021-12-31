@@ -18,7 +18,7 @@
       >
         <template v-slot:top>
           <div class="flex items-center">
-            <div class="q-mr-md">{{ $t('download_center.createTime') }}</div>
+            <div class="q-mr-md">{{$t('download_center.createTime')}}</div>
             <q-input readonly outlined dense v-model="createDate2" :placeholder="interval">
               <template v-slot:append>
                 <q-icon name="event" class="cursor-pointer">
@@ -28,7 +28,7 @@
             </q-input>
             <q-btn-group push class="q-ml-md">
               <q-btn :label="$t('download_center.reset')" icon="img:statics/downloadcenter/reset.svg" @click="getList()">
-                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('download_center.reset') }}</q-tooltip>
+                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{$t('download_center.reset')}}</q-tooltip>
               </q-btn>
               <q-btn :label="$t('downloadasnlist')" icon="cloud_download" @click="downloadlistData()">
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('downloadasnlisttip') }}</q-tooltip>
@@ -41,11 +41,11 @@
         </template>
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="asn_code" :props="props">{{ props.row.asn_code }}</q-td>
-            <q-td key="asn_status" :props="props">{{ props.row.asn_status }}</q-td>
+            <q-td key="dn_code" :props="props">{{ props.row.dn_code }}</q-td>
+            <q-td key="dn_status" :props="props">{{ props.row.dn_status }}</q-td>
             <q-td key="total_weight" :props="props">{{ props.row.total_weight.toFixed(4) }}</q-td>
             <q-td key="total_volume" :props="props">{{ props.row.total_volume.toFixed(4) }}</q-td>
-            <q-td key="supplier" :props="props">{{ props.row.supplier }}</q-td>
+            <q-td key="customer" :props="props">{{ props.row.customer }}</q-td>
             <q-td key="creater" :props="props">{{ props.row.creater }}</q-td>
             <q-td key="create_time" :props="props">{{ props.row.create_time }}</q-td>
             <q-td key="update_time" :props="props">{{ props.row.update_time }}</q-td>
@@ -76,7 +76,7 @@ export default {
   name: 'Pageasnlist',
   data() {
     return {
-      pathname: 'asn/',
+      pathname: 'dn/',
       pathname_previous: '',
       pathname_next: '',
       separator: 'cell',
@@ -84,11 +84,11 @@ export default {
       height: '',
       table_list: [],
       columns: [
-        { name: 'asn_code', required: true, label: this.$t('inbound.view_asn.asn_code'), align: 'left', field: 'asn_code' },
-        { name: 'asn_status', label: this.$t('inbound.view_asn.asn_status'), field: 'asn_status', align: 'center' },
-        { name: 'total_weight', label: this.$t('inbound.view_asn.total_weight'), field: 'total_weight', align: 'center' },
-        { name: 'total_volume', label: this.$t('inbound.view_asn.total_volume'), field: 'total_volume', align: 'center' },
-        { name: 'supplier', label: this.$t('baseinfo.view_supplier.supplier_name'), field: 'supplier', align: 'center' },
+        { name: 'dn_code', required: true, label: this.$t('outbound.view_dn.dn_code'), align: 'left', field: 'dn_code' },
+        { name: 'dn_status', label: this.$t('outbound.view_dn.dn_status'), field: 'dn_status', align: 'center' },
+        { name: 'total_weight', label: this.$t('outbound.view_dn.total_weight'), field: 'total_weight', align: 'center' },
+        { name: 'total_volume', label: this.$t('outbound.view_dn.total_volume'), field: 'total_volume', align: 'center' },
+        { name: 'customer', label: this.$t('outbound.view_dn.customer'), field: 'customer', align: 'center' },
         { name: 'creater', label: this.$t('creater'), field: 'creater', align: 'center' },
         { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
         { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'right' }
@@ -100,13 +100,12 @@ export default {
       createDate1: '',
       createDate2: '',
       date_range: '',
-      dateArray: '',
       url: ''
     };
   },
-  computed: {
-    interval() {
-      return this.$t('download_center.start') + ' - ' + this.$t('download_center.end');
+  computed:{
+    interval(){
+      return this.$t('download_center.start') + ' - ' + this.$t('download_center.end')
     }
   },
   watch: {
@@ -134,21 +133,29 @@ export default {
         .then(res => {
           _this.table_list = [];
           res.results.forEach(item => {
-            if (item.asn_status === 1) {
-              item.asn_status = _this.$t('inbound.predeliverystock');
-            } else if (item.asn_status === 2) {
-              item.asn_status = _this.$t('inbound.preloadstock');
-            } else if (item.asn_status === 3) {
-              item.asn_status = _this.$t('inbound.presortstock');
-            } else if (item.asn_status === 4) {
-              item.asn_status = _this.$t('inbound.sortstock');
-            } else if (item.asn_status === 5) {
-              item.asn_status = _this.$t('inbound.asndone');
+            if (item.dn_status === 1) {
+              item.dn_status = _this.$t('outbound.freshorder');
+            } else if (item.dn_status === 2) {
+              item.dn_status = _this.$t('outbound.neworder');
+            } else if (item.dn_status === 3) {
+              item.dn_status = _this.$t('outbound.pickstock');
+            } else if (item.dn_status === 4) {
+              item.dn_status = _this.$t('outbound.pickedstock');
+            } else if (item.dn_status === 5) {
+              item.dn_status = _this.$t('outbound.shippedstock');
+            } else if (item.dn_status === 6) {
+              item.dn_status = _this.$t('outbound.received');
             } else {
-              item.asn_status = 'N/A';
+              item.dn_status = 'N/A';
             }
             _this.table_list.push(item);
           });
+          res.results.forEach(item => {
+            if (item.asn_status === 1) {
+              item.asn_status = _this.$t();
+            }
+          });
+          _this.customer_list = res.customer_list;
           _this.pathname_previous = res.previous;
           _this.pathname_next = res.next;
         })
@@ -166,18 +173,20 @@ export default {
         .then(res => {
           _this.table_list = [];
           res.results.forEach(item => {
-            if (item.asn_status === 1) {
-              item.asn_status = _this.$t('inbound.predeliverystock');
-            } else if (item.asn_status === 2) {
-              item.asn_status = _this.$t('inbound.preloadstock');
-            } else if (item.asn_status === 3) {
-              item.asn_status = _this.$t('inbound.presortstock');
-            } else if (item.asn_status === 4) {
-              item.asn_status = _this.$t('inbound.sortstock');
-            } else if (item.asn_status === 5) {
-              item.asn_status = _this.$t('inbound.asndone');
+            if (item.dn_status === 1) {
+              item.dn_status = _this.$t('outbound.freshorder');
+            } else if (item.dn_status === 2) {
+              item.dn_status = _this.$t('outbound.neworder');
+            } else if (item.dn_status === 3) {
+              item.dn_status = _this.$t('outbound.pickstock');
+            } else if (item.dn_status === 4) {
+              item.dn_status = _this.$t('outbound.pickedstock');
+            } else if (item.dn_status === 5) {
+              item.dn_status = _this.$t('outbound.shippedstock');
+            } else if (item.dn_status === 6) {
+              item.dn_status = _this.$t('outbound.received');
             } else {
-              item.asn_status = 'N/A';
+              item.dn_status = 'N/A';
             }
             _this.table_list.push(item);
           });
@@ -198,18 +207,20 @@ export default {
         .then(res => {
           _this.table_list = [];
           res.results.forEach(item => {
-            if (item.asn_status === 1) {
-              item.asn_status = _this.$t('inbound.predeliverystock');
-            } else if (item.asn_status === 2) {
-              item.asn_status = _this.$t('inbound.preloadstock');
-            } else if (item.asn_status === 3) {
-              item.asn_status = _this.$t('inbound.presortstock');
-            } else if (item.asn_status === 4) {
-              item.asn_status = _this.$t('inbound.sortstock');
-            } else if (item.asn_status === 5) {
-              item.asn_status = _this.$t('inbound.asndone');
+            if (item.dn_status === 1) {
+              item.dn_status = _this.$t('outbound.freshorder');
+            } else if (item.dn_status === 2) {
+              item.dn_status = _this.$t('outbound.neworder');
+            } else if (item.dn_status === 3) {
+              item.dn_status = _this.$t('outbound.pickstock');
+            } else if (item.dn_status === 4) {
+              item.dn_status = _this.$t('outbound.pickedstock');
+            } else if (item.dn_status === 5) {
+              item.dn_status = _this.$t('outbound.shippedstock');
+            } else if (item.dn_status === 6) {
+              item.dn_status = _this.$t('outbound.received');
             } else {
-              item.asn_status = 'N/A';
+              item.dn_status = 'N/A';
             }
             _this.table_list.push(item);
           });
@@ -229,22 +240,24 @@ export default {
       getauth(_this.pathname_next, {})
         .then(res => {
           _this.table_list = [];
-          res.results.forEach(item => {
-            if (item.asn_status === 1) {
-              item.asn_status = _this.$t('inbound.predeliverystock');
-            } else if (item.asn_status === 2) {
-              item.asn_status = _this.$t('inbound.preloadstock');
-            } else if (item.asn_status === 3) {
-              item.asn_status = _this.$t('inbound.presortstock');
-            } else if (item.asn_status === 4) {
-              item.asn_status = _this.$t('inbound.sortstock');
-            } else if (item.asn_status === 5) {
-              item.asn_status = _this.$t('inbound.asndone');
-            } else {
-              item.asn_status = 'N/A';
-            }
-            _this.table_list.push(item);
-          });
+            res.results.forEach(item => {
+              if (item.dn_status === 1) {
+                item.dn_status = _this.$t('outbound.freshorder');
+              } else if (item.dn_status === 2) {
+                item.dn_status = _this.$t('outbound.neworder');
+              } else if (item.dn_status === 3) {
+                item.dn_status = _this.$t('outbound.pickstock');
+              } else if (item.dn_status === 4) {
+                item.dn_status = _this.$t('outbound.pickedstock');
+              } else if (item.dn_status === 5) {
+                item.dn_status = _this.$t('outbound.shippedstock');
+              } else if (item.dn_status === 6) {
+                item.dn_status = _this.$t('outbound.received');
+              } else {
+                item.dn_status = 'N/A';
+              }
+              _this.table_list.push(item);
+            });
           _this.pathname_previous = res.previous;
           _this.pathname_next = res.next;
         })

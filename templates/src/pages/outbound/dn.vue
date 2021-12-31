@@ -48,12 +48,6 @@
             >
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('releaseallorder') }}</q-tooltip>
             </q-btn>
-            <q-btn :label="$t('downloaddnlist')" icon="cloud_download" @click="downloadlistData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('downloaddnlisttip') }}</q-tooltip>
-            </q-btn>
-            <q-btn :label="$t('downloaddndetail')" icon="cloud_download" @click="downloaddetailData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('downloaddndetailtip') }}</q-tooltip>
-            </q-btn>
           </q-btn-group>
           <q-space />
           <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
@@ -237,7 +231,7 @@
       </q-table>
     </transition>
     <template>
-      <div class="q-pa-md flex flex-center">
+      <div class="q-pa-lg flex flex-center">
         <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
           <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('previous') }}</q-tooltip>
         </q-btn>
@@ -871,7 +865,7 @@
                   style="margin-top: 11%"
                   :error-message="error2"
                   :error="isError2"
-                  :rules="[validate2(item.delivery_damage_qty,item.intransit_qty)]"
+                  :rules="[validate2(item.delivery_damage_qty, item.intransit_qty)]"
                 ></q-input>
               </template>
             </q-input>
@@ -1003,20 +997,20 @@ export default {
   methods: {
     validate1(val) {
       let reg = /^[1-9]\d*$/g;
-      let isError = reg.test(val)
-      if(isError){
-          this.isError1 = false;
-      }else{
-          this.isError1 = true;
+      let check = reg.test(val);
+      if (check) {
+        this.isError1 = false;
+      } else {
+        this.isError1 = true;
       }
     },
-    validate2(val1,val2) {
+    validate2(val1, val2) {
       let reg = /^[0-9]\d*$/g;
-      let isError = reg.test(val1)
-      if(isError && val1 <= val2){
-          this.isError2 = false;
-      }else{
-          this.isError2 = true;
+      let check = reg.test(val1);
+      if (check && val1 <= val2) {
+        this.isError2 = false;
+      } else {
+        this.isError2 = true;
       }
     },
     getList() {
@@ -1202,7 +1196,6 @@ export default {
         });
     },
     newDataSubmit() {
-      console.log(this.isEdit);
       var _this = this;
       _this.newFormData.creater = _this.login_name;
       let cancelRequest = false;
@@ -1744,71 +1737,27 @@ export default {
     },
     PODDataSubmit() {
       var _this = this;
-      postauth(_this.pathname + 'pod/' + _this.podid + '/', _this.podFormData)
-        .then(res => {
-          _this.table_list = [];
-          _this.PODDataCancel();
-          _this.getList();
-          if (!res.detail) {
+      if (!(_this.isError1 || _this.isError2)) {
+        postauth(_this.pathname + 'pod/' + _this.podid + '/', _this.podFormData)
+          .then(res => {
+            _this.table_list = [];
+            _this.PODDataCancel();
+            _this.getList();
+            if (!res.detail) {
+              _this.$q.notify({
+                message: 'Success Dispatch',
+                icon: 'check',
+                color: 'green'
+              });
+            }
+          })
+          .catch(err => {
             _this.$q.notify({
-              message: 'Success Dispatch',
-              icon: 'check',
-              color: 'green'
+              message: err.detail,
+              icon: 'close',
+              color: 'negative'
             });
-          }
-        })
-        .catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
           });
-        });
-    },
-    downloadlistData() {
-      var _this = this;
-      if (LocalStorage.has('auth')) {
-        getfile(_this.pathname + 'filelist/?lang=' + LocalStorage.getItem('lang')).then(res => {
-          var timeStamp = Date.now();
-          var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-          const status = exportFile(_this.pathname + 'list' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
-          if (status !== true) {
-            _this.$q.notify({
-              message: 'Browser denied file download...',
-              color: 'negative',
-              icon: 'warning'
-            });
-          }
-        });
-      } else {
-        _this.$q.notify({
-          message: _this.$t('notice.loginerror'),
-          color: 'negative',
-          icon: 'warning'
-        });
-      }
-    },
-    downloaddetailData() {
-      var _this = this;
-      if (LocalStorage.has('auth')) {
-        getfile(_this.pathname + 'filedetail/?lang=' + LocalStorage.getItem('lang')).then(res => {
-          var timeStamp = Date.now();
-          var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-          const status = exportFile(_this.pathname + 'detail' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
-          if (status !== true) {
-            _this.$q.notify({
-              message: 'Browser denied file download...',
-              color: 'negative',
-              icon: 'warning'
-            });
-          }
-        });
-      } else {
-        _this.$q.notify({
-          message: _this.$t('notice.loginerror'),
-          color: 'negative',
-          icon: 'warning'
-        });
       }
     }
   },
