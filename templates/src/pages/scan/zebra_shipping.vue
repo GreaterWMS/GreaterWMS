@@ -1,106 +1,48 @@
 <template>
-  <div>
-    <transition appear enter-active-class="animated fadeIn">
-      <q-table
-        class="my-sticky-header-table shadow-24"
-        :data="table_list"
-        row-key="id"
-        :separator="separator"
-        :loading="loading"
-        :columns="columns"
-        hide-bottom
-        :pagination.sync="pagination"
-        no-data-label="No data"
-        no-results-label="No data you want"
-        :table-style="{ height: height }"
-        flat
-        bordered
-      >
-        <template v-slot:top>
-          <q-btn-group push>
-            <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()" />
-          </q-btn-group>
-          <q-space />
-          <q-btn-group push>
-            <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCount()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                {{ $t('stock.view_stocklist.cyclecountresulttip') }}
-              </q-tooltip>
-            </q-btn>
-          </q-btn-group>
-        </template>
-        <template v-slot:body="props">
-          <q-tr :props="props">
-            <q-td key="bin_name" :props="props" :class="{ 'scan-background': bin_scan !== '' && bin_scan === props.row.bin_name }">
-              {{ props.row.bin_name }}
-            </q-td>
-            <q-td key="goods_code" :props="props">
-              {{ props.row.goods_code }}
-            </q-td>
-            <q-td key="physical_inventory" :props="props">
-              {{ props.row.physical_inventory }}
-            </q-td>
-            <q-td key="action" :props="props" style="width: 50px">
-              <q-btn round flat push color="purple" icon="repeat" @click="props.row.physical_inventory = 0">
-              </q-btn>
-            </q-td>
-          </q-tr>
-        </template>
-      </q-table>
-    </transition>
-    <template>
-      <div class="q-pa-lg flex cordova-footer">
-        <input id="scannedBarcodes" v-model="barscan" type="text" @input="datachange()" readonly disabled/>
-      </div>
-    </template>
-  </div>
+  <q-page>
+    <q-card v-show="!fab" flat :style="{ width: width, height: height }">
+      <q-card-section>
+        <q-bar class="bg-white q-mb-sm shadow-1 ">
+          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ goods_scan }}</div>
+        </q-bar>
+        <q-btn-group push>
+          <q-btn :label="$t('refresh')" @click="reFresh()" />
+          <q-btn color="purple" :label="$t('stock.view_stocklist.cyclecountresult')" />
+        </q-btn-group>
+      </q-card-section>
+      <q-scroll-area ref="scrollArea" :thumb-style="thumbStyle" :bar-style="barStyle" :style="{ height: scroll_height, width: width }">
+        <q-markup-table>
+          <thead>
+            <tr>
+              <th class="text-left">{{ scan_goods_code }}</th>
+              <th class="text-right">{{ scan_bin_name }}</th>
+              <th class="text-right">{{ order_qty }}</th>
+              <th class="text-right">{{ picking_qty }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template>
+              <tr :id="'dom' + index" v-for="(item, index) in table_list" :key="index">
+                <td class="text-center">{{ item.goods_code }}</td>
+                <td class="text-center">{{ item.bin_name }}</td>
+                <td class="text-center">{{ item.goods_qty }}</td>
+                <td class="text-center">{{ item.picked_qty }}</td>
+              </tr>
+            </template>
+          </tbody>
+        </q-markup-table>
+      </q-scroll-area>
+    </q-card>
+  </q-page>
 </template>
 <router-view />
 
 <script>
-import { getauth, putauth } from 'boot/axios_request'
-import Vconsole from 'vconsole'
-import { LocalStorage } from 'quasar'
-const vConsole = new Vconsole()
-var sendCommandResults = 'false'
-
-function sendCommand (extraName, extraValue) {
-  var broadcastExtras = {}
-  broadcastExtras[extraName] = extraValue
-  broadcastExtras.SEND_RESULT = sendCommandResults
-  window.plugins.intentShim.sendBroadcast({
-    action: 'com.symbol.datawedge.api.ACTION',
-    extras: broadcastExtras
-  },
-  function () { },
-  function () { }
-  )
-}
-
-function unregisterBroadcastReceiver () {
-  window.plugins.intentShim.unregisterBroadcastReceiver()
-}
-function commandReceived (commandText) {
-}
-function enumerateScanners (enumeratedScanners) {
-  // eslint-disable-next-line no-unused-vars
-  var humanReadableScannerList = []
-  for (var i = 0; i < enumeratedScanners.length; i++) {
-    humanReadableScannerList += enumeratedScanners[i].SCANNER_NAME
-    if (i < enumeratedScanners.length - 1) { humanReadableScannerList += ', ' }
-  }
-}
-function activeProfile (theActiveProfile) {
-}
-function barcodeScanned (scanData, timeOfScan) {
-  var scannedData = scanData.extras['com.symbol.datawedge.data_string']
-  document.getElementById('scannedBarcodes').value = ''
-  document.getElementById('scannedBarcodes').value = scannedData
-  document.getElementById('scannedBarcodes').dispatchEvent(new Event('input'))
-}
+import { getauth } from 'boot/axios_request'
+import { LocalStorage, Screen, throttle } from 'quasar'
 
 export default {
-  name: 'Pagezebra_cyclecount',
+  name: 'Pagezebra_shipping',
   data () {
     return {
       openid: '',
@@ -111,20 +53,24 @@ export default {
       loading: false,
       height: '',
       table_list: [],
-      columns: [
-        { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
-        { name: 'goods_code', label: this.$t('stock.view_stocklist.goods_code'), field: 'goods_code', align: 'center' },
-        { name: 'physical_inventory', label: this.$t('stock.view_stocklist.physical_inventory'), field: 'physical_inventory', align: 'center' },
-        { name: 'action', label: this.$t('action'), align: 'right' }
-      ],
-      filter: '',
-      pagination: {
-        page: 1,
-        rowsPerPage: '10000'
+      scan_goods_code: this.$t('scan.scan_goods_code'),
+      scan_bin_name: this.$t('scan.scan_bin_name'),
+      order_qty: this.$t('scan.view_picking.order_qty'),
+      picking_qty: this.$t('scan.view_picking.picking_qty'),
+      thumbStyle: {
+        right: '4px',
+        borderRadius: '5px',
+        backgroundColor: '#E0E0E0',
+        width: '5px',
+        opacity: 0.75
       },
-      screenq: this.$q.screen,
-      IMEI: window.device,
-      batteryStatus: 'determining...',
+      barStyle: {
+        right: '2px',
+        borderRadius: '9px',
+        backgroundColor: '#EEEEEE',
+        width: '9px',
+        opacity: 0.2
+      },
       barscan: '',
       bin_scan: '',
       goods_scan: ''
@@ -151,16 +97,7 @@ export default {
             color: 'negative'
           })
         })
-      } else {
       }
-    },
-    countAdd (e) {
-      var _this = this
-      _this.table_list.filter(function (value, index, array) {
-        if (value.bin_name === _this.bin_scan && value.goods_code === e) {
-          _this.table_list[index].physical_inventory += 1
-        }
-      })
     },
     getList () {
       var _this = this
@@ -175,7 +112,6 @@ export default {
             color: 'negative'
           })
         })
-      } else {
       }
     },
     reFresh () {
@@ -185,160 +121,23 @@ export default {
       _this.goods_scan = ''
       _this.getList()
     },
-    ConfirmCount () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        putauth(_this.pathname, _this.table_list).then(res => {
-          _this.$q.notify({
-            message: 'Success Confirm Cycle Count',
-            icon: 'check',
-            color: 'green'
-          })
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      } else {
+  },
+  computed: {
+    fab: {
+      get () {
+        return this.$store.state.datashare.fab
       }
-    },
-    updateBatteryStatus (status) {
-      var _this = this
-      _this.batteryStatus = `Level: ${status.level}, plugged: ${status.isPlugged}`
-    },
-    scanEvents () {
-      var _this = this
-      document.addEventListener('deviceready', _this.onDeviceReady, false)
-    },
-    onDeviceReady () {
-      var _this = this
-      _this.receivedEvent('deviceready')
-      _this.registerBroadcastReceiver()
-      _this.determineVersion()
-    },
-    onPause: function () {
-      unregisterBroadcastReceiver()
-    },
-    onResume () {
-      var _this = this
-      _this.registerBroadcastReceiver()
-    },
-    receivedEvent (id) {
-    },
-    startSoftTrigger () {
-      sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'START_SCANNING')
-    },
-    stopSoftTrigger () {
-      sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'STOP_SCANNING')
-    },
-    determineVersion () {
-      sendCommand('com.symbol.datawedge.api.GET_VERSION_INFO', '')
-    },
-    setDecoders () {
-      //  Set the new configuration
-      var profileConfig = {
-        PROFILE_NAME: 'wms',
-        PROFILE_ENABLED: 'true',
-        CONFIG_MODE: 'UPDATE',
-        PLUGIN_CONFIG: {
-          PLUGIN_NAME: 'BARCODE',
-          PARAM_LIST: {
-            // "current-device-id": this.selectedScannerId,
-            scanner_selection: 'auto'
-          }
-        }
-      }
-      sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
-    },
-    registerBroadcastReceiver () {
-      window.plugins.intentShim.registerBroadcastReceiver({
-        filterActions: [
-          'com.greaterwms.app.ACTION',
-          'com.symbol.datawedge.api.RESULT_ACTION'
-        ],
-        filterCategories: [
-          'android.intent.category.DEFAULT'
-        ]
-      },
-      function (intent) {
-        // eslint-disable-next-line no-prototype-builtins
-        if (intent.extras.hasOwnProperty('RESULT_INFO')) {
-          var commandResult = intent.extras.RESULT + ' (' +
-              intent.extras.COMMAND.substring(intent.extras.COMMAND.lastIndexOf('.') + 1, intent.extras.COMMAND.length) + ')'// + JSON.stringify(intent.extras.RESULT_INFO);
-          commandReceived(commandResult.toLowerCase())
-        }
-        // eslint-disable-next-line no-prototype-builtins
-        if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_VERSION_INFO')) {
-          //  The version has been returned (DW 6.3 or higher).  Includes the DW version along with other subsystem versions e.g MX
-          var versionInfo = intent.extras['com.symbol.datawedge.api.RESULT_GET_VERSION_INFO']
-          var datawedgeVersion = versionInfo.DATAWEDGE
-          //  Fire events sequentially so the application can gracefully degrade the functionality available on earlier DW versions
-          if (datawedgeVersion >= '6.3') {
-            sendCommand('com.symbol.datawedge.api.CREATE_PROFILE', 'wms')
-            sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
-            sendCommand('com.symbol.datawedge.api.ENUMERATE_SCANNERS', '')
-          }
-          if (datawedgeVersion >= '6.4') {
-            var profileConfig = {
-              PROFILE_NAME: 'wms',
-              PROFILE_ENABLED: 'true',
-              CONFIG_MODE: 'UPDATE',
-              PLUGIN_CONFIG: {
-                PLUGIN_NAME: 'BARCODE',
-                RESET_CONFIG: 'true',
-                PARAM_LIST: {}
-              },
-              APP_LIST: [{
-                PACKAGE_NAME: 'com.greaterwms.app',
-                ACTIVITY_LIST: ['*']
-              }]
-            }
-            sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
-            //  Configure the created profile (intent plugin)
-            var profileConfig2 = {
-              PROFILE_NAME: 'wms',
-              PROFILE_ENABLED: 'true',
-              CONFIG_MODE: 'UPDATE',
-              PLUGIN_CONFIG: {
-                PLUGIN_NAME: 'INTENT',
-                RESET_CONFIG: 'true',
-                PARAM_LIST: {
-                  intent_output_enabled: 'true',
-                  intent_action: 'com.greaterwms.app.ACTION',
-                  intent_delivery: '2'
-                }
-              }
-            }
-            sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig2)
-            //  Give some time for the profile to settle then query its value
-            setTimeout(function () {
-              sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
-            }, 1000)
-          }
-          if (datawedgeVersion >= '6.5') {
-            //  Instruct the API to send
-            sendCommandResults = 'true'
-          }
-          // eslint-disable-next-line no-prototype-builtins
-        } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS')) {
-          //  Return from our request to enumerate the available scanners
-          var enumeratedScannersObj = intent.extras['com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS']
-          enumerateScanners(enumeratedScannersObj)
-          // eslint-disable-next-line no-prototype-builtins
-        } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE')) {
-          //  Return from our request to obtain the active profile
-          var activeProfileObj = intent.extras['com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE']
-          activeProfile(activeProfileObj)
-          // eslint-disable-next-line no-prototype-builtins
-        } else if (!intent.extras.hasOwnProperty('RESULT_INFO')) {
-          //  A barcode has been scanned
-          barcodeScanned(intent, new Date().toLocaleString())
-        }
-      }
-      )
     }
+    // barscan: {
+    //   get () {
+    //     console.log('scaned_x', this.$store.state.datashare.barscan)
+    //     return this.$store.state.datashare.barscan
+    //   },
+    //   set (val) {
+    //     console.log('scaned_y', val)
+    //     this.$store.commit('datashare/updateBarscan', val)
+    //   }
+    // }
   },
   created () {
     var _this = this
@@ -359,23 +158,20 @@ export default {
     } else {
       _this.authin = '0'
     }
+    _this.datachange = throttle(_this.datachange, 200)
   },
   mounted () {
     var _this = this
-    window.addEventListener('batterystatus', _this.updateBatteryStatus, false)
-    _this.height = this.$q.screen.height - 175 + '' + 'px'
+    _this.width = Screen.width * 1 + '' + 'px'
+    _this.height = Screen.height - 50 + '' + 'px'
+    _this.scroll_height = Screen.height - 225 + '' + 'px'
     _this.barscan = ''
     _this.bin_scan = ''
     _this.goods_scan = ''
-    _this.getList()
-    _this.scanEvents()
   },
   updated () {
   },
   beforeDestroy () {
-    var _this = this
-    window.removeEventListener('batterystatus', _this.updateBatteryStatus, false)
-    window.removeEventListener('deviceready', _this.onDeviceReady, false)
   },
   destroyed () {
   }
