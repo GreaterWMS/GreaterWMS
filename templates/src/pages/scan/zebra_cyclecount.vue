@@ -4,8 +4,8 @@
       <q-card-section>
         <q-btn-group push>
           <q-btn :label="$t('refresh')" @click="reFresh()" />
-          <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCount()" />
-          <q-btn>{{barscan}}</q-btn>
+          <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')"  />
+          <q-btn :label="barscan"></q-btn>
         </q-btn-group>
       </q-card-section>
       <q-scroll-area
@@ -43,9 +43,8 @@
 <router-view />
 
 <script>
-import { getauth, putauth } from 'boot/axios_request'
-import { LocalStorage, Screen, throttle } from 'quasar'
-import {fabChanged} from "src/store/fabchange/mutations";
+import { getauth } from 'boot/axios_request'
+import { LocalStorage, Screen } from 'quasar'
 
 export default {
   name: 'Pagezebra_cyclecount',
@@ -55,8 +54,6 @@ export default {
       login_name: '',
       authin: '0',
       pathname: 'cyclecount/',
-      separator: 'cell',
-      loading: false,
       width: '',
       height: '',
       scroll_height: '',
@@ -84,36 +81,6 @@ export default {
     }
   },
   methods: {
-    datachange () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        getauth('scanner/?bar_code=' + _this.barscan, {
-        }).then(res => {
-          _this.barscan = res.results[0].code
-          if (res.results[0].mode === 'BINSET') {
-            _this.bin_scan = res.results[0].code
-            _this.goods_scan = ''
-          } else if (res.results[0].mode === 'GOODS') {
-            _this.goods_scan = res.results[0].code
-            _this.countAdd(_this.goods_scan)
-          }
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      }
-    },
-    countAdd (e) {
-      var _this = this
-      _this.table_list.filter(function (value, index, array) {
-        if (value.bin_name === _this.bin_scan && value.goods_code === e) {
-          _this.table_list[index].physical_inventory += 1
-        }
-      })
-    },
     getList () {
       var _this = this
       if (LocalStorage.has('auth')) {
@@ -135,29 +102,6 @@ export default {
       _this.bin_scan = ''
       _this.goods_scan = ''
       _this.getList()
-    },
-    repeatCount (e) {
-      var _this = this
-      _this.table_list[e].physical_inventory = 0
-    },
-    ConfirmCount () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        putauth(_this.pathname, _this.table_list).then(res => {
-          _this.table_list = []
-          _this.$q.notify({
-            message: 'Success Confirm Cycle Count',
-            icon: 'check',
-            color: 'green'
-          })
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      }
     }
   },
   created () {
@@ -179,14 +123,12 @@ export default {
     } else {
       _this.authin = '0'
     }
-    _this.datachange = throttle(_this.datachange, 200)
   },
   mounted () {
     var _this = this
     _this.width = Screen.width * 1 + '' + 'px'
     _this.height = Screen.height - 50 + '' + 'px'
     _this.scroll_height = Screen.height - 175 + '' + 'px'
-    _this.barscan = ''
     _this.bin_scan = ''
     _this.goods_scan = ''
     _this.getList()
@@ -194,18 +136,14 @@ export default {
   computed: {
     fab: {
       get () {
+        console.log('xxx', this.$store.state.fabchange.fab)
         return this.$store.state.fabchange.fab
       }
     },
     barscan: {
       get () {
-        console.log('scaned_cx', this.$store.state.bardata.barscan)
+        console.log('xxx', this.$store.state.bardata.barscan)
         return this.$store.state.bardata.barscan
-      },
-      set (val) {
-        this.barscan = ''
-        console.log('scaned_cy', val)
-        this.$store.commit('bardata/barScanned', val)
       }
     }
   },

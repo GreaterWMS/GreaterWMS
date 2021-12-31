@@ -483,6 +483,7 @@ export default {
       },
       set (val) {
         console.log('y', val)
+        this.$store.commit('bardata/barScanned', '')
         this.$store.commit('fabchange/fabChanged', val)
       }
     },
