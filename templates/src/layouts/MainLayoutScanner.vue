@@ -202,14 +202,7 @@ export default {
   data () {
     return {
       activeTab: '',
-      device: LocalStorage.getItem('device'),
-      device_name: LocalStorage.getItem('device_name'),
       lang: this.$i18n.locale,
-      verCheck: false,
-      version: '',
-      updateNow: false,
-      processpercent: 0,
-      downloadprocess: false,
       container_height: this.$q.screen.height + '' + 'px',
       langOptions: [{ value: 'en-us', label: 'English' }, { value: 'zh-hans', label: '中文简体' }, { value: 'zh-hant', label: '中文繁體' }, { value: 'ja', label: '日本語' }],
       title: this.$t('index.webtitle'),
@@ -236,22 +229,6 @@ export default {
         password1: '',
         password2: ''
       },
-      friend: false,
-      friend_num: 0,
-      friend_list: [],
-      friend_previous: null,
-      friend_next: null,
-      sender: '',
-      receiver: '',
-      chat: false,
-      chat_list: [],
-      chat_text: '',
-      chat_next: null,
-      read: false,
-      read_num: 0,
-      read_list: [],
-      read_previous: '',
-      read_next: '',
       needLogin: ''
     }
   },

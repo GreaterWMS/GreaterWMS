@@ -2,7 +2,7 @@
   <q-page>
     <router-view />
     <q-page-sticky position="bottom-left" :offset="[18, 18]">
-      <input id="scannedBarcodes" v-model="barscan" type="text" @input="datachange()" readonly disabled/>
+      <input id="scannedBarcodes" v-model="barscan" type="text" readonly disabled/>
     </q-page-sticky>
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
       <q-fab
@@ -11,7 +11,6 @@
         direction="up"
         color="accent"
         vertical-actions-align="left"
-        @click="fabChange()"
       >
         <q-fab-action
           square
@@ -177,7 +176,64 @@ import { LocalStorage, Screen } from 'quasar'
 
 var sendCommandResults = 'false'
 
+var scanner = {
+  initialize: function () {
+    this.bindEvents()
+  },
+  bindEvents: function () {
+    document.addEventListener('deviceready', this.onDeviceReady, false)
+  },
+  onDeviceReady: function () {
+    scanner.receivedEvent('deviceready')
+    registerBroadcastReceiver()
+    determineVersion()
+  },
+  onPause: function () {
+    console.log('Paused')
+    unregisterBroadcastReceiver()
+  },
+  onResume: function () {
+    console.log('Resumed')
+    registerBroadcastReceiver()
+  },
+  receivedEvent: function (id) {
+    console.log('Received Event: ' + id)
+  }
+}
+
+scanner.initialize()
+
+function startSoftTrigger () {
+  sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'START_SCANNING')
+}
+
+function stopSoftTrigger () {
+  sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'STOP_SCANNING')
+}
+
+function determineVersion () {
+  sendCommand('com.symbol.datawedge.api.GET_VERSION_INFO', '')
+}
+
+function setDecoders () {
+  //  Set the new configuration
+  var profileConfig = {
+    PROFILE_NAME: 'wms',
+    PROFILE_ENABLED: 'true',
+    CONFIG_MODE: 'UPDATE',
+    PLUGIN_CONFIG: {
+      PLUGIN_NAME: 'BARCODE',
+      PARAM_LIST: {
+        // "current-device-id": this.selectedScannerId,
+        scanner_selection: 'auto',
+      }
+    }
+  }
+  sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
+}
+
 function sendCommand (extraName, extraValue) {
+  console.log('Sending Command: ' + extraName + ', ' + JSON.stringify(extraValue))
   var broadcastExtras = {}
   broadcastExtras[extraName] = extraValue
   broadcastExtras.SEND_RESULT = sendCommandResults
@@ -190,24 +246,125 @@ function sendCommand (extraName, extraValue) {
   )
 }
 
+function registerBroadcastReceiver () {
+  window.plugins.intentShim.registerBroadcastReceiver({
+    filterActions: [
+      'com.zebra.cordovademo.ACTION',
+      'com.symbol.datawedge.api.RESULT_ACTION'
+    ],
+    filterCategories: [
+      'android.intent.category.DEFAULT'
+    ]
+  },
+  function (intent) {
+    //  Broadcast received
+    console.log('Received Intent: ' + JSON.stringify(intent.extras))
+    if (intent.extras.hasOwnProperty('RESULT_INFO')) {
+      var commandResult = intent.extras.RESULT + ' (' +
+                    intent.extras.COMMAND.substring(intent.extras.COMMAND.lastIndexOf('.') + 1, intent.extras.COMMAND.length) + ')'// + JSON.stringify(intent.extras.RESULT_INFO);
+      commandReceived(commandResult.toLowerCase())
+    }
+
+    if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_VERSION_INFO')) {
+      //  The version has been returned (DW 6.3 or higher).  Includes the DW version along with other subsystem versions e.g MX
+      var versionInfo = intent.extras['com.symbol.datawedge.api.RESULT_GET_VERSION_INFO']
+      console.log('Version Info: ' + JSON.stringify(versionInfo))
+      var datawedgeVersion = versionInfo.DATAWEDGE
+      datawedgeVersion = datawedgeVersion.padStart(5, '0')
+      console.log('Datawedge version: ' + datawedgeVersion)
+
+      //  Fire events sequentially so the application can gracefully degrade the functionality available on earlier DW versions
+      if (datawedgeVersion >= '006.3') { datawedge63() }
+      if (datawedgeVersion >= '006.4') { datawedge64() }
+      if (datawedgeVersion >= '006.5') { datawedge65() }
+    } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS')) {
+      //  Return from our request to enumerate the available scanners
+      var enumeratedScannersObj = intent.extras['com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS']
+      enumerateScanners(enumeratedScannersObj)
+    } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE')) {
+      //  Return from our request to obtain the active profile
+      var activeProfileObj = intent.extras['com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE']
+      activeProfile(activeProfileObj)
+    } else if (!intent.extras.hasOwnProperty('RESULT_INFO')) {
+      //  A barcode has been scanned
+      barcodeScanned(intent, new Date().toLocaleString())
+    }
+  }
+  )
+}
+
 function unregisterBroadcastReceiver () {
   window.plugins.intentShim.unregisterBroadcastReceiver()
 }
-function commandReceived (commandText) {
-  console.log('commandReceived', commandText)
+
+function datawedge63 () {
+  console.log('Datawedge 6.3 APIs are available')
+  sendCommand('com.symbol.datawedge.api.CREATE_PROFILE', 'ZebraCordovaDemo')
+  sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
+  sendCommand('com.symbol.datawedge.api.ENUMERATE_SCANNERS', '')
 }
+
+function datawedge64 () {
+  console.log('Datawedge 6.4 APIs are available')
+  var profileConfig = {
+    PROFILE_NAME: 'wms',
+    PROFILE_ENABLED: 'true',
+    CONFIG_MODE: 'UPDATE',
+    PLUGIN_CONFIG: {
+      PLUGIN_NAME: 'BARCODE',
+      RESET_CONFIG: 'true',
+      PARAM_LIST: {}
+    },
+    APP_LIST: [{
+      PACKAGE_NAME: 'org.greaterwms.app',
+      ACTIVITY_LIST: ['*']
+    }]
+  }
+  sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
+  var profileConfig2 = {
+    PROFILE_NAME: 'wms',
+    PROFILE_ENABLED: 'true',
+    CONFIG_MODE: 'UPDATE',
+    PLUGIN_CONFIG: {
+      PLUGIN_NAME: 'INTENT',
+      RESET_CONFIG: 'true',
+      PARAM_LIST: {
+        intent_output_enabled: 'true',
+        intent_action: 'com.zebra.cordovademo.ACTION',
+        intent_delivery: '2'
+      }
+    }
+  }
+  sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig2)
+  //  Give some time for the profile to settle then query its value
+  setTimeout(function () {
+    sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
+  }, 1000)
+}
+
+function datawedge65 () {
+  console.log('Datawedge 6.5 APIs are available')
+  sendCommandResults = 'true'
+}
+
+function commandReceived (commandText) {
+  console.log('commandReceived:', commandText)
+}
+
 function enumerateScanners (enumeratedScanners) {
-  // eslint-disable-next-line no-unused-vars
   var humanReadableScannerList = ''
   for (var i = 0; i < enumeratedScanners.length; i++) {
     console.log('Scanner found: name= ' + enumeratedScanners[i].SCANNER_NAME + ', id=' + enumeratedScanners[i].SCANNER_INDEX + ', connected=' + enumeratedScanners[i].SCANNER_CONNECTION_STATE)
     humanReadableScannerList += enumeratedScanners[i].SCANNER_NAME
     if (i < enumeratedScanners.length - 1) { humanReadableScannerList += ', ' }
   }
+  console.log('enumerateScanners:', humanReadableScannerList)
 }
+
 function activeProfile (theActiveProfile) {
-  console.log('activeProfile', theActiveProfile)
+  console.log('activeProfile:', theActiveProfile)
 }
+
 function barcodeScanned (scanData, timeOfScan) {
   var scannedData = scanData.extras['com.symbol.datawedge.data_string']
   console.log('scaned Data:' + scannedData)
@@ -226,15 +383,10 @@ export default {
       pathname: 'cyclecount/',
       separator: 'cell',
       loading: false,
-      device: LocalStorage.getItem('device'),
-      device_name: LocalStorage.getItem('device_name'),
       width: '',
       height: '',
       scroll_height: '',
       table_list: [],
-      goods_code_label: this.$t('stock.view_stocklist.goods_code'),
-      goods_qty_label: this.$t('stock.view_stocklist.onhand_stock'),
-      move_qty_label: '移库数量',
       thumbStyle: {
         right: '4px',
         borderRadius: '5px',
@@ -299,18 +451,9 @@ export default {
         left: '',
         right: ''
       },
-      frombin: '',
-      tobin: '',
-      barscan: '',
-      bin_scan: '',
-      goods_scan: ''
     }
   },
   methods: {
-    fabChange () {
-      var _this = this
-      LocalStorage.set('fab', _this.fab)
-    },
     datachange () {
       var _this = this
       if (LocalStorage.has('auth')) {
@@ -330,176 +473,29 @@ export default {
           })
         })
       }
-    },
-    scanEvents () {
-      var _this = this
-      document.addEventListener('deviceready', _this.onDeviceReady, false)
-    },
-    onDeviceReady () {
-      var _this = this
-      _this.receivedEvent('deviceready')
-      _this.registerBroadcastReceiver()
-      _this.determineVersion()
-    },
-    onPause: function () {
-      unregisterBroadcastReceiver()
-    },
-    onResume () {
-      var _this = this
-      _this.registerBroadcastReceiver()
-    },
-    receivedEvent (id) {
-      console.log('Received Event: ' + id)
-    },
-    startSoftTrigger () {
-      sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'START_SCANNING')
-    },
-    stopSoftTrigger () {
-      sendCommand('com.symbol.datawedge.api.SOFT_SCAN_TRIGGER', 'STOP_SCANNING')
-    },
-    determineVersion () {
-      sendCommand('com.symbol.datawedge.api.GET_VERSION_INFO', '')
-    },
-    setDecoders () {
-      //  Set the new configuration
-      var profileConfig = {
-        PROFILE_NAME: 'wms',
-        PROFILE_ENABLED: 'true',
-        CONFIG_MODE: 'UPDATE',
-        PLUGIN_CONFIG: {
-          PLUGIN_NAME: 'BARCODE',
-          PARAM_LIST: {
-            // "current-device-id": this.selectedScannerId,
-            scanner_selection: 'auto'
-          }
-        }
-      }
-      sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
-    },
-    registerBroadcastReceiver () {
-      var _this = this
-      window.plugins.intentShim.registerBroadcastReceiver({
-        filterActions: [
-          'com.greaterwms.app.ACTION',
-          'com.symbol.datawedge.api.RESULT_ACTION'
-        ],
-        filterCategories: [
-          'android.intent.category.DEFAULT'
-        ]
-      },
-      function (intent) {
-        // eslint-disable-next-line no-prototype-builtins
-        if (intent.extras.hasOwnProperty('RESULT_INFO')) {
-          var commandResult = intent.extras.RESULT + ' (' +
-              intent.extras.COMMAND.substring(intent.extras.COMMAND.lastIndexOf('.') + 1, intent.extras.COMMAND.length) + ')'// + JSON.stringify(intent.extras.RESULT_INFO);
-          commandReceived(commandResult.toLowerCase())
-        }
-        // eslint-disable-next-line no-prototype-builtins
-        if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_VERSION_INFO')) {
-          //  The version has been returned (DW 6.3 or higher).  Includes the DW version along with other subsystem versions e.g MX
-          var versionInfo = intent.extras['com.symbol.datawedge.api.RESULT_GET_VERSION_INFO']
-          console.log('Version Info: ' + JSON.stringify(versionInfo))
-          var datawedgeVersion = versionInfo.DATAWEDGE
-          datawedgeVersion = datawedgeVersion.padStart(5, '0')
-          console.log('Datawedge version: ' + datawedgeVersion)
-
-          //  Fire events sequentially so the application can gracefully degrade the functionality available on earlier DW versions
-          if (datawedgeVersion >= '006.3') { _this.datawedge63() }
-          if (datawedgeVersion >= '006.4') { _this.datawedge64() }
-          if (datawedgeVersion >= '006.5') { _this.datawedge65() }
-          // eslint-disable-next-line no-prototype-builtins
-        } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS')) {
-          console.log(11111)
-          //  Return from our request to enumerate the available scanners
-          var enumeratedScannersObj = intent.extras['com.symbol.datawedge.api.RESULT_ENUMERATE_SCANNERS']
-          console.log(22222)
-          enumerateScanners(enumeratedScannersObj)
-          // eslint-disable-next-line no-prototype-builtins
-        } else if (intent.extras.hasOwnProperty('com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE')) {
-          console.log(33333)
-          //  Return from our request to obtain the active profile
-          var activeProfileObj = intent.extras['com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE']
-          console.log(44444)
-          activeProfile(activeProfileObj)
-          console.log(66666)
-          // eslint-disable-next-line no-prototype-builtins
-        } else if (!intent.extras.hasOwnProperty('RESULT_INFO')) {
-          //  A barcode has been scanned
-          console.log(55555)
-          barcodeScanned(intent, new Date().toLocaleString())
-        }
-      }
-      )
-    },
-    datawedge63 () {
-      console.log('Datawedge 6.3 APIs are available')
-      sendCommand('com.symbol.datawedge.api.CREATE_PROFILE', 'wms')
-      sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
-      sendCommand('com.symbol.datawedge.api.ENUMERATE_SCANNERS', '')
-    },
-    datawedge64 () {
-      console.log('Datawedge 6.4 APIs are available')
-      var profileConfig = {
-        PROFILE_NAME: 'wms',
-        PROFILE_ENABLED: 'true',
-        CONFIG_MODE: 'UPDATE',
-        PLUGIN_CONFIG: {
-          PLUGIN_NAME: 'BARCODE',
-          RESET_CONFIG: 'true',
-          PARAM_LIST: {}
-        },
-        APP_LIST: [{
-          PACKAGE_NAME: 'org.greaterwms.app',
-          ACTIVITY_LIST: ['*']
-        }]
-      }
-      sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig)
-      var profileConfig2 = {
-        PROFILE_NAME: 'wms',
-        PROFILE_ENABLED: 'true',
-        CONFIG_MODE: 'UPDATE',
-        PLUGIN_CONFIG: {
-          PLUGIN_NAME: 'INTENT',
-          RESET_CONFIG: 'true',
-          PARAM_LIST: {
-            intent_output_enabled: 'true',
-            intent_action: 'com.zebra.cordovademo.ACTION',
-            intent_delivery: '2'
-          }
-        }
-      }
-      sendCommand('com.symbol.datawedge.api.SET_CONFIG', profileConfig2)
-      //  Give some time for the profile to settle then query its value
-      setTimeout(function () {
-        sendCommand('com.symbol.datawedge.api.GET_ACTIVE_PROFILE', '')
-      }, 1000)
-    },
-    datawedge65 () {
-      console.log('Datawedge 6.5 APIs are available')
-      sendCommandResults = 'true'
     }
   },
   computed: {
     fab: {
       get () {
-        console.log('x', this.$store.state.datashare.fab)
-        return this.$store.state.datashare.fab
+        console.log('x', this.$store.state.fabchange.fab)
+        return this.$store.state.fabchange.fab
       },
       set (val) {
         console.log('y', val)
-        this.$store.commit('datashare/updateFab', val)
+        this.$store.commit('fabchange/fabChanged', val)
+      }
+    },
+    barscan: {
+      get () {
+        console.log('scaned_x', this.$store.state.bardata.barscan)
+        return this.$store.state.bardata.barscan
+      },
+      set (val) {
+        console.log('scaned_y', val)
+        this.$store.commit('bardata/barScanned', val)
       }
     }
-    // barscan: {
-    //   get () {
-    //     console.log('scaned_x', this.$store.state.datashare.barscan)
-    //     return this.$store.state.datashare.barscan
-    //   },
-    //   set (val) {
-    //     console.log('scaned_y', val)
-    //     this.$store.commit('datashare/updateBarscan', val)
-    //   }
-    // }
   },
   created () {
     var _this = this
@@ -559,12 +555,9 @@ export default {
     _this.barscan = ''
     _this.bin_scan = ''
     _this.goods_scan = ''
-    _this.scanEvents()
   },
   beforeDestroy () {
-    var _this = this
-    LocalStorage.remove('fab')
-    window.removeEventListener('deviceready', _this.onDeviceReady, false)
+    window.removeEventListener('deviceready', scanner.onDeviceReady, false)
   }
 }
 </script>
