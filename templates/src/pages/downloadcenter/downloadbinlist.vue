@@ -33,22 +33,21 @@
               <q-btn :label="$t('downloadasnlist')" icon="cloud_download" @click="downloadlistData()">
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('downloadasnlisttip') }}</q-tooltip>
               </q-btn>
-              <q-btn :label="$t('downloadasndetail')" icon="cloud_download" @click="downloaddetailData()">
-                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('downloadasndetailtip') }}</q-tooltip>
-              </q-btn>
             </q-btn-group>
           </div>
         </template>
         <template v-slot:body="props">
           <q-tr :props="props">
-            <q-td key="asn_code" :props="props">{{ props.row.asn_code }}</q-td>
-            <q-td key="asn_status" :props="props">{{ props.row.asn_status }}</q-td>
-            <q-td key="total_weight" :props="props">{{ props.row.total_weight.toFixed(4) }}</q-td>
-            <q-td key="total_volume" :props="props">{{ props.row.total_volume.toFixed(4) }}</q-td>
-            <q-td key="supplier" :props="props">{{ props.row.supplier }}</q-td>
-            <q-td key="creater" :props="props">{{ props.row.creater }}</q-td>
-            <q-td key="create_time" :props="props">{{ props.row.create_time }}</q-td>
-            <q-td key="update_time" :props="props">{{ props.row.update_time }}</q-td>
+           <q-td key="bin_name" :props="props">{{ props.row.bin_name }}</q-td>
+           <q-td key="goods_code" :props="props">{{ props.row.goods_code }}</q-td>
+           <q-td key="goods_desc" :props="props">{{ props.row.goods_desc }}</q-td>
+           <q-td key="goods_qty" :props="props">{{ props.row.goods_qty }}</q-td>
+           <q-td key="pick_qty" :props="props">{{ props.row.pick_qty }}</q-td>
+           <q-td key="picked_qty" :props="props">{{ props.row.picked_qty }}</q-td>
+           <q-td key="bin_size" :props="props">{{ props.row.bin_size }}</q-td>
+           <q-td key="bin_property" :props="props">{{ props.row.bin_property }}</q-td>
+           <q-td key="create_time" :props="props">{{ props.row.create_time }}</q-td>
+           <q-td key="update_time" :props="props">{{ props.row.update_time }}</q-td>
           </q-tr>
         </template>
       </q-table>
@@ -76,7 +75,7 @@ export default {
   name: 'Pageasnlist',
   data() {
     return {
-      pathname: 'asn/',
+      pathname: 'stock/',
       pathname_previous: '',
       pathname_next: '',
       separator: 'cell',
@@ -84,14 +83,16 @@ export default {
       height: '',
       table_list: [],
       columns: [
-        { name: 'asn_code', required: true, label: this.$t('inbound.view_asn.asn_code'), align: 'left', field: 'asn_code' },
-        { name: 'asn_status', label: this.$t('inbound.view_asn.asn_status'), field: 'asn_status', align: 'center' },
-        { name: 'total_weight', label: this.$t('inbound.view_asn.total_weight'), field: 'total_weight', align: 'center' },
-        { name: 'total_volume', label: this.$t('inbound.view_asn.total_volume'), field: 'total_volume', align: 'center' },
-        { name: 'supplier', label: this.$t('baseinfo.view_supplier.supplier_name'), field: 'supplier', align: 'center' },
-        { name: 'creater', label: this.$t('creater'), field: 'creater', align: 'center' },
-        { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
-        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'right' }
+       { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
+       { name: 'goods_code', label: this.$t('stock.view_stocklist.goods_code'), field: 'goods_code', align: 'center' },
+       { name: 'goods_desc', label: this.$t('stock.view_stocklist.goods_desc'), field: 'onhand_stock', align: 'center' },
+       { name: 'goods_qty', label: this.$t('stock.view_stocklist.onhand_stock'), field: 'goods_qty', align: 'center' },
+       { name: 'pick_qty', label: this.$t('stock.view_stocklist.pick_stock'), field: 'pick_qty', align: 'center' },
+       { name: 'picked_qty', label: this.$t('stock.view_stocklist.picked_stock'), field: 'picked_qty', align: 'center' },
+       { name: 'bin_size', label: this.$t('warehouse.view_binset.bin_size'), field: 'bin_size', align: 'center' },
+       { name: 'bin_property', label: this.$t('warehouse.view_binset.bin_property'), field: 'bin_property', align: 'center' },
+       { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
+       { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'right' },
       ],
       pagination: {
         page: 1,
@@ -100,7 +101,6 @@ export default {
       createDate1: '',
       createDate2: '',
       date_range: '',
-      dateArray: '',
       url: ''
     };
   },
@@ -115,11 +115,11 @@ export default {
         if (val.to) {
           this.createDate2 = `${val.from} - ${val.to}`;
           this.date_range = `${val.from},${val.to} 23:59:59`;
-          this.url = this.pathname + 'list/?' + 'create_time__range=' + this.date_range
+          this.url = this.pathname + 'bin/?' + 'create_time__range=' + this.date_range
         } else {
           this.createDate2 = `${val}`;
           this.dateArray = val.split('/');
-          this.url = this.pathname + 'list/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];
+          this.url = this.pathname + 'bin/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];
         }
         this.date_range = this.date_range.replace(/\//g, '-');
         this.getSearchList();
@@ -130,25 +130,9 @@ export default {
   methods: {
     getList() {
       var _this = this;
-      getauth(_this.pathname + 'list/')
+      getauth(_this.pathname + 'bin/')
         .then(res => {
-          _this.table_list = [];
-          res.results.forEach(item => {
-            if (item.asn_status === 1) {
-              item.asn_status = _this.$t('inbound.predeliverystock');
-            } else if (item.asn_status === 2) {
-              item.asn_status = _this.$t('inbound.preloadstock');
-            } else if (item.asn_status === 3) {
-              item.asn_status = _this.$t('inbound.presortstock');
-            } else if (item.asn_status === 4) {
-              item.asn_status = _this.$t('inbound.sortstock');
-            } else if (item.asn_status === 5) {
-              item.asn_status = _this.$t('inbound.asndone');
-            } else {
-              item.asn_status = 'N/A';
-            }
-            _this.table_list.push(item);
-          });
+          _this.table_list = res.results;
           _this.pathname_previous = res.previous;
           _this.pathname_next = res.next;
         })
@@ -164,23 +148,7 @@ export default {
       var _this = this;
       getauth(_this.url)
         .then(res => {
-          _this.table_list = [];
-          res.results.forEach(item => {
-            if (item.asn_status === 1) {
-              item.asn_status = _this.$t('inbound.predeliverystock');
-            } else if (item.asn_status === 2) {
-              item.asn_status = _this.$t('inbound.preloadstock');
-            } else if (item.asn_status === 3) {
-              item.asn_status = _this.$t('inbound.presortstock');
-            } else if (item.asn_status === 4) {
-              item.asn_status = _this.$t('inbound.sortstock');
-            } else if (item.asn_status === 5) {
-              item.asn_status = _this.$t('inbound.asndone');
-            } else {
-              item.asn_status = 'N/A';
-            }
-            _this.table_list.push(item);
-          });
+          _this.table_list = res.results;
           _this.pathname_previous = res.previous;
           _this.pathname_next = res.next;
         })
@@ -196,23 +164,7 @@ export default {
       var _this = this;
       getauth(_this.pathname_previous, {})
         .then(res => {
-          _this.table_list = [];
-          res.results.forEach(item => {
-            if (item.asn_status === 1) {
-              item.asn_status = _this.$t('inbound.predeliverystock');
-            } else if (item.asn_status === 2) {
-              item.asn_status = _this.$t('inbound.preloadstock');
-            } else if (item.asn_status === 3) {
-              item.asn_status = _this.$t('inbound.presortstock');
-            } else if (item.asn_status === 4) {
-              item.asn_status = _this.$t('inbound.sortstock');
-            } else if (item.asn_status === 5) {
-              item.asn_status = _this.$t('inbound.asndone');
-            } else {
-              item.asn_status = 'N/A';
-            }
-            _this.table_list.push(item);
-          });
+          _this.table_list = res.results;
           _this.pathname_previous = res.previous;
           _this.pathname_next = res.next;
         })
@@ -228,23 +180,7 @@ export default {
       var _this = this;
       getauth(_this.pathname_next, {})
         .then(res => {
-          _this.table_list = [];
-          res.results.forEach(item => {
-            if (item.asn_status === 1) {
-              item.asn_status = _this.$t('inbound.predeliverystock');
-            } else if (item.asn_status === 2) {
-              item.asn_status = _this.$t('inbound.preloadstock');
-            } else if (item.asn_status === 3) {
-              item.asn_status = _this.$t('inbound.presortstock');
-            } else if (item.asn_status === 4) {
-              item.asn_status = _this.$t('inbound.sortstock');
-            } else if (item.asn_status === 5) {
-              item.asn_status = _this.$t('inbound.asndone');
-            } else {
-              item.asn_status = 'N/A';
-            }
-            _this.table_list.push(item);
-          });
+          _this.table_list = res.results;
           _this.pathname_previous = res.previous;
           _this.pathname_next = res.next;
         })
@@ -258,7 +194,7 @@ export default {
     },
     downloadlistData() {
       var _this = this;
-      getfile(_this.pathname + 'filelist/?lang=' + LocalStorage.getItem('lang')).then(res => {
+      getfile(_this.pathname + 'filebinlist/?lang=' + LocalStorage.getItem('lang')).then(res => {
         var timeStamp = Date.now();
         var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
         const status = exportFile(_this.pathname + 'list' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
@@ -271,21 +207,6 @@ export default {
         }
       });
     },
-    downloaddetailData() {
-      var _this = this;
-      getfile(_this.pathname + 'filedetail/?lang=' + LocalStorage.getItem('lang')).then(res => {
-        var timeStamp = Date.now();
-        var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-        const status = exportFile(_this.pathname + 'detail' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
-        if (status !== true) {
-          _this.$q.notify({
-            message: 'Browser denied file download...',
-            color: 'negative',
-            icon: 'warning'
-          });
-        }
-      });
-    }
   },
   created() {
     this.getList();
