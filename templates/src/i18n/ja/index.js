@@ -5,6 +5,7 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    index_title: '倉庫管理プラットフォーム',
     webtitle: 'GreaterWMS--オープンソース倉庫管理システム',
     home: 'ホーム',
     title: 'GreaterWMS',
@@ -16,7 +17,7 @@ export default {
     login: '登録',
     register: 'ログイン',
     login_tip: '管理者として登録',
-    register_tip: 'OPENIDとユーザー名を入力してください',
+    register_tip: '管理人に登録する',
     logout: 'ログインを終了',
     user_login: 'ユーザーログイン',
     admin_login: '管理者ログイン',
@@ -174,14 +175,16 @@ export default {
     category_receipt_ranking: '品類受入ランキング',
     receiving_quantity_ranking: '受入数量ランキング',
     Receiving_amount_ranking: '受入額ランキング',
-    view_tradelist:{
+    view_tradelist: {
       mode_code: '取引方式',
       bin_name: 'ライブラリ名',
       goods_code: '商品コード',
       goods_qty: '既存数量',
       creater: '作成者',
       update_time: '更新時間',
-      create_time: '作成時間'
+      create_time: '作成時間',
+      inbound: 'にうけ',
+      outbound: 'おくりだす'
     }
   },
   finance: {
@@ -238,6 +241,12 @@ export default {
     downloadcustomertemplate: 'クライアントテンプレートをダウンロード',
     downloadsuppliertemplate: 'ベンダーテンプレートをダウンロード',
     addupload: 'アップロード'
+  },
+  download_center: {
+    createTime: '作成時間',
+    reset: 'リセット',
+    start: '始まる',
+    end: '終わる'
   },
   community_mall: {
     communitymall: 'コミュニティ'
@@ -369,7 +378,9 @@ export default {
       staff_name: 'スタッフ名',
       staff_type: 'スタッフクラス型',
       error1: '従業員名を入力してください',
-      error2: '従業員の名前を入力してください。'
+      error2: '従業員の名前を入力してください。',
+      lock: 'ロックオン',
+      unlock: 'あんろっく'
     }
   },
   stock: {
@@ -483,7 +494,7 @@ export default {
       scan_qty: 'スキャン済数量',
       scan_qty_error: 'C'
     },
-    view_packing:{
+    view_packing: {
       order_qty: 'オーダー数量',
       packing_qty: 'ピック数量',
       packing_qty_error: 'ピック数量は注文数量より大きくない'

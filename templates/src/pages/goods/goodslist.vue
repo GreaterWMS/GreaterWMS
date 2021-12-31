@@ -25,9 +25,6 @@
             <q-btn :label="$t('refresh')" icon="refresh" @click="reFresh()">
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('refreshtip') }}</q-tooltip>
             </q-btn>
-            <q-btn :label="$t('download')" icon="cloud_download" @click="downloadData()">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('downloadtip') }}</q-tooltip>
-            </q-btn>
           </q-btn-group>
           <q-space />
           <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
@@ -710,30 +707,27 @@ export default {
   methods: {
     getList() {
       var _this = this;
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname, {})
-          .then(res => {
-            _this.table_list = res.results;
-            _this.goods_unit_list = res.goods_unit_list;
-            _this.goods_class_list = res.goods_class_list;
-            _this.goods_brand_list = res.goods_brand_list;
-            _this.goods_color_list = res.goods_color_list;
-            _this.goods_shape_list = res.goods_shape_list;
-            _this.goods_specs_list = res.goods_specs_list;
-            _this.goods_origin_list = res.goods_origin_list;
-            _this.supplier_list = res.supplier_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
-          })
-          .catch(err => {
-            _this.$q.notify({
-              message: err.detail,
-              icon: 'close',
-              color: 'negative'
-            });
+      getauth(_this.pathname, {})
+        .then(res => {
+          _this.table_list = res.results;
+          _this.goods_unit_list = res.goods_unit_list;
+          _this.goods_class_list = res.goods_class_list;
+          _this.goods_brand_list = res.goods_brand_list;
+          _this.goods_color_list = res.goods_color_list;
+          _this.goods_shape_list = res.goods_shape_list;
+          _this.goods_specs_list = res.goods_specs_list;
+          _this.goods_origin_list = res.goods_origin_list;
+          _this.supplier_list = res.supplier_list;
+          _this.pathname_previous = res.previous;
+          _this.pathname_next = res.next;
+        })
+        .catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
           });
-      } else {
-      }
+        });
     },
     getSearchList() {
       var _this = this;
@@ -916,7 +910,7 @@ export default {
         .then(res => {
           _this.editDataCancel();
           _this.getList();
-          if(res.status_code != 500){
+          if (res.status_code != 500) {
             _this.$q.notify({
               message: 'Success Edit Data',
               icon: 'check',
@@ -986,29 +980,6 @@ export default {
       _this.deleteForm = false;
       _this.deleteid = 0;
     },
-    downloadData() {
-      var _this = this;
-      if (LocalStorage.has('auth')) {
-        getfile(_this.pathname + 'file/?lang=' + LocalStorage.getItem('lang')).then(res => {
-          var timeStamp = Date.now();
-          var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-          const status = exportFile(_this.pathname + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
-          if (status !== true) {
-            _this.$q.notify({
-              message: 'Browser denied file download...',
-              color: 'negative',
-              icon: 'warning'
-            });
-          }
-        });
-      } else {
-        _this.$q.notify({
-          message: _this.$t('notice.loginerror'),
-          color: 'negative',
-          icon: 'warning'
-        });
-      }
-    },
     viewData(e) {
       var _this = this;
       var QRCode = require('qrcode');
@@ -1018,8 +989,7 @@ export default {
           mode: 'byte',
           version: '2',
           type: 'image/jpeg'
-
- }
+        }
       ])
         .then(url => {
           _this.goods_code = e.goods_code;
