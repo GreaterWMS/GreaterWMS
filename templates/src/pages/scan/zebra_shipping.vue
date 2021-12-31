@@ -125,7 +125,7 @@ export default {
   computed: {
     fab: {
       get () {
-        return this.$store.state.datashare.fab
+        return this.$store.state.fabchange.fab
       }
     }
     // barscan: {
