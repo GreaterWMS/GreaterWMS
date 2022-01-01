@@ -495,13 +495,13 @@
   </q-layout>
 </template>
 <script>
-import { versioncheck, getauth, post, wsurl } from 'boot/axios_request';
-import { date, LocalStorage, SessionStorage, openURL, Platform } from 'quasar';
-import Bus from 'boot/bus.js';
+import { versioncheck, getauth, post, wsurl } from 'boot/axios_request'
+import { date, LocalStorage, SessionStorage, openURL, Platform } from 'quasar'
+import Bus from 'boot/bus.js'
 
-var ws;
+var ws
 export default {
-  data() {
+  data () {
     return {
       device: LocalStorage.getItem('device'),
       device_name: LocalStorage.getItem('device_name'),
@@ -555,70 +555,70 @@ export default {
       read_next: '',
       needLogin: '',
       activeTab: ''
-    };
+    }
   },
   methods: {
-    linkChange(e) {
-      var _this = this;
-      localStorage.removeItem('menulink', '');
-      localStorage.setItem('menulink', e);
-      _this.link = e;
+    linkChange (e) {
+      var _this = this
+      localStorage.removeItem('menulink', '')
+      localStorage.setItem('menulink', e)
+      _this.link = e
     },
-    drawerClick(e) {
-      var _this = this;
+    drawerClick (e) {
+      var _this = this
       if (_this.miniState) {
-        _this.miniState = false;
-        e.stopPropagation();
+        _this.miniState = false
+        e.stopPropagation()
       }
     },
-    brownlink(e) {
-      openURL(e);
+    brownlink (e) {
+      openURL(e)
     },
-    Login() {
-      var _this = this;
+    Login () {
+      var _this = this
       if (_this.login_name === '') {
         _this.$q.notify({
           message: 'Please enter the login name',
           color: 'negative',
           icon: 'close'
-        });
+        })
       } else {
         if (_this.openid === '') {
           _this.$q.notify({
             message: 'Please Enter The Openid',
             icon: 'close',
             color: 'negative'
-          });
+          })
         } else {
           if (_this.check_code === '') {
             _this.$q.notify({
               message: 'Please Enter The Check Code',
               icon: 'close',
               color: 'negative'
-            });
+            })
           } else {
-            LocalStorage.set('openid', _this.openid);
-            SessionStorage.set('axios_check', 'false');
+            LocalStorage.set('openid', _this.openid)
+            SessionStorage.set('axios_check', 'false')
             getauth('staff/?staff_name=' + _this.login_name + '&check_code=' + _this.check_code)
               .then(res => {
                 if (res.count === 1) {
-                  _this.authin = '1';
-                  _this.login = false;
-                  LocalStorage.set('auth', '1');
-                  LocalStorage.set('login_name', _this.login_name);
-                  LocalStorage.set('login_mode', 'user');
+                  _this.authin = '1'
+                  _this.login = false
+                  LocalStorage.set('auth', '1')
+                  LocalStorage.set('login_name', _this.login_name)
+                  LocalStorage.set('login_mode', 'user')
                   _this.$q.notify({
                     message: 'Success Login',
                     icon: 'check',
                     color: 'green'
-                  });
-                  _this.$router.push('/web');
+                  })
+                  _this.$router.push('/web')
                 } else {
                   _this.$q.notify({
                     message: "No User's Data Or Check Code Wrong",
                     icon: 'close',
                     color: 'negative'
-                  });
+                  })
                 }
               })
               .catch(err => {
@@ -626,53 +626,53 @@ export default {
                   message: err.detail,
                   icon: 'close',
                   color: 'negative'
-                });
-              });
+                })
+              })
           }
         }
       }
     },
-    adminLogin() {
-      var _this = this;
+    adminLogin () {
+      var _this = this
       if (!_this.adminlogin.name) {
         _this.$q.notify({
           message: 'Please enter the admin name',
           color: 'negative',
           icon: 'close'
-        });
+        })
       } else {
         if (!_this.adminlogin.password) {
           _this.$q.notify({
             message: 'Please enter the admin password',
             icon: 'close',
             color: 'negative'
-          });
+          })
         } else {
-          SessionStorage.set('axios_check', 'false');
+          SessionStorage.set('axios_check', 'false')
           post('login/', _this.adminlogin)
             .then(res => {
               if (res.code === '200') {
-                _this.authin = '1';
-                _this.login = false;
-                _this.admin = false;
-                _this.openid = res.data.openid;
-                _this.login_name = res.data.name;
-                LocalStorage.set('auth', '1');
-                LocalStorage.set('openid', res.data.openid);
-                LocalStorage.set('login_name', _this.login_name);
-                LocalStorage.set('login_mode', 'admin');
+                _this.authin = '1'
+                _this.login = false
+                _this.admin = false
+                _this.openid = res.data.openid
+                _this.login_name = res.data.name
+                LocalStorage.set('auth', '1')
+                LocalStorage.set('openid', res.data.openid)
+                LocalStorage.set('login_name', _this.login_name)
+                LocalStorage.set('login_mode', 'admin')
                 _this.$q.notify({
                   message: 'Success Login',
                   icon: 'check',
                   color: 'green'
-                });
-                _this.$router.push('/web');
+                })
+                _this.$router.push('/web')
               } else {
                 _this.$q.notify({
                   message: res.msg,
                   icon: 'close',
                   color: 'negative'
-                });
+                })
               }
             })
             .catch(err => {
@@ -680,57 +680,57 @@ export default {
                 message: err.detail,
                 icon: 'close',
                 color: 'negative'
-              });
-            });
+              })
+            })
         }
       }
     },
-    Logout() {
-      var _this = this;
-      _this.authin = '0';
-      _this.login_name = '';
-      LocalStorage.remove('auth');
-      SessionStorage.remove('axios_check');
-      LocalStorage.set('login_name', '');
+    Logout () {
+      var _this = this
+      _this.authin = '0'
+      _this.login_name = ''
+      LocalStorage.remove('auth')
+      SessionStorage.remove('axios_check')
+      LocalStorage.set('login_name', '')
       _this.$q.notify({
         message: 'Success Logout',
         icon: 'check',
         color: 'negative'
-      });
+      })
       // _this.staffType();
-      _this.$router.push('/web');
+      _this.$router.push('/web')
     },
-    Register() {
-      var _this = this;
-      SessionStorage.set('axios_check', 'false');
+    Register () {
+      var _this = this
+      SessionStorage.set('axios_check', 'false')
       post('register/', _this.registerform)
         .then(res => {
           if (res.code === '200') {
-            _this.register = false;
-            _this.openid = res.data.openid;
-            _this.login_name = _this.registerform.name;
-            _this.authin = '1';
-            LocalStorage.set('openid', res.data.openid);
-            LocalStorage.set('login_name', _this.registerform.name);
-            LocalStorage.set('auth', '1');
+            _this.register = false
+            _this.openid = res.data.openid
+            _this.login_name = _this.registerform.name
+            _this.authin = '1'
+            LocalStorage.set('openid', res.data.openid)
+            LocalStorage.set('login_name', _this.registerform.name)
+            LocalStorage.set('auth', '1')
             _this.registerform = {
               name: '',
               password1: '',
               password2: ''
-            };
+            }
             _this.$q.notify({
               message: res.msg,
               icon: 'check',
               color: 'green'
-            });
-            _this.staffType();
-            _this.$router.push('/web');
+            })
+            _this.staffType()
+            _this.$router.push('/web')
           } else {
             _this.$q.notify({
               message: res.msg,
               icon: 'close',
               color: 'negative'
-            });
+            })
           }
         })
         .catch(err => {
@@ -738,36 +738,36 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    staffType() {
-      var _this = this;
+    staffType () {
+      var _this = this
       getauth('staff/?staff_name=' + _this.login_name).then(res => {
-        LocalStorage.set('staff_type', res.results[0].staff_type);
-      });
+        LocalStorage.set('staff_type', res.results[0].staff_type)
+      })
     },
-    initWebSocket() {
-      var _this = this;
-      ws = new WebSocket(wsurl + '?sender=' + _this.login_name + '&receiver=' + _this.receiver + '&openid=' + _this.openid);
-      ws.onmessage = _this.websocketonmessage;
-      ws.onopen = _this.websocketonopen;
-      ws.onerror = _this.websocketonerror;
-      ws.onclose = _this.websocketclose;
+    initWebSocket () {
+      var _this = this
+      ws = new WebSocket(wsurl + '?sender=' + _this.login_name + '&receiver=' + _this.receiver + '&openid=' + _this.openid)
+      ws.onmessage = _this.websocketonmessage
+      ws.onopen = _this.websocketonopen
+      ws.onerror = _this.websocketonerror
+      ws.onclose = _this.websocketclose
     },
-    websocketonopen() {
-      console.log('Success Connect');
+    websocketonopen () {
+      console.log('Success Connect')
     },
-    websocketonerror() {
-      var _this = this;
-      _this.initWebSocket();
+    websocketonerror () {
+      var _this = this
+      _this.initWebSocket()
     },
-    websocketonmessage(e) {
-      var _this = this;
+    websocketonmessage (e) {
+      var _this = this
       if (SessionStorage.getItem('receiver') === JSON.parse(e.data).sender) {
-        _this.chat_list.push(JSON.parse(e.data));
+        _this.chat_list.push(JSON.parse(e.data))
       }
-      _this.Readnum();
+      _this.Readnum()
       _this.$q.notify({
         message: JSON.parse(e.data).sender + ' Send you a message',
         color: 'deep-purple',
@@ -778,332 +778,332 @@ export default {
             label: 'View',
             color: 'yellow',
             handler: () => {
-              _this.ChatWith(JSON.parse(e.data).sender);
+              _this.ChatWith(JSON.parse(e.data).sender)
             }
           }
         ]
-      });
+      })
     },
-    websocketsend() {
-      var _this = this;
+    websocketsend () {
+      var _this = this
       if (_this.chat_text !== '') {
-        ws.send(_this.chat_text);
+        ws.send(_this.chat_text)
         _this.chat_list.push({
           sender: _this.sender + '-' + _this.openid,
           receiver: _this.receiver,
           detail: _this.chat_text,
           create_time: date.formatDate(Date.now(), 'YYYY-MM-DD HH:mm:ss')
-        });
-        _this.chat_text = '';
+        })
+        _this.chat_text = ''
       }
     },
-    websocketclose(e) {
-      console.log('Disconnect', e);
+    websocketclose (e) {
+      console.log('Disconnect', e)
     },
-    ChatWith(e) {
-      var _this = this;
-      _this.sender = _this.login_name;
-      _this.receiver = e;
-      SessionStorage.set('receiver', e);
+    ChatWith (e) {
+      var _this = this
+      _this.sender = _this.login_name
+      _this.receiver = e
+      SessionStorage.set('receiver', e)
       if (_this.sender === _this.receiver) {
         _this.$q.notify({
           message: 'Cannot Chat with yourself',
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.chat = true;
-        _this.chat_text = '';
-        _this.initWebSocket();
+        _this.chat = true
+        _this.chat_text = ''
+        _this.initWebSocket()
         getauth('chat/?' + 'sender=' + _this.sender + '&receiver=' + _this.receiver)
           .then(res => {
-            _this.chat_list = res.results.reverse();
-            _this.Readnum();
-            _this.chat_next = res.next;
+            _this.chat_list = res.results.reverse()
+            _this.Readnum()
+            _this.chat_next = res.next
           })
           .catch(err => {
-            console.log(err);
+            console.log(err)
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       }
     },
-    LoadChatList() {
-      var _this = this;
+    LoadChatList () {
+      var _this = this
       getauth(_this.chat_next)
         .then(res => {
           res.results.forEach(c => {
-            _this.chat_list.unshift(c);
-          });
-          _this.chat_next = res.next;
+            _this.chat_list.unshift(c)
+          })
+          _this.chat_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    ChatClose() {
-      var _this = this;
-      _this.receiver = '';
-      SessionStorage.set('receiver', '');
-      _this.chat_list = [];
-      _this.chat_text = '';
-      _this.chat_next = null;
+    ChatClose () {
+      var _this = this
+      _this.receiver = ''
+      SessionStorage.set('receiver', '')
+      _this.chat_list = []
+      _this.chat_text = ''
+      _this.chat_next = null
     },
-    Readnum() {
-      var _this = this;
+    Readnum () {
+      var _this = this
       getauth('chat/read/?' + 'sender=' + _this.login_name)
         .then(res => {
-          _this.read_previous = res.previous;
-          _this.read_next = res.next;
-          _this.read_list = res.results;
-          _this.read_num = res.count;
+          _this.read_previous = res.previous
+          _this.read_next = res.next
+          _this.read_list = res.results
+          _this.read_num = res.count
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    ReadnumPrevious() {
-      var _this = this;
+    ReadnumPrevious () {
+      var _this = this
       getauth(_this.read_previous, {})
         .then(res => {
-          _this.read_list = res.results;
-          _this.read_previous = res.previous;
-          _this.read_next = res.next;
+          _this.read_list = res.results
+          _this.read_previous = res.previous
+          _this.read_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    ReadnumNext() {
-      var _this = this;
+    ReadnumNext () {
+      var _this = this
       getauth(_this.read_next, {})
         .then(res => {
-          _this.read_list = res.results;
-          _this.read_previous = res.previous;
-          _this.read_next = res.next;
+          _this.read_list = res.results
+          _this.read_previous = res.previous
+          _this.read_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    Friend() {
-      var _this = this;
-      _this.friend = true;
+    Friend () {
+      var _this = this
+      _this.friend = true
       getauth('staff/', {})
         .then(res => {
-          _this.friend_list = res.results;
-          _this.friend_previous = res.previous;
-          _this.friend_next = res.next;
-          _this.friend_num = res.count;
+          _this.friend_list = res.results
+          _this.friend_previous = res.previous
+          _this.friend_next = res.next
+          _this.friend_num = res.count
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    Friend_previous() {
-      var _this = this;
+    Friend_previous () {
+      var _this = this
       getauth(_this.friend_previous, {})
         .then(res => {
-          _this.friend_list = res.results;
-          _this.friend_previous = res.previous;
-          _this.friend_next = res.next;
+          _this.friend_list = res.results
+          _this.friend_previous = res.previous
+          _this.friend_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    Friend_next() {
-      var _this = this;
+    Friend_next () {
+      var _this = this
       getauth(_this.friend_next, {})
         .then(res => {
-          _this.friend_list = res.results;
-          _this.friend_previous = res.previous;
-          _this.friend_next = res.next;
+          _this.friend_list = res.results
+          _this.friend_previous = res.previous
+          _this.friend_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    langChange(e) {
-      var _this = this;
-      _this.lang = e;
+    langChange (e) {
+      var _this = this
+      _this.lang = e
       window.setTimeout(() => {
-        location.reload();
-      }, 1);
+        location.reload()
+      }, 1)
     },
-    NewVersionignore() {
-      var _this = this;
-      _this.verCheck = false;
-      _this.version = '';
+    NewVersionignore () {
+      var _this = this
+      _this.verCheck = false
+      _this.version = ''
     },
-    NewVersionDownload() {
-      var _this = this;
-      _this.version = '';
-      require('electron').ipcRenderer.send('downloadUpdate');
-      console.log(_this.processpercent);
+    NewVersionDownload () {
+      var _this = this
+      _this.version = ''
+      require('electron').ipcRenderer.send('downloadUpdate')
+      console.log(_this.processpercent)
       if (_this.processpercent === 100) {
-        _this.verCheck = false;
-        _this.downloadprocess = false;
+        _this.verCheck = false
+        _this.downloadprocess = false
       } else {
-        _this.downloadprocess = true;
+        _this.downloadprocess = true
       }
     },
-    NewVersionUpdate() {
-      var _this = this;
-      require('electron').ipcRenderer.send('updateNow');
-      _this.updateNow = false;
+    NewVersionUpdate () {
+      var _this = this
+      require('electron').ipcRenderer.send('updateNow')
+      _this.updateNow = false
     },
-    isLoggedIn() {
+    isLoggedIn () {
       if (this.$q.localStorage.getItem('openid')) {
-        this.login = true;
+        this.login = true
       } else {
-        this.register = true;
+        this.register = true
       }
     }
   },
-  created() {
-    var _this = this;
+  created () {
+    var _this = this
     if (LocalStorage.has('openid')) {
-      _this.openid = LocalStorage.getItem('openid');
-      _this.activeTab = LocalStorage.getItem('login_mode');
+      _this.openid = LocalStorage.getItem('openid')
+      _this.activeTab = LocalStorage.getItem('login_mode')
     } else {
-      _this.openid = '';
-      LocalStorage.set('openid', '');
+      _this.openid = ''
+      LocalStorage.set('openid', '')
     }
     if (LocalStorage.has('login_name')) {
-      _this.login_name = LocalStorage.getItem('login_name');
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
-      _this.login_name = '';
-      LocalStorage.set('login_name', '');
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
     }
     if (LocalStorage.has('auth')) {
-      _this.authin = '1';
-      _this.initWebSocket();
-      _this.staffType();
-      _this.Readnum();
+      _this.authin = '1'
+      _this.initWebSocket()
+      _this.staffType()
+      _this.Readnum()
     } else {
-      LocalStorage.set('staff_type', 'Admin');
-      _this.authin = '0';
-      _this.isLoggedIn();
+      LocalStorage.set('staff_type', 'Admin')
+      _this.authin = '0'
+      _this.isLoggedIn()
     }
     if (LocalStorage.has('device')) {
-      _this.device = LocalStorage.getItem('device');
+      _this.device = LocalStorage.getItem('device')
     } else {
-      _this.device = 0;
+      _this.device = 0
     }
     if (LocalStorage.has('device_name')) {
-      _this.device_name = LocalStorage.getItem('device_name');
+      _this.device_name = LocalStorage.getItem('device_name')
     } else {
-      _this.device_name = '';
+      _this.device_name = ''
     }
   },
-  mounted() {
-    var _this = this;
-    _this.link = localStorage.getItem('menulink');
+  mounted () {
+    var _this = this
+    _this.link = localStorage.getItem('menulink')
     if (Platform.is.electron) {
       if (LocalStorage.has('openid')) {
         versioncheck('vcheck/' + '?openid=' + LocalStorage.getItem('openid') + '&platform=' + process.platform)
           .then(res => {
             if (!res.detail) {
-              const ipcRenderer = require('electron').ipcRenderer;
+              const ipcRenderer = require('electron').ipcRenderer
               window.setTimeout(() => {
-                ipcRenderer.send('checkForUpdate', res.upurl.toString());
-              }, 1000);
+                ipcRenderer.send('checkForUpdate', res.upurl.toString())
+              }, 1000)
               ipcRenderer.on('message', (event, arg) => {
                 if (arg.cmd === 'update-available') {
-                  _this.verCheck = true;
-                  _this.version = arg.message.version;
+                  _this.verCheck = true
+                  _this.version = arg.message.version
                 } else if (arg.cmd === 'download-progress') {
-                  _this.processpercent = arg.message.percent;
+                  _this.processpercent = arg.message.percent
                 } else if (arg.cmd === 'update-downloaded') {
-                  _this.processpercent = 100;
-                  _this.verCheck = false;
-                  _this.downloadprocess = false;
-                  _this.updateNow = true;
+                  _this.processpercent = 100
+                  _this.verCheck = false
+                  _this.downloadprocess = false
+                  _this.updateNow = true
                 } else if (arg.cmd === 'check') {
-                  console.log(arg);
+                  console.log(arg)
                 }
-              });
-              clearTimeout();
+              })
+              clearTimeout()
             }
           })
           .catch(err => {
-            console.log(err);
-          });
+            console.log(err)
+          })
       }
     }
     Bus.$on('needLogin', val => {
-      _this.isLoggedIn();
-    });
+      _this.isLoggedIn()
+    })
   },
-  updated() {
+  updated () {
     if (document.getElementById('chat_scroll')) {
-      document.getElementById('chat_scroll').scrollTop = document.getElementById('chat_scroll').scrollHeight;
+      document.getElementById('chat_scroll').scrollTop = document.getElementById('chat_scroll').scrollHeight
     } else if (document.getElementById('m_chat_scroll')) {
-      document.getElementById('m_chat_scroll').scrollTop = document.getElementById('m_chat_scroll').scrollHeight;
+      document.getElementById('m_chat_scroll').scrollTop = document.getElementById('m_chat_scroll').scrollHeight
     }
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (Platform.is.electron) {
-      require('electron').ipcRenderer.removeAllListeners(['message', 'updateNow', 'downloadUpdate', 'checkForUpdate']);
+      require('electron').ipcRenderer.removeAllListeners(['message', 'updateNow', 'downloadUpdate', 'checkForUpdate'])
     }
-    Bus.$off('needLogin');
+    Bus.$off('needLogin')
   },
-  destroyed() {
+  destroyed () {
     if (ws) {
       if (ws.readyState === ws.OPEN) {
-        ws.close();
+        ws.close()
       }
     }
   },
   watch: {
-    lang(lang) {
-      var _this = this;
-      LocalStorage.set('lang', lang);
-      _this.$i18n.locale = lang;
+    lang (lang) {
+      var _this = this
+      LocalStorage.set('lang', lang)
+      _this.$i18n.locale = lang
     },
-    login(val) {
+    login (val) {
       if (val) {
         if (this.activeTab === 'admin') {
-          this.admin = true;
+          this.admin = true
         } else {
-          this.admin = false;
+          this.admin = false
         }
       }
     }
   }
-};
+}
 </script>
 <style>
 .tabs .q-tab__indicator {
