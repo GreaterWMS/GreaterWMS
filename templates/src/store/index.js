@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import fabchange from './fabchange'
 import bardata from './bardata'
+import scanedsolve from './scanedsolve'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,8 @@ export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
       fabchange,
-      bardata
+      bardata,
+      scanedsolve
     },
 
     // enable strict mode (adds overhead!)
