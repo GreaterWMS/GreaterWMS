@@ -172,7 +172,7 @@
 
 <script>
 import { getauth } from 'boot/axios_request'
-import { LocalStorage, Screen } from 'quasar'
+import { LocalStorage, Screen, throttle } from 'quasar'
 
 var sendCommandResults = 'false'
 
@@ -454,23 +454,13 @@ export default {
     }
   },
   methods: {
-    datachange () {
-      var _this = this
+    datachange (e) {
       if (LocalStorage.has('auth')) {
-        getauth('scanner/?bar_code=' + _this.barscan, {
+        getauth('scanner/?bar_code=' + e, {
         }).then(res => {
-          if (res.results[0].mode === 'BINSET') {
-            _this.bin_scan = res.results[0].code
-            _this.goods_scan = ''
-          } else if (res.results[0].mode === 'GOODS') {
-            _this.goods_scan = res.results[0].code
-          }
+          return res
         }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
+          return { detai: err.detail }
         })
       }
     }
@@ -494,7 +484,10 @@ export default {
       },
       set (val) {
         console.log('scaned_y', val)
+        this.$store.commit('bardata/barScanned', '')
         this.$store.commit('bardata/barScanned', val)
+        var barapi = this.datachange(val)
+        barapi.push('111')
       }
     }
   },
@@ -517,6 +510,7 @@ export default {
     } else {
       _this.authin = '0'
     }
+    _this.datachange = throttle(_this.datachange, 200)
   },
   mounted () {
     var _this = this
@@ -559,6 +553,9 @@ export default {
   },
   beforeDestroy () {
     window.removeEventListener('deviceready', scanner.onDeviceReady, false)
+  },
+  destroyed () {
+    unregisterBroadcastReceiver()
   }
 }
 </script>
