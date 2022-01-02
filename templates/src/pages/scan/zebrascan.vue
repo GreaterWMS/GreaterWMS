@@ -171,7 +171,7 @@
 </template>
 
 <script>
-import { getauth } from 'boot/axios_request'
+import { scangetauth, baseurl } from 'boot/axios_request'
 import { LocalStorage, Screen, throttle } from 'quasar'
 
 var sendCommandResults = 'false'
@@ -185,6 +185,7 @@ var scanner = {
   },
   onDeviceReady: function () {
     scanner.receivedEvent('deviceready')
+    console.log(0, window.Media)
     registerBroadcastReceiver()
     determineVersion()
   },
@@ -225,7 +226,7 @@ function setDecoders () {
       PLUGIN_NAME: 'BARCODE',
       PARAM_LIST: {
         // "current-device-id": this.selectedScannerId,
-        scanner_selection: 'auto',
+        scanner_selection: 'auto'
       }
     }
   }
@@ -373,6 +374,22 @@ function barcodeScanned (scanData, timeOfScan) {
   document.getElementById('scannedBarcodes').dispatchEvent(new Event('input'))
 }
 
+function playSuccAudio () {
+  var my_media = new Media(baseurl + 'media/scanned.mp3')
+  my_media.play()
+  setTimeout(function () {
+    my_media.pause()
+  }, 1000)
+}
+
+function playFailAudio () {
+  var my_media = new Media(baseurl + 'media/error.wav')
+  my_media.play()
+  setTimeout(function () {
+    my_media.pause()
+  }, 1000)
+}
+
 export default {
   name: 'Pagezebra_scanbase',
   data () {
@@ -380,7 +397,7 @@ export default {
       openid: '',
       login_name: '',
       authin: '0',
-      pathname: 'cyclecount/',
+      pathname: 'scan/',
       separator: 'cell',
       loading: false,
       width: '',
@@ -450,17 +467,38 @@ export default {
         bottom: '',
         left: '',
         right: ''
-      },
+      }
     }
   },
   methods: {
     datachange (e) {
-      if (LocalStorage.has('auth')) {
-        getauth('scanner/?bar_code=' + e, {
+      var _this = this
+      if (_this.barscan !== '') {
+        scangetauth('scanner/list/' + e + '/', {
         }).then(res => {
-          return res
+          if (!res.detail) {
+            playSuccAudio()
+            _this.scaneddata = res
+          } else {
+            playFailAudio()
+            navigator.vibrate(100)
+            _this.$q.notify({
+              message: res.detail,
+              position: 'top',
+              icon: 'close',
+              color: 'negative'
+            })
+          }
         }).catch(err => {
-          return { detai: err.detail }
+          playFailAudio()
+          navigator.vibrate(100)
+          console.log(err)
+          _this.$q.notify({
+            message: err.detail,
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
         })
       }
     }
@@ -468,26 +506,37 @@ export default {
   computed: {
     fab: {
       get () {
-        console.log('x', this.$store.state.fabchange.fab)
+        console.log('1', this.$store.state.fabchange.fab)
         return this.$store.state.fabchange.fab
       },
       set (val) {
-        console.log('y', val)
+        console.log('2', val)
         this.$store.commit('bardata/barScanned', '')
+        this.$store.commit('scanedsolve/scanedData', '')
         this.$store.commit('fabchange/fabChanged', val)
       }
     },
     barscan: {
       get () {
-        console.log('scaned_x', this.$store.state.bardata.barscan)
+        console.log('3', this.$store.state.bardata.barscan)
         return this.$store.state.bardata.barscan
       },
       set (val) {
-        console.log('scaned_y', val)
+        console.log('4', val)
         this.$store.commit('bardata/barScanned', '')
         this.$store.commit('bardata/barScanned', val)
-        var barapi = this.datachange(val)
-        barapi.push('111')
+        this.datachange(val)
+      }
+    },
+    scaneddata: {
+      get () {
+        console.log('5', this.$store.state.scanedsolve.scaneddata)
+        return this.$store.state.scanedsolve.scaneddata
+      },
+      set (val) {
+        console.log('6', val)
+        this.$store.commit('scanedsolve/scanedData', '')
+        this.$store.commit('scanedsolve/scanedData', val)
       }
     }
   },
@@ -555,7 +604,6 @@ export default {
     window.removeEventListener('deviceready', scanner.onDeviceReady, false)
   },
   destroyed () {
-    unregisterBroadcastReceiver()
   }
 }
 </script>

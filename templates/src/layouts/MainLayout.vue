@@ -612,7 +612,7 @@ export default {
                     icon: 'check',
                     color: 'green'
                   })
-                  _this.$router.push('/web')
+                  _this.$router.push({ name: 'web_index' })
                 } else {
                   _this.$q.notify({
                     message: "No User's Data Or Check Code Wrong",
@@ -666,7 +666,7 @@ export default {
                   icon: 'check',
                   color: 'green'
                 })
-                _this.$router.push('/web')
+                _this.$router.push({ name: 'web_index' })
               } else {
                 _this.$q.notify({
                   message: res.msg,
@@ -698,7 +698,7 @@ export default {
         color: 'negative'
       })
       // _this.staffType();
-      _this.$router.push('/web')
+      _this.$router.push({ name: 'web_index' })
     },
     Register () {
       var _this = this
@@ -724,7 +724,7 @@ export default {
               color: 'green'
             })
             _this.staffType()
-            _this.$router.push('/web')
+            _this.$router.push({ name: 'web_index' })
           } else {
             _this.$q.notify({
               message: res.msg,
