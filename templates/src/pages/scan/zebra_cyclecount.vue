@@ -1,11 +1,11 @@
 <template>
   <q-page>
+    <q-input v-model="scaneddata.request_time" style="display:none"></q-input>
     <q-card v-show="!fab" :style="{ width: width,  height: height }">
       <q-card-section>
         <q-btn-group push>
           <q-btn :label="$t('refresh')" @click="reFresh()" />
           <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')"  />
-          <q-btn :label="barscan"></q-btn>
         </q-btn-group>
       </q-card-section>
       <q-scroll-area
@@ -102,6 +102,9 @@ export default {
       _this.bin_scan = ''
       _this.goods_scan = ''
       _this.getList()
+    },
+    barshow () {
+      console.log(10, this.scaneddata)
     }
   },
   created () {
@@ -136,18 +139,19 @@ export default {
   computed: {
     fab: {
       get () {
-        console.log('xxx', this.$store.state.fabchange.fab)
+        console.log('7', this.$store.state.fabchange.fab)
         return this.$store.state.fabchange.fab
       }
     },
-    barscan: {
+    scaneddata: {
       get () {
-        console.log('xxx', this.$store.state.bardata.barscan)
-        return this.$store.state.bardata.barscan
+        console.log('8', this.$store.state.scanedsolve.scaneddata)
+        return this.$store.state.scanedsolve.scaneddata
       }
     }
   },
   updated () {
+    console.log(11, this.scaneddata)
   },
   beforeDestroy () {
   },

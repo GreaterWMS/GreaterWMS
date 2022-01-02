@@ -13,8 +13,7 @@ export default {
   name: 'initial',
   data () {
     return {
-      webto: '',
-      platform: ''
+      webto: ''
     }
   },
   methods: {
@@ -25,23 +24,23 @@ export default {
       if (window.device) {
         if (window.device.manufacturer === 'Zebra Technologies') {
           LocalStorage.set('device', 2)
-          _this.webto = '/scanner/zebra'
+          _this.webto = 'zebrascan'
         } else if (window.device.manufacturer === 'Urovo') {
           LocalStorage.set('device', 2)
-          _this.webto = '/scanner/urovo'
+          _this.webto = 'urovoscan'
         } else {
           LocalStorage.set('device', 1)
-          _this.webto = '/mobile'
+          _this.webto = 'mobile_index'
         }
       }
     } else if (Platform.is.mobile) {
       LocalStorage.set('device', 1)
-      _this.webto = '/mobile'
+      _this.webto = 'mobile_index'
     } else {
       LocalStorage.set('device', 0)
-      _this.webto = '/web'
+      _this.webto = 'web_index'
     }
-    _this.$router.push(_this.webto)
+    _this.$router.push({ name: _this.webto })
   }
 }
 </script>
