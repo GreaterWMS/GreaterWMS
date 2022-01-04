@@ -1,9 +1,10 @@
 <template>
-  <q-page>
+  <div>
+    <q-input v-model="scaneddata.request_time" style="display:none" />
     <q-card v-show="!fab" flat :style="{ width: width,  height: height }">
       <q-card-section style="height: 75px">
         <div class="text-h6">{{ goods_code_label }}</div>
-        <div class="text-subtitle2">{{ data_list.goods_code }}</div>
+        <div class="text-subtitle2">{{ goods_scan.goods_code }}</div>
       </q-card-section>
       <q-separator />
       <q-scroll-area
@@ -15,128 +16,128 @@
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_desc_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_desc }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_desc }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_supplier_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_supplier }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_supplier }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_weight_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_weight }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_weight }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_w_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_w }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_w }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_d_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_d }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_d }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_h_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_h }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_h }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ unit_volume_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.unit_volume }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.unit_volume }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_unit_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_unit }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_unit }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_class_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_class }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_class }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_brand_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_brand }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_brand }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_color_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_color }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_color }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_shape_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_shape }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_shape }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_specs_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_specs }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_specs }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_origin_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_origin }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_origin }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_cost_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_cost }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_cost }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ goods_price_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.goods_price }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.goods_price }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ creater_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.creater }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.creater }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ create_time_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.create_time }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.create_time }}</q-item-label>
             </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
               <q-item-label>{{ updatetime_label }}</q-item-label>
-              <q-item-label caption>{{ data_list.update_time }}</q-item-label>
+              <q-item-label caption>{{ goods_scan.update_time }}</q-item-label>
             </q-item-section>
           </q-item>
         </q-list>
       </q-scroll-area>
       <q-separator dark />
     </q-card>
-  </q-page>
+  </div>
 </template>
 <router-view />
 
 <script>
 import { getauth } from 'boot/axios_request'
-import { LocalStorage, Screen, throttle } from 'quasar'
+import { LocalStorage, Screen } from 'quasar'
 
 export default {
   name: 'Pagezebra_goodslist',
@@ -146,13 +147,10 @@ export default {
       login_name: '',
       authin: '0',
       pathname: 'goods/',
-      separator: 'cell',
-      loading: false,
       height: '',
       width: '',
       scroll_height: '',
-      table_list: [],
-      data_list: {},
+      goods_scan: {},
       goods_code_label: this.$t('goods.view_goodslist.goods_code'),
       goods_desc_label: this.$t('goods.view_goodslist.goods_desc'),
       goods_supplier_label: this.$t('goods.view_goodslist.goods_supplier'),
@@ -186,73 +184,56 @@ export default {
         backgroundColor: '#EEEEEE',
         width: '9px',
         opacity: 0.2
-      },
-      barscan: '',
-      goods_scan: ''
+      }
     }
   },
   methods: {
-    datachange () {
+    getGoodsList (e) {
       var _this = this
-      if (LocalStorage.has('auth')) {
-        getauth('scanner/?bar_code=' + _this.barscan, {
-        }).then(res => {
-          _this.barscan = res.results[0].code
-          if (res.results[0].mode === 'BINSET') {
-            _this.bin_scan = res.results[0].code
-            _this.goods_scan = ''
-          } else if (res.results[0].mode === 'GOODS') {
-            _this.goods_scan = res.results[0].code
-            _this.countAdd(_this.goods_scan)
-          }
-        }).catch(err => {
+      getauth(_this.pathname + '?goods_code=' + e, {
+      }).then(res => {
+        if (res.results.length === 0) {
+          navigator.vibrate(100)
           _this.$q.notify({
-            message: err.detail,
+            message: 'No Goods Data',
+            position: 'top',
             icon: 'close',
             color: 'negative'
           })
-        })
-      }
-    },
-    getList () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname, {
-        }).then(res => {
-          _this.table_list = res.results
-        }).catch(err => {
+        } else if (res.results.length === 1) {
+          _this.goods_scan = res.results[0]
+        } else {
+          navigator.vibrate(100)
           _this.$q.notify({
-            message: err.detail,
+            message: 'Repeating Data',
+            position: 'top',
             icon: 'close',
             color: 'negative'
           })
+        }
+      }).catch(err => {
+        navigator.vibrate(100)
+        _this.$q.notify({
+          message: err.detail,
+          position: 'top',
+          icon: 'close',
+          color: 'negative'
         })
-      }
-    },
-    reFresh () {
-      var _this = this
-      _this.barscan = ''
-      _this.bin_scan = ''
-      _this.goods_scan = ''
-      _this.getList()
+      })
     }
   },
   computed: {
     fab: {
       get () {
+        console.log('7', this.$store.state.fabchange.fab)
         return this.$store.state.fabchange.fab
       }
+    },
+    scaneddata: {
+      get () {
+        return this.$store.state.scanedsolve.scaneddata
+      }
     }
-    // barscan: {
-    //   get () {
-    //     console.log('scaned_x', this.$store.state.datashare.barscan)
-    //     return this.$store.state.datashare.barscan
-    //   },
-    //   set (val) {
-    //     console.log('scaned_y', val)
-    //     this.$store.commit('datashare/updateBarscan', val)
-    //   }
-    // }
   },
   created () {
     var _this = this
@@ -273,7 +254,6 @@ export default {
     } else {
       _this.authin = '0'
     }
-    _this.datachange = throttle(_this.datachange, 200)
   },
   mounted () {
     var _this = this
@@ -282,6 +262,21 @@ export default {
     _this.scroll_height = Screen.height - 175 + '' + 'px'
     _this.barscan = ''
     _this.goods_scan = ''
+  },
+  updated () {
+    var _this = this
+    if (_this.scaneddata !== '') {
+      if (_this.scaneddata.mode === 'GOODS') {
+        _this.getGoodsList(_this.scaneddata.code)
+      } else {
+        _this.$q.notify({
+          message: 'No Goods Data',
+          position: 'top',
+          icon: 'close',
+          color: 'negative'
+        })
+      }
+    }
   },
   beforeDestroy () {
   }

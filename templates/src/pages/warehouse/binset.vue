@@ -38,22 +38,7 @@
         </template>
         <template v-slot:body="props">
           <q-tr :props="props">
-            <template v-if="props.row.id === editid">
-              <q-td key="bin_name" :props="props">
-                <q-input
-                  dense
-                  outlined
-                  square
-                  v-model="editFormData.bin_name"
-                  :label="$t('warehouse.view_binset.bin_name')"
-                  autofocus
-                  :rules="[val => (val && val.length > 0) || error1]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
-              <q-td key="bin_name" :props="props">{{ props.row.bin_name }}</q-td>
-            </template>
+            <q-td key="bin_name" :props="props">{{ props.row.bin_name }}</q-td>
             <template v-if="props.row.id === editid">
               <q-td key="bin_size" :props="props">
                 <q-select
