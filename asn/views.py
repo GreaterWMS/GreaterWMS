@@ -312,7 +312,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                     serializer = self.get_serializer(data=check_data)
                     serializer.is_valid(raise_exception=True)
                 asn_detail_list = AsnDetailModel.objects.filter(openid=self.request.auth.openid,
-                                              asn_code=str(data['asn_code']))
+                                              asn_code=str(data['asn_code']), is_delete=False)
                 for v in range(len(asn_detail_list)):
                     goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
                                                                 goods_code=str(asn_detail_list[v].goods_code)).first()
@@ -323,7 +323,8 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                     if goods_qty_change.asn_stock < 0:
                         goods_qty_change.asn_stock = 0
                     goods_qty_change.save()
-                asn_detail_list.delete()
+                    asn_detail_list[v].is_delete = True
+                    asn_detail_list[v].save()
                 post_data_list = []
                 weight_list = []
                 volume_list = []
@@ -435,7 +436,8 @@ class AsnViewPrintViewSet(viewsets.ModelViewSet):
         else:
             context = {}
             asn_detail_list = AsnDetailModel.objects.filter(openid=self.request.auth.openid,
-                                                            asn_code=qs.asn_code)
+                                                            asn_code=qs.asn_code,
+                                                            is_delete=False)
             asn_detail = serializers.ASNDetailGetSerializer(asn_detail_list, many=True)
             supplier_detail = supplier.objects.filter(openid=self.request.auth.openid,
                                                             supplier_name=qs.supplier).first()

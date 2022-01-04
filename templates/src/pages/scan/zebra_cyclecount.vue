@@ -1,6 +1,6 @@
 <template>
-  <q-page>
-    <q-input v-model="scaneddata.request_time" style="display:none"></q-input>
+  <div>
+    <q-input v-model="scaneddata.request_time" style="display:none" />
     <q-card v-show="!fab" :style="{ width: width,  height: height }">
       <q-card-section>
         <q-btn-group push>
@@ -38,7 +38,7 @@
       </q-scroll-area>
       <q-separator dark />
     </q-card>
-  </q-page>
+  </div>
 </template>
 <router-view />
 
@@ -96,15 +96,57 @@ export default {
         })
       }
     },
+    getGoodsList (e) {
+      var _this = this
+      getauth('goods/?goods_code=' + e, {
+      }).then(res => {
+        if (res.results.length === 0) {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'No Goods Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        } else if (res.results.length === 1) {
+          _this.goods_scan = res.results[0]
+        } else {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'Repeating Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
+      }).catch(err => {
+        navigator.vibrate(100)
+        _this.$q.notify({
+          message: err.detail,
+          position: 'top',
+          icon: 'close',
+          color: 'negative'
+        })
+      })
+    },
     reFresh () {
       var _this = this
       _this.barscan = ''
       _this.bin_scan = ''
       _this.goods_scan = ''
       _this.getList()
+    }
+  },
+  computed: {
+    fab: {
+      get () {
+        return this.$store.state.fabchange.fab
+      }
     },
-    barshow () {
-      console.log(10, this.scaneddata)
+    scaneddata: {
+      get () {
+        return this.$store.state.scanedsolve.scaneddata
+      }
     }
   },
   created () {
@@ -132,26 +174,44 @@ export default {
     _this.width = Screen.width * 1 + '' + 'px'
     _this.height = Screen.height - 50 + '' + 'px'
     _this.scroll_height = Screen.height - 175 + '' + 'px'
+    _this.barscan = ''
     _this.bin_scan = ''
     _this.goods_scan = ''
     _this.getList()
   },
-  computed: {
-    fab: {
-      get () {
-        console.log('7', this.$store.state.fabchange.fab)
-        return this.$store.state.fabchange.fab
-      }
-    },
-    scaneddata: {
-      get () {
-        console.log('8', this.$store.state.scanedsolve.scaneddata)
-        return this.$store.state.scanedsolve.scaneddata
-      }
-    }
-  },
   updated () {
-    console.log(11, this.scaneddata)
+    var _this = this
+    if (_this.scaneddata !== '') {
+      if (_this.scaneddata.mode === 'BINSET') {
+        _this.bin_scan = ''
+        _this.bin_scan = _this.scaneddata.code
+      } else if (_this.scaneddata.mode === 'GOODS') {
+        if (_this.bin_scan !== '') {
+          _this.getGoodsList(_this.scaneddata.code)
+        } else {
+          _this.$q.notify({
+            message: 'No Bin Query Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
+      } else {
+        _this.$q.notify({
+          message: 'No Bin Query Data',
+          position: 'top',
+          icon: 'close',
+          color: 'negative'
+        })
+      }
+    } else {
+      _this.$q.notify({
+        message: 'No Bin Query Data',
+        position: 'top',
+        icon: 'close',
+        color: 'negative'
+      })
+    }
   },
   beforeDestroy () {
   },

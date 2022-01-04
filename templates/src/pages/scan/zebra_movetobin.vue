@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <q-input v-model="scaneddata.request_time" style="display:none" />
     <q-card v-show="!fab" flat :style="{ width: width,  height: height }">
       <q-card-section>
         <q-bar class="bg-white q-mb-sm shadow-1 ">
@@ -33,6 +35,7 @@
         </q-markup-table>
       </q-scroll-area>
     </q-card>
+    </div>
 </template>
 <router-view />
 
@@ -77,59 +80,32 @@ export default {
     }
   },
   methods: {
-    datachange () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        getauth('scanner/?bar_code=' + _this.barscan, {
-        }).then(res => {
-          if (res.results[0].mode === 'BINSET') {
-            _this.bin_scan = res.results[0].code
-            _this.goods_scan = ''
-          } else if (res.results[0].mode === 'GOODS') {
-            _this.goods_scan = res.results[0].code
-            _this.countAdd(_this.goods_scan)
-          }
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      }
-    },
     getList () {
       var _this = this
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname, {
-        }).then(res => {
-          _this.table_list = res.results
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
+      getauth(_this.pathname, {
+      }).then(res => {
+        _this.table_list = res.results
+      }).catch(err => {
+        _this.$q.notify({
+          message: err.detail,
+          icon: 'close',
+          color: 'negative'
         })
-      }
+      })
     }
   },
   computed: {
     fab: {
       get () {
+        console.log('7', this.$store.state.fabchange.fab)
         return this.$store.state.fabchange.fab
       }
+    },
+    scaneddata: {
+      get () {
+        return this.$store.state.scanedsolve.scaneddata
+      }
     }
-    // barscan: {
-    //   get () {
-    //     console.log('scaned_x', this.$store.state.datashare.barscan)
-    //     return this.$store.state.datashare.barscan
-    //   },
-    //   set (val) {
-    //     console.log('scaned_y', val)
-    //     this.$store.commit('datashare/updateBarscan', val)
-    //   }
-    // }
   },
   created () {
     var _this = this
@@ -156,6 +132,10 @@ export default {
     _this.width = Screen.width * 1 + '' + 'px'
     _this.height = Screen.height - 50 + '' + 'px'
     _this.scroll_height = Screen.height - 200 + '' + 'px'
+  },
+  updated () {
+  },
+  beforeDestroy () {
   }
 }
 </script>
