@@ -216,6 +216,9 @@ class APIViewSet(viewsets.ModelViewSet):
                                         if goods_origin.objects.filter(openid=self.request.auth.openid,
                                                                        goods_origin=data['goods_origin'],
                                                                        is_delete=False).exists():
+                                            scanner.objects.filter(openid=self.request.auth.openid,
+                                                                   mode='GOODS',
+                                                                   code=qs.goods_code).update(code=str(data['goods_code']))
                                             serializer = self.get_serializer(qs, data=data)
                                             serializer.is_valid(raise_exception=True)
                                             serializer.save()
@@ -264,6 +267,10 @@ class APIViewSet(viewsets.ModelViewSet):
                                         if goods_origin.objects.filter(openid=self.request.auth.openid,
                                                                        goods_origin=data['goods_origin'],
                                                                        is_delete=False).exists():
+                                            scanner.objects.filter(openid=self.request.auth.openid,
+                                                                   mode='GOODS',
+                                                                   code=qs.goods_code).update(
+                                                code=str(data['goods_code']))
                                             serializer = self.get_serializer(qs, data=data, partial=True)
                                             serializer.is_valid(raise_exception=True)
                                             serializer.save()

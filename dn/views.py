@@ -41,7 +41,6 @@ class SannerDnDetailView(viewsets.ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         bar_code = request.GET.get('bar_code')
-        print(bar_code)
         DnList_obj=DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False,dn_status=3,bar_code=bar_code).first()
         queryset = DnDetailModel.objects.filter(openid=self.request.auth.openid,dn_code=DnList_obj.dn_code,is_delete=False)
         page = self.paginate_queryset(queryset)
@@ -322,7 +321,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                     serializer = self.get_serializer(data=check_data)
                     serializer.is_valid(raise_exception=True)
                 dn_detail_list = DnDetailModel.objects.filter(openid=self.request.auth.openid,
-                                              dn_code=str(data['dn_code']))
+                                              dn_code=str(data['dn_code']), is_delete=False)
                 for v in range(len(dn_detail_list)):
                     goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
                                                                 goods_code=str(dn_detail_list[v].goods_code)).first()
@@ -469,7 +468,8 @@ class DnViewPrintViewSet(viewsets.ModelViewSet):
         else:
             context = {}
             dn_detail_list = DnDetailModel.objects.filter(openid=self.request.auth.openid,
-                                                            dn_code=qs.dn_code)
+                                                          dn_code=qs.dn_code,
+                                                          is_delete=False)
             dn_detail = serializers.DNDetailGetSerializer(dn_detail_list, many=True)
             customer_detail = customer.objects.filter(openid=self.request.auth.openid,
                                                             customer_name=qs.customer).first()
