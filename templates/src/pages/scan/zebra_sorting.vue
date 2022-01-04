@@ -1,5 +1,6 @@
 <template>
-  <q-page>
+  <div>
+    <q-input v-model="scaneddata.request_time" style="display:none" />
     <q-card v-show="!fab" flat :style="{ width: width,  height: height }">
       <q-card-section>
         <q-btn-group push>
@@ -35,16 +36,16 @@
       </q-scroll-area>
       <q-separator dark />
     </q-card>
-  </q-page>
+  </div>
 </template>
 <router-view />
 
 <script>
 import { getauth, putauth } from 'boot/axios_request'
-import { LocalStorage, Screen, throttle } from 'quasar'
+import { LocalStorage, Screen } from 'quasar'
 
 export default {
-  name: 'Pageurovo_sorting',
+  name: 'Pagezebra_sorting',
   data () {
     return {
       openid: '',
@@ -87,50 +88,18 @@ export default {
     }
   },
   methods: {
-    datachange () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        getauth('scanner/?bar_code=' + _this.barscan, {
-        }).then(res => {
-          _this.barscan = res.results[0].code
-          if (res.results[0].mode === 'BINSET') {
-            _this.bin_scan = res.results[0].code
-            _this.goods_scan = ''
-          } else if (res.results[0].mode === 'GOODS') {
-            _this.goods_scan = res.results[0].code
-            _this.countAdd(_this.goods_scan)
-          }
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      }
-    },
-    countAdd (e) {
-      var _this = this
-      _this.table_list.filter(function (value, index, array) {
-        if (value.bin_name === _this.bin_scan && value.goods_code === e) {
-          _this.table_list[index].physical_inventory += 1
-        }
-      })
-    },
     getList () {
       var _this = this
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname, {
-        }).then(res => {
-          _this.table_list = res.results
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
+      getauth(_this.pathname, {
+      }).then(res => {
+        _this.table_list = res.results
+      }).catch(err => {
+        _this.$q.notify({
+          message: err.detail,
+          icon: 'close',
+          color: 'negative'
         })
-      }
+      })
     },
     reFresh () {
       var _this = this
@@ -138,47 +107,20 @@ export default {
       _this.bin_scan = ''
       _this.goods_scan = ''
       _this.getList()
-    },
-    repeatCount (e) {
-      var _this = this
-      _this.table_list[e].physical_inventory = 0
-    },
-    ConfirmCount () {
-      var _this = this
-      if (LocalStorage.has('auth')) {
-        putauth(_this.pathname, _this.table_list).then(res => {
-          _this.table_list = []
-          _this.$q.notify({
-            message: 'Success Confirm Cycle Count',
-            icon: 'check',
-            color: 'green'
-          })
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-      }
     }
   },
   computed: {
     fab: {
       get () {
+        console.log('7', this.$store.state.fabchange.fab)
         return this.$store.state.fabchange.fab
       }
+    },
+    scaneddata: {
+      get () {
+        return this.$store.state.scanedsolve.scaneddata
+      }
     }
-    // barscan: {
-    //   get () {
-    //     console.log('scaned_x', this.$store.state.datashare.barscan)
-    //     return this.$store.state.datashare.barscan
-    //   },
-    //   set (val) {
-    //     console.log('scaned_y', val)
-    //     this.$store.commit('datashare/updateBarscan', val)
-    //   }
-    // }
   },
   created () {
     var _this = this
@@ -199,7 +141,6 @@ export default {
     } else {
       _this.authin = '0'
     }
-    _this.datachange = throttle(_this.datachange, 200)
   },
   mounted () {
     var _this = this

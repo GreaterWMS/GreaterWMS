@@ -1,5 +1,6 @@
 <template>
-  <q-page>
+  <div>
+    <q-input v-model="scaneddata.request_time" style="display:none" />
     <q-card v-show="!fab" flat :style="{ width: width, height: height }">
       <q-card-section>
         <q-bar class="bg-white q-mb-sm shadow-1 ">
@@ -33,13 +34,13 @@
         </q-markup-table>
       </q-scroll-area>
     </q-card>
-  </q-page>
+  </div>
 </template>
 <router-view />
 
 <script>
 import { getauth } from 'boot/axios_request'
-import { LocalStorage, throttle, Screen } from 'quasar'
+import { LocalStorage, Screen } from 'quasar'
 
 export default {
   name: 'Pagezebra_picking',
@@ -84,49 +85,6 @@ export default {
     }
   },
   methods: {
-    datachange () {
-      var _this = this
-      getauth('scanner/?bar_code=' + _this.barscan, {})
-        .then(res => {
-          if (res.results[0].mode === 'DN') {
-            _this.barscan = res.results[0].code
-            _this.goods_scan = ''
-            _this.dn_code = _this.barscan
-            _this.getList(_this.dn_code)
-            _this.id = res.results[0].id
-          } else if (res.results[0].mode === 'GOODS' && _this.dn_code) {
-            _this.goods_scan = res.results[0].code
-            _this.countAdd(_this.goods_scan)
-          } else {
-            if (!res.results) {
-              _this.$q.notify({
-                message: '发货单号不存在',
-                icon: 'close',
-                color: 'negative'
-              })
-            } else if (_this.dn_code) {
-              _this.$q.notify({
-                message: '请扫描发货通知单',
-                icon: 'close',
-                color: 'negative'
-              })
-            } else {
-              _this.$q.notify({
-                message: '请先扫描发货通知单',
-                icon: 'close',
-                color: 'negative'
-              })
-            }
-          }
-        })
-        .catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-    },
     getList (e) {
       var _this = this
       getauth('dn/pickinglistfilter/?dn_code__icontains=' + e, {})
@@ -152,19 +110,15 @@ export default {
   computed: {
     fab: {
       get () {
+        console.log('7', this.$store.state.fabchange.fab)
         return this.$store.state.fabchange.fab
       }
+    },
+    scaneddata: {
+      get () {
+        return this.$store.state.scanedsolve.scaneddata
+      }
     }
-    // barscan: {
-    //   get () {
-    //     console.log('scaned_x', this.$store.state.datashare.barscan)
-    //     return this.$store.state.datashare.barscan
-    //   },
-    //   set (val) {
-    //     console.log('scaned_y', val)
-    //     this.$store.commit('datashare/updateBarscan', val)
-    //   }
-    // }
   },
   created () {
     var _this = this
@@ -185,7 +139,6 @@ export default {
     } else {
       _this.authin = '0'
     }
-    _this.datachange = throttle(_this.datachange, 200)
   },
   mounted () {
     var _this = this
@@ -195,6 +148,8 @@ export default {
     _this.barscan = ''
     _this.bin_scan = ''
     _this.goods_scan = ''
+  },
+  updated () {
   },
   beforeDestroy () {
   }

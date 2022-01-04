@@ -379,14 +379,7 @@ function playSuccAudio () {
   my_media.play()
   setTimeout(function () {
     my_media.pause()
-  }, 1000)
-}
-
-function playFailAudio () {
-  var my_media = new Media(baseurl + 'media/error.wav')
-  my_media.play()
-  setTimeout(function () {
-    my_media.pause()
+    my_media.stop()
   }, 1000)
 }
 
@@ -480,7 +473,6 @@ export default {
             playSuccAudio()
             _this.scaneddata = res
           } else {
-            playFailAudio()
             navigator.vibrate(100)
             _this.$q.notify({
               message: res.detail,
@@ -490,7 +482,6 @@ export default {
             })
           }
         }).catch(err => {
-          playFailAudio()
           navigator.vibrate(100)
           console.log(err)
           _this.$q.notify({
@@ -506,11 +497,9 @@ export default {
   computed: {
     fab: {
       get () {
-        console.log('1', this.$store.state.fabchange.fab)
         return this.$store.state.fabchange.fab
       },
       set (val) {
-        console.log('2', val)
         this.$store.commit('bardata/barScanned', '')
         this.$store.commit('scanedsolve/scanedData', '')
         this.$store.commit('fabchange/fabChanged', val)
@@ -518,11 +507,9 @@ export default {
     },
     barscan: {
       get () {
-        console.log('3', this.$store.state.bardata.barscan)
         return this.$store.state.bardata.barscan
       },
       set (val) {
-        console.log('4', val)
         this.$store.commit('bardata/barScanned', '')
         this.$store.commit('bardata/barScanned', val)
         this.datachange(val)
@@ -530,11 +517,9 @@ export default {
     },
     scaneddata: {
       get () {
-        console.log('5', this.$store.state.scanedsolve.scaneddata)
         return this.$store.state.scanedsolve.scaneddata
       },
       set (val) {
-        console.log('6', val)
         this.$store.commit('scanedsolve/scanedData', '')
         this.$store.commit('scanedsolve/scanedData', val)
       }
@@ -597,8 +582,6 @@ export default {
     _this.fab8.left = ((((Screen.width - 50) / 6) - (Screen.width / 12 * 10)) / 2) + '' + 'px'
     _this.fab8.right = '0px'
     _this.barscan = ''
-    _this.bin_scan = ''
-    _this.goods_scan = ''
   },
   beforeDestroy () {
     window.removeEventListener('deviceready', scanner.onDeviceReady, false)
