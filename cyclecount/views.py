@@ -111,7 +111,7 @@ class CyclecountModeDayViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         data = self.request.data
         for i in range(len(data)):
-            scan_count_data = CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid,
+            scan_count_data = self.get_queryset().filter(openid=self.request.auth.openid,
                                                   t_code=data[i]['t_code']).first()
             scan_count_data.physical_inventory = scan_count_data.physical_inventory + data[i]['physical_inventory']
             scan_count_data.difference = data[i]['physical_inventory'] - data[i]['goods_qty']
