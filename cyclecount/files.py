@@ -3,7 +3,7 @@ from rest_framework_csv.renderers import CSVStreamingRenderer
 def file_headers():
     return [
         "cyclecount_status",
-        "bin_nam",
+        "bin_name",
         "goods_code",
         "goods_qty",
         "physical_inventory",
@@ -16,7 +16,7 @@ def file_headers():
 def cn_data_header():
     return dict([
         ('cyclecount_status', u'盘点状态'),
-        ('bin_nam', u'库位名称'),
+        ('bin_name', u'库位名称'),
         ('goods_code', u'商品编码'),
         ('goods_qty', u'现有数量'),
         ('physical_inventory', u'盘点数量'),

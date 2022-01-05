@@ -5,7 +5,7 @@
       <q-card-section>
         <q-btn-group push>
           <q-btn :label="$t('refresh')" @click="reFresh()" />
-          <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')"  />
+          <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCount()" />
         </q-btn-group>
       </q-card-section>
       <q-scroll-area
@@ -25,9 +25,9 @@
           <tbody>
           <template>
             <tr v-for='(item, index) in table_list' :key='index'>
-              <td class="text-left">{{ item.bin_name }}</td>
-              <td class="text-right">{{ item.goods_code }}</td>
-              <td class="text-right">{{ item.physical_inventory }}</td>
+              <td :class="{'scan-background text-left': item.bin_name === bin_scan && item.goods_name === goods_scan, 'text-left': item.bin_name !== bin_scan && item.goods_name !== goods_scan }">{{ item.bin_name }}</td>
+              <td :class="{'scan-background text-right': item.bin_name === bin_scan && item.goods_name === goods_scan, 'text-right': item.bin_name !== bin_scan && item.goods_name !== goods_scan }">{{ item.goods_code }}</td>
+              <td :class="{'scan-background text-right': item.bin_name === bin_scan && item.goods_name === goods_scan, 'text-right': item.bin_name !== bin_scan && item.goods_name !== goods_scan }">{{ item.physical_inventory }}</td>
               <td class="text-right">
                 <q-btn round flat push color="purple" icon="repeat" @click="repeatCount(index)" style="width: 50px" />
               </td>
@@ -43,7 +43,7 @@
 <router-view />
 
 <script>
-import { getauth } from 'boot/axios_request'
+import { getauth, putauth } from 'boot/axios_request'
 import { LocalStorage, Screen } from 'quasar'
 
 export default {
@@ -83,23 +83,22 @@ export default {
   methods: {
     getList () {
       var _this = this
-      if (LocalStorage.has('auth')) {
-        getauth(_this.pathname, {
-        }).then(res => {
-          _this.table_list = res.results
-        }).catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
+      getauth(_this.pathname, {
+      }).then(res => {
+        _this.table_list = res
+      }).catch(err => {
+        _this.$q.notify({
+          message: err.detail,
+          icon: 'close',
+          color: 'negative'
         })
-      }
+      })
     },
     getGoodsList (e) {
       var _this = this
       getauth('goods/?goods_code=' + e, {
       }).then(res => {
+        _this.goods_scan = ''
         if (res.results.length === 0) {
           navigator.vibrate(100)
           _this.$q.notify({
@@ -109,7 +108,21 @@ export default {
             color: 'negative'
           })
         } else if (res.results.length === 1) {
-          _this.goods_scan = res.results[0]
+          _this.table_list.filter(item => {
+            if (item.bin_name.includes(_this.bin_scan) && item.goods_code.includes(res.results[0].goods_code)) {
+              _this.goods_scan = res.results[0].goods_code
+              item.physical_inventory += 1
+              item.difference = item.physical_inventory - item.goods_qty
+            } else {
+              navigator.vibrate(100)
+              _this.$q.notify({
+                message: 'No Goods Data',
+                position: 'top',
+                icon: 'close',
+                color: 'negative'
+              })
+            }
+          })
         } else {
           navigator.vibrate(100)
           _this.$q.notify({
@@ -129,10 +142,68 @@ export default {
         })
       })
     },
+    getBinList (e) {
+      var _this = this
+      getauth('binset/?bin_name=' + e, {
+      }).then(res => {
+        if (res.results.length === 0) {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'No Bin Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        } else if (res.results.length === 1) {
+          _this.bin_scan = res.results[0].bin_name
+        } else {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'Repeating Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
+      }).catch(err => {
+        navigator.vibrate(100)
+        _this.$q.notify({
+          message: err.detail,
+          position: 'top',
+          icon: 'close',
+          color: 'negative'
+        })
+      })
+    },
+    repeatCount (e) {
+      var _this = this
+      _this.goods_scan = ''
+      _this.table_list[e].physical_inventory = 0
+    },
+    ConfirmCount () {
+      var _this = this
+      putauth(_this.pathname, _this.table_list).then(res => {
+        _this.reFresh()
+        _this.$q.notify({
+          message: 'Success Confirm Cycle Count',
+          position: 'top',
+          icon: 'check',
+          color: 'green'
+        })
+      }).catch(err => {
+        _this.$q.notify({
+          message: err.detail,
+          position: 'top',
+          icon: 'close',
+          color: 'negative'
+        })
+      })
+    },
     reFresh () {
       var _this = this
+      _this.table_list = []
       _this.barscan = ''
-      _this.bin_scan = ''
+      _this.bin_scan = 'a'
       _this.goods_scan = ''
       _this.getList()
     }
@@ -183,8 +254,7 @@ export default {
     var _this = this
     if (_this.scaneddata !== '') {
       if (_this.scaneddata.mode === 'BINSET') {
-        _this.bin_scan = ''
-        _this.bin_scan = _this.scaneddata.code
+        _this.getBinList(_this.scaneddata.mode)
       } else if (_this.scaneddata.mode === 'GOODS') {
         if (_this.bin_scan !== '') {
           _this.getGoodsList(_this.scaneddata.code)
@@ -198,19 +268,12 @@ export default {
         }
       } else {
         _this.$q.notify({
-          message: 'No Bin Query Data',
+          message: 'No Query Data',
           position: 'top',
           icon: 'close',
           color: 'negative'
         })
       }
-    } else {
-      _this.$q.notify({
-        message: 'No Bin Query Data',
-        position: 'top',
-        icon: 'close',
-        color: 'negative'
-      })
     }
   },
   beforeDestroy () {
