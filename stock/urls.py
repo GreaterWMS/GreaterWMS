@@ -6,7 +6,7 @@ path(r'list/', views.StockListViewSet.as_view({"get": "list"}), name="list"),
 re_path(r'^list/(?P<pk>\d+)/$', views.StockListViewSet.as_view({
     'get': 'retrieve'
 }), name="list_1"),
-path(r'bin/', views.StockBinViewSet.as_view({"get": "list"}), name="bin"),
+path(r'bin/', views.StockBinViewSet.as_view({"get": "list", 'put': 'update'}), name="bin"),
 re_path(r'^bin/(?P<pk>\d+)/$', views.StockBinViewSet.as_view({
     'get': 'retrieve',
     'post': 'create'
