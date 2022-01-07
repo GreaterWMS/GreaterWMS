@@ -127,12 +127,12 @@
 <router-view />
 
 <script>
-import { getauth, getfile, postauth } from 'boot/axios_request';
-import { date, exportFile, SessionStorage, LocalStorage } from 'quasar';
+import { getauth, postauth } from 'boot/axios_request'
+import { SessionStorage, LocalStorage } from 'quasar'
 
 export default {
   name: 'Pagestockbinlist',
-  data() {
+  data () {
     return {
       openid: '',
       login_name: '',
@@ -169,176 +169,175 @@ export default {
       moveForm: false,
       movedata: {},
       error1: this.$t('inbound.view_sortstock.error1')
-    };
+    }
   },
   methods: {
-    getList() {
-      var _this = this;
+    getList () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname, {})
           .then(res => {
-            _this.table_list = res.results;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getSearchList() {
-      var _this = this;
+    getSearchList () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + '?bin_name__icontains=' + _this.filter, {})
           .then(res => {
-            _this.table_list = res.results;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getListPrevious() {
-      var _this = this;
+    getListPrevious () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_previous, {})
           .then(res => {
-            _this.table_list = res.results;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
-      } else {
+            })
+          })
       }
     },
-    getListNext() {
-      var _this = this;
+    getListNext () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_next, {})
           .then(res => {
-            _this.table_list = res.results;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    reFresh() {
-      var _this = this;
-      _this.getList();
+    reFresh () {
+      var _this = this
+      _this.getList()
     },
-    BinMove(e) {
-      var _this = this;
-      _this.moveForm = true;
-      _this.movedata = e;
+    BinMove (e) {
+      var _this = this
+      _this.moveForm = true
+      _this.movedata = e
     },
-    MoveToBinCancel() {
-      var _this = this;
-      _this.moveForm = false;
-      _this.movedata = {};
+    MoveToBinCancel () {
+      var _this = this
+      _this.moveForm = false
+      _this.movedata = {}
     },
-    MoveToBinSubmit() {
-      var _this = this;
+    MoveToBinSubmit () {
+      var _this = this
       postauth(_this.pathname + _this.movedata.id + '/', _this.movedata)
         .then(res => {
-          _this.getList();
-          _this.MoveToBinCancel();
+          _this.getList()
+          _this.MoveToBinCancel()
           _this.$q.notify({
             message: 'Bin Moving Success',
             icon: 'check',
             color: 'green'
-          });
+          })
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    filterFn(val, update, abort) {
-      var _this = this;
+    filterFn (val, update, abort) {
+      var _this = this
       if (val.length < 1) {
-        abort();
-        return;
+        abort()
+        return
       }
       update(() => {
-        const needle = val.toLowerCase();
+        const needle = val.toLowerCase()
         getauth('binset/?bin_name__icontains=' + needle)
           .then(res => {
-            var binlist = [];
+            var binlist = []
             res.results.forEach(detail => {
-              binlist.push(detail.bin_name);
-            });
-            SessionStorage.set('bin_name', binlist);
-            _this.options = SessionStorage.getItem('bin_name');
+              binlist.push(detail.bin_name)
+            })
+            SessionStorage.set('bin_name', binlist)
+            _this.options = SessionStorage.getItem('bin_name')
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
-      });
+            })
+          })
+      })
     }
   },
-  created() {
-    var _this = this;
+  created () {
+    var _this = this
     if (LocalStorage.has('openid')) {
-      _this.openid = LocalStorage.getItem('openid');
+      _this.openid = LocalStorage.getItem('openid')
     } else {
-      _this.openid = '';
-      LocalStorage.set('openid', '');
+      _this.openid = ''
+      LocalStorage.set('openid', '')
     }
     if (LocalStorage.has('login_name')) {
-      _this.login_name = LocalStorage.getItem('login_name');
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
-      _this.login_name = '';
-      LocalStorage.set('login_name', '');
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
     }
     if (LocalStorage.has('auth')) {
-      _this.authin = '1';
-      _this.getList();
+      _this.authin = '1'
+      _this.getList()
     } else {
-      _this.authin = '0';
+      _this.authin = '0'
     }
   },
-  mounted() {
-    var _this = this;
+  mounted () {
+    var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + 'px';
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + '' + 'px';
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
-  updated() {},
-  destroyed() {}
-};
+  updated () {},
+  destroyed () {}
+}
 </script>
