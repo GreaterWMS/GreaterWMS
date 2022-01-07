@@ -4,10 +4,10 @@
     <q-card v-show="!fab" flat :style="{ width: width,  height: height }">
       <q-card-section>
         <q-bar class="bg-white q-mb-sm shadow-1 ">
-          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ frombin }}</div>
+          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_bin_name') }}: {{ frombin }}</div>
         </q-bar>
         <q-bar class="bg-white shadow-1 ">
-          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ tobin }}</div>
+          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_bin_name') }}: {{ tobin }}</div>
         </q-bar>
       </q-card-section>
       <q-scroll-area
@@ -40,7 +40,7 @@
 <router-view />
 
 <script>
-import { getauth } from 'boot/axios_request'
+import { getauth, putauth } from 'boot/axios_request'
 import { LocalStorage, Screen } from 'quasar'
 
 export default {
@@ -74,30 +74,159 @@ export default {
       },
       frombin: '',
       tobin: '',
-      barscan: '',
-      bin_scan: '',
-      goods_scan: ''
+      moved: false,
+      movecheck: []
     }
   },
   methods: {
-    getList () {
+    getGoodsList (e) {
       var _this = this
-      getauth(_this.pathname, {
+      getauth('goods/?goods_code=' + e, {
       }).then(res => {
-        _this.table_list = res.results
+        if (res.results.length === 0) {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'No Goods Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        } else if (res.results.length === 1) {
+          _this.table_list.filter(item => {
+            if (item.bin_name.includes(_this.bin_scan) && item.goods_code.includes(res.results[0].goods_code)) {
+              _this.movecheck.push(item)
+            }
+          })
+          if (_this.movecheck.length > 0) {
+            _this.movecheck.forEach(obj => {
+              if (obj.qty === obj.goods_qty - obj.pick_qty - obj.picked_qty) {
+                return true
+              } else if (obj.qty < obj.goods_qty - obj.pick_qty - obj.picked_qty) {
+                _this.table_list.filter(item => {
+                  if (item.t_code.includes(obj.t_code)) {
+                    item.qty += 1
+                  }
+                  _this.movecheck = []
+                })
+                return false
+              } else {
+                return false
+              }
+            })
+          } else {
+            navigator.vibrate(100)
+            _this.$q.notify({
+              message: 'No Goods Data',
+              position: 'top',
+              icon: 'close',
+              color: 'negative'
+            })
+          }
+        } else {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'Repeating Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
       }).catch(err => {
+        navigator.vibrate(100)
         _this.$q.notify({
           message: err.detail,
+          position: 'top',
           icon: 'close',
           color: 'negative'
         })
       })
+    },
+    getFromBinList (e) {
+      var _this = this
+      getauth('stock/bin/?bin_name=' + e, {
+      }).then(res => {
+        if (res.results.length === 0) {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'No Bin Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        } else {
+          _this.table_list = res.results
+          _this.frombin = _this.scaneddata
+          _this.movecheck = true
+        }
+      }).catch(err => {
+        navigator.vibrate(100)
+        _this.$q.notify({
+          message: err.detail,
+          position: 'top',
+          icon: 'close',
+          color: 'negative'
+        })
+      })
+    },
+    getToBinList (e) {
+      var _this = this
+      getauth('binset/?bin_name=' + e, {
+      }).then(res => {
+        if (res.results.length === 0) {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'No Bin Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        } else if (res.results.length === 1) {
+          _this.moveSubmit()
+        } else {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'Repeating Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
+      }).catch(err => {
+        navigator.vibrate(100)
+        _this.$q.notify({
+          message: err.detail,
+          position: 'top',
+          icon: 'close',
+          color: 'negative'
+        })
+      })
+    },
+    moveSubmit () {
+      var _this = this
+      putauth('staock/bin', _this.movedata).then(res => {
+        _this.$q.notify({
+          message: 'Success Move To Bin' + _this.tobin,
+          position: 'top',
+          icon: 'check',
+          color: 'green'
+        })
+        _this.movecheck = false
+        _this.table_list = []
+        _this.frombin = ''
+        _this.tobin = ''
+      })
+        .catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          })
+        })
     }
   },
   computed: {
     fab: {
       get () {
-        console.log('7', this.$store.state.fabchange.fab)
         return this.$store.state.fabchange.fab
       }
     },
@@ -134,6 +263,34 @@ export default {
     _this.scroll_height = Screen.height - 200 + '' + 'px'
   },
   updated () {
+    var _this = this
+    if (_this.scaneddata !== '') {
+      if (_this.scaneddata.mode === 'BINSET') {
+        if (!_this.moved) {
+          _this.getFromBinList(_this.scaneddata.mode)
+        } else {
+          _this.getToBinList(_this.scaneddata.mode)
+        }
+      } else if (_this.scaneddata.mode === 'GOODS') {
+        if (_this.bin_scan !== '') {
+          _this.getGoodsList(_this.scaneddata.code)
+        } else {
+          _this.$q.notify({
+            message: 'No Bin Query Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
+      } else {
+        _this.$q.notify({
+          message: 'No Query Data',
+          position: 'top',
+          icon: 'close',
+          color: 'negative'
+        })
+      }
+    }
   },
   beforeDestroy () {
   }

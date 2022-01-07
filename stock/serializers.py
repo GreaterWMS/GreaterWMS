@@ -36,6 +36,7 @@ class StockBinGetSerializer(serializers.ModelSerializer):
     picked_qty = serializers.IntegerField(read_only=True, required=False)
     bin_size = serializers.CharField(read_only=True, required=False)
     bin_property = serializers.CharField(read_only=True, required=False)
+    qty = serializers.SerializerMethodField()
     t_code = serializers.CharField(read_only=True, required=False)
     create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
@@ -44,6 +45,9 @@ class StockBinGetSerializer(serializers.ModelSerializer):
         model = StockBinModel
         exclude = ['openid', ]
         read_only_fields = ['id', 'create_time', 'update_time', ]
+
+    def get_qty(self, obj):
+        return 0
 
 class StockBinPostSerializer(serializers.ModelSerializer):
     openid = serializers.CharField(read_only=False, required=False, validators=[datasolve.openid_validate])
