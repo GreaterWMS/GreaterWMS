@@ -560,7 +560,7 @@ export default {
   methods: {
     linkChange (e) {
       var _this = this
-      localStorage.removeItem('menulink', '')
+      localStorage.removeItem('menulink')
       localStorage.setItem('menulink', e)
       _this.link = e
     },
@@ -612,6 +612,8 @@ export default {
                     icon: 'check',
                     color: 'green'
                   })
+                  localStorage.removeItem('menulink')
+                  _this.link = ''
                   _this.$router.push({ name: 'web_index' })
                 } else {
                   _this.$q.notify({
@@ -666,6 +668,8 @@ export default {
                   icon: 'check',
                   color: 'green'
                 })
+                localStorage.removeItem('menulink')
+                _this.link = ''
                 _this.$router.push({ name: 'web_index' })
               } else {
                 _this.$q.notify({
@@ -698,6 +702,8 @@ export default {
         color: 'negative'
       })
       // _this.staffType();
+      localStorage.removeItem('menulink')
+      _this.link = ''
       _this.$router.push({ name: 'web_index' })
     },
     Register () {
@@ -724,6 +730,8 @@ export default {
               color: 'green'
             })
             _this.staffType()
+            localStorage.removeItem('menulink')
+            _this.link = ''
             _this.$router.push({ name: 'web_index' })
           } else {
             _this.$q.notify({
@@ -1016,16 +1024,6 @@ export default {
       LocalStorage.set('staff_type', 'Admin')
       _this.authin = '0'
       _this.isLoggedIn()
-    }
-    if (LocalStorage.has('device')) {
-      _this.device = LocalStorage.getItem('device')
-    } else {
-      _this.device = 0
-    }
-    if (LocalStorage.has('device_name')) {
-      _this.device_name = LocalStorage.getItem('device_name')
-    } else {
-      _this.device_name = ''
     }
   },
   mounted () {

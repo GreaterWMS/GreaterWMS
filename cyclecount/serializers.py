@@ -21,12 +21,30 @@ class CyclecountPostSerializer(serializers.ModelSerializer):
 
 class FileRenderSerializer(serializers.ModelSerializer):
     creater = serializers.CharField(read_only=False, required=False)
+    physical_inventory = serializers.SerializerMethodField()
+    difference = serializers.SerializerMethodField()
     create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
 
     class Meta:
         model = CyclecountModeDayModel
         ref_name = 'CyclecountFileRenderSerializer'
+        exclude = ['openid']
+
+    def get_physical_inventory(self, obj):
+        return ''
+
+    def get_difference(self, obj):
+        return ''
+
+class FileRenderAllSerializer(serializers.ModelSerializer):
+    creater = serializers.CharField(read_only=False, required=False)
+    create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+
+    class Meta:
+        model = CyclecountModeDayModel
+        ref_name = 'CyclecountFileRenderAllSerializer'
         exclude = ['openid']
 
 
