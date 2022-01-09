@@ -72,6 +72,7 @@ export default {
         width: '9px',
         opacity: 0.2
       },
+      bar_scanned: '',
       frombin: '',
       tobin: '',
       moved: false,
@@ -265,30 +266,35 @@ export default {
   updated () {
     var _this = this
     if (_this.scaneddata !== '') {
-      if (_this.scaneddata.mode === 'BINSET') {
-        if (!_this.moved) {
-          _this.getFromBinList(_this.scaneddata.mode)
-        } else {
-          _this.getToBinList(_this.scaneddata.mode)
-        }
-      } else if (_this.scaneddata.mode === 'GOODS') {
-        if (_this.bin_scan !== '') {
-          _this.getGoodsList(_this.scaneddata.code)
+      if (_this.bar_scanned !== _this.scaneddata.request_time) {
+        if (_this.scaneddata.mode === 'BINSET') {
+          if (!_this.moved) {
+            _this.bar_scanned = _this.scaneddata.request_time
+            _this.getFromBinList(_this.scaneddata.code)
+          } else {
+            _this.bar_scanned = _this.scaneddata.request_time
+            _this.getToBinList(_this.scaneddata.code)
+          }
+        } else if (_this.scaneddata.mode === 'GOODS') {
+          if (_this.bin_scan !== '') {
+            _this.bar_scanned = _this.scaneddata.request_time
+            _this.getGoodsList(_this.scaneddata.code)
+          } else {
+            _this.$q.notify({
+              message: 'No Bin Query Data',
+              position: 'top',
+              icon: 'close',
+              color: 'negative'
+            })
+          }
         } else {
           _this.$q.notify({
-            message: 'No Bin Query Data',
+            message: 'No Query Data',
             position: 'top',
             icon: 'close',
             color: 'negative'
           })
         }
-      } else {
-        _this.$q.notify({
-          message: 'No Query Data',
-          position: 'top',
-          icon: 'close',
-          color: 'negative'
-        })
       }
     }
   },

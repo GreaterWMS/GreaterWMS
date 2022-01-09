@@ -91,6 +91,7 @@ export default {
         width: '9px',
         opacity: 0.2
       },
+      bar_scanned: '',
       bin_scan: ''
     }
   },
@@ -161,15 +162,18 @@ export default {
   updated () {
     var _this = this
     if (_this.scaneddata !== '') {
-      if (_this.scaneddata.mode === 'BINSET') {
-        _this.getBinSetList(_this.scaneddata.code)
-      } else {
-        _this.$q.notify({
-          message: 'No Bin Query Data',
-          position: 'top',
-          icon: 'close',
-          color: 'negative'
-        })
+      if (_this.bar_scanned !== _this.scaneddata.request_time) {
+        if (_this.scaneddata.mode === 'BINSET') {
+          _this.bar_scanned = _this.scaneddata.request_time
+          _this.getBinSetList(_this.scaneddata.code)
+        } else {
+          _this.$q.notify({
+            message: 'No Bin Query Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
       }
     }
   },
