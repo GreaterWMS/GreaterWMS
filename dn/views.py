@@ -47,7 +47,6 @@ class SannerDnDetailView(viewsets.ModelViewSet):
         if page is not None:
             serializer = self.get_serializer(page, many=True)
             return self.get_paginated_response(serializer.data)
-
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -534,8 +533,18 @@ class DnNewOrderViewSet(viewsets.ModelViewSet):
                     dn_detail_list = DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=qs.dn_code,
                                                                     dn_status=1, is_delete=False)
                     for i in range(len(dn_detail_list)):
+                        if stocklist.objects.filter(openid=self.request.auth.openid,
+                                                                    goods_code=str(dn_detail_list[i].goods_code)).exists():
+                            pass
+                        else:
+                            goods_detail = goods.objects.filter(openid=self.request.auth.openid, goods_code=str(dn_detail_list[i].goods_code)).first()
+                            stocklist.objects.create(openid=self.request.auth.openid,
+                                                     goods_code=str(dn_detail_list[i].goods_code),
+                                                     goods_desc=goods_detail.goods_desc,
+                                                     supplier=goods_detail.goods_supplier)
                         goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
-                                                                    goods_code=str(dn_detail_list[i].goods_code)).first()
+                                                                    goods_code=str(
+                                                                        dn_detail_list[i].goods_code)).first()
                         goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - dn_detail_list[i].goods_qty
                         goods_qty_change.ordered_stock = goods_qty_change.ordered_stock + dn_detail_list[i].goods_qty
                         goods_qty_change.dn_stock = goods_qty_change.dn_stock - dn_detail_list[i].goods_qty

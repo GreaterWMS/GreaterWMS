@@ -25,7 +25,7 @@
           <tbody>
           <template>
             <tr v-for='(item, index) in table_list' :key='index'>
-              <td :class="{'scan-background text-left': item.bin_name === bin_scan && item.goods_name === goods_scan, 'text-left': item.bin_name !== bin_scan && item.goods_name !== goods_scan }">{{ item.bin_name }}</td>
+              <td :class="{'scan-background text-left': item.bin_name === bin_scan, 'text-left': item.bin_name !== bin_scan }">{{ item.bin_name }}</td>
               <td :class="{'scan-background text-right': item.bin_name === bin_scan && item.goods_name === goods_scan, 'text-right': item.bin_name !== bin_scan && item.goods_name !== goods_scan }">{{ item.goods_code }}</td>
               <td :class="{'scan-background text-right': item.bin_name === bin_scan && item.goods_name === goods_scan, 'text-right': item.bin_name !== bin_scan && item.goods_name !== goods_scan }">{{ item.physical_inventory }}</td>
               <td class="text-right">
@@ -76,6 +76,7 @@ export default {
         width: '9px',
         opacity: 0.2
       },
+      bar_scanned: '',
       bin_scan: '',
       goods_scan: ''
     }
@@ -98,7 +99,6 @@ export default {
       var _this = this
       getauth('goods/?goods_code=' + e, {
       }).then(res => {
-        _this.goods_scan = ''
         if (res.results.length === 0) {
           navigator.vibrate(100)
           _this.$q.notify({
@@ -203,7 +203,7 @@ export default {
       var _this = this
       _this.table_list = []
       _this.barscan = ''
-      _this.bin_scan = 'a'
+      _this.bin_scan = ''
       _this.goods_scan = ''
       _this.getList()
     }
@@ -245,34 +245,35 @@ export default {
     _this.width = Screen.width * 1 + '' + 'px'
     _this.height = Screen.height - 50 + '' + 'px'
     _this.scroll_height = Screen.height - 175 + '' + 'px'
-    _this.barscan = ''
-    _this.bin_scan = ''
-    _this.goods_scan = ''
     _this.getList()
   },
   updated () {
     var _this = this
     if (_this.scaneddata !== '') {
-      if (_this.scaneddata.mode === 'BINSET') {
-        _this.getBinList(_this.scaneddata.mode)
-      } else if (_this.scaneddata.mode === 'GOODS') {
-        if (_this.bin_scan !== '') {
-          _this.getGoodsList(_this.scaneddata.code)
+      if (_this.bar_scanned !== _this.scaneddata.request_time) {
+        if (_this.scaneddata.mode === 'BINSET') {
+          _this.bar_scanned = _this.scaneddata.request_time
+          _this.getBinList(_this.scaneddata.code)
+        } else if (_this.scaneddata.mode === 'GOODS') {
+          if (_this.bin_scan !== '') {
+            _this.bar_scanned = _this.scaneddata.request_time
+            _this.getGoodsList(_this.scaneddata.code)
+          } else {
+            _this.$q.notify({
+              message: 'No Bin Query Data',
+              position: 'top',
+              icon: 'close',
+              color: 'negative'
+            })
+          }
         } else {
           _this.$q.notify({
-            message: 'No Bin Query Data',
+            message: 'No Query Data',
             position: 'top',
             icon: 'close',
             color: 'negative'
           })
         }
-      } else {
-        _this.$q.notify({
-          message: 'No Query Data',
-          position: 'top',
-          icon: 'close',
-          color: 'negative'
-        })
       }
     }
   },

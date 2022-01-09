@@ -4,19 +4,24 @@
     <q-card v-show="!fab" flat :style="{ width: width, height: height }">
       <q-card-section>
         <q-bar class="bg-white q-mb-sm shadow-1 ">
-          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ goods_scan }}</div>
+          <q-input v-model="license_plate" borderless stack-label label="车牌号" style="font-size: 12px;width: 100%;" @keyup.enter="driverConfirm()"  @blur="driverConfirm()"/>
+        </q-bar>
+        <q-bar class="bg-white q-mb-sm shadow-1 ">
+          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ driver_list.driver_name }}</div>
+        </q-bar>
+        <q-bar class="bg-white q-mb-sm shadow-1 ">
+          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ driver_list.contact }}</div>
         </q-bar>
         <q-btn-group push>
-          <q-btn :label="$t('refresh')" @click="reFresh()" />
-          <q-btn color="purple" :label="$t('stock.view_stocklist.cyclecountresult')" />
+          <q-btn color="purple" :label="$t('stock.view_stocklist.cyclecountresult')" @click="resultSubmit()"/>
         </q-btn-group>
       </q-card-section>
       <q-scroll-area ref="scrollArea" :thumb-style="thumbStyle" :bar-style="barStyle" :style="{ height: scroll_height, width: width }">
         <q-markup-table>
           <thead>
             <tr>
-              <th class="text-left">{{ scan_goods_code }}</th>
-              <th class="text-right">{{ scan_bin_name }}</th>
+              <th class="text-left">{{ scan_dn_code }}</th>
+              <th class="text-right">{{ scan_goods_code }}</th>
               <th class="text-right">{{ order_qty }}</th>
               <th class="text-right">{{ picking_qty }}</th>
             </tr>
@@ -24,8 +29,8 @@
           <tbody>
             <template>
               <tr :id="'dom' + index" v-for="(item, index) in table_list" :key="index">
+                <td class="text-center">{{ item.dn_code }}</td>
                 <td class="text-center">{{ item.goods_code }}</td>
-                <td class="text-center">{{ item.bin_name }}</td>
                 <td class="text-center">{{ item.goods_qty }}</td>
                 <td class="text-center">{{ item.picked_qty }}</td>
               </tr>
@@ -39,7 +44,7 @@
 <router-view />
 
 <script>
-import { getauth } from 'boot/axios_request'
+import { getauth, postauth } from 'boot/axios_request'
 import { LocalStorage, Screen } from 'quasar'
 
 export default {
@@ -49,13 +54,15 @@ export default {
       openid: '',
       login_name: '',
       authin: '0',
-      pathname: 'cyclecount/',
-      separator: 'cell',
-      loading: false,
+      pathname: 'dn/detail/?dn_status=4&picked_qty__gt=0&dn_code=',
+      width: '',
       height: '',
+      scroll_height: '',
       table_list: [],
+      driver_list: '',
+      dn_list: '',
       scan_goods_code: this.$t('scan.scan_goods_code'),
-      scan_bin_name: this.$t('scan.scan_bin_name'),
+      scan_dn_code: this.$t('scan.scan_dn_code'),
       order_qty: this.$t('scan.view_picking.order_qty'),
       picking_qty: this.$t('scan.view_picking.picking_qty'),
       thumbStyle: {
@@ -72,37 +79,155 @@ export default {
         width: '9px',
         opacity: 0.2
       },
-      barscan: '',
-      bin_scan: '',
-      goods_scan: ''
+      bar_scanned: '',
+      submitdata: {
+        dn_code: '',
+        driver: ''
+      },
+      license_plate: ''
     }
   },
   methods: {
-    getList () {
+    getDNList (e) {
       var _this = this
-      getauth(_this.pathname, {
+      getauth('dn/list/?dn_code=' + e, {
       }).then(res => {
-        _this.table_list = res.results
+        if (res.results.length === 0) {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'No DN Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        } else {
+          _this.dn_list = res.results[0]
+        }
       }).catch(err => {
+        navigator.vibrate(100)
         _this.$q.notify({
           message: err.detail,
+          position: 'top',
           icon: 'close',
           color: 'negative'
         })
       })
     },
-    reFresh () {
+    getDNDetailList (e) {
       var _this = this
-      _this.barscan = ''
-      _this.bin_scan = ''
-      _this.goods_scan = ''
-      _this.getList()
+      getauth(_this.pathname + e, {
+      }).then(res => {
+        if (res.results.length === 0) {
+          console.log(res)
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'No DN Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        } else {
+          _this.table_list = res.results
+        }
+      }).catch(err => {
+        navigator.vibrate(100)
+        _this.$q.notify({
+          message: err.detail,
+          position: 'top',
+          icon: 'close',
+          color: 'negative'
+        })
+      })
+    },
+    driverConfirm () {
+      var _this = this
+      if (_this.license_plate !== '') {
+        getauth('driver/?license_plate=' + _this.license_plate, {
+        }).then(res => {
+          if (res.results.length === 0) {
+            _this.driver_list = ''
+            navigator.vibrate(100)
+            _this.$q.notify({
+              message: 'No Driver Data',
+              position: 'top',
+              icon: 'close',
+              color: 'negative'
+            })
+          } else if (res.results.length === 1) {
+            _this.driver_list = res.results[0]
+          } else {
+            _this.driver_list = ''
+            navigator.vibrate(100)
+            _this.$q.notify({
+              message: 'Repeating Data',
+              position: 'top',
+              icon: 'close',
+              color: 'negative'
+            })
+          }
+        }).catch(err => {
+          _this.driver_list = ''
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: err.detail,
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        })
+      }
+    },
+    dispatchDataSubmit () {
+      var _this = this
+      postauth('dn/dispatch/' + _this.dn_list.id + '/', _this.submitdata)
+        .then(res => {
+          _this.$q.notify({
+            message: 'Success Dispatch',
+            position: 'top',
+            icon: 'check',
+            color: 'green'
+          })
+        })
+        .catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        })
+    },
+    resultSubmit () {
+      var _this = this
+      if (_this.table_list.length > 0) {
+        if (_this.driver_list !== '') {
+          _this.getDNList(_this.scaneddata.code)
+          _this.submitdata.dn_code = _this.scaneddata.code
+          _this.submitdata.driver = _this.driver_list.driver_name
+          _this.dispatchDataSubmit()
+        } else {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'No Driver Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
+      } else {
+        navigator.vibrate(100)
+        _this.$q.notify({
+          message: 'No DN Data',
+          position: 'top',
+          icon: 'close',
+          color: 'negative'
+        })
+      }
     }
   },
   computed: {
     fab: {
       get () {
-        console.log('7', this.$store.state.fabchange.fab)
         return this.$store.state.fabchange.fab
       }
     },
@@ -136,16 +261,26 @@ export default {
     var _this = this
     _this.width = Screen.width * 1 + '' + 'px'
     _this.height = Screen.height - 50 + '' + 'px'
-    _this.scroll_height = Screen.height - 225 + '' + 'px'
-    _this.barscan = ''
-    _this.bin_scan = ''
-    _this.goods_scan = ''
+    _this.scroll_height = Screen.height - 240 + '' + 'px'
+    _this.bar_scanned = ''
   },
   updated () {
-  },
-  beforeDestroy () {
-  },
-  destroyed () {
+    var _this = this
+    if (_this.scaneddata !== '') {
+      if (_this.bar_scanned !== _this.scaneddata.request_time) {
+        if (_this.scaneddata.mode === 'DN') {
+          _this.bar_scanned = _this.scaneddata.request_time
+          _this.getDNDetailList(_this.scaneddata.code)
+        } else {
+          _this.$q.notify({
+            message: 'No DN Query Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
+      }
+    }
   }
 }
 </script>

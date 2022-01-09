@@ -14,8 +14,9 @@ from rest_framework.response import Response
 from .filter import Filter
 from .filter import QTYRecorderListFilter
 from rest_framework.exceptions import APIException
-from .serializers import FileRenderSerializer
+from .serializers import FileRenderSerializer, FileRenderAllSerializer
 from .models import QTYRecorder
+import datetime
 
 class QTYRecorderViewSet(viewsets.ModelViewSet):
     """
@@ -80,12 +81,12 @@ class CyclecountModeDayViewSet(viewsets.ModelViewSet):
             delt_date = relativedelta(days=1)
             if id is None:
                 return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=0,
-                                                             create_time__gte=str((cur_date -delt_date).date()) + ' 00:00:00',
-                                                             create_time__lte=str((cur_date + delt_date).date()) + ' 00:00:00')
+                                                             update_time__gte=str((cur_date -delt_date).date()) + ' 00:00:00',
+                                                             update_time__lte=str((cur_date + delt_date).date()) + ' 00:00:00')
             else:
                 return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=0,
-                                                             create_time__gte=str((cur_date - delt_date).date()) + ' 00:00:00',
-                                                             create_time__lte=str((cur_date + delt_date).date()) + ' 00:00:00', id=id)
+                                                             update_time__gte=str((cur_date - delt_date).date()) + ' 00:00:00',
+                                                             update_time__lte=str((cur_date + delt_date).date()) + ' 00:00:00', id=id)
         else:
             return CyclecountModeDayModel.objects.none()
 
@@ -115,6 +116,7 @@ class CyclecountModeDayViewSet(viewsets.ModelViewSet):
                                                   t_code=data[i]['t_code']).first()
             scan_count_data.physical_inventory = scan_count_data.physical_inventory + data[i]['physical_inventory']
             scan_count_data.difference = data[i]['physical_inventory'] - data[i]['goods_qty']
+            scan_count_data.cyclecount_status = 1
             scan_count_data.save()
         return Response({"detail": "success"}, status=200)
 
@@ -139,21 +141,27 @@ class CyclecountModeAllViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             date_choice = self.request.GET.get('create_time', '')
+            cur_time = timezone.now().date()
+            print(cur_time)
             if date_choice:
                 if id is None:
                     return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=1,
-                                                                 create_time__gte=str(date_choice) + ' 00:00:00',
-                                                                 create_time__lte=str(date_choice) + ' 23:59:59')
+                                                                 update_time__gte=str(date_choice) + ' 00:00:00',
+                                                                 update_time__lte=str(date_choice) + ' 23:59:59')
                 else:
                     return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=1,
-                                                                 create_time__gte=str(date_choice) + ' 00:00:00',
-                                                                 create_time__lte=str(date_choice) + ' 23:59:59',
+                                                                 update_time__gte=str(date_choice) + ' 00:00:00',
+                                                                 update_time__lte=str(date_choice) + ' 23:59:59',
                                                                  id=id)
             else:
                 if id is None:
-                    return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=1)
+                    return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=1,
+                                                                 update_time__gte=str(cur_time) + ' 00:00:00',
+                                                                 update_time__lte=str(cur_time) + ' 23:59:59')
                 else:
                     return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=1,
+                                                                 update_time__gte=str(cur_time) + ' 00:00:00',
+                                                                 update_time__lte=str(cur_time) + ' 23:59:59',
                                                                  id=id)
         else:
             return CyclecountModeDayModel.objects.none()
@@ -181,13 +189,14 @@ class FileDownloadView(viewsets.ModelViewSet):
     def get_queryset(self):
         id = self.get_project()
         if self.request.user:
+            cur_date = timezone.now()
+            delt_date = relativedelta(days=1)
             if id is None:
-                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid,
-                                                             create_time__gte=timezone.now().date() - timezone.timedelta(days=1))
+                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=0,
+                                                             update_time__gte=str((cur_date -delt_date).date()) + ' 00:00:00')
             else:
-                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid,
-                                                             create_time__gte=timezone.now().date() - timezone.timedelta(
-                                                                 days=1), id=id)
+                return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=0,
+                                                             update_time__gte=str((cur_date -delt_date).date()) + ' 00:00:00', id=id)
         else:
             return CyclecountModeDayModel.objects.none()
 
@@ -241,13 +250,13 @@ class FileDownloadAllView(viewsets.ModelViewSet):
                 cur_date = timezone.now()
                 delt_date = relativedelta(days=1)
                 if id is None:
-                    return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=0,
-                                                                 create_time__gte=str((cur_date -delt_date).date()) + ' 00:00:00',
-                                                                 create_time__lte=str((cur_date + delt_date).date()) + ' 00:00:00')
+                    return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=1,
+                                                                 update_time__gte=str((cur_date -delt_date).date()) + ' 00:00:00',
+                                                                 update_time__lte=str((cur_date + delt_date).date()) + ' 23:59:59')
                 else:
-                    return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=0,
-                                                                 create_time__gte=str((cur_date - delt_date).date()) + ' 00:00:00',
-                                                                 create_time__lte=str((cur_date + delt_date).date()) + ' 00:00:00', id=id)
+                    return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=1,
+                                                                 update_time__gte=str((cur_date - delt_date).date()) + ' 00:00:00',
+                                                                 update_time__lte=str((cur_date + delt_date).date()) + ' 23:59:59', id=id)
             else:
                 return CyclecountModeDayModel.objects.none()
 
@@ -271,7 +280,7 @@ class FileDownloadAllView(viewsets.ModelViewSet):
         from datetime import datetime
         dt = datetime.now()
         data = (
-            FileRenderSerializer(instance).data
+            FileRenderAllSerializer(instance).data
             for instance in self.filter_queryset(self.get_queryset())
         )
         renderer = self.get_lang(data)

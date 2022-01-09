@@ -184,7 +184,8 @@ export default {
         backgroundColor: '#EEEEEE',
         width: '9px',
         opacity: 0.2
-      }
+      },
+      bar_scanned: ''
     }
   },
   methods: {
@@ -225,7 +226,6 @@ export default {
   computed: {
     fab: {
       get () {
-        console.log('7', this.$store.state.fabchange.fab)
         return this.$store.state.fabchange.fab
       }
     },
@@ -260,21 +260,23 @@ export default {
     _this.width = Screen.width * 1 + '' + 'px'
     _this.height = Screen.height - 50 + '' + 'px'
     _this.scroll_height = Screen.height - 175 + '' + 'px'
-    _this.barscan = ''
     _this.goods_scan = ''
   },
   updated () {
     var _this = this
     if (_this.scaneddata !== '') {
-      if (_this.scaneddata.mode === 'GOODS') {
-        _this.getGoodsList(_this.scaneddata.code)
-      } else {
-        _this.$q.notify({
-          message: 'No Goods Data',
-          position: 'top',
-          icon: 'close',
-          color: 'negative'
-        })
+      if (_this.bar_scanned !== _this.scaneddata.request_time) {
+        if (_this.scaneddata.mode === 'GOODS') {
+          _this.bar_scanned = _this.scaneddata.request_time
+          _this.getGoodsList(_this.scaneddata.code)
+        } else {
+          _this.$q.notify({
+            message: 'No Goods Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
       }
     }
   },

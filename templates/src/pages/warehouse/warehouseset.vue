@@ -93,9 +93,8 @@
                  <q-input dense
                           outlined
                           square
-                          v-model.number="editFormData.warehouse_contact"
+                          v-model="editFormData.warehouse_contact"
                           :label="$t('warehouse.view_warehouse.warehouse_contact')"
-                          :rules="[ val => val && val.length > 0 || error4]"
                  />
                </q-td>
              </template>
@@ -214,9 +213,8 @@
            <q-input dense
                     outlined
                     square
-                    v-model.number="newFormData.warehouse_contact"
+                    v-model="newFormData.warehouse_contact"
                     :label="$t('warehouse.view_warehouse.warehouse_contact')"
-                    :rules="[ val => val && val.length > 0 || error4]"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
