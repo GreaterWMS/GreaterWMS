@@ -26,8 +26,8 @@
           <template>
             <tr v-for='(item, index) in table_list' :key='index'>
               <td :class="{'scan-background text-left': item.bin_name === bin_scan, 'text-left': item.bin_name !== bin_scan }">{{ item.bin_name }}</td>
-              <td :class="{'scan-background text-right': item.bin_name === bin_scan && item.goods_name === goods_scan, 'text-right': item.bin_name !== bin_scan && item.goods_name !== goods_scan }">{{ item.goods_code }}</td>
-              <td :class="{'scan-background text-right': item.bin_name === bin_scan && item.goods_name === goods_scan, 'text-right': item.bin_name !== bin_scan && item.goods_name !== goods_scan }">{{ item.physical_inventory }}</td>
+              <td :class="{'scan-background text-right': item.bin_name === bin_scan && item.goods_code === goods_scan, 'text-right': item.bin_name !== bin_scan && item.goods_code !== goods_scan }">{{ item.goods_code }}</td>
+              <td :class="{'scan-background text-right': item.bin_name === bin_scan && item.goods_code === goods_scan, 'text-right': item.bin_name !== bin_scan && item.goods_code !== goods_scan }">{{ item.physical_inventory }}</td>
               <td class="text-right">
                 <q-btn round flat push color="purple" icon="repeat" @click="repeatCount(index)" style="width: 50px" />
               </td>
