@@ -1,104 +1,217 @@
 <template>
   <div>
     <q-input v-model="scaneddata.request_time" style="display:none" />
-    <transition appear enter-active-class="animated fadeIn">
-      <q-table
-        class="my-sticky-header-table shadow-24"
-        :data="table_list"
-        row-key="id"
-        :separator="separator"
-        :loading="loading"
-        :columns="columns"
-        hide-bottom
-        :pagination.sync="pagination"
-        no-data-label="No data"
-        no-results-label="No data you want"
-        :table-style="{ height: height }"
-        flat
-        bordered
-      >
-        <template v-slot:top>
-          <q-btn-group push>
-            <q-btn :label="$t('refresh')" @click="reFresh()" />
-             <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCount()" />
-          </q-btn-group>
-        </template>
-        <template v-slot:body="props">
-          <q-tr :props="props">
-            <q-td key="bin_name" :props="props" :class="{ 'scan-background': bin_scan !== '' && bin_scan === props.row.bin_name }">
-              {{ props.row.bin_name }}
-            </q-td>
-            <q-td key="goods_code" :props="props">
-              {{ props.row.goods_code }}
-            </q-td>
-            <q-td key="physical_inventory" :props="props">
-              {{ props.row.physical_inventory }}
-            </q-td>
-            <q-td key="action" :props="props" style="width: 50px">
-              <q-btn round flat push color="purple" icon="repeat" @click="props.row.physical_inventory = 0">
-              </q-btn>
-            </q-td>
-          </q-tr>
-        </template>
-      </q-table>
-    </transition>
+    <q-card v-show="!fab" flat :style="{ width: width, height: height }">
+      <q-card-section>
+        <q-bar class="bg-white q-mb-sm shadow-1 ">
+          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ asn_scan }}</div>
+        </q-bar>
+        <q-bar class="bg-white q-mb-sm shadow-1 ">
+          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ goods_scan }}</div>
+        </q-bar>
+        <q-bar class="bg-white shadow-1 ">
+          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ bin_scan }}</div>
+        </q-bar>
+      </q-card-section>
+      <q-scroll-area ref="scrollArea" :thumb-style="thumbStyle" :bar-style="barStyle" :style="{ height: scroll_height, width: width }">
+        <q-markup-table>
+          <thead>
+            <tr>
+              <th class="text-center">{{ scan_goods_code }}</th>
+              <th class="text-center">{{ goods_actual_qty }}</th>
+              <th class="text-center">{{ sorted_qty }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <template>
+              <tr :id="'dom' + index" v-for="(item, index) in table_list" :key="index">
+                <td :class="{'scan-background text-center': item.goods_code === goods_scan, 'text-center': item.goods_code !== goods_scan }">{{ item.goods_code }}</td>
+                <td :class="{'scan-background text-center': item.goods_code === goods_scan, 'text-center': item.goods_code !== goods_scan }">{{ item.goods_actual_qty }}</td>
+                <td class="text-center">{{ item.sorted_qty }}</td>
+              </tr>
+            </template>
+          </tbody>
+        </q-markup-table>
+      </q-scroll-area>
+    </q-card>
   </div>
 </template>
 <router-view />
 
 <script>
 import { getauth, putauth } from 'boot/axios_request'
-import { LocalStorage, Screen, throttle } from 'quasar'
+import { LocalStorage, Screen } from 'quasar'
 
 export default {
-  name: 'Pagezebra_uptobin',
+  name: 'Pagezebra_sorting',
   data () {
     return {
       openid: '',
       login_name: '',
       authin: '0',
-      pathname: 'cyclecount/',
-      separator: 'cell',
-      loading: false,
+      pathname: 'asn/detail/?asn_status=4&asn_code=',
+      width: '',
       height: '',
+      scroll_height: '',
       table_list: [],
-      columns: [
-        { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
-        { name: 'goods_code', label: this.$t('stock.view_stocklist.goods_code'), field: 'goods_code', align: 'center' },
-        { name: 'physical_inventory', label: this.$t('stock.view_stocklist.physical_inventory'), field: 'physical_inventory', align: 'center' },
-        { name: 'action', label: this.$t('action'), align: 'right' }
-      ],
-      barscan: '',
+      scan_goods_code: this.$t('scan.scan_goods_code'),
+      goods_actual_qty: this.$t('scan.view_picking.picking_qty'),
+      sorted_qty: this.$t('scan.view_picking.order_qty'),
+      thumbStyle: {
+        right: '4px',
+        borderRadius: '5px',
+        backgroundColor: '#E0E0E0',
+        width: '5px',
+        opacity: 0.75
+      },
+      barStyle: {
+        right: '2px',
+        borderRadius: '9px',
+        backgroundColor: '#EEEEEE',
+        width: '9px',
+        opacity: 0.2
+      },
+      bar_scanned: '',
+      asn_scan: '',
       bin_scan: '',
-      goods_scan: ''
+      goods_scan: '',
+      error1: this.$t('scan.scan_goods_label_error'),
+      error2: this.$t('scan.view_picking.picking_qty_error')
     }
   },
   methods: {
-    getList () {
+    getASNDetailList (e) {
       var _this = this
-      getauth(_this.pathname, {
+      getauth(_this.pathname + e, {})
+        .then(res => {
+          if (res.results.length === 0) {
+            navigator.vibrate(100)
+            _this.$q.notify({
+              message: 'No ASN Data',
+              position: 'top',
+              icon: 'close',
+              color: 'negative'
+            })
+          } else {
+            console.log(res)
+            _this.asn_scan = res.results[0].asn_code
+            _this.table_list = res.results
+          }
+        })
+        .catch(err => {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: err.detail,
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        })
+    },
+    getGoodsList (e) {
+      var _this = this
+      _this.table_list.filter(item => {
+        if (item.goods_code.includes(e)) {
+          _this.goods_scan = e
+          item.sorted_qty += 1
+          _this.table_list = []
+          _this.table_list.push(item)
+          return false
+        } else {
+          return true
+        }
+      })
+    },
+    getBinList (e) {
+      var _this = this
+      getauth('binset/?bin_name=' + e, {
       }).then(res => {
-        _this.table_list = res.results
+        if (res.results.length === 0) {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'No Bin Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        } else if (res.results.length === 1) {
+          _this.bin_scan = res.results[0].bin_name
+          _this.goods_scan = ''
+          _this.table_list[0].bin_name = _this.bin_scan
+          _this.table_list[0].qty = _this.table_list[0].sorted_qty
+          putauth('asn/movetobin/', _this.table_list[0]).then(res => {
+            _this.getASNDetailList(_this.asn_scan)
+            _this.$q.notify({
+              message: 'Success Move To Bin',
+              position: 'top',
+              icon: 'check',
+              color: 'green'
+            })
+          }).catch(err => {
+            _this.$q.notify({
+              message: err.detail,
+              position: 'top',
+              icon: 'close',
+              color: 'negative'
+            })
+          })
+        } else {
+          navigator.vibrate(100)
+          _this.$q.notify({
+            message: 'Repeating Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
       }).catch(err => {
+        navigator.vibrate(100)
         _this.$q.notify({
           message: err.detail,
+          position: 'top',
           icon: 'close',
           color: 'negative'
         })
       })
     },
-    reFresh () {
+    sortedSubmit () {
       var _this = this
-      _this.barscan = ''
-      _this.bin_scan = ''
-      _this.goods_scan = ''
-      _this.getList()
+      var sortedFormData = {
+        asn_code: _this.asn_scan,
+        goodsData: _this.table_list,
+        creater: _this.login_name
+      }
+      _this.sortedDataSubmit(sortedFormData)
+    },
+    sortedDataSubmit (e) {
+      var _this = this
+      putauth('asn/sorted/', e)
+        .then(res => {
+          _this.table_list = []
+          _this.goods_scan = ''
+          _this.dn_scan = ''
+          if (!res.detail) {
+            _this.$q.notify({
+              message: 'Success Confirm ASN Sorted List',
+              position: 'top',
+              icon: 'check',
+              color: 'green'
+            })
+          }
+        })
+        .catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        })
     }
   },
   computed: {
     fab: {
       get () {
-        console.log('7', this.$store.state.fabchange.fab)
         return this.$store.state.fabchange.fab
       }
     },
@@ -132,16 +245,40 @@ export default {
     var _this = this
     _this.width = Screen.width * 1 + '' + 'px'
     _this.height = Screen.height - 50 + '' + 'px'
-    _this.scroll_height = Screen.height - 175 + '' + 'px'
-    _this.barscan = ''
-    _this.bin_scan = ''
-    _this.goods_scan = ''
+    _this.scroll_height = Screen.height - 225 + '' + 'px'
   },
   updated () {
+    var _this = this
+    if (_this.scaneddata !== '') {
+      if (_this.bar_scanned !== _this.scaneddata.request_time) {
+        if (_this.scaneddata.mode === 'ASN') {
+          _this.bar_scanned = _this.scaneddata.request_time
+          _this.goods_scan = ''
+          _this.asn_scan = ''
+          _this.bin_scan = ''
+          _this.getASNDetailList(_this.scaneddata.code)
+        } else if (_this.scaneddata.mode === 'GOODS') {
+          _this.bar_scanned = _this.scaneddata.request_time
+          _this.goods_scan = ''
+          _this.bin_scan = ''
+          _this.getGoodsList(_this.scaneddata.code)
+        } else if (_this.scaneddata.mode === 'BINSET') {
+          _this.bar_scanned = _this.scaneddata.request_time
+          _this.goods_scan = ''
+          _this.bin_scan = ''
+          _this.getBinList(_this.scaneddata.code)
+        } else {
+          _this.$q.notify({
+            message: 'No Query Data',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
+      }
+    }
   },
   beforeDestroy () {
-  },
-  destroyed () {
   }
 }
 </script>

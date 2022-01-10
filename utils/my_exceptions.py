@@ -13,7 +13,9 @@ def custom_exception_handler(exc, context):
         response = Response(response.data)
     else:
         if isinstance(exc, DatabaseError):
-            response = Response({'detail': 'Database Error'})
+            pass
+            #response = Response({'detail': 'Database Error'})
         else:
-            response = Response({'detail': 'Other Error'})
+            pass
+            #response = Response({'detail': 'Other Error'})
     return response

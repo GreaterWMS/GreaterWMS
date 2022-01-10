@@ -26,6 +26,7 @@ path(r'sorted/', views.AsnSortedViewSet.as_view({"put": "update"}), name="sorted
 re_path(r'^sorted/(?P<pk>\d+)/$', views.AsnSortedViewSet.as_view({
     'post': 'create'
 }), name="sorted_1"),
+path(r'movetobin/', views.MoveToBinViewSet.as_view({'put': 'update'}), name="movetobin"),
 re_path(r'^movetobin/(?P<pk>\d+)/$', views.MoveToBinViewSet.as_view({
     'post': 'create',
 }), name="movetobin_1"),

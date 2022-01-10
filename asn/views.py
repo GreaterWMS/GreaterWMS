@@ -601,9 +601,7 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             if id is None:
-                return AsnListModel.objects.filter(openid=self.request.auth.openid,
-                                                asn_code=self.request.GET.get('asn_code'),
-                                                is_delete=False)
+                return AsnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
                 return AsnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
@@ -621,17 +619,6 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
             raise APIException({"detail": "This ASN Status Is Not 3"})
         else:
             data = self.request.data
-            for i in range(len(data['goodsData'])):
-                check_data = {
-                    'openid': self.request.auth.openid,
-                    'asn_code': str(data['asn_code']),
-                    'supplier': str(data['supplier']),
-                    'goods_code': str(data['goodsData'][i].get('goods_code')),
-                    'goods_qty': int(data['goodsData'][i].get('goods_actual_qty')),
-                    'creater': str(data['creater'])
-                }
-                serializer = self.get_serializer(data=check_data)
-                serializer.is_valid(raise_exception=True)
             for j in range(len(data['goodsData'])):
                 goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
                                                             goods_code=str(
@@ -694,83 +681,70 @@ class AsnSortedViewSet(viewsets.ModelViewSet):
             return Response({"detail": "success"}, status=200)
 
     def update(self, request, *args, **kwargs):
-        qs = self.get_queryset()
-        for j in range(len(qs)):
-            if qs[j].asn_status != 3:
-                raise APIException({"detail": "This ASN Status Is Not 3"})
-            else:
-                data = self.request.data
-                for i in range(len(data['goodsData'])):
-                    check_data = {
-                        'openid': self.request.auth.openid,
-                        'asn_code': str(data['asn_code']),
-                        'supplier': str(data['supplier']),
-                        'goods_code': str(data['goodsData'][i].get('goods_code')),
-                        'goods_qty': int(data['goodsData'][i].get('goods_actual_qty')),
-                        'creater': str(data['creater'])
-                    }
-                    serializer = self.get_serializer(data=check_data)
-                    serializer.is_valid(raise_exception=True)
-                for j in range(len(data['goodsData'])):
-                    goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
-                                                                goods_code=str(
-                                                                    data['goodsData'][j].get('goods_code'))).first()
-                    asn_detail = AsnDetailModel.objects.filter(openid=self.request.auth.openid,
-                                                               asn_code=str(data['asn_code']),
-                                                               asn_status=3, supplier=str(data['supplier']),
-                                                               goods_code=str(
-                                                                   data['goodsData'][j].get('goods_code'))).first()
-                    goods_detail = goods.objects.filter(openid=self.request.auth.openid,
-                                                        goods_code=str(data['goodsData'][j].get('goods_code')),
-                                                        is_delete=False).first()
-                    if int(data['goodsData'][j].get('goods_actual_qty')) == 0:
-                        asn_detail.goods_actual_qty = int(data['goodsData'][j].get('goods_actual_qty'))
-                        asn_detail.goods_shortage_qty = asn_detail.goods_qty
-                        asn_detail.goods_cost = 0
-                        qs[j].total_cost = qs[j].total_cost - (asn_detail.goods_shortage_qty * goods_detail.goods_cost)
-                        goods_qty_change.goods_qty = goods_qty_change.goods_qty - asn_detail.goods_qty
-                        goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
-                        asn_detail.asn_status = 5
-                        asn_detail.save()
-                        goods_qty_change.save()
-                        if goods_qty_change.goods_qty == 0 and goods_qty_change.back_order_stock == 0:
-                            goods_qty_change.delete()
-                    else:
-                        asn_detail.goods_actual_qty = int(data['goodsData'][j].get('goods_actual_qty'))
-                        goods_qty_check = asn_detail.goods_qty - int(data['goodsData'][j].get('goods_actual_qty'))
-                        if goods_qty_check > 0:
-                            asn_detail.goods_shortage_qty = goods_qty_check
-                            asn_detail.goods_more_qty = 0
-                            asn_detail.goods_cost = asn_detail.goods_cost - (asn_detail.goods_shortage_qty * goods_detail.goods_cost)
-                            qs[j].total_cost = qs[j].total_cost - (asn_detail.goods_shortage_qty * goods_detail.goods_cost)
-                            goods_qty_change.goods_qty = goods_qty_change.goods_qty - goods_qty_check
-                            goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
-                            goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
-                        elif goods_qty_check == 0:
-                            asn_detail.goods_shortage_qty = 0
-                            asn_detail.goods_more_qty = 0
-                            goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - int(data['goodsData'][j].get('goods_actual_qty'))
-                            goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
-                        elif goods_qty_check < 0:
-                            asn_detail.goods_shortage_qty = 0
-                            asn_detail.goods_more_qty = abs(goods_qty_check)
-                            asn_detail.goods_cost = asn_detail.goods_cost + (asn_detail.goods_more_qty * goods_detail.goods_cost)
-                            qs[j].total_cost = qs[j].total_cost + (asn_detail.goods_more_qty * goods_detail.goods_cost)
-                            goods_qty_change.goods_qty = goods_qty_change.goods_qty + abs(goods_qty_check)
-                            goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
-                            goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
-                        asn_detail.asn_status = 4
-                        asn_detail.save()
-                        goods_qty_change.save()
-                        if goods_qty_change.goods_qty == 0 and goods_qty_change.back_order_stock == 0:
-                            goods_qty_change.delete()
-                if AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=str(data['asn_code']),
-                                                          asn_status=4, supplier=str(data['supplier'])).exists():
-                    qs[j].asn_status = 4
+        data = self.request.data
+        qs = self.get_queryset().filter(asn_code=data['asn_code']).first()
+        if qs.asn_status != 3:
+            raise APIException({"detail": "This ASN Status Is Not 3"})
+        else:
+            for j in range(len(data['goodsData'])):
+                goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
+                                                            goods_code=str(
+                                                                data['goodsData'][j].get('goods_code'))).first()
+                asn_detail = AsnDetailModel.objects.filter(openid=self.request.auth.openid,
+                                                           asn_code=str(data['asn_code']),
+                                                           goods_code=str(
+                                                               data['goodsData'][j].get('goods_code'))).first()
+                goods_detail = goods.objects.filter(openid=self.request.auth.openid,
+                                                    goods_code=str(data['goodsData'][j].get('goods_code')),
+                                                    is_delete=False).first()
+                if int(data['goodsData'][j].get('goods_actual_qty')) == 0:
+                    asn_detail.goods_actual_qty = int(data['goodsData'][j].get('goods_actual_qty'))
+                    asn_detail.goods_shortage_qty = asn_detail.goods_qty
+                    asn_detail.goods_cost = 0
+                    qs.total_cost = qs.total_cost - (asn_detail.goods_shortage_qty * goods_detail.goods_cost)
+                    goods_qty_change.goods_qty = goods_qty_change.goods_qty - asn_detail.goods_qty
+                    goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
+                    asn_detail.asn_status = 5
+                    asn_detail.save()
+                    goods_qty_change.save()
+                    if goods_qty_change.goods_qty == 0 and goods_qty_change.back_order_stock == 0:
+                        goods_qty_change.delete()
                 else:
-                    qs[j].asn_status = 5
-                qs[j].save()
-                return Response({"detail": "success"}, status=200)
+                    asn_detail.goods_actual_qty = int(data['goodsData'][j].get('goods_actual_qty'))
+                    goods_qty_check = asn_detail.goods_qty - int(data['goodsData'][j].get('goods_actual_qty'))
+                    if goods_qty_check > 0:
+                        asn_detail.goods_shortage_qty = goods_qty_check
+                        asn_detail.goods_more_qty = 0
+                        asn_detail.goods_cost = asn_detail.goods_cost - (asn_detail.goods_shortage_qty * goods_detail.goods_cost)
+                        qs.total_cost = qs.total_cost - (asn_detail.goods_shortage_qty * goods_detail.goods_cost)
+                        goods_qty_change.goods_qty = goods_qty_change.goods_qty - goods_qty_check
+                        goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
+                        goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
+                    elif goods_qty_check == 0:
+                        asn_detail.goods_shortage_qty = 0
+                        asn_detail.goods_more_qty = 0
+                        goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - int(data['goodsData'][j].get('goods_actual_qty'))
+                        goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
+                    elif goods_qty_check < 0:
+                        asn_detail.goods_shortage_qty = 0
+                        asn_detail.goods_more_qty = abs(goods_qty_check)
+                        asn_detail.goods_cost = asn_detail.goods_cost + (asn_detail.goods_more_qty * goods_detail.goods_cost)
+                        qs.total_cost = qs.total_cost + (asn_detail.goods_more_qty * goods_detail.goods_cost)
+                        goods_qty_change.goods_qty = goods_qty_change.goods_qty + abs(goods_qty_check)
+                        goods_qty_change.pre_sort_stock = goods_qty_change.pre_sort_stock - asn_detail.goods_qty
+                        goods_qty_change.sorted_stock = goods_qty_change.sorted_stock + int(data['goodsData'][j].get('goods_actual_qty'))
+                    asn_detail.asn_status = 4
+                    asn_detail.save()
+                    goods_qty_change.save()
+                    if goods_qty_change.goods_qty == 0 and goods_qty_change.back_order_stock == 0:
+                        goods_qty_change.delete()
+            if AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=str(data['asn_code']),
+                                                      asn_status=4).exists():
+                qs.asn_status = 4
+            else:
+                qs.asn_status = 5
+            qs.save()
+            return Response({"detail": "success"}, status=200)
 
 class MoveToBinViewSet(viewsets.ModelViewSet):
     """
@@ -802,7 +776,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action in ['retrieve']:
             return serializers.ASNDetailGetSerializer
-        elif self.action in ['create']:
+        elif self.action in ['create', 'update']:
             return serializers.MoveToBinSerializer
         else:
             return self.http_method_not_allowed(request=self.request)
@@ -816,6 +790,157 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                 raise APIException({"detail": "This ASN Status Is Not 4"})
             else:
                 data = self.request.data
+                if 'bin_name' not in data:
+                    raise APIException({"detail": "Please Enter the Bin Name"})
+                else:
+                    bin_detail = binset.objects.filter(openid=self.request.auth.openid,
+                                                       bin_name=str(data['bin_name'])).first()
+                    asn_detail = AsnListModel.objects.filter(openid=self.request.auth.openid,
+                                                                asn_code=str(data['asn_code'])).first()
+                    goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
+                                                                goods_code=str(data['goods_code'])).first()
+                    if int(data['qty']) <= 0:
+                        raise APIException({"detail": "Move QTY Must > 0"})
+                    else:
+                        move_qty = qs.goods_actual_qty - qs.sorted_qty - int(data['qty'])
+                        if move_qty > 0:
+                            qs.sorted_qty = qs.sorted_qty + int(data['qty'])
+                            goods_qty_change.sorted_stock = goods_qty_change.sorted_stock - int(data['qty'])
+                            goods_qty_change.onhand_stock = goods_qty_change.onhand_stock + int(data['qty'])
+                            if bin_detail.bin_property == 'Damage':
+                                goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data['qty'])
+                                qs.goods_damage_qty = qs.goods_damage_qty + int(data['qty'])
+                            elif bin_detail.bin_property == 'Inspection':
+                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['qty'])
+                            elif bin_detail.bin_property == 'Holding':
+                                goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['qty'])
+                            else:
+                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(data['qty'])
+                            qs.save()
+                            goods_qty_change.save()
+                            stockbin.objects.create(openid=self.request.auth.openid,
+                                                    bin_name=str(data['bin_name']),
+                                                    goods_code=str(data['goods_code']),
+                                                    goods_desc=goods_qty_change.goods_desc,
+                                                    goods_qty=int(data['qty']),
+                                                    bin_size=bin_detail.bin_size,
+                                                    bin_property=bin_detail.bin_property,
+                                                    t_code=Md5.md5(str(data['goods_code'])),
+                                                    create_time=qs.create_time
+                                                    )
+                            qtychangerecorder.objects.create(openid=self.request.auth.openid,
+                                                             mode_code=qs.asn_code,
+                                                             bin_name=str(data['bin_name']),
+                                                             goods_code=str(data['goods_code']),
+                                                             goods_qty=int(data['qty']),
+                                                             creater=str(data['creater'])
+                                                             )
+                            cur_date = timezone.now().date()
+                            line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
+                                                                  bin_name=str(data['bin_name']),
+                                                                  goods_code=str(data['goods_code']),
+                                                                  create_time__gte=cur_date)
+                            bin_check = stockbin.objects.filter(openid=self.request.auth.openid,
+                                                                bin_name=str(data['bin_name']),
+                                                                goods_code=str(data['goods_code']),
+                                                                )
+                            if bin_check.exists():
+                                bin_stock = bin_check.aggregate(sum=Sum('goods_qty'))["sum"]
+                            else:
+                                bin_stock = 0
+                            if line_data.exists():
+                                line_data.goods_qty = bin_stock + int(data['qty'])
+                                line_data.update(goods_qty=line_data.goods_qty)
+                            else:
+                                cyclecount.objects.create(openid=self.request.auth.openid,
+                                                          bin_name=str(data['bin_name']),
+                                                          goods_code=str(data['goods_code']),
+                                                          goods_qty=int(data['qty']),
+                                                          creater=str(data['creater'])
+                                                          )
+                            if bin_detail.empty_label == True:
+                                bin_detail.empty_label = False
+                                bin_detail.save()
+                        elif move_qty == 0:
+                            qs.sorted_qty = qs.sorted_qty + int(data['qty'])
+                            qs.asn_status = 5
+                            goods_qty_change.sorted_stock = goods_qty_change.sorted_stock - int(data['qty'])
+                            goods_qty_change.onhand_stock = goods_qty_change.onhand_stock + int(data['qty'])
+                            if bin_detail.bin_property == 'Damage':
+                                goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data['qty'])
+                                qs.goods_damage_qty = qs.goods_damage_qty + int(data['qty'])
+                            elif bin_detail.bin_property == 'Inspection':
+                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(data['qty'])
+                            elif bin_detail.bin_property == 'Holding':
+                                goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data['qty'])
+                            else:
+                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(data['qty'])
+                            qtychangerecorder.objects.create(openid=self.request.auth.openid,
+                                                             mode_code=qs.asn_code,
+                                                             bin_name=str(data['bin_name']),
+                                                             goods_code=str(data['goods_code']),
+                                                             goods_qty=int(data['qty']),
+                                                             creater=str(data['creater'])
+                                                             )
+                            cur_date = timezone.now().date()
+                            line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
+                                                                  bin_name=str(data['bin_name']),
+                                                                  goods_code=str(data['goods_code']),
+                                                                  create_time__gte=cur_date)
+                            bin_check = stockbin.objects.filter(openid=self.request.auth.openid,
+                                                                bin_name=str(data['bin_name']),
+                                                                goods_code=str(data['goods_code']),
+                                                                )
+                            if bin_check.exists():
+                                bin_stock = bin_check.aggregate(sum=Sum('goods_qty'))["sum"]
+                            else:
+                                bin_stock = 0
+                            if line_data.exists():
+                                line_data.goods_qty = bin_stock + int(data['qty'])
+                                line_data.update(goods_qty=line_data.goods_qty)
+                            else:
+                                cyclecount.objects.create(openid=self.request.auth.openid,
+                                                          bin_name=str(data['bin_name']),
+                                                          goods_code=str(data['goods_code']),
+                                                          goods_qty=int(data['qty']),
+                                                          creater=str(data['creater']),
+                                                          t_code=Md5.md5(str(data['bin_name']))
+                                                          )
+                            qs.save()
+                            goods_qty_change.save()
+                            if AsnDetailModel.objects.filter(openid=self.request.auth.openid,
+                                                             asn_code=str(data['asn_code']),
+                                                             asn_status=4
+                                                             ).exists():
+                                pass
+                            else:
+                                asn_detail.asn_status = 5
+                                asn_detail.save()
+                            stockbin.objects.create(openid=self.request.auth.openid,
+                                                    bin_name=str(data['bin_name']),
+                                                    goods_code=str(data['goods_code']),
+                                                    goods_desc=goods_qty_change.goods_desc,
+                                                    goods_qty=int(data['qty']),
+                                                    bin_size=bin_detail.bin_size,
+                                                    bin_property=bin_detail.bin_property,
+                                                    t_code=Md5.md5(str(data['goods_code'])),
+                                                    create_time=qs.create_time)
+                            if bin_detail.empty_label == True:
+                                bin_detail.empty_label = False
+                                bin_detail.save()
+                        elif move_qty < 0:
+                            raise APIException({"detail": "Move Qty must < Actual Arrive Qty"})
+                        return Response({"detail": "success"}, status=200)
+
+    def update(self, request, *args, **kwargs):
+        data = self.request.data
+        qs = self.get_queryset().filter(asn_code=data['asn_code']).first()
+        if qs.openid != self.request.auth.openid:
+            raise APIException({"detail": "Cannot delete data which not yours"})
+        else:
+            if qs.asn_status != 4:
+                raise APIException({"detail": "This ASN Status Is Not 4"})
+            else:
                 if 'bin_name' not in data:
                     raise APIException({"detail": "Please Enter the Bin Name"})
                 else:
