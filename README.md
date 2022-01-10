@@ -14,7 +14,7 @@ Fully open source warehouse management system follows Apache License 2.0 and fro
 - GitHub Link: [GitHub](https://github.com/Singosgu/GreaterWMS)
 - Gitee Link: [Gitee](https://gitee.com/Singosgu/GreaterWMS)
 - Video Tutorials: [YouTube](https://youtube.com/playlist?list=PLy5mF5pelhhLTglwXJbfdiXAdJaNjGgLX)(All Tutorials Will Upload To Here)
-- Demo Link: [DEMO](https://www.56yhz.com/)(Register can initial the demo data)
+- Home Page: [DEMO](https://www.56yhz.com/)(Register can initial the demo data)
 - Mail：mail@56yhz.com
 - CIMO-ADMIN(vue-quasar-manage): [GitHub](https://github.com/972784674t/vue-quasar-manage) | [Gitee](https://gitee.com/incimo/vue-quasar-manage)
 
@@ -28,23 +28,11 @@ I have 15 years old experience focus on supply chain . I find that in this profe
 
 ---
 
-## Production Life Cycle:
-
-- V 1.0.0 -- 2019.07 ~ 2020.12(Due to version 1.0.0 is more complex for re-development, so we rewrite the V 2.0)
-- V 2.0.0 -- 2020.12 ~ 2021.03(Rewrite business process, native API development documents, add real-time communication, facilitate enterprise users to communicate with each other)
-- V 2.1.0 -- 2021.03 ~ 2021.06(The real-time interaction between customers and enterprises is added to enhance the business relationship between enterprises and customers, and realize VMI business)
-- V 2.2.0 -- 2020.06 ~ 2021.09(The real-time interaction between suppliers and enterprises is added to enhance the business relationship between enterprises and suppliers, and realize milk-run and look-proof pulling）
-- V 2.3.0 -- 2021.09 ~ 2021.12(The rudiment of inventory management, the neural network is initially added, and the inventory changes are Deep learning)
-- V 3.0.0 -- 2021.12 ~ 2022.03(Fully implanted neural network, so that upstream and downstream enterprises can operate the whole business at the lowest cost)
-- V 3.1.0 -- 2022.03 ~ 2022.06(Regional warehouse business layout, through in-depth learning, to achieve multi warehouse operation, cost minimization)
-
----
-
 ## Development Environment:
 
-- Python Version 3.8.0 +
+- Python Version 3.9.5 +
 
-- Django Version 3.1.0 +(This version of Django only supports asynchronous real-time communication)
+- Django Version 3.1.12 +(This version of Django only supports asynchronous real-time communication)
 
 - Django-rest-framework Version  3.12.2 + (Highest versions of Django-rest-framework are more compatible with Django3)
 
@@ -132,62 +120,6 @@ const wsurl = 'wss://Your Production Server/websocket/'
 If the server has SSL enabled, please use https and wss, if SSL is not enabled, use http and ws
 
 The front-end code needs to be rebuilt after modification
-
----
-
-## Development Extension:
-
-Because the front and back ends are separated, more software applications can be developed through API
-
-### Logistics AI AGV
-
-- The AGV project has also been open sourced. Due to the limited space, only intelligent delivery, fixed-point return to the warehouse, tracking sensors, ultrasonic obstacle avoidance sensors, and infrared obstacle avoidance sensors are used. All instructions are transmitted through the network and are tied to the AGV. Specify the MAC address and IP address to ensure security, provided that you need a Raspberry Pi.
-
-### Invoicing System
-
-- It can be directly used as an invoicing system to simplify operations such as warehouse location setting.
-
-### APP And Mini Programe
-
-- Quasar can be directly packaged into IOS APP and Android APP
-- The development of mini programs can be developed through API for secondary development, but small programs do not support put requests, so you need to write another request interface yourself.
-
-- The combination of API can reach 1 million, so that we can obtain real-time reports and data monitoring according to query requests
-
-### Supply Chain Management System
-
-- The number of products, creation time, and last update time are all recorded, so it is convenient to analyze the inventory of the purchase plan and the allocation plan
-- V 2.3.0 and later versions will come with deep learning analysis, so you can directly use the analysis results as a supply chain management system tool
-
-### Multi-warehouse Management
-
-- OPENID is the unique identification of the user's data, and the data group is uniformly identified as the APPID, so it is very convenient to realize multi-warehouse management
-
-### Wave Picking And Shipping
-
-- You can set a fixed time to send a request to the server to achieve the function of wave picking
-
-- You can also use task work directly, through API query and analysis results to achieve, it is recommended to use [APScheduler](https://pypi.org/project/APScheduler/)
-
-  ~~~python
-  pip install apscheduler
-  ~~~
-
-### Milk-Run
-
-- V 2.2.0 and above will natively support this function
-- If you need this business now, you can call inventory consumption according to API to achieve this function
-
-### VMI
-
-- V 2.1.0 and above, will natively support this function
-- If you need this business now, you can call inventory consumption according to API to achieve this function
-
-### Picking Route Optimization
-
-- The current picking route is sorted by bin location
-- This feature will be natively supported after V 2.3.0
-- If you need this business now, you can call the API to implement this function according to the daily picking details
 
 ---
 
