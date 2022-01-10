@@ -29,7 +29,7 @@ path(r'pickinglistfilter/', views.DnPickingListFilterViewSet.as_view({"get": "li
 re_path(r'^pickinglist/(?P<pk>\d+)/$', views.DnPickingListViewSet.as_view({
     'get': 'retrieve',
 }), name="pickinglist_1"),
-path(r'^picked/$', views.DnPickedViewSet.as_view({'put': 'update'}), name="picked"),
+path(r'picked/', views.DnPickedViewSet.as_view({'put': 'update'}), name="picked"),
 re_path(r'^picked/(?P<pk>\d+)/$', views.DnPickedViewSet.as_view({
     'post': 'create',
 }), name="picked_1"),
