@@ -58,10 +58,13 @@
 
 <script>
 import { getauth } from 'boot/axios_request.js';
+import {LocalStorage} from "quasar";
 export default {
   name: 'PageInbAndOutb',
   data() {
     return {
+      login_name: '',
+      authin: '0',
       pathname: 'dashboard/',
       pathname_previous: '',
       pathname_next: '',
@@ -174,7 +177,25 @@ export default {
     }
   },
   created() {
-    this.getList();
+    var _this = this
+    if (LocalStorage.has('openid')) {
+      _this.openid = LocalStorage.getItem('openid')
+    } else {
+      _this.openid = ''
+      LocalStorage.set('openid', '')
+    }
+    if (LocalStorage.has('login_name')) {
+      _this.login_name = LocalStorage.getItem('login_name')
+    } else {
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
+    }
+    if (LocalStorage.has('auth')) {
+      _this.authin = '1'
+      _this.getList()
+    } else {
+      _this.authin = '0'
+    }
   },
   mounted() {
     if (this.$q.platform.is.electron) {

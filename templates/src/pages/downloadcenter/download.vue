@@ -6,31 +6,28 @@
           <q-tabs>
             <transition appear enter-active-class="animated zoomIn">
               <q-route-tab
-                v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="downloadinbound"
                 :label="$t('inbound.asn')"
                 icon="img:statics/inbound/asn.png"
-                to="/downloadcenter/downloadinbound"
+                :to="{ name: 'downloadinbound' }"
                 exact
               />
             </transition>
             <transition appear enter-active-class="animated zoomIn">
               <q-route-tab
-                v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="downloadoutbound"
                 :label="$t('outbound.dn')"
                 icon="img:statics/outbound/dnlist.png"
-                to="/downloadcenter/downloadoutbound"
+                :to="{ name: 'downloadoutbound' }"
                 exact
               />
             </transition>
             <transition appear enter-active-class="animated zoomIn">
               <q-route-tab
-                v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="downloadstocklist"
                 :label="$t('stock.stocklist')"
                 icon="img:statics/stock/stocklist.png"
-                to="/downloadcenter/downloadstocklist"
+                :to="{ name: 'downloadstocklist' }"
                 exact
               />
             </transition>
@@ -40,17 +37,16 @@
                 name="downloadbinlist"
                 :label="$t('stock.stockbinlist')"
                 icon="img:statics/warehouse/binset.png"
-                to="/downloadcenter/downloadbinlist"
+                :to="{ name: 'downloadbinlist' }"
                 exact
               />
             </transition>
             <transition appear enter-active-class="animated zoomIn">
               <q-route-tab
-                v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
                 name="downloadgoodslist"
                 :label="$t('goods.goods_list')"
                 icon="img:statics/goods/goodslist.png"
-                to="/downloadcenter/downloadgoodslist"
+                :to="{ name: 'downloadgoodslist' }"
                 exact
               />
             </transition>
