@@ -4,7 +4,7 @@
     <q-card v-show="!fab" flat :style="{ width: width, height: height }">
       <q-card-section>
         <q-bar class="bg-white q-mb-sm shadow-1 ">
-          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ dn_scan }}</div>
+          <div style="font-size: 12px;width: 100%;">{{ $t('outbound.view_dn.dn_code') }}: {{ dn_scan }}</div>
         </q-bar>
         <q-btn-group push>
           <q-btn color="purple" :label="$t('stock.view_stocklist.cyclecountresult')" @click="pickedSubmit()"/>
@@ -55,8 +55,8 @@ export default {
       table_list: [],
       scan_goods_code: this.$t('scan.scan_goods_code'),
       scan_bin_name: this.$t('scan.scan_bin_name'),
-      order_qty: this.$t('scan.view_picking.order_qty'),
-      picking_qty: this.$t('scan.view_picking.picking_qty'),
+      order_qty: this.$t('outbound.view_dn.goods_qty'),
+      picking_qty: this.$t('stock.view_stocklist.picked_stock'),
       thumbStyle: {
         right: '4px',
         borderRadius: '5px',
