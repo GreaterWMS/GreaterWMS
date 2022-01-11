@@ -4,13 +4,13 @@
     <q-card v-show="!fab" flat :style="{ width: width, height: height }">
       <q-card-section>
         <q-bar class="bg-white q-mb-sm shadow-1 ">
-          <q-input v-model="license_plate" borderless stack-label label="车牌号" style="font-size: 12px;width: 100%;" @keyup.enter="driverConfirm()"  @blur="driverConfirm()"/>
+          <q-input v-model="license_plate" borderless stack-label :label="$t('driver.view_driver.license_plate')" style="font-size: 12px;width: 100%;" @keyup.enter="driverConfirm()"  @blur="driverConfirm()"/>
         </q-bar>
         <q-bar class="bg-white q-mb-sm shadow-1 ">
-          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ driver_list.driver_name }}</div>
+          <div style="font-size: 12px;width: 100%;">{{ $t('driver.view_driver.driver_name') }}: {{ driver_list.driver_name }}</div>
         </q-bar>
         <q-bar class="bg-white q-mb-sm shadow-1 ">
-          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ driver_list.contact }}</div>
+          <div style="font-size: 12px;width: 100%;">{{ $t('driver.view_driver.contact') }}: {{ driver_list.contact }}</div>
         </q-bar>
         <q-btn-group push>
           <q-btn color="purple" :label="$t('stock.view_stocklist.cyclecountresult')" @click="resultSubmit()"/>
@@ -20,10 +20,10 @@
         <q-markup-table>
           <thead>
             <tr>
-              <th class="text-left">{{ scan_dn_code }}</th>
-              <th class="text-right">{{ scan_goods_code }}</th>
-              <th class="text-right">{{ order_qty }}</th>
-              <th class="text-right">{{ picking_qty }}</th>
+              <th class="text-center">{{ scan_dn_code }}</th>
+              <th class="text-center">{{ scan_goods_code }}</th>
+              <th class="text-center">{{ order_qty }}</th>
+              <th class="text-center">{{ picking_qty }}</th>
             </tr>
           </thead>
           <tbody>
@@ -61,10 +61,10 @@ export default {
       table_list: [],
       driver_list: '',
       dn_list: '',
+      scan_dn_code: this.$t('outbound.view_dn.dn_code'),
       scan_goods_code: this.$t('scan.scan_goods_code'),
-      scan_dn_code: this.$t('scan.scan_dn_code'),
-      order_qty: this.$t('scan.view_picking.order_qty'),
-      picking_qty: this.$t('scan.view_picking.picking_qty'),
+      order_qty: this.$t('outbound.view_dn.goods_qty'),
+      picking_qty: this.$t('stock.view_stocklist.picked_stock'),
       thumbStyle: {
         right: '4px',
         borderRadius: '5px',
