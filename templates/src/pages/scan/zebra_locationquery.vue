@@ -4,7 +4,7 @@
     <q-card v-show="!fab" flat :style="{ width: width,  height: height }">
       <q-card-section>
         <q-bar class="bg-white shadow-1 ">
-          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ bin_scan }}</div>
+          <div style="font-size: 12px;width: 100%;">{{ $t('warehouse.view_binset.bin_name') }}: {{ bin_scan }}</div>
         </q-bar>
       </q-card-section>
       <q-scroll-area
@@ -15,31 +15,31 @@
         <q-markup-table>
           <thead>
           <tr>
-            <th class="text-left">{{ bin_name_label }}</th>
-            <th class="text-right">{{ goods_code_label }}</th>
-            <th class="text-right">{{ goods_desc_label }}</th>
-            <th class="text-right">{{ goods_qty_label }}</th>
-            <th class="text-right">{{ pick_qty_label }}</th>
-            <th class="text-right">{{ picked_qty_label }}</th>
-            <th class="text-right">{{ bin_size_label }}</th>
-            <th class="text-right">{{ bin_property_label }}</th>
-            <th class="text-right">{{ create_time_label }}</th>
-            <th class="text-right">{{ update_time_label }}</th>
+            <th class="text-center">{{ bin_name_label }}</th>
+            <th class="text-center">{{ goods_code_label }}</th>
+            <th class="text-center">{{ goods_desc_label }}</th>
+            <th class="text-center">{{ goods_qty_label }}</th>
+            <th class="text-center">{{ pick_qty_label }}</th>
+            <th class="text-center">{{ picked_qty_label }}</th>
+            <th class="text-center">{{ bin_size_label }}</th>
+            <th class="text-center">{{ bin_property_label }}</th>
+            <th class="text-center">{{ create_time_label }}</th>
+            <th class="text-center">{{ update_time_label }}</th>
           </tr>
           </thead>
           <tbody>
           <template>
             <tr v-for='(item, index) in table_list' :key='index'>
-              <td class="text-left">{{ item.bin_name }}</td>
-              <td class="text-right">{{ item.goods_code }}</td>
-              <td class="text-right">{{ item.goods_desc }}</td>
-              <td class="text-right">{{ item.goods_qty }}</td>
-              <td class="text-right">{{ item.pick_qty }}</td>
-              <td class="text-right">{{ item.picked_qty }}</td>
-              <td class="text-right">{{ item.bin_size }}</td>
-              <td class="text-right">{{ item.bin_property }}</td>
-              <td class="text-right">{{ item.create_time }}</td>
-              <td class="text-right">{{ item.update_time }}</td>
+              <td class="text-center">{{ item.bin_name }}</td>
+              <td class="text-center">{{ item.goods_code }}</td>
+              <td class="text-center">{{ item.goods_desc }}</td>
+              <td class="text-center">{{ item.goods_qty }}</td>
+              <td class="text-center">{{ item.pick_qty }}</td>
+              <td class="text-center">{{ item.picked_qty }}</td>
+              <td class="text-center">{{ item.bin_size }}</td>
+              <td class="text-center">{{ item.bin_property }}</td>
+              <td class="text-center">{{ item.create_time }}</td>
+              <td class="text-center">{{ item.update_time }}</td>
             </tr>
           </template>
           </tbody>

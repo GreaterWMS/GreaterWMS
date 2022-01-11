@@ -4,13 +4,13 @@
     <q-card v-show="!fab" flat :style="{ width: width, height: height }">
       <q-card-section>
         <q-bar class="bg-white q-mb-sm shadow-1 ">
-          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ asn_scan }}</div>
+          <div style="font-size: 12px;width: 100%;">{{ $t('inbound.view_asn.asn_code') }}: {{ asn_scan }}</div>
         </q-bar>
         <q-bar class="bg-white q-mb-sm shadow-1 ">
-          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ goods_scan }}</div>
+          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_code') }}: {{ goods_scan }}</div>
         </q-bar>
         <q-bar class="bg-white shadow-1 ">
-          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_goods_label') }}: {{ bin_scan }}</div>
+          <div style="font-size: 12px;width: 100%;">{{ $t('warehouse.view_binset.bin_name') }}: {{ bin_scan }}</div>
         </q-bar>
       </q-card-section>
       <q-scroll-area ref="scrollArea" :thumb-style="thumbStyle" :bar-style="barStyle" :style="{ height: scroll_height, width: width }">
@@ -55,8 +55,8 @@ export default {
       scroll_height: '',
       table_list: [],
       scan_goods_code: this.$t('scan.scan_goods_code'),
-      goods_actual_qty: this.$t('scan.view_picking.picking_qty'),
-      sorted_qty: this.$t('scan.view_picking.order_qty'),
+      goods_actual_qty: this.$t('inbound.view_asn.goods_actual_qty'),
+      sorted_qty: this.$t('inbound.view_asn.sorted_qty'),
       thumbStyle: {
         right: '4px',
         borderRadius: '5px',
