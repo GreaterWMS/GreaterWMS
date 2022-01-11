@@ -242,9 +242,9 @@ export default {
   },
   download_center: {
     createTime: 'Create Time',
-    reset: 'reset',
-    start: 'start',
-    end: 'end'
+    reset: 'Reset',
+    start: 'Start',
+    end: 'End'
   },
   community_mall: {
     communitymall: 'Community Mall'
