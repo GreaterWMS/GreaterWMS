@@ -13,7 +13,7 @@
 - Gitee地址：[Gitee](https://gitee.com/Singosgu/GreaterWMS)
 - 视频教程：[B站](https://space.bilibili.com/407321291/channel/detail?cid=152043)(所有的教程都会更新在这里)
 - Demo地址：[DEMO](https://www.56yhz.com/)(注册会获得初始化Demo数据)
-- 微信：![wechat.png](https://github.com/Singosgu/picfile/blob/master/CN/wechat.png?raw=true)
+- 技术交流群：![wechat.png](https://github.com/Singosgu/picfile/blob/master/CN/wechat.png?raw=true)
 - 邮箱：mail@56yhz.com
 - CIMO-ADMIN(vue-quasar-manage): [GitHub](https://github.com/972784674t/vue-quasar-manage) | [Gitee](https://gitee.com/incimo/vue-quasar-manage)
 
