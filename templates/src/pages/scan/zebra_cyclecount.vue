@@ -4,7 +4,6 @@
     <q-card v-show="!fab" :style="{ width: width,  height: height }">
       <q-card-section>
         <q-btn-group push>
-          <q-btn :label="$t('refresh')" @click="reFresh()" />
           <q-btn color='purple' :label="$t('stock.view_stocklist.cyclecountresult')" @click="ConfirmCount()" />
         </q-btn-group>
       </q-card-section>
@@ -16,19 +15,19 @@
         <q-markup-table>
           <thead>
           <tr>
-            <th class="text-left">{{ bin_name_label }}</th>
-            <th class="text-right">{{ goods_code_label }}</th>
-            <th class="text-right">{{ physical_label }}</th>
-            <th class="text-right">{{ action_label }}</th>
+            <th class="text-center">{{ bin_name_label }}</th>
+            <th class="text-center">{{ goods_code_label }}</th>
+            <th class="text-center">{{ physical_label }}</th>
+            <th class="text-center">{{ action_label }}</th>
           </tr>
           </thead>
           <tbody>
           <template>
             <tr v-for='(item, index) in table_list' :key='index'>
-              <td :class="{'scan-background text-left': item.bin_name === bin_scan, 'text-left': item.bin_name !== bin_scan }">{{ item.bin_name }}</td>
-              <td :class="{'scan-background text-right': item.bin_name === bin_scan && item.goods_code === goods_scan, 'text-right': item.bin_name !== bin_scan && item.goods_code !== goods_scan }">{{ item.goods_code }}</td>
-              <td :class="{'scan-background text-right': item.bin_name === bin_scan && item.goods_code === goods_scan, 'text-right': item.bin_name !== bin_scan && item.goods_code !== goods_scan }">{{ item.physical_inventory }}</td>
-              <td class="text-right">
+              <td :class="{'scan-background text-center': item.bin_name === bin_scan, 'text-center': item.bin_name !== bin_scan }">{{ item.bin_name }}</td>
+              <td :class="{'scan-background text-center': item.bin_name === bin_scan && item.goods_code === goods_scan, 'text-center': item.bin_name !== bin_scan && item.goods_code !== goods_scan }">{{ item.goods_code }}</td>
+              <td :class="{'scan-background text-center': item.bin_name === bin_scan && item.goods_code === goods_scan, 'text-center': item.bin_name !== bin_scan && item.goods_code !== goods_scan }">{{ item.physical_inventory }}</td>
+              <td class="text-center">
                 <q-btn round flat push color="purple" icon="repeat" @click="repeatCount(index)" style="width: 50px" />
               </td>
             </tr>
@@ -236,6 +235,7 @@ export default {
     }
     if (LocalStorage.has('auth')) {
       _this.authin = '1'
+      _this.getList()
     } else {
       _this.authin = '0'
     }
@@ -245,7 +245,6 @@ export default {
     _this.width = Screen.width * 1 + '' + 'px'
     _this.height = Screen.height - 50 + '' + 'px'
     _this.scroll_height = Screen.height - 175 + '' + 'px'
-    _this.getList()
   },
   updated () {
     var _this = this

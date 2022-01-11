@@ -4,10 +4,10 @@
     <q-card v-show="!fab" flat :style="{ width: width,  height: height }">
       <q-card-section>
         <q-bar class="bg-white q-mb-sm shadow-1 ">
-          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_bin_name') }}: {{ frombin }}</div>
+          <div style="font-size: 12px;width: 100%;">From {{ $t('warehouse.view_binset.bin_name') }}: {{ frombin }}</div>
         </q-bar>
         <q-bar class="bg-white shadow-1 ">
-          <div style="font-size: 12px;width: 100%;">{{ $t('scan.scan_bin_name') }}: {{ tobin }}</div>
+          <div style="font-size: 12px;width: 100%;">To {{ $t('warehouse.view_binset.bin_name') }}: {{ tobin }}</div>
         </q-bar>
       </q-card-section>
       <q-scroll-area
@@ -18,17 +18,17 @@
         <q-markup-table>
           <thead>
             <tr>
-              <th class="text-right">{{ goods_code_label }}</th>
-              <th class="text-right">{{ goods_qty_label }}</th>
-              <th class="text-right">{{ move_qty_label }}</th>
+              <th class="text-center">{{ goods_code_label }}</th>
+              <th class="text-center">{{ goods_qty_label }}</th>
+              <th class="text-center">{{ move_qty_label }}</th>
             </tr>
           </thead>
           <tbody>
             <template>
               <tr v-for='(item, index) in table_list' :key='index'>
-                <td class="text-left">{{ item.goods_code }}</td>
-                <td class="text-right">{{ item.goods_qty }}</td>
-                <td class="text-right">{{ item.move_qty }}</td>
+                <td class="text-center">{{ item.goods_code }}</td>
+                <td class="text-center">{{ item.goods_qty }}</td>
+                <td class="text-center">{{ item.move_qty }}</td>
               </tr>
             </template>
           </tbody>
