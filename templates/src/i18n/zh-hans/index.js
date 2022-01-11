@@ -6,10 +6,10 @@ export default {
   success: 'Action was successful',
   index: {
     index_title: '仓库管理平台',
-    webtitle: '聚商汇WMS--开源仓库管理系统',
+    webtitle: 'GreaterWMS--开源仓库管理系统',
     home: '首页',
-    title: '聚商汇WMS',
-    title_tip: '聚商汇WMS首页',
+    title: 'GreaterWMS',
+    title_tip: 'GreaterWMS首页',
     hide_menu: '收起菜单',
     api: 'API文档',
     translate: '更改语言',

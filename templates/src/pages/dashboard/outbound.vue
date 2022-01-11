@@ -13,11 +13,14 @@
 <script>
 import IEcharts from 'vue-echarts-v3/src/full.js';
 import { getauth } from 'boot/axios_request';
+import {LocalStorage} from "quasar";
 
 export default {
   name: 'charts',
   data() {
     return {
+      login_name: '',
+      authin: '0',
       pathname: 'dashboard/',
       height: '',
       height2: '',
@@ -69,6 +72,26 @@ export default {
           });
       } else {
       }
+    }
+  },
+  created() {
+    var _this = this
+    if (LocalStorage.has('openid')) {
+      _this.openid = LocalStorage.getItem('openid')
+    } else {
+      _this.openid = ''
+      LocalStorage.set('openid', '')
+    }
+    if (LocalStorage.has('login_name')) {
+      _this.login_name = LocalStorage.getItem('login_name')
+    } else {
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
+    }
+    if (LocalStorage.has('auth')) {
+      _this.authin = '1'
+    } else {
+      _this.authin = '0'
     }
   },
   mounted() {
