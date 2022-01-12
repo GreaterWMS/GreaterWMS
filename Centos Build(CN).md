@@ -10,16 +10,17 @@ sudo yum -y install gcc-c++ // 安装依赖
 sudo yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel libffi-devel gcc make // 安装python依赖
 sudo yum install nodejs // 安装nodejs
 sudo npm install n -g // 安装n
-sudo /usr/local/bin/n stable // 升级nodejs
+sudo /usr/local/bin/n 14.18.3 // 升级nodejs
 sudo npm install npm -g // 升级npm
 sudo npm install yarn -g // 安装yarn
 sudo npm install @quasar/cli -g // 安装quasar
+sudo npm install cordova -g // 安装cordova
 quasar -v // 检查 Quasar 版本
 python3 // 查看python版本
 cd /usr/src // 进入src
-sudo wget https://www.python.org/ftp/python/3.9.2/Python-3.9.2.tgz // 下载python3.9.2
-sudo tar -zxvf Python-3.9.2.tgz // 解压
-cd Python-3.9.2/ // 进入目录
+sudo wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz // 下载python3.9.2
+sudo tar -zxvf Python-3.9.5.tgz // 解压
+cd Python-3.9.5/ // 进入目录
 sudo ./configure --enable-optimizations // 编译
 sudo make altinstall  // 安装
 sudo mv /usr/bin/python3 /usr/bin/python3.bak // 备份
