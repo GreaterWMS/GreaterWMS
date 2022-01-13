@@ -57,11 +57,12 @@
 </template>
 
 <script>
-import { getauth } from 'boot/axios_request.js';
-import {LocalStorage} from "quasar";
+import { getauth } from 'boot/axios_request.js'
+import { LocalStorage } from 'quasar'
+
 export default {
   name: 'PageInbAndOutb',
-  data() {
+  data () {
     return {
       login_name: '',
       authin: '0',
@@ -87,96 +88,81 @@ export default {
         page: 1,
         rowsPerPage: '30'
       }
-    };
+    }
   },
   methods: {
-    getList() {
+    getList () {
+      var _this = this
       getauth('cyclecount/qtyrecorviewset/', {})
         .then(res => {
-          this.table_list = res.results;
-          this.pathname_previous = res.previous;
-          this.pathname_next = res.next;
-          this.table_list.forEach((item, index) => {
-            if (item.mode_code.substr(0, 3) == 'ASN') {
-              item.mode_code = this.$t('dashboards.view_tradelist.inbound');
-            } else {
-              item.mode_code = this.$t('dashboards.view_tradelist.outbound');
-            }
-          });
-        })
-        .catch(err => {
-          this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          });
-        });
-    },
-    getSearchList() {
-      var _this = this;
-      getauth('cyclecount/qtyrecorviewset/?goods_code__icontains='+ _this.filter, {})
-        .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
-          this.table_list.forEach((item, index) => {
-            if (item.mode_code.substr(0, 3) == 'ASN') {
-              item.mode_code = this.$t('dashboards.view_tradelist.inbound');
-            } else {
-              item.mode_code = this.$t('dashboards.view_tradelist.outbound');
-            }
-          });
+          _this.table_list = res.results
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getListPrevious() {
+    getSearchList () {
+      var _this = this
+      getauth('cyclecount/qtyrecorviewset/?goods_code__icontains=' + _this.filter, {})
+        .then(res => {
+          _this.table_list = res.results
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
+        })
+        .catch(err => {
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          })
+        })
+    },
+    getListPrevious () {
       if (this.$q.localStorage.has('auth')) {
         getauth(this.pathname_previous, {})
           .then(res => {
-            this.table_list = res.results;
-            this.pathname_previous = res.previous;
-            this.pathname_next = res.next;
+            this.table_list = res.results
+            this.pathname_previous = res.previous
+            this.pathname_next = res.next
           })
           .catch(err => {
             this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
-      } else {
+            })
+          })
       }
     },
-    getListNext() {
+    getListNext () {
       if (this.$q.localStorage.has('auth')) {
         getauth(this.pathname_next, {})
           .then(res => {
-            this.table_list = res.results;
-            this.pathname_previous = res.previous;
-            this.pathname_next = res.next;
+            this.table_list = res.results
+            this.pathname_previous = res.previous
+            this.pathname_next = res.next
           })
           .catch(err => {
             this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
-      } else {
+            })
+          })
       }
     },
-    reFresh() {
-      this.table_list = [];
-      this.getList();
+    reFresh () {
+      this.table_list = []
+      this.getList()
     }
   },
-  created() {
+  created () {
     var _this = this
     if (LocalStorage.has('openid')) {
       _this.openid = LocalStorage.getItem('openid')
@@ -197,14 +183,14 @@ export default {
       _this.authin = '0'
     }
   },
-  mounted() {
+  mounted () {
     if (this.$q.platform.is.electron) {
-      this.height = String(this.$q.screen.height - 290) + 'px';
+      this.height = String(this.$q.screen.height - 290) + 'px'
     } else {
-      this.height = this.$q.screen.height - 290 + '' + 'px';
+      this.height = this.$q.screen.height - 290 + '' + 'px'
     }
   }
-};
+}
 </script>
 
 <style>
