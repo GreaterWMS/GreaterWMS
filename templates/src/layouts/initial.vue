@@ -39,6 +39,11 @@ export default {
     } else {
       LocalStorage.set('device', 0)
       _this.webto = 'web_index'
+      if (LocalStorage.has('menulink')) {
+        if (LocalStorage.getItem('menulink') !== '') {
+          _this.webto = LocalStorage.getItem('menulink')
+        }
+      }
     }
     _this.$router.push({ name: _this.webto })
   }
