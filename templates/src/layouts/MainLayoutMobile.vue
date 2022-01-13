@@ -1,36 +1,13 @@
 <template>
   <q-layout view="hHh LpR fFf" :style="{ height: $q.screen.height, width: $q.screen.width }">
     <q-header reveal elevated class="bg-primary text-white">
-      <q-toolbar :class="{ 'main-headers text-white shadow-18 rounded-borders': device !== 2, 'main-headers text-white rounded-borders': device === 2 }">
+      <q-toolbar class="main-headers text-white rounded-borders">
         <transition appear enter-active-class="animated zoomIn">
-          <q-btn flat v-show="device !== 2" @click="drawerleft = !drawerleft" round dense icon="menu">
+          <q-btn flat @click="drawerleft = !drawerleft" round dense icon="menu">
             <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">{{ $t('index.hide_menu') }}</q-tooltip>
           </q-btn>
         </transition>
-        <transition appear enter-active-class="animated zoomIn">
-          <q-toolbar-title v-show="$q.platform.is.desktop" shrink class="text-weight-bold">{{ $t('index.title') }}</q-toolbar-title>
-        </transition>
         <q-space />
-        <transition appear enter-active-class="animated zoomIn">
-          <a v-show="device !== 2 && device !== 1 && !$q.platform.is.electron" href="/docs/" style="text-decoration:none; color: #c8e6c9">
-            <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px">
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">{{ $t('index.api') }}</q-tooltip>
-            </q-btn>
-          </a>
-        </transition>
-        <transition appear enter-active-class="animated zoomIn">
-          <q-btn
-            v-show="device === 0 && !$q.platform.is.electron"
-            icon="img:statics/icons/GitHub.png"
-            round
-            dense
-            flat
-            @click="brownlink('https://github.com/Singosgu/GreaterWMS')"
-            style="margin: 0 10px 0 10px"
-          >
-            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">GitHub Link</q-tooltip>
-          </q-btn>
-        </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-btn round dense flat color="white" icon="translate" style="margin: 0 10px 0 10px">
             <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">{{ $t('index.translate') }}</q-tooltip>
@@ -46,41 +23,23 @@
         <q-separator vertical />
         <template v-if="authin === '1'">
           <transition appear enter-active-class="animated zoomIn">
-            <q-btn v-show="device !== 2" round dense flat color="white" icon="notifications" @click="read = true" style="margin: 0 10px 0 10px">
-              <q-badge v-if="read_num" color="red" text-color="white" floating>{{ read_num }}</q-badge>
-              <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[15, 15]" content-style="font-size: 12px">{{ $t('index.unread') }}</q-tooltip>
-            </q-btn>
-          </transition>
-          <transition appear enter-active-class="animated zoomIn">
             <q-btn-dropdown stretch flat color="white-8" icon="account_circle" @click="chat = false">
               <div class="row no-wrap q-pa-md">
                 <div class="column" style="width: 150px">
-                  <div v-show="device === 0" class="text-h6 q-mb-md">{{ $t('index.user_center') }}</div>
-                  <div v-show="device === 1 || device === 2" style="width: 100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">
+                  <div style="width: 100%; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">
                     <span style="margin-left: 9%;font-weight: bold">{{ $t('index.current_user') }}:</span>
                     <span style="margin-left: 6%;font-weight: bold">{{ login_name }}</span>
                   </div>
-                  <hr v-show="device !== 0" style="height: 2px;border:none;border-top:1px solid #e1e1e1;width: 121%;margin-left: -10.5%; margin-top: 8%" />
+                  <hr style="height: 2px;border:none;border-top:1px solid #e1e1e1;width: 121%;margin-left: -10.5%; margin-top: 8%" />
                   <q-btn flat rounded class="full-width" align="left" :label="$t('index.change_user')" @click="login = true">
                     <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('index.change_user') }}</q-tooltip>
                   </q-btn>
                   <q-btn flat rounded class="full-width" align="left" :label="$t('index.view_my_openid')" @click="authid = true">
                     <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('index.view_my_openid') }}</q-tooltip>
                   </q-btn>
-                  <q-btn v-show="device !== 2" flat rounded class="full-width" align="left" :label="$t('index.contact_list')" @click="Friend()">
+                  <hr style="height: 2px;border:none;border-top:1px solid #e1e1e1;width: 121%;margin-left: -10.5%; margin-top: 8%" />
+                  <q-btn flat rounded class="full-width" align="left" :label="$t('index.logout')" @click="Logout()">
                     <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('index.contact_list') }}</q-tooltip>
-                  </q-btn>
-                  <hr v-show="device !== 0" style="height: 2px;border:none;border-top:1px solid #e1e1e1;width: 121%;margin-left: -10.5%; margin-top: 8%" />
-                  <q-btn v-show="$q.platform.is.cordova || $q.platform.is.mobile" flat rounded class="full-width" align="left" :label="$t('index.logout')" @click="Logout()">
-                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('index.contact_list') }}</q-tooltip>
-                  </q-btn>
-                </div>
-                <q-separator v-show="device === 0" vertical inset class="q-mx-lg" />
-                <div class="column items-center" v-show="$q.platform.is.desktop">
-                  <q-avatar size="72px"><q-img src="statics/staff/stafftype.png"></q-img></q-avatar>
-                  <div class="text-subtitle1 q-mt-md q-mb-xs">{{ login_name }}</div>
-                  <q-btn color="primary" :label="$t('index.logout')" push size="sm" v-close-popup icon="img:statics/icons/logout.png" @click="Logout()">
-                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('index.logout') }}</q-tooltip>
                   </q-btn>
                 </div>
               </div>
@@ -105,27 +64,21 @@
       <q-scroll-area class="fit" style="overflow-y: auto">
         <q-list>
           <q-item
-            v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
-            v-if="device === 0"
             clickable
-            :to="{ name: 'outbounddashboard' }"
-            @click="linkChange('outbounddashboard')"
+            :to="{ name: 'mp_inboundAndOutbound' }"
+            @click="linkChange('dashboard')"
             v-ripple
             exact
-            :active="link === 'outbounddashboard' && link !== ''"
-            :class="{ 'my-menu-link': link === 'outbounddashboard' && link !== '' }"
+            :active="link === 'dashboard' && link !== ''"
+            :class="{ 'my-menu-link': link === 'dashboard' && link !== '' }"
           >
             <q-item-section avatar><q-icon name="auto_graph" /></q-item-section>
             <q-item-section>{{ $t('menuItem.dashboard') }}</q-item-section>
           </q-item>
-          <q-separator v-show="device === 0" />
+          <q-separator />
           <q-item
-            v-show="
-              $q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer' && $q.localStorage.getItem('staff_type') !== 'Outbound'
-            "
-            v-if="device === 0"
             clickable
-            :to="{ name: 'asn' }"
+            :to="{ name: 'mp_asn' }"
             @click="linkChange('inbound')"
             v-ripple
             exact
@@ -136,12 +89,8 @@
             <q-item-section>{{ $t('menuItem.inbound') }}</q-item-section>
           </q-item>
           <q-item
-            v-show="
-              $q.localStorage.getItem('staff_type') !== 'Customer' && $q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Inbound'
-            "
-            v-if="device === 0"
             clickable
-            :to="{ name: 'dn' }"
+            :to="{ name: 'mp_dn' }"
             @click="linkChange('outbound')"
             v-ripple
             exact
@@ -152,10 +101,8 @@
             <q-item-section>{{ $t('menuItem.outbound') }}</q-item-section>
           </q-item>
           <q-item
-            v-show="$q.localStorage.getItem('staff_type') !== 'Supplier' && $q.localStorage.getItem('staff_type') !== 'Customer'"
-            v-if="device !== 2"
             clickable
-            :to="{ name: 'stocklist' }"
+            :to="{ name: 'mp_stocklist' }"
             @click="linkChange('stock')"
             v-ripple
             exact
@@ -165,11 +112,10 @@
             <q-item-section avatar><q-icon name="multiline_chart" /></q-item-section>
             <q-item-section>{{ $t('menuItem.stock') }}</q-item-section>
           </q-item>
-          <q-separator v-show="device !== 2" />
+          <q-separator />
           <q-item
-                  v-if="device !== 2"
                   clickable
-                  :to="{ name: 'capitallist' }"
+                  :to="{ name: 'mp_capitallist' }"
                   @click="linkChange('finance')"
                   v-ripple
                   exact
@@ -180,9 +126,8 @@
             <q-item-section>{{ $t('menuItem.finance') }}</q-item-section>
           </q-item>
           <q-item
-                  v-if="device !== 2"
                   clickable
-                  :to="{ name: 'goodslist' }"
+                  :to="{ name: 'mp_goodslist' }"
                   @click="linkChange('goods')"
                   v-ripple
                   exact
@@ -193,9 +138,8 @@
             <q-item-section>{{ $t('menuItem.goods') }}</q-item-section>
           </q-item>
           <q-item
-            v-if="device !== 2"
             clickable
-            :to="{ name: 'company' }"
+            :to="{ name: 'mp_supplier' }"
             @click="linkChange('baseinfo')"
             v-ripple
             exact
@@ -206,9 +150,8 @@
             <q-item-section>{{ $t('menuItem.baseinfo') }}</q-item-section>
           </q-item>
           <q-item
-            v-if="device !== 2"
             clickable
-            :to="{ name: 'warehouseset' }"
+            :to="{ name: 'mp_warehouseset' }"
             @click="linkChange('warehouse')"
             v-ripple
             exact
@@ -218,11 +161,10 @@
             <q-item-section avatar><q-icon name="settings" /></q-item-section>
             <q-item-section>{{ $t('menuItem.warehouse') }}</q-item-section>
           </q-item>
-          <q-separator v-show="device !== 2" />
+          <q-separator />
           <q-item
-            v-if="device !== 2"
             clickable
-            :to="{ name: 'stafflist' }"
+            :to="{ name: 'mp_stafflist' }"
             @click="linkChange('staff')"
             v-ripple
             exact
@@ -233,9 +175,8 @@
             <q-item-section>{{ $t('menuItem.staff') }}</q-item-section>
           </q-item>
           <q-item
-            v-if="device !== 2"
             clickable
-            :to="{ name: 'driverlist' }"
+            :to="{ name: 'mp_driverlist' }"
             @click="linkChange('driver')"
             v-ripple
             exact
@@ -245,20 +186,7 @@
             <q-item-section avatar><q-icon name="transfer_within_a_station" /></q-item-section>
             <q-item-section>{{ $t('menuItem.driver') }}</q-item-section>
           </q-item>
-          <q-separator v-show="device === 0" />
-          <q-item
-            v-if="device === 0"
-            clickable
-            :to="{ name: 'initializeupload' }"
-            @click="linkChange('uploadcenter')"
-            v-ripple
-            exact
-            :active="link === 'uploadcenter' && link !== ''"
-            :class="{ 'my-menu-link': link === 'uploadcenter' && link !== '' }"
-          >
-            <q-item-section avatar><q-icon name="file_upload" /></q-item-section>
-            <q-item-section>{{ $t('menuItem.uploadcenter') }}</q-item-section>
-          </q-item>
+          <q-separator />
         </q-list>
       </q-scroll-area>
     </q-drawer>
@@ -485,35 +413,6 @@
             "
           ></q-btn>
         </q-card-actions>
-      </q-card>
-    </q-dialog>
-    <q-dialog v-model="verCheck" transition-show="jump-down" transition-hide="jump-up" persistent>
-      <q-card style="min-width: 350px">
-        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-          <div>{{ $t('index.updatetitle') }}</div>
-          <q-space></q-space>
-          <q-btn dense flat icon="close" v-close-popup @click="NewVersionignore()">
-            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[20, 20]" content-style="font-size: 12px">{{ $t('index.close') }}</q-tooltip>
-          </q-btn>
-        </q-bar>
-        <q-card-section class="q-pt-md">{{ version }} {{ $t('index.updatedesc') }}</q-card-section>
-        <q-card-actions align="right" class="text-primary">
-          <q-btn v-show="!downloadprocess" flat :label="$t('index.cancel')" v-close-popup @click="NewVersionignore()" />
-          <q-btn v-show="!downloadprocess" color="primary" :label="$t('index.download')" @click="NewVersionDownload()" />
-          <q-linear-progress v-show="downloadprocess" size="25px" :value="processpercent / 100" color="accent">
-            <div class="absolute-full flex flex-center"><q-badge color="white" text-color="accent" :label="processpercent.toFixed(2) + '' + '%'" /></div>
-          </q-linear-progress>
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
-    <q-dialog v-model="updateNow" transition-show="jump-down" transition-hide="jump-up" persistent>
-      <q-card style="min-width: 350px">
-        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-          <div>{{ $t('index.updatetitle') }}</div>
-          <q-space></q-space>
-        </q-bar>
-        <q-card-section class="q-pt-md">{{ version }} {{ $t('index.updatedesc') }}</q-card-section>
-        <q-card-actions align="right" class="text-primary"><q-btn color="primary" :label="$t('index.update')" @click="NewVersionUpdate()" /></q-card-actions>
       </q-card>
     </q-dialog>
   </q-layout>
@@ -998,28 +897,6 @@ export default {
         location.reload()
       }, 1)
     },
-    NewVersionignore () {
-      var _this = this
-      _this.verCheck = false
-      _this.version = ''
-    },
-    NewVersionDownload () {
-      var _this = this
-      _this.version = ''
-      require('electron').ipcRenderer.send('downloadUpdate')
-      console.log(_this.processpercent)
-      if (_this.processpercent === 100) {
-        _this.verCheck = false
-        _this.downloadprocess = false
-      } else {
-        _this.downloadprocess = true
-      }
-    },
-    NewVersionUpdate () {
-      var _this = this
-      require('electron').ipcRenderer.send('updateNow')
-      _this.updateNow = false
-    },
     isLoggedIn () {
       this.activeTab = this.$q.localStorage.getItem('login_mode')
       if (this.$q.localStorage.getItem('openid')) {
@@ -1074,38 +951,6 @@ export default {
   mounted () {
     var _this = this
     _this.link = localStorage.getItem('menulink')
-    if (Platform.is.electron) {
-      if (LocalStorage.has('openid')) {
-        versioncheck('vcheck/' + '?openid=' + LocalStorage.getItem('openid') + '&platform=' + process.platform)
-          .then(res => {
-            if (!res.detail) {
-              const ipcRenderer = require('electron').ipcRenderer
-              window.setTimeout(() => {
-                ipcRenderer.send('checkForUpdate', res.upurl.toString())
-              }, 1000)
-              ipcRenderer.on('message', (event, arg) => {
-                if (arg.cmd === 'update-available') {
-                  _this.verCheck = true
-                  _this.version = arg.message.version
-                } else if (arg.cmd === 'download-progress') {
-                  _this.processpercent = arg.message.percent
-                } else if (arg.cmd === 'update-downloaded') {
-                  _this.processpercent = 100
-                  _this.verCheck = false
-                  _this.downloadprocess = false
-                  _this.updateNow = true
-                } else if (arg.cmd === 'check') {
-                  console.log(arg)
-                }
-              })
-              clearTimeout()
-            }
-          })
-          .catch(err => {
-            console.log(err)
-          })
-      }
-    }
     Bus.$on('needLogin', val => {
       _this.isLoggedIn()
     })
@@ -1118,9 +963,6 @@ export default {
     }
   },
   beforeDestroy () {
-    if (Platform.is.electron) {
-      require('electron').ipcRenderer.removeAllListeners(['message', 'updateNow', 'downloadUpdate', 'checkForUpdate'])
-    }
     Bus.$off('needLogin')
   },
   destroyed () {
