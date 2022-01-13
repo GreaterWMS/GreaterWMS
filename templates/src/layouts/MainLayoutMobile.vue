@@ -537,7 +537,19 @@ export default {
       processpercent: 0,
       downloadprocess: false,
       container_height: this.$q.screen.height + '' + 'px',
-      langOptions: [{ value: 'en-us', label: 'English' }, { value: 'zh-hans', label: '中文简体' }, { value: 'zh-hant', label: '中文繁體' }, { value: 'ja', label: '日本語' }],
+      langOptions: [
+        { value: 'en-us', label: 'English' },
+        { value: 'fr', label: 'Français' },
+        { value: 'pt', label: 'Português' },
+        { value: 'ru', label: 'Español' },
+        { value: 'de', label: 'Deutsch' },
+        { value: 'ru', label: 'русский язык' },
+        { value: 'ar', label: 'Arabic' },
+        { value: 'fr', label: 'Italiano' },
+        { value: 'zh-hans', label: '中文简体' },
+        { value: 'zh-hant', label: '中文繁體' },
+        { value: 'ja', label: '日本語' }
+      ],
       title: this.$t('index.webtitle'),
       admin: false,
       adminlogin: {
