@@ -1139,7 +1139,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                      goods_qty=dn_back_order_qty,
                                                                      goods_weight=back_order_goods_weight,
                                                                      goods_volume=back_order_goods_volume,
-                                                                     goods_coste=back_order_goods_cost,
+                                                                     goods_cost=back_order_goods_cost,
                                                                      creater=self.request.auth.name,
                                                                      back_order_label=True,
                                                                      openid=self.request.auth.openid,
