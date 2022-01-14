@@ -2,7 +2,7 @@
   <div>
     <transition appear enter-active-class="animated fadeIn">
       <q-table
-        class=" shadow-24"
+        class="shadow-24"
         :data="table_list"
         row-key="id"
         :separator="separator"
@@ -18,23 +18,61 @@
       >
         <template v-slot:top>
           <div class="flex items-center">
-            <div class="q-mr-md">{{$t('download_center.createTime')}}</div>
-            <q-input readonly outlined dense v-model="createDate2" :placeholder="interval">
+            <div class="q-mr-md">{{ $t("download_center.createTime") }}</div>
+            <q-input
+              readonly
+              outlined
+              dense
+              v-model="createDate2"
+              :placeholder="interval"
+            >
               <template v-slot:append>
                 <q-icon name="event" class="cursor-pointer">
-                  <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale"><q-date v-model="createDate1" range /></q-popup-proxy>
+                  <q-popup-proxy
+                    ref="qDateProxy"
+                    transition-show="scale"
+                    transition-hide="scale"
+                    ><q-date v-model="createDate1" range
+                  /></q-popup-proxy>
                 </q-icon>
               </template>
             </q-input>
             <q-btn-group push class="q-ml-md">
-              <q-btn :label="$t('download_center.reset')" icon="img:statics/downloadcenter/reset.svg" @click="getList()">
-                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{$t('download_center.reset')}}</q-tooltip>
+              <q-btn
+                :label="$t('download_center.reset')"
+                icon="img:statics/downloadcenter/reset.svg"
+                @click="reset()"
+              >
+                <q-tooltip
+                  content-class="bg-amber text-black shadow-4"
+                  :offset="[10, 10]"
+                  content-style="font-size: 12px"
+                  >{{ $t("download_center.reset") }}</q-tooltip
+                >
               </q-btn>
-              <q-btn :label="$t('downloadasnlist')" icon="cloud_download" @click="downloadlistData()">
-                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('downloadasnlisttip') }}</q-tooltip>
+              <q-btn
+                :label="$t('downloadasnlist')"
+                icon="cloud_download"
+                @click="downloadlistData()"
+              >
+                <q-tooltip
+                  content-class="bg-amber text-black shadow-4"
+                  :offset="[10, 10]"
+                  content-style="font-size: 12px"
+                  >{{ $t("downloadasnlisttip") }}</q-tooltip
+                >
               </q-btn>
-              <q-btn :label="$t('downloadasndetail')" icon="cloud_download" @click="downloaddetailData()">
-                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('downloadasndetailtip') }}</q-tooltip>
+              <q-btn
+                :label="$t('downloadasndetail')"
+                icon="cloud_download"
+                @click="downloaddetailData()"
+              >
+                <q-tooltip
+                  content-class="bg-amber text-black shadow-4"
+                  :offset="[10, 10]"
+                  content-style="font-size: 12px"
+                  >{{ $t("downloadasndetailtip") }}</q-tooltip
+                >
               </q-btn>
             </q-btn-group>
           </div>
@@ -42,26 +80,68 @@
         <template v-slot:body="props">
           <q-tr :props="props">
             <q-td key="dn_code" :props="props">{{ props.row.dn_code }}</q-td>
-            <q-td key="dn_status" :props="props">{{ props.row.dn_status }}</q-td>
-            <q-td key="total_weight" :props="props">{{ props.row.total_weight.toFixed(4) }}</q-td>
-            <q-td key="total_volume" :props="props">{{ props.row.total_volume.toFixed(4) }}</q-td>
+            <q-td key="dn_status" :props="props">{{
+              props.row.dn_status
+            }}</q-td>
+            <q-td key="total_weight" :props="props">{{
+              props.row.total_weight.toFixed(4)
+            }}</q-td>
+            <q-td key="total_volume" :props="props">{{
+              props.row.total_volume.toFixed(4)
+            }}</q-td>
             <q-td key="customer" :props="props">{{ props.row.customer }}</q-td>
             <q-td key="creater" :props="props">{{ props.row.creater }}</q-td>
-            <q-td key="create_time" :props="props">{{ props.row.create_time }}</q-td>
-            <q-td key="update_time" :props="props">{{ props.row.update_time }}</q-td>
+            <q-td key="create_time" :props="props">{{
+              props.row.create_time
+            }}</q-td>
+            <q-td key="update_time" :props="props">{{
+              props.row.update_time
+            }}</q-td>
           </q-tr>
         </template>
       </q-table>
     </transition>
     <template>
       <div class="q-pa-lg flex flex-center">
-        <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
-          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('previous') }}</q-tooltip>
+        <q-btn
+          v-show="pathname_previous"
+          flat
+          push
+          color="purple"
+          :label="$t('previous')"
+          icon="navigate_before"
+          @click="getListPrevious()"
+        >
+          <q-tooltip
+            content-class="bg-amber text-black shadow-4"
+            :offset="[10, 10]"
+            content-style="font-size: 12px"
+            >{{ $t("previous") }}</q-tooltip
+          >
         </q-btn>
-        <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
-          <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('next') }}</q-tooltip>
+        <q-btn
+          v-show="pathname_next"
+          flat
+          push
+          color="purple"
+          :label="$t('next')"
+          icon-right="navigate_next"
+          @click="getListNext()"
+        >
+          <q-tooltip
+            content-class="bg-amber text-black shadow-4"
+            :offset="[10, 10]"
+            content-style="font-size: 12px"
+            >{{ $t("next") }}</q-tooltip
+          >
         </q-btn>
-        <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
+        <q-btn
+          v-show="!pathname_previous && !pathname_next"
+          flat
+          push
+          color="dark"
+          :label="$t('no_data')"
+        ></q-btn>
       </div>
     </template>
   </div>
@@ -102,7 +182,9 @@ export default {
       createDate1: '',
       createDate2: '',
       date_range: '',
-      url: ''
+    searchUrl: '',
+      downloadUrl: 'dn/filelist/',
+      downloadDetailUrl: 'dn/filedetail/'
     };
   },
   computed:{
@@ -116,11 +198,15 @@ export default {
         if (val.to) {
           this.createDate2 = `${val.from} - ${val.to}`;
           this.date_range = `${val.from},${val.to} 23:59:59`;
-          this.url = this.pathname + 'list/?' + 'create_time__range=' + this.date_range
+          this.searchUrl = this.pathname + 'list/?' + 'create_time__range=' + this.date_range
+          this.downloadUrl = this.pathname + 'filelist/?' + 'create_time__range=' + this.date_range
+          this.downloadDetailUrl = this.pathname + 'filedetail/?' + 'create_time__range=' + this.date_range
         } else {
           this.createDate2 = `${val}`;
           this.dateArray = val.split('/');
-          this.url = this.pathname + 'list/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];
+          this.searchUrl = this.pathname + 'list/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];
+          this.downloadUrl = this.pathname + 'filelist/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];
+          this.downloadDetailUrl = this.pathname + 'filedetail/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];     
         }
         this.date_range = this.date_range.replace(/\//g, '-');
         this.getSearchList();
@@ -171,7 +257,7 @@ export default {
     },
     getSearchList() {
       var _this = this;
-      getauth(_this.url)
+      getauth(_this.searchUrl)
         .then(res => {
           _this.table_list = [];
           res.results.forEach(item => {
@@ -273,7 +359,7 @@ export default {
     },
     downloadlistData() {
       var _this = this;
-      getfile(_this.pathname + 'filelist/?lang=' + LocalStorage.getItem('lang')).then(res => {
+      getfile(_this.downloadUrl).then(res => {
         var timeStamp = Date.now();
         var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
         const status = exportFile(_this.pathname + 'list' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
@@ -288,7 +374,7 @@ export default {
     },
     downloaddetailData() {
       var _this = this;
-      getfile(_this.pathname + 'filedetail/?lang=' + LocalStorage.getItem('lang')).then(res => {
+      getfile(_this.downloadDetailUrl).then(res => {
         var timeStamp = Date.now();
         var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
         const status = exportFile(_this.pathname + 'detail' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
@@ -300,6 +386,12 @@ export default {
           });
         }
       });
+    },
+    reset(){
+        this.getList();
+        this.downloadUrl = 'dn/filelist/';
+        this.downloadDetailUrl = 'dn/filedetail/';
+        this.createDate2 = '';
     }
   },
   created() {
