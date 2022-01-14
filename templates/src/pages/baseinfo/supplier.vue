@@ -116,7 +116,7 @@
                           square
                           v-model="editFormData.supplier_manager"
                           :label="$t('baseinfo.view_supplier.supplier_manager')"
-                          :rules="[ val => val && val > 0 || 'Please Enter the Supplier Manager']"
+                          :rules="[ val => val && val.length > 0 || 'Please Enter the Supplier Manager']"
                  />
                </q-td>
              </template>

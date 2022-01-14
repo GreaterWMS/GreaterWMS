@@ -100,7 +100,7 @@
                           square
                           v-model="editFormData.customer_contact"
                           :label="$t('baseinfo.view_customer.customer_contact')"
-                          :rules="[ val => val && val > 0 || 'Please Enter the Customer Contact']"
+                          :rules="[ val => val && val.length > 0 || 'Please Enter the Customer Contact']"
                  />
                </q-td>
              </template>
