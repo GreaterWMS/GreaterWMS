@@ -14,7 +14,7 @@ npm install cordova -g // 安装cordova
 quasar -v // 检查 Quasar 版本
 python3 // 查看python版本
 cd /usr/src // 进入src
-wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz // 下载python3.9.2
+wget https://www.python.org/ftp/python/3.9.5/Python-3.9.5.tgz // 下载python3.9.5
 tar -zxvf Python-3.9.5.tgz // 解压
 cd Python-3.9.5/ // 进入目录
 ./configure --enable-optimizations // 编译
