@@ -95,6 +95,7 @@
                           square
                           v-model="editFormData.warehouse_contact"
                           :label="$t('warehouse.view_warehouse.warehouse_contact')"
+                          :rules="[ val => val && val.length > 0 || error4]"
                  />
                </q-td>
              </template>
@@ -110,7 +111,7 @@
                           square
                           v-model="editFormData.warehouse_manager"
                           :label="$t('warehouse.view_warehouse.warehouse_manager')"
-                          :rules="[ val => val && val > 0 || error5]"
+                          :rules="[ val => val && val.length > 0 || error5]"
                  />
                </q-td>
              </template>
@@ -215,6 +216,7 @@
                     square
                     v-model="newFormData.warehouse_contact"
                     :label="$t('warehouse.view_warehouse.warehouse_contact')"
+                    :rules="[ val => val && val.length > 0 || error4]"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined

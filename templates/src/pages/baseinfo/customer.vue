@@ -116,7 +116,7 @@
                           square
                           v-model="editFormData.customer_manager"
                           :label="$t('baseinfo.view_customer.customer_manager')"
-                          :rules="[ val => val && val > 0 || 'Please Enter the Customer Manager']"
+                          :rules="[ val => val && val.length > 0 || 'Please Enter the Customer Manager']"
                  />
                </q-td>
              </template>
@@ -238,7 +238,7 @@
                     square
                     v-model="newFormData.customer_contact"
                     :label="$t('baseinfo.view_customer.customer_contact')"
-                    :rules="[ val => val && val > 0 || error4]"
+                    :rules="[ val => val && val.length > 0 || error4]"
                     @keyup.enter="newDataSubmit()"/>
            <q-input dense
                     outlined
@@ -442,7 +442,7 @@ export default {
             color: 'negative'
           })
         })
-      } else if (customers.indexOf(_this.newFormData.customer_name) !== -1){
+      } else if (customers.indexOf(_this.newFormData.customer_name) !== -1) {
         _this.$q.notify({
           message: _this.$t('notice.baseinfoerror.customererror'),
           icon: 'close',
