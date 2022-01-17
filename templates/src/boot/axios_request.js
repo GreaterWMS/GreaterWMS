@@ -49,6 +49,7 @@ axiosInstanceAuth.interceptors.request.use(
       config.headers.patch['Content-Type'] = 'application/json, charset="utf-8"'
       config.headers.put['Content-Type'] = 'application/json, charset="utf-8"'
       config.headers.token = LocalStorage.getItem('openid')
+      config.headers.operator = LocalStorage.getItem('login_name')
       config.headers.language = lang
       return config
     } else {
@@ -186,6 +187,7 @@ axiosInstanceAuthScan.interceptors.request.use(
       config.headers.patch['Content-Type'] = 'application/json, charset="utf-8"'
       config.headers.put['Content-Type'] = 'application/json, charset="utf-8"'
       config.headers.token = LocalStorage.getItem('openid')
+      config.headers.operator = LocalStorage.getItem('login_name')
       config.headers.language = lang
       return config
     } else {
@@ -416,7 +418,7 @@ axiosInstanceVersion.interceptors.request.use(
   function (config) {
     const auth = LocalStorage.getItem('auth')
     const login = SessionStorage.getItem('axios_check')
-    if (auth || Login) {
+    if (auth || login) {
       return config
     } else {
       Bus.$emit('needLogin', true)
@@ -443,6 +445,7 @@ axiosFile.interceptors.request.use(
     if (auth || login) {
       config.headers.get['Content-Type'] = 'application/vnd.ms-excel'
       config.headers.token = LocalStorage.getItem('openid')
+      config.headers.operator = LocalStorage.getItem('login_name')
       config.headers.language = lang
       return config
     } else {
