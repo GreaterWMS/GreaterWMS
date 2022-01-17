@@ -142,7 +142,6 @@ class CyclecountModeAllViewSet(viewsets.ModelViewSet):
         if self.request.user:
             date_choice = self.request.GET.get('create_time', '')
             cur_time = timezone.now().date()
-            print(cur_time)
             if date_choice:
                 if id is None:
                     return CyclecountModeDayModel.objects.filter(openid=self.request.auth.openid, cyclecount_status=1,
