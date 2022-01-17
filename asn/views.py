@@ -216,7 +216,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                         'supplier': str(data['supplier']),
                         'goods_code': str(data['goods_code'][i]),
                         'goods_qty': int(data['goods_qty'][i]),
-                        'creater': str(data['creater'])
+                        'creater': str(self.request.META.get('HTTP_OPERATOR'))
                     }
                     serializer = self.get_serializer(data=check_data)
                     serializer.is_valid(raise_exception=True)
@@ -251,7 +251,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                                                goods_weight=goods_weight,
                                                goods_volume=goods_volume,
                                                goods_cost=goods_cost,
-                                               creater=str(data['creater']))
+                                               creater=str(self.request.META.get('HTTP_OPERATOR')))
                     post_data_list.append(post_data)
                     weight_list.append(goods_weight)
                     volume_list.append(goods_volume)
@@ -307,7 +307,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                         'supplier': str(data['supplier']),
                         'goods_code': str(data['goods_code'][i]),
                         'goods_qty': int(data['goods_qty'][i]),
-                        'creater': str(data['creater'])
+                        'creater': str(self.request.META.get('HTTP_OPERATOR'))
                     }
                     serializer = self.get_serializer(data=check_data)
                     serializer.is_valid(raise_exception=True)
@@ -353,7 +353,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                                                goods_qty=int(data['goods_qty'][j]),
                                                goods_weight=goods_weight,
                                                goods_volume=goods_volume,
-                                               creater=str(data['creater']))
+                                               creater=str(self.request.META.get('HTTP_OPERATOR')))
                     post_data_list.append(post_data)
                     weight_list.append(goods_weight)
                     volume_list.append(goods_volume)
@@ -833,7 +833,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                              bin_name=str(data['bin_name']),
                                                              goods_code=str(data['goods_code']),
                                                              goods_qty=int(data['qty']),
-                                                             creater=str(data['creater'])
+                                                             creater=str(self.request.META.get('HTTP_OPERATOR'))
                                                              )
                             cur_date = timezone.now().date()
                             line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
@@ -856,7 +856,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                           bin_name=str(data['bin_name']),
                                                           goods_code=str(data['goods_code']),
                                                           goods_qty=int(data['qty']),
-                                                          creater=str(data['creater'])
+                                                          creater=str(self.request.META.get('HTTP_OPERATOR'))
                                                           )
                             if bin_detail.empty_label == True:
                                 bin_detail.empty_label = False
@@ -880,7 +880,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                              bin_name=str(data['bin_name']),
                                                              goods_code=str(data['goods_code']),
                                                              goods_qty=int(data['qty']),
-                                                             creater=str(data['creater'])
+                                                             creater=str(self.request.META.get('HTTP_OPERATOR'))
                                                              )
                             cur_date = timezone.now().date()
                             line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
@@ -903,7 +903,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                           bin_name=str(data['bin_name']),
                                                           goods_code=str(data['goods_code']),
                                                           goods_qty=int(data['qty']),
-                                                          creater=str(data['creater']),
+                                                          creater=str(self.request.META.get('HTTP_OPERATOR')),
                                                           t_code=Md5.md5(str(data['bin_name']))
                                                           )
                             qs.save()
@@ -984,7 +984,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                              bin_name=str(data['bin_name']),
                                                              goods_code=str(data['goods_code']),
                                                              goods_qty=int(data['qty']),
-                                                             creater=str(data['creater'])
+                                                             creater=str(self.request.META.get('HTTP_OPERATOR'))
                                                              )
                             cur_date = timezone.now().date()
                             line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
@@ -1007,7 +1007,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                           bin_name=str(data['bin_name']),
                                                           goods_code=str(data['goods_code']),
                                                           goods_qty=int(data['qty']),
-                                                          creater=str(data['creater'])
+                                                          creater=str(self.request.META.get('HTTP_OPERATOR'))
                                                           )
                             if bin_detail.empty_label == True:
                                 bin_detail.empty_label = False
@@ -1031,7 +1031,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                              bin_name=str(data['bin_name']),
                                                              goods_code=str(data['goods_code']),
                                                              goods_qty=int(data['qty']),
-                                                             creater=str(data['creater'])
+                                                             creater=str(self.request.META.get('HTTP_OPERATOR'))
                                                              )
                             cur_date = timezone.now().date()
                             line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
@@ -1054,7 +1054,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                           bin_name=str(data['bin_name']),
                                                           goods_code=str(data['goods_code']),
                                                           goods_qty=int(data['qty']),
-                                                          creater=str(data['creater']),
+                                                          creater=str(self.request.META.get('HTTP_OPERATOR')),
                                                           t_code=Md5.md5(str(data['bin_name']))
                                                           )
                             qs.save()
