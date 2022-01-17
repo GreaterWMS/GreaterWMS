@@ -223,7 +223,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                             'customer': str(data['customer']),
                             'goods_code': str(data['goods_code'][i]),
                             'goods_qty': int(data['goods_qty'][i]),
-                            'creater': str(data['creater'])
+                            'creater': str(self.request.META.get('HTTP_OPERATOR'))
                         }
                         serializer = self.get_serializer(data=check_data)
                         serializer.is_valid(raise_exception=True)
@@ -259,7 +259,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                                               goods_weight=goods_weight,
                                               goods_volume=goods_volume,
                                               goods_cost=goods_cost,
-                                              creater=str(data['creater']))
+                                              creater=str(self.request.META.get('HTTP_OPERATOR')))
                     weight_list.append(goods_weight)
                     volume_list.append(goods_volume)
                     cost_list.append(goods_cost)
@@ -315,7 +315,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                         'customer': str(data['customer']),
                         'goods_code': str(data['goods_code'][i]),
                         'goods_qty': int(data['goods_qty'][i]),
-                        'creater': str(data['creater'])
+                        'creater': str(self.request.META.get('HTTP_OPERATOR'))
                     }
                     serializer = self.get_serializer(data=check_data)
                     serializer.is_valid(raise_exception=True)
@@ -360,7 +360,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                                               goods_weight=goods_weight,
                                               goods_volume=goods_volume,
                                               goods_cost=goods_cost,
-                                              creater=str(data['creater']))
+                                              creater=str(self.request.META.get('HTTP_OPERATOR')))
                     weight_list.append(goods_weight)
                     volume_list.append(goods_volume)
                     cost_list.append(goods_cost)
@@ -657,7 +657,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          goods_code=goods_bin_stock_list[
                                                                              j].goods_code,
                                                                          pick_qty=bin_can_pick_qty,
-                                                                         creater=self.request.auth.name,
+                                                                         creater=self.request.META.get('HTTP_OPERATOR'),
                                                                          t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_pick_qty = dn_pick_qty + bin_can_pick_qty
@@ -687,7 +687,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                  goods_weight=back_order_goods_weight,
                                                                  goods_volume=back_order_goods_volume,
                                                                  goods_cost=back_order_goods_cost,
-                                                                 creater=self.request.auth.name,
+                                                                 creater=self.request.META.get('HTTP_OPERATOR'),
                                                                  back_order_label=True,
                                                                  openid=self.request.auth.openid,
                                                                  create_time=dn_detail_list[i].create_time))
@@ -723,7 +723,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          goods_code=goods_bin_stock_list[
                                                                              j].goods_code,
                                                                          pick_qty=bin_can_pick_qty,
-                                                                         creater=self.request.auth.name,
+                                                                         creater=self.request.META.get('HTTP_OPERATOR'),
                                                                          t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_pick_qty = dn_pick_qty + bin_can_pick_qty
@@ -751,7 +751,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                  goods_weight=back_order_goods_weight,
                                                                  goods_volume=back_order_goods_volume,
                                                                  goods_cost=back_order_goods_cost,
-                                                                 creater=self.request.auth.name,
+                                                                 creater=self.request.META.get('HTTP_OPERATOR'),
                                                                  back_order_label=True,
                                                                  openid=self.request.auth.openid,
                                                                  create_time=dn_detail_list[i].create_time))
@@ -788,7 +788,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          goods_code=goods_bin_stock_list[
                                                                              j].goods_code,
                                                                          pick_qty=bin_can_pick_qty,
-                                                                         creater=self.request.auth.name,
+                                                                         creater=self.request.META.get('HTTP_OPERATOR'),
                                                                          t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + bin_can_pick_qty
@@ -805,7 +805,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          goods_code=goods_bin_stock_list[
                                                                              j].goods_code,
                                                                          pick_qty=bin_can_pick_qty,
-                                                                         creater=self.request.auth.name,
+                                                                         creater=self.request.META.get('HTTP_OPERATOR'),
                                                                          t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + bin_can_pick_qty
@@ -842,7 +842,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          goods_code=goods_bin_stock_list[
                                                                              j].goods_code,
                                                                          pick_qty=bin_can_pick_qty,
-                                                                         creater=self.request.auth.name,
+                                                                         creater=self.request.META.get('HTTP_OPERATOR'),
                                                                          t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + \
@@ -861,7 +861,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          goods_code=goods_bin_stock_list[
                                                                              j].goods_code,
                                                                          pick_qty=bin_can_pick_qty,
-                                                                         creater=self.request.auth.name,
+                                                                         creater=self.request.META.get('HTTP_OPERATOR'),
                                                                          t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + bin_can_pick_qty
@@ -883,7 +883,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                          goods_code=goods_bin_stock_list[
                                                                              j].goods_code,
                                                                          pick_qty=dn_need_pick_qty,
-                                                                         creater=self.request.auth.name,
+                                                                         creater=self.request.META.get('HTTP_OPERATOR'),
                                                                          t_code=goods_bin_stock_list[j].t_code))
                                     picking_list_label = 1
                                     dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + dn_need_pick_qty
@@ -916,7 +916,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                              goods_weight=back_order_goods_weight,
                                                              goods_volume=back_order_goods_volume,
                                                              goods_cost=back_order_goods_cost,
-                                                             creater=self.request.auth.name,
+                                                             creater=self.request.META.get('HTTP_OPERATOR'),
                                                              back_order_label=True,
                                                              openid=self.request.auth.openid,
                                                              create_time=dn_detail_list[i].create_time))
@@ -995,7 +995,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                total_volume=back_order_total_volume,
                                                total_cost=back_order_total_cost,
                                                customer=qs[v].customer,
-                                               creater=self.request.auth.name,
+                                               creater=self.request.META.get('HTTP_OPERATOR'),
                                                bar_code=bar_code,
                                                back_order_label=True,
                                                transportation_fee=transportation_back_order_res,
@@ -1026,7 +1026,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                total_volume=qs[v].total_volume,
                                                total_cost=qs[v].total_cost,
                                                customer=qs[v].customer,
-                                               creater=self.request.auth.name,
+                                               creater=self.request.META.get('HTTP_OPERATOR'),
                                                bar_code=bar_code,
                                                back_order_label=True,
                                                transportation_fee=qs[v].transportation_fee,
@@ -1110,7 +1110,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              goods_code=goods_bin_stock_list[
                                                                                  j].goods_code,
                                                                              pick_qty=bin_can_pick_qty,
-                                                                             creater=self.request.auth.name,
+                                                                             creater=self.request.META.get('HTTP_OPERATOR'),
                                                                              t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_pick_qty = dn_pick_qty + bin_can_pick_qty
@@ -1140,7 +1140,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                      goods_weight=back_order_goods_weight,
                                                                      goods_volume=back_order_goods_volume,
                                                                      goods_cost=back_order_goods_cost,
-                                                                     creater=self.request.auth.name,
+                                                                     creater=self.request.META.get('HTTP_OPERATOR'),
                                                                      back_order_label=True,
                                                                      openid=self.request.auth.openid,
                                                                      create_time=dn_detail_list[i].create_time))
@@ -1176,7 +1176,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              goods_code=goods_bin_stock_list[
                                                                                  j].goods_code,
                                                                              pick_qty=bin_can_pick_qty,
-                                                                             creater=self.request.auth.name,
+                                                                             creater=self.request.META.get('HTTP_OPERATOR'),
                                                                              t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_pick_qty = dn_pick_qty + bin_can_pick_qty
@@ -1204,7 +1204,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                      goods_weight=back_order_goods_weight,
                                                                      goods_volume=back_order_goods_volume,
                                                                      goods_cost=back_order_goods_cost,
-                                                                     creater=self.request.auth.name,
+                                                                     creater=self.request.META.get('HTTP_OPERATOR'),
                                                                      back_order_label=True,
                                                                      openid=self.request.auth.openid,
                                                                      create_time=dn_detail_list[i].create_time))
@@ -1238,7 +1238,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              bin_name=goods_bin_stock_list[j].bin_name,
                                                                              goods_code=goods_bin_stock_list[j].goods_code,
                                                                              pick_qty=bin_can_pick_qty,
-                                                                             creater=self.request.auth.name,
+                                                                             creater=self.request.META.get('HTTP_OPERATOR'),
                                                                              t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + bin_can_pick_qty
@@ -1254,7 +1254,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              bin_name=goods_bin_stock_list[j].bin_name,
                                                                              goods_code=goods_bin_stock_list[j].goods_code,
                                                                              pick_qty=bin_can_pick_qty,
-                                                                             creater=self.request.auth.name,
+                                                                             creater=self.request.META.get('HTTP_OPERATOR'),
                                                                              t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + bin_can_pick_qty
@@ -1290,7 +1290,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              bin_name=goods_bin_stock_list[j].bin_name,
                                                                              goods_code=goods_bin_stock_list[j].goods_code,
                                                                              pick_qty=bin_can_pick_qty,
-                                                                             creater=self.request.auth.name,
+                                                                             creater=self.request.META.get('HTTP_OPERATOR'),
                                                                              t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + \
@@ -1308,7 +1308,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              bin_name=goods_bin_stock_list[j].bin_name,
                                                                              goods_code=goods_bin_stock_list[j].goods_code,
                                                                              pick_qty=bin_can_pick_qty,
-                                                                             creater=self.request.auth.name,
+                                                                             creater=self.request.META.get('HTTP_OPERATOR'),
                                                                              t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + bin_can_pick_qty
@@ -1329,7 +1329,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                              bin_name=goods_bin_stock_list[j].bin_name,
                                                                              goods_code=goods_bin_stock_list[j].goods_code,
                                                                              pick_qty=dn_need_pick_qty,
-                                                                             creater=self.request.auth.name,
+                                                                             creater=self.request.META.get('HTTP_OPERATOR'),
                                                                              t_code=goods_bin_stock_list[j].t_code))
                                         picking_list_label = 1
                                         dn_detail_list[i].pick_qty = dn_detail_list[i].pick_qty + dn_need_pick_qty
@@ -1358,7 +1358,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                  goods_weight=back_order_goods_weight,
                                                                  goods_volume=back_order_goods_volume,
                                                                  goods_cost=back_order_goods_cost,
-                                                                 creater=self.request.auth.name,
+                                                                 creater=self.request.META.get('HTTP_OPERATOR'),
                                                                  back_order_label=True,
                                                                  openid=self.request.auth.openid,
                                                                  create_time=dn_detail_list[i].create_time))
@@ -1434,7 +1434,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                    total_volume=back_order_total_volume,
                                                    total_cost=back_order_total_cost,
                                                    customer=qs.customer,
-                                                   creater=self.request.auth.name,
+                                                   creater=self.request.META.get('HTTP_OPERATOR'),
                                                    bar_code=bar_code,
                                                    back_order_label=True,
                                                    transportation_fee=transportation_back_order_res,
@@ -1463,7 +1463,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                    total_volume=qs.total_volume,
                                                    total_cost=qs.total_cost,
                                                    customer=qs.customer,
-                                                   creater=self.request.auth.name,
+                                                   creater=self.request.META.get('HTTP_OPERATOR'),
                                                    bar_code=bar_code,
                                                    back_order_label=True,
                                                    transportation_fee=qs.transportation_fee,
@@ -1606,7 +1606,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                                  bin_name=bin_qty_change.bin_name,
                                                  goods_code=bin_qty_change.goods_code,
                                                  goods_qty=0 - int(data['goodsData'][j].get('pick_qty')),
-                                                 creater=self.request.auth.name
+                                                 creater=self.request.META.get('HTTP_OPERATOR')
                                                  )
                 cur_date = timezone.now().date()
                 bin_stock = stockbin.objects.filter(openid=self.request.auth.openid,
@@ -1685,7 +1685,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                                  bin_name=bin_qty_change.bin_name,
                                                  goods_code=bin_qty_change.goods_code,
                                                  goods_qty=0 - int(data['goodsData'][j].get('pick_qty')),
-                                                 creater=self.request.auth.name
+                                                 creater=self.request.META.get('HTTP_OPERATOR')
                                                  )
                 cur_date = timezone.now().date()
                 bin_stock = stockbin.objects.filter(openid=self.request.auth.openid,
@@ -1808,7 +1808,7 @@ class DnDispatchViewSet(viewsets.ModelViewSet):
                                               driver_name=driver.driver_name,
                                               dn_code=str(data['dn_code']),
                                               contact=driver.contact,
-                                              creater=self.request.auth.name)
+                                              creater=self.request.META.get('HTTP_OPERATOR'))
                 qs.save()
                 return Response({"detail": "success"}, status=200)
             else:
