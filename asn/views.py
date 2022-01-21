@@ -29,6 +29,7 @@ from django.http import StreamingHttpResponse
 from django.utils import timezone
 from .files import FileListRenderCN, FileListRenderEN, FileDetailRenderCN, FileDetailRenderEN
 from rest_framework.settings import api_settings
+from dateutil.relativedelta import relativedelta
 
 
 class AsnDetailGoodstagView(viewsets.ModelViewSet):
@@ -97,10 +98,17 @@ class AsnListViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         id = self.get_project()
         if self.request.user:
+            empty_qs = AsnListModel.objects.filter(Q(openid=self.request.auth.openid, asn_status=1, is_delete=False) & Q(supplier=''))
+            cur_date = timezone.now()
+            date_check = relativedelta(day=1)
+            if len(empty_qs) > 0:
+                for i in range(len(empty_qs)):
+                    if empty_qs[i].create_time <= cur_date - date_check:
+                        empty_qs[i].delete()
             if id is None:
-                return AsnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+                return AsnListModel.objects.filter(Q(openid=self.request.auth.openid, is_delete=False) & ~Q(supplier=''))
             else:
-                return AsnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return AsnListModel.objects.filter(Q(openid=self.request.auth.openid, id=id, is_delete=False) & ~Q(supplier=''))
         else:
             return AsnListModel.objects.none()
 
