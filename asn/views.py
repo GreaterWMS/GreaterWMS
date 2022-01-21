@@ -129,14 +129,18 @@ class AsnListViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         data = self.request.data
-        qs_set = self.get_queryset()
+        data['openid'] = self.request.auth.openid
+        qs_set = AsnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+        order_day =str(timezone.now().strftime('%Y%m%d'))
         if len(qs_set) > 0:
             asn_last_code = qs_set.order_by('-id').first().asn_code
-            print(asn_last_code[3:11])
-            asn_add_code = str(int(re.findall(r'\d+', str(asn_last_code), re.IGNORECASE)[0]) + 1).zfill(8)
-            data['asn_code'] = 'ASN' + asn_add_code
+            if str(asn_last_code[3:11]) == order_day:
+                order_create_no = str(int(asn_last_code[11:]) + 1)
+                data['asn_code'] = 'ASN' + order_day + order_create_no
+            else:
+                data['asn_code'] = 'ASN' + order_day + '1'
         else:
-            data['asn_code'] = 'ASN00000001'
+            data['asn_code'] = 'ASN' + order_day + '1'
         data['bar_code'] = Md5.md5(data['asn_code'])
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)

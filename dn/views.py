@@ -139,12 +139,17 @@ class DnListViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         data = self.request.data
         data['openid'] = self.request.auth.openid
-        if DnListModel.objects.filter(openid=data['openid'], is_delete=False).exists():
-            dn_last_code = DnListModel.objects.filter(openid=data['openid']).first().dn_code
-            dn_add_code = str(int(re.findall(r'\d+', str(dn_last_code), re.IGNORECASE)[0]) + 1).zfill(8)
-            data['dn_code'] = 'DN' + dn_add_code
+        qs_set = DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+        order_day =str(timezone.now().strftime('%Y%m%d'))
+        if len(qs_set) > 0:
+            dn_last_code = qs_set.order_by('-id').first().dn_code
+            if dn_last_code[2:10] == order_day:
+                order_create_no = str(int(dn_last_code[10:]) + 1)
+                data['dn_code'] = 'DN' + order_day + order_create_no
+            else:
+                data['dn_code'] = 'DN' + order_day + '1'
         else:
-            data['dn_code'] = 'DN00000001'
+            data['dn_code'] = 'DN' + order_day + '1'
         data['bar_code'] = Md5.md5(str(data['dn_code']))
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
