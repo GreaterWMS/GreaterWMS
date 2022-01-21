@@ -1,3 +1,4 @@
+from dateutil.relativedelta import relativedelta
 from rest_framework import viewsets
 from .models import DnListModel, DnDetailModel, PickingListModel
 from . import serializers
@@ -106,10 +107,20 @@ class DnListViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         id = self.get_project()
         if self.request.user:
+            empty_qs = DnListModel.objects.filter(
+                Q(openid=self.request.auth.openid, dn_status=1, is_delete=False) & Q(supplier=''))
+            cur_date = timezone.now()
+            date_check = relativedelta(day=1)
+            if len(empty_qs) > 0:
+                for i in range(len(empty_qs)):
+                    if empty_qs[i].create_time <= cur_date - date_check:
+                        empty_qs[i].delete()
             if id is None:
-                return DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+                return DnListModel.objects.filter(
+                    Q(openid=self.request.auth.openid, is_delete=False) & ~Q(supplier=''))
             else:
-                return DnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return DnListModel.objects.filter(
+                    Q(openid=self.request.auth.openid, id=id, is_delete=False) & ~Q(supplier=''))
         else:
             return DnListModel.objects.none()
 
