@@ -129,9 +129,10 @@ class AsnListViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         data = self.request.data
-        data['openid'] = self.request.auth.openid
-        if self.get_queryset().filter(openid=data['openid'], is_delete=False).exists():
-            asn_last_code = self.get_queryset().filter(openid=data['openid']).first().asn_code
+        qs_set = self.get_queryset()
+        if len(qs_set) > 0:
+            asn_last_code = qs_set.order_by('-id').first().asn_code
+            print(asn_last_code[3:11])
             asn_add_code = str(int(re.findall(r'\d+', str(asn_last_code), re.IGNORECASE)[0]) + 1).zfill(8)
             data['asn_code'] = 'ASN' + asn_add_code
         else:
