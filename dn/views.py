@@ -108,7 +108,7 @@ class DnListViewSet(viewsets.ModelViewSet):
         id = self.get_project()
         if self.request.user:
             empty_qs = DnListModel.objects.filter(
-                Q(openid=self.request.auth.openid, dn_status=1, is_delete=False) & Q(supplier=''))
+                Q(openid=self.request.auth.openid, dn_status=1, is_delete=False) & Q(customer=''))
             cur_date = timezone.now()
             date_check = relativedelta(day=1)
             if len(empty_qs) > 0:
@@ -117,10 +117,10 @@ class DnListViewSet(viewsets.ModelViewSet):
                         empty_qs[i].delete()
             if id is None:
                 return DnListModel.objects.filter(
-                    Q(openid=self.request.auth.openid, is_delete=False) & ~Q(supplier=''))
+                    Q(openid=self.request.auth.openid, is_delete=False) & ~Q(customer=''))
             else:
                 return DnListModel.objects.filter(
-                    Q(openid=self.request.auth.openid, id=id, is_delete=False) & ~Q(supplier=''))
+                    Q(openid=self.request.auth.openid, id=id, is_delete=False) & ~Q(customer=''))
         else:
             return DnListModel.objects.none()
 
