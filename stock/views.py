@@ -249,196 +249,193 @@ class StockBinViewSet(viewsets.ModelViewSet):
                 return Response(data, status=200, headers=headers)
 
     def update(self, request, *args, **kwargs):
-        qs = self.get_queryset()
-        if qs[0].openid != self.request.auth.openid:
-            raise APIException({"detail": "Cannot update data which not yours"})
-        else:
-            data = self.request.data
-            for i in range(len(data)):
-                if 'bin_name' not in data[i] and 'move_to_bin' not in data[i]:
-                    raise APIException({"detail": "Please Enter The Bin Name"})
-            for j in range(len(data)):
-                current_bin_detail = binset.objects.filter(openid=self.request.auth.openid,
-                                                           bin_name=str(data[j]['bin_name'])).first()
-                move_to_bin_detail = binset.objects.filter(openid=self.request.auth.openid,
-                                                           bin_name=str(data[j]['move_to_bin'])).first()
-                goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
-                                                            goods_code=str(data[j]['goods_code'])).first()
-                qs_project = qs.filter(t_code=data[j]['t_code'])
-                if int(data[j]['move_qty']) <= 0:
-                    raise APIException({"detail": "Move QTY Must > 0"})
-                else:
-                    bin_move_qty_res = qs_project.goods_qty - qs_project.pick_qty - qs_project.picked_qty - int(
-                        data[j]['move_qty'])
-                    if bin_move_qty_res > 0:
-                        qs_project.goods_qty = qs_project.goods_qty - qs_project.pick_qty - int(data[j]['move_qty'])
-                        if current_bin_detail.bin_property == 'Damage':
-                            if move_to_bin_detail.bin_property == 'Damage':
-                                pass
-                            elif move_to_bin_detail.bin_property == 'Inspection':
-                                goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data[j]['move_qty'])
-                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(
-                                    data[j]['move_qty'])
-                            elif move_to_bin_detail.bin_property == 'Holding':
-                                goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data[j]['move_qty'])
-                                goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data[j]['move_qty'])
-                            else:
-                                goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data[j]['move_qty'])
-                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(
-                                    data[j]['move_qty'])
-                        elif current_bin_detail.bin_property == 'Inspection':
-                            if move_to_bin_detail.bin_property == 'Damage':
-                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(
-                                    data[j]['move_qty'])
-                                goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data[j]['move_qty'])
-                            elif move_to_bin_detail.bin_property == 'Inspection':
-                                pass
-                            elif move_to_bin_detail.bin_property == 'Holding':
-                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(
-                                    data[j]['move_qty'])
-                                goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data[j]['move_qty'])
-                            else:
-                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(
-                                    data[j]['move_qty'])
-                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(
-                                    data[j]['move_qty'])
-                        elif current_bin_detail.bin_property == 'Holding':
-                            if move_to_bin_detail.bin_property == 'Damage':
-                                goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data[j]['move_qty'])
-                                goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data[j]['move_qty'])
-                            elif move_to_bin_detail.bin_property == 'Inspection':
-                                goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data[j]['move_qty'])
-                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(
-                                    data[j]['move_qty'])
-                            elif move_to_bin_detail.bin_property == 'Holding':
-                                pass
-                            else:
-                                goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data[j]['move_qty'])
-                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(
-                                    data[j]['move_qty'])
+        qs = StockBinModel.objects.filter(openid=self.request.auth.openid)
+        data = self.request.data
+        for i in range(len(data)):
+            if 'bin_name' not in data[i] and 'move_to_bin' not in data[i]:
+                raise APIException({"detail": "Please Enter The Bin Name"})
+        for j in range(len(data)):
+            current_bin_detail = binset.objects.filter(openid=self.request.auth.openid,
+                                                       bin_name=str(data[j]['bin_name'])).first()
+            move_to_bin_detail = binset.objects.filter(openid=self.request.auth.openid,
+                                                       bin_name=str(data[j]['move_to_bin'])).first()
+            goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
+                                                        goods_code=str(data[j]['goods_code'])).first()
+            qs_project = qs.filter(t_code=data[j]['t_code']).first()
+            if int(data[j]['move_qty']) <= 0:
+                raise APIException({"detail": "Move QTY Must > 0"})
+            else:
+                bin_move_qty_res = qs_project.goods_qty - qs_project.pick_qty - qs_project.picked_qty - int(
+                    data[j]['move_qty'])
+                if bin_move_qty_res > 0:
+                    qs_project.goods_qty = qs_project.goods_qty - qs_project.pick_qty - int(data[j]['move_qty'])
+                    if current_bin_detail.bin_property == 'Damage':
+                        if move_to_bin_detail.bin_property == 'Damage':
+                            pass
+                        elif move_to_bin_detail.bin_property == 'Inspection':
+                            goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data[j]['move_qty'])
+                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(
+                                data[j]['move_qty'])
+                        elif move_to_bin_detail.bin_property == 'Holding':
+                            goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data[j]['move_qty'])
+                            goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data[j]['move_qty'])
                         else:
-                            if move_to_bin_detail.bin_property == 'Damage':
-                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(
-                                    data[j]['move_qty'])
-                                goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data[j]['move_qty'])
-                            elif move_to_bin_detail.bin_property == 'Inspection':
-                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(
-                                    data[j]['move_qty'])
-                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(
-                                    data[j]['move_qty'])
-                            elif move_to_bin_detail.bin_property == 'Holding':
-                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(
-                                    data[j]['move_qty'])
-                                goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data[j]['move_qty'])
-                            else:
-                                pass
-                        StockBinModel.objects.create(openid=self.request.auth.openid,
-                                                     bin_name=str(data[j]['move_to_bin']),
-                                                     goods_code=str(data[j]['goods_code']),
-                                                     goods_desc=goods_qty_change.goods_desc,
-                                                     goods_qty=int(data[j]['move_qty']),
-                                                     bin_size=move_to_bin_detail.bin_size,
-                                                     bin_property=move_to_bin_detail.bin_property,
-                                                     t_code=Md5.md5(str(data[j]['goods_code'])),
-                                                     create_time=qs_project.create_time
-                                                     )
-                        if move_to_bin_detail.empty_label == True:
-                            move_to_bin_detail.empty_label = False
-                            move_to_bin_detail.save()
-                        goods_qty_change.save()
-                        qs_project.save()
-                    elif bin_move_qty_res == 0:
-                        qs_project.goods_qty = qs_project.picked_qty
-                        if current_bin_detail.bin_property == 'Damage':
-                            if move_to_bin_detail.bin_property == 'Damage':
-                                pass
-                            elif move_to_bin_detail.bin_property == 'Inspection':
-                                goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data[j]['move_qty'])
-                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(
-                                    data[j]['move_qty'])
-                            elif move_to_bin_detail.bin_property == 'Holding':
-                                goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data[j]['move_qty'])
-                                goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data[j]['move_qty'])
-                            else:
-                                goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data[j]['move_qty'])
-                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(
-                                    data[j]['move_qty'])
-                        elif current_bin_detail.bin_property == 'Inspection':
-                            if move_to_bin_detail.bin_property == 'Damage':
-                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(
-                                    data[j]['move_qty'])
-                                goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data[j]['move_qty'])
-                            elif move_to_bin_detail.bin_property == 'Inspection':
-                                pass
-                            elif move_to_bin_detail.bin_property == 'Holding':
-                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(
-                                    data[j]['move_qty'])
-                                goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data[j]['move_qty'])
-                            else:
-                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(
-                                    data[j]['move_qty'])
-                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(
-                                    data[j]['move_qty'])
-                        elif current_bin_detail.bin_property == 'Holding':
-                            if move_to_bin_detail.bin_property == 'Damage':
-                                goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data[j]['move_qty'])
-                                goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data[j]['move_qty'])
-                            elif move_to_bin_detail.bin_property == 'Inspection':
-                                goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data[j]['move_qty'])
-                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(
-                                    data[j]['move_qty'])
-                            elif move_to_bin_detail.bin_property == 'Holding':
-                                pass
-                            else:
-                                goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data[j]['move_qty'])
-                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(
-                                    data[j]['move_qty'])
+                            goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data[j]['move_qty'])
+                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(
+                                data[j]['move_qty'])
+                    elif current_bin_detail.bin_property == 'Inspection':
+                        if move_to_bin_detail.bin_property == 'Damage':
+                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(
+                                data[j]['move_qty'])
+                            goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data[j]['move_qty'])
+                        elif move_to_bin_detail.bin_property == 'Inspection':
+                            pass
+                        elif move_to_bin_detail.bin_property == 'Holding':
+                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(
+                                data[j]['move_qty'])
+                            goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data[j]['move_qty'])
                         else:
-                            if move_to_bin_detail.bin_property == 'Damage':
-                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(
-                                    data[j]['move_qty'])
-                                goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data[j]['move_qty'])
-                            elif move_to_bin_detail.bin_property == 'Inspection':
-                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(
-                                    data[j]['move_qty'])
-                                goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(
-                                    data[j]['move_qty'])
-                            elif move_to_bin_detail.bin_property == 'Holding':
-                                goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(
-                                    data[j]['move_qty'])
-                                goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data[j]['move_qty'])
-                            else:
-                                pass
-                        StockBinModel.objects.create(openid=self.request.auth.openid,
-                                                     bin_name=str(data[j]['move_to_bin']),
-                                                     goods_code=str(data[j]['goods_code']),
-                                                     goods_desc=goods_qty_change.goods_desc,
-                                                     goods_qty=int(data[j]['move_qty']),
-                                                     bin_size=move_to_bin_detail.bin_size,
-                                                     bin_property=move_to_bin_detail.bin_property,
-                                                     t_code=Md5.md5(str(data[j]['goods_code'])),
-                                                     create_time=qs_project.create_time
-                                                     )
-                        if move_to_bin_detail.empty_label == True:
-                            move_to_bin_detail.empty_label = False
-                            move_to_bin_detail.save()
-                        goods_qty_change.save()
-                        if qs_project.goods_qty == 0:
-                            qs_project.delete()
-                        else:
-                            qs_project.save()
-                        if StockBinModel.objects.filter(openid=self.request.auth.openid,
-                                                        bin_name=str(data[j]['bin_name'])).exists():
+                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(
+                                data[j]['move_qty'])
+                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(
+                                data[j]['move_qty'])
+                    elif current_bin_detail.bin_property == 'Holding':
+                        if move_to_bin_detail.bin_property == 'Damage':
+                            goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data[j]['move_qty'])
+                            goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data[j]['move_qty'])
+                        elif move_to_bin_detail.bin_property == 'Inspection':
+                            goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data[j]['move_qty'])
+                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(
+                                data[j]['move_qty'])
+                        elif move_to_bin_detail.bin_property == 'Holding':
                             pass
                         else:
-                            current_bin_detail.empty_label = True
-                        current_bin_detail.save()
-                    elif bin_move_qty_res < 0:
-                        raise APIException({"detail": "Move Qty must < Bin Goods Qty"})
+                            goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data[j]['move_qty'])
+                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(
+                                data[j]['move_qty'])
                     else:
+                        if move_to_bin_detail.bin_property == 'Damage':
+                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(
+                                data[j]['move_qty'])
+                            goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data[j]['move_qty'])
+                        elif move_to_bin_detail.bin_property == 'Inspection':
+                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(
+                                data[j]['move_qty'])
+                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(
+                                data[j]['move_qty'])
+                        elif move_to_bin_detail.bin_property == 'Holding':
+                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(
+                                data[j]['move_qty'])
+                            goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data[j]['move_qty'])
+                        else:
+                            pass
+                    StockBinModel.objects.create(openid=self.request.auth.openid,
+                                                 bin_name=str(data[j]['move_to_bin']),
+                                                 goods_code=str(data[j]['goods_code']),
+                                                 goods_desc=goods_qty_change.goods_desc,
+                                                 goods_qty=int(data[j]['move_qty']),
+                                                 bin_size=move_to_bin_detail.bin_size,
+                                                 bin_property=move_to_bin_detail.bin_property,
+                                                 t_code=Md5.md5(str(data[j]['goods_code'])),
+                                                 create_time=qs_project.create_time
+                                                 )
+                    if move_to_bin_detail.empty_label == True:
+                        move_to_bin_detail.empty_label = False
+                        move_to_bin_detail.save()
+                    goods_qty_change.save()
+                    qs_project.save()
+                elif bin_move_qty_res == 0:
+                    qs_project.goods_qty = qs_project.picked_qty
+                    if current_bin_detail.bin_property == 'Damage':
+                        if move_to_bin_detail.bin_property == 'Damage':
+                            pass
+                        elif move_to_bin_detail.bin_property == 'Inspection':
+                            goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data[j]['move_qty'])
+                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(
+                                data[j]['move_qty'])
+                        elif move_to_bin_detail.bin_property == 'Holding':
+                            goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data[j]['move_qty'])
+                            goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data[j]['move_qty'])
+                        else:
+                            goods_qty_change.damage_stock = goods_qty_change.damage_stock - int(data[j]['move_qty'])
+                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(
+                                data[j]['move_qty'])
+                    elif current_bin_detail.bin_property == 'Inspection':
+                        if move_to_bin_detail.bin_property == 'Damage':
+                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(
+                                data[j]['move_qty'])
+                            goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data[j]['move_qty'])
+                        elif move_to_bin_detail.bin_property == 'Inspection':
+                            pass
+                        elif move_to_bin_detail.bin_property == 'Holding':
+                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(
+                                data[j]['move_qty'])
+                            goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data[j]['move_qty'])
+                        else:
+                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock - int(
+                                data[j]['move_qty'])
+                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(
+                                data[j]['move_qty'])
+                    elif current_bin_detail.bin_property == 'Holding':
+                        if move_to_bin_detail.bin_property == 'Damage':
+                            goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data[j]['move_qty'])
+                            goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data[j]['move_qty'])
+                        elif move_to_bin_detail.bin_property == 'Inspection':
+                            goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data[j]['move_qty'])
+                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(
+                                data[j]['move_qty'])
+                        elif move_to_bin_detail.bin_property == 'Holding':
+                            pass
+                        else:
+                            goods_qty_change.hold_stock = goods_qty_change.hold_stock - int(data[j]['move_qty'])
+                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + int(
+                                data[j]['move_qty'])
+                    else:
+                        if move_to_bin_detail.bin_property == 'Damage':
+                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(
+                                data[j]['move_qty'])
+                            goods_qty_change.damage_stock = goods_qty_change.damage_stock + int(data[j]['move_qty'])
+                        elif move_to_bin_detail.bin_property == 'Inspection':
+                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(
+                                data[j]['move_qty'])
+                            goods_qty_change.inspect_stock = goods_qty_change.inspect_stock + int(
+                                data[j]['move_qty'])
+                        elif move_to_bin_detail.bin_property == 'Holding':
+                            goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - int(
+                                data[j]['move_qty'])
+                            goods_qty_change.hold_stock = goods_qty_change.hold_stock + int(data[j]['move_qty'])
+                        else:
+                            pass
+                    StockBinModel.objects.create(openid=self.request.auth.openid,
+                                                 bin_name=str(data[j]['move_to_bin']),
+                                                 goods_code=str(data[j]['goods_code']),
+                                                 goods_desc=goods_qty_change.goods_desc,
+                                                 goods_qty=int(data[j]['move_qty']),
+                                                 bin_size=move_to_bin_detail.bin_size,
+                                                 bin_property=move_to_bin_detail.bin_property,
+                                                 t_code=Md5.md5(str(data[j]['goods_code'])),
+                                                 create_time=qs_project.create_time
+                                                 )
+                    if move_to_bin_detail.empty_label == True:
+                        move_to_bin_detail.empty_label = False
+                        move_to_bin_detail.save()
+                    goods_qty_change.save()
+                    if qs_project.goods_qty == 0:
+                        qs_project.delete()
+                    else:
+                        qs_project.save()
+                    if StockBinModel.objects.filter(openid=self.request.auth.openid,
+                                                    bin_name=str(data[j]['bin_name'])).exists():
                         pass
-                headers = self.get_success_headers(data[j])
-                return Response(data[j], status=200, headers=headers)
+                    else:
+                        current_bin_detail.empty_label = True
+                    current_bin_detail.save()
+                elif bin_move_qty_res < 0:
+                    raise APIException({"detail": "Move Qty must < Bin Goods Qty"})
+                else:
+                    pass
+        headers = self.get_success_headers(data[j])
+        return Response(data[j], status=200, headers=headers)
 
 class FileListDownloadView(viewsets.ModelViewSet):
     renderer_classes = (FileListRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)

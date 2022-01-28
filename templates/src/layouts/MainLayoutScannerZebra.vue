@@ -114,7 +114,7 @@
           <template v-if="!admin">
             <q-input dense outlined square :label="$t('index.your_openid')" v-model="openid" @keyup.enter="Login()" />
             <q-input dense outlined square :label="$t('index.staff_name')" v-model="login_name" @keyup.enter="Login()" style="margin-top: 5px" />
-            <q-input dense outlined square :label="$t('staff.check_code')" v-model="check_code" @keyup.enter="Login()" style="margin-top: 5px" />
+            <q-input dense outlined square :label="$t('staff.check_code')" v-model.number="check_code" type="number" @keyup.enter="Login()" style="margin-top: 5px" />
           </template>
         </q-card-section>
         <q-card-actions align="left" class="text-primary">
