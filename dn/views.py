@@ -31,51 +31,6 @@ from django.http import StreamingHttpResponse
 from django.utils import timezone
 from .files import FileListRenderCN, FileListRenderEN, FileDetailRenderCN, FileDetailRenderEN
 from rest_framework.settings import api_settings
-from .serializers import SannerDnDetailGetSerializer
-
-class SannerDnDetailView(viewsets.ModelViewSet):
-
-    pagination_class = MyPageNumberPagination
-    filter_backends = [DjangoFilterBackend, OrderingFilter, ]
-    ordering_fields = ['id', "create_time", "update_time", ]
-    filter_class = DnDetailFilter
-
-    def list(self, request, *args, **kwargs):
-        bar_code = request.GET.get('bar_code')
-        DnList_obj=DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False,dn_status=3,bar_code=bar_code).first()
-        queryset = DnDetailModel.objects.filter(openid=self.request.auth.openid,dn_code=DnList_obj.dn_code,is_delete=False)
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-    def get_project(self):
-        try:
-            id = self.kwargs.get('pk')
-            return id
-        except:
-            return None
-
-    def get_queryset(self):
-        id = self.get_project()
-        if self.request.user:
-            if id is None:
-                return DnDetailModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
-            else:
-                return DnDetailModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
-        else:
-            return DnDetailModel.objects.none()
-
-    def get_serializer_class(self):
-        if self.action in ['list', 'retrieve', 'destroy']:
-            return serializers.SannerDnDetailGetSerializer
-        else:
-            return self.http_method_not_allowed(request=self.request)
-
-
-
 
 class DnListViewSet(viewsets.ModelViewSet):
     """
@@ -139,17 +94,21 @@ class DnListViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         data = self.request.data
         data['openid'] = self.request.auth.openid
-        qs_set = DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
-        order_day =str(timezone.now().strftime('%Y%m%d'))
-        if len(qs_set) > 0:
-            dn_last_code = qs_set.order_by('-id').first().dn_code
-            if dn_last_code[2:10] == order_day:
-                order_create_no = str(int(dn_last_code[10:]) + 1)
-                data['dn_code'] = 'DN' + order_day + order_create_no
+        custom_dn = self.request.GET.get('custom_dn', '')
+        if custom_dn:
+            data['dn_code'] = custom_dn
+        else:
+            qs_set = DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+            order_day =str(timezone.now().strftime('%Y%m%d'))
+            if len(qs_set) > 0:
+                dn_last_code = qs_set.order_by('-id').first().dn_code
+                if dn_last_code[2:10] == order_day:
+                    order_create_no = str(int(dn_last_code[10:]) + 1)
+                    data['dn_code'] = 'DN' + order_day + order_create_no
+                else:
+                    data['dn_code'] = 'DN' + order_day + '1'
             else:
                 data['dn_code'] = 'DN' + order_day + '1'
-        else:
-            data['dn_code'] = 'DN' + order_day + '1'
         data['bar_code'] = Md5.md5(str(data['dn_code']))
         serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
@@ -1943,10 +1902,20 @@ class FileListDownloadView(viewsets.ModelViewSet):
     def get_queryset(self):
         id = self.get_project()
         if self.request.user:
+            empty_qs = DnListModel.objects.filter(
+                Q(openid=self.request.auth.openid, dn_status=1, is_delete=False) & Q(customer=''))
+            cur_date = timezone.now()
+            date_check = relativedelta(day=1)
+            if len(empty_qs) > 0:
+                for i in range(len(empty_qs)):
+                    if empty_qs[i].create_time <= cur_date - date_check:
+                        empty_qs[i].delete()
             if id is None:
-                return DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+                return DnListModel.objects.filter(
+                    Q(openid=self.request.auth.openid, is_delete=False) & ~Q(customer=''))
             else:
-                return DnListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                return DnListModel.objects.filter(
+                    Q(openid=self.request.auth.openid, id=id, is_delete=False) & ~Q(customer=''))
         else:
             return DnListModel.objects.none()
 

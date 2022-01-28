@@ -21,10 +21,10 @@ export default {
       _this.lottie = lottie.loadAnimation({
         container: _this.$refs.lottieBox,
         renderer: 'svg',
-        loop: this.loop || true,
+        loop: _this.loop || true,
         animationData: _this.animationData
       })
-      _this.lottie.setSpeed(3)
+      _this.lottie.setSpeed(1.2)
     }
 
   },
