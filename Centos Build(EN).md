@@ -3,7 +3,7 @@ su - // Enter root
 yum update
 yum upgrade
 yum -y install gcc-c++
-yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel libffi-devel gcc make
+yum install zlib-devel xz-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel libffi-devel gcc make
 yum install nodejs
 npm install n -g
 /usr/local/bin/n 14.18.3 // update nodejs
