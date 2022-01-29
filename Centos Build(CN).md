@@ -3,7 +3,7 @@ su - // 进入管理员账号
 yum update
 yum upgrade
 yum -y install gcc-c++ // 安装依赖
-yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel libffi-devel gcc make // 安装python依赖
+yum install zlib-devel xz-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel libffi-devel gcc make // 安装python依赖
 yum install nodejs // 安装nodejs
 npm install n -g // 安装n
 /usr/local/bin/n 14.18.3 // 升级nodejs
