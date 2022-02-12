@@ -42,7 +42,7 @@ python3 manage.py migrate // 数据库迁移
 Ctrl + C // 回到GreaterWMS文件夹
 cd templates //进入 templates 文件夹
 /usr/local/bin/yarn install // 等待Yarn安装完成，其实你也可以npm install ，就是会慢一点
-yarn config set registry https://registry.npm.taobao.org/  //更改yarn为国内源
+yarn config set registry https://registry.npmmirror.com/  //更改yarn为国内源
 /usr/local/bin/quasar d // 使用quasar命令启动前端页面
 // 前端会向 "127.0.0.1:8008"发请求, 在这里我们只是看下项目是不是可以运行
 Ctrl + C // 退回到templates文件夹

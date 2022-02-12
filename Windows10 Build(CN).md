@@ -62,11 +62,11 @@ cd templates
 # 升级下npm
 npm install -g npm
 # 切换npm源为国内源
-npm config set registry https://registry.npm.taobao.org
+npm config set registry https://registry.npmmirror.com
 # 安装Yarn
 npm install -g yarn
 # 更改yarn为国内源
-yarn config set registry https://registry.npm.taobao.org/
+yarn config set registry https://registry.npmmirror.com/
 # 安装quasar环境
 npm install -g @quasar/cli
 # 安装windows构建工具
