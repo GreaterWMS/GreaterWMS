@@ -4430,6 +4430,11 @@ electron-packager@^14.2.1:
     semver "^6.0.0"
     yargs-parser "^16.0.0"
 
+electron-pos-printer@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.npmmirror.com/electron-pos-printer/-/electron-pos-printer-1.2.4.tgz#f57a5fac2b4f189eed42afb4479303ccb82116bd"
+  integrity sha512-cO4wF3KhrE/6aAokZmPPlLMkCygsPfNv0/CkBsAXYaeN5TlfbQ9MF99P5UHxF++JBPcB6TCuog2DzNW0UF21sQ==
+
 electron-publish@22.14.0:
   version "22.14.0"
   resolved "https://registry.nlark.com/electron-publish/download/electron-publish-22.14.0.tgz"
