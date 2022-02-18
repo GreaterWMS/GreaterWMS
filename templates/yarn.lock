@@ -10993,10 +10993,10 @@ url-parse-lax@^3.0.0:
   dependencies:
     prepend-http "^2.0.0"
 
-url-parse@^1.4.3, url-parse@^1.5.3:
-  version "1.5.3"
-  resolved "https://registry.nlark.com/url-parse/download/url-parse-1.5.3.tgz?cache=0&sync_timestamp=1627251566024&other_urls=https%3A%2F%2Fregistry.nlark.com%2Furl-parse%2Fdownload%2Furl-parse-1.5.3.tgz"
-  integrity sha1-ccEwPTj7Zjmt4YPCmSyMwGht+GI=
+url-parse@^1.4.3, url-parse@^1.5.3, url-parse@^1.5.6:
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.6.tgz#b2a41d5a233645f3c31204cc8be60e76a15230a2"
+  integrity sha512-xj3QdUJ1DttD1LeSfvJlU1eiF1RvBSBfUu8GplFGdUzSO28y5yUtEl7wb//PI4Af6qh0o/K8545vUmucRrfWsw==
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
