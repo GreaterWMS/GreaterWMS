@@ -20,6 +20,7 @@
     "echarts": "^5.2.1",
     "electron-is-dev": "^1.2.0",
     "electron-log": "^4.3.5",
+    "electron-pos-printer": "^1.2.4",
     "electron-updater": "^4.3.9",
     "glob-parent": "^6.0.2",
     "highlight.js": "^11.2.0",

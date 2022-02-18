@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain, nativeTheme } from 'electron'
 import { autoUpdater } from 'electron-updater'
 import isDev from 'electron-is-dev'
 import path from 'path'
+import { PosPrinter } from 'electron-pos-printer'
 
 try {
   if (process.platform === 'win32' && nativeTheme.shouldUseDarkColors === true) {
@@ -98,6 +99,18 @@ function createWindow () {
     })
     ipcMain.on('updateNow', (e, arg) => {
       autoUpdater.quitAndInstall()
+    })
+    ipcMain.on('printData', (e, arg) => {
+      const data = JSON.parse(arg)
+      PosPrinter.print(JSON.parse(arg.data), {
+        copies: 1,
+        timeOutPerLine: 400,
+        silent: true,
+        preview: true,
+        printerName: data.printer
+      }).catch(err => {
+        console.log(err)
+      })
     })
   }
 }
