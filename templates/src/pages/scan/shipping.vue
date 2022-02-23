@@ -13,7 +13,7 @@
           <div style="font-size: 12px;width: 100%;">{{ $t('driver.view_driver.contact') }}: {{ driver_list.contact }}</div>
         </q-bar>
         <q-btn-group push>
-          <q-btn color="purple" :label="$t('stock.view_stocklist.cyclecountresult')" @click="resultSubmit()"/>
+          <q-btn color="purple" :label="$t('stock.view_stocklist.cyclecountresult')" @click="dispatchDataCheck()"/>
         </q-btn-group>
       </q-card-section>
       <q-scroll-area ref="scrollArea" :thumb-style="thumbStyle" :bar-style="barStyle" :style="{ height: scroll_height, width: width }">
@@ -118,7 +118,6 @@ export default {
       getauth(_this.pathname + e, {
       }).then(res => {
         if (res.results.length === 0) {
-          console.log(res)
           navigator.vibrate(100)
           _this.$q.notify({
             message: 'No DN Data',
@@ -177,6 +176,28 @@ export default {
         })
       }
     },
+    dispatchDataCheck () {
+      var _this = this
+      if (_this.dn_list === '') {
+        _this.$q.notify({
+          message: 'Please Scan Your DN',
+          position: 'top',
+          icon: 'close',
+          color: 'negative'
+        })
+      } else {
+        if (_this.driver_list === '') {
+          _this.$q.notify({
+            message: 'Please Confirm Your Driver Info',
+            position: 'top',
+            icon: 'close',
+            color: 'negative'
+          })
+        } else {
+          _this.dispatchDataSubmit()
+        }
+      }
+    },
     dispatchDataSubmit () {
       var _this = this
       postauth('dn/dispatch/' + _this.dn_list.id + '/', _this.submitdata)
@@ -196,33 +217,6 @@ export default {
             color: 'negative'
           })
         })
-    },
-    resultSubmit () {
-      var _this = this
-      if (_this.table_list.length > 0) {
-        if (_this.driver_list !== '') {
-          _this.getDNList(_this.scaneddata.code)
-          _this.submitdata.dn_code = _this.scaneddata.code
-          _this.submitdata.driver = _this.driver_list.driver_name
-          _this.dispatchDataSubmit()
-        } else {
-          navigator.vibrate(100)
-          _this.$q.notify({
-            message: 'No Driver Data',
-            position: 'top',
-            icon: 'close',
-            color: 'negative'
-          })
-        }
-      } else {
-        navigator.vibrate(100)
-        _this.$q.notify({
-          message: 'No DN Data',
-          position: 'top',
-          icon: 'close',
-          color: 'negative'
-        })
-      }
     }
   },
   computed: {
@@ -270,6 +264,7 @@ export default {
       if (_this.bar_scanned !== _this.scaneddata.request_time) {
         if (_this.scaneddata.mode === 'DN') {
           _this.bar_scanned = _this.scaneddata.request_time
+          _this.getDNList(_this.scaneddata.code)
           _this.getDNDetailList(_this.scaneddata.code)
         } else {
           _this.$q.notify({
