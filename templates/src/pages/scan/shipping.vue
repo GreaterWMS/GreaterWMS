@@ -102,6 +102,7 @@ export default {
           })
         } else {
           _this.dn_list = res.results[0]
+          _this.submitdata.dn_code = _this.dn_list.dn_code
         }
       }).catch(err => {
         navigator.vibrate(100)
@@ -154,6 +155,7 @@ export default {
             })
           } else if (res.results.length === 1) {
             _this.driver_list = res.results[0]
+            _this.submitdata.driver = _this.driver_list.driver_name
           } else {
             _this.driver_list = ''
             navigator.vibrate(100)
