@@ -321,6 +321,18 @@
             <q-item-section>{{ $t("menuItem.driver") }}</q-item-section>
           </q-item>
           <q-separator />
+           <q-item
+            clickable
+            @click="brownlink('pdf/GreaterWMS_price.pdf')"
+            v-ripple
+            exact
+            v-show="lang === 'zh-hans'"
+          >
+            <q-item-section avatar
+              ><q-icon name="add_shopping_cart"
+            /></q-item-section>
+            <q-item-section>适配硬件清单</q-item-section>
+          </q-item>
         </q-list>
       </q-scroll-area>
     </q-drawer>
