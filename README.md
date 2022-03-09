@@ -10,7 +10,7 @@
 
 Fully open source warehouse management system follows Apache License 2.0 and front-back stage decoupling method. API uses restful protocol to facilitate for add-on functions development. The html & js code is constructed with quasar(base on Vue.js v2.6.0+). According to API, it can support business models such as multi warehouse, wave shipment, combined picking and milk-run and so on.
 
-- Software Copyright Procedures: 2018SR517685
+- Software Copyright Procedures: 10136559
 - GitHub Link: [GitHub](https://github.com/Singosgu/GreaterWMS)
 - Gitee Link: [Gitee](https://gitee.com/Singosgu/GreaterWMS)
 - Video Tutorials: [YouTube](https://www.youtube.com/channel/UCPW1wciGMIEh7CYOdLnsloA)(All Tutorials Will Upload To Here)
