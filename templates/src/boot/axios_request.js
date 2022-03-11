@@ -49,7 +49,7 @@ axiosInstanceAuth.interceptors.request.use(
       config.headers.patch['Content-Type'] = 'application/json, charset="utf-8"'
       config.headers.put['Content-Type'] = 'application/json, charset="utf-8"'
       config.headers.token = LocalStorage.getItem('openid')
-      config.headers.operator = LocalStorage.getItem('login_name')
+      config.headers.operator = LocalStorage.getItem('login_id')
       config.headers.language = lang
       return config
     } else {
@@ -187,7 +187,7 @@ axiosInstanceAuthScan.interceptors.request.use(
       config.headers.patch['Content-Type'] = 'application/json, charset="utf-8"'
       config.headers.put['Content-Type'] = 'application/json, charset="utf-8"'
       config.headers.token = LocalStorage.getItem('openid')
-      config.headers.operator = LocalStorage.getItem('login_name')
+      config.headers.operator = LocalStorage.getItem('login_id')
       config.headers.language = lang
       return config
     } else {
@@ -445,7 +445,7 @@ axiosFile.interceptors.request.use(
     if (auth || login) {
       config.headers.get['Content-Type'] = 'application/vnd.ms-excel'
       config.headers.token = LocalStorage.getItem('openid')
-      config.headers.operator = LocalStorage.getItem('login_name')
+      config.headers.operator = LocalStorage.getItem('login_id')
       config.headers.language = lang
       return config
     } else {

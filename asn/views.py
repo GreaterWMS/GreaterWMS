@@ -29,6 +29,7 @@ from django.utils import timezone
 from .files import FileListRenderCN, FileListRenderEN, FileDetailRenderCN, FileDetailRenderEN
 from rest_framework.settings import api_settings
 from dateutil.relativedelta import relativedelta
+from staff.models import ListModel as staff
 
 class AsnListViewSet(viewsets.ModelViewSet):
     """
@@ -188,6 +189,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
         data = self.request.data
         if AsnListModel.objects.filter(openid=self.request.auth.openid, asn_code=str(data['asn_code']), is_delete=False).exists():
             if supplier.objects.filter(openid=self.request.auth.openid, supplier_name=str(data['supplier']), is_delete=False).exists():
+                staff_name = staff.objects.filter(openid=self.request.auth.openid, id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
                 for i in range(len(data['goods_code'])):
                     check_data = {
                         'openid': self.request.auth.openid,
@@ -195,7 +197,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                         'supplier': str(data['supplier']),
                         'goods_code': str(data['goods_code'][i]),
                         'goods_qty': int(data['goods_qty'][i]),
-                        'creater': str(self.request.META.get('HTTP_OPERATOR'))
+                        'creater': str(staff_name)
                     }
                     serializer = self.get_serializer(data=check_data)
                     serializer.is_valid(raise_exception=True)
@@ -230,7 +232,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                                                goods_weight=goods_weight,
                                                goods_volume=goods_volume,
                                                goods_cost=goods_cost,
-                                               creater=str(self.request.META.get('HTTP_OPERATOR')))
+                                               creater=str(staff_name))
                     post_data_list.append(post_data)
                     weight_list.append(goods_weight)
                     volume_list.append(goods_volume)
@@ -279,6 +281,8 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                                        asn_status=1, is_delete=False).exists():
             if supplier.objects.filter(openid=self.request.auth.openid, supplier_name=str(data['supplier']),
                                        is_delete=False).exists():
+                staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                                  id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
                 for i in range(len(data['goods_code'])):
                     check_data = {
                         'openid': self.request.auth.openid,
@@ -286,7 +290,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                         'supplier': str(data['supplier']),
                         'goods_code': str(data['goods_code'][i]),
                         'goods_qty': int(data['goods_qty'][i]),
-                        'creater': str(self.request.META.get('HTTP_OPERATOR'))
+                        'creater': str(staff_name)
                     }
                     serializer = self.get_serializer(data=check_data)
                     serializer.is_valid(raise_exception=True)
@@ -332,7 +336,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                                                goods_qty=int(data['goods_qty'][j]),
                                                goods_weight=goods_weight,
                                                goods_volume=goods_volume,
-                                               creater=str(self.request.META.get('HTTP_OPERATOR')))
+                                               creater=str(staff_name))
                     post_data_list.append(post_data)
                     weight_list.append(goods_weight)
                     volume_list.append(goods_volume)
@@ -781,6 +785,8 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                     if int(data['qty']) <= 0:
                         raise APIException({"detail": "Move QTY Must > 0"})
                     else:
+                        staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                                          id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
                         move_qty = qs.goods_actual_qty - qs.sorted_qty - int(data['qty'])
                         if move_qty > 0:
                             qs.sorted_qty = qs.sorted_qty + int(data['qty'])
@@ -812,7 +818,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                              bin_name=str(data['bin_name']),
                                                              goods_code=str(data['goods_code']),
                                                              goods_qty=int(data['qty']),
-                                                             creater=str(self.request.META.get('HTTP_OPERATOR'))
+                                                             creater=str(staff_name)
                                                              )
                             cur_date = timezone.now().date()
                             line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
@@ -835,7 +841,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                           bin_name=str(data['bin_name']),
                                                           goods_code=str(data['goods_code']),
                                                           goods_qty=int(data['qty']),
-                                                          creater=str(self.request.META.get('HTTP_OPERATOR'))
+                                                          creater=str(staff_name)
                                                           )
                             if bin_detail.empty_label == True:
                                 bin_detail.empty_label = False
@@ -859,7 +865,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                              bin_name=str(data['bin_name']),
                                                              goods_code=str(data['goods_code']),
                                                              goods_qty=int(data['qty']),
-                                                             creater=str(self.request.META.get('HTTP_OPERATOR'))
+                                                             creater=str(staff_name)
                                                              )
                             cur_date = timezone.now().date()
                             line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
@@ -882,7 +888,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                           bin_name=str(data['bin_name']),
                                                           goods_code=str(data['goods_code']),
                                                           goods_qty=int(data['qty']),
-                                                          creater=str(self.request.META.get('HTTP_OPERATOR')),
+                                                          creater=str(staff_name),
                                                           t_code=Md5.md5(str(data['bin_name']))
                                                           )
                             qs.save()
@@ -925,6 +931,8 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                 asn_detail = AsnListModel.objects.filter(openid=self.request.auth.openid,
                                                          asn_code=str(data['asn_code'])
                                                          ).first()
+                staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                                  id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
                 for i in range(len(data['res_data'])):
                     goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
                                                                 goods_code=str(data['res_data'][i]['goods_code'])).first()
@@ -963,7 +971,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                              bin_name=str(data['bin_name']),
                                                              goods_code=str(data['res_data'][i]['goods_code']),
                                                              goods_qty=int(data['res_data'][i]['qty']),
-                                                             creater=str(self.request.META.get('HTTP_OPERATOR'))
+                                                             creater=str(staff_name)
                                                              )
                             cur_date = timezone.now().date()
                             line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
@@ -986,7 +994,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                           bin_name=str(data['bin_name']),
                                                           goods_code=str(data['res_data'][i]['goods_code']),
                                                           goods_qty=int(data['res_data'][i]['qty']),
-                                                          creater=str(self.request.META.get('HTTP_OPERATOR'))
+                                                          creater=str(staff_name)
                                                           )
                             if bin_detail.empty_label == True:
                                 bin_detail.empty_label = False
@@ -1010,7 +1018,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                              bin_name=str(data['bin_name']),
                                                              goods_code=str(data['res_data'][i]['goods_code']),
                                                              goods_qty=int(data['res_data'][i]['qty']),
-                                                             creater=str(self.request.META.get('HTTP_OPERATOR'))
+                                                             creater=str(staff_name)
                                                              )
                             cur_date = timezone.now().date()
                             line_data = cyclecount.objects.filter(openid=self.request.auth.openid,
@@ -1033,7 +1041,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                           bin_name=str(data['bin_name']),
                                                           goods_code=str(data['res_data'][i]['goods_code']),
                                                           goods_qty=int(data['res_data'][i]['qty']),
-                                                          creater=str(self.request.META.get('HTTP_OPERATOR')),
+                                                          creater=str(staff_name),
                                                           t_code=Md5.md5(str(data['bin_name']))
                                                           )
                             qs.save()
