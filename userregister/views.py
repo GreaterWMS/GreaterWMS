@@ -65,10 +65,13 @@ def register(request, *args, **kwargs):
                                                  t_code=Md5.md5(str(timezone.now())),
                                                  developer=1, ip=ip)
                             auth.login(request, user)
+                            check_code = random.randint(1000, 9999)
                             staff.objects.create(staff_name=str(data['name']),
                                                  staff_type='Admin',
-                                                 check_code=random.randint(1000, 9999),
+                                                 check_code=check_code,
                                                  openid=transaction_code)
+                            user_id = staff.objects.filter(openid=transaction_code, staff_name=str(data['name']),
+                                                 staff_type='Admin', check_code=check_code).first().id
                             folder = os.path.exists(os.path.join(settings.BASE_DIR, 'media/' + transaction_code))
                             if not folder:
                                 os.makedirs(os.path.join(settings.BASE_DIR, 'media/' + transaction_code))
@@ -79,6 +82,7 @@ def register(request, *args, **kwargs):
                             ret['ip'] = ip
                             data['openid'] = transaction_code
                             data['name'] = str(data['name'])
+                            data['user_id'] = user_id
                             data.pop('password1', '')
                             data.pop('password2', '')
                             ret['data'] = data
