@@ -22,6 +22,7 @@ from capital.models import ListModel as capital
 from scanner.models import ListModel as scanner
 from rest_framework.response import Response
 from rest_framework.exceptions import APIException
+from staff.models import ListModel as staff
 
 class GoodlistfileViewSet(views.APIView):
     """
@@ -54,6 +55,8 @@ class GoodlistfileViewSet(views.APIView):
         files = self.request.FILES.get('file')
         if files:
             excel_type = files.name.split('.')[1]
+            staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                              id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 self.get_queryset().delete()
                 goodsunit.objects.all().delete()
@@ -146,7 +149,7 @@ class GoodlistfileViewSet(views.APIView):
                                                  goods_cost=data_list[i][15],
                                                  goods_price=data_list[i][16],
                                                  bar_code=bar_code,
-                                                 creater=self.request.auth.name
+                                                 creater=str(staff_name)
                                                  )
                         scanner.objects.create(openid=self.request.auth.openid, mode="GOODS",
                                                code=str(data_list[i][0]).strip(),
@@ -163,7 +166,7 @@ class GoodlistfileViewSet(views.APIView):
                                             supplier_address="Supplier Address",
                                             supplier_contact="Supplier Contact",
                                             supplier_manager="Supplier Manager",
-                                            creater=self.request.auth.name
+                                            creater=str(staff_name)
                                             )
                 goods_unit_list = df.drop_duplicates(subset=[data_header.get('goods_unit')], keep='first').loc[:,
                                     data_header.get('goods_unit')].values
@@ -172,7 +175,7 @@ class GoodlistfileViewSet(views.APIView):
                         i = 'N/A'
                     goodsunit.objects.create(openid=self.request.auth.openid,
                                              goods_unit=str(i).strip(),
-                                             creater=self.request.auth.name
+                                             creater=str(staff_name)
                                              )
                 goods_class_list = df.drop_duplicates(subset=[data_header.get('goods_class')], keep='first').loc[:,
                                     data_header.get('goods_class')].values
@@ -181,7 +184,7 @@ class GoodlistfileViewSet(views.APIView):
                         i = 'N/A'
                     goodsclass.objects.create(openid=self.request.auth.openid,
                                               goods_class=str(i).strip(),
-                                              creater=self.request.auth.name
+                                              creater=str(staff_name)
                                               )
                 goods_brand_list = df.drop_duplicates(subset=[data_header.get('goods_brand')], keep='first').loc[:,
                                     data_header.get('goods_brand')].values
@@ -190,7 +193,7 @@ class GoodlistfileViewSet(views.APIView):
                         i = 'N/A'
                     goodsbrand.objects.create(openid=self.request.auth.openid,
                                               goods_brand=str(i).strip(),
-                                              creater=self.request.auth.name
+                                              creater=str(staff_name)
                                               )
                 goods_color_list = df.drop_duplicates(subset=[data_header.get('goods_color')], keep='first').loc[:,
                                     data_header.get('goods_color')].values
@@ -199,7 +202,7 @@ class GoodlistfileViewSet(views.APIView):
                         i = 'N/A'
                     goodscolor.objects.create(openid=self.request.auth.openid,
                                               goods_color=str(i).strip(),
-                                              creater=self.request.auth.name
+                                              creater=str(staff_name)
                                               )
                 goods_shape_list = df.drop_duplicates(subset=[data_header.get('goods_shape')], keep='first').loc[:,
                                     data_header.get('goods_shape')].values
@@ -208,7 +211,7 @@ class GoodlistfileViewSet(views.APIView):
                         i = 'N/A'
                     goodsshape.objects.create(openid=self.request.auth.openid,
                                               goods_shape=str(i).strip(),
-                                              creater=self.request.auth.name
+                                              creater=str(staff_name)
                                               )
                 goods_specs_list = df.drop_duplicates(subset=[data_header.get('goods_specs')], keep='first').loc[:,
                                     data_header.get('goods_specs')].values
@@ -217,7 +220,7 @@ class GoodlistfileViewSet(views.APIView):
                         i = 'N/A'
                     goodsspecs.objects.create(openid=self.request.auth.openid,
                                               goods_specs=str(i).strip(),
-                                              creater=self.request.auth.name
+                                              creater=str(staff_name)
                                               )
                 goods_origin_list = df.drop_duplicates(subset=[data_header.get('goods_origin')], keep='first').loc[:,
                                     data_header.get('goods_origin')].values
@@ -226,7 +229,7 @@ class GoodlistfileViewSet(views.APIView):
                         i = 'N/A'
                     goodsorigin.objects.create(openid=self.request.auth.openid,
                                                goods_origin=str(i).strip(),
-                                               creater=self.request.auth.name
+                                               creater=str(staff_name)
                                                )
             else:
                 raise APIException({"detail": "Can Not Support This File Type"})
@@ -265,6 +268,8 @@ class SupplierfileViewSet(views.APIView):
         files = self.request.FILES.get('file')
         if files:
             excel_type = files.name.split('.')[1]
+            staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                              id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 self.get_queryset().delete()
                 df = pd.read_excel(files)
@@ -299,7 +304,7 @@ class SupplierfileViewSet(views.APIView):
                                                 supplier_contact=data_list[i][3],
                                                 supplier_manager=str(data_list[i][4]).strip(),
                                                 supplier_level=data_list[i][5],
-                                                creater=self.request.auth.name
+                                                creater=str(staff_name)
                                                 )
             else:
                 raise APIException({"detail": "Can Not Support This File Type"})
@@ -338,6 +343,8 @@ class CustomerfileViewSet(views.APIView):
         files = self.request.FILES.get('file')
         if files:
             excel_type = files.name.split('.')[1]
+            staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                              id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 self.get_queryset().delete()
                 df = pd.read_excel(files)
@@ -372,7 +379,7 @@ class CustomerfileViewSet(views.APIView):
                                                 customer_contact=data_list[i][3],
                                                 customer_manager=str(data_list[i][4]).strip(),
                                                 customer_level=data_list[i][5],
-                                                creater=self.request.auth.name
+                                                creater=str(staff_name)
                                                 )
             else:
                 raise APIException({"detail": "Can Not Support This File Type"})
@@ -397,6 +404,8 @@ class CapitalfileViewSet(views.APIView):
         files = self.request.FILES.get('file')
         if files:
             excel_type = files.name.split('.')[1]
+            staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                              id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 self.get_queryset().delete()
                 df = pd.read_excel(files)
@@ -421,7 +430,7 @@ class CapitalfileViewSet(views.APIView):
                                                capital_name=str(data_list[i][0]).strip(),
                                                capital_qty=data_list[i][1],
                                                capital_cost=data_list[i][2],
-                                               creater=self.request.auth.name
+                                               creater=str(staff_name)
                                                )
             else:
                 raise APIException({"detail": "Can Not Support This File Type"})
@@ -446,6 +455,8 @@ class FreightfileViewSet(views.APIView):
         files = self.request.FILES.get('file')
         if files:
             excel_type = files.name.split('.')[1]
+            staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                              id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 self.get_queryset().delete()
                 df = pd.read_excel(files)
@@ -481,7 +492,7 @@ class FreightfileViewSet(views.APIView):
                                                volume_fee=data_list[i][3],
                                                min_payment=data_list[i][4],
                                                transportation_supplier=str(data_list[i][5]).strip(),
-                                               creater=self.request.auth.name
+                                               creater=str(staff_name)
                                                )
             else:
                 raise APIException({"detail": "Can Not Support This File Type"})
@@ -520,6 +531,8 @@ class GoodlistfileAddViewSet(views.APIView):
         files = self.request.FILES.get('file')
         if files:
             excel_type = files.name.split('.')[1]
+            staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                              id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 df = pd.read_excel(files)
                 df.drop_duplicates(keep='first', inplace=True)
@@ -607,7 +620,7 @@ class GoodlistfileAddViewSet(views.APIView):
                                                      goods_cost=data_list[i][15],
                                                      goods_price=data_list[i][16],
                                                      bar_code=bar_code,
-                                                     creater=self.request.auth.name
+                                                     creater=str(staff_name)
                                                      )
                             scanner.objects.create(openid=self.request.auth.openid, mode="GOODS",
                                                    code=str(data_list[i][0]).strip(),
@@ -627,7 +640,7 @@ class GoodlistfileAddViewSet(views.APIView):
                                                 supplier_address="Supplier Address",
                                                 supplier_contact="Supplier Contact",
                                                 supplier_manager="Supplier Manager",
-                                                creater=self.request.auth.name
+                                                creater=str(staff_name)
                                                 )
                 goods_unit_list = df.drop_duplicates(subset=[data_header.get('goods_unit')], keep='first').loc[:,
                                     data_header.get('goods_unit')].values
@@ -640,7 +653,7 @@ class GoodlistfileAddViewSet(views.APIView):
                     else:
                         goodsunit.objects.create(openid=self.request.auth.openid,
                                                  goods_unit=str(i).strip(),
-                                                 creater=self.request.auth.name
+                                                 creater=str(staff_name)
                                                  )
                 goods_class_list = df.drop_duplicates(subset=[data_header.get('goods_class')], keep='first').loc[:,
                                     data_header.get('goods_class')].values
@@ -653,7 +666,7 @@ class GoodlistfileAddViewSet(views.APIView):
                     else:
                         goodsclass.objects.create(openid=self.request.auth.openid,
                                                   goods_class=str(i).strip(),
-                                                  creater=self.request.auth.name
+                                                  creater=str(staff_name)
                                                   )
                 goods_brand_list = df.drop_duplicates(subset=[data_header.get('goods_brand')], keep='first').loc[:,
                                     data_header.get('goods_brand')].values
@@ -666,7 +679,7 @@ class GoodlistfileAddViewSet(views.APIView):
                     else:
                         goodsbrand.objects.create(openid=self.request.auth.openid,
                                                   goods_brand=str(i).strip(),
-                                                  creater=self.request.auth.name
+                                                  creater=str(staff_name)
                                                   )
                 goods_color_list = df.drop_duplicates(subset=[data_header.get('goods_color')], keep='first').loc[:,
                                     data_header.get('goods_color')].values
@@ -679,7 +692,7 @@ class GoodlistfileAddViewSet(views.APIView):
                     else:
                         goodscolor.objects.create(openid=self.request.auth.openid,
                                                   goods_color=str(i).strip(),
-                                                  creater=self.request.auth.name
+                                                  creater=str(staff_name)
                                                   )
                 goods_shape_list = df.drop_duplicates(subset=[data_header.get('goods_shape')], keep='first').loc[:,
                                     data_header.get('goods_shape')].values
@@ -692,7 +705,7 @@ class GoodlistfileAddViewSet(views.APIView):
                     else:
                         goodsshape.objects.create(openid=self.request.auth.openid,
                                                   goods_shape=str(i).strip(),
-                                                  creater=self.request.auth.name
+                                                  creater=str(staff_name)
                                                   )
                 goods_specs_list = df.drop_duplicates(subset=[data_header.get('goods_specs')], keep='first').loc[:,
                                     data_header.get('goods_specs')].values
@@ -705,7 +718,7 @@ class GoodlistfileAddViewSet(views.APIView):
                     else:
                         goodsspecs.objects.create(openid=self.request.auth.openid,
                                                   goods_specs=str(i).strip(),
-                                                  creater=self.request.auth.name
+                                                  creater=str(staff_name)
                                                   )
                 goods_origin_list = df.drop_duplicates(subset=[data_header.get('goods_origin')], keep='first').loc[:,
                                     data_header.get('goods_origin')].values
@@ -718,7 +731,7 @@ class GoodlistfileAddViewSet(views.APIView):
                     else:
                         goodsorigin.objects.create(openid=self.request.auth.openid,
                                                    goods_origin=str(i).strip(),
-                                                   creater=self.request.auth.name
+                                                   creater=str(staff_name)
                                                    )
             else:
                 raise APIException({"detail": "Can Not Support This File Type"})
@@ -757,6 +770,8 @@ class SupplierfileAddViewSet(views.APIView):
         files = self.request.FILES.get('file')
         if files:
             excel_type = files.name.split('.')[1]
+            staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                              id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 df = pd.read_excel(files)
                 df.drop_duplicates(keep='first', inplace=True)
@@ -790,7 +805,7 @@ class SupplierfileAddViewSet(views.APIView):
                                                    supplier_contact=data_list[i][3],
                                                    supplier_manager=str(data_list[i][4]).strip(),
                                                    supplier_level=data_list[i][5],
-                                                   creater=self.request.auth.name
+                                                   creater=str(staff_name)
                                                    ).exists():
                             pass
                         else:
@@ -801,7 +816,7 @@ class SupplierfileAddViewSet(views.APIView):
                                                     supplier_contact=data_list[i][3],
                                                     supplier_manager=str(data_list[i][4]).strip(),
                                                     supplier_level=data_list[i][5],
-                                                    creater=self.request.auth.name
+                                                    creater=str(staff_name)
                                                     )
             else:
                 raise APIException({"detail": "Can Not Support This File Type"})
@@ -840,6 +855,8 @@ class CustomerfileAddViewSet(views.APIView):
         files = self.request.FILES.get('file')
         if files:
             excel_type = files.name.split('.')[1]
+            staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                              id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 df = pd.read_excel(files)
                 df.drop_duplicates(keep='first', inplace=True)
@@ -883,7 +900,7 @@ class CustomerfileAddViewSet(views.APIView):
                                                     customer_contact=data_list[i][3],
                                                     customer_manager=str(data_list[i][4]).strip(),
                                                     customer_level=data_list[i][5],
-                                                    creater=self.request.auth.name
+                                                    creater=str(staff_name)
                                                     )
             else:
                 raise APIException({"detail": "Can Not Support This File Type"})
@@ -908,6 +925,8 @@ class CapitalfileAddViewSet(views.APIView):
         files = self.request.FILES.get('file')
         if files:
             excel_type = files.name.split('.')[1]
+            staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                              id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 df = pd.read_excel(files)
                 data_list = df.drop_duplicates(keep='first', inplace=True)
@@ -938,7 +957,7 @@ class CapitalfileAddViewSet(views.APIView):
                                                    capital_name=str(data_list[i][0]).strip(),
                                                    capital_qty=data_list[i][1],
                                                    capital_cost=data_list[i][2],
-                                                   creater=self.request.auth.name
+                                                   creater=str(staff_name)
                                                    )
             else:
                 raise APIException({"detail": "Can Not Support This File Type"})
@@ -963,6 +982,8 @@ class FreightfileAddViewSet(views.APIView):
         files = self.request.FILES.get('file')
         if files:
             excel_type = files.name.split('.')[1]
+            staff_name = staff.objects.filter(openid=self.request.auth.openid,
+                                              id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 df = pd.read_excel(files)
                 data_list = df.drop_duplicates(keep='first', inplace=True).values
@@ -1007,7 +1028,7 @@ class FreightfileAddViewSet(views.APIView):
                                                    volume_fee=data_list[i][3],
                                                    min_payment=data_list[i][4],
                                                    transportation_supplier=str(data_list[i][5]).strip(),
-                                                   creater=self.request.auth.name
+                                                   creater=str(staff_name)
                                                    )
             else:
                 raise APIException({"detail": "Can Not Support This File Type"})

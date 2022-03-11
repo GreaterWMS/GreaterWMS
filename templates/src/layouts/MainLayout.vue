@@ -1013,6 +1013,7 @@ export default {
       login: false,
       link: '',
       login_name: '',
+      login_id: 0,
       check_code: '',
       register: false,
       registerform: {
@@ -1092,8 +1093,10 @@ export default {
                 if (res.count === 1) {
                   _this.authin = '1'
                   _this.login = false
+                  _this.login_id = res.results[0].id
                   LocalStorage.set('auth', '1')
                   LocalStorage.set('login_name', _this.login_name)
+                  LocalStorage.set('login_id', res.results[0].id)
                   LocalStorage.set('login_mode', 'user')
                   _this.$q.notify({
                     message: 'Success Login',
@@ -1141,9 +1144,11 @@ export default {
                 _this.admin = false
                 _this.openid = res.data.openid
                 _this.login_name = res.data.name
+                _this.login_id = res.data.user_id
                 LocalStorage.set('auth', '1')
                 LocalStorage.set('openid', res.data.openid)
                 LocalStorage.set('login_name', _this.login_name)
+                LocalStorage.set('login_id', _this.login_id)
                 LocalStorage.set('login_mode', 'admin')
                 _this.$q.notify({
                   message: 'Success Login',
@@ -1178,6 +1183,7 @@ export default {
       LocalStorage.remove('auth')
       SessionStorage.remove('axios_check')
       LocalStorage.set('login_name', '')
+      LocalStorage.set('login_id', '')
       _this.$q.notify({
         message: 'Success Logout',
         icon: 'check',
@@ -1197,9 +1203,11 @@ export default {
             _this.register = false
             _this.openid = res.data.openid
             _this.login_name = _this.registerform.name
+            _this.login_id = res.data.user_id
             _this.authin = '1'
             LocalStorage.set('openid', res.data.openid)
             LocalStorage.set('login_name', _this.registerform.name)
+            LocalStorage.set('login_id', _this.login_id)
             LocalStorage.set('auth', '1')
             _this.registerform = {
               name: '',
