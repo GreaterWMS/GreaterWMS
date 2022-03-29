@@ -417,6 +417,7 @@
           </q-item>
           <q-separator v-show="lang === 'zh-hans'" />
           <q-item
+            v-show="lang === 'zh-hans'"
             clickable
             :to="{ name: 'douyin' }"
             @click="linkChange('shopid')"

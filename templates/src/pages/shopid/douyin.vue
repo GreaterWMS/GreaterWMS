@@ -105,32 +105,32 @@
                     label="店铺名称"
                     autofocus
                     :rules="[ val => val && val.length > 0 || error1]"
-                    @keyup.enter="newDataSubmit()"/>
+                    @keyup.enter="newDataCheck()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.shop_appid"
                     label="店铺APPID"
                     :rules="[ val => val && val.length > 0 || error2]"
-                    @keyup.enter="newDataSubmit()"/>
+                    @keyup.enter="newDataCheck()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.shop_app_secret"
                     label="店铺APP_SECRET"
                     :rules="[ val => val && val.length > 0 || error3]"
-                    @keyup.enter="newDataSubmit()"/>
+                    @keyup.enter="newDataCheck()"/>
            <q-input dense
                     outlined
                     square
                     v-model="newFormData.shop_id"
                     label="SHOP_ID"
                     :rules="[ val => val && val.length > 0 || error4]"
-                    @keyup.enter="newDataSubmit()"/>
+                    @keyup.enter="newDataCheck()"/>
          </q-card-section>
          <div style="float: right; padding: 15px 15px 15px 0">
            <q-btn color="white" text-color="black" style="margin-right: 25px" @click="newDataCancel()">{{ $t('cancel') }}</q-btn>
-           <q-btn color="primary" @click="newDataSubmit()">{{ $t('submit') }}</q-btn>
+           <q-btn color="primary" @click="newDataCheck()">{{ $t('submit') }}</q-btn>
          </div>
        </q-card>
      </q-dialog>
@@ -274,12 +274,41 @@ export default {
             color: 'negative'
           })
         })
-      } else {
       }
     },
     reFresh () {
       var _this = this
       _this.getList()
+    },
+    newDataCheck () {
+      var _this = this
+      if (_this.shop_name === '') {
+        _this.$q.notify({
+          message: _this.error1,
+          icon: 'close',
+          color: 'negative'
+        })
+      } else if (_this.shop_appid === '') {
+        _this.$q.notify({
+          message: _this.error2,
+          icon: 'close',
+          color: 'negative'
+        })
+      } else if (_this.shop_app_secret === '') {
+        _this.$q.notify({
+          message: _this.error3,
+          icon: 'close',
+          color: 'negative'
+        })
+      } else if (_this.shop_id === '') {
+        _this.$q.notify({
+          message: _this.error4,
+          icon: 'close',
+          color: 'negative'
+        })
+      } else {
+        _this.newDataSubmit()
+      }
     },
     newDataSubmit () {
       var _this = this
