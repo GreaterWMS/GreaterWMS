@@ -882,12 +882,12 @@
 <router-view />
 
 <script>
-import { getauth, postauth, putauth, deleteauth, ViewPrintAuth, getfile } from 'boot/axios_request';
-import { date, exportFile, LocalStorage } from 'quasar';
+import { getauth, postauth, putauth, deleteauth, ViewPrintAuth } from 'boot/axios_request'
+import { LocalStorage } from 'quasar'
 
 export default {
   name: 'Pagednlist',
-  data() {
+  data () {
     return {
       openid: '',
       login_name: '',
@@ -982,209 +982,209 @@ export default {
       },
       printObj: {
         id: 'printMe',
-        popTitle: 'Advance Shipment Notice'
+        popTitle: this.$t('outbound.dn')
       },
       printPL: {
         id: 'printPL',
-        popTitle: 'Picking List'
+        popTitle: this.$t('outbound.pickinglist')
       },
       error1: this.$t('baseinfo.view_customer.error1'),
       error2: this.$t('notice.valerror'),
       isError1: false,
       isError2: false
-    };
+    }
   },
   methods: {
-    validate1(val) {
-      let reg = /^[1-9]\d*$/g;
-      let check = reg.test(val);
+    validate1 (val) {
+      const reg = /^[1-9]\d*$/g
+      const check = reg.test(val)
       if (check) {
-        this.isError1 = false;
+        this.isError1 = false
       } else {
-        this.isError1 = true;
+        this.isError1 = true
       }
     },
-    validate2(val1, val2) {
-      let reg = /^[0-9]\d*$/g;
-      let check = reg.test(val1);
+    validate2 (val1, val2) {
+      const reg = /^[0-9]\d*$/g
+      const check = reg.test(val1)
       if (check && val1 <= val2) {
-        this.isError2 = false;
+        this.isError2 = false
       } else {
-        this.isError2 = true;
+        this.isError2 = true
       }
     },
-    getList() {
-      var _this = this;
+    getList () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/', {})
           .then(res => {
-            _this.table_list = [];
+            _this.table_list = []
             res.results.forEach(item => {
               if (item.dn_status === 1) {
-                item.dn_status = _this.$t('outbound.freshorder');
+                item.dn_status = _this.$t('outbound.freshorder')
               } else if (item.dn_status === 2) {
-                item.dn_status = _this.$t('outbound.neworder');
+                item.dn_status = _this.$t('outbound.neworder')
               } else if (item.dn_status === 3) {
-                item.dn_status = _this.$t('outbound.pickstock');
+                item.dn_status = _this.$t('outbound.pickstock')
               } else if (item.dn_status === 4) {
-                item.dn_status = _this.$t('outbound.pickedstock');
+                item.dn_status = _this.$t('outbound.pickedstock')
               } else if (item.dn_status === 5) {
-                item.dn_status = _this.$t('outbound.shippedstock');
+                item.dn_status = _this.$t('outbound.shippedstock')
               } else if (item.dn_status === 6) {
-                item.dn_status = _this.$t('outbound.received');
+                item.dn_status = _this.$t('outbound.received')
               } else {
-                item.dn_status = 'N/A';
+                item.dn_status = 'N/A'
               }
-              _this.table_list.push(item);
-            });
+              _this.table_list.push(item)
+            })
             res.results.forEach(item => {
               if (item.asn_status === 1) {
-                item.asn_status = _this.$t();
+                item.asn_status = _this.$t()
               }
-            });
-            _this.customer_list = res.customer_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            })
+            _this.customer_list = res.customer_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getSearchList() {
-      var _this = this;
+    getSearchList () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/?dn_code__icontains=' + _this.filter, {})
           .then(res => {
-            _this.table_list = [];
+            _this.table_list = []
             res.results.forEach(item => {
               if (item.dn_status === 1) {
-                item.dn_status = _this.$t('outbound.freshorder');
+                item.dn_status = _this.$t('outbound.freshorder')
               } else if (item.dn_status === 2) {
-                item.dn_status = _this.$t('outbound.neworder');
+                item.dn_status = _this.$t('outbound.neworder')
               } else if (item.dn_status === 3) {
-                item.dn_status = _this.$t('outbound.pickstock');
+                item.dn_status = _this.$t('outbound.pickstock')
               } else if (item.dn_status === 4) {
-                item.dn_status = _this.$t('outbound.pickedstock');
+                item.dn_status = _this.$t('outbound.pickedstock')
               } else if (item.dn_status === 5) {
-                item.dn_status = _this.$t('outbound.shippedstock');
+                item.dn_status = _this.$t('outbound.shippedstock')
               } else if (item.dn_status === 6) {
-                item.dn_status = _this.$t('outbound.received');
+                item.dn_status = _this.$t('outbound.received')
               } else {
-                item.dn_status = 'N/A';
+                item.dn_status = 'N/A'
               }
-              _this.table_list.push(item);
-            });
-            _this.customer_list = res.customer_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+              _this.table_list.push(item)
+            })
+            _this.customer_list = res.customer_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getListPrevious() {
-      var _this = this;
+    getListPrevious () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_previous, {})
           .then(res => {
-            _this.table_list = [];
+            _this.table_list = []
             res.results.forEach(item => {
               if (item.dn_status === 1) {
-                item.dn_status = _this.$t('outbound.freshorder');
+                item.dn_status = _this.$t('outbound.freshorder')
               } else if (item.dn_status === 2) {
-                item.dn_status = _this.$t('outbound.neworder');
+                item.dn_status = _this.$t('outbound.neworder')
               } else if (item.dn_status === 3) {
-                item.dn_status = _this.$t('outbound.pickstock');
+                item.dn_status = _this.$t('outbound.pickstock')
               } else if (item.dn_status === 4) {
-                item.dn_status = _this.$t('outbound.pickedstock');
+                item.dn_status = _this.$t('outbound.pickedstock')
               } else if (item.dn_status === 5) {
-                item.dn_status = _this.$t('outbound.shippedstock');
+                item.dn_status = _this.$t('outbound.shippedstock')
               } else if (item.dn_status === 6) {
-                item.dn_status = _this.$t('outbound.received');
+                item.dn_status = _this.$t('outbound.received')
               } else {
-                item.dn_status = 'N/A';
+                item.dn_status = 'N/A'
               }
-              _this.table_list.push(item);
-            });
-            _this.customer_list = res.customer_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+              _this.table_list.push(item)
+            })
+            _this.customer_list = res.customer_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getListNext() {
-      var _this = this;
+    getListNext () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_next, {})
           .then(res => {
-            _this.table_list = [];
+            _this.table_list = []
             res.results.forEach(item => {
               if (item.dn_status === 1) {
-                item.dn_status = _this.$t('outbound.freshorder');
+                item.dn_status = _this.$t('outbound.freshorder')
               } else if (item.dn_status === 2) {
-                item.dn_status = _this.$t('outbound.neworder');
+                item.dn_status = _this.$t('outbound.neworder')
               } else if (item.dn_status === 3) {
-                item.dn_status = _this.$t('outbound.pickstock');
+                item.dn_status = _this.$t('outbound.pickstock')
               } else if (item.dn_status === 4) {
-                item.dn_status = _this.$t('outbound.pickedstock');
+                item.dn_status = _this.$t('outbound.pickedstock')
               } else if (item.dn_status === 5) {
-                item.dn_status = _this.$t('outbound.shippedstock');
+                item.dn_status = _this.$t('outbound.shippedstock')
               } else if (item.dn_status === 6) {
-                item.dn_status = _this.$t('outbound.received');
+                item.dn_status = _this.$t('outbound.received')
               } else {
-                item.dn_status = 'N/A';
+                item.dn_status = 'N/A'
               }
-              _this.table_list.push(item);
-            });
-            _this.customer_list = res.customer_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+              _this.table_list.push(item)
+            })
+            _this.customer_list = res.customer_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    reFresh() {
-      var _this = this;
-      _this.table_list = [];
-      _this.getList();
+    reFresh () {
+      var _this = this
+      _this.table_list = []
+      _this.getList()
     },
-    newFormOpen() {
-      var _this = this;
-      _this.isEdit = false;
-      _this.goodsDataClear();
-      _this.newForm = true;
-      _this.newdn.creater = _this.login_name;
+    newFormOpen () {
+      var _this = this
+      _this.isEdit = false
+      _this.goodsDataClear()
+      _this.newForm = true
+      _this.newdn.creater = _this.login_name
       postauth(_this.pathname + 'list/', _this.newdn)
         .then(res => {
           if (!res.detail) {
-            _this.newFormData.dn_code = res.dn_code;
+            _this.newFormData.dn_code = res.dn_code
           }
         })
         .catch(err => {
@@ -1192,50 +1192,50 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    newDataSubmit() {
-      var _this = this;
-      _this.newFormData.creater = _this.login_name;
-      let cancelRequest = false;
+    newDataSubmit () {
+      var _this = this
+      _this.newFormData.creater = _this.login_name
+      let cancelRequest = false
       for (let i = 0; i < 10; i++) {
-        let goodsData = `goodsData${i + 1}`;
+        const goodsData = `goodsData${i + 1}`
         if (_this[goodsData].code !== '' && _this[goodsData].qty !== '') {
           if (_this[goodsData].qty < 1) {
             _this.$q.notify({
               message: 'Total Quantity Must Be Positive Integer',
               icon: 'close',
               color: 'negative'
-            });
-            cancelRequest = true;
-            break;
+            })
+            cancelRequest = true
+            break
           } else {
-            _this.newFormData.goods_code[i] = _this[goodsData].code;
-            _this.newFormData.goods_qty[i] = _this[goodsData].qty;
+            _this.newFormData.goods_code[i] = _this[goodsData].code
+            _this.newFormData.goods_qty[i] = _this[goodsData].qty
           }
         }
       }
       if (!_this.newFormData.customer) {
-        cancelRequest = true;
+        cancelRequest = true
         _this.$q.notify({
           message: 'Supplier Does Not Exists',
           icon: 'close',
           color: 'negative'
-        });
+        })
       }
       if (!cancelRequest) {
         postauth(_this.pathname + 'detail/', _this.newFormData)
           .then(res => {
-            _this.table_list = [];
-            _this.getList();
-            _this.newDataCancel();
+            _this.table_list = []
+            _this.getList()
+            _this.newDataCancel()
             if (res.detail === 'success') {
               _this.$q.notify({
                 message: 'Success Create',
                 icon: 'check',
                 color: 'green'
-              });
+              })
             }
           })
           .catch(err => {
@@ -1243,83 +1243,83 @@ export default {
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       }
     },
-    newDataCancel() {
-      var _this = this;
-      _this.newForm = false;
+    newDataCancel () {
+      var _this = this
+      _this.newForm = false
       _this.newFormData = {
         dn_code: '',
         customer: '',
         goods_code: [],
         goods_qty: [],
         creater: ''
-      };
-      _this.goodsDataClear();
+      }
+      _this.goodsDataClear()
     },
-    goodsDataClear() {
-      var _this = this;
+    goodsDataClear () {
+      var _this = this
       for (let i = 1; i <= 10; i++) {
-        _this[`goodsData${i}`] = { code: '', qty: '' };
+        _this[`goodsData${i}`] = { code: '', qty: '' }
       }
     },
-    editData(e) {
-      var _this = this;
-      _this.isEdit = true;
-      _this.goodsDataClear();
+    editData (e) {
+      var _this = this
+      _this.isEdit = true
+      _this.goodsDataClear()
       if (e.dn_status !== _this.$t('outbound.freshorder')) {
         _this.$q.notify({
           message: e.dn_code + ' DN Status Not ' + _this.$t('outbound.freshorder'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.newFormData.dn_code = e.dn_code;
-        _this.newFormData.customer = e.customer;
+        _this.newFormData.dn_code = e.dn_code
+        _this.newFormData.customer = e.customer
         getauth(_this.pathname + 'detail/?dn_code=' + e.dn_code).then(res => {
-          _this.newForm = true;
-          _this.editid = e.id;
+          _this.newForm = true
+          _this.editid = e.id
           res.results.forEach((detail, index) => {
-            _this[`goodsData${index + 1}`] = { code: detail.goods_code, qty: detail.goods_qty };
-          });
-        });
+            _this[`goodsData${index + 1}`] = { code: detail.goods_code, qty: detail.goods_qty }
+          })
+        })
       }
     },
-    editDataSubmit() {
-      var _this = this;
-      _this.newFormData.creater = _this.login_name;
-      let cancelRequest = false;
+    editDataSubmit () {
+      var _this = this
+      _this.newFormData.creater = _this.login_name
+      let cancelRequest = false
       for (let i = 0; i < 10; i++) {
-        let goodsData = `goodsData${i + 1}`;
+        const goodsData = `goodsData${i + 1}`
         if (_this[goodsData].code !== '' && _this[goodsData].qty !== '') {
           if (_this[goodsData].qty <= 0) {
             _this.$q.notify({
               message: 'Total Quantity Must Be Positive',
               icon: 'close',
               color: 'negative'
-            });
-            cancelRequest = true;
-            break;
+            })
+            cancelRequest = true
+            break
           } else {
-            _this.newFormData.goods_code[i] = _this[goodsData].code;
-            _this.newFormData.goods_qty[i] = _this[goodsData].qty;
+            _this.newFormData.goods_code[i] = _this[goodsData].code
+            _this.newFormData.goods_qty[i] = _this[goodsData].qty
           }
         }
       }
       if (!cancelRequest) {
         putauth(_this.pathname + 'detail/', _this.newFormData)
           .then(res => {
-            _this.table_list = [];
-            _this.editDataCancel();
-            _this.getList();
+            _this.table_list = []
+            _this.editDataCancel()
+            _this.getList()
             if (!res.detail) {
               _this.$q.notify({
                 message: 'Success Edit DN',
                 icon: 'check',
                 color: 'green'
-              });
+              })
             }
           })
           .catch(err => {
@@ -1327,49 +1327,49 @@ export default {
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       }
     },
-    editDataCancel() {
-      var _this = this;
-      _this.newForm = false;
-      _this.editid = 0;
+    editDataCancel () {
+      var _this = this
+      _this.newForm = false
+      _this.editid = 0
       _this.newFormData = {
         dn_code: '',
         customer: '',
         goods_code: [],
         goods_qty: [],
         creater: ''
-      };
-      _this.goodsDataClear();
+      }
+      _this.goodsDataClear()
     },
-    deleteData(e) {
-      var _this = this;
+    deleteData (e) {
+      var _this = this
       if (e.dn_status !== _this.$t('outbound.freshorder')) {
         _this.$q.notify({
           message: e.dn_code + ' DN Status Is Not ' + _this.$t('outbound.freshorder'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.deleteForm = true;
-        _this.deleteid = e.id;
+        _this.deleteForm = true
+        _this.deleteid = e.id
       }
     },
-    deleteDataSubmit() {
-      var _this = this;
+    deleteDataSubmit () {
+      var _this = this
       deleteauth(_this.pathname + 'list/' + _this.deleteid + '/')
         .then(res => {
-          _this.table_list = [];
-          _this.deleteDataCancel();
-          _this.getList();
+          _this.table_list = []
+          _this.deleteDataCancel()
+          _this.getList()
           if (!res.detail) {
             _this.$q.notify({
               message: 'Success Delete DN',
               icon: 'check',
               color: 'green'
-            });
+            })
           }
         })
         .catch(err => {
@@ -1377,40 +1377,40 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    deleteDataCancel() {
-      var _this = this;
-      _this.deleteForm = false;
-      _this.deleteid = 0;
+    deleteDataCancel () {
+      var _this = this
+      _this.deleteForm = false
+      _this.deleteid = 0
     },
-    neworderData(e) {
-      var _this = this;
+    neworderData (e) {
+      var _this = this
       if (e.dn_status !== _this.$t('outbound.freshorder')) {
         _this.$q.notify({
           message: e.dn_code + ' DN Status Is Not ' + _this.$t('outbound.freshorder'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.neworderForm = true;
-        _this.neworderid = e.id;
+        _this.neworderForm = true
+        _this.neworderid = e.id
       }
     },
-    neworderDataSubmit() {
-      var _this = this;
+    neworderDataSubmit () {
+      var _this = this
       postauth(_this.pathname + 'neworder/' + _this.neworderid + '/', {})
         .then(res => {
-          _this.table_list = [];
-          _this.neworderDataCancel();
-          _this.getList();
+          _this.table_list = []
+          _this.neworderDataCancel()
+          _this.getList()
           if (!res.detail) {
             _this.$q.notify({
               message: 'Success Confirm DN Delivery',
               icon: 'check',
               color: 'green'
-            });
+            })
           }
         })
         .catch(err => {
@@ -1418,39 +1418,39 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    neworderDataCancel() {
-      var _this = this;
-      _this.neworderForm = false;
-      _this.neworderid = 0;
+    neworderDataCancel () {
+      var _this = this
+      _this.neworderForm = false
+      _this.neworderid = 0
     },
-    orderreleaseData(e) {
-      var _this = this;
+    orderreleaseData (e) {
+      var _this = this
       if (e.dn_status !== _this.$t('outbound.neworder')) {
         _this.$q.notify({
           message: e.dn_code + ' DN Status Is Not ' + _this.$t('outbound.neworder'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.orderreleaseForm = true;
-        _this.orderreleaseid = e.id;
+        _this.orderreleaseForm = true
+        _this.orderreleaseid = e.id
       }
     },
-    orderreleaseAllData() {
-      var _this = this;
+    orderreleaseAllData () {
+      var _this = this
       postauth(_this.pathname + 'orderrelease/', {})
         .then(res => {
-          _this.table_list = [];
-          _this.getList();
+          _this.table_list = []
+          _this.getList()
           if (!res.detail) {
             _this.$q.notify({
               message: 'Success Release All Order',
               icon: 'check',
               color: 'green'
-            });
+            })
           }
         })
         .catch(err => {
@@ -1458,22 +1458,22 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    orderreleaseDataSubmit() {
-      var _this = this;
+    orderreleaseDataSubmit () {
+      var _this = this
       putauth(_this.pathname + 'orderrelease/' + _this.orderreleaseid + '/', {})
         .then(res => {
-          _this.table_list = [];
-          _this.orderreleaseDataCancel();
-          _this.getList();
+          _this.table_list = []
+          _this.orderreleaseDataCancel()
+          _this.getList()
           if (!res.detail) {
             _this.$q.notify({
               message: 'Success Release DN Code',
               icon: 'check',
               color: 'green'
-            });
+            })
           }
         })
         .catch(err => {
@@ -1481,48 +1481,48 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    orderreleaseDataCancel() {
-      var _this = this;
-      _this.orderreleaseForm = false;
-      _this.orderreleaseid = 0;
+    orderreleaseDataCancel () {
+      var _this = this
+      _this.orderreleaseForm = false
+      _this.orderreleaseid = 0
     },
-    getFocus(number) {
-      this.listNumber = number;
+    getFocus (number) {
+      this.listNumber = number
     },
-    setOptions(val) {
-      let _this = this;
+    setOptions (val) {
+      const _this = this
       if (!val) {
-        _this[`goodsData${_this.listNumber}`].code = '';
+        _this[`goodsData${_this.listNumber}`].code = ''
       }
-      const needle = val.toLowerCase();
+      const needle = val.toLowerCase()
       getauth('goods/?goods_code__icontains=' + needle).then(res => {
-        const goodscodelist = [];
+        const goodscodelist = []
         for (let i = 0; i < res.results.length; i++) {
-          goodscodelist.push(res.results[i].goods_code);
+          goodscodelist.push(res.results[i].goods_code)
           if (_this.listNumber) {
             if (res.results[i].goods_code === val) {
-              _this[`goodsData${_this.listNumber}`].code = val;
+              _this[`goodsData${_this.listNumber}`].code = val
             }
           }
         }
-        _this.options1 = goodscodelist;
-      });
+        _this.options1 = goodscodelist
+      })
     },
-    filterFn(val, update, abort) {
+    filterFn (val, update, abort) {
       if (val.length < 1) {
-        abort();
-        return;
+        abort()
+        return
       }
       update(() => {
-        this.options = this.options1;
-      });
+        this.options = this.options1
+      })
     },
-    PrintPickingList(e) {
-      var _this = this;
-      var QRCode = require('qrcode');
+    PrintPickingList (e) {
+      var _this = this
+      var QRCode = require('qrcode')
       QRCode.toDataURL(e.bar_code, [
         {
           errorCorrectionLevel: 'H',
@@ -1532,65 +1532,65 @@ export default {
         }
       ])
         .then(url => {
-          _this.bar_code = url;
+          _this.bar_code = url
         })
         .catch(err => {
-          console.error(err);
-        });
-      _this.viewPLForm = true;
+          console.error(err)
+        })
+      _this.viewPLForm = true
       getauth(_this.pathname + 'pickinglist/' + e.id + '/')
         .then(res => {
-          _this.pickinglist_print_table = [];
-          _this.picklist_check = 0;
+          _this.pickinglist_print_table = []
+          _this.picklist_check = 0
           res.forEach(item => {
             if (item.picked_qty > 0) {
-              _this.picklist_check += 1;
+              _this.picklist_check += 1
             } else {
             }
-          });
-          _this.pickinglist_print_table = res;
-          _this.viewPLForm = true;
+          })
+          _this.pickinglist_print_table = res
+          _this.viewPLForm = true
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    pickedData(e) {
-      var _this = this;
+    pickedData (e) {
+      var _this = this
       if (e.dn_status !== _this.$t('outbound.pickstock')) {
         _this.$q.notify({
           message: e.dn_code + ' DN Status Is Not ' + _this.$t('outbound.pickstock'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.pickFormData.dn_code = e.dn_code;
-        _this.pickFormData.customer = e.customer;
+        _this.pickFormData.dn_code = e.dn_code
+        _this.pickFormData.customer = e.customer
         getauth(_this.pathname + 'pickinglist/' + e.id + '/').then(res => {
-          _this.pickedForm = true;
-          _this.pickedid = e.id;
-          _this.pickFormData.goodsData = res;
-        });
+          _this.pickedForm = true
+          _this.pickedid = e.id
+          _this.pickFormData.goodsData = res
+        })
       }
     },
-    pickedDataSubmit() {
-      var _this = this;
-      _this.pickFormData.creater = _this.login_name;
+    pickedDataSubmit () {
+      var _this = this
+      _this.pickFormData.creater = _this.login_name
       postauth(_this.pathname + 'picked/' + _this.pickedid + '/', _this.pickFormData)
         .then(res => {
-          _this.table_list = [];
-          _this.pickedDataCancel();
-          _this.getList();
+          _this.table_list = []
+          _this.pickedDataCancel()
+          _this.getList()
           if (!res.detail) {
             _this.$q.notify({
               message: 'Success Confirm Picking List',
               icon: 'check',
               color: 'green'
-            });
+            })
           }
         })
         .catch(err => {
@@ -1598,29 +1598,29 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    pickedDataCancel() {
-      var _this = this;
-      _this.pickedForm = false;
-      _this.pickedid = 0;
+    pickedDataCancel () {
+      var _this = this
+      _this.pickedForm = false
+      _this.pickedid = 0
       _this.pickFormData = {
         dn_code: '',
         customer: '',
         goodsData: [],
         creater: ''
-      };
-      _this.goodsDataClear();
+      }
+      _this.goodsDataClear()
     },
-    viewData(e) {
-      var _this = this;
+    viewData (e) {
+      var _this = this
       ViewPrintAuth(_this.pathname + 'viewprint/' + e.id + '/').then(res => {
-        _this.viewprint_table = res.dn_detail;
-        _this.warehouse_detail = res.warehouse_detail;
-        _this.customer_detail = res.customer_detail;
-        _this.viewdn = e.dn_code;
-        var QRCode = require('qrcode');
+        _this.viewprint_table = res.dn_detail
+        _this.warehouse_detail = res.warehouse_detail
+        _this.customer_detail = res.customer_detail
+        _this.viewdn = e.dn_code
+        var QRCode = require('qrcode')
         QRCode.toDataURL(e.bar_code, [
           {
             errorCorrectionLevel: 'H',
@@ -1630,73 +1630,73 @@ export default {
           }
         ])
           .then(url => {
-            _this.bar_code = url;
+            _this.bar_code = url
           })
           .catch(err => {
-            console.error(err);
-          });
-        _this.viewForm = true;
-      });
+            console.error(err)
+          })
+        _this.viewForm = true
+      })
     },
-    filterFnDispatch(val, update, abort) {
-      var _this = this;
+    filterFnDispatch (val, update, abort) {
+      var _this = this
       if (val.length < 1) {
-        abort();
-        return;
+        abort()
+        return
       }
       update(() => {
-        const needle = val.toLowerCase();
+        const needle = val.toLowerCase()
         getauth('driver/?driver_name__icontains=' + needle)
           .then(res => {
-            const drivernamelist = [];
+            const drivernamelist = []
             for (let i = 0; i < res.results.length; i++) {
-              drivernamelist.push(res.results[i].driver_name);
+              drivernamelist.push(res.results[i].driver_name)
             }
-            LocalStorage.set('driver_name_list', drivernamelist);
-            _this.driver_options = LocalStorage.getItem('driver_name_list');
-            _this.$forceUpdate();
+            LocalStorage.set('driver_name_list', drivernamelist)
+            _this.driver_options = LocalStorage.getItem('driver_name_list')
+            _this.$forceUpdate()
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
-      });
+            })
+          })
+      })
     },
-    DispatchDN(e) {
-      var _this = this;
+    DispatchDN (e) {
+      var _this = this
       if (e.dn_status !== _this.$t('outbound.pickedstock')) {
         _this.$q.notify({
           message: e.dn_code + ' DN Status Is Not ' + _this.$t('outbound.pickedstock'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.dispatchFormData.dn_code = e.dn_code;
-        _this.dispatchid = e.id;
-        _this.dispatchForm = true;
+        _this.dispatchFormData.dn_code = e.dn_code
+        _this.dispatchid = e.id
+        _this.dispatchForm = true
       }
     },
-    dispatchDataCancel() {
-      var _this = this;
-      _this.dispatchFormData = { dn_code: '', driver: '' };
-      _this.dispatchForm = false;
+    dispatchDataCancel () {
+      var _this = this
+      _this.dispatchFormData = { dn_code: '', driver: '' }
+      _this.dispatchForm = false
     },
-    dispatchDataSubmit() {
-      var _this = this;
+    dispatchDataSubmit () {
+      var _this = this
       postauth(_this.pathname + 'dispatch/' + _this.dispatchid + '/', _this.dispatchFormData)
         .then(res => {
-          _this.table_list = [];
-          _this.dispatchDataCancel();
-          _this.getList();
+          _this.table_list = []
+          _this.dispatchDataCancel()
+          _this.getList()
           if (!res.detail) {
             _this.$q.notify({
               message: 'Success Dispatch',
               icon: 'check',
               color: 'green'
-            });
+            })
           }
         })
         .catch(err => {
@@ -1704,51 +1704,51 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    PODData(e) {
-      var _this = this;
+    PODData (e) {
+      var _this = this
       if (e.dn_status !== _this.$t('outbound.shippedstock')) {
         _this.$q.notify({
           message: e.dn_code + ' DN Status Is Not ' + _this.$t('outbound.shippedstock'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.podFormData.dn_code = e.dn_code;
-        _this.podFormData.customer = e.customer;
+        _this.podFormData.dn_code = e.dn_code
+        _this.podFormData.customer = e.customer
         getauth(_this.pathname + 'detail/?dn_code=' + e.dn_code).then(res => {
-          _this.podForm = true;
-          _this.podid = e.id;
-          _this.podFormData.goodsData = res.results;
-        });
+          _this.podForm = true
+          _this.podid = e.id
+          _this.podFormData.goodsData = res.results
+        })
       }
     },
-    PODDataCancel() {
-      var _this = this;
-      _this.podForm = false;
-      _this.podid = 0;
+    PODDataCancel () {
+      var _this = this
+      _this.podForm = false
+      _this.podid = 0
       _this.podFormData = {
         dn_code: '',
         customer: '',
         goodsData: []
-      };
+      }
     },
-    PODDataSubmit() {
-      var _this = this;
+    PODDataSubmit () {
+      var _this = this
       if (!(_this.isError1 || _this.isError2)) {
         postauth(_this.pathname + 'pod/' + _this.podid + '/', _this.podFormData)
           .then(res => {
-            _this.table_list = [];
-            _this.PODDataCancel();
-            _this.getList();
+            _this.table_list = []
+            _this.PODDataCancel()
+            _this.getList()
             if (!res.detail) {
               _this.$q.notify({
                 message: 'Success Dispatch',
                 icon: 'check',
                 color: 'green'
-              });
+              })
             }
           })
           .catch(err => {
@@ -1756,46 +1756,46 @@ export default {
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       }
     }
   },
-  created() {
-    var _this = this;
+  created () {
+    var _this = this
     if (LocalStorage.has('openid')) {
-      _this.openid = LocalStorage.getItem('openid');
+      _this.openid = LocalStorage.getItem('openid')
     } else {
-      _this.openid = '';
-      LocalStorage.set('openid', '');
+      _this.openid = ''
+      LocalStorage.set('openid', '')
     }
     if (LocalStorage.has('login_name')) {
-      _this.login_name = LocalStorage.getItem('login_name');
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
-      _this.login_name = '';
-      LocalStorage.set('login_name', '');
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
     }
     if (LocalStorage.has('auth')) {
-      _this.authin = '1';
-      _this.table_list = [];
-      _this.getList();
+      _this.authin = '1'
+      _this.table_list = []
+      _this.getList()
     } else {
-      _this.authin = '0';
+      _this.authin = '0'
     }
     if (LocalStorage.has('goods_code_list')) {
     } else {
-      LocalStorage.set('goods_code_list', []);
+      LocalStorage.set('goods_code_list', [])
     }
   },
-  mounted() {
-    var _this = this;
+  mounted () {
+    var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + 'px';
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + '' + 'px';
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
-  updated() {},
-  destroyed() {}
-};
+  updated () {},
+  destroyed () {}
+}
 </script>
