@@ -1755,7 +1755,8 @@ class DnDispatchViewSet(viewsets.ModelViewSet):
             staff_name = staff.objects.filter(openid=self.request.auth.openid,
                                               id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if driverlist.objects.filter(openid=self.request.auth.openid,
-                                               is_delete=False).exists():
+                                         driver_name=str(data['driver']),
+                                         is_delete=False).exists():
                 driver = driverlist.objects.filter(openid=self.request.auth.openid,
                                                    driver_name=str(data['driver']),
                                                    is_delete=False).first()
