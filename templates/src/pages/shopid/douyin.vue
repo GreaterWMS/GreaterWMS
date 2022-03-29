@@ -288,26 +288,32 @@ export default {
           icon: 'close',
           color: 'negative'
         })
-      } else if (_this.newFormData.shop_appid === '') {
-        _this.$q.notify({
-          message: _this.error2,
-          icon: 'close',
-          color: 'negative'
-        })
-      } else if (_this.newFormData.shop_app_secret === '') {
-        _this.$q.notify({
-          message: _this.error3,
-          icon: 'close',
-          color: 'negative'
-        })
-      } else if (_this.newFormData.shop_id === '') {
-        _this.$q.notify({
-          message: _this.error4,
-          icon: 'close',
-          color: 'negative'
-        })
       } else {
-        _this.newDataSubmit()
+        if (_this.newFormData.shop_appid === '') {
+          _this.$q.notify({
+            message: _this.error2,
+            icon: 'close',
+            color: 'negative'
+          })
+        } else {
+          if (_this.newFormData.shop_app_secret === '') {
+            _this.$q.notify({
+              message: _this.error3,
+              icon: 'close',
+              color: 'negative'
+            })
+          } else {
+            if (_this.newFormData.shop_id === '') {
+              _this.$q.notify({
+                message: _this.error4,
+                icon: 'close',
+                color: 'negative'
+              })
+            } else {
+              _this.newDataSubmit()
+            }
+          }
+        }
       }
     },
     newDataSubmit () {
