@@ -709,12 +709,12 @@
 <router-view />
 
 <script>
-import { getauth, postauth, putauth, deleteauth, ViewPrintAuth, getfile } from 'boot/axios_request';
-import { date, exportFile, SessionStorage, LocalStorage } from 'quasar';
+import { getauth, postauth, putauth, deleteauth, ViewPrintAuth } from 'boot/axios_request'
+import { SessionStorage, LocalStorage } from 'quasar'
 
 export default {
   name: 'Pageasnlist',
-  data() {
+  data () {
     return {
       openid: '',
       login_name: '',
@@ -796,170 +796,170 @@ export default {
       devi: window.device,
       error1: this.$t('baseinfo.view_supplier.error1'),
       goodsListData: []
-    };
+    }
   },
   methods: {
-    getList() {
-      var _this = this;
+    getList () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/', {})
           .then(res => {
-            _this.table_list = [];
+            _this.table_list = []
             res.results.forEach(item => {
               if (item.asn_status === 1) {
-                item.asn_status = _this.$t('inbound.predeliverystock');
+                item.asn_status = _this.$t('inbound.predeliverystock')
               } else if (item.asn_status === 2) {
-                item.asn_status = _this.$t('inbound.preloadstock');
+                item.asn_status = _this.$t('inbound.preloadstock')
               } else if (item.asn_status === 3) {
-                item.asn_status = _this.$t('inbound.presortstock');
+                item.asn_status = _this.$t('inbound.presortstock')
               } else if (item.asn_status === 4) {
-                item.asn_status = _this.$t('inbound.sortstock');
+                item.asn_status = _this.$t('inbound.sortstock')
               } else if (item.asn_status === 5) {
-                item.asn_status = _this.$t('inbound.asndone');
+                item.asn_status = _this.$t('inbound.asndone')
               } else {
-                item.asn_status = 'N/A';
+                item.asn_status = 'N/A'
               }
-              _this.table_list.push(item);
-            });
-            _this.supplier_list = res.supplier_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
-            _this.goodsListData = res.results;
-            console.log(this.goodsListData, 777);
+              _this.table_list.push(item)
+            })
+            _this.supplier_list = res.supplier_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
+            _this.goodsListData = res.results
+            console.log(this.goodsListData, 777)
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getSearchList() {
-      var _this = this;
+    getSearchList () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + 'list/?asn_code__icontains=' + _this.filter, {})
           .then(res => {
-            _this.table_list = [];
+            _this.table_list = []
             res.results.forEach(item => {
               if (item.asn_status === 1) {
-                item.asn_status = _this.$t('inbound.predeliverystock');
+                item.asn_status = _this.$t('inbound.predeliverystock')
               } else if (item.asn_status === 2) {
-                item.asn_status = _this.$t('inbound.preloadstock');
+                item.asn_status = _this.$t('inbound.preloadstock')
               } else if (item.asn_status === 3) {
-                item.asn_status = _this.$t('inbound.presortstock');
+                item.asn_status = _this.$t('inbound.presortstock')
               } else if (item.asn_status === 4) {
-                item.asn_status = _this.$t('inbound.sortstock');
+                item.asn_status = _this.$t('inbound.sortstock')
               } else if (item.asn_status === 5) {
-                item.asn_status = _this.$t('inbound.asndone');
+                item.asn_status = _this.$t('inbound.asndone')
               } else {
-                item.asn_status = 'N/A';
+                item.asn_status = 'N/A'
               }
-              _this.table_list.push(item);
-            });
-            _this.supplier_list = res.supplier_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+              _this.table_list.push(item)
+            })
+            _this.supplier_list = res.supplier_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getListPrevious() {
-      var _this = this;
+    getListPrevious () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_previous, {})
           .then(res => {
-            _this.table_list = [];
+            _this.table_list = []
             res.results.forEach(item => {
               if (item.asn_status === 1) {
-                item.asn_status = _this.$t('inbound.predeliverystock');
+                item.asn_status = _this.$t('inbound.predeliverystock')
               } else if (item.asn_status === 2) {
-                item.asn_status = _this.$t('inbound.preloadstock');
+                item.asn_status = _this.$t('inbound.preloadstock')
               } else if (item.asn_status === 3) {
-                item.asn_status = _this.$t('inbound.presortstock');
+                item.asn_status = _this.$t('inbound.presortstock')
               } else if (item.asn_status === 4) {
-                item.asn_status = _this.$t('inbound.sortstock');
+                item.asn_status = _this.$t('inbound.sortstock')
               } else if (item.asn_status === 5) {
-                item.asn_status = _this.$t('inbound.asndone');
+                item.asn_status = _this.$t('inbound.asndone')
               } else {
-                item.asn_status = 'N/A';
+                item.asn_status = 'N/A'
               }
-              _this.table_list.push(item);
-            });
-            _this.supplier_list = res.supplier_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+              _this.table_list.push(item)
+            })
+            _this.supplier_list = res.supplier_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getListNext() {
-      var _this = this;
+    getListNext () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_next, {})
           .then(res => {
-            _this.table_list = [];
+            _this.table_list = []
             res.results.forEach(item => {
               if (item.asn_status === 1) {
-                item.asn_status = _this.$t('inbound.predeliverystock');
+                item.asn_status = _this.$t('inbound.predeliverystock')
               } else if (item.asn_status === 2) {
-                item.asn_status = _this.$t('inbound.preloadstock');
+                item.asn_status = _this.$t('inbound.preloadstock')
               } else if (item.asn_status === 3) {
-                item.asn_status = _this.$t('inbound.presortstock');
+                item.asn_status = _this.$t('inbound.presortstock')
               } else if (item.asn_status === 4) {
-                item.asn_status = _this.$t('inbound.sortstock');
+                item.asn_status = _this.$t('inbound.sortstock')
               } else if (item.asn_status === 5) {
-                item.asn_status = _this.$t('inbound.asndone');
+                item.asn_status = _this.$t('inbound.asndone')
               } else {
-                item.asn_status = 'N/A';
+                item.asn_status = 'N/A'
               }
-              _this.table_list.push(item);
-            });
-            _this.supplier_list = res.supplier_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+              _this.table_list.push(item)
+            })
+            _this.supplier_list = res.supplier_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    reFresh() {
-      var _this = this;
-      _this.table_list = [];
-      _this.getList();
+    reFresh () {
+      var _this = this
+      _this.table_list = []
+      _this.getList()
     },
-    newFormOpen() {
-      var _this = this;
-      _this.isEdit = false;
-      _this.goodsDataClear();
-      _this.newForm = true;
-      _this.newAsn.creater = _this.login_name;
+    newFormOpen () {
+      var _this = this
+      _this.isEdit = false
+      _this.goodsDataClear()
+      _this.newForm = true
+      _this.newAsn.creater = _this.login_name
       postauth(_this.pathname + 'list/', _this.newAsn)
         .then(res => {
           if (!res.detail) {
-            _this.newFormData.asn_code = res.asn_code;
+            _this.newFormData.asn_code = res.asn_code
           }
         })
         .catch(err => {
@@ -967,50 +967,50 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    newDataSubmit() {
-      var _this = this;
-      _this.newFormData.creater = _this.login_name;
-      let cancelRequest = false;
+    newDataSubmit () {
+      var _this = this
+      _this.newFormData.creater = _this.login_name
+      let cancelRequest = false
       for (let i = 0; i < 10; i++) {
-        let goodsData = `goodsData${i + 1}`;
+        const goodsData = `goodsData${i + 1}`
         if (_this[goodsData].code !== '' && _this[goodsData].qty !== '') {
           if (_this[goodsData].qty < 1) {
             _this.$q.notify({
               message: 'Total Quantity Must Be Positive Integer',
               icon: 'close',
               color: 'negative'
-            });
-            cancelRequest = true;
-            break;
+            })
+            cancelRequest = true
+            break
           } else {
-            _this.newFormData.goods_code[i] = _this[goodsData].code;
-            _this.newFormData.goods_qty[i] = _this[goodsData].qty;
+            _this.newFormData.goods_code[i] = _this[goodsData].code
+            _this.newFormData.goods_qty[i] = _this[goodsData].qty
           }
         }
       }
       if (!_this.newFormData.supplier) {
-        cancelRequest = true;
+        cancelRequest = true
         _this.$q.notify({
           message: 'Supplier Does Not Exists',
           icon: 'close',
           color: 'negative'
-        });
+        })
       }
       if (!cancelRequest) {
         postauth(_this.pathname + 'detail/', _this.newFormData)
           .then(res => {
-            _this.table_list = [];
-            _this.getList();
-            _this.newDataCancel();
+            _this.table_list = []
+            _this.getList()
+            _this.newDataCancel()
             if (res.detail === 'success') {
               _this.$q.notify({
                 message: 'Success Create',
                 icon: 'check',
                 color: 'green'
-              });
+              })
             }
           })
           .catch(err => {
@@ -1018,83 +1018,83 @@ export default {
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       }
     },
-    newDataCancel() {
-      var _this = this;
-      _this.newForm = false;
+    newDataCancel () {
+      var _this = this
+      _this.newForm = false
       _this.newFormData = {
         asn_code: '',
         supplier: '',
         goods_code: [],
         goods_qty: [],
         creater: ''
-      };
-      _this.goodsDataClear();
+      }
+      _this.goodsDataClear()
     },
-    goodsDataClear() {
-      var _this = this;
+    goodsDataClear () {
+      var _this = this
       for (let i = 1; i <= 10; i++) {
-        _this[`goodsData${i}`] = { code: '', qty: '' };
+        _this[`goodsData${i}`] = { code: '', qty: '' }
       }
     },
-    editData(e) {
-      var _this = this;
-      _this.isEdit = true;
-      _this.goodsDataClear();
+    editData (e) {
+      var _this = this
+      _this.isEdit = true
+      _this.goodsDataClear()
       if (e.asn_status !== _this.$t('inbound.predeliverystock')) {
         _this.$q.notify({
           message: e.asn_code + ' ASN Status Is Not ' + _this.$t('inbound.predeliverystock'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.newFormData.asn_code = e.asn_code;
-        _this.newFormData.supplier = e.supplier;
+        _this.newFormData.asn_code = e.asn_code
+        _this.newFormData.supplier = e.supplier
         getauth(_this.pathname + 'detail/?asn_code=' + e.asn_code).then(res => {
-          _this.newForm = true;
-          _this.editid = e.id;
+          _this.newForm = true
+          _this.editid = e.id
           res.results.forEach((detail, index) => {
-            _this[`goodsData${index + 1}`] = { code: detail.goods_code, qty: detail.goods_qty };
-          });
-        });
+            _this[`goodsData${index + 1}`] = { code: detail.goods_code, qty: detail.goods_qty }
+          })
+        })
       }
     },
-    editDataSubmit() {
-      var _this = this;
-      _this.newFormData.creater = _this.login_name;
-      let cancelRequest = false;
+    editDataSubmit () {
+      var _this = this
+      _this.newFormData.creater = _this.login_name
+      let cancelRequest = false
       for (let i = 0; i < 10; i++) {
-        let goodsData = `goodsData${i + 1}`;
+        const goodsData = `goodsData${i + 1}`
         if (_this[goodsData].code !== '' && _this[goodsData].qty !== '') {
           if (_this[goodsData].qty <= 0) {
             _this.$q.notify({
               message: 'Total Quantity Must Be Positive',
               icon: 'close',
               color: 'negative'
-            });
-            cancelRequest = true;
-            break;
+            })
+            cancelRequest = true
+            break
           } else {
-            _this.newFormData.goods_code[i] = _this[goodsData].code;
-            _this.newFormData.goods_qty[i] = _this[goodsData].qty;
+            _this.newFormData.goods_code[i] = _this[goodsData].code
+            _this.newFormData.goods_qty[i] = _this[goodsData].qty
           }
         }
       }
       if (!cancelRequest) {
         putauth(_this.pathname + 'detail/', _this.newFormData)
           .then(res => {
-            _this.table_list = [];
-            _this.editDataCancel();
-            _this.getList();
+            _this.table_list = []
+            _this.editDataCancel()
+            _this.getList()
             if (res.detail === 'success') {
               _this.$q.notify({
                 message: 'Success Edit Data',
                 icon: 'check',
                 color: 'green'
-              });
+              })
             }
           })
           .catch(err => {
@@ -1102,49 +1102,49 @@ export default {
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       }
     },
-    editDataCancel() {
-      var _this = this;
-      _this.newForm = false;
-      _this.editid = 0;
+    editDataCancel () {
+      var _this = this
+      _this.newForm = false
+      _this.editid = 0
       _this.newFormData = {
         asn_code: '',
         supplier: '',
         goods_code: [],
         goods_qty: [],
         creater: ''
-      };
-      _this.goodsDataClear();
+      }
+      _this.goodsDataClear()
     },
-    deleteData(e) {
-      var _this = this;
+    deleteData (e) {
+      var _this = this
       if (e.asn_status !== _this.$t('inbound.predeliverystock')) {
         _this.$q.notify({
           message: e.asn_code + ' ASN Status Is Not ' + _this.$t('inbound.predeliverystock'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.deleteForm = true;
-        _this.deleteid = e.id;
+        _this.deleteForm = true
+        _this.deleteid = e.id
       }
     },
-    deleteDataSubmit() {
-      var _this = this;
+    deleteDataSubmit () {
+      var _this = this
       deleteauth(_this.pathname + 'list/' + _this.deleteid + '/')
         .then(res => {
-          _this.table_list = [];
-          _this.deleteDataCancel();
-          _this.getList();
+          _this.table_list = []
+          _this.deleteDataCancel()
+          _this.getList()
           if (!res.data) {
             _this.$q.notify({
               message: 'Success Delete Data',
               icon: 'check',
               color: 'green'
-            });
+            })
           }
         })
         .catch(err => {
@@ -1152,40 +1152,40 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    deleteDataCancel() {
-      var _this = this;
-      _this.deleteForm = false;
-      _this.deleteid = 0;
+    deleteDataCancel () {
+      var _this = this
+      _this.deleteForm = false
+      _this.deleteid = 0
     },
-    preloadData(e) {
-      var _this = this;
+    preloadData (e) {
+      var _this = this
       if (e.asn_status !== _this.$t('inbound.predeliverystock')) {
         _this.$q.notify({
           message: e.asn_code + ' ASN Status Is Not ' + _this.$t('inbound.predeliverystock'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.preloadForm = true;
-        _this.preloadid = e.id;
+        _this.preloadForm = true
+        _this.preloadid = e.id
       }
     },
-    preloadDataSubmit() {
-      var _this = this;
+    preloadDataSubmit () {
+      var _this = this
       postauth(_this.pathname + 'preload/' + _this.preloadid + '/', {})
         .then(res => {
-          _this.table_list = [];
-          _this.preloadDataCancel();
-          _this.getList();
+          _this.table_list = []
+          _this.preloadDataCancel()
+          _this.getList()
           if (!res.detail) {
             _this.$q.notify({
               message: 'Success Confirm ASN Delivery',
               icon: 'check',
               color: 'green'
-            });
+            })
           }
         })
         .catch(err => {
@@ -1193,40 +1193,40 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    preloadDataCancel() {
-      var _this = this;
-      _this.preloadForm = false;
-      _this.preloadid = 0;
+    preloadDataCancel () {
+      var _this = this
+      _this.preloadForm = false
+      _this.preloadid = 0
     },
-    presortData(e) {
-      var _this = this;
+    presortData (e) {
+      var _this = this
       if (e.asn_status !== _this.$t('inbound.preloadstock')) {
         _this.$q.notify({
           message: e.asn_code + ' ASN Status Is Not ' + _this.$t('inbound.preloadstock'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.presortForm = true;
-        _this.presortid = e.id;
+        _this.presortForm = true
+        _this.presortid = e.id
       }
     },
-    presortDataSubmit() {
-      var _this = this;
+    presortDataSubmit () {
+      var _this = this
       postauth(_this.pathname + 'presort/' + _this.presortid + '/', {})
         .then(res => {
-          _this.table_list = [];
-          _this.presortDataCancel();
-          _this.getList();
+          _this.table_list = []
+          _this.presortDataCancel()
+          _this.getList()
           if (!res.detail) {
             _this.$q.notify({
               message: 'Success Load ASN',
               icon: 'check',
               color: 'green'
-            });
+            })
           }
         })
         .catch(err => {
@@ -1234,78 +1234,78 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    presortDataCancel() {
-      var _this = this;
-      _this.presortForm = false;
-      _this.presortid = 0;
+    presortDataCancel () {
+      var _this = this
+      _this.presortForm = false
+      _this.presortid = 0
     },
-    getFocus(number) {
-      this.listNumber = number;
+    getFocus (number) {
+      this.listNumber = number
     },
-    setOptions(val) {
-      let _this = this;
+    setOptions (val) {
+      const _this = this
       if (!val) {
-        this[`goodsData${this.listNumber}`].code = '';
+        this[`goodsData${this.listNumber}`].code = ''
       }
-      const needle = val.toLowerCase();
+      const needle = val.toLowerCase()
       getauth('goods/?goods_code__icontains=' + needle).then(res => {
-        const goodscodelist = [];
+        const goodscodelist = []
         for (let i = 0; i < res.results.length; i++) {
-          goodscodelist.push(res.results[i].goods_code);
+          goodscodelist.push(res.results[i].goods_code)
           if (this.listNumber) {
             if (res.results[i].goods_code === val) {
-              this[`goodsData${this.listNumber}`].code = val;
+              this[`goodsData${this.listNumber}`].code = val
             }
           }
         }
-        _this.options1 = goodscodelist;
-      });
+        _this.options1 = goodscodelist
+      })
     },
-    filterFn(val, update, abort) {
+    filterFn (val, update, abort) {
       if (val.length < 1) {
-        abort();
-        return;
+        abort()
+        return
       }
       update(() => {
-        this.options = this.options1;
-      });
+        this.options = this.options1
+      })
     },
-    sortedData(e) {
-      var _this = this;
-      _this.goodsDataClear();
+    sortedData (e) {
+      var _this = this
+      _this.goodsDataClear()
       if (e.asn_status !== _this.$t('inbound.presortstock')) {
         _this.$q.notify({
           message: e.asn_code + ' ASN Status Is Not ' + _this.$t('inbound.presortstock'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.sorted_list.asn_code = e.asn_code;
-        _this.sorted_list.supplier = e.supplier;
+        _this.sorted_list.asn_code = e.asn_code
+        _this.sorted_list.supplier = e.supplier
         getauth(_this.pathname + 'detail/?asn_code=' + e.asn_code).then(res => {
-          _this.sortedForm = true;
-          _this.sortedid = e.id;
-          _this.sorted_list.goodsData = res.results;
-        });
+          _this.sortedForm = true
+          _this.sortedid = e.id
+          _this.sorted_list.goodsData = res.results
+        })
       }
     },
-    sortedDataSubmit() {
-      var _this = this;
-      _this.sorted_list.creater = _this.login_name;
+    sortedDataSubmit () {
+      var _this = this
+      _this.sorted_list.creater = _this.login_name
       postauth(_this.pathname + 'sorted/' + _this.sortedid + '/', _this.sorted_list)
         .then(res => {
-          _this.table_list = [];
-          _this.sortedDataCancel();
-          _this.getList();
+          _this.table_list = []
+          _this.sortedDataCancel()
+          _this.getList()
           if (!res.data) {
             _this.$q.notify({
               message: 'Success Sorted ASN',
               icon: 'check',
               color: 'green'
-            });
+            })
           }
         })
         .catch(err => {
@@ -1313,29 +1313,29 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    sortedDataCancel() {
-      var _this = this;
-      _this.sortedForm = false;
-      _this.sortedid = 0;
+    sortedDataCancel () {
+      var _this = this
+      _this.sortedForm = false
+      _this.sortedid = 0
       _this.sorted_list = {
         asn_code: '',
         supplier: '',
         goodsData: [],
         creater: ''
-      };
-      _this.goodsDataClear();
+      }
+      _this.goodsDataClear()
     },
-    viewData(e) {
-      var _this = this;
+    viewData (e) {
+      var _this = this
       ViewPrintAuth(_this.pathname + 'viewprint/' + e.id + '/').then(res => {
-        _this.viewprint_table = res.asn_detail;
-        _this.warehouse_detail = res.warehouse_detail;
-        _this.supplier_detail = res.supplier_detail;
-        _this.viewAsn = e.asn_code;
-        var QRCode = require('qrcode');
+        _this.viewprint_table = res.asn_detail
+        _this.warehouse_detail = res.warehouse_detail
+        _this.supplier_detail = res.supplier_detail
+        _this.viewAsn = e.asn_code
+        var QRCode = require('qrcode')
         QRCode.toDataURL(e.bar_code, [
           {
             errorCorrectionLevel: 'H',
@@ -1345,50 +1345,50 @@ export default {
           }
         ])
           .then(url => {
-            _this.bar_code = url;
+            _this.bar_code = url
           })
           .catch(err => {
-            console.error(err);
-          });
-        _this.viewForm = true;
-      });
+            console.error(err)
+          })
+        _this.viewForm = true
+      })
     }
   },
-  created() {
-    var _this = this;
+  created () {
+    var _this = this
     if (LocalStorage.has('openid')) {
-      _this.openid = LocalStorage.getItem('openid');
+      _this.openid = LocalStorage.getItem('openid')
     } else {
-      _this.openid = '';
-      LocalStorage.set('openid', '');
+      _this.openid = ''
+      LocalStorage.set('openid', '')
     }
     if (LocalStorage.has('login_name')) {
-      _this.login_name = LocalStorage.getItem('login_name');
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
-      _this.login_name = '';
-      LocalStorage.set('login_name', '');
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
     }
     if (LocalStorage.has('auth')) {
-      _this.authin = '1';
-      _this.table_list = [];
-      _this.getList();
+      _this.authin = '1'
+      _this.table_list = []
+      _this.getList()
     } else {
-      _this.authin = '0';
+      _this.authin = '0'
     }
     if (SessionStorage.has('goods_code')) {
     } else {
-      SessionStorage.set('goods_code', []);
+      SessionStorage.set('goods_code', [])
     }
   },
-  mounted() {
-    var _this = this;
+  mounted () {
+    var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + 'px';
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + '' + 'px';
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
-  updated() {},
-  destroyed() {}
-};
+  updated () {},
+  destroyed () {}
+}
 </script>
