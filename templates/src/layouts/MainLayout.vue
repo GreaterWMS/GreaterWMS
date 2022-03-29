@@ -416,7 +416,24 @@
             <q-item-section>{{ $t("menuItem.downloadcenter") }}</q-item-section>
           </q-item>
           <q-separator v-show="lang === 'zh-hans'" />
-           <q-item
+          <q-item
+            clickable
+            :to="{ name: 'douyin' }"
+            @click="linkChange('shopid')"
+            v-ripple
+            exact
+            :active="link === 'shopid' && link !== ''"
+            :class="{
+              'my-menu-link': link === 'shopid' && link !== '',
+            }"
+          >
+            <q-item-section avatar
+              ><q-icon name="img:statics/shopid/ecomments.png"
+            /></q-item-section>
+            <q-item-section>电商店铺</q-item-section>
+          </q-item>
+          <q-separator v-show="lang === 'zh-hans'" />
+          <q-item
             clickable
             @click="brownlink('pdf/GreaterWMS_price.pdf')"
             v-ripple

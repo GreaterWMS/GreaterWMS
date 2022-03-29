@@ -17,7 +17,7 @@
           style="width:300px;height:200px"
           :url="goodslistfile_pathname"
           method="post"
-          :headers="[{ name: 'token', value: token }, { name: 'language', value: lang }]"
+          :headers="[{ name: 'token', value: token }, { name: 'language', value: lang }, { name: 'operator', value: login_id }]"
           :field-name="file => 'file'"
           :label="$t('upload_center.uploadgoodslistfile')"
           accept=".xlsx,csv,xls/*"
@@ -30,7 +30,7 @@
           style="width:300px;height:200px"
           :url="customerfile_pathname"
           method="post"
-          :headers="[{ name: 'token', value: token }, { name: 'language', value: lang }]"
+          :headers="[{ name: 'token', value: token }, { name: 'language', value: lang }, { name: 'operator', value: login_id }]"
           :field-name="file => 'file'"
           :label="$t('upload_center.uploadcustomerfile')"
           accept=".xlsx,csv,xls/*"
@@ -43,7 +43,7 @@
           style="width:300px;height:200px"
           :url="supplierfile_pathname"
           method="post"
-          :headers="[{ name: 'token', value: token }, { name: 'language', value: lang }]"
+          :headers="[{ name: 'token', value: token }, { name: 'language', value: lang }, { name: 'operator', value: login_id }]"
           :field-name="file => 'file'"
           :label="$t('upload_center.uploadsupplierfile')"
           accept=".xlsx,csv,xls/*"
@@ -66,6 +66,7 @@ export default {
       height: '',
       token: LocalStorage.getItem('openid'),
       lang: LocalStorage.getItem('lang'),
+      login_id: LocalStorage.getItem('login_id'),
       capitalfile_pathname: baseurl + 'uploadfile/capitalfile/',
       customerfile_pathname: baseurl + 'uploadfile/customerfile/',
       freightfile_pathname: baseurl + 'uploadfile/freightfile/',
