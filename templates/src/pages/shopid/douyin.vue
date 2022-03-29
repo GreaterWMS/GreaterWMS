@@ -282,25 +282,25 @@ export default {
     },
     newDataCheck () {
       var _this = this
-      if (_this.shop_name === '') {
+      if (_this.newFormData.shop_name === '') {
         _this.$q.notify({
           message: _this.error1,
           icon: 'close',
           color: 'negative'
         })
-      } else if (_this.shop_appid === '') {
+      } else if (_this.newFormData.shop_appid === '') {
         _this.$q.notify({
           message: _this.error2,
           icon: 'close',
           color: 'negative'
         })
-      } else if (_this.shop_app_secret === '') {
+      } else if (_this.newFormData.shop_app_secret === '') {
         _this.$q.notify({
           message: _this.error3,
           icon: 'close',
           color: 'negative'
         })
-      } else if (_this.shop_id === '') {
+      } else if (_this.newFormData.shop_id === '') {
         _this.$q.notify({
           message: _this.error4,
           icon: 'close',
