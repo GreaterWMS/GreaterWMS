@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'driver.apps.DriverConfig',
     'stock.apps.StockConfig',
+    'shopid.apps.ShopidConfig',
     'throttle.apps.ThrottleConfig',
     'uploadfile.apps.UploadfileConfig',
     'scanner.apps.ScannerConfig',
@@ -255,6 +256,7 @@ CORS_ALLOW_HEADERS = (
     'token',
     'language',
     'operator',
-    'device'
+    'device',
+    'app-id',
+    'event-sign'
 )
-
