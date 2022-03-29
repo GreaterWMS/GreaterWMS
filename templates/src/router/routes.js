@@ -384,6 +384,17 @@ const routes = [{
             name: 'downloadbinlist',
             component: () => import('pages/downloadcenter/downloadbinlist.vue')
           }]
+        },
+        {
+          path: 'shopid',
+          name: 'shopid',
+          component: () => import('pages/shopid/shopid.vue'),
+          children: [{
+            path: 'douyin',
+            name: 'douyin',
+            component: () => import('pages/shopid/douyin.vue')
+          }
+          ]
         }
       ]
     },
@@ -552,11 +563,12 @@ const routes = [{
     },
     {
       path: 'scannerzebra',
+      name: 'scannerzebra',
       component: () => import('layouts/MainLayoutScannerZebra.vue'),
       children: [
         {
           path: 'zebra',
-          name: 'zebrascan',
+          name: '',
           component: () => import('pages/scan/zebrascan.vue'),
           children: [
             {
