@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1,  target-densitydpi=device-dpi" />
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>RoboSmart</title>
+    </head>
+    <body>
+        <div class="app">
+            <h1>RoboSmart</h1>
+            <div id="mainPage">
+                <ul id="deviceList">                    
+                </ul>
+                <button id="refreshButton">Refresh</button>
+            </div>
+            <div id="detailPage">
+                <!-- Topcoat Switch would look nicer http://topcoat.io/topcoat/topcoat-mobile-light.html#switch -->
+                <div>
+                    <input type="checkbox" id="lightSwitch" name="lightSwitch" class="switch" />
+                    <label for="lightSwitch">Switch</label>
+                </div>
+                <div class="rangeDiv">
+                    <input type="range" min="0" max="255" value="0" name="dimmer" id="dimmer" class="topcoat-range"/>
+                </div>
+                <button id="disconnectButton">Disconnect</button>
+            </div>            
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
