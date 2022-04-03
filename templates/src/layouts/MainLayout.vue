@@ -21,16 +21,6 @@
           }}</q-toolbar-title>
         </transition>
         <q-space />
-         <transition appear enter-active-class="animated zoomIn">
-            <q-btn v-show="lang === 'zh-hans'" icon="add_shopping_cart" round dense flat style="margin: 0 10px 0 10px" @click="brownlink('pdf/GreaterWMS_price.pdf')">
-              <q-tooltip
-                content-class="bg-amber text-black shadow-4"
-                :offset="[15, 15]"
-                content-style="font-size: 12px"
-                >适配的硬件清单</q-tooltip
-              >
-            </q-btn>
-        </transition>
         <transition appear enter-active-class="animated zoomIn">
           <a href="/docs/" style="text-decoration: none; color: #c8e6c9">
             <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px">
@@ -434,18 +424,6 @@
             <q-item-section>电商店铺</q-item-section>
           </q-item>
           <q-separator v-show="lang === 'zh-hans'" />
-          <q-item
-            clickable
-            @click="brownlink('pdf/GreaterWMS_price.pdf')"
-            v-ripple
-            exact
-            v-show="lang === 'zh-hans'"
-          >
-            <q-item-section avatar
-              ><q-icon name="add_shopping_cart"
-            /></q-item-section>
-            <q-item-section>适配硬件清单</q-item-section>
-          </q-item>
         </q-list>
       </q-scroll-area>
     </q-drawer>
