@@ -1,0 +1,88 @@
+// app global css in Sass form
+
+.my-sticky-header-column-table
+  /* height or max-height is important */
+
+  /* specifying max-width so the example can
+    highlight the sticky column on any browser window */
+
+  td:last-child
+    /* bg color is important for td; just specify one */
+    background-color: $grey-1 !important
+  tr th
+    position: sticky
+    /* higher than z-index for td below */
+    z-index: 2
+    /* bg color is important; just specify one */
+    background: white
+  /* this will be the loading indicator */
+  thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+    /* highest z-index */
+    z-index: 3
+  thead tr:first-child th
+    top: 0
+    z-index: 1
+  tr:first-child th:first-child
+    /* highest z-index */
+    z-index: 3
+  td:first-child
+    z-index: 1
+  td:last-child, th:last-child
+    position: sticky
+    right: 0
+
+.my-sticky-header-table
+  /* height or max-height is important */
+
+  .q-table__top,
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: white
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of
+    top: 48px
+
+.my-menu-link
+  color: #FFFFFF!important
+  background: linear-gradient(to right, #606c88, #3f4c6b)
+
+.main-headers
+  background: linear-gradient(to right, #606c88, #3f4c6b)
+
+.main-page
+  background: linear-gradient(to right, #ece9e6, #ffffff)
+
+.main-table
+  width: 100%
+  margin: -10px 10px 0 10px
+
+.main-table1
+  width: 100%
+  margin: -30px 10px 0 10px
+
+.main-table2
+  width: 100%
+  margin: -50px 10px 0 10px
+
+.main-table3
+  width: 100%
+  margin: -30px 10px 0 10px
+
+.cordova-footer
+  margin-top: -15px
+
+.cordova-search
+  width: 130px
+
+.scan-background
+  background: #606c88!important
+  color: white!important
