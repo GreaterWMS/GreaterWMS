@@ -1,0 +1,53 @@
+{
+  "name": "cordova-plugin-media",
+  "version": "5.0.3",
+  "description": "Cordova Media Plugin",
+  "types": "./types/index.d.ts",
+  "cordova": {
+    "id": "cordova-plugin-media",
+    "platforms": [
+      "android",
+      "browser",
+      "ios",
+      "windows"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apache/cordova-plugin-media"
+  },
+  "bugs": {
+    "url": "https://github.com/apache/cordova-plugin-media/issues"
+  },
+  "keywords": [
+    "cordova",
+    "media",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-browser",
+    "cordova-ios",
+    "cordova-windows"
+  ],
+  "scripts": {
+    "test": "npm run jshint",
+    "jshint": "jshint www && jshint src && jshint tests"
+  },
+  "author": "Apache Software Foundation",
+  "license": "Apache-2.0",
+  "engines": {
+    "cordovaDependencies": {
+      "3.0.0": {
+        "cordova-android": ">=6.1.0"
+      },
+      "4.0.0": {
+        "cordova-android": ">=6.3.0"
+      },
+      "6.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "devDependencies": {
+    "jshint": "^2.6.0"
+  }
+}

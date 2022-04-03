@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin
+    xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-ble-central"
+    version="1.3.1">
+
+    <name>BLE</name>
+    <description>Bluetooth Low Energy (BLE) Central Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>bluetooth, BLE, bluetooth low energy, bluetooth smart</keywords>
+
+    <repo>https://github.com/don/cordova-plugin-ble-central.git</repo>
+    <issue>https://github.com/don/cordova-plugin-ble-central/issues</issue>
+
+    <js-module src="www/ble.js" name="ble">
+        <clobbers target="ble" />
+    </js-module>
+
+    <platform name="ios">
+
+        <preference name="IOS_INIT_ON_LOAD" default="true" />
+        <config-file target="config.xml" parent="/widget">
+            <feature name="BLE">
+                <param name="ios-package" value="BLECentralPlugin" onload="$IOS_INIT_ON_LOAD"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/BLECentralPlugin.h" target-dir="BLECentralPlugin" />
+        <source-file src="src/ios/BLECentralPlugin.m" target-dir="BLECentralPlugin" />
+
+        <header-file src="src/ios/CBPeripheral+Extensions.h" target-dir="BLECentralPlugin" />
+        <source-file src="src/ios/CBPeripheral+Extensions.m" target-dir="BLECentralPlugin" />
+
+        <header-file src="src/ios/BLECommandContext.h" target-dir="BLECentralPlugin" />
+        <source-file src="src/ios/BLECommandContext.m" target-dir="BLECentralPlugin" />
+
+        <!-- frameworks -->
+        <framework src="CoreBluetooth.framework" />
+
+        <!-- iOS Permissions -->
+        <preference name="BLUETOOTH_USAGE_DESCRIPTION" default=" " />
+        <config-file target="*-Info.plist" parent="NSBluetoothPeripheralUsageDescription">
+            <string>$BLUETOOTH_USAGE_DESCRIPTION</string>
+        </config-file>
+        <config-file target="*-Info.plist" parent="NSBluetoothAlwaysUsageDescription">
+            <string>$BLUETOOTH_USAGE_DESCRIPTION</string>
+        </config-file>
+    </platform>
+
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/widget">
+            <feature name="BLE">
+                <param name="android-package" value="com.megster.cordova.ble.central.BLECentralPlugin"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+            <uses-permission android:name="android.permission.BLUETOOTH"/>
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+        </config-file>
+
+        <source-file src="src/android/BLECentralPlugin.java"
+            target-dir="src/com/megster/cordova/ble/central"/>
+        <source-file src="src/android/SequentialCallbackContext.java"
+            target-dir="src/com/megster/cordova/ble/central"/>
+        <source-file src="src/android/BLECommand.java"
+            target-dir="src/com/megster/cordova/ble/central"/>
+        <source-file src="src/android/Peripheral.java"
+            target-dir="src/com/megster/cordova/ble/central"/>
+        <source-file src="src/android/Helper.java"
+            target-dir="src/com/megster/cordova/ble/central"/>
+        <source-file src="src/android/UUIDHelper.java"
+            target-dir="src/com/megster/cordova/ble/central"/>
+
+    </platform>
+
+    <platform name="browser">
+        <js-module src="src/browser/BLECentralPlugin.js" name="BLECentralPlugin">
+            <merges target="ble" />
+        </js-module>
+    </platform>
+
+    <platform name="wp8">
+        <config-file target="config.xml" parent="/*">
+            <feature name="BLE">
+                <param name="wp-package" value="BLECentralPlugin"/>
+            </feature>
+        </config-file>
+
+         <config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
+             <Capability Name="ID_CAP_PROXIMITY" />
+         </config-file>
+
+         <source-file src="src/wp/BLECentralPlugin.cs" />
+
+    </platform>
+</plugin>

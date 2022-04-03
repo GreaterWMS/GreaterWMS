@@ -1,0 +1,48 @@
+{
+  "name": "cordova-plugin-splashscreen",
+  "version": "6.0.0",
+  "description": "Cordova Splashscreen Plugin",
+  "types": "./types/index.d.ts",
+  "cordova": {
+    "id": "cordova-plugin-splashscreen",
+    "platforms": [
+      "android",
+      "windows",
+      "browser"
+    ]
+  },
+  "repository": "github:apache/cordova-plugin-splashscreen",
+  "bugs": "https://github.com/apache/cordova-plugin-splashscreen/issues",
+  "keywords": [
+    "cordova",
+    "splashscreen",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-windows",
+    "cordova-browser"
+  ],
+  "scripts": {
+    "test": "npm run lint",
+    "lint": "eslint ."
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "2.0.0": {
+        "cordova-android": ">=3.6.0"
+      },
+      ">=4.0.0": {
+        "cordova-android": ">=3.6.0",
+        "cordova-windows": ">=4.4.0"
+      },
+      "7.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "author": "Apache Software Foundation",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@cordova/eslint-config": "^3.0.0"
+  },
+  "homepage": "https://github.com/apache/cordova-plugin-splashscreen#readme"
+}

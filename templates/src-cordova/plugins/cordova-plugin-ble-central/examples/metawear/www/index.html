@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>MetaWear</title>
+    </head>
+    <body>
+        <div class="app">
+            <h1>MetaWear</h1>
+            <div id="mainPage">
+                <ul id="deviceList">                    
+                </ul>
+                <button id="refreshButton">Refresh</button>
+            </div>
+            <div id="detailPage">
+                <div id="resultDiv"></div>
+                <div class="haptic">
+                    <label>Pulse Width&nbsp;<input type="number" id="pulseWidthInput" value="500"/></label>&nbsp;ms
+                    <div class="buttonDiv">
+                        <button id="motorButton">Motor</button>
+                        <button id="buzzerButton">Buzzer</button>                    
+                    </div>
+                </div>
+                <button id="disconnectButton">Disconnect</button>
+            </div>            
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>
