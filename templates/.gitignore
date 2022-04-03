@@ -1,0 +1,31 @@
+.DS_Store
+.thumbs.db
+node_modules
+
+# Quasar core related directories
+.quasar
+electron/
+
+# Cordova related directories and files
+/src-cordova/node_modules
+/src-cordova/platforms
+
+# Capacitor related directories and files
+/src-capacitor/www
+/src-capacitor/node_modules
+
+# BEX related directories and files
+/src-bex/www
+/src-bex/js/core
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
