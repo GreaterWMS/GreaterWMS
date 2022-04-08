@@ -714,7 +714,7 @@
               <td class="text-left">{{ view.goods_code }}</td>
               <td class="text-right">{{ view.goods_weight }}</td>
               <td class="text-right">{{ view.goods_volume }}</td>
-              <td class="text-right">{{ view.picked_qty + view.intransit_qty }}</td>
+              <td class="text-right">{{ view.picked_qty }}</td>
               <td class="text-right"></td>
             </tr>
           </tbody>

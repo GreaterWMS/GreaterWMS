@@ -1616,6 +1616,8 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                 elif int(data['goodsData'][j].get('pick_qty')) < pick_qty_change.pick_qty:
                     goods_qty_change.pick_stock = goods_qty_change.pick_stock - dn_detail.pick_qty
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock + int(data['goodsData'][j].get('pick_qty'))
+                    goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + (int(pick_qty_change.pick_qty) - int(
+                        data['goodsData'][j].get('pick_qty')))
                     pick_qty_change.picked_qty = int(data['goodsData'][j].get('pick_qty'))
                     bin_qty_change.pick_qty = bin_qty_change.pick_qty - pick_qty_change.pick_qty
                     bin_qty_change.picked_qty = bin_qty_change.picked_qty + int(data['goodsData'][j].get('pick_qty'))
