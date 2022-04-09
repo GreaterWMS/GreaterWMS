@@ -293,7 +293,7 @@ export default {
                   })
                   localStorage.removeItem('menulink')
                   _this.link = ''
-                  _this.$router.push({ name: 'web_index' })
+                  _this.$router.push({ name: 'urovoscan' })
                 }
               })
               .catch((err) => {
@@ -345,7 +345,7 @@ export default {
                 })
                 localStorage.removeItem('menulink')
                 _this.link = ''
-                _this.$router.push({ name: 'web_index' })
+                _this.$router.push({ name: 'urovoscan' })
               } else {
                 _this.$q.notify({
                   message: res.msg,
@@ -380,7 +380,7 @@ export default {
       // _this.staffType();
       localStorage.removeItem('menulink')
       _this.link = ''
-      _this.$router.push({ name: 'web_index' })
+      _this.$router.push({ name: 'urovoscan' })
     },
     Register () {
       var _this = this
@@ -410,7 +410,7 @@ export default {
             _this.staffType()
             localStorage.removeItem('menulink')
             _this.link = ''
-            _this.$router.push({ name: 'web_index' })
+            _this.$router.push({ name: 'urovoscan' })
           } else {
             _this.$q.notify({
               message: res.msg,
