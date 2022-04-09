@@ -923,7 +923,7 @@ export default {
                   })
                   localStorage.removeItem('menulink')
                   _this.link = ''
-                  _this.$router.push({ name: 'web_index' })
+                  _this.$router.push({ name: 'mobile_index' })
                 }
               })
               .catch((err) => {
@@ -975,7 +975,7 @@ export default {
                 })
                 localStorage.removeItem('menulink')
                 _this.link = ''
-                _this.$router.push({ name: 'web_index' })
+                _this.$router.push({ name: 'mobile_index' })
               } else {
                 _this.$q.notify({
                   message: res.msg,
@@ -1010,7 +1010,7 @@ export default {
       // _this.staffType();
       localStorage.removeItem('menulink')
       _this.link = ''
-      _this.$router.push({ name: 'web_index' })
+      _this.$router.push({ name: 'mobile_index' })
     },
     Register () {
       var _this = this
@@ -1040,7 +1040,7 @@ export default {
             _this.staffType()
             localStorage.removeItem('menulink')
             _this.link = ''
-            _this.$router.push({ name: 'web_index' })
+            _this.$router.push({ name: 'mobile_index' })
           } else {
             _this.$q.notify({
               message: res.msg,
