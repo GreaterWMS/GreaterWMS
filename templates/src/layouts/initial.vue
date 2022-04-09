@@ -22,10 +22,7 @@ export default {
     var _this = this
     if (Platform.is.cordova) {
       if (window.device) {
-        if (window.device.manufacturer === 'Zebra Technologies') {
-          LocalStorage.set('device', 2)
-          _this.webto = 'zebrascan'
-        } else if (window.device.manufacturer === 'Urovo') {
+        if (window.device.manufacturer === 'Urovo' || window.device.manufacturer === 'ubx') {
           LocalStorage.set('device', 2)
           _this.webto = 'urovoscan'
         } else {
