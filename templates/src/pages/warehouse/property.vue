@@ -107,6 +107,19 @@ export default {
         getauth(_this.pathname, {
         }).then(res => {
           _this.table_list = res.results
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            _this.table_list.forEach((item, index) => {
+              if (item.bin_property === 'Damage') {
+                item.bin_property = '破损'
+              } else if (item.bin_property === 'Inspection') {
+                item.bin_property = '质检'
+              } else if (item.bin_property === 'Holding') {
+                item.bin_property = '锁货'
+              } else if (item.bin_property === 'Normal') {
+                item.bin_property = '正常库位'
+              }
+            })
+          }
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -125,6 +138,19 @@ export default {
         getauth(_this.pathname_previous, {
         }).then(res => {
           _this.table_list = res.results
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            _this.table_list.forEach((item, index) => {
+              if (item.bin_property === 'Damage') {
+                item.bin_property = '破损'
+              } else if (item.bin_property === 'Inspection') {
+                item.bin_property = '质检'
+              } else if (item.bin_property === 'Holding') {
+                item.bin_property = '锁货'
+              } else if (item.bin_property === 'Normal') {
+                item.bin_property = '正常库位'
+              }
+            })
+          }
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -143,6 +169,19 @@ export default {
         getauth(_this.pathname_next, {
         }).then(res => {
           _this.table_list = res.results
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            _this.table_list.forEach((item, index) => {
+              if (item.bin_property === 'Damage') {
+                item.bin_property = '破损'
+              } else if (item.bin_property === 'Inspection') {
+                item.bin_property = '质检'
+              } else if (item.bin_property === 'Holding') {
+                item.bin_property = '锁货'
+              } else if (item.bin_property === 'Normal') {
+                item.bin_property = '正常库位'
+              }
+            })
+          }
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {

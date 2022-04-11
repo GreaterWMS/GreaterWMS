@@ -207,12 +207,12 @@
 <router-view />
 
 <script>
-import { date, exportFile, LocalStorage } from 'quasar';
-import { getauth, postauth, putauth, deleteauth, getfile } from 'boot/axios_request';
+import { date, exportFile, LocalStorage } from 'quasar'
+import { getauth, postauth, putauth, deleteauth, getfile } from 'boot/axios_request'
 
 export default {
   name: 'Pagebinset',
-  data() {
+  data () {
     return {
       bin_name: '',
       bin_property: '',
@@ -264,254 +264,400 @@ export default {
       error1: this.$t('warehouse.view_binset.error1'),
       error2: this.$t('warehouse.view_binset.error2'),
       error3: this.$t('warehouse.view_binset.error3')
-    };
+    }
   },
   methods: {
-    getList() {
-      var _this = this;
+    getList () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname, {})
           .then(res => {
-            _this.table_list = res.results;
-            _this.bin_property_list = res.bin_property_list;
-            _this.bin_size_list = res.bin_size_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            if (LocalStorage.getItem('lang') === 'zh-hans') {
+              _this.table_list.forEach((item, index) => {
+                if (item.bin_property === 'Damage') {
+                  item.bin_property = '破损'
+                } else if (item.bin_property === 'Inspection') {
+                  item.bin_property = '质检'
+                } else if (item.bin_property === 'Holding') {
+                  item.bin_property = '锁货'
+                } else if (item.bin_property === 'Normal') {
+                  item.bin_property = '正常库位'
+                }
+                if (!item.empty_label) {
+                  item.empty_label = '否'
+                } else if (item.empty_label) {
+                  item.empty_label = '是'
+                }
+              })
+            }
+            _this.bin_property_list = res.bin_property_list
+            if (LocalStorage.getItem('lang') === 'zh-hans') {
+              _this.bin_property_list.forEach((item, index) => {
+                console.log(item)
+                if (item === 'Damage') {
+                  _this.bin_property_list[index] = '破损'
+                } else if (item === 'Inspection') {
+                  _this.bin_property_list[index] = '质检'
+                } else if (item === 'Holding') {
+                  _this.bin_property_list[index] = '锁货'
+                } else if (item === 'Normal') {
+                  _this.bin_property_list[index] = '正常库位'
+                }
+              })
+            }
+            _this.bin_size_list = res.bin_size_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getSearchList() {
-      var _this = this;
+    getSearchList () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname + '?bin_name__icontains=' + _this.filter, {})
           .then(res => {
-            _this.table_list = res.results;
-            _this.bin_property_list = res.bin_property_list;
-            _this.bin_size_list = res.bin_size_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            if (LocalStorage.getItem('lang') === 'zh-hans') {
+              _this.table_list.forEach((item, index) => {
+                if (item.bin_property === 'Damage') {
+                  item.bin_property = '破损'
+                } else if (item.bin_property === 'Inspection') {
+                  item.bin_property = '质检'
+                } else if (item.bin_property === 'Holding') {
+                  item.bin_property = '锁货'
+                } else if (item.bin_property === 'Normal') {
+                  item.bin_property = '正常库位'
+                }
+                if (!item.empty_label) {
+                  item.empty_label = '否'
+                } else if (item.empty_label) {
+                  item.empty_label = '是'
+                }
+              })
+            }
+
+            _this.bin_property_list = res.bin_property_list
+            if (LocalStorage.getItem('lang') === 'zh-hans') {
+              _this.bin_property_list.forEach((item, index) => {
+                if (item === 'Damage') {
+                  _this.bin_property_list[index] = '破损'
+                } else if (item === 'Inspection') {
+                  _this.bin_property_list[index] = '质检'
+                } else if (item === 'Holding') {
+                  _this.bin_property_list[index] = '锁货'
+                } else if (item === 'Normal') {
+                  _this.bin_property_list[index] = '正常库位'
+                }
+              })
+            }
+            _this.bin_size_list = res.bin_size_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getListPrevious() {
-      var _this = this;
+    getListPrevious () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_previous, {})
           .then(res => {
-            _this.table_list = res.results;
-            _this.bin_property_list = res.bin_property_list;
-            _this.bin_size_list = res.bin_size_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            if (LocalStorage.getItem('lang') === 'zh-hans') {
+              _this.table_list.forEach((item, index) => {
+                if (item.bin_property === 'Damage') {
+                  item.bin_property = '破损'
+                } else if (item.bin_property === 'Inspection') {
+                  item.bin_property = '质检'
+                } else if (item.bin_property === 'Holding') {
+                  item.bin_property = '锁货'
+                } else if (item.bin_property === 'Normal') {
+                  item.bin_property = '正常库位'
+                }
+                if (!item.empty_label) {
+                  item.empty_label = '否'
+                } else if (item.empty_label) {
+                  item.empty_label = '是'
+                }
+              })
+            }
+            _this.bin_property_list = res.bin_property_list
+            _this.bin_property_list.forEach((item, index) => {
+              if (item === 'Damage') {
+                _this.bin_property_list[index] = '破损'
+              } else if (item === 'Inspection') {
+                _this.bin_property_list[index] = '质检'
+              } else if (item === 'Holding') {
+                _this.bin_property_list[index] = '锁货'
+              } else if (item === 'Normal') {
+                _this.bin_property_list[index] = '正常库位'
+              }
+            })
+            _this.bin_size_list = res.bin_size_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getListNext() {
-      var _this = this;
+    getListNext () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_next, {})
           .then(res => {
-            _this.table_list = res.results;
-            _this.bin_property_list = res.bin_property_list;
-            _this.bin_size_list = res.bin_size_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            if (LocalStorage.getItem('lang') === 'zh-hans') {
+              _this.table_list.forEach((item, index) => {
+                if (item.bin_property === 'Damage') {
+                  item.bin_property = '破损'
+                } else if (item.bin_property === 'Inspection') {
+                  item.bin_property = '质检'
+                } else if (item.bin_property === 'Holding') {
+                  item.bin_property = '锁货'
+                } else if (item.bin_property === 'Normal') {
+                  item.bin_property = '正常库位'
+                }
+                if (!item.empty_label) {
+                  item.empty_label = '否'
+                } else if (item.empty_label) {
+                  item.empty_label = '是'
+                }
+              })
+            }
+            _this.bin_property_list = res.bin_property_list
+            if (LocalStorage.getItem('lang') === 'zh-hans') {
+              _this.bin_property_list.forEach((item, index) => {
+                if (item === 'Damage') {
+                  _this.bin_property_list[index] = '破损'
+                } else if (item === 'Inspection') {
+                  _this.bin_property_list[index] = '质检'
+                } else if (item === 'Holding') {
+                  _this.bin_property_list[index] = '锁货'
+                } else if (item === 'Normal') {
+                  _this.bin_property_list[index] = '正常库位'
+                }
+              })
+            }
+            _this.bin_size_list = res.bin_size_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    reFresh() {
-      var _this = this;
-      _this.getList();
+    reFresh () {
+      var _this = this
+      _this.getList()
     },
-    newDataSubmit() {
-      var _this = this;
-      var binsets = [];
+    newDataSubmit () {
+      var _this = this
+      var binsets = []
       _this.table_list.forEach(i => {
-        binsets.push(i.bin_name);
-      });
+        binsets.push(i.bin_name)
+      })
       if (binsets.indexOf(_this.newFormData.bin_name) === -1 && _this.newFormData.bin_name.length !== 0) {
-        _this.newFormData.creater = _this.login_name;
+        _this.newFormData.creater = _this.login_name
+        if (LocalStorage.getItem('lang') === 'zh-hans') {
+          if (_this.newFormData.bin_property === '破损') {
+            _this.newFormData.bin_property = 'Damage'
+          } else if (_this.newFormData.bin_property === '质检') {
+            _this.newFormData.bin_property = 'Inspection'
+          } else if (_this.newFormData.bin_property === '锁货') {
+            _this.newFormData.bin_property = 'Holding'
+          } else if (_this.newFormData.bin_property === '正常库位') {
+            _this.newFormData.bin_property = 'Normal'
+          }
+        }
         postauth(_this.pathname, _this.newFormData)
           .then(res => {
-            _this.getList();
-            _this.newDataCancel();
+            _this.getList()
+            _this.newDataCancel()
             _this.$q.notify({
               message: 'Success Create',
               icon: 'check',
               color: 'green'
-            });
+            })
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else if (binsets.indexOf(_this.newFormData.bin_name) !== -1) {
         _this.$q.notify({
           message: _this.$t('notice.warehouseerror.binseterror'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else if (_this.newFormData.bin_name.length === 0) {
         _this.$q.notify({
           message: _this.$t('warehouse.view_binset.error1'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       }
-      binsets = [];
+      binsets = []
     },
-    newDataCancel() {
-      var _this = this;
-      _this.newForm = false;
+    newDataCancel () {
+      var _this = this
+      _this.newForm = false
       _this.newFormData = {
         bin_name: '',
         bin_size: '',
         bin_property: '',
         creater: ''
-      };
+      }
     },
-    editData(e) {
-      var _this = this;
-      _this.editMode = true;
-      _this.editid = e.id;
+    editData (e) {
+      var _this = this
+      _this.editMode = true
+      _this.editid = e.id
       _this.editFormData = {
         bin_name: e.bin_name,
         bin_size: e.bin_size,
         bin_property: e.bin_property,
         creater: _this.login_name
-      };
+      }
     },
-    editDataSubmit() {
-      var _this = this;
+    editDataSubmit () {
+      var _this = this
       if (_this.editFormData.bin_name) {
+        if (LocalStorage.getItem('lang') === 'zh-hans') {
+          if (_this.editFormData.bin_property === '破损') {
+            _this.editFormData.bin_property = 'Damage'
+          } else if (_this.editFormData.bin_property === '质检') {
+            _this.editFormData.bin_property = 'Inspection'
+          } else if (_this.editFormData.bin_property === '锁货') {
+            _this.editFormData.bin_property = 'Holding'
+          } else if (_this.editFormData.bin_property === '正常库位') {
+            _this.editFormData.bin_property = 'Normal'
+          }
+        }
         putauth(_this.pathname + _this.editid + '/', _this.editFormData)
           .then(res => {
-            _this.editDataCancel();
-            _this.getList();
+            _this.editDataCancel()
+            _this.getList()
             _this.$q.notify({
               message: 'Success Edit Data',
               icon: 'check',
               color: 'green'
-            });
+            })
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
-      }else{
+            })
+          })
+      } else {
         _this.$q.notify({
           message: 'Content Cannot Be Empty',
           icon: 'close',
           color: 'negative'
-        });
+        })
       }
     },
-    editDataCancel() {
-      var _this = this;
-      _this.editMode = false;
-      _this.editid = 0;
+    editDataCancel () {
+      var _this = this
+      _this.editMode = false
+      _this.editid = 0
       _this.editFormData = {
         bin_name: '',
         bin_size: '',
         bin_property: '',
         empty_label: '',
         creater: ''
-      };
+      }
     },
-    deleteData(e) {
-      var _this = this;
-      _this.deleteForm = true;
-      _this.deleteid = e;
+    deleteData (e) {
+      var _this = this
+      _this.deleteForm = true
+      _this.deleteid = e
     },
-    deleteDataSubmit() {
-      var _this = this;
+    deleteDataSubmit () {
+      var _this = this
       deleteauth(_this.pathname + _this.deleteid + '/')
         .then(res => {
-          _this.deleteDataCancel();
-          _this.getList();
+          _this.deleteDataCancel()
+          _this.getList()
           _this.$q.notify({
             message: 'Success Edit Data',
             icon: 'check',
             color: 'green'
-          });
+          })
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    deleteDataCancel() {
-      var _this = this;
-      _this.deleteForm = false;
-      _this.deleteid = 0;
+    deleteDataCancel () {
+      var _this = this
+      _this.deleteForm = false
+      _this.deleteid = 0
     },
-    downloadData() {
-      var _this = this;
+    downloadData () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getfile(_this.pathname + 'file/?lang=' + LocalStorage.getItem('lang')).then(res => {
-          var timeStamp = Date.now();
-          var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-          const status = exportFile(_this.pathname + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
+          var timeStamp = Date.now()
+          var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS')
+          const status = exportFile(_this.pathname + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv')
           if (status !== true) {
             _this.$q.notify({
               message: 'Browser denied file download...',
               color: 'negative',
               icon: 'warning'
-            });
+            })
           }
-        });
+        })
       } else {
         _this.$q.notify({
           message: _this.$t('notice.loginerror'),
           color: 'negative',
           icon: 'warning'
-        });
+        })
       }
     },
-    viewData(e) {
-      var _this = this;
-      var QRCode = require('qrcode');
+    viewData (e) {
+      var _this = this
+      var QRCode = require('qrcode')
       QRCode.toDataURL(e.bar_code, [
         {
           errorCorrectionLevel: 'H',
@@ -521,46 +667,46 @@ export default {
         }
       ])
         .then(url => {
-          _this.bin_name = e.bin_name;
-          _this.bin_property = e.bin_property;
-          _this.bar_code = url;
+          _this.bin_name = e.bin_name
+          _this.bin_property = e.bin_property
+          _this.bar_code = url
         })
         .catch(err => {
-          console.error(err);
-        });
-      _this.viewForm = true;
+          console.error(err)
+        })
+      _this.viewForm = true
     }
   },
-  created() {
-    var _this = this;
+  created () {
+    var _this = this
     if (LocalStorage.has('openid')) {
-      _this.openid = LocalStorage.getItem('openid');
+      _this.openid = LocalStorage.getItem('openid')
     } else {
-      _this.openid = '';
-      LocalStorage.set('openid', '');
+      _this.openid = ''
+      LocalStorage.set('openid', '')
     }
     if (LocalStorage.has('login_name')) {
-      _this.login_name = LocalStorage.getItem('login_name');
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
-      _this.login_name = '';
-      LocalStorage.set('login_name', '');
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
     }
     if (LocalStorage.has('auth')) {
-      _this.authin = '1';
-      _this.getList();
+      _this.authin = '1'
+      _this.getList()
     } else {
-      _this.authin = '0';
+      _this.authin = '0'
     }
   },
-  mounted() {
-    var _this = this;
+  mounted () {
+    var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + 'px';
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + '' + 'px';
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
-  updated() {},
-  destroyed() {}
-};
+  updated () {},
+  destroyed () {}
+}
 </script>

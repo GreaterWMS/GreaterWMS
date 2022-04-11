@@ -101,6 +101,27 @@ export default {
         getauth(_this.pathname, {
         }).then(res => {
           _this.table_list = res.results
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            _this.table_list.forEach((item, index) => {
+              if (item.staff_type === 'Admin') {
+                item.staff_type = '管理员'
+              } else if (item.staff_type === 'Customer') {
+                item.staff_type = '客户'
+              } else if (item.staff_type === 'Supplier') {
+                item.staff_type = '供应商'
+              } else if (item.staff_type === 'Manager') {
+                item.staff_type = '经理'
+              } else if (item.staff_type === 'Supervisor') {
+                item.staff_type = '主管'
+              } else if (item.staff_type === 'Inbound') {
+                item.staff_type = '收货组'
+              } else if (item.staff_type === 'Outbound') {
+                item.staff_type = '发货组'
+              } else if (item.staff_type === 'StockControl') {
+                item.staff_type = '库存管理'
+              }
+            })
+          }
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -119,6 +140,27 @@ export default {
         getauth(_this.pathname_previous, {
         }).then(res => {
           _this.table_list = res.results
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            _this.table_list.forEach((item, index) => {
+              if (item.staff_type === 'Admin') {
+                item.staff_type = '管理员'
+              } else if (item.staff_type === 'Customer') {
+                item.staff_type = '客户'
+              } else if (item.staff_type === 'Supplier') {
+                item.staff_type = '供应商'
+              } else if (item.staff_type === 'Manager') {
+                item.staff_type = '经理'
+              } else if (item.staff_type === 'Supervisor') {
+                item.staff_type = '主管'
+              } else if (item.staff_type === 'Inbound') {
+                item.staff_type = '收货组'
+              } else if (item.staff_type === 'Outbound') {
+                item.staff_type = '发货组'
+              } else if (item.staff_type === 'StockControl') {
+                item.staff_type = '库存管理'
+              }
+            })
+          }
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -137,6 +179,27 @@ export default {
         getauth(_this.pathname_next, {
         }).then(res => {
           _this.table_list = res.results
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            _this.table_list.forEach((item, index) => {
+              if (item.staff_type === 'Admin') {
+                item.staff_type = '管理员'
+              } else if (item.staff_type === 'Customer') {
+                item.staff_type = '客户'
+              } else if (item.staff_type === 'Supplier') {
+                item.staff_type = '供应商'
+              } else if (item.staff_type === 'Manager') {
+                item.staff_type = '经理'
+              } else if (item.staff_type === 'Supervisor') {
+                item.staff_type = '主管'
+              } else if (item.staff_type === 'Inbound') {
+                item.staff_type = '收货组'
+              } else if (item.staff_type === 'Outbound') {
+                item.staff_type = '发货组'
+              } else if (item.staff_type === 'StockControl') {
+                item.staff_type = '库存管理'
+              }
+            })
+          }
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
