@@ -1199,32 +1199,40 @@ export default {
       var _this = this
       _this.newFormData.creater = _this.login_name
       let cancelRequest = false
-      for (let i = 0; i < 10; i++) {
-        const goodsData = `goodsData${i + 1}`
-        if (_this[goodsData].code !== '' && _this[goodsData].qty !== '') {
-          if (_this[goodsData].qty < 1) {
-            _this.$q.notify({
-              message: 'Total Quantity Must Be Positive Integer',
-              icon: 'close',
-              color: 'negative'
-            })
-            cancelRequest = true
-            break
-          } else {
-            _this.newFormData.goods_code[i] = _this[goodsData].code
-            _this.newFormData.goods_qty[i] = _this[goodsData].qty
+      const goodsDataCheck = []
+      const goodsQtyCheck = []
+      const goodsCodeList = []
+      if (_this.newFormData.customer !== '') {
+        _this.newFormData.goods_code.forEach((index, item) => {
+          if (item.goods_code === '') {
+            if (_this.newFormData.goods_qty[index] !== '') {
+              if (_this.newFormData.goods_qty[index] >= 0) {
+                goodsDataCheck.push(item)
+                goodsQtyCheck.push(_this.newFormData.goods_qty[index])
+                goodsCodeList.push(index)
+              }
+            }
           }
+        })
+        if (goodsCodeList.length > 0) {
+          _this.newFormData.goods_code = goodsDataCheck
+          _this.newFormData.goods_qty = goodsQtyCheck
+          cancelRequest = true
+        } else {
+          _this.$q.notify({
+            message: 'Please Enter The Goods & Qty',
+            icon: 'close',
+            color: 'negative'
+          })
         }
-      }
-      if (!_this.newFormData.customer) {
-        cancelRequest = true
+      } else {
         _this.$q.notify({
-          message: 'Supplier Does Not Exists',
+          message: 'Please Enter The Customer',
           icon: 'close',
           color: 'negative'
         })
       }
-      if (!cancelRequest) {
+      if (cancelRequest) {
         postauth(_this.pathname + 'detail/', _this.newFormData)
           .then(res => {
             _this.table_list = []
