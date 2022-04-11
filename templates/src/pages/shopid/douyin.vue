@@ -321,11 +321,14 @@ export default {
       postauth(_this.pathname, _this.newFormData).then(res => {
         _this.getList()
         _this.newDataCancel()
-        _this.$q.notify({
-          message: 'Success Create',
-          icon: 'check',
-          color: 'green'
-        })
+        console.log(res)
+        if (!res.detail) {
+          _this.$q.notify({
+            message: 'Success Create',
+            icon: 'check',
+            color: 'green'
+          })
+        }
       }).catch(err => {
         _this.$q.notify({
           message: err.detail,
