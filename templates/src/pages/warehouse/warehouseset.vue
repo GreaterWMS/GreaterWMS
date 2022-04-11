@@ -19,7 +19,7 @@
       >
          <template v-slot:top>
            <q-btn-group push>
-             <q-btn :label="$t('new')" icon="add" @click="newForm = true">
+             <q-btn :label="$t('new')" icon="add" @click="newFormCheck()">
                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
                  {{ $t('newtip') }}
                </q-tooltip>
@@ -367,6 +367,18 @@ export default {
     reFresh () {
       var _this = this
       _this.getList()
+    },
+    newFormCheck () {
+      var _this = this
+      if (_this.table_list.length <= 1) {
+        _this.$q.notify({
+          message: 'You Just Can Create 1 Line Data',
+          icon: 'close',
+          color: 'negative'
+        })
+      } else {
+        _this.newForm = true
+      }
     },
     newDataSubmit () {
       var _this = this
