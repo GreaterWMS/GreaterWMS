@@ -978,7 +978,7 @@ export default {
       const goodsQtyCheck = []
       const goodsCodeList = []
       if (_this.newFormData.supplier !== '') {
-        _this.newFormData.goods_code.forEach((index, item) => {
+        _this.newFormData.goods_code.forEach((item, index) => {
           if (item.goods_code === '') {
             if (_this.newFormData.goods_qty[index] !== '') {
               if (_this.newFormData.goods_qty[index] >= 0) {
