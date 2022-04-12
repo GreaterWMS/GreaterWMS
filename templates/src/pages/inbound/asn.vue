@@ -974,26 +974,29 @@ export default {
       var _this = this
       _this.newFormData.creater = _this.login_name
       let cancelRequest = false
-      const goodsDataCheck = []
-      const goodsQtyCheck = []
-      const goodsCodeList = []
       if (_this.newFormData.supplier !== '') {
-        _this.newFormData.goods_code.forEach((item, index) => {
-          if (item.goods_code === '') {
-            if (_this.newFormData.goods_qty[index] !== '') {
-              if (_this.newFormData.goods_qty[index] >= 0) {
-                goodsDataCheck.push(item)
-                goodsQtyCheck.push(_this.newFormData.goods_qty[index])
-                goodsCodeList.push(index)
-              }
+        _this.newFormData.goods_code = []
+        _this.newFormData.goods_qty = []
+        let goodsDataCheck = 0
+        for (let i = 0; i < 10; i++) {
+          const goodsData = `goodsData${i + 1}`
+          if (_this[goodsData].code !== '' && _this[goodsData].qty !== '') {
+            if (_this[goodsData].qty < 1) {
+              cancelRequest = true
+              _this.$q.notify({
+                message: 'Total Quantity Must Be > 0',
+                icon: 'close',
+                color: 'negative'
+              })
+            } else {
+              _this.newFormData.goods_code.push(_this[goodsData].code)
+              _this.newFormData.goods_qty.push(_this[goodsData].qty)
             }
+            goodsDataCheck += 1
           }
-        })
-        if (goodsCodeList.length > 0) {
-          _this.newFormData.goods_code = goodsDataCheck
-          _this.newFormData.goods_qty = goodsQtyCheck
+        }
+        if (goodsDataCheck === 0) {
           cancelRequest = true
-        } else {
           _this.$q.notify({
             message: 'Please Enter The Goods & Qty',
             icon: 'close',
@@ -1001,13 +1004,14 @@ export default {
           })
         }
       } else {
+        cancelRequest = true
         _this.$q.notify({
           message: 'Please Enter The Supplier',
           icon: 'close',
           color: 'negative'
         })
       }
-      if (cancelRequest) {
+      if (!cancelRequest) {
         postauth(_this.pathname + 'detail/', _this.newFormData)
           .then(res => {
             _this.table_list = []
@@ -1074,22 +1078,42 @@ export default {
       var _this = this
       _this.newFormData.creater = _this.login_name
       let cancelRequest = false
-      for (let i = 0; i < 10; i++) {
-        const goodsData = `goodsData${i + 1}`
-        if (_this[goodsData].code !== '' && _this[goodsData].qty !== '') {
-          if (_this[goodsData].qty <= 0) {
-            _this.$q.notify({
-              message: 'Total Quantity Must Be Positive',
-              icon: 'close',
-              color: 'negative'
-            })
-            cancelRequest = true
-            break
-          } else {
-            _this.newFormData.goods_code[i] = _this[goodsData].code
-            _this.newFormData.goods_qty[i] = _this[goodsData].qty
+      if (_this.newFormData.supplier !== '') {
+        _this.newFormData.goods_code = []
+        _this.newFormData.goods_qty = []
+        let goodsDataCheck = 0
+        for (let i = 0; i < 10; i++) {
+          const goodsData = `goodsData${i + 1}`
+          if (_this[goodsData].code !== '' && _this[goodsData].qty !== '') {
+            if (_this[goodsData].qty < 1) {
+              cancelRequest = true
+              _this.$q.notify({
+                message: 'Total Quantity Must Be > 0',
+                icon: 'close',
+                color: 'negative'
+              })
+            } else {
+              _this.newFormData.goods_code.push(_this[goodsData].code)
+              _this.newFormData.goods_qty.push(_this[goodsData].qty)
+            }
+            goodsDataCheck += 1
           }
         }
+        if (goodsDataCheck === 0) {
+          cancelRequest = true
+          _this.$q.notify({
+            message: 'Please Enter The Goods & Qty',
+            icon: 'close',
+            color: 'negative'
+          })
+        }
+      } else {
+        cancelRequest = true
+        _this.$q.notify({
+          message: 'Please Enter The Supplier',
+          icon: 'close',
+          color: 'negative'
+        })
       }
       if (!cancelRequest) {
         putauth(_this.pathname + 'detail/', _this.newFormData)
