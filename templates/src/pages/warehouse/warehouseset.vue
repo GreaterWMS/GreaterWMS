@@ -370,7 +370,7 @@ export default {
     },
     newFormCheck () {
       var _this = this
-      if (_this.table_list.length <= 1) {
+      if (_this.table_list.length >= 1) {
         _this.$q.notify({
           message: 'You Just Can Create 1 Line Data',
           icon: 'close',
