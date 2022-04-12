@@ -33,7 +33,7 @@
     "set-value": "^4.1.0",
     "ssri": "^6.0.2",
     "tar": "^6.1.11",
-    "url-parse": "^1.5.3",
+    "url-parse": "^1.5.9",
     "v-distpicker": "^1.2.12",
     "vconsole": "^3.9.4",
     "vue-echarts-v3": "^2.0.1",
