@@ -51,10 +51,8 @@ service-identity==18.1.0
 six==1.15.0
 sqlparse==0.4.1
 toml==0.10.2
-Twisted==22.2.0
-twisted-iocpsupport==1.0.2
+Twisted==20.3.0
 txaio==21.2.1
-typing_extensions==4.1.1
 unicodecsv==0.14.1
 uritemplate==3.0.1
 urllib3==1.26.5
