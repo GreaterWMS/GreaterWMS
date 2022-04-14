@@ -16,7 +16,6 @@ Fully open source warehouse management system follows Apache License 2.0 and fro
 - Video Tutorials: [YouTube](https://www.youtube.com/channel/UCPW1wciGMIEh7CYOdLnsloA)(All Tutorials Will Upload To Here)
 - Home Page: [DEMO](https://www.56yhz.com/)(Register can initial the demo data)
 - Mail：mail@56yhz.com
-- CIMO-ADMIN(vue-quasar-manage): [GitHub](https://github.com/972784674t/vue-quasar-manage) | [Gitee](https://gitee.com/incimo/vue-quasar-manage)
 
 ---
 
