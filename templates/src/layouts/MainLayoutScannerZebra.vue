@@ -1,4 +1,4 @@
-<template>
+。<template>
   <q-layout view="hHh LpR fFf" :style="{ height: $q.screen.height, width: $q.screen.width }">
     <q-header reveal elevated class="bg-primary text-white">
       <q-toolbar class="main-headers text-white rounded-borders">
@@ -293,7 +293,7 @@ export default {
                   })
                   localStorage.removeItem('menulink')
                   _this.link = ''
-                  _this.$router.push({ name: 'web_index' })
+                  _this.$router.push({ name: 'zebrascan' })
                 }
               })
               .catch((err) => {
@@ -345,7 +345,7 @@ export default {
                 })
                 localStorage.removeItem('menulink')
                 _this.link = ''
-                _this.$router.push({ name: 'web_index' })
+                _this.$router.push({ name: 'zebrascan' })
               } else {
                 _this.$q.notify({
                   message: res.msg,
@@ -380,7 +380,7 @@ export default {
       // _this.staffType();
       localStorage.removeItem('menulink')
       _this.link = ''
-      _this.$router.push({ name: 'web_index' })
+      _this.$router.push({ name: 'zebrascan' })
     },
     Register () {
       var _this = this
@@ -410,7 +410,7 @@ export default {
             _this.staffType()
             localStorage.removeItem('menulink')
             _this.link = ''
-            _this.$router.push({ name: 'web_index' })
+            _this.$router.push({ name: 'zebrascan' })
           } else {
             _this.$q.notify({
               message: res.msg,
