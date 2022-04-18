@@ -143,12 +143,12 @@
 <router-view />
 
 <script>
-import { getauth, postauth, putauth, deleteauth, ViewPrintAuth, getfile } from 'boot/axios_request';
-import { date, exportFile, SessionStorage, LocalStorage } from 'quasar';
+import { getauth, postauth, putauth, deleteauth, ViewPrintAuth, getfile } from 'boot/axios_request'
+import { date, exportFile, SessionStorage, LocalStorage } from 'quasar'
 
 export default {
   name: 'Pageasnlist',
-  data() {
+  data () {
     return {
       login_name: '',
       authin: '0',
@@ -160,16 +160,16 @@ export default {
       height: '',
       table_list: [],
       columns: [
-       { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
-       { name: 'goods_code', label: this.$t('stock.view_stocklist.goods_code'), field: 'goods_code', align: 'center' },
-       { name: 'goods_desc', label: this.$t('stock.view_stocklist.goods_desc'), field: 'onhand_stock', align: 'center' },
-       { name: 'goods_qty', label: this.$t('stock.view_stocklist.onhand_stock'), field: 'goods_qty', align: 'center' },
-       { name: 'pick_qty', label: this.$t('stock.view_stocklist.pick_stock'), field: 'pick_qty', align: 'center' },
-       { name: 'picked_qty', label: this.$t('stock.view_stocklist.picked_stock'), field: 'picked_qty', align: 'center' },
-       { name: 'bin_size', label: this.$t('warehouse.view_binset.bin_size'), field: 'bin_size', align: 'center' },
-       { name: 'bin_property', label: this.$t('warehouse.view_binset.bin_property'), field: 'bin_property', align: 'center' },
-       { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
-       { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'right' },
+        { name: 'bin_name', required: true, label: this.$t('warehouse.view_binset.bin_name'), align: 'left', field: 'bin_name' },
+        { name: 'goods_code', label: this.$t('stock.view_stocklist.goods_code'), field: 'goods_code', align: 'center' },
+        { name: 'goods_desc', label: this.$t('stock.view_stocklist.goods_desc'), field: 'onhand_stock', align: 'center' },
+        { name: 'goods_qty', label: this.$t('stock.view_stocklist.onhand_stock'), field: 'goods_qty', align: 'center' },
+        { name: 'pick_qty', label: this.$t('stock.view_stocklist.pick_stock'), field: 'pick_qty', align: 'center' },
+        { name: 'picked_qty', label: this.$t('stock.view_stocklist.picked_stock'), field: 'picked_qty', align: 'center' },
+        { name: 'bin_size', label: this.$t('warehouse.view_binset.bin_size'), field: 'bin_size', align: 'center' },
+        { name: 'bin_property', label: this.$t('warehouse.view_binset.bin_property'), field: 'bin_property', align: 'center' },
+        { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
+        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'right' }
       ],
       pagination: {
         page: 1,
@@ -179,121 +179,122 @@ export default {
       createDate2: '',
       date_range: '',
       searchUrl: '',
-      downloadUrl:'stock/filebinlist/'
-    };
+      downloadhUrl: 'stock/filebinlist/'
+    }
   },
   computed: {
-    interval() {
-      return this.$t('download_center.start') + ' - ' + this.$t('download_center.end');
+    interval () {
+      return this.$t('download_center.start') + ' - ' + this.$t('download_center.end')
     }
   },
   watch: {
-    createDate1(val) {
+    createDate1 (val) {
       if (val) {
         if (val.to) {
-          this.createDate2 = `${val.from} - ${val.to}`;
-          this.date_range = `${val.from},${val.to} 23:59:59`;
+          this.createDate2 = `${val.from} - ${val.to}`
+          this.date_range = `${val.from},${val.to} 23:59:59`
           this.searchUrl = this.pathname + 'bin/?' + 'create_time__range=' + this.date_range
           this.downloadhUrl = this.pathname + 'filebinlist/?' + 'create_time__range=' + this.date_range
         } else {
-          this.createDate2 = `${val}`;
-          this.dateArray = val.split('/');
-          this.searchUrl = this.pathname + 'bin/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];
-           this.downloadhUrl = this.pathname + 'filebinlist/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];
+          this.createDate2 = `${val}`
+          this.dateArray = val.split('/')
+          this.searchUrl = this.pathname + 'bin/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2]
+          this.downloadhUrl = this.pathname + 'filebinlist/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2]
         }
-        this.date_range = this.date_range.replace(/\//g, '-');
-        this.getSearchList();
-        this.$refs.qDateProxy.hide();
+        this.date_range = this.date_range.replace(/\//g, '-')
+        this.getSearchList()
+        this.$refs.qDateProxy.hide()
       }
     }
   },
   methods: {
-    getList() {
-      var _this = this;
+    getList () {
+      var _this = this
       getauth(_this.pathname + 'bin/')
         .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = res.results
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getSearchList() {
-      var _this = this;
+    getSearchList () {
+      var _this = this
       getauth(_this.searchUrl)
         .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = res.results
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getListPrevious() {
-      var _this = this;
+    getListPrevious () {
+      var _this = this
       getauth(_this.pathname_previous, {})
         .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = res.results
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getListNext() {
-      var _this = this;
+    getListNext () {
+      var _this = this
       getauth(_this.pathname_next, {})
         .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = res.results
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    downloadlistData() {
-      var _this = this;
+    downloadlistData () {
+      var _this = this
+      console.log(_this.downloadhUrl)
       getfile(_this.downloadhUrl).then(res => {
-        var timeStamp = Date.now();
-        var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-        const status = exportFile(_this.pathname + 'list' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
+        var timeStamp = Date.now()
+        var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS')
+        const status = exportFile(_this.pathname + 'list' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv')
         if (status !== true) {
           _this.$q.notify({
             message: 'Browser denied file download...',
             color: 'negative',
             icon: 'warning'
-          });
+          })
         }
-      });
+      })
     },
-    reset(){
-        this.getList()
-        this.downloadUrl = 'stock/filebinlist/'
-        this.createDate2 = '';
+    reset () {
+      this.getList()
+      this.downloadUrl = 'stock/filebinlist/'
+      this.createDate2 = ''
     }
   },
-  created() {
+  created () {
     var _this = this
     if (LocalStorage.has('openid')) {
       _this.openid = LocalStorage.getItem('openid')
@@ -314,15 +315,15 @@ export default {
       _this.authin = '0'
     }
   },
-  mounted() {
-    var _this = this;
+  mounted () {
+    var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + 'px';
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + '' + 'px';
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
-  updated() {},
-  destroyed() {}
-};
+  updated () {},
+  destroyed () {}
+}
 </script>
