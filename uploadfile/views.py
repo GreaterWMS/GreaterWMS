@@ -160,77 +160,109 @@ class GoodlistfileViewSet(views.APIView):
                 for i in goods_supplier_list:
                     if str(i) == 'nan':
                         i = 'N/A'
-                    supplier.objects.create(openid=self.request.auth.openid,
-                                            supplier_name=str(i).strip(),
-                                            supplier_city="Supplier City",
-                                            supplier_address="Supplier Address",
-                                            supplier_contact="Supplier Contact",
-                                            supplier_manager="Supplier Manager",
-                                            creater=str(staff_name)
-                                            )
+                    if supplier.objects.filter(openid=self.request.auth.openid,
+                                            supplier_name=str(i).strip()).exists():
+                        pass
+                    else:
+                        supplier.objects.create(openid=self.request.auth.openid,
+                                                supplier_name=str(i).strip(),
+                                                supplier_city="Supplier City",
+                                                supplier_address="Supplier Address",
+                                                supplier_contact="Supplier Contact",
+                                                supplier_manager="Supplier Manager",
+                                                creater=str(staff_name)
+                                                )
                 goods_unit_list = df.drop_duplicates(subset=[data_header.get('goods_unit')], keep='first').loc[:,
                                     data_header.get('goods_unit')].values
                 for i in goods_unit_list:
                     if str(i) == 'nan':
                         i = 'N/A'
-                    goodsunit.objects.create(openid=self.request.auth.openid,
-                                             goods_unit=str(i).strip(),
-                                             creater=str(staff_name)
-                                             )
+                    if goodsunit.objects.filter(openid=self.request.auth.openid,
+                                                goods_unit=str(i).strip()).exists():
+                        pass
+                    else:
+                        goodsunit.objects.create(openid=self.request.auth.openid,
+                                                 goods_unit=str(i).strip(),
+                                                 creater=str(staff_name)
+                                                 )
                 goods_class_list = df.drop_duplicates(subset=[data_header.get('goods_class')], keep='first').loc[:,
                                     data_header.get('goods_class')].values
                 for i in goods_class_list:
                     if str(i) == 'nan':
                         i = 'N/A'
-                    goodsclass.objects.create(openid=self.request.auth.openid,
-                                              goods_class=str(i).strip(),
-                                              creater=str(staff_name)
-                                              )
+                    if goodsclass.objects.filter(openid=self.request.auth.openid,
+                                                 goods_class=str(i).strip()).exists():
+                        pass
+                    else:
+                        goodsclass.objects.create(openid=self.request.auth.openid,
+                                                  goods_class=str(i).strip(),
+                                                  creater=str(staff_name)
+                                                  )
                 goods_brand_list = df.drop_duplicates(subset=[data_header.get('goods_brand')], keep='first').loc[:,
                                     data_header.get('goods_brand')].values
                 for i in goods_brand_list:
                     if str(i) == 'nan':
                         i = 'N/A'
-                    goodsbrand.objects.create(openid=self.request.auth.openid,
-                                              goods_brand=str(i).strip(),
-                                              creater=str(staff_name)
-                                              )
+                    if goodsbrand.objects.filter(openid=self.request.auth.openid,
+                                               goods_brand=str(i).strip()).exists():
+                        pass
+                    else:
+                        goodsbrand.objects.create(openid=self.request.auth.openid,
+                                                  goods_brand=str(i).strip(),
+                                                  creater=str(staff_name)
+                                                  )
                 goods_color_list = df.drop_duplicates(subset=[data_header.get('goods_color')], keep='first').loc[:,
                                     data_header.get('goods_color')].values
                 for i in goods_color_list:
                     if str(i) == 'nan':
                         i = 'N/A'
-                    goodscolor.objects.create(openid=self.request.auth.openid,
-                                              goods_color=str(i).strip(),
-                                              creater=str(staff_name)
-                                              )
+                    if goodscolor.objects.filter(openid=self.request.auth.openid,
+                                                 goods_color=str(i).strip()).exists():
+                        pass
+                    else:
+                        goodscolor.objects.create(openid=self.request.auth.openid,
+                                                  goods_color=str(i).strip(),
+                                                  creater=str(staff_name)
+                                                  )
                 goods_shape_list = df.drop_duplicates(subset=[data_header.get('goods_shape')], keep='first').loc[:,
                                     data_header.get('goods_shape')].values
                 for i in goods_shape_list:
                     if str(i) == 'nan':
                         i = 'N/A'
-                    goodsshape.objects.create(openid=self.request.auth.openid,
-                                              goods_shape=str(i).strip(),
-                                              creater=str(staff_name)
-                                              )
+                    if goodsshape.objects.filter(openid=self.request.auth.openid,
+                                                 goods_shape=str(i).strip()).exists():
+                        pass
+                    else:
+                        goodsshape.objects.create(openid=self.request.auth.openid,
+                                                  goods_shape=str(i).strip(),
+                                                  creater=str(staff_name)
+                                                  )
                 goods_specs_list = df.drop_duplicates(subset=[data_header.get('goods_specs')], keep='first').loc[:,
                                     data_header.get('goods_specs')].values
                 for i in goods_specs_list:
                     if str(i) == 'nan':
                         i = 'N/A'
-                    goodsspecs.objects.create(openid=self.request.auth.openid,
-                                              goods_specs=str(i).strip(),
-                                              creater=str(staff_name)
-                                              )
+                    if goodsspecs.objects.filter(openid=self.request.auth.openid,
+                                                 goods_specs=str(i).strip()).exists():
+                        pass
+                    else:
+                        goodsspecs.objects.create(openid=self.request.auth.openid,
+                                                  goods_specs=str(i).strip(),
+                                                  creater=str(staff_name)
+                                                  )
                 goods_origin_list = df.drop_duplicates(subset=[data_header.get('goods_origin')], keep='first').loc[:,
                                     data_header.get('goods_origin')].values
                 for i in goods_origin_list:
                     if str(i) == 'nan':
                         i = 'N/A'
-                    goodsorigin.objects.create(openid=self.request.auth.openid,
-                                               goods_origin=str(i).strip(),
-                                               creater=str(staff_name)
-                                               )
+                    if goodsorigin.objects.filter(openid=self.request.auth.openid,
+                                                  goods_origin=str(i).strip()).exists():
+                        pass
+                    else:
+                        goodsorigin.objects.create(openid=self.request.auth.openid,
+                                                   goods_origin=str(i).strip(),
+                                                   creater=str(staff_name)
+                                                   )
             else:
                 raise APIException({"detail": "Can Not Support This File Type"})
         else:
