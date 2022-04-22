@@ -29,322 +29,26 @@
         </template>
         <template v-slot:body="props">
           <q-tr :props="props">
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_code" :props="props">
-                <q-input
-                  dense
-                  outlined
-                  square
-                  v-model="editFormData.goods_code"
-                  :label="$t('goods.view_goodslist.goods_code')"
-                  autofocus
-                  :rules="[val => (val && val.length > 0) || error1]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_code" :props="props">{{ props.row.goods_code }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_desc" :props="props">
-                <q-input
-                  dense
-                  outlined
-                  square
-                  v-model="editFormData.goods_desc"
-                  :label="$t('goods.view_goodslist.goods_desc')"
-                  :rules="[val => (val && val.length > 0) || error2]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_desc" :props="props">{{ props.row.goods_desc }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_supplier" :props="props">
-                <q-select
-                  dense
-                  outlined
-                  square
-                  v-model="editFormData.goods_supplier"
-                  :options="supplier_list"
-                  transition-show="scale"
-                  transition-hide="scale"
-                  :label="$t('goods.view_goodslist.goods_supplier')"
-                  :rules="[val => (val && val.length > 0) || error3]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_supplier" :props="props">{{ props.row.goods_supplier }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_weight" :props="props">
-                <q-input
-                  dense
-                  outlined
-                  square
-                  v-model.number="editFormData.goods_weight"
-                  type="number"
-                  :label="$t('goods.view_goodslist.goods_weight')"
-                  :rules="[val => (val && val > 0) || error4]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_weight" :props="props">{{ props.row.goods_weight }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_w" :props="props">
-                <q-input
-                  dense
-                  outlined
-                  square
-                  v-model.number="editFormData.goods_w"
-                  type="number"
-                  :label="$t('goods.view_goodslist.goods_w')"
-                  :rules="[val => (val && val > 0) || error5]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_w" :props="props">{{ props.row.goods_w }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_d" :props="props">
-                <q-input
-                  dense
-                  outlined
-                  square
-                  v-model.number="editFormData.goods_d"
-                  type="number"
-                  :label="$t('goods.view_goodslist.goods_d')"
-                  :rules="[val => (val && val > 0) || error6]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_d" :props="props">{{ props.row.goods_d }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_h" :props="props">
-                <q-input
-                  dense
-                  outlined
-                  square
-                  v-model.number="editFormData.goods_h"
-                  type="number"
-                  :label="$t('goods.view_goodslist.goods_h')"
-                  :rules="[val => (val && val > 0) || error7]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_h" :props="props">{{ props.row.goods_h }}</q-td>
-            </template>
             <q-td key="unit_volume" :props="props">{{ props.row.unit_volume }}</q-td>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_unit" :props="props">
-                <q-select
-                  dense
-                  outlined
-                  square
-                  v-model="editFormData.goods_unit"
-                  :options="goods_unit_list"
-                  transition-show="scale"
-                  transition-hide="scale"
-                  :label="$t('goods.view_goodslist.goods_unit')"
-                  :rules="[val => (val && val.length > 0) || error8]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_unit" :props="props">{{ props.row.goods_unit }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_class" :props="props">
-                <q-select
-                  dense
-                  outlined
-                  square
-                  v-model="editFormData.goods_class"
-                  :options="goods_class_list"
-                  transition-show="scale"
-                  transition-hide="scale"
-                  :label="$t('goods.view_goodslist.goods_class')"
-                  :rules="[val => (val && val.length > 0) || error9]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_class" :props="props">{{ props.row.goods_class }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_brand" :props="props">
-                <q-select
-                  dense
-                  outlined
-                  square
-                  v-model="editFormData.goods_brand"
-                  :options="goods_brand_list"
-                  transition-show="scale"
-                  transition-hide="scale"
-                  :label="$t('goods.view_goodslist.goods_brand')"
-                  :rules="[val => (val && val.length > 0) || error10]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_brand" :props="props">{{ props.row.goods_brand }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_color" :props="props">
-                <q-select
-                  dense
-                  outlined
-                  square
-                  v-model="editFormData.goods_color"
-                  :options="goods_color_list"
-                  transition-show="scale"
-                  transition-hide="scale"
-                  :label="$t('goods.view_goodslist.goods_color')"
-                  :rules="[val => (val && val.length > 0) || error11]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_color" :props="props">{{ props.row.goods_color }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_shape" :props="props">
-                <q-select
-                  dense
-                  outlined
-                  square
-                  v-model="editFormData.goods_shape"
-                  :options="goods_shape_list"
-                  transition-show="scale"
-                  transition-hide="scale"
-                  :label="$t('goods.view_goodslist.goods_shape')"
-                  :rules="[val => (val && val.length > 0) || error12]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_shape" :props="props">{{ props.row.goods_shape }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_specs" :props="props">
-                <q-select
-                  dense
-                  outlined
-                  square
-                  v-model="editFormData.goods_specs"
-                  :options="goods_specs_list"
-                  transition-show="scale"
-                  transition-hide="scale"
-                  :label="$t('goods.view_goodslist.goods_specs')"
-                  :rules="[val => (val && val.length > 0) || error13]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_specs" :props="props">{{ props.row.goods_specs }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_origin" :props="props">
-                <q-select
-                  dense
-                  outlined
-                  square
-                  v-model="editFormData.goods_origin"
-                  :options="goods_origin_list"
-                  transition-show="scale"
-                  transition-hide="scale"
-                  :label="$t('goods.view_goodslist.goods_origin')"
-                  :rules="[val => (val && val.length > 0) || error14]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_origin" :props="props">{{ props.row.goods_origin }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_cost" :props="props">
-                <q-input
-                  dense
-                  outlined
-                  square
-                  v-model.number="editFormData.goods_cost"
-                  type="number"
-                  :label="$t('goods.view_goodslist.goods_cost')"
-                  :rules="[val => (val && val > 0) || error15]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_cost" :props="props">{{ props.row.goods_cost }}</q-td>
-            </template>
-            <template v-if="props.row.id === editid">
-              <q-td key="goods_price" :props="props">
-                <q-input
-                  dense
-                  outlined
-                  square
-                  v-model.number="editFormData.goods_price"
-                  type="number"
-                  :label="$t('goods.view_goodslist.goods_price')"
-                  :rules="[val => (val && val > 0) || error16]"
-                />
-              </q-td>
-            </template>
-            <template v-else-if="props.row.id !== editid">
               <q-td key="goods_price" :props="props">{{ props.row.goods_price }}</q-td>
-            </template>
             <q-td key="creater" :props="props">{{ props.row.creater }}</q-td>
             <q-td key="create_time" :props="props">{{ props.row.create_time }}</q-td>
             <q-td key="update_time" :props="props">{{ props.row.update_time }}</q-td>
-            <template v-if="!editMode">
-              <q-td key="action" :props="props" style="width: 100px">
-                <q-btn
-                  v-show="
-                    $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                      $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                      $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                      $q.localStorage.getItem('staff_type') !== 'StockControl'
-                  "
-                  round
-                  flat
-                  push
-                  color="info"
-                  icon="print"
-                  @click="viewData(props.row)"
-                >
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-                    {{ $t('goods.view_goodslist.print_goods_label') }}
-                  </q-tooltip>
-                </q-btn>
-                <q-btn round flat push color="purple" icon="edit" @click="editData(props.row)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('edit') }}</q-tooltip>
-                </q-btn>
-                <q-btn round flat push color="dark" icon="delete" @click="deleteData(props.row.id)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('delete') }}</q-tooltip>
-                </q-btn>
-              </q-td>
-            </template>
-            <template v-else-if="editMode">
-              <template v-if="props.row.id === editid">
-                <q-td key="action" :props="props" style="width: 100px">
-                  <q-btn round flat push color="secondary" icon="check" @click="editDataSubmit()">
-                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('confirmedit') }}</q-tooltip>
-                  </q-btn>
-                  <q-btn round flat push color="red" icon="close" @click="editDataCancel()">
-                    <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('canceledit') }}</q-tooltip>
-                  </q-btn>
-                </q-td>
-              </template>
-              <template v-else-if="props.row.id !== editid"></template>
-            </template>
           </q-tr>
         </template>
       </q-table>
@@ -646,8 +350,7 @@ export default {
         { name: 'goods_price', label: this.$t('goods.view_goodslist.goods_price'), field: 'goods_price', align: 'center' },
         { name: 'creater', label: this.$t('creater'), field: 'creater', align: 'center' },
         { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
-        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' },
-        { name: 'action', label: this.$t('action'), align: 'right' }
+        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' }
       ],
       filter: '',
       pagination: {
