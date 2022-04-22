@@ -85,13 +85,13 @@
 <router-view />
 
 <script>
-import { getauth, postauth, putauth, deleteauth, wsurl, getfile } from 'boot/axios_request';
-import { date, exportFile, LocalStorage } from 'quasar';
-var ws;
+import { getauth, postauth, putauth, deleteauth, wsurl, getfile } from 'boot/axios_request'
+import { date, exportFile, LocalStorage } from 'quasar'
+var ws
 
 export default {
   name: 'Pagestafflist',
-  data() {
+  data () {
     return {
       openid: '',
       login_name: '',
@@ -134,259 +134,343 @@ export default {
       filter: '',
       error1: this.$t('staff.view_staff.error1'),
       error2: this.$t('staff.view_staff.error2')
-    };
+    }
   },
   methods: {
-    getList() {
-      var _this = this;
+    getList () {
+      var _this = this
       getauth(_this.pathname, {})
         .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = res.results
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            _this.table_list.forEach((item, index) => {
+              if (item.staff_type === 'Admin') {
+                item.staff_type = '管理员'
+              } else if (item.staff_type === 'Customer') {
+                item.staff_type = '客户'
+              } else if (item.staff_type === 'Supplier') {
+                item.staff_type = '供应商'
+              } else if (item.staff_type === 'Manager') {
+                item.staff_type = '经理'
+              } else if (item.staff_type === 'Supervisor') {
+                item.staff_type = '主管'
+              } else if (item.staff_type === 'Inbound') {
+                item.staff_type = '收货组'
+              } else if (item.staff_type === 'Outbound') {
+                item.staff_type = '发货组'
+              } else if (item.staff_type === 'StockControl') {
+                item.staff_type = '库存管理'
+              }
+            })
+          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getSearchList() {
-      var _this = this;
-      _this.filter = _this.filter.replace(/\s+/g, '');
+    getSearchList () {
+      var _this = this
+      _this.filter = _this.filter.replace(/\s+/g, '')
       getauth(_this.pathname + '?staff_name__icontains=' + _this.filter, {})
         .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = res.results
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            _this.table_list.forEach((item, index) => {
+              if (item.staff_type === 'Admin') {
+                item.staff_type = '管理员'
+              } else if (item.staff_type === 'Customer') {
+                item.staff_type = '客户'
+              } else if (item.staff_type === 'Supplier') {
+                item.staff_type = '供应商'
+              } else if (item.staff_type === 'Manager') {
+                item.staff_type = '经理'
+              } else if (item.staff_type === 'Supervisor') {
+                item.staff_type = '主管'
+              } else if (item.staff_type === 'Inbound') {
+                item.staff_type = '收货组'
+              } else if (item.staff_type === 'Outbound') {
+                item.staff_type = '发货组'
+              } else if (item.staff_type === 'StockControl') {
+                item.staff_type = '库存管理'
+              }
+            })
+          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getListPrevious() {
-      var _this = this;
+    getListPrevious () {
+      var _this = this
       getauth(_this.pathname_previous, {})
         .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = res.results
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            _this.table_list.forEach((item, index) => {
+              if (item.staff_type === 'Admin') {
+                item.staff_type = '管理员'
+              } else if (item.staff_type === 'Customer') {
+                item.staff_type = '客户'
+              } else if (item.staff_type === 'Supplier') {
+                item.staff_type = '供应商'
+              } else if (item.staff_type === 'Manager') {
+                item.staff_type = '经理'
+              } else if (item.staff_type === 'Supervisor') {
+                item.staff_type = '主管'
+              } else if (item.staff_type === 'Inbound') {
+                item.staff_type = '收货组'
+              } else if (item.staff_type === 'Outbound') {
+                item.staff_type = '发货组'
+              } else if (item.staff_type === 'StockControl') {
+                item.staff_type = '库存管理'
+              }
+            })
+          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getListNext() {
-      var _this = this;
+    getListNext () {
+      var _this = this
       getauth(_this.pathname_next, {})
         .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = res.results
+          if (LocalStorage.getItem('lang') === 'zh-hans') {
+            _this.table_list.forEach((item, index) => {
+              if (item.staff_type === 'Admin') {
+                item.staff_type = '管理员'
+              } else if (item.staff_type === 'Customer') {
+                item.staff_type = '客户'
+              } else if (item.staff_type === 'Supplier') {
+                item.staff_type = '供应商'
+              } else if (item.staff_type === 'Manager') {
+                item.staff_type = '经理'
+              } else if (item.staff_type === 'Supervisor') {
+                item.staff_type = '主管'
+              } else if (item.staff_type === 'Inbound') {
+                item.staff_type = '收货组'
+              } else if (item.staff_type === 'Outbound') {
+                item.staff_type = '发货组'
+              } else if (item.staff_type === 'StockControl') {
+                item.staff_type = '库存管理'
+              }
+            })
+          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    reFresh() {
-      var _this = this;
-      _this.getList();
+    reFresh () {
+      var _this = this
+      _this.getList()
     },
-    unlock(val) {
+    unlock (val) {
       putauth(this.pathname + val.id + '/', {
         is_lock: !val.is_lock,
         staff_name: val.staff_name,
         staff_type: val.staff_type
       })
         .then(res => {
-          this.getList();
-          let message = 'Success unlocked';
+          this.getList()
+          let message = 'Success unlocked'
           if (!val.is_lock) {
-            message = 'Success locked';
+            message = 'Success locked'
           }
           this.$q.notify({
             message: message,
             icon: 'check',
             color: 'green'
-          });
+          })
         })
         .catch(err => {
           this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    RandomCheckCode() {
-      var _this = this;
-      var code = '';
-      var codeLength = 4;
-      var random = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    RandomCheckCode () {
+      var _this = this
+      var code = ''
+      var codeLength = 4
+      var random = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
       for (var i = 0; i < codeLength; i++) {
-        var index = Math.floor(Math.random() * 9);
-        code += random[index];
+        var index = Math.floor(Math.random() * 9)
+        code += random[index]
       }
-      _this.newFormData.check_code = code;
+      _this.newFormData.check_code = code
     },
-    newDataSubmit() {
-      var _this = this;
-      var staffs = [];
-      _this.newFormData.is_lock = false;
+    newDataSubmit () {
+      var _this = this
+      var staffs = []
+      _this.newFormData.is_lock = false
       _this.table_list.forEach(i => {
-        staffs.push(i.staff_name);
-      });
+        staffs.push(i.staff_name)
+      })
       if (staffs.indexOf(_this.newFormData.staff_name) === -1 && _this.newFormData.staff_name.length !== 0 && _this.newFormData.staff_type) {
-        _this.RandomCheckCode();
+        _this.RandomCheckCode()
         postauth(_this.pathname, _this.newFormData)
           .then(res => {
-            _this.getList();
-            _this.newDataCancel();
+            _this.getList()
+            _this.newDataCancel()
             _this.$q.notify({
               message: 'Success Create',
               icon: 'check',
               color: 'green'
-            });
+            })
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else if (staffs.indexOf(_this.newFormData.staff_name) !== -1) {
         _this.$q.notify({
           message: _this.$t('notice.userererror'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else if (_this.newFormData.staff_name.length === 0) {
         _this.$q.notify({
           message: _this.$t('staff.view_staff.error1'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else if (!_this.newFormData.staff_type) {
         _this.$q.notify({
           message: _this.$t('staff.view_staff.error2'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       }
     },
-    newDataCancel() {
-      var _this = this;
-      _this.newForm = false;
+    newDataCancel () {
+      var _this = this
+      _this.newForm = false
       _this.newFormData = {
         staff_name: '',
         staff_type: ''
-      };
+      }
     },
-    editData(e) {
-      var _this = this;
-      _this.editMode = true;
-      _this.editid = e.id;
+    editData (e) {
+      var _this = this
+      _this.editMode = true
+      _this.editid = e.id
       _this.editFormData = {
         staff_name: e.staff_name,
         staff_type: e.staff_type
-      };
+      }
     },
-    editDataSubmit() {
-      var _this = this;
+    editDataSubmit () {
+      var _this = this
       putauth(_this.pathname + _this.editid + '/', _this.editFormData)
         .then(res => {
-          _this.editDataCancel();
-          _this.getList();
+          _this.editDataCancel()
+          _this.getList()
           _this.$q.notify({
             message: 'Success Edit Data',
             icon: 'check',
             color: 'green'
-          });
+          })
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    editDataCancel() {
-      var _this = this;
-      _this.editMode = false;
-      _this.editid = 0;
+    editDataCancel () {
+      var _this = this
+      _this.editMode = false
+      _this.editid = 0
       _this.editFormData = {
         staff_name: '',
         staff_type: ''
-      };
+      }
     },
-    deleteData(e) {
-      var _this = this;
-      _this.deleteForm = true;
-      _this.deleteid = e;
+    deleteData (e) {
+      var _this = this
+      _this.deleteForm = true
+      _this.deleteid = e
     },
-    deleteDataSubmit() {
-      var _this = this;
+    deleteDataSubmit () {
+      var _this = this
       deleteauth(_this.pathname + _this.deleteid + '/')
         .then(res => {
-          _this.deleteDataCancel();
-          _this.getList();
+          _this.deleteDataCancel()
+          _this.getList()
           _this.$q.notify({
             message: 'Success Edit Data',
             icon: 'check',
             color: 'green'
-          });
+          })
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    deleteDataCancel() {
-      var _this = this;
-      _this.deleteForm = false;
-      _this.deleteid = 0;
+    deleteDataCancel () {
+      var _this = this
+      _this.deleteForm = false
+      _this.deleteid = 0
     },
-    initWebSocket() {
-      var _this = this;
-      ws = new WebSocket(wsurl + '?sender=' + _this.login_name + '&receiver=' + _this.receiver + '&openid=' + _this.openid);
-      ws.onmessage = _this.websocketonmessage;
-      ws.onopen = _this.websocketonopen;
-      ws.onerror = _this.websocketonerror;
-      ws.onclose = _this.websocketclose;
+    initWebSocket () {
+      var _this = this
+      ws = new WebSocket(wsurl + '?sender=' + _this.login_name + '&receiver=' + _this.receiver + '&openid=' + _this.openid)
+      ws.onmessage = _this.websocketonmessage
+      ws.onopen = _this.websocketonopen
+      ws.onerror = _this.websocketonerror
+      ws.onclose = _this.websocketclose
     },
-    websocketonopen() {
-      console.log('Success Connect');
+    websocketonopen () {
+      console.log('Success Connect')
     },
-    websocketonerror() {
-      var _this = this;
-      _this.initWebSocket();
+    websocketonerror () {
+      var _this = this
+      _this.initWebSocket()
     },
-    websocketonmessage(e) {
-      var _this = this;
+    websocketonmessage (e) {
+      var _this = this
       if (_this.$q.sessionStorage.getItem('receiver') === JSON.parse(e.data).sender) {
-        _this.chat_list.push(JSON.parse(e.data));
+        _this.chat_list.push(JSON.parse(e.data))
       } else {
       }
-      _this.Readnum();
+      _this.Readnum()
       _this.$q.notify({
         message: JSON.parse(e.data).sender + ' Send you a message',
         color: 'deep-purple',
@@ -397,148 +481,148 @@ export default {
             label: 'VIEW',
             color: 'yellow',
             handler: () => {
-              _this.ChatWith(JSON.parse(e.data).sender);
+              _this.ChatWith(JSON.parse(e.data).sender)
             }
           }
         ]
-      });
+      })
     },
-    websocketsend() {
-      var _this = this;
+    websocketsend () {
+      var _this = this
       if (_this.chat_text === '') {
       } else {
-        ws.send(_this.chat_text);
+        ws.send(_this.chat_text)
         _this.chat_list.push({
           sender: _this.sender + '-' + _this.openid,
           receiver: _this.receiver,
           detail: _this.chat_text,
           create_time: date.formatDate(Date.now(), 'YYYY-MM-DD HH:mm:ss')
-        });
-        _this.chat_text = '';
+        })
+        _this.chat_text = ''
       }
     },
-    websocketclose(e) {
-      console.log('Disconnect', e);
+    websocketclose (e) {
+      console.log('Disconnect', e)
     },
-    ChatWith(e) {
-      var _this = this;
-      _this.sender = _this.login_name;
-      _this.receiver = e;
-      _this.$q.sessionStorage.set('receiver', e);
+    ChatWith (e) {
+      var _this = this
+      _this.sender = _this.login_name
+      _this.receiver = e
+      _this.$q.sessionStorage.set('receiver', e)
       if (_this.sender === _this.receiver) {
         _this.$q.notify({
           message: 'Cannot Chat with yourself',
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else {
-        _this.chat = true;
-        _this.chat_text = '';
-        _this.initWebSocket();
+        _this.chat = true
+        _this.chat_text = ''
+        _this.initWebSocket()
         getauth('chat/?' + 'sender=' + _this.sender + '&receiver=' + _this.receiver)
           .then(res => {
-            _this.chat_list = res.results.reverse();
-            _this.chat_next = res.next;
+            _this.chat_list = res.results.reverse()
+            _this.chat_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       }
     },
-    LoadChatList() {
-      var _this = this;
+    LoadChatList () {
+      var _this = this
       getauth(_this.chat_next)
         .then(res => {
           res.results.forEach(c => {
-            _this.chat_list.unshift(c);
-          });
-          _this.chat_next = res.next;
+            _this.chat_list.unshift(c)
+          })
+          _this.chat_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    ChatClose() {
-      var _this = this;
-      _this.receiver = '';
-      _this.$q.sessionStorage.set('receiver', '');
-      _this.chat_list = [];
-      _this.chat_text = '';
-      _this.chat_next = null;
+    ChatClose () {
+      var _this = this
+      _this.receiver = ''
+      _this.$q.sessionStorage.set('receiver', '')
+      _this.chat_list = []
+      _this.chat_text = ''
+      _this.chat_next = null
     },
-    downloadData() {
-      var _this = this;
+    downloadData () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getfile(_this.pathname + 'file/?lang=' + LocalStorage.getItem('lang')).then(res => {
-          var timeStamp = Date.now();
-          var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-          const status = exportFile(_this.pathname + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
+          var timeStamp = Date.now()
+          var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS')
+          const status = exportFile(_this.pathname + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv')
           if (status !== true) {
             this.$q.notify({
               message: 'Browser denied file download...',
               color: 'negative',
               icon: 'warning'
-            });
+            })
           }
-        });
+        })
       } else {
         _this.$q.notify({
           message: _this.$t('notice.loginerror'),
           color: 'negative',
           icon: 'warning'
-        });
+        })
       }
     }
   },
-  created() {
-    var _this = this;
+  created () {
+    var _this = this
     if (LocalStorage.has('openid')) {
-      _this.openid = LocalStorage.getItem('openid');
+      _this.openid = LocalStorage.getItem('openid')
     } else {
-      _this.openid = '';
-      LocalStorage.set('openid', '');
+      _this.openid = ''
+      LocalStorage.set('openid', '')
     }
     if (LocalStorage.has('login_name')) {
-      _this.login_name = LocalStorage.getItem('login_name');
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
-      _this.login_name = '';
-      LocalStorage.set('login_name', '');
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
     }
     if (LocalStorage.has('auth')) {
-      _this.authin = '1';
-      _this.getList();
+      _this.authin = '1'
+      _this.getList()
     } else {
-      _this.authin = '0';
+      _this.authin = '0'
     }
   },
-  mounted() {
-    var _this = this;
+  mounted () {
+    var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + 'px';
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + '' + 'px';
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
-  updated() {
+  updated () {
     if (document.getElementById('chat_scroll')) {
-      document.getElementById('chat_scroll').scrollTop = document.getElementById('chat_scroll').scrollHeight;
+      document.getElementById('chat_scroll').scrollTop = document.getElementById('chat_scroll').scrollHeight
     } else {
     }
   },
-  destroyed() {
+  destroyed () {
     if (ws) {
       if (ws.readyState === ws.OPEN) {
-        ws.close();
+        ws.close()
       }
     }
   }
-};
+}
 </script>
