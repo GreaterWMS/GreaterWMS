@@ -39,19 +39,6 @@
             <q-td key="bin_property" :props="props">{{ props.row.bin_property }}</q-td>
             <q-td key="create_time" :props="props">{{ props.row.create_time }}</q-td>
             <q-td key="update_time" :props="props">{{ props.row.update_time }}</q-td>
-            <q-td key="action" :props="props" style="width: 50px">
-              <q-btn
-                v-show="$q.localStorage.getItem('staff_type') !== 'Inbound' && $q.localStorage.getItem('staff_type') !== 'Outbound'"
-                round
-                flat
-                push
-                color="purple"
-                icon="move_to_inbox"
-                @click="BinMove(props.row)"
-              >
-                <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('movetobin') }}</q-tooltip>
-              </q-btn>
-            </q-td>
           </q-tr>
         </template>
       </q-table>
@@ -154,8 +141,7 @@ export default {
         { name: 'bin_size', label: this.$t('warehouse.view_binset.bin_size'), field: 'bin_size', align: 'center' },
         { name: 'bin_property', label: this.$t('warehouse.view_binset.bin_property'), field: 'bin_property', align: 'center' },
         { name: 'create_time', label: this.$t('createtime'), field: 'create_time', align: 'center' },
-        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' },
-        { name: 'action', label: this.$t('action'), align: 'right' }
+        { name: 'update_time', label: this.$t('updatetime'), field: 'update_time', align: 'center' }
       ],
       filter: '',
       pagination: {
