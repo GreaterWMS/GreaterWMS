@@ -8,14 +8,12 @@
 
 完全开源仓储管理软件，遵循Apache License 2.0协议，前后端分离，且完全开源，API使用restful协议，方便二次开发，前端代码使用quasar进行构建，后端使用Python Django3.1，利用API，可以支持多仓，波次发货，合并拣货，Milk-Run等业务模型。
 
-- 软件著作权编号：2018SR517685
+- 软件著作权编号：10136559
 - GitHub地址：[GitHub](https://github.com/Singosgu/GreaterWMS)
 - Gitee地址：[Gitee](https://gitee.com/Singosgu/GreaterWMS)
 - 视频教程：[B站](https://space.bilibili.com/407321291/channel/detail?cid=152043)(所有的教程都会更新在这里)
-- Demo地址：[DEMO](https://www.56yhz.com/)(注册会获得初始化Demo数据)
-- 技术交流群：![wechat.png](https://github.com/Singosgu/picfile/blob/master/CN/wechat.png?raw=true)
-- 邮箱：mail@56yhz.com
-- CIMO-ADMIN(vue-quasar-manage): [GitHub](https://github.com/972784674t/vue-quasar-manage) | [Gitee](https://gitee.com/incimo/vue-quasar-manage)
+- 官网：[GreaterWMS](https://www.56yhz.com/)
+- 邮箱：elvis.shi@56yhz.com
 
 ---
 
