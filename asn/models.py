@@ -17,8 +17,8 @@ class AsnListModel(models.Model):
 
     class Meta:
         db_table = 'asnlist'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'asnlist'
+        verbose_name_plural = "asnlist"
         ordering = ['-id']
 
     def __str__(self):
@@ -46,8 +46,8 @@ class AsnDetailModel(models.Model):
 
     class Meta:
         db_table = 'asndetail'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'asndetail'
+        verbose_name_plural = "asndetail"
         ordering = ['-id']
 
     def __str__(self):
