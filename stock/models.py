@@ -25,8 +25,8 @@ class StockListModel(models.Model):
 
     class Meta:
         db_table = 'stocklist'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'Stock_List'
+        verbose_name_plural = "Stock_List"
         ordering = ['-id']
 
     def __str__(self):
@@ -48,8 +48,8 @@ class StockBinModel(models.Model):
 
     class Meta:
         db_table = 'stockbin'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'Stock_Bin'
+        verbose_name_plural = "Stock_Bin"
         ordering = ['-id']
 
     def __str__(self):
