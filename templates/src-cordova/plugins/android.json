@@ -12,9 +12,6 @@
     }
   },
   "dependent_plugins": {
-    "com-darryncampbell-cordova-plugin-intent": {
-      "PACKAGE_NAME": "org.greaterwms.app"
-    },
     "com.verso.cordova.clipboard": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
@@ -72,9 +69,6 @@
       "PACKAGE_NAME": "org.greaterwms.app"
     },
     "cordova-plugin-statusbar": {
-      "PACKAGE_NAME": "org.greaterwms.app"
-    },
-    "cordova-plugin-ubx": {
       "PACKAGE_NAME": "org.greaterwms.app"
     },
     "cordova-plugin-vibration": {
