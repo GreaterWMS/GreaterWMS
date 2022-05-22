@@ -6,7 +6,7 @@ class CompanyGetSerializer(serializers.ModelSerializer):
     company_name = serializers.CharField(read_only=True, required=False)
     company_city = serializers.CharField(read_only=True, required=False)
     company_address = serializers.CharField(read_only=True, required=False)
-    company_contact = serializers.IntegerField(read_only=True, required=False)
+    company_contact = serializers.CharField(read_only=True, required=False)
     company_manager = serializers.CharField(read_only=True, required=False)
     creater = serializers.CharField(read_only=True, required=False)
     create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
@@ -21,7 +21,7 @@ class CompanyPostSerializer(serializers.ModelSerializer):
     company_name = serializers.CharField(read_only=False,  required=True, validators=[datasolve.data_validate])
     company_city = serializers.CharField(read_only=False,  required=True, validators=[datasolve.data_validate])
     company_address = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
-    company_contact = serializers.IntegerField(read_only=False, required=True, validators=[datasolve.data_validate])
+    company_contact = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     company_manager = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     class Meta:
@@ -33,7 +33,7 @@ class CompanyUpdateSerializer(serializers.ModelSerializer):
     company_name = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     company_city = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     company_address = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
-    company_contact = serializers.IntegerField(read_only=False, required=True, validators=[datasolve.data_validate])
+    company_contact = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     company_manager = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     class Meta:
@@ -45,7 +45,7 @@ class CompanyPartialUpdateSerializer(serializers.ModelSerializer):
     company_name = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     company_city = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     company_address = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
-    company_contact = serializers.IntegerField(read_only=False, required=False, validators=[datasolve.data_validate])
+    company_contact = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     company_manager = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     creater = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     class Meta:
