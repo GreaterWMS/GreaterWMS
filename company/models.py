@@ -4,7 +4,7 @@ class ListModel(models.Model):
     company_name = models.CharField(max_length=255, verbose_name="Company Name")
     company_city = models.CharField(max_length=255, verbose_name="Company City")
     company_address = models.CharField(max_length=255, verbose_name="Company Address")
-    company_contact = models.BigIntegerField(default=0, verbose_name="Company Contact")
+    company_contact = models.CharField(max_length=255, verbose_name="Company Contact")
     company_manager = models.CharField(max_length=255, verbose_name="Company Manager")
     creater = models.CharField(max_length=255, verbose_name="Who Created")
     openid = models.CharField(max_length=255, verbose_name="Openid")
@@ -14,8 +14,8 @@ class ListModel(models.Model):
 
     class Meta:
         db_table = 'company'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'Company'
+        verbose_name_plural = "Company"
         ordering = ['company_name']
 
     def __str__(self):

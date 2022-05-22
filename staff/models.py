@@ -12,8 +12,8 @@ class ListModel(models.Model):
     is_lock = models.BooleanField(default=False,verbose_name='Whether the lock')
     class Meta:
         db_table = 'staff'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'Staff'
+        verbose_name_plural = "Staff"
         ordering = ['staff_name']
 
     def __str__(self):
@@ -28,8 +28,8 @@ class TypeListModel(models.Model):
 
     class Meta:
         db_table = 'stafftype'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'Staff_Type'
+        verbose_name_plural = "Staff_Type"
         ordering = ['staff_type']
 
     def __str__(self):

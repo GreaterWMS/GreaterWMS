@@ -10,8 +10,8 @@ class ListModel(models.Model):
 
     class Meta:
         db_table = 'goodsorigin'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'Goods_Origin'
+        verbose_name_plural = "Goods_Origin"
         ordering = ['goods_origin']
 
     def __str__(self):

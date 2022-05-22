@@ -15,8 +15,8 @@ class ListModel(models.Model):
 
     class Meta:
         db_table = 'supplier'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'Supplier'
+        verbose_name_plural = "Supplier"
         ordering = ['supplier_name']
 
     def __str__(self):

@@ -12,8 +12,8 @@ class ListModel(models.Model):
 
     class Meta:
         db_table = 'driver'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'Driver'
+        verbose_name_plural = "Driver"
         ordering = ['driver_name']
 
     def __str__(self):
@@ -30,8 +30,8 @@ class DispatchListModel(models.Model):
 
     class Meta:
         db_table = 'dispatchlist'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'Dispatch_List'
+        verbose_name_plural = "Dispatch_List"
         ordering = ['-create_time']
 
     def __str__(self):
