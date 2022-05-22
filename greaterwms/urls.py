@@ -30,7 +30,7 @@ def return_static(request, path, insecure=True, **kwargs):
   return serve(request, path, insecure, **kwargs)
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='dist/spa/index.html')),
     path('vcheck/', views.vcheck, name='vcheck'),
     path('myip/', views.myip, name='myip'),

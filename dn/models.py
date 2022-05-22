@@ -18,8 +18,8 @@ class DnListModel(models.Model):
 
     class Meta:
         db_table = 'dnlist'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'DN_List'
+        verbose_name_plural = "DN_List"
         ordering = ['-id']
 
     def __str__(self):
@@ -50,8 +50,8 @@ class DnDetailModel(models.Model):
 
     class Meta:
         db_table = 'dndetail'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'DN_Detail'
+        verbose_name_plural = "DN_Detail"
         ordering = ['-id']
 
     def __str__(self):

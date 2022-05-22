@@ -13,8 +13,8 @@ class ListModel(models.Model):
 
     class Meta:
         db_table = 'binsize'
-        verbose_name = 'data id'
-        verbose_name_plural = "data id"
+        verbose_name = 'Bin_Size'
+        verbose_name_plural = "Bin_Size"
         ordering = ['-id']
 
     def __str__(self):
