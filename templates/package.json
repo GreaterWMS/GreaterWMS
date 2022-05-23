@@ -16,7 +16,7 @@
     "ansi-regex": "^6.0.1",
     "axios": "^0.21.2",
     "core-js": "^3.14.0",
-    "dexie": "^3.0.3",
+    "dexie": "^3.2.2",
     "echarts": "^5.2.1",
     "electron-is-dev": "^1.2.0",
     "electron-log": "^4.3.5",

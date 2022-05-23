@@ -4047,10 +4047,10 @@ devtron@^1.4.0:
     highlight.js "^9.3.0"
     humanize-plus "^1.8.1"
 
-dexie@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.npmmirror.com/dexie/download/dexie-3.0.3.tgz"
-  integrity sha1-7eY4Sd/l8H4T6Zu3KgQOisHSnas=
+dexie@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/dexie/-/dexie-3.2.2.tgz#fa6f2a3c0d6ed0766f8d97a03720056f88fe0e01"
+  integrity sha512-q5dC3HPmir2DERlX+toCBbHQXW5MsyrFqPFcovkH9N2S/UW/H3H5AWAB6iEOExeraAu+j+zRDG+zg/D7YhH0qg==
 
 diffie-hellman@^5.0.0:
   version "5.0.3"
