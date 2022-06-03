@@ -22,7 +22,7 @@
         </transition>
         <q-space />
         <transition appear enter-active-class="animated zoomIn">
-          <a href="https://www.56yhz.com/" style="text-decoration: none; color: #c8e6c9">
+          <a href="/docs/" style="text-decoration: none; color: #c8e6c9">
             <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px">
               <q-tooltip
                 content-class="bg-amber text-black shadow-4"

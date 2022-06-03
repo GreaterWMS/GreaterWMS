@@ -4,7 +4,38 @@ from django.urls import path, include, re_path
 from django.views.generic.base import TemplateView
 from django.contrib.staticfiles.views import serve
 from django.views.static import serve as static_serve
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from utils.apitag import api_tags
 from . import views
+
+from drf_yasg.generators import OpenAPISchemaGenerator
+
+class CustomOpenAPISchemaGenerator(OpenAPISchemaGenerator):
+  def get_schema(self, request=None, public=False):
+    """Generate a :class:`.Swagger` object with custom tags"""
+    swagger = super().get_schema(request, public)
+    swagger.tags = api_tags(request.META.get("HTTP_ACCEPT_LANGUAGE", ''))
+    return swagger
+
+schema_view = get_schema_view(
+    openapi.Info(
+       title="GreaterWMS--API Docs",
+       default_version='v2.1.17',
+       description=
+       """
+        openid:
+            Openid is the only mark of your data group, You should add it to you request headers.token .
+        """
+       ,
+       terms_of_service="https://www.56yhz.com/",
+       license=openapi.License(name="GPLv3"),
+    ),
+    public=True,
+    generator_class=CustomOpenAPISchemaGenerator,
+    permission_classes=(permissions.AllowAny, ),
+)
 
 def return_static(request, path, insecure=True, **kwargs):
   return serve(request, path, insecure, **kwargs)
@@ -53,7 +84,8 @@ urlpatterns = [
     re_path('^pdf/.*$', views.pdf, name='pdf'),
     re_path(r'^robots.txt', views.robots, name='robots'),
     re_path(r'^static/(?P<path>.*)$', return_static, name='static'),
-    re_path(r'^media/(?P<path>.*)$', static_serve, {'document_root': settings.MEDIA_ROOT})
+    re_path(r'^media/(?P<path>.*)$', static_serve, {'document_root': settings.MEDIA_ROOT}),
+    path('docs/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc')
 ]
 
 urlpatterns += [re_path(r'^silk/', include('silk.urls', namespace='silk'))]

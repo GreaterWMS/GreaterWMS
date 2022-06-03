@@ -260,3 +260,6 @@ CORS_ALLOW_HEADERS = (
     'app-id',
     'event-sign'
 )
+
+LAZY_RENDERING = True
+NATIVE_SCROLLBARS = True

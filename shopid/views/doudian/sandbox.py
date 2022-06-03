@@ -6,6 +6,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from shopid.filter.douyinfilter import Filter
 from rest_framework.exceptions import APIException
+from shopid.serializers.douyinserializers import DouYinfileRenderSerializer
 
 class DouYinSandBoxAPI(viewsets.ModelViewSet):
     """
@@ -22,6 +23,12 @@ class DouYinSandBoxAPI(viewsets.ModelViewSet):
             return ListModel.objects.filter(openid=self.request.auth.openid)
         else:
             return ListModel.objects.none()
+
+    def get_serializer_class(self):
+        if self.action in ['create']:
+            return DouYinfileRenderSerializer
+        else:
+            return self.http_method_not_allowed(request=self.request)
 
     def create(self, request, *args, **kwargs):
         data = self.request.data
