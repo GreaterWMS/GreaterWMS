@@ -19,6 +19,14 @@ class CyclecountPostSerializer(serializers.ModelSerializer):
         exclude = []
         read_only_fields = ['id', 'create_time', 'update_time', ]
 
+class CyclecountUpdateSerializer(serializers.ModelSerializer):
+    openid = serializers.CharField(read_only=False, required=False, validators=[datasolve.openid_validate])
+    creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
+    class Meta:
+        model = CyclecountModeDayModel
+        exclude = []
+        read_only_fields = ['id', 'create_time', 'update_time', ]
+
 class FileRenderSerializer(serializers.ModelSerializer):
     creater = serializers.CharField(read_only=False, required=False)
     physical_inventory = serializers.SerializerMethodField()
