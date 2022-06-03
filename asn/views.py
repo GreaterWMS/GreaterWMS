@@ -35,10 +35,8 @@ class AsnListViewSet(viewsets.ModelViewSet):
     """
         retrieve:
             Response a data list（get）
-
         list:
             Response a data list（all）
-
         create:
             Create a data line（post）
 
