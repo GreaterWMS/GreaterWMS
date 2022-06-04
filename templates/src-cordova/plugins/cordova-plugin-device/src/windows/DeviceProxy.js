@@ -17,7 +17,7 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 /* global Windows, createUUID */
 
@@ -29,9 +29,7 @@ var HAL_DEVICE_CLASS = '4d36e966-e325-11ce-bfc1-08002be10318';
 var DEVICE_DRIVER_VERSION_KEY = '{A8B865DD-2E3D-4094-AD97-E593A70C75D6},3';
 
 module.exports = {
-
     getDeviceInfo: function (win, fail, args) {
-
         // deviceId aka uuid, stored in Windows.Storage.ApplicationData.current.localSettings.values.deviceId
         var deviceId;
         // get deviceId, or create and store one
@@ -67,30 +65,30 @@ module.exports = {
 
         var Pnp = Windows.Devices.Enumeration.Pnp;
 
-        Pnp.PnpObject.findAllAsync(Pnp.PnpObjectType.device,
-                                [DEVICE_DRIVER_VERSION_KEY, DEVICE_CLASS_KEY],
-                                ROOT_CONTAINER_QUERY)
-        .then(function (rootDevices) {
-            for (var i = 0; i < rootDevices.length; i++) {
-                var rootDevice = rootDevices[i];
-                if (!rootDevice.properties) continue;
-                if (rootDevice.properties[DEVICE_CLASS_KEY_NO_SEMICOLON] === HAL_DEVICE_CLASS) {
-                    versionString = rootDevice.properties[DEVICE_DRIVER_VERSION_KEY];
-                    break;
+        Pnp.PnpObject.findAllAsync(Pnp.PnpObjectType.device, [DEVICE_DRIVER_VERSION_KEY, DEVICE_CLASS_KEY], ROOT_CONTAINER_QUERY).then(
+            function (rootDevices) {
+                for (var i = 0; i < rootDevices.length; i++) {
+                    var rootDevice = rootDevices[i];
+                    if (!rootDevice.properties) continue;
+                    if (rootDevice.properties[DEVICE_CLASS_KEY_NO_SEMICOLON] === HAL_DEVICE_CLASS) {
+                        versionString = rootDevice.properties[DEVICE_DRIVER_VERSION_KEY];
+                        break;
+                    }
                 }
+
+                setTimeout(function () {
+                    win({
+                        platform: devicePlatform,
+                        version: versionString,
+                        uuid: deviceId,
+                        isVirtual: isVirtual,
+                        model: model,
+                        manufacturer: manufacturer
+                    });
+                }, 0);
             }
-
-            setTimeout(function () {
-                win({ platform: devicePlatform,
-                    version: versionString,
-                    uuid: deviceId,
-                    isVirtual: isVirtual,
-                    model: model,
-                    manufacturer: manufacturer});
-            }, 0);
-        });
+        );
     }
-
 }; // exports
 
 require('cordova/exec/proxy').add('Device', module.exports);

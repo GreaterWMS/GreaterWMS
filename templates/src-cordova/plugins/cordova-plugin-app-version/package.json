@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-app-version",
-  "version": "0.1.12",
+  "version": "0.1.14",
   "description": "Cordova plugin to return the version number of the current app",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

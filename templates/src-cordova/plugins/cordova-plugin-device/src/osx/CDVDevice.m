@@ -19,11 +19,13 @@
 
 #include <sys/sysctl.h>
 
+#import <Availability.h>
+
 #import "CDVDevice.h"
 
 #define SYSTEM_VERSION_PLIST    @"/System/Library/CoreServices/SystemVersion.plist"
 
-@implementation CDVDevice
+@implementation Device
 
 - (NSString*) modelVersion {
     size_t size;
@@ -36,7 +38,6 @@
 
     return modelVersion;
 }
-
 
 - (NSString*) getSerialNr {
     NSString* serialNr;
@@ -101,6 +102,7 @@
     devProps[@"cordova"] = [[self class] cordovaVersion];
     devProps[@"serial"] = [self getSerialNr];
     devProps[@"isVirtual"] = @NO;
+    devProps[@"isiOSAppOnMac"]: [self isiOSAppOnMac];
 
     NSDictionary* devReturn = [NSDictionary dictionaryWithDictionary:devProps];
     return devReturn;
@@ -108,6 +110,17 @@
 
 + (NSString*) cordovaVersion {
     return CDV_VERSION;
+}
+
+- (BOOL) isiOSAppOnMac
+{
+    #if __IPHONE_14_0
+    if (@available(iOS 14.0, *)) {
+        return [[NSProcessInfo processInfo] isiOSAppOnMac];
+    }
+    #endif
+
+    return false;
 }
 
 @end
