@@ -20,6 +20,23 @@
 -->
 # Release Notes
 
+### 6.0.1 (Apr 04, 2022)
+* [GH-325](https://github.com/apache/cordova-plugin-splashscreen/pull/325)chore: update package-lock.json
+* [GH-213](https://github.com/apache/cordova-plugin-splashscreen/pull/213)GH-180 (android): Fixes nav and title bars still appearing when app is fullscreen
+* [GH-320](https://github.com/apache/cordova-plugin-splashscreen/pull/320)ci(ios): update workflow w/ **iOS** 15
+* [GH-319](https://github.com/apache/cordova-plugin-splashscreen/pull/319)ci: add action-badge
+* [GH-318](https://github.com/apache/cordova-plugin-splashscreen/pull/318)ci: remove travis & appveyor
+* [GH-317](https://github.com/apache/cordova-plugin-splashscreen/pull/317)ci: add gh-actions workflows
+* [GH-312](https://github.com/apache/cordova-plugin-splashscreen/pull/312)fix: autofocus after splashscreen
+* [GH-314](https://github.com/apache/cordova-plugin-splashscreen/pull/314)fix: refocus after webview visible (#186)
+* [GH-304](https://github.com/apache/cordova-plugin-splashscreen/pull/304)ci: add node-14.x to workflow
+* [GH-291](https://github.com/apache/cordova-plugin-splashscreen/pull/291)chore(docs): Update missing  default resources for **Android** #689
+* [GH-293](https://github.com/apache/cordova-plugin-splashscreen/pull/293)Documentation Enhancement for **Android** Dark Mode
+* [GH-300](https://github.com/apache/cordova-plugin-splashscreen/pull/300)docs: Added **iOS** notes to supported platforms.
+* [GH-296](https://github.com/apache/cordova-plugin-splashscreen/pull/296)chore(pkg): remove default-valued field "homepage"
+* [GH-292](https://github.com/apache/cordova-plugin-splashscreen/pull/292)ci(travis): updates **Android** API level
+* [GH-286](https://github.com/apache/cordova-plugin-splashscreen/pull/286)(docs): Add Information about how to use Dark Mode SplashScreens
+
 ### 6.0.0 (Jul 07, 2020)
 
 * [GH-282](https://github.com/apache/cordova-plugin-splashscreen/pull/282) fix: js `clobber` only on supported platforms

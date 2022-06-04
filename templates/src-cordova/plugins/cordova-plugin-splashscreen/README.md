@@ -21,11 +21,9 @@ description: Control the splash screen for your app.
 #         under the License.
 -->
 
-|AppVeyor|Travis CI|
-|:-:|:-:|
-|[![Build status](https://ci.appveyor.com/api/projects/status/github/apache/cordova-plugin-splashscreen?branch=master)](https://ci.appveyor.com/project/ApacheSoftwareFoundation/cordova-plugin-splashscreen)|[![Build Status](https://travis-ci.org/apache/cordova-plugin-splashscreen.svg?branch=master)](https://travis-ci.org/apache/cordova-plugin-splashscreen)|
-
 # cordova-plugin-splashscreen
+
+[![Android Testsuite](https://github.com/apache/cordova-plugin-splashscreen/actions/workflows/android.yml/badge.svg)](https://github.com/apache/cordova-plugin-splashscreen/actions/workflows/android.yml) [![Chrome Testsuite](https://github.com/apache/cordova-plugin-splashscreen/actions/workflows/chrome.yml/badge.svg)](https://github.com/apache/cordova-plugin-splashscreen/actions/workflows/chrome.yml) [![iOS Testsuite](https://github.com/apache/cordova-plugin-splashscreen/actions/workflows/ios.yml/badge.svg)](https://github.com/apache/cordova-plugin-splashscreen/actions/workflows/ios.yml) [![Lint Test](https://github.com/apache/cordova-plugin-splashscreen/actions/workflows/lint.yml/badge.svg)](https://github.com/apache/cordova-plugin-splashscreen/actions/workflows/lint.yml)
 
 This plugin displays and hides a splash screen while your web application is launching. Using its methods you can also show and hide the splash screen manually.
 
@@ -38,6 +36,7 @@ This plugin displays and hides a splash screen while your web application is lau
       - [Image Layout](#image-layout)
       - [`density`](#density)
       - [Image Sizing Table](#image-sizing-table)
+      - [Dark Mode](#dark-mode)
       - [Example Android Configuration](#example-android-configuration)
     - [iOS-specific Information](#ios-specific-information)
       - [Launch Storyboard Images](#launch-storyboard-images)
@@ -47,6 +46,7 @@ This plugin displays and hides a splash screen while your web application is lau
         - [Size classes](#size-classes)
         - [Single-image launch screen](#single-image-launch-screen)
         - [Multi-image launch screen](#multi-image-launch-screen)
+        - [Dark Mode](#dark-mode-1)
         - [Quirks and Known Issues](#quirks-and-known-issues)
     - [Windows-specific Information](#windows-specific-information)
   - [Preferences](#preferences)
@@ -72,7 +72,10 @@ This plugin displays and hides a splash screen while your web application is lau
 ## Supported Platforms
 
 - Android
-- iOS
+- iOS  
+  __Note__: iOS implementation has been moved to the core framework.  
+    If using `cordova-ios@5` or earlier, use `cordova-plugin-splashscreen@5`  
+    If using `cordova-ios@6` or later, use `cordova-plugin-splashscreen@6`. If developing exclusively for the iOS platform, this plugin can be uninstalled.
 - Windows (`cordova-windows` version >= 4.4.0 is required)  
   __Note__: Extended splashscreen does not require the plugin on Windows (as opposed to Android and iOS) in case you don't use the plugin API, i.e. programmatic hide/show.
 - Browser
@@ -177,10 +180,30 @@ If not all DPI images are considered, some devices might not show a SplashScreen
 | xxhdpi  | 960x1600  | 1600x960  |
 | xxxhdpi | 1280x1920 | 1920x1280 |
 
+#### Dark Mode (API 28+)
+
+You can optionally provide an extra SplashScreen image to be used in dark/night mode when enabled on supported devices.
+To do this, add the `-night` keyword in between the **layout** and **size** keywords of the image's `density` attribute value. E.g.: `land-night-hdpi`
+
+For more examples, please see [the Example Configuration](#example-android-configuration) section.
+
 #### Example Android Configuration
 
 ```xml
 <platform name="android">
+    <!-- Default 
+    Note: You should specify default resources for each density.
+      -- For instance, if the device(hdpi) is in landscape orientation and [density="land-hdpi"] 
+      -- does not exists, [density="hdpi"] will be selected 
+      If you do not declare this you will get MissingDefaultResource lint check errors.
+      -->
+    <splash src="res/screen/android/splash-port-hdpi.png" density="hdpi"/>
+    <splash src="res/screen/android/splash-port-ldpi.png" density="ldpi"/>
+    <splash src="res/screen/android/splash-port-mdpi.png" density="mdpi"/>
+    <splash src="res/screen/android/splash-port-xhdpi.png" density="xhdpi"/>
+    <splash src="res/screen/android/splash-port-xxhdpi.png" density="xxhdpi"/>
+
+    <!-- Landscape -->
     <splash src="res/screen/android/splash-land-hdpi.png" density="land-hdpi" />
     <splash src="res/screen/android/splash-land-ldpi.png" density="land-ldpi" />
     <splash src="res/screen/android/splash-land-mdpi.png" density="land-mdpi" />
@@ -188,12 +211,28 @@ If not all DPI images are considered, some devices might not show a SplashScreen
     <splash src="res/screen/android/splash-land-xxhdpi.png" density="land-xxhdpi" />
     <splash src="res/screen/android/splash-land-xxxhdpi.png" density="land-xxxhdpi" />
 
+    <!-- Portrait -->
     <splash src="res/screen/android/splash-port-hdpi.png" density="port-hdpi" />
     <splash src="res/screen/android/splash-port-ldpi.png" density="port-ldpi" />
     <splash src="res/screen/android/splash-port-mdpi.png" density="port-mdpi" />
     <splash src="res/screen/android/splash-port-xhdpi.png" density="port-xhdpi" />
     <splash src="res/screen/android/splash-port-xxhdpi.png" density="port-xxhdpi" />
     <splash src="res/screen/android/splash-port-xxxhdpi.png" density="port-xxxhdpi" />
+  
+    <!-- Dark Mode -->
+    <splash src="res/screen/android/splash-land-night-hdpi.png" density="land-night-hdpi" />
+    <splash src="res/screen/android/splash-land-night-ldpi.png" density="land-night-ldpi" />
+    <splash src="res/screen/android/splash-land-night-mdpi.png" density="land-night-mdpi" />
+    <splash src="res/screen/android/splash-land-night-xhdpi.png" density="land-night-xhdpi" />
+    <splash src="res/screen/android/splash-land-night-xxhdpi.png" density="land-night-xxhdpi" />
+    <splash src="res/screen/android/splash-land-night-xxxhdpi.png" density="land-night-xxxhdpi" />
+
+    <splash src="res/screen/android/splash-port-night-hdpi.png" density="port-night-hdpi" />
+    <splash src="res/screen/android/splash-port-night-ldpi.png" density="port-night-ldpi" />
+    <splash src="res/screen/android/splash-port-night-mdpi.png" density="port-night-mdpi" />
+    <splash src="res/screen/android/splash-port-night-xhdpi.png" density="port-night-xhdpi" />
+    <splash src="res/screen/android/splash-port-night-xxhdpi.png" density="port-night-xxhdpi" />
+    <splash src="res/screen/android/splash-port-night-xxxhdpi.png" density="port-night-xxxhdpi" />
 </platform>
 ```
 
@@ -342,6 +381,23 @@ The above looks like the following in `config.xml`:
     <splash src="res/screen/ios/Default@2x~ipad~anyany.png" />
     <splash src="res/screen/ios/Default@2x~ipad~comany.png" />
 ```
+
+##### Dark Mode
+
+Since [Cordova-iOS@6.1.0](https://github.com/apache/cordova-ios), it is now possible to optionally specify different SplashScreen images to use when the app is running in dark mode. The luminosity of SplashScreen images can be defined in `config.xml` using the `~dark` and `~light` suffixes.
+
+```xml
+<!-- Default image to be used for all modes -->
+<splash src="res/screen/ios/Default@2x~universal~anyany.png" />
+
+<!-- Image to use specifically for dark mode devices -->
+<splash src="res/screen/ios/Default@2x~universal~anyany~dark.png" />
+
+<!-- Image to use specifically for light mode devices -->
+<splash src="res/screen/ios/Default@2x~universal~anyany~light.png" />
+```
+
+**Note:** This works since iOS 13. iOS 12 and below will use the default SplashScreen without a luminosity suffix specified.
 
 ##### Quirks and Known Issues
 
