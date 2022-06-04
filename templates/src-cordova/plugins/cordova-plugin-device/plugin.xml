@@ -22,13 +22,17 @@
     xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-device"
-    version="2.0.3">
+    version="2.1.0">
     <name>Device</name>
     <description>Cordova Device Plugin</description>
     <license>Apache 2.0</license>
     <keywords>cordova,device</keywords>
     <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-device.git</repo>
     <issue>https://issues.apache.org/jira/browse/CB/component/12320648</issue>
+
+    <engines>
+        <engine name="cordova-electron" version=">=3.0.0" />
+    </engines>
 
     <js-module src="www/device.js" name="device">
         <clobbers target="device" />
@@ -57,6 +61,11 @@
         <source-file src="src/ios/CDVDevice.m" />
     </platform>
 
+    <!-- electron -->
+    <platform name="electron">
+        <framework src="src/electron" />
+    </platform>
+
     <!-- windows -->
     <platform name="windows">
         <js-module src="src/windows/DeviceProxy.js" name="DeviceProxy">
@@ -81,7 +90,7 @@
     <platform name="osx">
         <config-file target="config.xml" parent="/*">
             <feature name="Device">
-                <param name="ios-package" value="CDVDevice"/>
+                <param name="ios-package" value="Device"/>
             </feature>
         </config-file>
 

@@ -13,15 +13,25 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "devDependencies": {
-    "cordova-android": "^9.1.0",
+    "cordova-plugin-app-version": "^0.1.14",
+    "cordova-plugin-battery-status": "^2.0.3",
+    "cordova-plugin-device": "^2.1.0",
+    "cordova-plugin-dialogs": "^2.0.2",
+    "cordova-plugin-insomnia": "^4.3.0",
+    "cordova-plugin-splashscreen": "^6.0.1",
+    "cordova-plugin-vibration": "^3.1.1",
     "cordova-plugin-whitelist": "^1.3.4"
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {}
-    },
-    "platforms": [
-      "android"
-    ]
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-battery-status": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-vibration": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-app-version": {},
+      "cordova-plugin-insomnia": {}
+    }
   }
 }

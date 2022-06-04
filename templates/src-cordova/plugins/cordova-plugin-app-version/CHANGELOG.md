@@ -1,3 +1,12 @@
+### 0.1.14
+
+* Fixed browser platform check for config.xml [Issue#128](https://github.com/sampart/cordova-plugin-app-version/issues/128)  
+* Fix browser platform xhr error handling missing parameter [Issue#118](https://github.com/sampart/cordova-plugin-app-version/issues/118)
+
+### 0.1.13
+
+* [iOS: getAppName to return localized value (like Android)](https://github.com/sampart/cordova-plugin-app-version/pull/127)
+
 ### 0.1.12
 
 * Fixed version mismatch
