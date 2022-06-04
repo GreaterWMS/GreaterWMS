@@ -22,16 +22,14 @@
         </transition>
         <q-space />
         <transition appear enter-active-class="animated zoomIn">
-          <a href="/docs/" style="text-decoration: none; color: #c8e6c9">
-            <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px">
-              <q-tooltip
-                content-class="bg-amber text-black shadow-4"
-                :offset="[15, 15]"
-                content-style="font-size: 12px"
-                >{{ $t("index.api") }}</q-tooltip
-              >
-            </q-btn>
-          </a>
+          <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px" @click="apiLink()">
+            <q-tooltip
+              content-class="bg-amber text-black shadow-4"
+              :offset="[15, 15]"
+              content-style="font-size: 12px"
+              >{{ $t("index.api") }}</q-tooltip
+            >
+          </q-btn>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-btn
@@ -962,7 +960,7 @@
   </q-layout>
 </template>
 <script>
-import { versioncheck, getauth, post, wsurl } from 'boot/axios_request'
+import { versioncheck, getauth, post, wsurl, baseurl } from 'boot/axios_request'
 import { date, LocalStorage, SessionStorage, openURL, Platform } from 'quasar'
 import Bus from 'boot/bus.js'
 
@@ -1053,6 +1051,9 @@ export default {
     },
     brownlink (e) {
       openURL(e)
+    },
+    apiLink () {
+      openURL(baseurl + 'docs/')
     },
     Login () {
       var _this = this
