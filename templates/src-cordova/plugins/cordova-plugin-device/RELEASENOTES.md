@@ -20,6 +20,33 @@
 -->
 # Release Notes
 
+### 2.1.0 (Apr 08, 2022)
+
+* [GH-167](https://github.com/apache/cordova-plugin-device/pull/167) feat(ios): detect if app is running on a macOS desktop with Apple Silicon
+* [GH-166](https://github.com/apache/cordova-plugin-device/pull/166) chore: rebuild `package-lock` v2
+* [GH-158](https://github.com/apache/cordova-plugin-device/pull/158) doc(ios): add `device.model` quirks
+* [GH-157](https://github.com/apache/cordova-plugin-device/pull/157) feat(android): `getInfo` response to include `sdkVersion`
+* [GH-156](https://github.com/apache/cordova-plugin-device/pull/156) doc(README): update `device.cordova` info
+* [GH-124](https://github.com/apache/cordova-plugin-device/pull/124) doc(README): various enhancments
+* [GH-154](https://github.com/apache/cordova-plugin-device/pull/154) chore(electron): fix `package.json` typo
+* [GH-152](https://github.com/apache/cordova-plugin-device/pull/152) fix(osx): rename classes to fix plugin
+* [GH-135](https://github.com/apache/cordova-plugin-device/pull/135) feat(electron): add support
+* [GH-146](https://github.com/apache/cordova-plugin-device/pull/146) ci(ios): update workflow w/ **iOS** 15
+* [GH-145](https://github.com/apache/cordova-plugin-device/pull/145) ci: add action-badge
+* [GH-144](https://github.com/apache/cordova-plugin-device/pull/144) ci: remove `travis` & `appveyor`
+* [GH-143](https://github.com/apache/cordova-plugin-device/pull/143) doc(android): Noted quirks on `serial` property
+* [GH-138](https://github.com/apache/cordova-plugin-device/pull/138) doc(android): Update information about `device.uuid`
+* [GH-141](https://github.com/apache/cordova-plugin-device/pull/141) ci: add gh-actions workflows
+* [GH-132](https://github.com/apache/cordova-plugin-device/pull/132) chore: clean up `package.json`
+* chore(asf): update git notification settings
+* Update CONTRIBUTING.md
+* [GH-122](https://github.com/apache/cordova-plugin-device/pull/122) refactor(`eslint`): use `cordova-eslint`
+* [GH-120](https://github.com/apache/cordova-plugin-device/pull/120) ci: updates Node.js versions
+* [GH-121](https://github.com/apache/cordova-plugin-device/pull/121) chore(npm): improve ignore list
+* [GH-119](https://github.com/apache/cordova-plugin-device/pull/119) chore: replaces bugs URL
+* [GH-109](https://github.com/apache/cordova-plugin-device/pull/109) Log error to `console`, not to `dialog` box
+* fix(types): remove version number
+
 ### 2.0.3 (Jun 14, 2019)
 
 -   build: add .gitattributes to force LF (instead of possible CRLF on Windows) ([`02ae405`](https://github.com/apache/cordova-plugin-device/commit/02ae405))

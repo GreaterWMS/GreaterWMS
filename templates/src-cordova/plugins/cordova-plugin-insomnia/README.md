@@ -107,8 +107,6 @@ An optional successCallback (first argument) will be triggered if the functions 
 
 An optional errorCallback (second argument) will only be triggered if something fatal happened, preventing the plugin to work as expected.
 
-Note that calling `allowSleepAgain` without calling `keepAwake` first will trigger `errorCallback` or throw an error if not provided.
-
 ### Quirks
 [In this issue](#29) it was reported that on iOS the app would fall asleep after the Camera has been used,
 even if you previously called `keepAwake`. A similar [issue on Android](#30) where the photo library was accessed during app usage.

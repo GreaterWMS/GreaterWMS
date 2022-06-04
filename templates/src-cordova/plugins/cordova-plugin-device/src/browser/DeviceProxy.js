@@ -38,9 +38,9 @@ function getBrowserInfo (getModel) {
     var offset;
 
     if ((offset = userAgent.indexOf('Edge')) !== -1) {
-        returnVal = (getModel) ? 'Edge' : userAgent.substring(offset + 5);
+        returnVal = getModel ? 'Edge' : userAgent.substring(offset + 5);
     } else if ((offset = userAgent.indexOf('Chrome')) !== -1) {
-        returnVal = (getModel) ? 'Chrome' : userAgent.substring(offset + 7);
+        returnVal = getModel ? 'Chrome' : userAgent.substring(offset + 7);
     } else if ((offset = userAgent.indexOf('Safari')) !== -1) {
         if (getModel) {
             returnVal = 'Safari';
@@ -52,11 +52,11 @@ function getBrowserInfo (getModel) {
             }
         }
     } else if ((offset = userAgent.indexOf('Firefox')) !== -1) {
-        returnVal = (getModel) ? 'Firefox' : userAgent.substring(offset + 8);
+        returnVal = getModel ? 'Firefox' : userAgent.substring(offset + 8);
     } else if ((offset = userAgent.indexOf('MSIE')) !== -1) {
-        returnVal = (getModel) ? 'MSIE' : userAgent.substring(offset + 5);
+        returnVal = getModel ? 'MSIE' : userAgent.substring(offset + 5);
     } else if ((offset = userAgent.indexOf('Trident')) !== -1) {
-        returnVal = (getModel) ? 'MSIE' : '11';
+        returnVal = getModel ? 'MSIE' : '11';
     }
 
     if ((offset = returnVal.indexOf(';')) !== -1 || (offset = returnVal.indexOf(' ')) !== -1) {

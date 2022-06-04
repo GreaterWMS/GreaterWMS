@@ -24,10 +24,10 @@ function readConfig(success, fail) {
             }
         });
 
-        xhr.addEventListener("error", function () {
+        xhr.addEventListener("error", function (e) {
             fail(e);
         });
-        xhr.open("get", "../config.xml", true);
+        xhr.open("get", "config.xml", true);
         xhr.send();
     }
     else {
