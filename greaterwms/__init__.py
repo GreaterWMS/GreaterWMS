@@ -4,6 +4,7 @@ os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 django.setup()
 from django.conf import settings
 import pandas as pd
+from pathlib import Path
 
 mimetypes.add_type("text/css", ".css", True)
 mimetypes.add_type("text/javascript", ".js", True)
@@ -64,11 +65,14 @@ if not supplier_en_file:
     df.to_excel(supplier_en_path)
 
 try:
-    path = os.path.join(settings.BASE_DIR, 'utils/authorization.txt')
+    license_dir = Path(os.path.join(settings.BASE_DIR, 'Authorization'))
+    if license_dir.is_dir() is False:
+        os.mkdir(os.path.join(settings.BASE_DIR, 'Authorization'))
+    path = os.path.join(settings.BASE_DIR, 'Authorization/License.txt')
     if os.path.exists(path) is False:
         response = requests.post('https://data.56yhz.com/area_v2/')
         with open(path, 'w') as f:
-            f.write(str(eval(response.text).get('check_token')))
+            f.write(str(eval(response.text).get('license_code')))
         f.close()
 except:
     pass
