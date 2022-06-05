@@ -55,7 +55,7 @@ I have 15 years old experience focus on supply chain . I find that in this profe
 - Our Vision: If you work in a non IT industry and you love your industry, please using technology to change it.
 
 [//]: # (Function)
-### :dart: Function
+## :dart: Function
 
 * [x] Supplier Management
 * [x] Customer Management
@@ -72,7 +72,7 @@ I have 15 years old experience focus on supply chain . I find that in this profe
 * [x] i18n Support
 
 [//]: # (Install)
-### :compass: Install
+## :compass: Install
 
 <h4>
   <a href="https://www.56yhz.com/en-us/docs/2/3/">Windows X64</a>
