@@ -97,7 +97,7 @@ I have 15 years old experience focus on supply chain . I find that in this profe
 </h4>
 
 [//]: # (development)
-### :hammer_and_wrench: How To Run Development Server:
+## :hammer_and_wrench: How To Run Development Server:
 
 - Webside Dev Run:
 
@@ -129,7 +129,7 @@ quasar d -m cordova -T [ios or android]
 ~~~
 
 [//]: # (publish)
-### How To Publish Your APP:
+## :trumpet: How To Publish Your APP:
 
 - Webside Dev Run:
 
