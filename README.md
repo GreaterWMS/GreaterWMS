@@ -11,7 +11,6 @@
 ![i18n Support](https://img.shields.io/badge/i18n-Support-orange.svg)
 
 ![repo size](https://img.shields.io/github/repo-size/Singosgu/GreaterWMS)
-![Lines of code](https://img.shields.io/tokei/lines/github/Singosgu/GreaterWMS)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Singosgu/GreaterWMS)
 ![Contributors](https://img.shields.io/github/contributors/Singosgu/GreaterWMS?color=blue)
 
