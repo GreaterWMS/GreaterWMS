@@ -43,7 +43,7 @@
   <a href="https://github.com/Singosgu/GreaterWMS/issues/new?template=feature_request.md&title=[FR]">Request Feature</a>
 </h4>
 <h4>
-  <a href="https://github.com/Singosgu/GreaterWMS/blob/master/README_zh_Hans.md">中文文档</a>
+  <a href="https://github.com/Singosgu/GreaterWMS/blob/master/README.zh-CN.md">中文文档</a>
 </h4>
 
 [//]: # (About the Project)
@@ -102,9 +102,9 @@ I have 15 years old experience focus on supply chain . I find that in this profe
 
 ~~~shell
 cd templates
-quasar d # http://localhost:8081
+quasar d # http://localhost:8080
 or
-quasar dev # http://localhost:8081
+quasar dev # http://localhost:8080
 ~~~
 
 - Electron APP Dev Run
@@ -134,19 +134,19 @@ quasar d -m cordova -T [ios or android]
 
 ~~~shell
 cd templates
-quasar build # http://localhost:8081
+quasar build # /templates/dist/spa
 ~~~
 
 - Electron APP Dev Run
 
 ~~~shell
-quasar build -m electron -P always
+quasar build -m electron -P always # /templates/dist/electron
 ~~~
 
 - Mobile APP Dev Run
 
 ~~~shell
-quasar build -m cordova -T [ios or android]
+quasar build -m cordova -T [ios or android] # /templates/dist/cordova
 ~~~
 
 [//]: # (deploy)
