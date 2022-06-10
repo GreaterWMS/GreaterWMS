@@ -43,15 +43,15 @@
   <a href="https://github.com/Singosgu/GreaterWMS/issues/new?template=feature_request.md&title=[FR]">Request Feature</a>
 </h4>
 <h4>
-  <a href="https://github.com/Singosgu/GreaterWMS/blob/master/README.zh-CN.md">中文文档</a>
+  <a href="https://github.com/Singosgu/GreaterWMS/blob/master/README_CN.md">中文文档</a>
 </h4>
 
 [//]: # (About the Project)
 ## :star2: About the Project
 
-I have 15 years old experience focus on supply chain . I find that in this professional field . No freedom customize software can support our business deeply . Any software are closed-source and hardly to customize or dynamic with our suppliers & customers . So I design GreaterWMS , in order to give business highest freedom way to support trade development .
-
-- Our Vision: If you work in a non IT industry and you love your industry, please using technology to change it.
+This Inventory management system is the currently Ford Asia Pacific after-sales logistics warehousing supply chain process .
+After I leave Ford , I start this project . In order to help some who need it . 
+OneAPP Type . Support scanner PDA, mobile APP, desktop exe, website as well .
 
 [//]: # (Function)
 ## :dart: Function
@@ -69,6 +69,16 @@ I have 15 years old experience focus on supply chain . I find that in this profe
 * [x] Electron APP Support
 * [x] Auto Update
 * [x] i18n Support
+* [x] API Documents
+
+[//]: # (development)
+## :hammer_and_wrench: Where is APIs Documents:
+
+- After installed you can find APIs Documents from url /docs/
+
+~~~shell
+example: http://127.0.0.1:8008/docs/
+~~~
 
 [//]: # (Install)
 ## :compass: Install
@@ -119,6 +129,7 @@ quasar dev -m electron
 - Mobile APP Dev Run
 
 You should connect your mobile . Sometime it need you choose the ip , the ip is your PC's internal ip . 
+The Android APP installed on the mobile phone is the mobile page, and the installation on the scanning device is the scanning page.
 
 ~~~shell
 cd templates/src-cordova
@@ -130,20 +141,20 @@ quasar d -m cordova -T [ios or android]
 [//]: # (publish)
 ## :trumpet: How To Publish Your APP:
 
-- Webside Dev Run:
+- Webside Build:
 
 ~~~shell
 cd templates
 quasar build # /templates/dist/spa
 ~~~
 
-- Electron APP Dev Run
+- Electron APP Build:
 
 ~~~shell
 quasar build -m electron -P always # /templates/dist/electron
 ~~~
 
-- Mobile APP Dev Run
+- Mobile APP Build:
 
 ~~~shell
 quasar build -m cordova -T [ios or android] # /templates/dist/cordova
