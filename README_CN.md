@@ -177,7 +177,10 @@ quasar build -m cordova -T [ios or android] # /templates/dist/cordova
 
 如果你觉得我们的项目对你有所帮助，可以请我们喝杯咖啡，我们会更好的维护这个项目。
 
-[Donate via PayPal](https://paypal.me/singosgu)
+<div align="center">
+  <img src="static/img/wechat.jpg" alt="GreaterWMS wechat" width="" height="300" />
+<img src="static/img/alipay.jpg" alt="GreaterWMS alipay" width="" height="300" />
+</div>
 
 <!-- License -->
 ## :warning: License
