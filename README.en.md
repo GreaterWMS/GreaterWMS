@@ -14,11 +14,6 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Singosgu/GreaterWMS)
 ![Contributors](https://img.shields.io/github/contributors/Singosgu/GreaterWMS?color=blue)
 
-![GitHub Org's stars](https://img.shields.io/github/stars/Singosgu?style=social)
-![GitHub Follows](https://img.shields.io/github/followers/Singosgu?style=social)
-![GitHub Forks](https://img.shields.io/github/forks/Singosgu/GreaterWMS?style=social)
-![GitHub Watch](https://img.shields.io/github/watchers/Singosgu/GreaterWMS?style=social)
-
 ![Python](https://img.shields.io/badge/Python-3.9.5-yellowgreen)
 ![Django](https://img.shields.io/badge/Django-3.1.14-yellowgreen)
 ![Quasar Cli](https://img.shields.io/badge/Quasar/cli-1.2.1-yellowgreen)
@@ -37,13 +32,13 @@
   <a href="https://www.youtube.com/channel/UCPW1wciGMIEh7CYOdLnsloA">Video Tutorials</a>
 </h4>
 <h4>
-  <a href="https://github.com/Singosgu/GreaterwMS/issues/new?template=bug_report.md&title=[BUG]">Report Bug</a>
+  <a href="https://gitee.com/GreaterwMS/GreaterwMS/issues/new?template=bug_report.md&title=[BUG]">Report Bug</a>
 </h4>
 <h4>   
-  <a href="https://github.com/Singosgu/GreaterWMS/issues/new?template=feature_request.md&title=[FR]">Request Feature</a>
+  <a href="https://gitee.com/GreaterwMS/GreaterWMS/issues/new?template=feature_request.md&title=[FR]">Request Feature</a>
 </h4>
 <h4>
-  <a href="https://github.com/Singosgu/GreaterWMS/blob/master/README_CN.md">中文文档</a>
+  <a href="https://gitee.com/GreaterwMS/GreaterWMS/blob/master/README.zh-CN.md">中文文档</a>
 </h4>
 
 [//]: # (About the Project)
@@ -72,7 +67,7 @@ OneAPP Type . Support scanner PDA, mobile APP, desktop exe, website as well .
 * [x] API Documents
 
 [//]: # (development)
-## :hammer_and_wrench: Where is APIs Documents:
+## :eyes: Where is APIs Documents:
 
 - After installed you can find APIs Documents from url /docs/
 
