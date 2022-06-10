@@ -72,7 +72,7 @@ OneAPP Type . Support scanner PDA, mobile APP, desktop exe, website as well .
 * [x] API Documents
 
 [//]: # (development)
-## :eyes:: Where is APIs Documents:
+## :eyes: Where is APIs Documents:
 
 - After installed you can find APIs Documents from url /docs/
 

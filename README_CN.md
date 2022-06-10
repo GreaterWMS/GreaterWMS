@@ -25,7 +25,7 @@
 ![Vue](https://img.shields.io/badge/Vue-2.6.0-yellowgreen)
 ![NodeJS](https://img.shields.io/badge/NodeJS-14.19.3-yellowgreen)
 
-[![YouTube](https://img.shields.io/youtube/channel/subscribers/UCPW1wciGMIEh7CYOdLnsloA?color=red&label=YouTube&logo=youtube&style=for-the-badge)](https://www.youtube.com/channel/UCPW1wciGMIEh7CYOdLnsloA)
+[![YouTube](https://img.shields.io/badge/BiliBili-4987-red)](https://space.bilibili.com/407321291/channel/seriesdetail?sid=776320)
 </div>
 
 [//]: # (Some Link)
@@ -34,7 +34,7 @@
     <a href="https://www.56yhz.com/">官网首页</a>
 </h4>
 <h4>
-  <a href="https://www.youtube.com/channel/UCPW1wciGMIEh7CYOdLnsloA">相关视频</a>
+  <a href="https://space.bilibili.com/407321291/channel/seriesdetail?sid=776320">相关视频</a>
 </h4>
 <h4>
   <a href="https://github.com/Singosgu/GreaterwMS/issues/new?template=bug_report.md&title=[BUG]">提交一个Bug</a>
@@ -71,7 +71,7 @@ OneAPP 理念。 支持扫描设备PDA、手机APP、桌面exe、网站等。
 * [x] i18n国际化
 
 [//]: # (development)
-## :eyes:: API文档在哪里:
+## :eyes: API文档在哪里:
 
 - 当你安装完成后，可以通过此链接找到API文档 /docs/
 
@@ -177,7 +177,7 @@ quasar build -m cordova -T [ios or android] # /templates/dist/cordova
 
 如果你觉得我们的项目对你有所帮助，可以请我们喝杯咖啡，我们会更好的维护这个项目。
 
-<div align="center">
+<div align="left">
   <img src="static/img/wechat.jpg" alt="GreaterWMS wechat" width="" height="300" />
 <img src="static/img/alipay.jpg" alt="GreaterWMS alipay" width="" height="300" />
 </div>
@@ -185,4 +185,4 @@ quasar build -m cordova -T [ios or android] # /templates/dist/cordova
 <!-- License -->
 ## :warning: License
 
-该项目使用的是 [GPL v3](https://www.gnu.org/licenses/gpl-3.0.html) 协议. 详情查阅[LICENSE.txt](https://github.com/Singosgu/GreaterWMS/blob/master/LICENSE).请遵守此协议。
+该项目使用的是 [GPL v3](https://www.gnu.org/licenses/gpl-3.0.html) 协议. 详情查阅[LICENSE.txt](https://github.com/Singosgu/GreaterWMS/blob/master/LICENSE).必须遵守此协议。
