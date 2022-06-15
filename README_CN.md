@@ -86,7 +86,9 @@ OneAPP 理念。 支持扫描设备PDA、手机APP、桌面exe、网站等。
 
 [//]: # (Install)
 ## :compass: 安装
-
+~~~shell
+git clone https://github.com/Singosgu/GreaterWMS.git
+~~~
 <h4>
   <a href="https://www.56yhz.com/zh-hans/docs/39/3/">Windows X64</a>
 </h4>
