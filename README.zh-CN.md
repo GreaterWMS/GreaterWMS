@@ -14,6 +14,11 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Singosgu/GreaterWMS)
 ![Contributors](https://img.shields.io/github/contributors/Singosgu/GreaterWMS?color=blue)
 
+![GitHub Org's stars](https://img.shields.io/github/stars/Singosgu?style=social)
+![GitHub Follows](https://img.shields.io/github/followers/Singosgu?style=social)
+![GitHub Forks](https://img.shields.io/github/forks/Singosgu/GreaterWMS?style=social)
+![GitHub Watch](https://img.shields.io/github/watchers/Singosgu/GreaterWMS?style=social)
+
 ![Python](https://img.shields.io/badge/Python-3.9.5-yellowgreen)
 ![Django](https://img.shields.io/badge/Django-3.1.14-yellowgreen)
 ![Quasar Cli](https://img.shields.io/badge/Quasar/cli-1.2.1-yellowgreen)
