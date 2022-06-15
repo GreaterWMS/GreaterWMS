@@ -1,5 +1,6 @@
 node_modules/
 __pycache__/
+Authorization/
 authorization.txt
 authorization.json
 db.sqlite3

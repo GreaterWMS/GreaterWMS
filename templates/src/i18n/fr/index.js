@@ -6,7 +6,7 @@ export default {
   success: 'Action was successful',
   index: {
     index_title: "Plateforme de gestion d'entrepôt'",
-    webtitle: "'GreaterWMS - Système de gestion d'entrepôt Open Source'",
+    webtitle: "GreaterWMS - Système de gestion d'entrepôt Open Source",
     home: 'page de garde',
     title: 'GreaterWMS',
     title_tip: 'GreaterWMSpage de garde',
