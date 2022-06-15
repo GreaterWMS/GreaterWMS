@@ -82,7 +82,9 @@ example: http://127.0.0.1:8008/docs/
 
 [//]: # (Install)
 ## :compass: Install
-
+~~~shell
+git clone https://github.com/Singosgu/GreaterWMS.git
+~~~
 <h4>
   <a href="https://www.56yhz.com/en-us/docs/2/3/">Windows X64</a>
 </h4>
