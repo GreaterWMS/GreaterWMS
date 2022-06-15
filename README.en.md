@@ -32,10 +32,10 @@
   <a href="https://www.youtube.com/channel/UCPW1wciGMIEh7CYOdLnsloA">Video Tutorials</a>
 </h4>
 <h4>
-  <a href="https://gitee.com/GreaterwMS/GreaterwMS/issues/new?template=bug_report.md&title=[BUG]">Report Bug</a>
+  <a href="https://github.com/Singosgu/GreaterwMS/issues/new?template=bug_report.md&title=[BUG]">Report Bug</a>
 </h4>
 <h4>   
-  <a href="https://gitee.com/GreaterwMS/GreaterWMS/issues/new?template=feature_request.md&title=[FR]">Request Feature</a>
+  <a href="https://github.com/Singosgu/GreaterWMS/issues/new?template=feature_request.md&title=[FR]">Request Feature</a>
 </h4>
 <h4>
   <a href="https://gitee.com/GreaterwMS/GreaterWMS/blob/master/README.zh-CN.md">中文文档</a>
