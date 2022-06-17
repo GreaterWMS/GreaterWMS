@@ -1,4 +1,4 @@
-FROM node:14
+FROM node:14.19.3-buster-slim
 RUN mkdir -p /GreaterWMS/templates
 #Configure working directory
 COPY ./templates/package.json /GreaterWMS/templates/package.json
