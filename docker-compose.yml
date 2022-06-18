@@ -65,19 +65,19 @@ services:
 #      - "./docker/mysql/logs:/logs"
 #    networks:
 #      - basic
-  nginx:
-    image: nginx:1.19.1
-    container_name: greaterwms_nginx
-    restart: always
-    privileged: true
-    environment:
-      - TZ=Asia/Shanghai
-    ports:
-      - 80:80
-      #- 443:443
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./static_new/:/GreaterWMS/static_new:ro
-    networks:
-      - basic
+#   nginx:
+#     image: nginx:1.19.1
+#     container_name: greaterwms_nginx
+#     restart: always
+#     privileged: true
+#     environment:
+#       - TZ=Asia/Shanghai
+#     ports:
+#       - 80:80
+#       #- 443:443
+#     volumes:
+#       - /etc/localtime:/etc/localtime:ro
+#       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+#       - ./static_new/:/GreaterWMS/static_new:ro
+#     networks:
+#       - basic
