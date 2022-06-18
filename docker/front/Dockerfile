@@ -12,5 +12,5 @@ RUN npm install -g npm --force
 RUN npm install -g yarn --force
 #RUN yarn config set registry https://registry.npm.taobao.org
 RUN npm install -g @quasar/cli --force
-RUN yarn install --force
+RUN yarn install
 EXPOSE 8080
