@@ -6,8 +6,8 @@ services:
 #    build:
 #      context: ./
 #      dockerfile: ./docker/front/Dockerfile
-    container_name: greaterwms_front_v2.1.18
-    image: greaterwms/greatermws_front:v2.1.18
+    container_name: greaterwms_front
+    image: greaterwms/greatermws_front:latest
     restart: always
     ports:
       - '8080:8080'
@@ -25,15 +25,14 @@ services:
 #    build:
 #      context: ./
 #      dockerfile: ./docker/backend/Dockerfile 
-    container_name: greaterwms_backend_v2.1.18
-    image: greaterwms/greaterwms_backend:v2.1.18
+    container_name: greaterwms_backend
+    image: greaterwms/greaterwms_backend:latest
     restart: always
     volumes:
       - ./:/GreaterWMS/:rw #将前目录挂载到容器下
       - ./supervisord.conf:/etc/supervisor/supervisord.conf
     ports:
       - '8008:8008'
-#d
     command:
       - /bin/sh
       - -c
