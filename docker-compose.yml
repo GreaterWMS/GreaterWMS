@@ -67,7 +67,7 @@ services:
 #      - basic
   nginx:
     image: nginx:1.19.1
-    container_name: greaterwms_v2.1.0_nginx
+    container_name: greaterwms_nginx
     restart: always
     privileged: true
     environment:
