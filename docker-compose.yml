@@ -12,7 +12,7 @@ services:
     ports:
       - '8080:8080'
     volumes:
-      - ./templates:/GreaterWMS/templates
+      - ./templates:/GreaterWMS/templates:rw
       - ./web_start.sh:/GreaterWMS/web_start.sh
     command:
       - /bin/sh
