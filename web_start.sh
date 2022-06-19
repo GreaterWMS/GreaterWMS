@@ -1,5 +1,4 @@
 #!/bin/bash
-cd templates
-yarn
 #yarn install
+quasar build
 quasar d
