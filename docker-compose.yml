@@ -13,7 +13,7 @@ services:
       - '8080:8080'
     volumes:
       - ./templates:/GreaterWMS/templates:rw
-      - ./web_start.sh:/GreaterWMS/web_start.sh
+      - ./web_start.sh:/GreaterWMS/templates/web_start.sh
     command:
       - /bin/sh
       - -c
