@@ -1,5 +1,5 @@
-#!/bin/ash
+#!/bin/bash
 cd templates
-#yarn
+yarn
 #yarn install
 quasar d
