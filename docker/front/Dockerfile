@@ -3,8 +3,7 @@ RUN mkdir -p /GreaterWMS/templates
 #Configure working directory
 COPY ./templates/package.json /GreaterWMS/templates/package.json
 COPY ./templates/node_modules/ /GreaterWMS/templates/node_modules/
-WORKDIR /GreaterWMS
-RUN cd templates
+WORKDIR /GreaterWMS/templates
 #RUN curl -sL https://deb.nodesource.com/setup_14.x |bash -
 #RUN apt-get install -y nodejs
 #RUN npm config set registry https://registry.npm.taobao.org
