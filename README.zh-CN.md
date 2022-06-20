@@ -37,10 +37,10 @@
   <a href="https://space.bilibili.com/407321291/channel/seriesdetail?sid=776320">相关视频</a>
 </h4>
 <h4>
-  <a href="https://github.com/Singosgu/GreaterwMS/issues/new?template=bug_report.md&title=[BUG]">提交一个Bug</a>
+  <a href="https://github.com/GreaterWMS/GreaterwMS/issues/new?template=bug_report.md&title=[BUG]">提交一个Bug</a>
 </h4>
 <h4>   
-  <a href="https://github.com/Singosgu/GreaterWMS/issues/new?template=feature_request.md&title=[FR]">提交一个建议</a>
+  <a href="https://github.com/GreaterWMS/GreaterWMS/issues/new?template=feature_request.md&title=[FR]">提交一个建议</a>
 </h4>
 <h4>
   <a href="https://gitee.com/GreaterWMS/GreaterWMS/blob/master/README.en.md">英文文档</a>
@@ -82,7 +82,7 @@ OneAPP 理念。 支持扫描设备PDA、手机APP、桌面exe、网站等。
 [//]: # (Install)
 ## :compass: 安装
 ~~~shell
-git clone https://github.com/Singosgu/GreaterWMS.git
+git clone https://github.com/GreaterWMS/GreaterWMS.git
 ~~~
 
 ### docker
