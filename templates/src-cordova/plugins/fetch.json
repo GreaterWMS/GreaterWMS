@@ -1,4 +1,12 @@
 {
+  "cordova-plugin-app-version": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-app-version"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
   "cordova-plugin-battery-status": {
     "source": {
       "type": "registry",
@@ -23,10 +31,10 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-vibration": {
+  "cordova-plugin-insomnia": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-vibration"
+      "id": "cordova-plugin-insomnia"
     },
     "is_top_level": true,
     "variables": {}
@@ -39,18 +47,18 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-app-version": {
+  "cordova-plugin-vibration": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-app-version"
+      "id": "cordova-plugin-vibration"
     },
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-insomnia": {
+  "cordova-plugin-whitelist": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-insomnia"
+      "id": "cordova-plugin-whitelist@1.3.5"
     },
     "is_top_level": true,
     "variables": {}
