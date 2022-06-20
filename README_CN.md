@@ -14,15 +14,10 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Singosgu/GreaterWMS)
 ![Contributors](https://img.shields.io/github/contributors/Singosgu/GreaterWMS?color=blue)
 
-![GitHub Org's stars](https://img.shields.io/github/stars/Singosgu?style=social)
+![GitHub Org's stars](https://img.shields.io/github/stars/GreaterWMS?style=social)
 ![GitHub Follows](https://img.shields.io/github/followers/Singosgu?style=social)
-![GitHub Forks](https://img.shields.io/github/forks/Singosgu/GreaterWMS?style=social)
-![GitHub Watch](https://img.shields.io/github/watchers/Singosgu/GreaterWMS?style=social)
-
-![GitHub Org's stars](https://img.shields.io/github/stars/Singosgu?style=social)
-![GitHub Follows](https://img.shields.io/github/followers/Singosgu?style=social)
-![GitHub Forks](https://img.shields.io/github/forks/Singosgu/GreaterWMS?style=social)
-![GitHub Watch](https://img.shields.io/github/watchers/Singosgu/GreaterWMS?style=social)
+![GitHub Forks](https://img.shields.io/github/forks/GreaterWMS/GreaterWMS?style=social)
+![GitHub Watch](https://img.shields.io/github/watchers/GreaterWMS/GreaterWMS?style=social)
 
 ![Python](https://img.shields.io/badge/Python-3.9.5-yellowgreen)
 ![Django](https://img.shields.io/badge/Django-3.1.14-yellowgreen)
