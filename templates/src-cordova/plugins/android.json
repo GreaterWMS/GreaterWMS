@@ -1,0 +1,36 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-app-version": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-battery-status": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-insomnia": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    }
+  },
+  "dependent_plugins": {}
+}

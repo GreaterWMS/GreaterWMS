@@ -1,0 +1,33 @@
+{
+  "name": "cordova-plugin-whitelist",
+  "version": "1.3.5",
+  "description": "Cordova Whitelist Plugin",
+  "cordova": {
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": "github:apache/cordova-plugin-whitelist",
+  "bugs": "https://github.com/apache/cordova-plugin-whitelist/issues",
+  "keywords": [
+    "cordova",
+    "whitelist",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "scripts": {
+    "test": "echo \"no tests implemented for this plugin\""
+  },
+  "author": "Apache Software Foundation",
+  "license": "Apache-2.0",
+  "engines": {
+    "cordovaDependencies": {
+      "0.0.0": {
+        "cordova-android": ">=4.0.0"
+      },
+      "1.3.5": {
+        "cordova-android": ">=4.0.0 <10.0.0"
+      }
+    }
+  }
+}
