@@ -85,6 +85,17 @@ example: http://127.0.0.1:8008/docs/
 ~~~shell
 git clone https://github.com/Singosgu/GreaterWMS.git
 ~~~
+
+### docker
+~~~shell
+cd GreaterWMS/
+docker-compose up -d
+# Change Front Request Baseurl
+# baseurl GreaterWMS/templates/public/statics/baseurl.js
+# change the baseurl and wsurl
+docker-compose restart
+~~~
+
 <h4>
   <a href="https://www.56yhz.com/en-us/docs/2/3/">Windows X64</a>
 </h4>

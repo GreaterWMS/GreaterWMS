@@ -89,6 +89,17 @@ OneAPP 理念。 支持扫描设备PDA、手机APP、桌面exe、网站等。
 ~~~shell
 git clone https://github.com/Singosgu/GreaterWMS.git
 ~~~
+
+### docker
+~~~shell
+cd GreaterWMS/
+docker-compose up -d
+# 修改请求地址
+# baseurl GreaterWMS/templates/public/statics/baseurl.js
+# 更改请求地址的baseurl和wsurl
+docker-compose restart
+~~~
+
 <h4>
   <a href="https://www.56yhz.com/zh-hans/docs/39/3/">Windows X64</a>
 </h4>
