@@ -30,7 +30,7 @@ inflection==0.5.1
 itypes==1.2.0
 Jinja2==2.11.3
 MarkupSafe==1.1.1
-numpy==1.21.2
+numpy==1.22.0
 openpyxl==3.0.9
 packaging==20.8
 pandas==1.3.3
