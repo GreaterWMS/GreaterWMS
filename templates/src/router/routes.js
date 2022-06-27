@@ -560,6 +560,196 @@ const routes = [{
           ]
         }
       ]
+    },
+    {
+      path: 'scannerzebra',
+      name: 'scannerzebra',
+      component: () => import('layouts/MainLayoutScannerZebra.vue'),
+      children: [
+        {
+          path: 'zebra',
+          name: '',
+          component: () => import('pages/scan/zebrascan.vue'),
+          children: [
+            {
+              path: '',
+              name: 'zebrascan',
+              component: () => import('pages/IndexScanner.vue')
+            },
+            {
+              path: 'zebra_goodslist',
+              name: 'zebra_goodslist',
+              component: () => import('pages/scan/goodslist.vue')
+            },
+            {
+              path: 'zebra_stocklist',
+              name: 'zebra_stocklist',
+              component: () => import('pages/scan/stocklist.vue')
+            },
+            {
+              path: 'zebra_movetobin',
+              name: 'zebra_movetobin',
+              component: () => import('pages/scan/movetobin.vue')
+            },
+            {
+              path: 'zebra_shipping',
+              name: 'zebra_shipping',
+              component: () => import('pages/scan/shipping.vue')
+            },
+            {
+              path: 'zebra_picking',
+              name: 'zebra_picking',
+              component: () => import('pages/scan/picking.vue')
+            },
+            {
+              path: 'zebra_uptobin',
+              name: 'zebra_uptobin',
+              component: () => import('pages/scan/uptobin.vue')
+            },
+            {
+              path: 'zebra_sorting',
+              name: 'zebra_sorting',
+              component: () => import('pages/scan/sorting.vue')
+            },
+            {
+              path: 'zebra_cyclecount',
+              name: 'zebra_cyclecount',
+              component: () => import('pages/scan/cyclecount.vue')
+            },
+            {
+              path: 'zebra_locationquery',
+              name: 'zebra_locationquery',
+              component: () => import('pages/scan/locationquery.vue')
+            }
+          ]
+        }
+      ]
+    },
+    {
+      path: 'scannerurovo',
+      component: () => import('layouts/MainLayoutScannerUrovo.vue'),
+      children: [
+        {
+          path: 'urovo',
+          name: '',
+          component: () => import('pages/scan/urovoscan.vue'),
+          children: [
+            {
+              path: '',
+              name: 'urovoscan',
+              component: () => import('pages/IndexScanner.vue')
+            },
+            {
+              path: 'urovo_goodslist',
+              name: 'urovo_goodslist',
+              component: () => import('pages/scan/goodslist.vue')
+            },
+            {
+              path: 'urovo_stocklist',
+              name: 'urovo_stocklist',
+              component: () => import('pages/scan/stocklist.vue')
+            },
+            {
+              path: 'urovo_movetobin',
+              name: 'urovo_movetobin',
+              component: () => import('pages/scan/movetobin.vue')
+            },
+            {
+              path: 'urovo_shipping',
+              name: 'urovo_shipping',
+              component: () => import('pages/scan/shipping.vue')
+            },
+            {
+              path: 'urovo_picking',
+              name: 'urovo_picking',
+              component: () => import('pages/scan/picking.vue')
+            },
+            {
+              path: 'urovo_uptobin',
+              name: 'urovo_uptobin',
+              component: () => import('pages/scan/uptobin.vue')
+            },
+            {
+              path: 'urovo_sorting',
+              name: 'urovo_sorting',
+              component: () => import('pages/scan/sorting.vue')
+            },
+            {
+              path: 'urovo_cyclecount',
+              name: 'urovo_cyclecount',
+              component: () => import('pages/scan/cyclecount.vue')
+            },
+            {
+              path: 'urovo_locationquery',
+              name: 'urovo_locationquery',
+              component: () => import('pages/scan/locationquery.vue')
+            }
+          ]
+        }
+      ]
+    },
+    {
+      path: 'scannerseuic',
+      component: () => import('layouts/MainLayoutScannerSeuic.vue'),
+      children: [
+        {
+          path: 'seuic',
+          name: '',
+          component: () => import('pages/scan/seuicscan.vue'),
+          children: [
+            {
+              path: '',
+              name: 'seuicscan',
+              component: () => import('pages/IndexScanner.vue')
+            },
+            {
+              path: 'seuic_goodslist',
+              name: 'seuic_goodslist',
+              component: () => import('pages/scan/goodslist.vue')
+            },
+            {
+              path: 'seuic_stocklist',
+              name: 'seuic_stocklist',
+              component: () => import('pages/scan/stocklist.vue')
+            },
+            {
+              path: 'seuic_movetobin',
+              name: 'seuic_movetobin',
+              component: () => import('pages/scan/movetobin.vue')
+            },
+            {
+              path: 'seuic_shipping',
+              name: 'seuic_shipping',
+              component: () => import('pages/scan/shipping.vue')
+            },
+            {
+              path: 'seuic_picking',
+              name: 'seuic_picking',
+              component: () => import('pages/scan/picking.vue')
+            },
+            {
+              path: 'seuic_uptobin',
+              name: 'seuic_uptobin',
+              component: () => import('pages/scan/uptobin.vue')
+            },
+            {
+              path: 'seuic_sorting',
+              name: 'seuic_sorting',
+              component: () => import('pages/scan/sorting.vue')
+            },
+            {
+              path: 'seuic_cyclecount',
+              name: 'seuic_cyclecount',
+              component: () => import('pages/scan/cyclecount.vue')
+            },
+            {
+              path: 'seuic_locationquery',
+              name: 'seuic_locationquery',
+              component: () => import('pages/scan/locationquery.vue')
+            }
+          ]
+        }
+      ]
     }
   ]
 }]
