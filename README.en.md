@@ -202,4 +202,5 @@ Distributed under the [APL v2](https://opensource.org/licenses/Apache-2.0/) Lice
 <!-- COMMERCIAL LICENSE -->
 ## :old_key: Commercial License
 
-Don't worry about Commercial License. You will get Free Commercial License while you download the source code .
+- If you want to deploy it on AliYun Cloud Server . You should get authorization from GreaterWMS Team .  
+- If you deploy it on other Cloud Server supplier . Don't worry about Commercial License. You will get Free Commercial License while you download the source code .
