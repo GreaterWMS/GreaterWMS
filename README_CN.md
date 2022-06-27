@@ -4,15 +4,15 @@
   <p>完全开源的仓库管理系统</p>
 
 <!-- Badges -->
-[![License: GPLv3](https://img.shields.io/github/license/Singosgu/GreaterWMS)](https://www.gnu.org/licenses/gpl-3.0.html)
-![Release Version (latest Version)](https://img.shields.io/github/v/release/Singosgu/GreaterWMS?color=orange&include_prereleases)
+[![License: APLv2](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)](https://opensource.org/licenses/Apache-2.0/)
+![Release Version (latest Version)](https://img.shields.io/github/v/release/GreaterWMS/GreaterWMS?color=orange&include_prereleases)
 ![QR Code Support](https://img.shields.io/badge/QR--Code-Support-orange.svg)
 ![Docker Support](https://img.shields.io/badge/Docker-Support-orange.svg)
 ![i18n Support](https://img.shields.io/badge/i18n-Support-orange.svg)
 
-![repo size](https://img.shields.io/github/repo-size/Singosgu/GreaterWMS)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Singosgu/GreaterWMS)
-![Contributors](https://img.shields.io/github/contributors/Singosgu/GreaterWMS?color=blue)
+![repo size](https://img.shields.io/github/repo-size/GreaterWMS/GreaterWMS)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/GreaterWMS/GreaterWMS)
+![Contributors](https://img.shields.io/github/contributors/GreaterWMS/GreaterWMS?color=blue)
 
 ![GitHub Org's stars](https://img.shields.io/github/stars/GreaterWMS?style=social)
 ![GitHub Follows](https://img.shields.io/github/followers/Singosgu?style=social)
@@ -198,4 +198,9 @@ quasar build -m cordova -T [ios or android] # /templates/dist/cordova
 <!-- License -->
 ## :warning: License
 
-该项目使用的是 [GPL v3](https://www.gnu.org/licenses/gpl-3.0.html) 协议. 详情查阅[LICENSE.txt](https://github.com/Singosgu/GreaterWMS/blob/master/LICENSE).必须遵守此协议。
+该项目使用的是 [APL v2](https://opensource.org/licenses/Apache-2.0/) 协议. 详情查阅[LICENSE.txt](https://github.com/GreaterWMS/GreaterWMS/blob/master/LICENSE).必须遵守此协议。
+
+<!-- COMMERCIAL LICENSE -->
+## :old_key: 商用授权
+
+不要担心商用授权，下载本软件，即获得了GreaterWMS授予的免费商用授权，无需担心商业使用。
