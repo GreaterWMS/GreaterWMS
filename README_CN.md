@@ -203,4 +203,5 @@ quasar build -m cordova -T [ios or android] # /templates/dist/cordova
 <!-- COMMERCIAL LICENSE -->
 ## :old_key: 商用授权
 
-不要担心商用授权，下载本软件，即获得了GreaterWMS授予的免费商用授权，无需担心商业使用。
+- 如果你要部署到阿里云服务器，你需要得到GreaterWMS团队的授权，否则属于侵权。
+- 如果你要部署到其他非阿里云的服务器上，不要担心商用授权，下载本软件，即获得了GreaterWMS授予的免费商用授权，无需担心商业使用。
