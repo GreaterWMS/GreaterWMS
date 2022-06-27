@@ -4,15 +4,15 @@
   <p>Open Source Inventory Management System </p>
 
 <!-- Badges -->
-[![License: GPLv3](https://img.shields.io/github/license/Singosgu/GreaterWMS)](https://www.gnu.org/licenses/gpl-3.0.html)
-![Release Version (latest Version)](https://img.shields.io/github/v/release/Singosgu/GreaterWMS?color=orange&include_prereleases)
+[![License: APLv2](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)](https://opensource.org/licenses/Apache-2.0/)
+![Release Version (latest Version)](https://img.shields.io/github/v/release/GreaterWMS/GreaterWMS?color=orange&include_prereleases)
 ![QR Code Support](https://img.shields.io/badge/QR--Code-Support-orange.svg)
 ![Docker Support](https://img.shields.io/badge/Docker-Support-orange.svg)
 ![i18n Support](https://img.shields.io/badge/i18n-Support-orange.svg)
 
-![repo size](https://img.shields.io/github/repo-size/Singosgu/GreaterWMS)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Singosgu/GreaterWMS)
-![Contributors](https://img.shields.io/github/contributors/Singosgu/GreaterWMS?color=blue)
+![repo size](https://img.shields.io/github/repo-size/GreaterWMS/GreaterWMS)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/GreaterWMS/GreaterWMS)
+![Contributors](https://img.shields.io/github/contributors/GreaterWMS/GreaterWMS?color=blue)
 
 ![GitHub Org's stars](https://img.shields.io/github/stars/GreaterWMS?style=social)
 ![GitHub Follows](https://img.shields.io/github/followers/Singosgu?style=social)
@@ -197,4 +197,9 @@ If you use GreaterWMS and find it to be useful, please consider making a donatio
 <!-- License -->
 ## :warning: License
 
-Distributed under the [GPL v3](https://www.gnu.org/licenses/gpl-3.0.html) License. See [LICENSE.txt](https://github.com/Singosgu/GreaterWMS/blob/master/LICENSE) for more information.
+Distributed under the [APL v2](https://opensource.org/licenses/Apache-2.0/) License. See [LICENSE.txt](https://github.com/GreaterWMS/GreaterWMS/blob/master/LICENSE) for more information.
+
+<!-- COMMERCIAL LICENSE -->
+## :old_key: Commercial License
+
+Don't worry about Commercial License. You will get Free Commercial License while you download the source code .
