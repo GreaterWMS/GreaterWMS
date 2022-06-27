@@ -32,5 +32,40 @@
       "PACKAGE_NAME": "org.greaterwms.app"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "com-darryncampbell-cordova-plugin-intent": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-media": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-qrscanreceiver": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-screen-orientation": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-seuic-scanner": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "cordova-plugin-ubx": {
+      "PACKAGE_NAME": "org.greaterwms.app"
+    }
+  }
 }
