@@ -1,5 +1,5 @@
 import re, datetime, os, urllib, json, django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_wms.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'greaterwms.settings')
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 django.setup()
 from chat.models import ListModel
