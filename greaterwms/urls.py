@@ -22,7 +22,7 @@ class CustomOpenAPISchemaGenerator(OpenAPISchemaGenerator):
 schema_view = get_schema_view(
     openapi.Info(
        title="GreaterWMS--API Docs",
-       default_version='v2.1.18',
+       default_version='v2.1.20',
        description=
        """
         openid:
