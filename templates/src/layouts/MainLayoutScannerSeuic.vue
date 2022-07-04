@@ -234,6 +234,7 @@ export default {
       login: false,
       link: '',
       login_name: '',
+      login_id: 0,
       check_code: '',
       register: false,
       registerform: {
@@ -270,29 +271,32 @@ export default {
           } else {
             LocalStorage.set('openid', _this.openid)
             SessionStorage.set('axios_check', 'false')
-            getauth('staff/?staff_name=' + _this.login_name + '&check_code=' + _this.check_code)
-              .then(res => {
+            getauth(
+              'staff/?staff_name=' +
+                _this.login_name +
+                '&check_code=' +
+                _this.check_code
+            )
+              .then((res) => {
                 if (res.count === 1) {
                   _this.authin = '1'
                   _this.login = false
+                  _this.login_id = res.results[0].id
                   LocalStorage.set('auth', '1')
                   LocalStorage.set('login_name', _this.login_name)
+                  LocalStorage.set('login_id', res.results[0].id)
                   LocalStorage.set('login_mode', 'user')
                   _this.$q.notify({
                     message: 'Success Login',
                     icon: 'check',
                     color: 'green'
                   })
-                  _this.$router.push({ name: 'seuicscan' })
-                } else {
-                  _this.$q.notify({
-                    message: "No User's Data Or Check Code Wrong",
-                    icon: 'close',
-                    color: 'negative'
-                  })
+                  localStorage.removeItem('menulink')
+                  _this.link = ''
+                  _this.$router.push({ name: 'mobile_index' })
                 }
               })
-              .catch(err => {
+              .catch((err) => {
                 _this.$q.notify({
                   message: err.detail,
                   icon: 'close',
@@ -321,23 +325,27 @@ export default {
         } else {
           SessionStorage.set('axios_check', 'false')
           post('login/', _this.adminlogin)
-            .then(res => {
+            .then((res) => {
               if (res.code === '200') {
                 _this.authin = '1'
                 _this.login = false
                 _this.admin = false
                 _this.openid = res.data.openid
                 _this.login_name = res.data.name
+                _this.login_id = res.data.user_id
                 LocalStorage.set('auth', '1')
                 LocalStorage.set('openid', res.data.openid)
                 LocalStorage.set('login_name', _this.login_name)
+                LocalStorage.set('login_id', _this.login_id)
                 LocalStorage.set('login_mode', 'admin')
                 _this.$q.notify({
                   message: 'Success Login',
                   icon: 'check',
                   color: 'green'
                 })
-                _this.$router.push({ name: 'seuicscan' })
+                localStorage.removeItem('menulink')
+                _this.link = ''
+                _this.$router.push({ name: 'mobile_index' })
               } else {
                 _this.$q.notify({
                   message: res.msg,
@@ -346,7 +354,7 @@ export default {
                 })
               }
             })
-            .catch(err => {
+            .catch((err) => {
               _this.$q.notify({
                 message: err.detail,
                 icon: 'close',
@@ -363,26 +371,31 @@ export default {
       LocalStorage.remove('auth')
       SessionStorage.remove('axios_check')
       LocalStorage.set('login_name', '')
+      LocalStorage.set('login_id', '')
       _this.$q.notify({
         message: 'Success Logout',
         icon: 'check',
         color: 'negative'
       })
       // _this.staffType();
-      _this.$router.push({ name: 'seuicscan' })
+      localStorage.removeItem('menulink')
+      _this.link = ''
+      _this.$router.push({ name: 'mobile_index' })
     },
     Register () {
       var _this = this
       SessionStorage.set('axios_check', 'false')
       post('register/', _this.registerform)
-        .then(res => {
+        .then((res) => {
           if (res.code === '200') {
             _this.register = false
             _this.openid = res.data.openid
             _this.login_name = _this.registerform.name
+            _this.login_id = res.data.user_id
             _this.authin = '1'
             LocalStorage.set('openid', res.data.openid)
             LocalStorage.set('login_name', _this.registerform.name)
+            LocalStorage.set('login_id', _this.login_id)
             LocalStorage.set('auth', '1')
             _this.registerform = {
               name: '',
@@ -395,7 +408,9 @@ export default {
               color: 'green'
             })
             _this.staffType()
-            _this.$router.push({ name: 'seuicscan' })
+            localStorage.removeItem('menulink')
+            _this.link = ''
+            _this.$router.push({ name: 'mobile_index' })
           } else {
             _this.$q.notify({
               message: res.msg,
@@ -404,7 +419,7 @@ export default {
             })
           }
         })
-        .catch(err => {
+        .catch((err) => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
@@ -414,7 +429,7 @@ export default {
     },
     staffType () {
       var _this = this
-      getauth('staff/?staff_name=' + _this.login_name).then(res => {
+      getauth('staff/?staff_name=' + _this.login_name).then((res) => {
         LocalStorage.set('staff_type', res.results[0].staff_type)
       })
     },
