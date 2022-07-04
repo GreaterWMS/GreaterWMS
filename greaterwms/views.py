@@ -6,7 +6,7 @@ import mimetypes, os
 
 baseurl = 'https://production.56yhz.com/media/'
 
-async def vcheck(request):
+def vcheck(request):
     openid = request.GET.get('openid', '')
     platform = request.GET.get('platform', '')
     if platform:
@@ -23,7 +23,7 @@ async def vcheck(request):
     return JsonResponse({"upurl": upurl})
 
 
-async def robots(request):
+def robots(request):
     path = settings.BASE_DIR + request.path_info
     content_type, encoding = mimetypes.guess_type(path)
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
@@ -31,7 +31,7 @@ async def robots(request):
     return resp
 
 
-async def favicon(request):
+def favicon(request):
     path = str(settings.BASE_DIR) + '/static/img/logo.png'
     content_type, encoding = mimetypes.guess_type(path)
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
@@ -39,7 +39,7 @@ async def favicon(request):
     return resp
 
 
-async def css(request):
+def css(request):
     path = str(settings.BASE_DIR) + '/templates/dist/spa' + request.path_info
     content_type, encoding = mimetypes.guess_type(path)
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
@@ -47,7 +47,7 @@ async def css(request):
     return resp
 
 
-async def js(request):
+def js(request):
     path = str(settings.BASE_DIR) + '/templates/dist/spa' + request.path_info
     content_type, encoding = mimetypes.guess_type(path)
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
@@ -55,7 +55,7 @@ async def js(request):
     return resp
 
 
-async def statics(request):
+def statics(request):
     path = str(settings.BASE_DIR) + '/templates/dist/spa' + request.path_info
     content_type, encoding = mimetypes.guess_type(path)
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
@@ -70,15 +70,14 @@ def fonts(request):
     resp['Cache-Control'] = "max-age=864000000000"
     return resp
 
-async def pdf(request):
+def pdf(request):
     path = str(settings.BASE_DIR) + '/templates/dist/spa' + request.path_info
     content_type, encoding = mimetypes.guess_type(path)
     resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
     resp['Cache-Control'] = "max-age=864000000000"
     return resp
 
-
-async def myip(request):
+def myip(request):
     import socket
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(('8.8.8.8', 80))

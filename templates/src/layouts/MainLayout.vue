@@ -421,7 +421,6 @@
             /></q-item-section>
             <q-item-section>电商店铺</q-item-section>
           </q-item>
-          <q-separator v-show="lang === 'zh-hans'" />
         </q-list>
       </q-scroll-area>
     </q-drawer>
