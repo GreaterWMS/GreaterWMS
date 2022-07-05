@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 networks:
   basic:
 services:
@@ -13,12 +13,13 @@ services:
       - '8080:8080'
     volumes:
       - ./templates:/GreaterWMS/templates:rw
-      - ./web_start.sh:/GreaterWMS/templates/web_start.sh
+      - ./web_start.sh:/GreaterWMS/templates/webstart.sh
     command:
       - /bin/bash
       - -c
+      #- "yarn install --force"
       - |
-        bash web_start.sh
+        bash /GreaterWMS/templates/webstart.sh
     networks:
       - basic
   backend:
