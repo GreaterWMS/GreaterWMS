@@ -14,5 +14,5 @@ class ListModel(models.Model):
         verbose_name_plural = "Scanner"
         ordering = ['-id']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk

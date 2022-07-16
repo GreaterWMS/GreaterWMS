@@ -16,7 +16,7 @@ class ListModel(models.Model):
         verbose_name_plural = "Driver"
         ordering = ['driver_name']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk
 
 class DispatchListModel(models.Model):
@@ -30,9 +30,9 @@ class DispatchListModel(models.Model):
 
     class Meta:
         db_table = 'dispatchlist'
-        verbose_name = 'Dispatch_List'
-        verbose_name_plural = "Dispatch_List"
+        verbose_name = 'Dispatch List'
+        verbose_name_plural = "Dispatch List"
         ordering = ['-create_time']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk

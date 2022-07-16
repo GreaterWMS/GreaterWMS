@@ -11,8 +11,8 @@ class ListModel(models.Model):
     class Meta:
         db_table = 'binproperty'
         verbose_name = 'Bin Property'
-        verbose_name_plural = "Bin_Property"
+        verbose_name_plural = "Bin Property"
         ordering = ['bin_property']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk

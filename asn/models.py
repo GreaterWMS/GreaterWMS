@@ -17,11 +17,11 @@ class AsnListModel(models.Model):
 
     class Meta:
         db_table = 'asnlist'
-        verbose_name = 'ASN_List'
-        verbose_name_plural = "ASN_List"
+        verbose_name = 'ASN List'
+        verbose_name_plural = "ASN List"
         ordering = ['-id']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk
 
 class AsnDetailModel(models.Model):
@@ -46,10 +46,10 @@ class AsnDetailModel(models.Model):
 
     class Meta:
         db_table = 'asndetail'
-        verbose_name = 'ASN_Detail'
-        verbose_name_plural = "ASN_Detail"
+        verbose_name = 'ASN Detail'
+        verbose_name_plural = "ASN Detail"
         ordering = ['-id']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk
 

@@ -375,12 +375,7 @@ function barcodeScanned (scanData, timeOfScan) {
 }
 
 function playSuccAudio () {
-  var my_media = new Media(baseurl + 'media/scanned.mp3')
-  my_media.play()
-  setTimeout(function () {
-    my_media.pause()
-    my_media.stop()
-  }, 1000)
+  navigator.notification.beep(1)
 }
 
 export default {

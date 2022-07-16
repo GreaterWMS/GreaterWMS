@@ -1,7 +1,7 @@
 from django.db import models
 
 class ListModel(models.Model):
-    goods_code = models.CharField(max_length=255, verbose_name="Goods Name")
+    goods_code = models.CharField(max_length=255, verbose_name="Goods Code")
     goods_desc = models.CharField(max_length=255, verbose_name="Goods Description")
     goods_supplier = models.CharField(max_length=255, verbose_name="Goods Supplier")
     goods_weight = models.FloatField(default=0, verbose_name="Goods Weight")
@@ -28,9 +28,9 @@ class ListModel(models.Model):
 
     class Meta:
         db_table = 'goods'
-        verbose_name = 'Goods_List'
-        verbose_name_plural = "Goods_List"
+        verbose_name = 'Goods List'
+        verbose_name_plural = "Goods List"
         ordering = ['-id']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk

@@ -15,9 +15,9 @@ class TransportationFeeListModel(models.Model):
 
     class Meta:
         db_table = 'transportationfee'
-        verbose_name = 'Transportation_Fee'
-        verbose_name_plural = "Transportation_Fee"
+        verbose_name = 'Transportation Fee'
+        verbose_name_plural = "Transportation Fee"
         ordering = ['-id']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk
