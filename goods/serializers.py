@@ -34,7 +34,7 @@ class GoodsGetSerializer(serializers.ModelSerializer):
 
 class GoodsPostSerializer(serializers.ModelSerializer):
     openid = serializers.CharField(read_only=False, required=False, validators=[datasolve.openid_validate])
-    goods_code = serializers.CharField(read_only=False, required=True, max_length=15, min_length=1,
+    goods_code = serializers.CharField(read_only=False, required=True, min_length=1,
                                        validators=[datasolve.data_validate])
     goods_desc = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     goods_supplier = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
@@ -66,7 +66,7 @@ class GoodsPostSerializer(serializers.ModelSerializer):
 
 class GoodsUpdateSerializer(serializers.ModelSerializer):
     goods_code = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate],
-                                       max_length=15, min_length=1)
+                                       min_length=1)
     goods_desc = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     goods_supplier = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     goods_weight = serializers.FloatField(read_only=False, required=True, validators=[datasolve.data_validate])
@@ -93,7 +93,7 @@ class GoodsUpdateSerializer(serializers.ModelSerializer):
 
 class GoodsPartialUpdateSerializer(serializers.ModelSerializer):
     goods_code = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate],
-                                       max_length=15, min_length=1)
+                                       min_length=1)
     goods_desc = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     goods_supplier = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     goods_weight = serializers.FloatField(read_only=False, required=False, validators=[datasolve.data_validate])

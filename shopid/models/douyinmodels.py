@@ -3,8 +3,8 @@ from django.db import models
 class ListModel(models.Model):
     openid = models.CharField(max_length=255, verbose_name="user appid")
     appid = models.CharField(max_length=255, verbose_name="user appid")
-    shop_name = models.CharField(max_length=32, verbose_name="店铺名称")
-    shop_mode = models.CharField(max_length=32, verbose_name="店铺平台")
+    shop_name = models.CharField(max_length=255, verbose_name="店铺名称")
+    shop_mode = models.CharField(max_length=255, verbose_name="店铺平台")
     shop_appid = models.CharField(max_length=255, verbose_name="店铺appid")
     shop_app_secret = models.CharField(max_length=255, verbose_name="店铺app secret")
     shop_id = models.CharField(max_length=255, verbose_name='店铺id')
@@ -17,9 +17,9 @@ class ListModel(models.Model):
 
     class Meta:
         db_table = 'douyinshop'
-        verbose_name = 'DouYin_Shop'
-        verbose_name_plural = "DouYin_Shop"
+        verbose_name = 'DouYin Shop'
+        verbose_name_plural = "DouYin Shop"
         ordering = ['id']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk
