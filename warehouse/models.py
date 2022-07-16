@@ -18,5 +18,5 @@ class ListModel(models.Model):
         verbose_name_plural = "Warehouse"
         ordering = ['warehouse_name']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk

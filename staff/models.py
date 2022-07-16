@@ -16,7 +16,7 @@ class ListModel(models.Model):
         verbose_name_plural = "Staff"
         ordering = ['staff_name']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk
 
 class TypeListModel(models.Model):
@@ -28,9 +28,9 @@ class TypeListModel(models.Model):
 
     class Meta:
         db_table = 'stafftype'
-        verbose_name = 'Staff_Type'
-        verbose_name_plural = "Staff_Type"
+        verbose_name = 'Staff Type'
+        verbose_name_plural = "Staff Type"
         ordering = ['staff_type']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk
