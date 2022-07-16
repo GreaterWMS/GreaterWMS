@@ -30,7 +30,7 @@ schema_view = get_schema_view(
         """
        ,
        terms_of_service="https://www.56yhz.com/",
-       license=openapi.License(name="GPLv3"),
+       license=openapi.License(name="APLv2"),
     ),
     public=True,
     generator_class=CustomOpenAPISchemaGenerator,

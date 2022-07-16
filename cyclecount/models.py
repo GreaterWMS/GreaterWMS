@@ -12,11 +12,11 @@ class QTYRecorder(models.Model):
 
     class Meta:
         db_table = 'qtyrecorder'
-        verbose_name = 'QTY_Recorder'
-        verbose_name_plural = "QTY_Recorder"
+        verbose_name = 'QTY Recorder'
+        verbose_name_plural = "QTY Recorder"
         ordering = ['-id']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk
 
 class CyclecountModeDayModel(models.Model):
@@ -34,9 +34,9 @@ class CyclecountModeDayModel(models.Model):
 
     class Meta:
         db_table = 'cyclecountday'
-        verbose_name = 'Cyclecount_Day'
-        verbose_name_plural = "Cyclecount_Day"
+        verbose_name = 'Cyclecount Day'
+        verbose_name_plural = "Cyclecount Day"
         ordering = ['openid']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk

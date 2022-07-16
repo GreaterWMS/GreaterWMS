@@ -1,7 +1,7 @@
 from django.db import models
 
 class StockListModel(models.Model):
-    goods_code = models.CharField(max_length=32, verbose_name="Goods Code")
+    goods_code = models.CharField(max_length=255, verbose_name="Goods Code")
     goods_desc = models.CharField(max_length=255, verbose_name="Goods Description")
     goods_qty = models.BigIntegerField(default=0, verbose_name="Total Qty")
     onhand_stock = models.BigIntegerField(default=0, verbose_name='On Hand Stock')
@@ -25,11 +25,11 @@ class StockListModel(models.Model):
 
     class Meta:
         db_table = 'stocklist'
-        verbose_name = 'Stock_List'
-        verbose_name_plural = "Stock_List"
+        verbose_name = 'Stock List'
+        verbose_name_plural = "Stock List"
         ordering = ['-id']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk
 
 class StockBinModel(models.Model):
@@ -48,9 +48,9 @@ class StockBinModel(models.Model):
 
     class Meta:
         db_table = 'stockbin'
-        verbose_name = 'Stock_Bin'
-        verbose_name_plural = "Stock_Bin"
+        verbose_name = 'Stock Bin'
+        verbose_name_plural = "Stock Bin"
         ordering = ['-id']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk

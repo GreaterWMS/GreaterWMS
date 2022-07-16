@@ -13,9 +13,9 @@ class ListModel(models.Model):
 
     class Meta:
         db_table = 'binsize'
-        verbose_name = 'Bin_Size'
-        verbose_name_plural = "Bin_Size"
+        verbose_name = 'Bin Size'
+        verbose_name_plural = "Bin Size"
         ordering = ['-id']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk

@@ -1,7 +1,7 @@
 from django.db import models
 
 class ListModel(models.Model):
-    goods_class = models.CharField(max_length=32, verbose_name="Goods Class")
+    goods_class = models.CharField(max_length=255, verbose_name="Goods Class")
     creater = models.CharField(max_length=255, verbose_name="Who created")
     openid = models.CharField(max_length=255, verbose_name="Openid")
     is_delete = models.BooleanField(default=False, verbose_name='Delete Label')
@@ -10,9 +10,9 @@ class ListModel(models.Model):
 
     class Meta:
         db_table = 'goodsclass'
-        verbose_name = 'Goods_Class'
-        verbose_name_plural = "Goods_Class"
+        verbose_name = 'Goods Class'
+        verbose_name_plural = "Goods Class"
         ordering = ['goods_class']
 
-    def __str__(self):
+    def __int__(self):
         return self.pk

@@ -16,3 +16,12 @@ class Users(models.Model):
     avatar = models.CharField(max_length=100, default='/static/img/user.jpg', verbose_name='Staff Avatar')
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='Create Time')
     update_time = models.DateTimeField(auto_now=True, verbose_name='Update Time')
+
+    class Meta:
+        db_table = 'user_profile'
+        verbose_name = 'User Profile'
+        verbose_name_plural = "User Profile"
+        ordering = ['-id']
+
+    def __int__(self):
+        return self.pk
