@@ -64,16 +64,4 @@ if not supplier_en_file:
     df = supplier_en.set_index("Supplier Name")
     df.to_excel(supplier_en_path)
 
-try:
-    license_dir = Path(os.path.join(settings.BASE_DIR, 'Authorization'))
-    if license_dir.is_dir() is False:
-        os.mkdir(os.path.join(settings.BASE_DIR, 'Authorization'))
-    path = os.path.join(settings.BASE_DIR, 'Authorization/License.txt')
-    if os.path.exists(path) is False:
-        response = requests.post('https://data.56yhz.com/area_v2/')
-        with open(path, 'w') as f:
-            f.write(str(eval(response.text).get('license_code')))
-        f.close()
-except:
-    pass
 print('Welcome To GreaterWMS')
