@@ -27,6 +27,7 @@ incremental==21.3.0
 inflection==0.5.1
 itypes==1.2.0
 Jinja2==3.1.2
+joblib==1.1.0
 MarkupSafe==2.1.1
 numpy==1.23.1
 openpyxl==3.0.10
@@ -45,9 +46,12 @@ pytz==2022.1
 requests==2.25.1
 ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.6
+scikit-learn==1.1.1
+scipy==1.8.1
 service-identity==21.1.0
 six==1.16.0
 sqlparse==0.4.2
+threadpoolctl==3.1.0
 toml==0.10.2
 Twisted==22.4.0
 twisted-iocpsupport==1.0.2
