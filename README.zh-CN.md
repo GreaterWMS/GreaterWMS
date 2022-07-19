@@ -4,7 +4,7 @@
   <p>完全开源的仓库管理系统</p>
 
 <!-- Badges -->
-![License: AGPLv3](https://img.shields.io/github/license/Singosgu/GreaterWMS)
+[![License: APLv2](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)](https://opensource.org/licenses/Apache-2.0/)
 ![Release Version (latest Version)](https://img.shields.io/github/v/release/GreaterWMS/GreaterWMS?color=orange&include_prereleases)
 ![QR Code Support](https://img.shields.io/badge/QR--Code-Support-orange.svg)
 ![Docker Support](https://img.shields.io/badge/Docker-Support-orange.svg)
@@ -198,13 +198,13 @@ quasar build -m cordova -T [ios or android] # /templates/dist/cordova
 <!-- License -->
 ## :warning: License
 
-- 该项目使用的是 AGPLv3 协议. 详情查阅[LICENSE.txt](https://github.com/GreaterWMS/GreaterWMS/blob/master/LICENSE).必须遵守此协议。
+该项目使用的是 [APL v2](https://opensource.org/licenses/Apache-2.0/) 协议. 详情查阅[LICENSE.txt](https://gitee.com/GreaterWMS/GreaterWMS/blob/master/LICENSE).必须遵守此协议。
+
 
 <!-- COMMERCIAL LICENSE -->
 ## :old_key: 商用授权
 
-- 你需要开源
-- 或者联系我们：mail@56yhz.com
+- 不要担心商用授权，下载本软件，即获得了GreaterWMS授予的免费商用授权，无需担心商业使用。
 
 <!-- ABOUT AUTHOR -->
 ## :bowing_man: 关于作者
