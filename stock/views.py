@@ -434,8 +434,8 @@ class StockBinViewSet(viewsets.ModelViewSet):
                     raise APIException({"detail": "Move Qty must < Bin Goods Qty"})
                 else:
                     pass
-        headers = self.get_success_headers(data[j])
-        return Response(data[j], status=200, headers=headers)
+        headers = self.get_success_headers(data)
+        return Response(data, status=200, headers=headers)
 
 class FileListDownloadView(viewsets.ModelViewSet):
     renderer_classes = (FileListRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
