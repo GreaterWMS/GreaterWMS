@@ -4,7 +4,7 @@
   <p>Open Source Inventory Management System </p>
 
 <!-- Badges -->
-[![License: AGPLv2](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)](https://opensource.org/licenses/Apache-2.0/)
+![License: AGPLv3](https://img.shields.io/github/license/Singosgu/GreaterWMS)
 ![Release Version (latest Version)](https://img.shields.io/github/v/release/GreaterWMS/GreaterWMS?color=orange&include_prereleases)
 ![QR Code Support](https://img.shields.io/badge/QR--Code-Support-orange.svg)
 ![Docker Support](https://img.shields.io/badge/Docker-Support-orange.svg)
@@ -197,9 +197,10 @@ If you use GreaterWMS and find it to be useful, please consider making a donatio
 <!-- License -->
 ## :warning: License
 
-Distributed under the [APL V2](https://opensource.org/licenses/Apache-2.0/) License. See [LICENSE.txt](https://github.com/GreaterWMS/GreaterWMS/blob/master/LICENSE) for more information.
+- Distributed under the AGPLv3 License. See [LICENSE.txt](https://github.com/GreaterWMS/GreaterWMS/blob/master/LICENSE) for more information.
 
 <!-- COMMERCIAL LICENSE -->
 ## :old_key: Commercial License
 
-- Don't worry about Commercial License. You will get Free Commercial License while you download the source code .
+- You should open source
+- Or Contact Us: mail.56yhz.com
