@@ -49,9 +49,9 @@
 [//]: # (About the Project)
 ## :star2: About the Project
 
-This Inventory management system is the currently Ford Asia Pacific after-sales logistics warehousing supply chain process .
-After I leave Ford , I start this project . In order to help some who need it . 
-OneAPP Type . Support scanner PDA, mobile APP, desktop exe, website as well .
+This Inventory management system is the currently Ford Asia Pacific after-sales logistics warehousing supply chain process.
+After I leave Ford, I start this project in order to help some who need it. 
+OneAPP Type. Support scanner PDA, mobile APP, desktop exe, website as well.
 
 [//]: # (Function)
 ## :dart: Function
@@ -72,9 +72,9 @@ OneAPP Type . Support scanner PDA, mobile APP, desktop exe, website as well .
 * [x] API Documents
 
 [//]: # (development)
-## :eyes: Where is APIs Documents:
+## :eyes: Where are the APIs Documents:
 
-- After installed you can find APIs Documents from url /docs/
+- After installing, you can find APIs Documents from url /docs/
 
 ~~~shell
 example: http://127.0.0.1:8008/docs/
@@ -141,7 +141,7 @@ quasar dev -m electron
 
 - Mobile APP Dev Run
 
-You should connect your mobile . Sometime it need you choose the ip , the ip is your PC's internal ip . 
+You should connect your mobile. Sometimes, it needs you to choose the IP, which is your PC's internal IP. 
 The Android APP installed on the mobile phone is the mobile page, and the installation on the scanning device is the scanning page.
 
 ~~~shell
@@ -183,9 +183,9 @@ quasar build -m cordova -T [ios or android] # /templates/dist/cordova
   <a href="https://www.56yhz.com/en-us/docs/2/10/">Nginx Config</a>
 </h4>
 
-If the server has SSL enabled, please use https and wss, if SSL is not enabled, use http and ws
+If the server has SSL enabled, please use HTTPS and WSS, if SSL is not enabled, use HTTP and WS
 
-The front-end code needs to be rebuilt after modification
+The front-end code needs to be rebuilt after modification.
 
 <!-- Sponsor -->
 ## :money_with_wings: Sponsor
@@ -202,4 +202,4 @@ Distributed under the [APL V2](https://opensource.org/licenses/Apache-2.0/) Lice
 <!-- COMMERCIAL LICENSE -->
 ## :old_key: Commercial License
 
-- Don't worry about Commercial License. You will get Free Commercial License while you download the source code .
+- Don't worry about Commercial License. You will get Free Commercial License while you download the source code.
