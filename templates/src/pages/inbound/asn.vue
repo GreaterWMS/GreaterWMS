@@ -196,17 +196,31 @@
         </q-bar>
         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
           <q-select
+            filled
+            use-input
+            fill-input
+            hide-selected
+            input-debounce="0"
             dense
             outlined
             square
-            debounce="500"
             v-model="newFormData.supplier"
             :options="supplier_list"
+            @filter="filterFnS"
+            @input-value="setModel"
             :label="$t('baseinfo.view_supplier.supplier_name')"
             style="margin-bottom: 5px"
             :rules="[val => (val && val.length > 0) || error1]"
             @keyup.enter="isEdit ? editDataSubmit() : newDataSubmit()"
-          />
+          >
+            <template v-slot:Sno-option>
+              <q-item>
+                <q-item-section class="text-grey">
+                  No Result
+                </q-item-section>
+              </q-item>
+            </template>
+          </q-select>
           <q-input
             dense
             outlined
@@ -730,6 +744,7 @@ export default {
       bar_code: '',
       warehouse_detail: {},
       supplier_list: [],
+      supplier_list1: [],
       supplier_detail: {},
       columns: [
         { name: 'asn_code', required: true, label: this.$t('inbound.view_asn.asn_code'), align: 'left', field: 'asn_code' },
@@ -822,10 +837,10 @@ export default {
               _this.table_list.push(item)
             })
             _this.supplier_list = res.supplier_list
+            _this.supplier_list1 = res.supplier_list
             _this.pathname_previous = res.previous
             _this.pathname_next = res.next
             _this.goodsListData = res.results
-            console.log(this.goodsListData, 777)
           })
           .catch(err => {
             _this.$q.notify({
@@ -860,6 +875,7 @@ export default {
               _this.table_list.push(item)
             })
             _this.supplier_list = res.supplier_list
+            _this.supplier_list1 = res.supplier_list
             _this.pathname_previous = res.previous
             _this.pathname_next = res.next
           })
@@ -896,6 +912,7 @@ export default {
               _this.table_list.push(item)
             })
             _this.supplier_list = res.supplier_list
+            _this.supplier_list1 = res.supplier_list
             _this.pathname_previous = res.previous
             _this.pathname_next = res.next
           })
@@ -932,6 +949,7 @@ export default {
               _this.table_list.push(item)
             })
             _this.supplier_list = res.supplier_list
+            _this.supplier_list1 = res.supplier_list
             _this.pathname_previous = res.previous
             _this.pathname_next = res.next
           })
@@ -1303,6 +1321,18 @@ export default {
       }
       update(() => {
         this.options = this.options1
+      })
+    },
+    setModel (val) {
+      const _this = this
+      _this.newformData.supplier = val
+    },
+    filterFnS (val, update, abort) {
+      var _this = this
+      update(() => {
+        const needle = val.toLocaleLowerCase()
+        const data_filter = _this.supplier_list1
+        this.supplier_list = data_filter.filter(v => v.toLocaleLowerCase().indexOf(needle) > -1)
       })
     },
     sortedData (e) {
