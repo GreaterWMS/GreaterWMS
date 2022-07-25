@@ -252,17 +252,31 @@
         </q-bar>
         <q-card-section style="max-height: 325px; width: 400px" class="scroll">
           <q-select
+            filled
+            use-input
+            fill-input
+            hide-selected
+            input-debounce="0"
             dense
             outlined
             square
-            debounce="500"
             v-model="newFormData.customer"
             :options="customer_list"
+            @filter="filterFnS"
+            @input-value="setModel"
             :label="$t('baseinfo.view_customer.customer_name')"
             style="margin-bottom: 5px"
             :rules="[val => (val && val.length > 0) || error1]"
             @keyup.enter="isEdit ? editDataSubmit() : newDataSubmit()"
-          />
+          >
+            <template v-slot:Sno-option>
+              <q-item>
+                <q-item-section class="text-grey">
+                  No Result
+                </q-item-section>
+              </q-item>
+            </template>
+          </q-select>
           <q-input
             dense
             outlined
@@ -905,6 +919,7 @@ export default {
       pickinglist_check: 0,
       warehouse_detail: {},
       customer_list: [],
+      customer_list1: [],
       driver_list: [],
       customer_detail: {},
       columns: [
@@ -1043,6 +1058,7 @@ export default {
               }
             })
             _this.customer_list = res.customer_list
+            _this.customer_list1 = res.customer_list
             _this.pathname_previous = res.previous
             _this.pathname_next = res.next
           })
@@ -1081,6 +1097,7 @@ export default {
               _this.table_list.push(item)
             })
             _this.customer_list = res.customer_list
+            _this.customer_list1 = res.customer_list
             _this.pathname_previous = res.previous
             _this.pathname_next = res.next
           })
@@ -1119,6 +1136,7 @@ export default {
               _this.table_list.push(item)
             })
             _this.customer_list = res.customer_list
+            _this.customer_list1 = res.customer_list
             _this.pathname_previous = res.previous
             _this.pathname_next = res.next
           })
@@ -1157,6 +1175,7 @@ export default {
               _this.table_list.push(item)
             })
             _this.customer_list = res.customer_list
+            _this.customer_list1 = res.customer_list
             _this.pathname_previous = res.previous
             _this.pathname_next = res.next
           })
@@ -1550,6 +1569,18 @@ export default {
       }
       update(() => {
         this.options = this.options1
+      })
+    },
+    setModel (val) {
+      const _this = this
+      _this.newformData.customer = val
+    },
+    filterFnS (val, update, abort) {
+      var _this = this
+      update(() => {
+        const needle = val.toLocaleLowerCase()
+        const data_filter = _this.customer_list1
+        this.customer_list = data_filter.filter(v => v.toLocaleLowerCase().indexOf(needle) > -1)
       })
     },
     PrintPickingList (e) {
