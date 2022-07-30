@@ -12,7 +12,7 @@
   "dependencies": {
     "@quasar/cli": "^1.2.1",
     "@quasar/extras": "^1.10.11",
-    "ansi-html": "^0.0.7",
+    "ansi-html": "^0.0.8",
     "ansi-regex": "^6.0.1",
     "axios": "^0.21.2",
     "core-js": "^3.14.0",
