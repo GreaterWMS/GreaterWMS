@@ -56,7 +56,7 @@ import { getauth } from 'boot/axios_request'
 import { LocalStorage, Screen } from 'quasar'
 
 export default {
-  name: 'Pagezebra_locationquery',
+  name: 'Page_locationquery',
   data () {
     return {
       openid: '',

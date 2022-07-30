@@ -27,6 +27,7 @@ class AsnDetailFilter(FilterSet):
             "asn_status": ['exact', 'iexact'],
             "supplier": ['exact', 'iexact', 'contains', 'icontains'],
             "goods_code": ['exact', 'iexact', 'contains', 'icontains'],
+            "goods_desc": ['exact', 'iexact', 'contains', 'icontains'],
             "goods_qty": ['exact', 'iexact', 'gt', 'lt', 'gte', 'lte'],
             "goods_actual_qty": ['exact', 'iexact', 'gt', 'lt', 'gte', 'lte'],
             "sorted_qty": ['exact', 'iexact', 'gt', 'lt', 'gte', 'lte'],

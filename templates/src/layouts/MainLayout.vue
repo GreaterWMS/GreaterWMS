@@ -1466,28 +1466,6 @@ export default {
         location.reload()
       }, 1)
     },
-    NewVersionignore () {
-      var _this = this
-      _this.verCheck = false
-      _this.version = ''
-    },
-    NewVersionDownload () {
-      var _this = this
-      _this.version = ''
-      require('electron').ipcRenderer.send('downloadUpdate')
-      console.log(_this.processpercent)
-      if (_this.processpercent === 100) {
-        _this.verCheck = false
-        _this.downloadprocess = false
-      } else {
-        _this.downloadprocess = true
-      }
-    },
-    NewVersionUpdate () {
-      var _this = this
-      require('electron').ipcRenderer.send('updateNow')
-      _this.updateNow = false
-    },
     isLoggedIn () {
       if (this.$q.localStorage.getItem('openid')) {
         this.login = true
@@ -1525,44 +1503,6 @@ export default {
   mounted () {
     var _this = this
     _this.link = localStorage.getItem('menulink')
-    if (Platform.is.electron) {
-      if (LocalStorage.has('openid')) {
-        versioncheck(
-          'vcheck/' +
-            '?openid=' +
-            LocalStorage.getItem('openid') +
-            '&platform=' +
-            process.platform
-        )
-          .then((res) => {
-            if (!res.detail) {
-              const ipcRenderer = require('electron').ipcRenderer
-              window.setTimeout(() => {
-                ipcRenderer.send('checkForUpdate', res.upurl.toString())
-              }, 1000)
-              ipcRenderer.on('message', (event, arg) => {
-                if (arg.cmd === 'update-available') {
-                  _this.verCheck = true
-                  _this.version = arg.message.version
-                } else if (arg.cmd === 'download-progress') {
-                  _this.processpercent = arg.message.percent
-                } else if (arg.cmd === 'update-downloaded') {
-                  _this.processpercent = 100
-                  _this.verCheck = false
-                  _this.downloadprocess = false
-                  _this.updateNow = true
-                } else if (arg.cmd === 'check') {
-                  console.log(arg)
-                }
-              })
-              clearTimeout()
-            }
-          })
-          .catch((err) => {
-            console.log(err)
-          })
-      }
-    }
     Bus.$on('needLogin', (val) => {
       _this.isLoggedIn()
     })
@@ -1577,14 +1517,6 @@ export default {
     }
   },
   beforeDestroy () {
-    if (Platform.is.electron) {
-      require('electron').ipcRenderer.removeAllListeners([
-        'message',
-        'updateNow',
-        'downloadUpdate',
-        'checkForUpdate'
-      ])
-    }
     Bus.$off('needLogin')
   },
   destroyed () {

@@ -17,6 +17,7 @@ class QTYRecorderListFilter(FilterSet):
             "mode_code": ['exact', 'iexact', 'contains', 'icontains'],
             "bin_name": ['exact', 'iexact', 'contains', 'icontains'],
             "goods_code": ['exact', 'iexact', 'contains', 'icontains'],
+            "goods_desc": ['exact', 'iexact', 'contains', 'icontains'],
             "goods_qty": ['exact', 'iexact', 'gt', 'gte', 'lt', 'lte', 'range'],
             "creater": ['exact', 'iexact', 'contains', 'icontains'],
             "create_time": ['year', 'month', 'day', 'week_day', 'gt', 'gte', 'lt', 'lte', 'range'],

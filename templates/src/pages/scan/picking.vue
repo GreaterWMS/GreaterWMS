@@ -26,7 +26,16 @@
                 <td :class="{'scan-background text-center': item.bin_name === bin_scan, 'text-center': item.bin_name !== bin_scan }">{{ item.bin_name }}</td>
                 <td :class="{'scan-background text-center': item.bin_name === bin_scan && item.goods_code === goods_scan, 'text-center': item.bin_name !== bin_scan && item.goods_code !== goods_scan }">{{ item.goods_code }}</td>
                 <td :class="{'scan-background text-center': item.bin_name === bin_scan && item.goods_code === goods_scan, 'text-center': item.bin_name !== bin_scan && item.goods_code !== goods_scan }">{{ item.pick_qty }}</td>
-                <td class="text-center">{{ item.picked_qty }}</td>
+                <td class="text-center">
+                  <q-input
+                  dense
+                  outlined
+                  square
+                  type="number"
+                  v-model.number="item.picked_qty"
+                  :label="picking_qty"
+                  autofocus
+                /></td>
               </tr>
             </template>
           </tbody>
@@ -42,7 +51,7 @@ import { getauth, putauth } from 'boot/axios_request'
 import { LocalStorage, Screen } from 'quasar'
 
 export default {
-  name: 'Pagezebra_picking',
+  name: 'Page_picking',
   data () {
     return {
       openid: '',

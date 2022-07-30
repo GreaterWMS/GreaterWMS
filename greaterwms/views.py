@@ -4,24 +4,6 @@ from wsgiref.util import FileWrapper
 from rest_framework.exceptions import APIException
 import mimetypes, os
 
-baseurl = 'https://production.56yhz.com/media/'
-
-def vcheck(request):
-    openid = request.GET.get('openid', '')
-    platform = request.GET.get('platform', '')
-    if platform:
-        if openid:
-            folder = os.path.exists(os.path.join(settings.BASE_DIR, 'media/' + openid + '/' + platform + '/latest.yml'))
-            if not folder:
-                upurl = baseurl + platform
-            else:
-                upurl = baseurl + openid + '/' + platform
-        else:
-            return JsonResponse({"detail": "Please Enter Your Openid"})
-    else:
-        return JsonResponse({"detail": "Please Choose Your Platform"})
-    return JsonResponse({"upurl": upurl})
-
 def robots(request):
     path = settings.BASE_DIR + request.path_info
     content_type, encoding = mimetypes.guess_type(path)

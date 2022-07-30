@@ -230,7 +230,7 @@ module.exports = function (/* ctx */) {
 
         appId: 'com.electron.greaterwms',
         productName: 'GreaterWMS',
-        copyright: '2018SR517685',
+        copyright: '2022SR0153577',
         publish: [
           {
             provider: 'generic',
