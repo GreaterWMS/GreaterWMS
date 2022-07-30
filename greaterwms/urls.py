@@ -43,7 +43,6 @@ def return_static(request, path, insecure=True, **kwargs):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='dist/spa/index.html')),
-    path('vcheck/', views.vcheck, name='vcheck'),
     path('myip/', views.myip, name='myip'),
     path('asn/', include('asn.urls')),
     path('dn/', include('dn.urls')),
@@ -81,7 +80,6 @@ urlpatterns = [
     re_path('^js/.*$', views.js, name='js'),
     re_path('^statics/.*$', views.statics, name='statics'),
     re_path('^fonts/.*$', views.fonts, name='fonts'),
-    re_path('^pdf/.*$', views.pdf, name='pdf'),
     re_path(r'^robots.txt', views.robots, name='robots'),
     re_path(r'^static/(?P<path>.*)$', return_static, name='static'),
     re_path(r'^media/(?P<path>.*)$', static_serve, {'document_root': settings.MEDIA_ROOT}),
