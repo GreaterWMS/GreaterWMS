@@ -29,6 +29,7 @@ class AsnDetailModel(models.Model):
     asn_status = models.BigIntegerField(default=1, verbose_name="ASN Status")
     supplier = models.CharField(max_length=255, verbose_name="ASN Supplier")
     goods_code = models.CharField(max_length=255, verbose_name="Goods Code")
+    goods_desc = models.CharField(max_length=255, verbose_name="Goods Description")
     goods_qty = models.BigIntegerField(default=0, verbose_name="Goods QTY")
     goods_actual_qty = models.BigIntegerField(default=0, verbose_name="Goods Actual QTY")
     sorted_qty = models.BigIntegerField(default=0, verbose_name="Sorted QTY")

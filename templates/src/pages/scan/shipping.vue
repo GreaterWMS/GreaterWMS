@@ -48,7 +48,7 @@ import { getauth, postauth } from 'boot/axios_request'
 import { LocalStorage, Screen } from 'quasar'
 
 export default {
-  name: 'Pagezebra_shipping',
+  name: 'Page_shipping',
   data () {
     return {
       openid: '',
@@ -210,6 +210,7 @@ export default {
             icon: 'check',
             color: 'green'
           })
+          setTimeout(function () { location.reload() }, 1000)
         })
         .catch(err => {
           _this.$q.notify({

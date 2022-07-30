@@ -21,7 +21,6 @@ export default {
   beforeCreate () {
     var _this = this
     if (Platform.is.cordova) {
-      console.log(window.device)
       if (window.device) {
         if (window.device.manufacturer === 'Zebra Technologies') {
           LocalStorage.set('device', 2)

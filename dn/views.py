@@ -233,6 +233,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                                               dn_code=str(data['dn_code']),
                                               customer=str(data['customer']),
                                               goods_code=str(data['goods_code'][j]),
+                                              goods_desc=str(goods_detail.goods_desc),
                                               goods_qty=int(data['goods_qty'][j]),
                                               goods_weight=goods_weight,
                                               goods_volume=goods_volume,
@@ -336,6 +337,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                                               dn_code=str(data['dn_code']),
                                               customer=str(data['customer']),
                                               goods_code=str(data['goods_code'][j]),
+                                              goods_desc=str(goods_detail.goods_desc),
                                               goods_qty=int(data['goods_qty'][j]),
                                               goods_weight=goods_weight,
                                               goods_volume=goods_volume,
@@ -1564,6 +1566,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
             for i in range(len(data['goodsData'])):
                 pick_qty_change = PickingListModel.objects.filter(openid=self.request.auth.openid,
                                                                   dn_code=str(data['dn_code']),
+                                                                  picking_status=0,
                                                                   t_code=str(data['goodsData'][i].get('t_code'))).first()
                 if int(data['goodsData'][i].get('pick_qty')) < 0:
                     raise APIException({"detail": str(data['goodsData'][i].get('goods_code')) + " Picked Qty Must >= 0"})
@@ -1586,11 +1589,13 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                                          t_code=str(data['goodsData'][j].get('t_code'))).first()
                 pick_qty_change = PickingListModel.objects.filter(openid=self.request.auth.openid,
                                                                   dn_code=str(data['dn_code']),
+                                                                  picking_status=0,
                                                                   t_code=str(data['goodsData'][j].get('t_code'))).first()
                 qtychangerecorder.objects.create(openid=self.request.auth.openid,
                                                  mode_code=dn_detail.dn_code,
                                                  bin_name=bin_qty_change.bin_name,
                                                  goods_code=bin_qty_change.goods_code,
+                                                 goods_desc=bin_qty_change.goods_desc,
                                                  goods_qty=0 - int(data['goodsData'][j].get('pick_qty')),
                                                  creater=str(staff_name)
                                                  )
@@ -1608,6 +1613,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                     goods_qty_change.pick_stock = goods_qty_change.pick_stock - int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock + int(data['goodsData'][j].get('pick_qty'))
                     pick_qty_change.picked_qty = int(data['goodsData'][j].get('pick_qty'))
+                    pick_qty_change.picking_status = 1
                     bin_qty_change.pick_qty = bin_qty_change.pick_qty - int(data['goodsData'][j].get('pick_qty'))
                     bin_qty_change.picked_qty = bin_qty_change.picked_qty + int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.save()
@@ -1619,6 +1625,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                     goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + (int(pick_qty_change.pick_qty) - int(
                         data['goodsData'][j].get('pick_qty')))
                     pick_qty_change.picked_qty = int(data['goodsData'][j].get('pick_qty'))
+                    pick_qty_change.picking_status = 1
                     bin_qty_change.pick_qty = bin_qty_change.pick_qty - pick_qty_change.pick_qty
                     bin_qty_change.picked_qty = bin_qty_change.picked_qty + int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.save()
@@ -1642,6 +1649,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
             for i in range(len(data['goodsData'])):
                 pick_qty_change = PickingListModel.objects.filter(openid=self.request.auth.openid,
                                                                   dn_code=str(data['dn_code']),
+                                                                  picking_status=0,
                                                                   t_code=str(
                                                                       data['goodsData'][i].get('t_code'))).first()
                 if int(data['goodsData'][i].get('pick_qty')) < 0:
@@ -1668,12 +1676,14 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                                          t_code=str(data['goodsData'][j].get('t_code'))).first()
                 pick_qty_change = PickingListModel.objects.filter(openid=self.request.auth.openid,
                                                                   dn_code=str(data['dn_code']),
+                                                                  picking_status=0,
                                                                   t_code=str(
                                                                       data['goodsData'][j].get('t_code'))).first()
                 qtychangerecorder.objects.create(openid=self.request.auth.openid,
                                                  mode_code=dn_detail.dn_code,
                                                  bin_name=bin_qty_change.bin_name,
                                                  goods_code=bin_qty_change.goods_code,
+                                                 goods_desc=bin_qty_change.goods_desc,
                                                  goods_qty=0 - int(data['goodsData'][j].get('pick_qty')),
                                                  creater=str(staff_name)
                                                  )
@@ -1693,6 +1703,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock + int(
                         data['goodsData'][j].get('pick_qty'))
                     pick_qty_change.picked_qty = int(data['goodsData'][j].get('pick_qty'))
+                    pick_qty_change.picking_status = 1
                     bin_qty_change.pick_qty = bin_qty_change.pick_qty - int(data['goodsData'][j].get('pick_qty'))
                     bin_qty_change.picked_qty = bin_qty_change.picked_qty + int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.save()
@@ -1703,6 +1714,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock + int(
                         data['goodsData'][j].get('pick_qty'))
                     pick_qty_change.picked_qty = int(data['goodsData'][j].get('pick_qty'))
+                    pick_qty_change.picking_status = 1
                     bin_qty_change.pick_qty = bin_qty_change.pick_qty - pick_qty_change.pick_qty
                     bin_qty_change.picked_qty = bin_qty_change.picked_qty + int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.save()
