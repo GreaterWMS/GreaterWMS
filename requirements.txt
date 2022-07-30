@@ -1,4 +1,4 @@
-asgihandler==0.3.2
+asgihandler==0.3.3
 asgiref==3.5.2
 attrs==21.4.0
 autobahn==22.6.1
