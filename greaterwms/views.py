@@ -46,13 +46,6 @@ def fonts(request):
     resp['Cache-Control'] = "max-age=864000000000"
     return resp
 
-def pdf(request):
-    path = str(settings.BASE_DIR) + '/templates/dist/spa' + request.path_info
-    content_type, encoding = mimetypes.guess_type(path)
-    resp = StreamingHttpResponse(FileWrapper(open(path, 'rb')), content_type=content_type)
-    resp['Cache-Control'] = "max-age=864000000000"
-    return resp
-
 def myip(request):
     import socket
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
