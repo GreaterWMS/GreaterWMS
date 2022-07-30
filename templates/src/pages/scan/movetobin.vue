@@ -28,7 +28,13 @@
               <tr v-for='(item, index) in table_list' :key='index'>
                 <td :class="{'scan-background text-center': item.t_code === t_code, 'text-center': item.t_code !== t_code }">{{ item.goods_code }}</td>
                 <td :class="{'scan-background text-center': item.t_code === t_code, 'text-center': item.t_code !== t_code }">{{ item.goods_qty }}</td>
-                <td class="text-center">{{ item.move_qty }}</td>
+                <td class="text-center">
+                  <input
+                  v-model.number="item.move_qty"
+                  type="number"
+                  :label="move_qty_label"
+                  @input="inputMoveData(item)"
+                /></td>
               </tr>
             </template>
           </tbody>
@@ -44,7 +50,7 @@ import { getauth, putauth } from 'boot/axios_request'
 import { LocalStorage, Screen } from 'quasar'
 
 export default {
-  name: 'Pagezebra_movetobin',
+  name: 'Page_movetobin',
   data () {
     return {
       openid: '',
@@ -247,8 +253,29 @@ export default {
         })
       })
     },
+    inputMoveData (e) {
+      var _this = this
+      if (_this.movedata.length === 0) {
+        _this.movedata.push(e)
+      } else {
+        _this.movedata.forEach((item, index) => {
+          if (e.t_code === item.t_code) {
+            if (e.move_qty > item.move_qty) {
+              _this.movedata.splice(index, 1)
+              _this.movedata.push(e)
+            }
+          } else {
+            _this.movedata.push(e)
+          }
+        })
+      }
+    },
     moveSubmit () {
       var _this = this
+      _this.movedata.forEach(item => {
+        item.bin_name = _this.frombin
+        item.move_to_bin = _this.tobin
+      })
       putauth('stock/bin/', _this.movedata).then(res => {
         _this.$q.notify({
           message: 'Success Move To Bin' + _this.tobin,

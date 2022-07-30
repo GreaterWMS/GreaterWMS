@@ -1332,7 +1332,7 @@ export default {
       update(() => {
         const needle = val.toLocaleLowerCase()
         const data_filter = _this.supplier_list1
-        this.supplier_list = data_filter.filter(v => v.toLocaleLowerCase().indexOf(needle) > -1)
+        _this.supplier_list = data_filter.filter(v => v.toLocaleLowerCase().indexOf(needle) > -1)
       })
     },
     sortedData (e) {

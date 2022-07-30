@@ -772,7 +772,7 @@
 </template>
 <script>
 import { getauth, post, wsurl } from 'boot/axios_request'
-import { date, LocalStorage, SessionStorage, openURL } from 'quasar'
+import {date, LocalStorage, SessionStorage, openURL, Platform} from 'quasar'
 import Bus from 'boot/bus.js'
 
 var ws
@@ -1330,10 +1330,25 @@ export default {
   },
   mounted () {
     var _this = this
-    _this.link = localStorage.getItem('menulink')
-    Bus.$on('needLogin', (val) => {
-      _this.isLoggedIn()
-    })
+    if (Platform.is.cordova) {
+      if (window.device) {
+        if (window.device.manufacturer === 'Zebra Technologies') {
+          LocalStorage.set('device', 2)
+          _this.$router.push({ name: 'zebrascan' })
+        } else if (window.device.manufacturer === 'Urovo' || window.device.manufacturer === 'ubx') {
+          LocalStorage.set('device', 2)
+          _this.$router.push({ name: 'urovoscan' })
+        } else if (window.device.manufacturer === 'SEUIC') {
+          LocalStorage.set('device', 2)
+          _this.$router.push({ name: 'seuicscan' })
+        }
+      }
+    } else {
+      _this.link = localStorage.getItem('menulink')
+      Bus.$on('needLogin', (val) => {
+        _this.isLoggedIn()
+      })
+    }
   },
   updated () {
     if (document.getElementById('chat_scroll')) {

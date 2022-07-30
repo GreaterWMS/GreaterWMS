@@ -26,7 +26,13 @@
             <tr v-for='(item, index) in table_list' :key='index'>
               <td :class="{'scan-background text-center': item.bin_name === bin_scan, 'text-center': item.bin_name !== bin_scan }">{{ item.bin_name }}</td>
               <td :class="{'scan-background text-center': item.bin_name === bin_scan && item.goods_code === goods_scan, 'text-center': item.bin_name !== bin_scan && item.goods_code !== goods_scan }">{{ item.goods_code }}</td>
-              <td :class="{'scan-background text-center': item.bin_name === bin_scan && item.goods_code === goods_scan, 'text-center': item.bin_name !== bin_scan && item.goods_code !== goods_scan }">{{ item.physical_inventory }}</td>
+              <td :class="{'scan-background text-center': item.bin_name === bin_scan && item.goods_code === goods_scan, 'text-center': item.bin_name !== bin_scan && item.goods_code !== goods_scan }">
+                <input
+                  v-model.number="item.physical_inventory"
+                  type="number"
+                  :label="physical_label"
+                />
+              </td>
               <td class="text-center">
                 <q-btn round flat push color="purple" icon="repeat" @click="repeatCount(index)" style="width: 50px" />
               </td>
@@ -46,7 +52,7 @@ import { getauth, putauth } from 'boot/axios_request'
 import { LocalStorage, Screen } from 'quasar'
 
 export default {
-  name: 'Pagezebra_cyclecount',
+  name: 'Page_cyclecount',
   data () {
     return {
       openid: '',
