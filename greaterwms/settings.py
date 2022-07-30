@@ -229,6 +229,76 @@ REST_FRAMEWORK = {
     },
 }
 
+SERVER_LOGS_FILE = os.path.join(BASE_DIR, "logs", "server.log")
+ERROR_LOGS_FILE = os.path.join(BASE_DIR, "logs", "error.log")
+if not os.path.exists(os.path.join(BASE_DIR, "logs")):
+    os.makedirs(os.path.join(BASE_DIR, "logs"))
+
+STANDARD_LOG_FORMAT = (
+    "[%(asctime)s][%(name)s.%(funcName)s():%(lineno)d] [%(levelname)s] %(message)s"
+)
+CONSOLE_LOG_FORMAT = (
+    "[%(asctime)s][%(name)s.%(funcName)s():%(lineno)d] [%(levelname)s] %(message)s"
+)
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "standard": {"format": STANDARD_LOG_FORMAT},
+        "console": {
+            "format": CONSOLE_LOG_FORMAT,
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+        "file": {
+            "format": CONSOLE_LOG_FORMAT,
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+    },
+    "handlers": {
+        "file": {
+            "level": "INFO",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": SERVER_LOGS_FILE,
+            "maxBytes": 1024 * 1024 * 100,
+            "backupCount": 5,
+            "formatter": "standard",
+            "encoding": "utf-8",
+        },
+        "error": {
+            "level": "ERROR",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": ERROR_LOGS_FILE,
+            "maxBytes": 1024 * 1024 * 100,
+            "backupCount": 3,
+            "formatter": "standard",
+            "encoding": "utf-8",
+        },
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "console",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console", "error", "file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "scripts": {
+            "handlers": ["console", "error", "file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "django.db.backends": {
+            "handlers": [],
+            "propagate": True,
+            "level": "INFO",
+        },
+    },
+}
+
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = ()

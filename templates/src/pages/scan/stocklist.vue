@@ -59,11 +59,11 @@
 <router-view />
 
 <script>
-import { getauth, putauth } from 'boot/axios_request'
-import { LocalStorage, Screen, throttle } from 'quasar'
+import { getauth } from 'boot/axios_request'
+import { LocalStorage, Screen } from 'quasar'
 
 export default {
-  name: 'Pagezebra_stocklist',
+  name: 'Page_stocklist',
   data () {
     return {
       openid: '',

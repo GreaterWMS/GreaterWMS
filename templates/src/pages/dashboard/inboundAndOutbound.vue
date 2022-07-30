@@ -33,6 +33,7 @@
           <q-tr :props="props">
             <q-td key="goods_code" :props="props">{{ props.row.goods_code }}</q-td>
             <q-td key="bin_name" :props="props">{{ props.row.bin_name }}</q-td>
+            <q-td key="goods_desc" :props="props">{{ props.row.goods_desc }}</q-td>
             <q-td key="mode_code" :props="props">{{ props.row.mode_code }}</q-td>
             <q-td key="goods_qty" :props="props">{{ props.row.goods_qty }}</q-td>
             <q-td key="creater" :props="props">{{ props.row.creater }}</q-td>
@@ -78,6 +79,7 @@ export default {
       columns: [
         { name: 'goods_code', label: this.$t('dashboards.view_tradelist.goods_code'), field: 'goods_code', align: 'left' },
         { name: 'bin_name', label: this.$t('dashboards.view_tradelist.bin_name'), field: 'bin_name', align: 'center' },
+        { name: 'goods_desc', label: this.$t('goods.view_goodslist.goods_desc'), field: 'goods_desc', align: 'center' },
         { name: 'mode_code', required: true, label: this.$t('dashboards.view_tradelist.mode_code'), align: 'center', field: 'mode_code' },
         { name: 'goods_qty', label: this.$t('dashboards.view_tradelist.goods_qty'), field: 'goods_qty', align: 'center' },
         { name: 'creater', label: this.$t('dashboards.view_tradelist.creater'), field: 'creater', align: 'center' },

@@ -1580,7 +1580,7 @@ export default {
       update(() => {
         const needle = val.toLocaleLowerCase()
         const data_filter = _this.customer_list1
-        this.customer_list = data_filter.filter(v => v.toLocaleLowerCase().indexOf(needle) > -1)
+        _this.customer_list = data_filter.filter(v => v.toLocaleLowerCase().indexOf(needle) > -1)
       })
     },
     PrintPickingList (e) {

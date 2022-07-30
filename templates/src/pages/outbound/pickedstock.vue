@@ -40,6 +40,9 @@
                <q-td key="goods_code" :props="props">
                  {{ props.row.goods_code }}
                </q-td>
+               <q-td key="goods_desc" :props="props">
+                 {{ props.row.goods_desc }}
+               </q-td>
                <q-td key="goods_qty" :props="props">
                  {{ props.row.goods_qty }}
                </q-td>
@@ -104,6 +107,7 @@ export default {
       columns: [
         { name: 'dn_code', required: true, label: this.$t('outbound.view_dn.dn_code'), align: 'left', field: 'dn_code' },
         { name: 'goods_code', label: this.$t('goods.view_goodslist.goods_code'), field: 'goods_code', align: 'center' },
+        { name: 'goods_desc', label: this.$t('goods.view_goodslist.goods_desc'), field: 'goods_desc', align: 'center' },
         { name: 'goods_qty', label: this.$t('outbound.view_dn.goods_qty'), field: 'goods_qty', align: 'center' },
         { name: 'picked_qty', label: this.$t('stock.view_stocklist.picked_stock'), field: 'picked_qty', align: 'center' },
         { name: 'customer', label: this.$t('baseinfo.view_customer.customer_name'), field: 'customer', align: 'center' },

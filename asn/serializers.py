@@ -46,6 +46,7 @@ class ASNDetailGetSerializer(serializers.ModelSerializer):
     asn_code = serializers.CharField(read_only=True, required=False)
     supplier = serializers.CharField(read_only=True, required=False)
     goods_code = serializers.CharField(read_only=True, required=False)
+    goods_desc = serializers.CharField(read_only=True, required=False)
     goods_qty = serializers.IntegerField(read_only=True, required=False)
     goods_actual_qty = serializers.IntegerField(read_only=True, required=False)
     sorted_qty = serializers.IntegerField(read_only=True, required=False)
@@ -65,6 +66,7 @@ class ASNDetailPostSerializer(serializers.ModelSerializer):
     asn_code = serializers.CharField(read_only=False,  required=True, validators=[datasolve.data_validate])
     supplier = serializers.CharField(read_only=False,  required=True, validators=[datasolve.data_validate])
     goods_code = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
+    goods_desc = serializers.CharField(read_only=False, required=False)
     goods_qty = serializers.IntegerField(read_only=False, required=True, validators=[datasolve.qty_0_data_validate])
     creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     class Meta:
@@ -77,6 +79,7 @@ class ASNSortedPostSerializer(serializers.ModelSerializer):
     asn_code = serializers.CharField(read_only=False,  required=True, validators=[datasolve.data_validate])
     supplier = serializers.CharField(read_only=False,  required=True, validators=[datasolve.data_validate])
     goods_code = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
+    goods_desc = serializers.CharField(read_only=False, required=False)
     goods_qty = serializers.IntegerField(read_only=False, required=True, validators=[datasolve.qty_data_validate])
     creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     class Meta:
@@ -88,6 +91,7 @@ class ASNDetailUpdateSerializer(serializers.ModelSerializer):
     asn_code = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     supplier = serializers.CharField(read_only=False,  required=True, validators=[datasolve.data_validate])
     goods_code = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
+    goods_desc = serializers.CharField(read_only=False, required=False)
     goods_qty = serializers.IntegerField(read_only=False, required=True, validators=[datasolve.qty_0_data_validate])
     creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
     class Meta:
@@ -99,6 +103,7 @@ class ASNDetailPartialUpdateSerializer(serializers.ModelSerializer):
     asn_code = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     supplier = serializers.CharField(read_only=False,  required=False, validators=[datasolve.data_validate])
     goods_code = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
+    goods_desc = serializers.CharField(read_only=False, required=False)
     goods_qty = serializers.IntegerField(read_only=False, required=False, validators=[datasolve.qty_0_data_validate])
     creater = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
     class Meta:
@@ -136,6 +141,7 @@ class FileDetailRenderSerializer(serializers.ModelSerializer):
     asn_code = serializers.CharField(read_only=False, required=False)
     asn_status = serializers.IntegerField(read_only=False, required=False)
     goods_code = serializers.CharField(read_only=False, required=False)
+    goods_desc = serializers.CharField(read_only=False, required=False)
     goods_qty = serializers.IntegerField(read_only=False, required=False)
     goods_actual_qty = serializers.IntegerField(read_only=False, required=False)
     sorted_qty = serializers.IntegerField(read_only=False, required=False)

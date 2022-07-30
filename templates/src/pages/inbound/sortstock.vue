@@ -40,6 +40,9 @@
                <q-td key="goods_code" :props="props">
                  {{ props.row.goods_code }}
                </q-td>
+               <q-td key="goods_desc" :props="props">
+                 {{ props.row.goods_desc }}
+               </q-td>
                <q-td key="goods_actual_qty" :props="props">
                  {{ props.row.goods_actual_qty }}
                </q-td>
@@ -169,6 +172,7 @@ export default {
       columns: [
         { name: 'asn_code', required: true, label: this.$t('inbound.view_asn.asn_code'), align: 'left', field: 'asn_code' },
         { name: 'goods_code', label: this.$t('goods.view_goodslist.goods_code'), field: 'goods_code', align: 'center' },
+        { name: 'goods_desc', label: this.$t('goods.view_goodslist.goods_desc'), field: 'goods_desc', align: 'center' },
         { name: 'goods_actual_qty', label: this.$t('inbound.view_asn.goods_actual_qty'), field: 'goods_actual_qty', align: 'center' },
         { name: 'sorted_qty', label: this.$t('inbound.view_asn.sorted_qty'), field: 'sorted_qty', align: 'center' },
         { name: 'supplier', label: this.$t('baseinfo.view_supplier.supplier_name'), field: 'supplier', align: 'center' },

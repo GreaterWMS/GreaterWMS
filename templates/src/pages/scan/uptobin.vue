@@ -26,8 +26,13 @@
             <template>
               <tr :id="'dom' + index" v-for="(item, index) in table_list" :key="index">
                 <td :class="{'scan-background text-center': item.goods_code === goods_scan, 'text-center': item.goods_code !== goods_scan }">{{ item.goods_code }}</td>
-                <td :class="{'scan-background text-center': item.goods_code === goods_scan, 'text-center': item.goods_code !== goods_scan }">{{ item.goods_actual_qty }}</td>
-                <td class="text-center">{{ item.sorted_qty }}</td>
+                <td :class="{'scan-background text-center': item.goods_code === goods_scan, 'text-center': item.goods_code !== goods_scan }">{{ item.goods_actual_qty - item.sorted_qty }}</td>
+                <td class="text-center">
+                  <input
+                    v-model.number="item.qty"
+                    type="number"
+                    :label="sorted_qty"
+                /></td>
               </tr>
             </template>
           </tbody>
@@ -43,7 +48,7 @@ import { getauth, putauth } from 'boot/axios_request'
 import { LocalStorage, Screen } from 'quasar'
 
 export default {
-  name: 'Pagezebra_sorting',
+  name: 'Page_sorting',
   data () {
     return {
       openid: '',
@@ -242,6 +247,10 @@ export default {
             color: 'negative'
           })
         })
+    },
+    submitQtyChange (e, f) {
+      var _this = this
+      _this.table_list[e].qty = f.sorted_qty
     }
   },
   computed: {
