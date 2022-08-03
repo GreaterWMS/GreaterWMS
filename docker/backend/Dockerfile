@@ -10,12 +10,11 @@ RUN apt-get clean
 RUN apt-get update --fix-missing && apt-get upgrade -y
 RUN apt-get install build-essential -y
 RUN apt-get install supervisor -y
-RUN python3 -m pip install --upgrade pip -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
+RUN python3 -m pip install --upgrade pip 
 RUN apt-get install default-libmysqlclient-dev -y 
 #Install supervisor
-RUN pip3 install supervisor -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
-RUN pip3 install -U 'Twisted[tls,http2]' -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
-
-RUN pip3 install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple  --trusted-host mirrors.aliyun.com
+RUN pip3 install supervisor
+RUN pip3 install -U 'Twisted[tls,http2]'
+RUN pip3 install -r requirements.txt
 RUN pip3 install asgihandler==0.3.3
 EXPOSE 8008
