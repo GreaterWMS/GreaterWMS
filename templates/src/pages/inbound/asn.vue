@@ -1325,7 +1325,7 @@ export default {
     },
     setModel (val) {
       const _this = this
-      _this.newformData.supplier = val
+      _this.newFormData.supplier = val
     },
     filterFnS (val, update, abort) {
       var _this = this
