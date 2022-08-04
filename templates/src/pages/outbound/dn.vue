@@ -1573,7 +1573,7 @@ export default {
     },
     setModel (val) {
       const _this = this
-      _this.newformData.customer = val
+      _this.newFormData.customer = val
     },
     filterFnS (val, update, abort) {
       var _this = this
