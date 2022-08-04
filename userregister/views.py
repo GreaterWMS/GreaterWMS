@@ -183,6 +183,7 @@ def register(request, *args, **kwargs):
                                 demo_data = driver(openid=transaction_code,
                                                    driver_name='Driver Name-' + str(driver_data),
                                                    license_plate="".join(random.choice("0123456789") for i in range(8)),
+                                                   contact=str(randomPhone()),
                                                    creater='DemoData'
                                                    )
                                 driver_data_list.append(demo_data)
