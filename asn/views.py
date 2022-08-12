@@ -316,6 +316,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                                                         is_delete=False).first()
                     goods_weight = round(goods_detail.goods_weight * int(data['goods_qty'][j]) / 1000, 4)
                     goods_volume = round(goods_detail.unit_volume * int(data['goods_qty'][j]), 4)
+                    goods_cost = round(goods_detail.goods_cost * int(data['goods_qty'][j]), 2)
                     if stocklist.objects.filter(openid=self.request.auth.openid, goods_code=str(data['goods_code'][j])).exists():
                         goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
                                                  goods_code=str(data['goods_code'][j])).first()
