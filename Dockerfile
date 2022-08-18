@@ -1,16 +1,18 @@
-FROM node:14.19.3-buster-slim
+FROM python:3.9-slim as base
 RUN mkdir -p /GreaterWMS/templates
+#copy requirements.txt
+ADD ./requirements.txt /GreaterWMS/requirements.txt 
 #Configure working directory
-COPY ./templates/package.json /GreaterWMS/templates/package.json
-COPY ./templates/node_modules/ /GreaterWMS/templates/node_modules/
 WORKDIR /GreaterWMS
-RUN cd templates
-#RUN curl -sL https://deb.nodesource.com/setup_14.x |bash -
-#RUN apt-get install -y nodejs
-#RUN npm config set registry https://registry.npm.taobao.org
-RUN npm install -g npm --force
-RUN npm install -g yarn --force
-#RUN yarn config set registry https://registry.npm.taobao.org
-RUN npm install -g @quasar/cli --force
-RUN yarn install
-EXPOSE 8080
+#Installation foundation dependency
+#RUN sed -i s/deb.debian.org/mirrors.163.com/g /etc/apt/sources.list
+#RUN apt-get clean
+RUN apt-get update --fix-missing && apt-get upgrade -y
+RUN apt-get install build-essential -y
+RUN apt-get install supervisor -y
+RUN python3 -m pip3 install --upgrade pip
+#Install supervisor
+RUN pip3 install supervisor
+RUN pip3 install -U 'Twisted[tls,http2]'
+RUN pip3 install -r requirements.txt
+EXPOSE 8008
