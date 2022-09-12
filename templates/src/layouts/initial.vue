@@ -33,12 +33,12 @@ export default {
           _this.webto = 'seuicscan'
         } else {
           LocalStorage.set('device', 1)
-          _this.webto = 'mobile_index'
+          _this.webto = 'mobilescan'
         }
       }
     } else if (Platform.is.mobile) {
       LocalStorage.set('device', 1)
-      _this.webto = 'mobile_index'
+      _this.webto = 'mobilescan'
     } else {
       LocalStorage.set('device', 0)
       _this.webto = 'web_index'

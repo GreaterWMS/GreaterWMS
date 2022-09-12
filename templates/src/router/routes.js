@@ -399,164 +399,65 @@ const routes = [{
       ]
     },
     {
-      path: 'mobile',
-      component: () => import('layouts/MainLayoutMobile.vue'),
+      path: 'scannermobile',
+      name: 'scannermobile',
+      component: () => import('layouts/MainLayoutMobile'),
       children: [
         {
-          path: '',
-          name: 'mobile_index',
-          component: () => import('pages/IndexMobile.vue')
-        },
-        {
-          path: 'mp_dashboard',
-          name: 'mp_dashboard',
-          component: () => import('pages/mobile/dashboard/dashboard.vue'),
+          path: 'mobile',
+          name: '',
+          component: () => import('pages/mobile/mobilescan.vue'),
           children: [
             {
-              path: 'mp_inboundAndOutbound',
-              name: 'mp_inboundAndOutbound',
-              component: () => import('pages/mobile/dashboard/inboundAndOutbound.vue')
-            }
-          ]
-        },
-        {
-          path: 'mp_inbound',
-          name: 'mp_inbound',
-          component: () => import('pages/mobile/inbound/inbound.vue'),
-          children: [{
-            path: 'mp_asn',
-            name: 'mp_asn',
-            component: () => import('pages/mobile/inbound/asn.vue')
-          },
-          {
-            path: 'mp_asnfinish',
-            name: 'mp_asnfinish',
-            component: () => import('pages/mobile/inbound/asnfinish.vue')
-          }
-          ]
-        },
-        {
-          path: 'mp_outbound',
-          name: 'mp_outbound',
-          component: () => import('pages/mobile/outbound/outbound.vue'),
-          children: [{
-            path: 'mp_dn',
-            name: 'mp_dn',
-            component: () => import('pages/mobile/outbound/dn.vue')
-          },
-          {
-            path: 'mp_shippedstock',
-            name: 'mp_shippedstock',
-            component: () => import('pages/mobile/outbound/shippedstock.vue')
-          }
-          ]
-        },
-        {
-          path: 'mp_stock',
-          name: 'mp_stock',
-          component: () => import('pages/mobile/stock/stock.vue'),
-          children: [{
-            path: 'mp_stocklist',
-            name: 'mp_stocklist',
-            component: () => import('pages/mobile/stock/stocklist.vue')
-          },
-          {
-            path: 'mp_stockbinlist',
-            name: 'mp_stockbinlist',
-            component: () => import('pages/mobile/stock/stockbinlist.vue')
-          }
-          ]
-        },
-        {
-          path: 'mp_goods',
-          name: 'mp_goods',
-          component: () => import('pages/mobile/goods/goods.vue'),
-          children: [{
-            path: 'mp_goodslist',
-            name: 'mp_goodslist',
-            component: () => import('pages/mobile/goods/goodslist.vue')
-          }
-          ]
-        },
-        {
-          path: 'mp_baseinfo',
-          name: 'mp_baseinfo',
-          component: () => import('pages/mobile/baseinfo/baseinfo.vue'),
-          children: [
-            {
-              path: 'mp_supplier',
-              name: 'mp_supplier',
-              component: () => import('pages/mobile/baseinfo/supplier.vue')
+              path: '',
+              name: 'mobilescan',
+              component: () => import('pages/IndexMobile.vue')
             },
             {
-              path: 'mp_customer',
-              name: 'mp_customer',
-              component: () => import('pages/mobile/baseinfo/customer.vue')
+              path: 'mobile_goodslist',
+              name: 'mobile_goodslist',
+              component: () => import('pages/mobile/goodslist.vue')
+            },
+            {
+              path: 'mobile_stocklist',
+              name: 'mobile_stocklist',
+              component: () => import('pages/mobile/stocklist.vue')
+            },
+            {
+              path: 'mobile_movetobin',
+              name: 'mobile_movetobin',
+              component: () => import('pages/mobile/movetobin.vue')
+            },
+            {
+              path: 'mobile_shipping',
+              name: 'mobile_shipping',
+              component: () => import('pages/mobile/shipping.vue')
+            },
+            {
+              path: 'mobile_picking',
+              name: 'mobile_picking',
+              component: () => import('pages/mobile/picking.vue')
+            },
+            {
+              path: 'mobile_uptobin',
+              name: 'mobile_uptobin',
+              component: () => import('pages/mobile/uptobin.vue')
+            },
+            {
+              path: 'mobile_sorting',
+              name: 'mobile_sorting',
+              component: () => import('pages/mobile/sorting.vue')
+            },
+            {
+              path: 'mobile_cyclecount',
+              name: 'mobile_cyclecount',
+              component: () => import('pages/mobile/cyclecount.vue')
+            },
+            {
+              path: 'mobile_locationquery',
+              name: 'mobile_locationquery',
+              component: () => import('pages/mobile/locationquery.vue')
             }
-          ]
-        },
-        {
-          path: 'mp_warehouse',
-          name: 'mp_warehouse',
-          component: () => import('pages/mobile/warehouse/warehouse.vue'),
-          children: [{
-            path: 'mp_warehouseset',
-            name: 'mp_warehouseset',
-            component: () => import('pages/mobile/warehouse/warehouseset.vue')
-          },
-          {
-            path: 'mp_binset',
-            name: 'mp_binset',
-            component: () => import('pages/mobile/warehouse/binset.vue')
-          }
-          ]
-        },
-        {
-          path: 'mp_finance',
-          name: 'mp_finance',
-          component: () => import('pages/mobile/finance/finance.vue'),
-          children: [{
-            path: 'mp_capitallist',
-            name: 'mp_capitallist',
-            component: () => import('pages/mobile/finance/capitallist.vue')
-          },
-          {
-            path: 'mp_freight',
-            name: 'mp_freight',
-            component: () => import('pages/mobile/finance/freight.vue')
-          }
-          ]
-        },
-        {
-          path: 'mp_staff',
-          name: 'mp_staff',
-          component: () => import('pages/mobile/staff/staff.vue'),
-          children: [{
-            path: 'mp_stafflist',
-            name: 'mp_stafflist',
-            component: () => import('pages/mobile/staff/stafflist.vue')
-          },
-          {
-            path: 'mp_stafflist_check_code',
-            name: 'mp_stafflist_check_code',
-            component: () => import('pages/mobile/staff/stafflist_check_code.vue')
-          }
-          ]
-        },
-        {
-          path: 'mp_driver',
-          name: 'mp_driver',
-          component: () => import('pages/mobile/driverlist/driver.vue'),
-          children: [{
-            path: 'mp_driverlist',
-            name: 'mp_driverlist',
-            component: () => import('pages/mobile/driverlist/driverlist.vue')
-          },
-          {
-            path: 'mp_dispatchlist',
-            name: 'mp_dispatchlist',
-            component: () => import('pages/mobile/driverlist/dispatchlist.vue')
-          }
           ]
         }
       ]
