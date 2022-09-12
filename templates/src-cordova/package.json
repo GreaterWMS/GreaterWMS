@@ -22,7 +22,8 @@
     "cordova-plugin-splashscreen": "^6.0.1",
     "cordova-plugin-vibration": "^3.1.1",
     "cordova-plugin-whitelist": "^1.3.5",
-    "es6-promise-plugin": "^4.2.2"
+    "es6-promise-plugin": "^4.2.2",
+    "phonegap-plugin-barcodescanner": "^8.1.0"
   },
   "cordova": {
     "platforms": [
@@ -36,7 +37,8 @@
       "cordova-plugin-insomnia": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-vibration": {},
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "phonegap-plugin-barcodescanner": {}
     }
   }
 }

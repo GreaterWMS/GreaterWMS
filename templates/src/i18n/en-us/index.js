@@ -493,10 +493,10 @@ export default {
       scan_qty: 'Scanned Quantity',
       scan_qty_error: 'Sanning Quantity Shall Not Exceed Arrived Quantity'
     },
-    view_packing: {
+    view_picking: {
       order_qty: 'Order Quantity',
-      packing_qty: 'Sorting Quantity',
-      packing_qty_error: 'Sorting Quantity Shall Not Exceed Order Quantity'
+      picking_qty: 'Sorting Quantity',
+      picking_qty_error: 'Sorting Quantity Shall Not Exceed Order Quantity'
     },
     view_shipping: {
       shipping_code: 'Shipment Tracking Number',

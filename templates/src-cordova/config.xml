@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.greaterwms.app" version="2.1.18" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="org.greaterwms.app" version="2.1.24" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>G-WMS</name>
     <description>GreaterWMS--Open Source Warehouse Management System</description>
     <author email="mail@56yhz.com" href="https://www.56yhz.com">
