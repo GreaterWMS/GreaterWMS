@@ -30,6 +30,10 @@
     },
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "org.greaterwms.app"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "org.greaterwms.app"
     }
   },
   "dependent_plugins": {
