@@ -304,7 +304,7 @@ export default {
       loading: false,
       height: '',
       table_list: [],
-      staff_type_list: ['经理', '主管', '收货组', '发货组', '库存控制', '客户', '供应商'],
+      staff_type_list: [],
       columns: [
         { name: 'staff_name', required: true, label: this.$t('staff.view_staff.staff_name'), align: 'left', field: 'staff_name' },
         { name: 'staff_type', label: this.$t('staff.view_staff.staff_type'), field: 'staff_type', align: 'center' },
@@ -538,22 +538,20 @@ export default {
       })
       if (staffs.indexOf(_this.newFormData.staff_name) === -1 && _this.newFormData.staff_name.length !== 0 && _this.newFormData.staff_type) {
         _this.RandomCheckCode()
-        if (LocalStorage.getItem('lang') === 'zh-hans') {
-          if (_this.newFormData.staff_type === '经理') {
-            _this.newFormData.staff_type = 'Manager'
-          } else if (_this.newFormData.staff_type === '主管') {
-            _this.newFormData.staff_type = 'Supervisor'
-          } else if (_this.newFormData.staff_type === '收货组') {
-            _this.newFormData.staff_type = 'Inbound'
-          } else if (_this.newFormData.staff_type === '发货组') {
-            _this.newFormData.staff_type = 'Outbound'
-          } else if (_this.newFormData.staff_type === '库存控制') {
-            _this.newFormData.staff_type = 'StockControl'
-          } else if (_this.newFormData.staff_type === '客户') {
-            _this.newFormData.staff_type = 'Customer'
-          } else if (_this.newFormData.staff_type === '供应商') {
-            _this.newFormData.staff_type = 'Supplier'
-          }
+        if (_this.newFormData.staff_type === '经理') {
+          _this.newFormData.staff_type = 'Manager'
+        } else if (_this.newFormData.staff_type === '主管') {
+          _this.newFormData.staff_type = 'Supervisor'
+        } else if (_this.newFormData.staff_type === '收货组') {
+          _this.newFormData.staff_type = 'Inbound'
+        } else if (_this.newFormData.staff_type === '发货组') {
+          _this.newFormData.staff_type = 'Outbound'
+        } else if (_this.newFormData.staff_type === '库存控制') {
+          _this.newFormData.staff_type = 'StockControl'
+        } else if (_this.newFormData.staff_type === '客户') {
+          _this.newFormData.staff_type = 'Customer'
+        } else if (_this.newFormData.staff_type === '供应商') {
+          _this.newFormData.staff_type = 'Supplier'
         }
         postauth(_this.pathname, _this.newFormData)
           .then(res => {
@@ -611,22 +609,20 @@ export default {
     },
     editDataSubmit () {
       var _this = this
-      if (LocalStorage.getItem('lang') === 'zh-hans') {
-        if (_this.editFormData.staff_type === '经理') {
-          _this.editFormData.staff_type = 'Manager'
-        } else if (_this.editFormData.staff_type === '主管') {
-          _this.editFormData.staff_type = 'Supervisor'
-        } else if (_this.editFormData.staff_type === '收货组') {
-          _this.editFormData.staff_type = 'Inbound'
-        } else if (_this.editFormData.staff_type === '发货组') {
-          _this.editFormData.staff_type = 'Outbound'
-        } else if (_this.editFormData.staff_type === '库存控制') {
-          _this.editFormData.staff_type = 'StockControl'
-        } else if (_this.editFormData.staff_type === '客户') {
-          _this.editFormData.staff_type = 'Customer'
-        } else if (_this.editFormData.staff_type === '供应商') {
-          _this.editFormData.staff_type = 'Supplier'
-        }
+      if (_this.editFormData.staff_type === '经理') {
+        _this.editFormData.staff_type = 'Manager'
+      } else if (_this.editFormData.staff_type === '主管') {
+        _this.editFormData.staff_type = 'Supervisor'
+      } else if (_this.editFormData.staff_type === '收货组') {
+        _this.editFormData.staff_type = 'Inbound'
+      } else if (_this.editFormData.staff_type === '发货组') {
+        _this.editFormData.staff_type = 'Outbound'
+      } else if (_this.editFormData.staff_type === '库存控制') {
+        _this.editFormData.staff_type = 'StockControl'
+      } else if (_this.editFormData.staff_type === '客户') {
+        _this.editFormData.staff_type = 'Customer'
+      } else if (_this.editFormData.staff_type === '供应商') {
+        _this.editFormData.staff_type = 'Supplier'
       }
       putauth(_this.pathname + _this.editid + '/', _this.editFormData)
         .then(res => {
@@ -845,6 +841,11 @@ export default {
       _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
       _this.height = _this.$q.screen.height - 290 + '' + 'px'
+    }
+    if (LocalStorage.getItem('lang') === 'zh-hans') {
+      _this.staff_type_list = ['经理', '主管', '收货组', '发货组', '库存控制', '客户', '供应商']
+    } else {
+      _this.staff_type_list = ['Manager', 'Supervisor', 'Inbount', 'Outbound', 'StockControl', 'Customer', 'Supplier']
     }
   },
   updated () {
