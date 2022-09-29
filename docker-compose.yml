@@ -34,6 +34,8 @@ services:
       - ./supervisord.conf:/etc/supervisor/supervisord.conf
     ports:
       - '8008:8008'
+    environment:
+      PYTHONUNBUFFERED: 1      
     command:
       - /bin/bash
       - -c
