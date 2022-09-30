@@ -28,7 +28,7 @@ incremental==21.3.0
 inflection==0.5.1
 itypes==1.2.0
 Jinja2==3.1.2
-joblib==1.1.0
+joblib==1.2.0
 MarkupSafe==2.1.1
 numpy==1.23.1
 openpyxl==3.0.10
