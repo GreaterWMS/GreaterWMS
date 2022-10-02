@@ -35,6 +35,9 @@ export default {
           LocalStorage.set('device', 1)
           _this.webto = 'mobilescan'
         }
+      } else {
+        LocalStorage.set('device', 1)
+        _this.webto = 'mobilescan'
       }
     } else if (Platform.is.mobile) {
       LocalStorage.set('device', 1)
