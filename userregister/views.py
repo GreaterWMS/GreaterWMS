@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from staff.models import ListModel as staff
 import json, random, os
 from django.conf import settings
+from scanner.models import ListModel as scanner
 
 def randomPhone():
     List = ["130", "131", "132", "133", "134", "135", "136", "137", "138", "139",
@@ -232,92 +233,152 @@ def register(request, *args, **kwargs):
                             ]
                             binsize.objects.bulk_create(binsize_data_list, batch_size=100)
                             from binset.models import ListModel as binset
+                            bar_code1 = Md5.md5('1')
+                            bar_code2 = Md5.md5('2')
+                            bar_code3 = Md5.md5('3')
+                            bar_code4 = Md5.md5('4')
+                            bar_code5 = Md5.md5('5')
+                            bar_code6 = Md5.md5('6')
+                            bar_code7 = Md5.md5('7')
+                            bar_code8 = Md5.md5('8')
+                            bar_code9 = Md5.md5('9')
+                            bar_code10 = Md5.md5('10')
+                            bar_code11 = Md5.md5('11')
+                            bar_code12 = Md5.md5('12')
                             binset_data_list = [
                                 binset(openid=transaction_code,
                                        bin_name='A010101',
                                        bin_size=str(random.choice(randombinsize)),
                                        bin_property="Normal",
                                        empty_label=True,
-                                       creater='DemoData'
+                                       creater='DemoData',
+                                       bar_code=bar_code1
                                        ),
                                 binset(openid=transaction_code,
                                        bin_name='A010102',
                                        bin_size=str(random.choice(randombinsize)),
                                        bin_property="Normal",
                                        empty_label=True,
-                                       creater='DemoData'
+                                       creater='DemoData',
+                                       bar_code=bar_code2
                                        ),
                                 binset(openid=transaction_code,
                                        bin_name='A010103',
                                        bin_size=str(random.choice(randombinsize)),
                                        bin_property="Normal",
                                        empty_label=True,
-                                       creater='DemoData'
+                                       creater='DemoData',
+                                       bar_code=bar_code3
                                        ),
                                 binset(openid=transaction_code,
                                        bin_name='B010101',
                                        bin_size=str(random.choice(randombinsize)),
                                        bin_property="Inspection",
                                        empty_label=True,
-                                       creater='DemoData'
+                                       creater='DemoData',
+                                       bar_code=bar_code4
                                        ),
                                 binset(openid=transaction_code,
                                        bin_name='B010102',
                                        bin_size=str(random.choice(randombinsize)),
                                        bin_property="Inspection",
                                        empty_label=True,
-                                       creater='DemoData'
+                                       creater='DemoData',
+                                       bar_code=bar_code5
                                        ),
                                 binset(openid=transaction_code,
                                        bin_name='B010103',
                                        bin_size=str(random.choice(randombinsize)),
                                        bin_property="Inspection",
                                        empty_label=True,
-                                       creater='DemoData'
+                                       creater='DemoData',
+                                       bar_code=bar_code6
                                        ),
                                 binset(openid=transaction_code,
                                        bin_name='B020101',
                                        bin_size=str(random.choice(randombinsize)),
                                        bin_property="Holding",
                                        empty_label=True,
-                                       creater='DemoData'
+                                       creater='DemoData',
+                                       bar_code=bar_code7
                                        ),
                                 binset(openid=transaction_code,
                                        bin_name='B020102',
                                        bin_size=str(random.choice(randombinsize)),
                                        bin_property="Holding",
                                        empty_label=True,
-                                       creater='DemoData'
+                                       creater='DemoData',
+                                       bar_code=bar_code8
                                        ),
                                 binset(openid=transaction_code,
                                        bin_name='B020103',
                                        bin_size=str(random.choice(randombinsize)),
                                        bin_property="Holding",
                                        empty_label=True,
-                                       creater='DemoData'
+                                       creater='DemoData',
+                                       bar_code=bar_code9
                                        ),
                                 binset(openid=transaction_code,
                                        bin_name='B030101',
                                        bin_size=str(random.choice(randombinsize)),
                                        bin_property="Damage",
                                        empty_label=True,
-                                       creater='DemoData'
+                                       creater='DemoData',
+                                       bar_code=bar_code10
                                        ),
                                 binset(openid=transaction_code,
                                        bin_name='B030102',
                                        bin_size=str(random.choice(randombinsize)),
                                        bin_property="Damage",
                                        empty_label=True,
-                                       creater='DemoData'
+                                       creater='DemoData',
+                                       bar_code=bar_code11
                                        ),
                                 binset(openid=transaction_code,
                                        bin_name='B030103',
                                        bin_size=str(random.choice(randombinsize)),
                                        bin_property="Damage",
                                        empty_label=True,
-                                       creater='DemoData'
+                                       creater='DemoData',
+                                       bar_code=bar_code12
                                        ),
                             ]
+                            scanner.objects.create(openid=transaction_code, mode="BINSET",
+                                                   code='A010101',
+                                                   bar_code=bar_code1)
+                            scanner.objects.create(openid=transaction_code, mode="BINSET",
+                                                   code='A010102',
+                                                   bar_code=bar_code2)
+                            scanner.objects.create(openid=transaction_code, mode="BINSET",
+                                                   code='A010103',
+                                                   bar_code=bar_code3)
+                            scanner.objects.create(openid=transaction_code, mode="BINSET",
+                                                   code='B010101',
+                                                   bar_code=bar_code4)
+                            scanner.objects.create(openid=transaction_code, mode="BINSET",
+                                                   code='B010102',
+                                                   bar_code=bar_code5)
+                            scanner.objects.create(openid=transaction_code, mode="BINSET",
+                                                   code='B010103',
+                                                   bar_code=bar_code6)
+                            scanner.objects.create(openid=transaction_code, mode="BINSET",
+                                                   code='B020101',
+                                                   bar_code=bar_code7)
+                            scanner.objects.create(openid=transaction_code, mode="BINSET",
+                                                   code='B020102',
+                                                   bar_code=bar_code8)
+                            scanner.objects.create(openid=transaction_code, mode="BINSET",
+                                                   code='B020103',
+                                                   bar_code=bar_code9)
+                            scanner.objects.create(openid=transaction_code, mode="BINSET",
+                                                   code='B030101',
+                                                   bar_code=bar_code10)
+                            scanner.objects.create(openid=transaction_code, mode="BINSET",
+                                                   code='B030102',
+                                                   bar_code=bar_code11)
+                            scanner.objects.create(openid=transaction_code, mode="BINSET",
+                                                   code='B030103',
+                                                   bar_code=bar_code12)
                             binset.objects.bulk_create(binset_data_list, batch_size=100)
                             from goodsunit.models import ListModel as goodsunit
                             demo_data = []
@@ -370,6 +431,7 @@ def register(request, *args, **kwargs):
                             from goods.models import ListModel as goods
                             goods_data_list = []
                             for goods_data in range(1, 42):
+                                bar_code = Md5.md5("A0000" + str(goods_data))
                                 goods_w = round(random.uniform(10, 1000), 2),
                                 goods_d = round(random.uniform(10, 1000), 2),
                                 goods_h = round(random.uniform(10, 1000), 2),
@@ -399,9 +461,13 @@ def register(request, *args, **kwargs):
                                                   goods_origin=random.choice(randomcity),
                                                   goods_cost=goods_cost[0],
                                                   goods_price=goods_price[0],
+                                                  bar_code=bar_code,
                                                   creater='DemoData'
                                                   )
                                 goods_data_list.append(demo_data)
+                                scanner.objects.create(openid=transaction_code, mode="GOODS",
+                                                       code="A0000" + str(goods_data),
+                                                       bar_code=bar_code)
                             goods.objects.bulk_create(goods_data_list, batch_size=100)
                             from payment.models import TransportationFeeListModel as freight
                             freight_data_list = []

@@ -86,7 +86,7 @@
             <q-td key="create_time" :props="props">{{ props.row.create_time }}</q-td>
             <q-td key="update_time" :props="props">{{ props.row.update_time }}</q-td>
             <template v-if="!editMode">
-              <q-td key="action" :props="props" style="width: 280px">
+              <q-td key="action" :props="props" style="width: 175px">
                 <q-btn
                   v-show="
                     $q.localStorage.getItem('staff_type') !== 'Supplier' &&
@@ -139,9 +139,6 @@
                   @click="deleteData(props.row.id)"
                 >
                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('delete') }}</q-tooltip>
-                </q-btn>
-                <q-btn color="teal" :label="$t('contact')" icon="contacts" @click="ChatWith(props.row.staff_name)">
-                  <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('sendmessage') }}</q-tooltip>
                 </q-btn>
               </q-td>
             </template>
@@ -229,66 +226,13 @@
         </div>
       </q-card>
     </q-dialog>
-    <q-dialog v-model="chat">
-      <q-card style="width: 600px">
-        <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
-          <div>{{ receiver }}</div>
-          <q-space />
-          <q-btn dense flat icon="close" v-close-popup>
-            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[20, 20]" content-style="font-size: 12px" @click="ChatClose()">{{ $t('index.close') }}</q-tooltip>
-          </q-btn>
-        </q-bar>
-        <q-separator />
-        <q-card-section id="chat_scroll" style="max-height: 50vh; height: 50vh" class="scroll">
-          <template>
-            <div class="q-pa-md row justify-center">
-              <q-btn flat rounded :label="$t('loadmore')" @click="LoadChatList()" v-show="chat_next !== null"></q-btn>
-              <div style="width: 100%">
-                <q-chat-message v-show="chat_next === null" :label="$t('nomoremessage')" />
-                <div v-for="item in chat_list" :key="item.id">
-                  <q-chat-message
-                    v-if="item.sender === sender + '-' + openid"
-                    :name="sender"
-                    :text="[item.detail]"
-                    bg-color="light-green-4"
-                    name-sanitize
-                    sent
-                    text-sanitize
-                    :stamp="item.create_time"
-                  />
-                  <q-chat-message v-else :name="receiver" :text="[item.detail]" text-sanitize name-sanitize bg-color="grey-4" />
-                </div>
-              </div>
-            </div>
-          </template>
-        </q-card-section>
-        <q-separator />
-        <q-card-actions align="right">
-          <q-input
-            maxlength="200"
-            autofocus
-            dense
-            outlined
-            square
-            counter
-            v-model="chat_text"
-            :placeholder="$t('sendmessage')"
-            class="bg-white col"
-            @keyup.enter="websocketsend()"
-            @keyup.esc="ChatClose()"
-          />
-          <q-btn flat :label="$t('send')" color="primary" @click="websocketsend()"></q-btn>
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
   </div>
 </template>
 <router-view />
 
 <script>
-import { getauth, postauth, putauth, deleteauth, wsurl, getfile } from 'boot/axios_request'
+import { getauth, postauth, putauth, deleteauth, getfile } from 'boot/axios_request'
 import { date, exportFile, LocalStorage } from 'quasar'
-var ws
 
 export default {
   name: 'Pagestafflist',
@@ -327,12 +271,6 @@ export default {
       editMode: false,
       deleteForm: false,
       deleteid: 0,
-      sender: '',
-      receiver: '',
-      chat: false,
-      chat_list: [],
-      chat_text: '',
-      chat_next: null,
       filter: '',
       error1: this.$t('staff.view_staff.error1'),
       error2: this.$t('staff.view_staff.error2')
@@ -681,115 +619,6 @@ export default {
       _this.deleteForm = false
       _this.deleteid = 0
     },
-    initWebSocket () {
-      var _this = this
-      ws = new WebSocket(wsurl + '?sender=' + _this.login_name + '&receiver=' + _this.receiver + '&openid=' + _this.openid)
-      ws.onmessage = _this.websocketonmessage
-      ws.onopen = _this.websocketonopen
-      ws.onerror = _this.websocketonerror
-      ws.onclose = _this.websocketclose
-    },
-    websocketonopen () {
-      console.log('Success Connect')
-    },
-    websocketonerror () {
-      var _this = this
-      _this.initWebSocket()
-    },
-    websocketonmessage (e) {
-      var _this = this
-      if (_this.$q.sessionStorage.getItem('receiver') === JSON.parse(e.data).sender) {
-        _this.chat_list.push(JSON.parse(e.data))
-      } else {
-      }
-      _this.Readnum()
-      _this.$q.notify({
-        message: JSON.parse(e.data).sender + ' Send you a message',
-        color: 'deep-purple',
-        icon: 'textsms',
-        position: 'right',
-        actions: [
-          {
-            label: 'VIEW',
-            color: 'yellow',
-            handler: () => {
-              _this.ChatWith(JSON.parse(e.data).sender)
-            }
-          }
-        ]
-      })
-    },
-    websocketsend () {
-      var _this = this
-      if (_this.chat_text === '') {
-      } else {
-        ws.send(_this.chat_text)
-        _this.chat_list.push({
-          sender: _this.sender + '-' + _this.openid,
-          receiver: _this.receiver,
-          detail: _this.chat_text,
-          create_time: date.formatDate(Date.now(), 'YYYY-MM-DD HH:mm:ss')
-        })
-        _this.chat_text = ''
-      }
-    },
-    websocketclose (e) {
-      console.log('Disconnect', e)
-    },
-    ChatWith (e) {
-      var _this = this
-      _this.sender = _this.login_name
-      _this.receiver = e
-      _this.$q.sessionStorage.set('receiver', e)
-      if (_this.sender === _this.receiver) {
-        _this.$q.notify({
-          message: 'Cannot Chat with yourself',
-          icon: 'close',
-          color: 'negative'
-        })
-      } else {
-        _this.chat = true
-        _this.chat_text = ''
-        _this.initWebSocket()
-        getauth('chat/?' + 'sender=' + _this.sender + '&receiver=' + _this.receiver)
-          .then(res => {
-            _this.chat_list = res.results.reverse()
-            _this.chat_next = res.next
-          })
-          .catch(err => {
-            _this.$q.notify({
-              message: err.detail,
-              icon: 'close',
-              color: 'negative'
-            })
-          })
-      }
-    },
-    LoadChatList () {
-      var _this = this
-      getauth(_this.chat_next)
-        .then(res => {
-          res.results.forEach(c => {
-            _this.chat_list.unshift(c)
-          })
-          _this.chat_next = res.next
-        })
-        .catch(err => {
-          _this.$q.notify({
-            message: err.detail,
-            icon: 'close',
-            color: 'negative'
-          })
-        })
-    },
-    ChatClose () {
-      var _this = this
-      _this.receiver = ''
-      _this.$q.sessionStorage.set('receiver', '')
-      _this.chat_list = []
-      _this.chat_text = ''
-      _this.chat_next = null
-    },
     downloadData () {
       var _this = this
       if (LocalStorage.has('auth')) {
@@ -849,17 +678,8 @@ export default {
     }
   },
   updated () {
-    if (document.getElementById('chat_scroll')) {
-      document.getElementById('chat_scroll').scrollTop = document.getElementById('chat_scroll').scrollHeight
-    } else {
-    }
   },
   destroyed () {
-    if (ws) {
-      if (ws.readyState === ws.OPEN) {
-        ws.close()
-      }
-    }
   }
 }
 </script>

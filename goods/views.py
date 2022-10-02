@@ -22,6 +22,7 @@ from django.http import StreamingHttpResponse
 from .files import FileRenderCN, FileRenderEN
 from rest_framework.settings import api_settings
 from asn.models import AsnDetailModel
+from django.db.models import Q
 
 class SannerGoodsTagView(viewsets.ModelViewSet):
 
@@ -113,10 +114,21 @@ class APIViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         id = self.get_project()
         if self.request.user:
-            if id is None:
-                return ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+            search_word = self.request.GET.get('search', '')
+            if search_word:
+                if id is None:
+                    data_list = ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+                    search_list = data_list.filter(Q(goods_shape=search_word) | Q(goods_specs=search_word))
+                    return search_list
+                else:
+                    data_list = ListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                    search_list = data_list.filter(Q(goods_shape=search_word) | Q(goods_specs=search_word))
+                    return search_list
             else:
-                return ListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                if id is None:
+                    return ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+                else:
+                    return ListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
         else:
             return ListModel.objects.filter().none()
 
