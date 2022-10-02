@@ -5,7 +5,6 @@ import { i18n } from './i18n'
 import Bus from './bus.js'
 
 const baseurl = window.g.BaseUrl
-const wsurl = window.g.WsUrl
 
 const axiosInstance = axios.create({
   baseURL: baseurl,
@@ -598,4 +597,4 @@ function getfile (url) {
 
 Vue.prototype.$axios = axios
 
-export { baseurl, wsurl, get, versioncheck, post, getauth, postauth, putauth, deleteauth, patchauth, ViewPrintAuth, getfile, scangetauth, scanpostauth }
+export { baseurl, get, versioncheck, post, getauth, postauth, putauth, deleteauth, patchauth, ViewPrintAuth, getfile, scangetauth, scanpostauth }
