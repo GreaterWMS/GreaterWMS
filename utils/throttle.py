@@ -2,6 +2,7 @@ from rest_framework.throttling import BaseThrottle
 from throttle.models import ListModel
 from utils.md5 import Md5
 from django.utils import timezone
+from django.conf import settings
 
 data = {}
 
@@ -34,10 +35,10 @@ class VisitThrottle(BaseThrottle):
                     ListModel.objects.create(openid=openid, appid=appid, ip=ip, method="get", t_code=t_code)
                     allocation_seconds_balance = (ntime - throttle_last_create_time).seconds
                     data["visit_check"] = throttle_last_create_time
-                    if allocation_seconds_balance >= 1:
+                    if allocation_seconds_balance >= settings.ALLOCATION_SECONDS:
                         return True
                     else:
-                        if throttle_count >= 5:
+                        if throttle_count >= settings.GET_THROTTLE:
                             return False
                         else:
                             return True
@@ -59,10 +60,10 @@ class VisitThrottle(BaseThrottle):
                     ListModel.objects.create(openid=openid, appid=appid, ip=ip, method="post", t_code=t_code)
                     allocation_seconds_balance = (ntime - throttle_last_create_time).seconds
                     data["visit_check"] = throttle_last_create_time
-                    if allocation_seconds_balance >= 1:
+                    if allocation_seconds_balance >= settings.ALLOCATION_SECONDS:
                         return True
                     else:
-                        if throttle_count >= 4:
+                        if throttle_count >= settings.POST_THROTTLE:
                             return False
                         else:
                             return True
@@ -84,10 +85,10 @@ class VisitThrottle(BaseThrottle):
                     ListModel.objects.create(openid=openid, appid=appid, ip=ip, method="put", t_code=t_code)
                     allocation_seconds_balance = (ntime - throttle_last_create_time).seconds
                     data["visit_check"] = throttle_last_create_time
-                    if allocation_seconds_balance >= 1:
+                    if allocation_seconds_balance >= settings.ALLOCATION_SECONDS:
                         return True
                     else:
-                        if throttle_count >= 4:
+                        if throttle_count >= settings.PUT_THROTTLE:
                             return False
                         else:
                             return True
@@ -109,10 +110,10 @@ class VisitThrottle(BaseThrottle):
                     ListModel.objects.create(openid=openid, appid=appid, ip=ip, method="patch", t_code=t_code)
                     allocation_seconds_balance = (ntime - throttle_last_create_time).seconds
                     data["visit_check"] = throttle_last_create_time
-                    if allocation_seconds_balance >= 1:
+                    if allocation_seconds_balance >= settings.ALLOCATION_SECONDS:
                         return True
                     else:
-                        if throttle_count >= 4:
+                        if throttle_count >= settings.PATCH_THROTTLE:
                             return False
                         else:
                             return True
@@ -134,10 +135,10 @@ class VisitThrottle(BaseThrottle):
                     ListModel.objects.create(openid=openid, appid=appid, ip=ip, method="delete", t_code=t_code)
                     allocation_seconds_balance = (ntime - throttle_last_create_time).seconds
                     data["visit_check"] = throttle_last_create_time
-                    if allocation_seconds_balance >= 1:
+                    if allocation_seconds_balance >= settings.ALLOCATION_SECONDS:
                         return True
                     else:
-                        if throttle_count >= 3:
+                        if throttle_count >= settings.DELETE_THROTTLE:
                             return False
                         else:
                             return True
