@@ -1,6 +1,6 @@
 import Ar from './ar'
 import De from './de'
-import enUS from './en-us'
+import enUS from './en-US'
 import Fr from './fr'
 import It from './it'
 import Ja from './ja'
@@ -13,7 +13,7 @@ import zhHant from './zh-hant'
 export default {
   ar: Ar,
   de: De,
-  'en-us': enUS,
+  'en-US': enUS,
   fr: Fr,
   it: It,
   ja: Ja,

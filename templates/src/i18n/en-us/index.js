@@ -5,7 +5,7 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
-    index_title: 'Warehouse Management Platform',
+    index_title: 'Open Source Inventory System',
     webtitle: 'GreaterWMS--Open Source Warehouse Management System',
     home: 'Home',
     title: 'GreaterWMS',
@@ -45,6 +45,10 @@ export default {
     update: 'Update Now',
     chart: ' Chart',
     current_user: 'Current User'
+  },
+  Settings: {
+    index: 'Settings',
+    server: 'Server'
   },
   menuItem: {
     dashboard: 'Dashboard',

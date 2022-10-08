@@ -46,6 +46,10 @@ export default {
     chart: 'نقل',
     current_user: 'المستخدم الحالي'
   },
+  Settings: {
+    index: 'ضبط',
+    server: 'خادم .'
+  },
   menuItem: {
     dashboard: 'مركز التقارير',
     inbound: 'إدارة الإيصالات',
