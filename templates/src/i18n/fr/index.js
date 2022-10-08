@@ -46,22 +46,26 @@ export default {
     chart: 'Reportage',
     current_user: 'Utilisateur actuel'
   },
-  menuItem: {
-    dashboard: 'Centre des rapports',
-    inbound: 'Gestion des reçus',
-    outbound: 'Gestion des expéditions',
-    stock: "'Gestion de l'inventaire'",
-    finance: 'Centre financier',
-    goods: 'Gestion des produits de base',
-    baseinfo: 'Paramètres de base',
-    warehouse: "'Paramètres de l'entrepôt'",
-    staff: 'Gestion des utilisateurs',
-    driver: 'Gestion des chauffeurs',
-    customerdn: 'Commande du client',
-    supplierasn: 'Commande fournisseur',
-    uploadcenter: 'Centre de téléchargement',
-    downloadcenter: 'Centre de téléchargement'
+  Settings: {
+    index: 'Settings',
+    server: 'Serveur'
   },
+  menuItem: {
+     dashboard: 'Tableau de bord',
+     inbound: 'entrant',
+     outbound: 'sortant',
+     stock: 'inventaire',
+     finance: 'Finances',
+     goods: 'Liste Marchandises',
+     baseinfo: 'Informations de base',
+     warehouse: 'Entrepôt',
+     staff: 'Personnel',
+     driver : 'Chauffeur',
+     customerdn: 'DN client',
+     supplierasn: 'Fournisseur ASN',
+     uploadcenter: 'Centre de téléchargement',
+     downloadcenter: 'Centre de téléchargement'
+   },
   contact: 'Communiquer immédiatement',
   sendmessage: 'Envoyez-lui un message',
   send: 'envoyer',
