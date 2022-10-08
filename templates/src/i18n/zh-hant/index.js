@@ -46,6 +46,10 @@ export default {
     chart: '報表',
     current_user: '當前用戶'
   },
+  Settings: {
+    index: '設定',
+    server: '服務器'
+  },
   menuItem: {
     dashboard: '報表中心',
     inbound: '收貨管理',

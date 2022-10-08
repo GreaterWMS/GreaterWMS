@@ -46,22 +46,26 @@ export default {
     chart: 'Отчет',
     current_user: 'Текущий пользователь'
   },
-  menuItem: {
-    dashboard: 'Отчет Центр',
-    inbound: 'Управление квитанциями',
-    outbound: 'Управление доставкой',
-    stock: 'Управление инвентарями',
-    finance: 'Финансовый центр',
-    goods: 'Товарное управление',
-    baseinfo: 'основные настройки',
-    warehouse: 'Настройки склада',
-    staff: 'Управление пользователями',
-    driver: 'Управление драйверами',
-    customerdn: 'Заказы клиентов',
-    supplierasn: 'Заказ поставщика',
-    uploadcenter: 'Загрузить центр',
-    downloadcenter: 'Центр загрузки'
+  Settings: {
+    index: 'Settings',
+    server: 'сервер'
   },
+  menuItem: {
+     dashboard: 'Панель инструментов',
+     inbound: 'Входящий',
+     outbound: 'Исходящий',
+     stock: 'Инвентарь',
+     finance: 'Финансы',
+     goods: 'Список товаров',
+     baseinfo: 'Базовая информация',
+     warehouse: 'Склад',
+     staff: 'Персонал',
+     driver: 'Водитель',
+     customerdn: 'DN клиента',
+     supplierasn: 'ASN поставщика',
+     uploadcenter: 'Центр загрузки',
+     downloadcenter: 'Центр загрузки'
+   },
   contact: '',
   sendmessage: 'Общаться сразу',
   send: 'Отправить',
