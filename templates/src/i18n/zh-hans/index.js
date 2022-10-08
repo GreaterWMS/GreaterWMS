@@ -424,6 +424,10 @@ export default {
       dateerror: '选择的日期不正确'
     }
   },
+  Settings: {
+    index: '设置',
+    server: '服务器'
+  },
   warehouse: {
     warehouse: '仓库设置',
     binset: '库位设置',

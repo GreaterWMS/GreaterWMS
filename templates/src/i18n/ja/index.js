@@ -46,6 +46,10 @@ export default {
     chart: 'レポート',
     current_user: '現在の使用者'
   },
+  Settings: {
+    index: '設定',
+    server: 'サーバ'
+  },
   menuItem: {
     dashboard: 'レポートセンター',
     inbound: '入庫管理',

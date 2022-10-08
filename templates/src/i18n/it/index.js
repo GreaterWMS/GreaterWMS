@@ -46,22 +46,26 @@ export default {
     chart: 'Rapporto',
     current_user: 'Utente corrente'
   },
-  menuItem: {
-    dashboard: 'Centro rapporti',
-    inbound: 'Gestione scontrini',
-    outbound: 'Gestione spedizioni',
-    stock: 'Gestione delle scorte',
-    finance: 'Centro finanziario',
-    goods: 'Gestione delle merci',
-    baseinfo: 'impostazioni di base',
-    warehouse: 'Impostazioni magazzino',
-    staff: 'Gestione utenti',
-    driver: 'Gestione dei conducenti',
-    customerdn: 'Ordine del cliente',
-    supplierasn: 'Ordine fornitore',
-    uploadcenter: 'Centro di caricamento',
-    downloadcenter: 'Centro Download'
+  Settings: {
+    index: 'Settings',
+    server: 'Server'
   },
+  menuItem: {
+   dashboard: 'Dashboard',
+   inbound: 'In entrata',
+   outbound: 'In uscita',
+   stock: 'inventario',
+   finance: 'Finanza',
+   goods: 'Elenco merci',
+   baseinfo: 'Informazioni di base',
+   warehouse: 'Magazzino',
+   staff: 'Personale',
+   driver: 'Autista',
+   customerdn: 'DN cliente',
+   supplierasn: 'Fornitore ASN',
+   uploadcenter: 'Centro di caricamento',
+   downloadcenter: 'Centro download'
+ },
   contact: 'Comunicare immediatamente',
   sendmessage: 'Inviagli un messaggio',
   send: 'Inviare',

@@ -667,11 +667,11 @@ export default {
         { value: 'zh-hant', label: '中文繁體' },
         { value: 'fr', label: 'Français' },
         { value: 'pt', label: 'Português' },
-        { value: 'ru', label: 'Español' },
+        { value: 'sp', label: 'Español' },
         { value: 'de', label: 'Deutsch' },
         { value: 'ru', label: 'русский язык' },
         { value: 'ar', label: 'Arabic' },
-        { value: 'fr', label: 'Italiano' },
+        { value: 'it', label: 'Italiano' },
         { value: 'ja', label: '日本語' }
       ],
       title: this.$t('index.webtitle'),
