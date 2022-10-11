@@ -81,37 +81,11 @@
         <q-separator vertical />
         <template v-if="authin === '1'">
           <transition appear enter-active-class="animated zoomIn">
-            <q-btn
-              round
-              dense
-              flat
-              color="white"
-              icon="notifications"
-              @click="read = true"
-              style="margin: 0 10px 0 10px"
-            >
-              <q-badge
-                v-if="read_num"
-                color="red"
-                text-color="white"
-                floating
-                >{{ read_num }}</q-badge
-              >
-              <q-tooltip
-                content-class="bg-amber text-black shadow-4"
-                :offset="[15, 15]"
-                content-style="font-size: 12px"
-                >{{ $t("index.unread") }}</q-tooltip
-              >
-            </q-btn>
-          </transition>
-          <transition appear enter-active-class="animated zoomIn">
             <q-btn-dropdown
               stretch
               flat
               color="white-8"
               icon="account_circle"
-              @click="chat = false"
             >
               <div class="row no-wrap q-pa-md">
                 <div class="column" style="width: 150px">
@@ -943,7 +917,6 @@ export default {
     if (LocalStorage.has('auth')) {
       _this.authin = '1'
       _this.staffType()
-      _this.Readnum()
     } else {
       LocalStorage.set('staff_type', 'Admin')
       _this.authin = '0'
