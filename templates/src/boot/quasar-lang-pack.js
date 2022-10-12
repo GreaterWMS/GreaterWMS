@@ -1,11 +1,11 @@
 import Quasar from 'quasar'
 
 export default async () => {
-  const langIso = 'en-us' // ... some logic to determine it (use Cookies Plugin?)
+  const langIso = 'en-US' // ... some logic to determine it (use Cookies Plugin?)
 
   try {
     await import(
-      /* webpackInclude: /(zh-hans|en-us)\.js$/ */
+      /* webpackInclude: /(zh-hans|en-US)\.js$/ */
       `quasar/lang/${langIso}`
       )
       .then(lang => {
