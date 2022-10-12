@@ -114,7 +114,7 @@ function MediaCaptureProxy () {
                 capture.initializeAsync(captureSettings).done(function () {
                     // This is necessary since WP8.1 MediaCapture outputs video stream rotated 90 degrees CCW
                     // TODO: This can be not consistent across devices, need additional testing on various devices
-                    // msdn.microsoft.com/en-us/library/windows/apps/hh452807.aspx
+                    // msdn.microsoft.com/en-US/library/windows/apps/hh452807.aspx
                     capture.setPreviewRotation(Windows.Media.Capture.VideoRotation.clockwise90Degrees);
                     capturePreview.msZoom = true;
 

@@ -387,7 +387,7 @@ function takePictureFromCameraWP (successCallback, errorCallback, args) {
                 });
             }
 
-            // msdn.microsoft.com/en-us/library/windows/apps/hh452807.aspx
+            // msdn.microsoft.com/en-US/library/windows/apps/hh452807.aspx
             capturePreview.msZoom = true;
             capturePreview.src = URL.createObjectURL(capture);
             capturePreview.play();
