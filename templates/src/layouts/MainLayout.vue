@@ -636,7 +636,7 @@ export default {
       lang: this.$i18n.locale,
       container_height: this.$q.screen.height + '' + 'px',
       langOptions: [
-        { value: 'en-us', label: 'English' },
+        { value: 'en-US', label: 'English' },
         { value: 'zh-hans', label: '中文简体' },
         { value: 'zh-hant', label: '中文繁體' },
         { value: 'fr', label: 'Français' },
