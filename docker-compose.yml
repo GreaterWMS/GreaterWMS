@@ -7,7 +7,7 @@ services:
 #      context: ./
 #      dockerfile: ./docker/front/Dockerfile
     container_name: greaterwms_front
-    image: greaterwms/greatermws_front:latest
+    image: greaterwms/greaterwms_front:latest
     restart: always
     ports:
       - '8080:8080'
