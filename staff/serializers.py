@@ -8,6 +8,7 @@ class StaffGetSerializer(serializers.ModelSerializer):
     check_code = serializers.IntegerField(read_only=True, required=False)
     create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
     update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+
     class Meta:
         model = ListModel
         exclude = ['openid', 'is_delete', ]
