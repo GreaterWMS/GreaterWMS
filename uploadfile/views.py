@@ -67,7 +67,10 @@ class GoodlistfileViewSet(views.APIView):
                 goodsspecs.objects.all().delete()
                 goodsorigin.objects.all().delete()
                 scanner.objects.filter(openid=self.request.auth.openid, mode='GOODS').delete()
-                df = pd.read_excel(files)
+                if excel_type == 'csv':
+                    df = pd.read_csv(files)
+                else:
+                    df = pd.read_excel(files)
                 df.drop_duplicates(keep='first', inplace=True)
                 data_list = df.drop_duplicates(subset=[data_header.get('goods_code')], keep='first').values
                 for d in range(len(data_list)):
@@ -304,7 +307,10 @@ class SupplierfileViewSet(views.APIView):
                                               id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 self.get_queryset().delete()
-                df = pd.read_excel(files)
+                if excel_type == 'csv':
+                    df = pd.read_csv(files)
+                else:
+                    df = pd.read_excel(files)
                 df.drop_duplicates(keep='first', inplace=True)
                 data_list = df.drop_duplicates(subset=[data_header.get('supplier_name')], keep='first').values
                 for d in range(len(data_list)):
@@ -379,7 +385,10 @@ class CustomerfileViewSet(views.APIView):
                                               id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 self.get_queryset().delete()
-                df = pd.read_excel(files)
+                if excel_type == 'csv':
+                    df = pd.read_csv(files)
+                else:
+                    df = pd.read_excel(files)
                 df.drop_duplicates(keep='first', inplace=True)
                 data_list = df.drop_duplicates(subset=[data_header.get('customer_name')], keep='first').values
                 for d in range(len(data_list)):
@@ -440,7 +449,10 @@ class CapitalfileViewSet(views.APIView):
                                               id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 self.get_queryset().delete()
-                df = pd.read_excel(files)
+                if excel_type == 'csv':
+                    df = pd.read_csv(files)
+                else:
+                    df = pd.read_excel(files)
                 data_list = df.drop_duplicates(keep='first', inplace=True)
                 for d in range(len(data_list)):
                     data_validate(str(data_list[d]))
@@ -491,7 +503,10 @@ class FreightfileViewSet(views.APIView):
                                               id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 self.get_queryset().delete()
-                df = pd.read_excel(files)
+                if excel_type == 'csv':
+                    df = pd.read_csv(files)
+                else:
+                    df = pd.read_excel(files)
                 data_list = df.drop_duplicates(keep='first', inplace=True).values
                 for d in range(len(data_list)):
                     data_validate(str(data_list[d]))
@@ -566,7 +581,10 @@ class GoodlistfileAddViewSet(views.APIView):
             staff_name = staff.objects.filter(openid=self.request.auth.openid,
                                               id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
-                df = pd.read_excel(files)
+                if excel_type == 'csv':
+                    df = pd.read_csv(files)
+                else:
+                    df = pd.read_excel(files)
                 df.drop_duplicates(keep='first', inplace=True)
                 data_list = df.drop_duplicates(subset=[data_header.get('goods_code')], keep='first').values
                 for d in range(len(data_list)):
@@ -805,7 +823,10 @@ class SupplierfileAddViewSet(views.APIView):
             staff_name = staff.objects.filter(openid=self.request.auth.openid,
                                               id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
-                df = pd.read_excel(files)
+                if excel_type == 'csv':
+                    df = pd.read_csv(files)
+                else:
+                    df = pd.read_excel(files)
                 df.drop_duplicates(keep='first', inplace=True)
                 data_list = df.drop_duplicates(subset=[data_header.get('supplier_name')], keep='first').values
                 for d in range(len(data_list)):
@@ -890,7 +911,10 @@ class CustomerfileAddViewSet(views.APIView):
             staff_name = staff.objects.filter(openid=self.request.auth.openid,
                                               id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
-                df = pd.read_excel(files)
+                if excel_type == 'csv':
+                    df = pd.read_csv(files)
+                else:
+                    df = pd.read_excel(files)
                 df.drop_duplicates(keep='first', inplace=True)
                 data_list = df.drop_duplicates(subset=[data_header.get('customer_name')], keep='first').values
                 for d in range(len(data_list)):
@@ -960,7 +984,10 @@ class CapitalfileAddViewSet(views.APIView):
             staff_name = staff.objects.filter(openid=self.request.auth.openid,
                                               id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
-                df = pd.read_excel(files)
+                if excel_type == 'csv':
+                    df = pd.read_csv(files)
+                else:
+                    df = pd.read_excel(files)
                 data_list = df.drop_duplicates(keep='first', inplace=True)
                 for d in range(len(data_list)):
                     data_validate(str(data_list[d]))
@@ -1017,7 +1044,10 @@ class FreightfileAddViewSet(views.APIView):
             staff_name = staff.objects.filter(openid=self.request.auth.openid,
                                               id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
-                df = pd.read_excel(files)
+                if excel_type == 'csv':
+                    df = pd.read_csv(files)
+                else:
+                    df = pd.read_excel(files)
                 data_list = df.drop_duplicates(keep='first', inplace=True).values
                 for d in range(len(data_list)):
                     data_validate(str(data_list[d]))
