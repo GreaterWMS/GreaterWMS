@@ -62,8 +62,6 @@ INSTALLED_APPS = [
     'scanner.apps.ScannerConfig',
     'rest_framework',
     'django_filters',
-    'silk',
-    'drf_yasg',
     'corsheaders'
 ]
 
@@ -76,7 +74,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = 'greaterwms.urls'
@@ -111,6 +108,7 @@ DATABASES = {
     }
 }
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
