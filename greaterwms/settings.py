@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'driver.apps.DriverConfig',
     'stock.apps.StockConfig',
-    'shopid.apps.ShopidConfig',
     'throttle.apps.ThrottleConfig',
     'uploadfile.apps.UploadfileConfig',
     'scanner.apps.ScannerConfig',
