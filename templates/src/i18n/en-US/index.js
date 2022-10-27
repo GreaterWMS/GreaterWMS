@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    app_title: 'APP Title',
+    slogan: 'Slogan',
+    server: 'Request Baseurl',
     index_title: 'Open Source Inventory System',
     webtitle: 'GreaterWMS--Open Source Warehouse Management System',
     home: 'Home',
@@ -48,7 +51,8 @@ export default {
   },
   Settings: {
     index: 'Settings',
-    server: 'Server'
+    server: 'Server',
+    equipment: 'Equipment Support'
   },
   menuItem: {
     dashboard: 'Dashboard',
@@ -471,39 +475,39 @@ export default {
     }
   },
   scan: {
-    scan: 'SCAN',
-    scan_asn: 'ASN Check',
-    scan_dn: 'DN Check',
+    scan: 'Scan',
+    scan_asn: 'ASN query',
+    scan_dn: 'DN query',
     scan_sorting: 'Sorting',
     scan_uptobin: 'Up To Bin',
     scan_picking: 'Picking',
-    scan_shipping: 'Dispatch',
-    scan_movetobin: 'Bin Move',
-    scan_inventory: 'Count',
-    scan_goodsquery: 'Goods',
-    scan_locationquery: 'Bin',
+    scan_shipping: 'Shipping',
+    scan_movetobin: 'Move To Bin',
+    scan_inventory: 'Inventory',
+    scan_goodsquery: 'Goods query',
+    scan_locationquery: 'Location query',
     scan_goods_code: 'Goods Code',
-    scan_bin_name: 'Location Name',
-    scan_goods_label: 'Goods Label',
-    scan_goods_label_error: 'Product Label Does Not Exist',
+    scan_bin_name: 'Bin Name',
+    scan_goods_label: 'Goods label',
+    scan_goods_label_error: 'The Goods Label Does Not Exist',
     view_binmove: {
-      old_bin_name: 'Old Location Name',
-      new_bin_name: 'New Location Name',
-      qty: 'Shifting Quantity',
-      qty_error: 'Quantity Shall Not Exceed Existing Quantity'
+      old_bin_name: 'Original Bin name',
+      new_bin_name: 'New Bin Name',
+      qty: 'Number of Goods Moved',
+      qty_error: 'The Quantity To Be Moved Cannot Be Greater Than The Existing quantity'
     },
     view_upToBin: {
-      goods_actual_qty: 'Actual Arrive Quantity',
-      scan_qty: 'Scanned Quantity',
-      scan_qty_error: 'Sanning Quantity Shall Not Exceed Arrived Quantity'
+      goods_actual_qty: 'Actual Arrival Quantity',
+      scan_qty: 'Scanned Qty',
+      scan_qty_error: 'The Scan Quantity Cannot Be Greater Than The Arrival Quantity'
     },
     view_picking: {
       order_qty: 'Order Quantity',
-      picking_qty: 'Sorting Quantity',
-      picking_qty_error: 'Sorting Quantity Shall Not Exceed Order Quantity'
+      picking_qty: 'Pick quantity',
+      picking_qty_error: 'The Picking Quantity Cannot Be Greater Than The Order Quantity'
     },
     view_shipping: {
-      shipping_code: 'Shipment Tracking Number',
+      shipping_code: 'Shipment Number',
       driver_info: 'Driver Information',
       license_plate_number: 'License Plate Number',
       name: 'Name',
@@ -511,33 +515,111 @@ export default {
     }
   },
   notice: {
-    valerror: 'Please enter the correct value',
-    unknow_error: 'Unknow Error',
-    network_error: 'Network Abnormal',
-    nullerror: '',
-    cyclecounterror: 'No Data',
-    userererror: 'Username Already Exists',
+    valerror: 'Please Enter The Correct Value',
+    unknow_error: 'Unknown Error',
+    network_error: 'Network Exception',
+    cyclecounterror: 'No data',
+    userererror: 'Username already Exists',
     capitalerror: 'Fixed Asset Name Already Exists',
     valuenullerror: 'Please Fill In The Complete Data',
-    loginerror: 'Please Log In First',
+    loginerror: 'Please Login First',
+    detail: 'Detail',
     goodserror: {
-      goods_listerror: 'The Product Code Already Exists',
-      goods_uniterror: 'Commodity Unit Already Exists',
-      goods_classerror: 'The Product Category Already Exists',
-      goods_colorerror: 'Product Color Already Exists',
-      goods_branderror: 'The Product Brand Already Exists',
-      goods_shapeerror: 'The Product Shape Already Exists',
-      goods_specserror: 'Product Specifications Already Exists',
-      goods_originerror: 'The Origin Of The Goods Already Exists'
+      goods_listerror: 'The product code already exists',
+      goods_uniterror: 'Goods unit already exists',
+      goods_classerror: 'Goods category already exists',
+      goods_colorerror: 'Goods color already exists',
+      goods_branderror: 'The product brand already exists',
+      goods_shapeerror: 'Goods shape already exists',
+      goods_specserror: 'Goods specification already exists',
+      goods_originerror: 'The origin of goods already exists'
     },
     baseinfoerror: {
-      companyerror: 'Company Name Already Exists',
-      customererror: 'Customer Name Already Exists',
-      suppliererror: 'Supplier Name Already Exists'
+      companyerror: 'Company name already exists',
+      customererror: 'Customer name already exists',
+      suppliererror: 'Supplier name already exists'
     },
     warehouseerror: {
-      binseterror: 'The Location Name Already Exists',
-      binsizeerror: 'Location Size Already Exists'
+      binseterror: 'The bin name already exists',
+      binsizeerror: 'bin size already exists'
+    },
+    mobile_userlogin: {
+      notice1: 'Please enter your administrator name',
+      notice2: 'Please enter your administrator password',
+      notice3: 'Please enter your staff name',
+      notice4: 'Please enter your staff verification code',
+      notice5: 'Please enter your Openid in the settings server',
+      notice6: 'Successful login',
+      notice7: 'User or password mismatch',
+      notice8: 'Employee or inspection code mismatch',
+      notice9: 'Please login first'
+    },
+    mobile_scan: {
+      notice1: 'QR code does not exist',
+      notice2: 'Code does not exist',
+      notice3: 'Server Error',
+      notice4: 'Only mobile can scan'
+    },
+    mobile_asn: {
+      notice1: 'ASN List',
+      notice2: 'You can scan the QR code of the arrival notice, or click the arrival notice to view the details of the arrival notice and operate',
+      notice3: 'Supplier:',
+      notice4: 'Total amount:',
+      notice5: 'Status:',
+      notice6: 'Details of the arrival notice',
+      notice7: 'You need to scan the arrival notice to get the details of the arrival notice. You can scan the cargo code or click on the goods you want to put on the shelves to complete the operation of the goods on the shelves',
+      notice8: 'Details',
+      notice9: 'Total amount:',
+      notice10: 'Number to be listed:',
+      notice11: 'The number of listings must be greater than 0',
+      notice12: 'Successful listing',
+      notice13: 'Please enter the location code'
+    },
+    mobile_dn: {
+      notice1: 'DN List',
+      notice2: 'You can scan the QR code of the DN Order, or click on the DN order to view the details of the DN and perform operations',
+      notice3: 'Customer:',
+      notice4: 'Total amount:',
+      notice5: 'Status:',
+      notice6: 'DN details',
+      notice7: 'The details of the DN are all invoices. Scan the DN Number to view the details of the specific DN',
+      notice8: 'Details',
+      notice9: 'Total amount:',
+      notice10: 'Invoice quantity:',
+      notice11: 'All the details of the picking list are here, you can also scan the specific goods, or the DN to get the picking list to be operated',
+      notice12: 'Please enter the specific picking quantity',
+      notice13: 'Successful Picking',
+      notice14: 'Bin name:',
+      notice15: 'Quantity to be picked:'
+    },
+    mobile_goodsstock: {
+      notice1: 'Stock List',
+      notice2: 'Here you can see all the inventory information, click to view the inventory information directly',
+      notice3: 'On-Hand Stock:',
+      notice4: 'Can Ordered Stock:'
+    },
+    mobile_binstock: {
+      notice1: 'Bin Stock List',
+      notice2: 'Here you can see the inventory information of all the warehouse locations, click to directly access the inventory of the warehouse location, carry out the warehouse transfer operation, or scan the goods to check the storage status of all the goods',
+      notice3: 'Bin Name:',
+      notice4: 'Storage quantity:',
+      notice5: 'Please enter the Bin Name',
+      notice6: 'Repository moved successfully'
+    },
+    mobile_emptybin: {
+      notice1: 'Empty Bin list',
+      notice2: 'Here you can see all the empty location',
+      notice3: 'Stock Bin Property:'
+    },
+    handcount: {
+      notice1: 'Details',
+      notice2: 'Manual Count',
+      notice3: 'On-Hand Stock',
+      notice4: 'Count Quantity',
+      notice5: 'Confirm Result',
+      notice6: 'Confirm The Count Result',
+      notice7: 'Successful Confirmed Count Result',
+      notice8: 'Here shows the details of the goods that need to be counted'
     },
     400: 'Bad request (400)',
     401: 'Authorization not obtained (401)',

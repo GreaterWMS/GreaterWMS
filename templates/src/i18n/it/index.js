@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    app_title: "titolo dell'app",
+    slogan: 'Slogan',
+    server: "richiedi l'url di base",
     index_title: 'Piattaforma di gestione del magazzino',
     webtitle: 'GreaterWMS--Sistema di gestione del magazzino open source',
     home: 'prima pagina',
@@ -47,8 +50,9 @@ export default {
     current_user: 'Utente corrente'
   },
   Settings: {
-    index: 'Settings',
-    server: 'Server'
+    index: 'Impostazioni',
+    server: 'Server',
+    equipment: 'Supporto per attrezzature'
   },
   menuItem: {
    dashboard: 'Dashboard',
@@ -103,8 +107,8 @@ export default {
   downloadasnlist: 'Scarica elenco',
   downloadasndetail: 'Scarica dettagli',
   downloadasnlisttip: 'Scarica la lista degli avvisi di arrivo',
-  downloadasndetailtip: "'Scarica i dettagli dell'avviso di arrivo'",
-  printthisasn: "'Controlla l'avviso di arrivo'",
+  downloadasndetailtip: "'Scarica i dettagli dell'notice di arrivo'",
+  printthisasn: "'Controlla l'notice di arrivo'",
   confirmdelivery: 'È arrivata la conferma',
   finishloading: 'Conferma ordinamento completato',
   confirmsorted: 'Conferma ordinamento completato',
@@ -324,7 +328,7 @@ export default {
     }
   },
   inbound: {
-    asn: 'Avviso di arrivo',
+    asn: 'notice di arrivo',
     predeliverystock: 'arrivare',
     preloadstock: 'Da scaricare',
     presortstock: 'da ordinare',
@@ -337,7 +341,7 @@ export default {
       error1: 'Inserisci la quantità, la quantità deve essere maggiore di 0'
     },
     view_asn: {
-      asn_code: 'Numero avviso di arrivo',
+      asn_code: 'Numero notice di arrivo',
       asn_status: 'Stato notifica di arrivo',
       goods_qty: 'Numero di avvisi di arrivo',
       goods_actual_qty: 'Quantità di arrivo effettiva',
@@ -540,6 +544,83 @@ export default {
       binseterror: 'Il nome della posizione esiste già',
       binsizeerror: 'La dimensione delle scorte esiste già'
     },
+    mobile_userlogin: {
+       notice1: "Inserisci il tuo nome amministratore",
+       notice2: "Inserisci la tua password di amministratore",
+       notice3: "Inserisci il nome del tuo personale",
+       notice4: "Inserisci il codice di controllo del personale",
+       notice5: "Inserisci il tuo Openid nelle impostazioni del server",
+       notice6: 'Accesso riuscito',
+       notice7: 'Non assegnazione utente o password',
+       notice8: 'Mancata assegnazione del codice personale o di controllo'
+     },
+    mobile_scan: {
+      notice1: 'Il codice QR non esiste',
+      notice2: 'Il codice non esiste',
+      notice3: 'Errore del server',
+      notice4: "Solo i dispositivi mobili possono eseguire la scansione"
+    },
+    mobile_asn: {
+      notice1: 'Elenco ASN',
+      notice2: "Puoi scansionare il codice QR dell'notice di arrivo o fare clic sull'notice di arrivo per visualizzare i dettagli dell'notice di arrivo e operare",
+      notice3: 'Fornitore:',
+      notice4: 'Importo totale:',
+      notice5: 'Stato:',
+      notice6: "Dettagli dell'notice di arrivo",
+      notice7: "È necessario eseguire la scansione dell'notice di arrivo per ottenere i dettagli dell'notice di arrivo. È possibile eseguire la scansione del codice del carico o fare clic sulla merce che si desidera mettere sugli scaffali per completare l'operazione delle merci sugli scaffali",
+      notice8: 'Dettagli',
+      notice9: 'Importo totale:',
+      notice10: 'Numero da elencare:',
+      notice11: 'Il numero di inserzioni deve essere maggiore di 0',
+      notice12: 'Elenco riuscito',
+      notice13: 'Inserisci il codice della posizione'
+    },
+    dn_mobile: {
+      notice1: 'Elenco DN',
+      notice2: "Puoi scansionare il codice QR dell'ordine DN, oppure fare clic sull'ordine DN per visualizzare i dettagli del DN ed eseguire operazioni",
+      notice3: 'Cliente:',
+      notice4: 'Importo totale:',
+      notice5: 'Stato:',
+      notice6: 'Dettagli DN',
+      notice7: "I dettagli del DN sono tutte fatture. Scansiona il numero DN per visualizzare i dettagli del DN specifico",
+      notice8: 'Dettagli',
+      notice9: 'Importo totale:',
+      notice10: 'Quantità fattura:',
+      notice11: 'Tutti i dettagli della distinta di prelievo sono qui, puoi anche scansionare la merce specifica o il DN per far funzionare la distinta di prelievo',
+      notice12: 'Inserisci la quantità di prelievo specifica',
+      notice13: 'Prelievo riuscito',
+      notice14: 'Nome contenitore:',
+      notice15: 'Quantità da prelevare:'
+    },
+    mobile_goodsstock: {
+      notice1: 'Elenco scorte',
+      notice2: "Qui puoi vedere tutte le informazioni sull'inventario, fare clic per visualizzare direttamente le informazioni sull'inventario",
+      notice3: 'Scorte disponibili:',
+      notice4: 'Possibile Stock Ordinato:'
+    },
+    mobile_binstock: {
+      notice1: 'Elenco scorte bin',
+      notice2: "Qui puoi vedere le informazioni sull'inventario di tutte le ubicazioni di magazzino, fare clic per accedere direttamente all'inventario delle ubicazioni di magazzino, eseguire l'operazione di trasferimento del magazzino o scansionare le merci per verificare lo stato di conservazione di tutte le merci",
+      notice3: 'Nome contenitore:',
+      notice4: 'Quantità di stoccaggio:',
+      notice5: 'Inserisci il nome del cestino',
+      notice6: 'Repository spostato con successo'
+    },
+    mobile_emptybin: {
+      notice1: 'Elenco contenitori vuoti',
+      notice2: 'Qui puoi vedere tutte le posizioni vuote',
+      notice3: 'Proprietà contenitore di scorta:'
+    },
+    handcount: {
+        notice1: 'Dettagli',
+        notice2: 'Conteggio manuale',
+        notice3: 'Scorte disponibili',
+        notice4: 'Conta quantità',
+        notice5: 'Conferma risultato',
+        notice6: 'Conferma il risultato del conteggio',
+        notice7: 'Risultato conteggio confermato riuscito',
+        notice8: 'Qui mostra i dettagli delle merci che devono essere conteggiate',
+      },
     400: 'Richiesta errata (400)',
     401: 'Non autorizzato (401)',
     403: 'Accesso negato (403)',

@@ -16,21 +16,11 @@
           </q-btn>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-toolbar-title shrink class="text-weight-bold">{{
+          <q-toolbar-title shrink class="text-weight-bold" @click="$router.push({ name: 'web_index' })">{{
             $t("index.title")
           }}</q-toolbar-title>
         </transition>
         <q-space />
-        <transition appear enter-active-class="animated zoomIn">
-          <q-btn icon="api" round dense flat style="margin: 0 10px 0 10px" @click="apiLink()">
-            <q-tooltip
-              content-class="bg-amber text-black shadow-4"
-              :offset="[15, 15]"
-              content-style="font-size: 12px"
-              >{{ $t("index.api") }}</q-tooltip
-            >
-          </q-btn>
-        </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-btn
             icon="img:statics/icons/GitHub.png"
