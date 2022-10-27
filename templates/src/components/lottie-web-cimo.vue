@@ -24,7 +24,7 @@ export default {
         loop: _this.loop || true,
         animationData: _this.animationData
       })
-      _this.lottie.setSpeed(1.2)
+      _this.lottie.setSpeed(2.5)
     }
 
   },
