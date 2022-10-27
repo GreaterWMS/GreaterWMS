@@ -545,16 +545,16 @@ export default {
       binsizeerror: '库位尺寸已存在'
     },
     mobile_userlogin: {
-       notice1: '请输入您的管理员姓名',
-       notice2: '请输入您的管理员密码',
-       notice3: '请输入您的员工姓名',
-       notice4: '请输入您的员工校验码',
-       notice5: '请在设置服务器中输入您的 Openid',
-       notice6: '成功登录',
-       notice7: '用户或密码不匹配',
-       notice8: '员工或检查代码不匹配',
-       notice9: '请先登入'
-     },
+      notice1: '请输入您的管理员姓名',
+      notice2: '请输入您的管理员密码',
+      notice3: '请输入您的员工姓名',
+      notice4: '请输入您的员工校验码',
+      notice5: '请在设置服务器中输入您的 Openid',
+      notice6: '成功登录',
+      notice7: '用户或密码不匹配',
+      notice8: '员工或检查代码不匹配',
+      notice9: '请先登入'
+    },
     mobile_scan: {
       notice1: '二维码不存在',
       notice2: '编码不存在',
@@ -620,7 +620,7 @@ export default {
       notice5: '确认结果',
       notice6: '确认盘点结果',
       notice7: '确认盘点成功',
-      notice8: '这里显示需要盘点的货物明细',
+      notice8: '这里显示需要盘点的货物明细'
     },
     400: '错误请求(400)',
     401: '未取得授权(401)',

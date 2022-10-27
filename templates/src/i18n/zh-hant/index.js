@@ -500,7 +500,7 @@ export default {
       scan_qty: '已掃描數量',
       scan_qty_error: '掃描數量不得大於到貨數量  '
     },
-    view_packing:{
+    view_packing: {
       order_qty: '訂單數量',
       packing_qty: '揀貨數量',
       packing_qty_error: '揀貨數量不得大於訂單數量'
@@ -542,16 +542,16 @@ export default {
       binseterror: '庫位名稱已存在',
       binsizeerror: '庫位尺寸已存在'
     },
-    mobile_userlogin:{
-       notice1: '請輸入您的管理員姓名',
-       notice2: '請輸入您的管理員密碼',
-       notice3: '請輸入您的員工姓名',
-       notice4: '請輸入您的員工校驗碼',
-       notice5: '請在設置服務器中輸入您的 Openid',
-       notice6: '成功登錄',
-       notice7: '用戶或密碼未分配',
-       notice8: '員工或檢查代碼未分配'
-     },
+    mobile_userlogin: {
+      notice1: '請輸入您的管理員姓名',
+      notice2: '請輸入您的管理員密碼',
+      notice3: '請輸入您的員工姓名',
+      notice4: '請輸入您的員工校驗碼',
+      notice5: '請在設置服務器中輸入您的 Openid',
+      notice6: '成功登錄',
+      notice7: '用戶或密碼未分配',
+      notice8: '員工或檢查代碼未分配'
+    },
     mobile_scan: {
       notice1: '二維碼不存在',
       notice2: '編碼不存在',
@@ -617,7 +617,7 @@ export default {
       notice5: '確認結果',
       notice6: '確認盤點結果',
       notice7: '確認盤點成功',
-      notice8: '這裡顯示需要盤點的貨物明細',
+      notice8: '這裡顯示需要盤點的貨物明細'
     },
     400: '錯誤請求(400)',
     401: '未取得授權(401)',
