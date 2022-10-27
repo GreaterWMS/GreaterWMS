@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import CyclecountModeDayModel
+from .models import ManualCyclecountModeModel
 from utils import datasolve
 from .models import QTYRecorder
 class CyclecountGetSerializer(serializers.ModelSerializer):
@@ -70,3 +71,49 @@ class QTYRecorderSerializer(serializers.ModelSerializer):
         model = QTYRecorder
         ref_name = 'QTYRecorderSerializer'
         exclude = ['openid']
+
+class ManualCyclecountGetSerializer(serializers.ModelSerializer):
+    creater = serializers.CharField(read_only=True, required=False)
+    create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d')
+    update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    class Meta:
+        model = ManualCyclecountModeModel
+        exclude = ['openid']
+        read_only_fields = ['id', ]
+
+
+class ManualCyclecountPostSerializer(serializers.ModelSerializer):
+    openid = serializers.CharField(read_only=False, required=False, validators=[datasolve.openid_validate])
+    creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
+    class Meta:
+        model = ManualCyclecountModeModel
+        exclude = []
+        read_only_fields = ['id', 'create_time', 'update_time', ]
+
+class ManualCyclecountUpdateSerializer(serializers.ModelSerializer):
+    openid = serializers.CharField(read_only=False, required=False, validators=[datasolve.openid_validate])
+    creater = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
+    class Meta:
+        model = ManualCyclecountModeModel
+        exclude = []
+        read_only_fields = ['id', 'create_time', 'update_time', ]
+
+
+class ManualFileRenderSerializer(serializers.ModelSerializer):
+    creater = serializers.CharField(read_only=False, required=False)
+    physical_inventory = serializers.SerializerMethodField()
+    difference = serializers.SerializerMethodField()
+    create_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+    update_time = serializers.DateTimeField(read_only=True, format='%Y-%m-%d %H:%M:%S')
+
+    class Meta:
+        model = ManualCyclecountModeModel
+        ref_name = 'ManualFileRenderSerializer'
+        exclude = ['openid']
+
+    def get_physical_inventory(self, obj):
+        return ''
+
+    def get_difference(self, obj):
+        return ''
+
