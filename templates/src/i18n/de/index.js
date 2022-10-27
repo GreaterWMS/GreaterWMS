@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    app_title: 'APP-Titel',
+    slogan: 'Slogan',
+    server: 'Basis-URL anfordern',
     index_title: 'Plattform für das Warehouse Management',
     webtitle: 'GreaterWMS--Open Source Lagerverwaltungs System',
     home: 'Home Page',
@@ -47,8 +50,9 @@ export default {
     current_user: 'Aktueller Benutzer'
   },
   Settings: {
-    index: 'Settings',
-    server: 'Server'
+    index: 'Einstellungen',
+    server: 'Server',
+    equipment: 'Ausrüstungsunterstützung'
 },
   menuItem: {
      Dashboard: 'Dashboard',
@@ -540,6 +544,83 @@ export default {
       binseterror: 'Der Standortname existiert bereits',
       binsizeerror: 'Bestandsgröße bereits vorhanden'
     },
+    mobile_userlogin: {
+       notice1: 'Bitte geben Sie Ihren Admin-Namen ein',
+       notice2: 'Bitte geben Sie Ihr Admin-Passwort ein',
+       notice3: 'Bitte geben Sie Ihren Mitarbeiternamen ein',
+       notice4: 'Bitte geben Sie Ihren Mitarbeiterprüfcode ein',
+       notice5: 'Bitte geben Sie Ihre OpenID im Einstellungsserver ein',
+       notice6: 'Erfolgreiche Anmeldung',
+       notice7: 'Benutzer oder Passwort nicht zugeordnet',
+       notice8: 'Staff or Check Code Not Allocation'
+     },
+    mobile_scan: {
+      notice1: 'QR-Code existiert nicht',
+      notice2: 'Code existiert nicht',
+      notice3: 'Serverfehler',
+      notice4: 'Nur Handy kann scannen'
+    },
+    mobile_asn: {
+      notice1: 'ASN-Liste',
+      notice2: 'Sie können den QR-Code der Ankunftsbenachrichtigung scannen oder auf die Ankunftsbenachrichtigung klicken, um die Details der Ankunftsbenachrichtigung anzuzeigen und zu bearbeiten',
+      notice3: 'Lieferant:',
+      notice4: 'Gesamtbetrag:',
+      notice5: 'Status:',
+      notice6: 'Details der Ankunftsmitteilung',
+      notice7: 'Sie müssen die Ankunftsbenachrichtigung scannen, um die Details der Ankunftsbenachrichtigung zu erhalten. Sie können den Frachtcode scannen oder auf die Waren klicken, die Sie in die Regale stellen möchten, um den Vorgang der Waren in den Regalen abzuschließen',
+      notice8: 'Details',
+      notice9: 'Gesamtbetrag:',
+      notice10: 'Aufzulistende Nummer:',
+      notice11: 'Die Anzahl der Einträge muss größer als 0 sein',
+      notice12: 'Erfolgreiche Auflistung',
+      notice13: 'Bitte geben Sie den Ortscode ein'
+    },
+    mobile_dn: {
+      notice1: 'DN-Liste',
+      notice2: 'Sie können den QR-Code des DN-Auftrags scannen oder auf den DN-Auftrag klicken, um die Details des DN anzuzeigen und Operationen auszuführen',
+      notice3: 'Kunde:',
+      notice4: 'Gesamtbetrag:',
+      notice5: 'Status:',
+      notice6: 'DN-Details',
+      notice7: 'Die Details des DN sind alle Rechnungen. Scannen Sie die DN-Nummer, um die Details des spezifischen DN anzuzeigen',
+      notice8: 'Details',
+      notice9: 'Gesamtbetrag:',
+      notice10: 'Rechnungsmenge:',
+      Notice11: 'Hier finden Sie alle Details der Kommissionierliste, Sie können auch die spezifischen Waren oder den DN scannen, um die zu bedienende Kommissionierliste zu erhalten',
+      notice12: 'Bitte geben Sie die konkrete Kommissioniermenge ein',
+      notice13: 'Erfolgreiche Kommissionierung',
+      notice14: 'Bin-Name:',
+      notice15: 'Zu pflückende Menge:'
+    },
+    mobile_goodsstock: {
+      notice1: 'Lagerliste',
+      notice2: 'Hier können Sie alle Inventarinformationen sehen, klicken Sie hier, um die Inventarinformationen direkt anzuzeigen',
+      notice3: 'Lagerbestand:',
+      notice4: 'Kann bestellt werden:'
+    },
+    mobile_binstock: {
+      notice1: 'Bin Stock List',
+      Notice2: 'Hier können Sie die Bestandsinformationen aller Lagerstandorte sehen, klicken, um direkt auf den Bestand des Lagerstandorts zuzugreifen, den Lagerumlagerungsvorgang durchzuführen oder die Waren zu scannen, um den Lagerstatus aller Waren zu überprüfen',
+      notice3: 'Bin-Name:',
+      notice4: 'Lagermenge:',
+      notice5: 'Bitte geben Sie den Bin-Namen ein',
+      notice6: 'Repository erfolgreich verschoben'
+    },
+    mobile_emptybin: {
+      notice1: 'Bin-Liste leeren',
+      notice2: 'Hier können Sie alle leeren Orte sehen',
+      notice3: 'Bestandsbehältereigenschaft:'
+    },
+    handcount: {
+        notice1: 'Details',
+        notice2: 'Manuelle Zählung',
+        notice3: 'Vorrat',
+        notice4: 'Quantität zählen',
+        notice5: 'Ergebnis bestätigen',
+        notice6: 'Bestätige das Zählergebnis',
+        notice7: 'Erfolgreich bestätigtes Zählergebnis',
+        notice8: 'Hier werden die Details der Waren angezeigt, die gezählt werden müssen',
+      },
     400: 'Schlechte Anfrage (400)',
     401: 'Nicht autorisiert (401)',
     403: 'Zugriff verweigert (403)',

@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    app_title: "Titre de l'application",
+    slogan : 'Slogan',
+    server : 'requête URL de base',
     index_title: "Plateforme de gestion d'entrepôt'",
     webtitle: "GreaterWMS - Système de gestion d'entrepôt Open Source",
     home: 'page de garde',
@@ -47,8 +50,9 @@ export default {
     current_user: 'Utilisateur actuel'
   },
   Settings: {
-    index: 'Settings',
-    server: 'Serveur'
+    index: 'Réglages',
+    server: 'Serveur',
+    equipment: "Soutien à l 'équipement"
   },
   menuItem: {
      dashboard: 'Tableau de bord',
@@ -540,6 +544,83 @@ export default {
       binseterror: "'Le nom de l'emplacement existe déjà'",
       binsizeerror: 'La taille du stock existe déjà'
     },
+    mobile_userlogin: {
+       notice1: "Veuillez saisir votre nom d'administrateur",
+       notice2: 'Veuillez saisir votre mot de passe administrateur',
+       notice3: 'Veuillez saisir le nom de votre personnel',
+       notice4: 'Veuillez saisir votre code de vérification du personnel',
+       notice5: 'Veuillez saisir votre Openid dans le serveur de paramètres',
+       notice6: 'Connexion réussie',
+       notice7: 'Utilisateur ou mot de passe non attribué',
+       notice8: 'Personnel ou code de vérification non attribué'
+     },
+    scan_mobile: {
+      notice1: "Le code QR n'existe pas",
+      notice2: "Le code n'existe pas",
+      notice3: 'Erreur de serveur',
+      notice4: 'Seul mobile peut scanner'
+    },
+    mobile_asn: {
+      notice1: 'Liste ASN',
+      notice2: "Vous pouvez scanner le code QR de l'avis d'arrivée, ou cliquer sur l'avis d'arrivée pour afficher les détails de l'avis d'arrivée et opérer",
+      notice3: 'Fournisseur:',
+      notice4: 'Montant total:',
+      notice5: 'Statut:',
+      notice6: "Détails de l'avis d'arrivée",
+      notice7: "Vous devez scanner l'avis d'arrivée pour obtenir les détails de l'avis d'arrivée. Vous pouvez scanner le code de fret ou cliquer sur les marchandises que vous souhaitez mettre en rayon pour terminer l'opération des marchandises en rayon",
+      notice8: 'Détails',
+      notice9: 'Montant total:',
+      notice10: 'Numéro à lister:',
+      notice11: "Le nombre d'annonces doit être supérieur à 0",
+      notice12: 'Inscription réussie',
+      notice13: 'Veuillez saisir le code de localisation'
+    },
+    mobile_dn: {
+      notice1: 'Liste DN',
+      notice2: 'Vous pouvez scanner le code QR de la commande DN, ou cliquer sur la commande DN pour afficher les détails du DN et effectuer des opérations',
+      notice3: 'Client:',
+      notice4: 'Montant total:',
+      notice5: 'Statut:',
+      notice6: 'Détails DN',
+      notice7: "Les détails du DN sont toutes des factures. Scannez le numéro DN pour afficher les détails du DN spécifique",
+      notice8: 'Détails',
+      notice9: 'Montant total:',
+      notice10: 'Quantité facturée:',
+      notice11: 'Tous les détails de la liste de préparation sont ici, vous pouvez également scanner les marchandises spécifiques, ou le DN pour faire fonctionner la liste de préparation',
+      notice12: 'Veuillez entrer la quantité spécifique à cueillir',
+      notice13 : 'Pickage réussi',
+      notice14: 'Nom du bac :',
+      notice15: 'Quantité à prélever:'
+    },
+    mobile_goodsstock: {
+      notice1: 'Liste des stocks',
+      notice2: "Ici, vous pouvez voir toutes les informations d'inventaire, cliquez pour afficher directement les informations d'inventaire",
+      notice3: 'Stock disponible:',
+      notice4: 'Le stock commandé peut-il :'
+    },
+    mobile_binstock: {
+      notice1: 'Bin Stock List',
+      notice2: "Ici, vous pouvez voir les informations d'inventaire de tous les emplacements d'entrepôt, cliquer pour accéder directement à l'inventaire de l'emplacement d'entrepôt, effectuer l'opération de transfert d'entrepôt ou scanner les marchandises pour vérifier l'état de stockage de toutes les marchandises",
+      notice3: 'Nom du bac:',
+      notice4: 'Quantité de stockage:',
+      notice5: 'Veuillez entrer le nom du bac',
+      notice6: 'Référentiel déplacé avec succès'
+    },
+    mobile_emptybin: {
+      notice1: 'Vider la liste des corbeilles',
+      notice2: 'Ici vous pouvez voir tous les emplacements vides',
+      notice3: 'Propriété Stock Bin:'
+    },
+    handcount : {
+        notice1: 'Détails',
+        notice2: 'Comptage manuel',
+        notice3: 'Stock disponible',
+        notice4: 'Quantité de comptage',
+        notice5: 'Confirmer le résultat',
+        notice6: 'Confirmer le résultat du comptage',
+        notice7: 'Résultat de comptage confirmé réussi',
+        notice8: 'Voici les détails des marchandises qui doivent être comptées',
+      },
     400: 'Mauvaise demande (400)',
     401: 'Non autorisé (401)',
     403: 'Accès refusé (403)',

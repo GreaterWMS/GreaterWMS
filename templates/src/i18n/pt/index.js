@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    app_title: 'título do aplicativo',
+    slogan: 'Slogan',
+    server: 'URL base de solicitação',
     index_title: 'Plataforma de Gerenciamento de Armazém',
     webtitle: 'GreaterWMS -- Open Source Warehouse Management System',
     home: 'primeira página',
@@ -47,8 +50,9 @@ export default {
     current_user: 'Usuário atual'
   },
   Settings: {
-    index: 'Settings',
-    server: 'Servidor'
+    index: 'Definições',
+    server: 'Servidor',
+    equipment: 'Suporte de equipamentos'
   },
   menuItem: {
      dashboard: 'Painel',
@@ -102,9 +106,9 @@ export default {
   estimate: 'Envio Estimado',
   downloadasnlist: 'Baixar lista',
   downloadasndetail: 'Detalhes do download',
-  downloadasnlisttip: 'Baixe a lista de avisos de chegada',
-  downloadasndetailtip: 'Baixe os detalhes do aviso de chegada',
-  printthisasn: 'Verifique o aviso de chegada',
+  downloadasnlisttip: 'Baixe a lista de notices de chegada',
+  downloadasndetailtip: 'Baixe os detalhes do notice de chegada',
+  printthisasn: 'Verifique o notice de chegada',
   confirmdelivery: 'A confirmação chegou',
   finishloading: 'Confirmar descarregamento concluído',
   confirmsorted: 'Confirmar classificação completa',
@@ -324,7 +328,7 @@ export default {
     }
   },
   inbound: {
-    asn: 'Aviso de chegada',
+    asn: 'notice de chegada',
     predeliverystock: 'chegar',
     preloadstock: 'Para ser descarregado',
     presortstock: 'a ser ordenado',
@@ -337,9 +341,9 @@ export default {
       error1: 'Por favor, insira a quantidade, a quantidade deve ser maior que 0'
     },
     view_asn: {
-      asn_code: 'Número do aviso de chegada',
+      asn_code: 'Número do notice de chegada',
       asn_status: 'Status de notificação de chegada',
-      goods_qty: 'Número de avisos de chegada',
+      goods_qty: 'Número de notices de chegada',
       goods_actual_qty: 'Quantidade real de chegada',
       goods_shortage_qty: 'Chegou em pouca quantidade',
       goods_more_qty: 'Grande quantidade de chegada',
@@ -402,7 +406,7 @@ export default {
       inspect_stock: 'Quantidade de inspeção de qualidade',
       hold_stock: 'Quantidade bloqueada',
       damage_stock: 'Quantidade de quebra',
-      asn_stock: 'Número de avisos de chegada',
+      asn_stock: 'Número de notices de chegada',
       dn_stock: 'Quantidade da fatura',
       pre_load_stock: 'Quantidade a ser descarregada',
       pre_sort_stock: 'Número a ser classificado',
@@ -540,6 +544,83 @@ export default {
       binseterror: 'O nome do local já existe',
       binsizeerror: 'O tamanho do estoque já existe'
     },
+    mobile_userlogin: {
+       notice1: 'Por favor, insira seu nome de administrador',
+       notice2: 'Por favor, insira sua senha de administrador',
+       notice3: 'Por favor, insira o nome da sua equipe',
+       notice4: 'Por favor, insira seu código de verificação de equipe',
+       notice5: 'Por favor, insira seu Openid no servidor de configurações',
+       notice6: 'Login com sucesso',
+       notice7: 'Usuário ou senha não alocado',
+       notice8: 'Funcionário ou código de verificação não alocado'
+     },
+    mobile_scan: {
+      notice1: 'Código QR não existe',
+      notice2: 'Código não existe',
+      notice3: 'Erro do servidor',
+      notice4: 'Somente celular pode escanear'
+    },
+    mobile_asn: {
+      notice1: 'Lista ASN',
+      notice2: 'Você pode escanear o código QR do notice de chegada ou clicar no notice de chegada para ver os detalhes do notice de chegada e operar',
+      notice3: 'Fornecedor:',
+      notice4: 'Valor total:',
+      notice5: 'Status:',
+      notice6: 'Detalhes do notice de chegada',
+      notice7: 'Você precisa escanear o notice de chegada para obter os detalhes do notice de chegada. Você pode escanear o código da carga ou clicar nas mercadorias que deseja colocar nas prateleiras para concluir a operação das mercadorias nas prateleiras',
+      notice8: 'Detalhes',
+      notice9: 'Valor total:',
+      notice10: 'Número a ser listado:',
+      notice11: 'O número de listagens deve ser maior que 0',
+      notice12: 'Listagem bem sucedida',
+      notice13: 'Por favor, digite o código de localização'
+    },
+    mobile_dn: {
+      notice1: 'Lista DN',
+      notice2: 'Você pode escanear o código QR do pedido DN ou clicar no pedido DN para visualizar os detalhes do DN e realizar operações',
+      notice3: 'Cliente:',
+      notice4: 'Valor total:',
+      notice5: 'Status:',
+      notice6: 'detalhes do DN',
+      notice7: 'Os detalhes do DN são todas as faturas. Digitalize o número do DN para ver os detalhes do DN específico',
+      notice8: 'Detalhes',
+      notice9: 'Valor total:',
+      notice10: 'Quantidade da fatura:',
+      notice11: 'Todos os detalhes da lista de separação estão aqui, você também pode digitalizar as mercadorias específicas, ou o DN para obter a lista de separação a ser operada',
+      notice12: 'Por favor, insira a quantidade de separação específica',
+      notice13: 'Escolha bem sucedida',
+      notice14: 'Nome do compartimento:',
+      notice15: 'Quantidade a ser colhida:'
+    },
+    mobile_goodsstock: {
+      notice1: 'Lista de ações',
+      notice2: 'Aqui você pode ver todas as informações de inventário, clique para ver as informações de inventário diretamente',
+      notice3: 'Estoque disponível:',
+      notice4: 'Estoque Encomendado:'
+    },
+    mobile_binstock: {
+      notice1: 'Lista de Estoque Bin',
+      notice2: 'Aqui você pode ver as informações de estoque de todos os locais do armazém, clique para acessar diretamente o estoque do local do armazém, realizar a operação de transferência do armazém ou digitalizar as mercadorias para verificar o status de armazenamento de todas as mercadorias',
+      notice3: 'Nome do compartimento:',
+      notice4: 'Quantidade de armazenamento:',
+      notice5: 'Por favor, digite o nome do compartimento',
+      notice6: 'Repositório movido com sucesso'
+    },
+    mobile_emptybin: {
+      notice1: 'Lista de lixeiras vazias',
+      notice2: 'Aqui você pode ver todos os locais vazios',
+      notice3: 'Propriedade da Caixa de Estoque:'
+    },
+    handcount: {
+        notice1: 'Detalhes',
+        notice2: 'Contagem Manual',
+        notice3: 'Estoque disponível',
+        notice4: 'Quantidade de contagem',
+        notice5: 'Confirmar resultado',
+        notice6: 'Confirme o resultado da contagem',
+        notice7: 'Resultado de contagem confirmado com sucesso',
+        notice8: 'Aqui mostra os detalhes das mercadorias que precisam ser contadas',
+      },
     400: 'Solicitação incorreta (400)',
     401: 'Não autorizado (401)',
     403: 'Acesso negado (403)',
