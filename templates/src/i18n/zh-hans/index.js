@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    app_title: 'APP 名称',
+    slogan: '宣传语',
+    server: '请求地址',
     index_title: '仓库管理平台',
     webtitle: 'GreaterWMS--开源仓库管理系统',
     home: '首页',
@@ -426,7 +429,8 @@ export default {
   },
   Settings: {
     index: '设置',
-    server: '服务器'
+    server: '服务器',
+    equipment: '设备支持'
   },
   warehouse: {
     warehouse: '仓库设置',
@@ -515,12 +519,12 @@ export default {
     valerror: '请输入正确的值',
     unknow_error: '未知错误',
     network_error: '网络异常',
-    nullerror: '',
     cyclecounterror: '没有数据',
     userererror: '用户名已存在',
     capitalerror: '固定资产名称已存在',
     valuenullerror: '请填写完整数据',
     loginerror: '请先登录',
+    detail: '明细',
     goodserror: {
       goods_listerror: '商品编码已存在',
       goods_uniterror: '商品单位已存在',
@@ -539,6 +543,84 @@ export default {
     warehouseerror: {
       binseterror: '库位名称已存在',
       binsizeerror: '库位尺寸已存在'
+    },
+    mobile_userlogin: {
+       notice1: '请输入您的管理员姓名',
+       notice2: '请输入您的管理员密码',
+       notice3: '请输入您的员工姓名',
+       notice4: '请输入您的员工校验码',
+       notice5: '请在设置服务器中输入您的 Openid',
+       notice6: '成功登录',
+       notice7: '用户或密码不匹配',
+       notice8: '员工或检查代码不匹配',
+       notice9: '请先登入'
+     },
+    mobile_scan: {
+      notice1: '二维码不存在',
+      notice2: '编码不存在',
+      notice3: '服务器错误',
+      notice4: '只有移动端可以扫描'
+    },
+    mobile_asn: {
+      notice1: '到货通知书列表',
+      notice2: '你可以扫描到货通知书的二维码，也可以点击到货通知书，查看到货通知书明细，进行操作',
+      notice3: '供应商：',
+      notice4: '总金额：',
+      notice5: '状态：',
+      notice6: '到货通知书明细',
+      notice7: '需要扫描到货通知书，来获取到货通知书明细，你可以扫描货物码，或者点击你想要上架的货物，来完成货物上架的操作',
+      notice8: '明细',
+      notice9: '总金额：',
+      notice10: '待上架数量：',
+      notice11: '上架数量必须大于0',
+      notice12: '上架成功',
+      notice13: '请输入库位编码'
+    },
+    mobile_dn: {
+      notice1: '发货单列表',
+      notice2: '你可以扫描到发货单的二维码，也可以点击发货单，查看发货单明细，进行操作',
+      notice3: '客户：',
+      notice4: '总金额：',
+      notice5: '状态：',
+      notice6: '发货单明细',
+      notice7: '发货单明细，是所有的发货单，扫描发货单，可以查看具体发货单的明细',
+      notice8: '明细',
+      notice9: '总金额：',
+      notice10: '发货单数量：',
+      notice11: '所有的拣货单明细都在这里，你也可以扫描具体货物，或者发货单，来获取要操作的拣货单',
+      notice12: '请输入具体拣货数量',
+      notice13: '拣货成功',
+      notice14: '库位名称：',
+      notice15: '待拣货数量：'
+    },
+    mobile_goodsstock: {
+      notice1: '库存列表',
+      notice2: '这里可以看到所有的库存信息，点击可以直接查看库位的库存信息',
+      notice3: '在手库存：',
+      notice4: '可被下单数量：'
+    },
+    mobile_binstock: {
+      notice1: '库位库存',
+      notice2: '这里可以看到所有库位的库存信息，点击可以直接库位的库存，进行移库操作，也可以扫描货物，查看所有的货物存储情况',
+      notice3: '库位编码：',
+      notice4: '存储数量：',
+      notice5: '请输入库位编码',
+      notice6: '移库成功'
+    },
+    mobile_emptybin: {
+      notice1: '空库位列表',
+      notice2: '这里可以看到所有的空库位',
+      notice3: '库位属性：'
+    },
+    handcount: {
+      notice1: '明细',
+      notice2: '手动盘点',
+      notice3: '现有库存',
+      notice4: '盘点数量',
+      notice5: '确认结果',
+      notice6: '确认盘点结果',
+      notice7: '确认盘点成功',
+      notice8: '这里显示需要盘点的货物明细',
     },
     400: '错误请求(400)',
     401: '未取得授权(401)',

@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    app_title: 'APP名稱',
+    slogan: '宣傳語',
+    server: '請求地址',
     index_title: '倉庫管理平臺',
     webtitle: 'GreaterWMS--開源倉庫管理系統',
     home: '首頁',
@@ -48,7 +51,8 @@ export default {
   },
   Settings: {
     index: '設定',
-    server: '服務器'
+    server: '服務器',
+    equipment: '設備支持'
   },
   menuItem: {
     dashboard: '報表中心',
@@ -537,6 +541,83 @@ export default {
     warehouseerror: {
       binseterror: '庫位名稱已存在',
       binsizeerror: '庫位尺寸已存在'
+    },
+    mobile_userlogin:{
+       notice1: '請輸入您的管理員姓名',
+       notice2: '請輸入您的管理員密碼',
+       notice3: '請輸入您的員工姓名',
+       notice4: '請輸入您的員工校驗碼',
+       notice5: '請在設置服務器中輸入您的 Openid',
+       notice6: '成功登錄',
+       notice7: '用戶或密碼未分配',
+       notice8: '員工或檢查代碼未分配'
+     },
+    mobile_scan: {
+      notice1: '二維碼不存在',
+      notice2: '編碼不存在',
+      notice3: '服務器錯誤',
+      notice4: '只有移動端可以掃描'
+    },
+    mobile_asn: {
+      notice1: '到貨通知書列表',
+      notice2: '你可以掃描到貨通知書的二維碼，也可以點擊到貨通知書，查看到貨通知書明細，進行操作',
+      notice3: '供應商：',
+      notice4: '總金額：',
+      notice5: '狀態：',
+      notice6: '到貨通知書明細',
+      notice7: '需要掃描到貨通知書，來獲取到貨通知書明細，你可以掃描貨物碼，或者點擊你想要上架的貨物，來完成貨物上架的操作',
+      notice8: '明細',
+      notice9: '總金額：',
+      notice10: '待上架數量：',
+      notice11: '上架數量必須大於0',
+      notice12: '上架成功',
+      notice13: '請輸入庫位編碼'
+    },
+    mobile_dn: {
+      notice1: '發貨單列表',
+      notice2: '你可以掃描到發貨單的二維碼，也可以點擊發貨單，查看發貨單明細，進行操作',
+      notice3: '客戶：',
+      notice4: '總金額：',
+      notice5: '狀態：',
+      notice6: '發貨單明細',
+      notice7: '發貨單明細，是所有的發貨單，掃描發貨單，可以查看具體發貨單的明細',
+      notice8: '明細',
+      notice9: '總金額：',
+      notice10: '發貨單數量：',
+      notice11: '所有的揀貨單明細都在這裡，你也可以掃描具體貨物，或者發貨單，來獲取要操作的揀貨單',
+      notice12: '請輸入具體揀貨數量',
+      notice13: '揀貨成功',
+      notice14: '庫位名稱：',
+      notice15: '待揀貨數量：'
+    },
+    mobile_goodsstock: {
+      notice1: '庫存列表',
+      notice2: '這裡可以看到所有的庫存信息，點擊可以直接查看庫位的庫存信息',
+      notice3: '在手庫存：',
+      notice4: '可被下單數量：'
+    },
+    mobile_binstock: {
+      notice1: '庫位庫存',
+      notice2: '這裡可以看到所有庫位的庫存信息，點擊可以直接庫位的庫存，進行移庫操作，也可以掃描貨物，查看所有的貨物存儲情況',
+      notice3: '庫位編碼：',
+      notice4: '存儲數量：',
+      notice5: '請輸入庫位編碼',
+      notice6: '移庫成功'
+    },
+    mobile_emptybin: {
+      notice1: '空庫位列表',
+      notice2: '這裡可以看到所有的空庫位',
+      notice3: '庫位屬性：'
+    },
+    handcount: {
+      notice1: '明細',
+      notice2: '手動盤點',
+      notice3: '現有庫存',
+      notice4: '盤點數量',
+      notice5: '確認結果',
+      notice6: '確認盤點結果',
+      notice7: '確認盤點成功',
+      notice8: '這裡顯示需要盤點的貨物明細',
     },
     400: '錯誤請求(400)',
     401: '未取得授權(401)',
