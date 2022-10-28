@@ -616,6 +616,10 @@ export default {
       notice2: 'Qui puoi vedere tutte le posizioni vuote',
       notice3: 'Proprietà contenitore di scorta:'
     },
+    equipment: {
+       notice1: 'Elenco di supporto per le apparecchiature',
+       notice2: "Tutte le marche di dispositivi e i sistemi supportati dall'APP sono elencati qui"
+     },
     handcount: {
       notice1: 'Dettagli',
       notice2: 'Conteggio manuale',

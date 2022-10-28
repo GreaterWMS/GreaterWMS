@@ -616,6 +616,10 @@ export default {
       notice2: 'Here you can see all the empty location',
       notice3: 'Stock Bin Property:'
     },
+    equipment: {
+      notice1: 'Equipment Support List',
+      notice2: 'All device brands and systems supported by the APP are listed here'
+    },
     handcount: {
       notice1: 'Details',
       notice2: 'Manual Count',

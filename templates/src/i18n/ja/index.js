@@ -614,6 +614,10 @@ export default {
       notice2: 'ここにすべての空の倉庫が表示されます',
       notice3: '在庫場所属性:'
     },
+    equipment: {
+       notice1: '対応デバイス一覧',
+       notice2: 'APP でサポートされているすべてのデバイス ブランドとシステムがここにリストされています'
+     },
     handcount: {
       notice1: '詳細',
       notice2: '手動インベントリ',
