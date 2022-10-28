@@ -29,9 +29,6 @@ class StockListModel(models.Model):
         verbose_name_plural = "Stock List"
         ordering = ['-id']
 
-    def __int__(self):
-        return self.pk
-
 class StockBinModel(models.Model):
     bin_name = models.CharField(max_length=255, verbose_name="Bin Name")
     goods_code = models.CharField(max_length=255, verbose_name="Goods Code")
@@ -51,6 +48,3 @@ class StockBinModel(models.Model):
         verbose_name = 'Stock Bin'
         verbose_name_plural = "Stock Bin"
         ordering = ['-id']
-
-    def __int__(self):
-        return self.pk

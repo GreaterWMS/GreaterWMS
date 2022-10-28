@@ -13,6 +13,3 @@ class ListModel(models.Model):
         verbose_name = 'Scanner'
         verbose_name_plural = "Scanner"
         ordering = ['-id']
-
-    def __int__(self):
-        return self.pk

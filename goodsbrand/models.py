@@ -13,6 +13,3 @@ class ListModel(models.Model):
         verbose_name = 'Goods Brand'
         verbose_name_plural = "Goods Brand"
         ordering = ['goods_brand']
-
-    def __int__(self):
-        return self.pk

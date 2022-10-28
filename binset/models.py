@@ -17,6 +17,3 @@ class ListModel(models.Model):
         verbose_name = 'Bin Set'
         verbose_name_plural = "Bin Set"
         ordering = ['bin_name']
-
-    def __int__(self):
-        return self.pk

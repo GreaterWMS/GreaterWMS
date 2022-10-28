@@ -16,9 +16,6 @@ class ListModel(models.Model):
         verbose_name_plural = "Driver"
         ordering = ['driver_name']
 
-    def __int__(self):
-        return self.pk
-
 class DispatchListModel(models.Model):
     driver_name = models.CharField(max_length=255, verbose_name="Driver Name")
     dn_code = models.CharField(max_length=255, verbose_name="DN Code")
@@ -33,6 +30,3 @@ class DispatchListModel(models.Model):
         verbose_name = 'Dispatch List'
         verbose_name_plural = "Dispatch List"
         ordering = ['-create_time']
-
-    def __int__(self):
-        return self.pk
