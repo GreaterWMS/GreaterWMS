@@ -22,6 +22,3 @@ class Users(models.Model):
         verbose_name = 'User Profile'
         verbose_name_plural = "User Profile"
         ordering = ['-id']
-
-    def __int__(self):
-        return self.pk

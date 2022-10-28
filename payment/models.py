@@ -18,6 +18,3 @@ class TransportationFeeListModel(models.Model):
         verbose_name = 'Transportation Fee'
         verbose_name_plural = "Transportation Fee"
         ordering = ['-id']
-
-    def __int__(self):
-        return self.pk

@@ -13,6 +13,3 @@ class ListModel(models.Model):
         verbose_name = 'Throttle'
         verbose_name_plural = "Throttle"
         ordering = ['-id']
-
-    def __int__(self):
-        return self.pk

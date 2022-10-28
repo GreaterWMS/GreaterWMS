@@ -16,9 +16,6 @@ class ListModel(models.Model):
         verbose_name_plural = "Staff"
         ordering = ['staff_name']
 
-    def __int__(self):
-        return self.pk
-
 class TypeListModel(models.Model):
     staff_type = models.CharField(max_length=255, verbose_name="Staff Type")
     openid = models.CharField(max_length=255, verbose_name="Openid")
@@ -31,6 +28,3 @@ class TypeListModel(models.Model):
         verbose_name = 'Staff Type'
         verbose_name_plural = "Staff Type"
         ordering = ['staff_type']
-
-    def __int__(self):
-        return self.pk

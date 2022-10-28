@@ -16,6 +16,3 @@ class ListModel(models.Model):
         verbose_name = 'Bin Size'
         verbose_name_plural = "Bin Size"
         ordering = ['-id']
-
-    def __int__(self):
-        return self.pk

@@ -17,9 +17,6 @@ class QTYRecorder(models.Model):
         verbose_name_plural = "QTY Recorder"
         ordering = ['-id']
 
-    def __int__(self):
-        return self.pk
-
 class CyclecountModeDayModel(models.Model):
     openid = models.CharField(max_length=255, verbose_name="Openid")
     cyclecount_status = models.IntegerField(default=0, verbose_name="Cycle Count Status")
@@ -39,9 +36,6 @@ class CyclecountModeDayModel(models.Model):
         verbose_name_plural = "Cyclecount Day"
         ordering = ['openid']
 
-    def __int__(self):
-        return self.pk
-
 class ManualCyclecountModeModel(models.Model):
     openid = models.CharField(max_length=255, verbose_name="Openid")
     cyclecount_status = models.IntegerField(default=0, verbose_name="Cycle Count Status")
@@ -60,6 +54,3 @@ class ManualCyclecountModeModel(models.Model):
         verbose_name = 'Manual Cyclecount'
         verbose_name_plural = "Manual Cyclecount"
         ordering = ['openid']
-
-    def __int__(self):
-        return self.pk
