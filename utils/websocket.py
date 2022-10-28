@@ -2,7 +2,6 @@ import re, datetime, os, urllib, json, django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'greaterwms.settings')
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 django.setup()
-from chat.models import ListModel
 from rest_framework.exceptions import APIException
 from staff.models import ListModel as staff
 
@@ -27,7 +26,6 @@ async def websocket_application(scope, receive, send):
             if staff.objects.filter(openid=openid, staff_name=receiver).exists():
                 sender_guy = sender + '-' + openid
                 receiver_guy = receiver + '-' + openid
-                ListModel.objects.create(sender=sender_guy, receiver=receiver_guy, detail=str(event['text']))
                 text = {
                     "sender": sender,
                     "receiver": receiver,
