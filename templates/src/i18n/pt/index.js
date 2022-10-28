@@ -616,6 +616,10 @@ export default {
       notice2: 'Aqui você pode ver todos os locais vazios',
       notice3: 'Propriedade da Caixa de Estoque:'
     },
+    equitment: {
+       notice1: 'Lista de Suporte de Equipamento',
+       notice2: 'Todas as marcas de dispositivos e sistemas suportados pelo APP estão listados aqui'
+     },
     handcount: {
       notice1: 'Detalhes',
       notice2: 'Contagem Manual',

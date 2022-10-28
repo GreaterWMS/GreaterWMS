@@ -614,6 +614,10 @@ export default {
       notice2: '這裡可以看到所有的空庫位',
       notice3: '庫位屬性：'
     },
+    equipment: {
+      notice1: '設備支持清單',
+      notice2: '這里羅列了所有該APP支持的設備品牌和系統'
+    },
     handcount: {
       notice1: '明細',
       notice2: '手動盤點',

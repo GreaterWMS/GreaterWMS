@@ -616,6 +616,10 @@ export default {
       notice2: 'Aquí puedes ver todas las ubicaciones vacías',
       notice3: 'Propiedad del contenedor de existencias:'
     },
+    equipment: {
+       notice1: 'Lista de soporte de equipo',
+       notice2: 'Todas las marcas de dispositivos y sistemas compatibles con la aplicación se enumeran aquí'
+     },
     handcount: {
       notice1: 'Detalles',
       notice2: 'Recuento manual',
