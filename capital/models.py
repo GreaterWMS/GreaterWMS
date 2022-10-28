@@ -15,6 +15,3 @@ class ListModel(models.Model):
         verbose_name = 'Capital'
         verbose_name_plural = "Capital"
         ordering = ['-id']
-
-    def __int__(self):
-        return self.pk
