@@ -616,6 +616,10 @@ export default {
       notice2: 'Hier können Sie alle leeren Orte sehen',
       notice3: 'Bestandsbehältereigenschaft:'
     },
+    equipment: {
+       notice1: 'Liste der unterstützten Geräte',
+       notice2: 'Hier sind alle von der APP unterstützten Gerätemarken und Systeme aufgelistet'
+     },
     handcount: {
       notice1: 'Details',
       notice2: 'Manuelle Zählung',

@@ -616,6 +616,10 @@ export default {
       notice2: 'Ici vous pouvez voir tous les emplacements vides',
       notice3: 'Propriété Stock Bin:'
     },
+    equipment: {
+       notice1: 'Liste des équipements pris en charge',
+       notice2: "Toutes les marques d'appareils et les systèmes pris en charge par l'APP sont répertoriés ici"
+     },
     handcount: {
       notice1: 'Détails',
       notice2: 'Comptage manuel',
