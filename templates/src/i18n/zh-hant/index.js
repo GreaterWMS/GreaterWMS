@@ -513,6 +513,11 @@ export default {
       contact_info: '聯繫方式'
     }
   },
+  handcount: {
+    handcount: '單項盤點',
+    handcountrecorder: '單項盤點記錄',
+    update_time: '盤點時間'
+  },
   notice: {
     valerror: '請輸入正確的值',
     unknow_error: '未知錯誤',

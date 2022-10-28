@@ -25,10 +25,10 @@
           <q-route-tab name="cyclecountrecorder" :label="$t('cyclecountrecorder')" icon="img:statics/stock/cyclecountrecorder.png" :to="{ name: 'cyclecountrecorder' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab name="handcount" :label="$t('twoKai.handcount')" icon="img:statics/stock/cyclecount.png" :to="{ name: 'handcount' }" exact/>
+          <q-route-tab name="handcount" :label="$t('handcount.handcount')" icon="img:statics/stock/cyclecount.png" :to="{ name: 'handcount' }" exact/>
         </transition>
         <transition appear enter-active-class="animated zoomIn">
-          <q-route-tab name="handcountrecorder" :label="$t('twoKai.handcountrecorder')" icon="img:statics/stock/cyclecountrecorder.png" :to="{ name: 'handcountrecorder' }" exact/>
+          <q-route-tab name="handcountrecorder" :label="$t('handcount.handcountrecorder')" icon="img:statics/stock/cyclecountrecorder.png" :to="{ name: 'handcountrecorder' }" exact/>
         </transition>
       </q-tabs>
     </div>

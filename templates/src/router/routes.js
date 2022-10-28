@@ -162,6 +162,16 @@ const routes = [{
             path: 'cyclecountrecorder',
             name: 'cyclecountrecorder',
             component: () => import('pages/stock/cyclecountrecorder.vue')
+          },
+          {
+            path: 'handcount',
+            name: 'handcount',
+            component: () => import('pages/stock/handcount.vue')
+          },
+          {
+            path: 'handcountrecorder',
+            name: 'handcountrecorder',
+            component: () => import('pages/stock/handcountrecorder.vue')
           }
           ]
         },
@@ -384,17 +394,6 @@ const routes = [{
             name: 'downloadbinlist',
             component: () => import('pages/downloadcenter/downloadbinlist.vue')
           }]
-        },
-        {
-          path: 'shopid',
-          name: 'shopid',
-          component: () => import('pages/shopid/shopid.vue'),
-          children: [{
-            path: 'douyin',
-            name: 'douyin',
-            component: () => import('pages/shopid/douyin.vue')
-          }
-          ]
         }
       ]
     }

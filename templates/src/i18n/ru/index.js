@@ -515,6 +515,11 @@ export default {
       contact_info: 'Кантактная інфармацыя'
     }
   },
+  handcount: {
+    handcount: 'Одиночный счет',
+    handcountrecorder: 'Однократный регистратор',
+    update_time: 'Считать время'
+  },
   notice: {
     valerror: 'Калі ласка, увядзіце правільнае значэнне',
     unknow_error: 'Невядомая памылка',
