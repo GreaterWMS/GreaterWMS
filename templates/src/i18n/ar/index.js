@@ -515,6 +515,11 @@ export default {
       contact_info: 'معلومات التواصل'
     }
   },
+  handcount: {
+    handcount: 'عدد فردي',
+    handcountrecorder: 'مسجل العد الفردي',
+    update_time: 'حساب الوقت'
+  },
   notice: {
     valerror: 'الرجاء إدخال القيمة الصحيحة',
     unknow_error: 'خطأ غير معروف',
