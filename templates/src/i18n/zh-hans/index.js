@@ -515,6 +515,11 @@ export default {
       contact_info: '联系方式'
     }
   },
+  handcount: {
+    handcount: '单项盘点',
+    handcountrecorder: '单项盘点记录',
+    update_time: '盘点时间'
+  },
   notice: {
     valerror: '请输入正确的值',
     unknow_error: '未知错误',

@@ -514,6 +514,11 @@ export default {
       contact_info: 'Contact Information'
     }
   },
+  handcount: {
+    handcount: 'Single Count',
+    handcountrecorder: 'Single Count Recorder',
+    update_time: 'Count Time'
+  },
   notice: {
     valerror: 'Please Enter The Correct Value',
     unknow_error: 'Unknown Error',

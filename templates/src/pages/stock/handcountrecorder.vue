@@ -138,224 +138,224 @@
 <router-view />
 
 <script>
-import { date, LocalStorage, SessionStorage } from "quasar";
-import { getauth } from "boot/axios_request";
+import { date, LocalStorage, SessionStorage } from 'quasar'
+import { getauth } from 'boot/axios_request'
 
 export default {
-  name: "cyclyecountrecorder",
-  data() {
+  name: 'cyclyecountrecorder',
+  data () {
     return {
-      openid: "",
-      login_name: "",
-      authin: "0",
-      pathname: "cyclecount/manualcyclecountrecorder/",
-      pathname_previous: "",
-      pathname_next: "",
-      separator: "cell",
+      openid: '',
+      login_name: '',
+      authin: '0',
+      pathname: 'cyclecount/manualcyclecountrecorder/',
+      pathname_previous: '',
+      pathname_next: '',
+      separator: 'cell',
       loading: false,
-      height: "",
+      height: '',
       table_list: [],
       bin_size_list: [],
       bin_property_list: [],
       warehouse_list: [],
       columns: [
         {
-          name: "bin_name",
+          name: 'bin_name',
           required: true,
-          label: this.$t("warehouse.view_binset.bin_name"),
-          align: "left",
-          field: "bin_name",
+          label: this.$t('warehouse.view_binset.bin_name'),
+          align: 'left',
+          field: 'bin_name'
         },
         {
-          name: "goods_code",
-          label: this.$t("stock.view_stocklist.goods_code"),
-          field: "goods_code",
-          align: "center",
+          name: 'goods_code',
+          label: this.$t('stock.view_stocklist.goods_code'),
+          field: 'goods_code',
+          align: 'center'
         },
         {
-          name: "goods_qty",
-          label: this.$t("stock.view_stocklist.history_inventory"),
-          field: "goods_qty",
-          align: "center",
+          name: 'goods_qty',
+          label: this.$t('stock.view_stocklist.history_inventory'),
+          field: 'goods_qty',
+          align: 'center'
         },
         {
-          name: "physical_inventory",
-          label: this.$t("stock.view_stocklist.physical_inventory"),
-          field: "physical_inventory",
-          align: "center",
+          name: 'physical_inventory',
+          label: this.$t('stock.view_stocklist.physical_inventory'),
+          field: 'physical_inventory',
+          align: 'center'
         },
         {
-          name: "difference",
-          label: this.$t("stock.view_stocklist.difference"),
-          field: "difference",
-          align: "center",
+          name: 'difference',
+          label: this.$t('stock.view_stocklist.difference'),
+          field: 'difference',
+          align: 'center'
         },
         {
-          name: "update_time",
-          label: this.$t("twoKai.update_time"),
-          field: "update_time",
-          align: "center",
-        },
+          name: 'update_time',
+          label: this.$t('handcount.update_time'),
+          field: 'update_time',
+          align: 'center'
+        }
       ],
-      filter: "",
+      filter: '',
       pagination: {
         page: 1,
-        rowsPerPage: "30",
+        rowsPerPage: '30'
       },
       options: [],
-      date: "",
-      proxyDate: "",
-    };
+      date: '',
+      proxyDate: ''
+    }
   },
   methods: {
-    getList() {
-      var _this = this;
-      if (LocalStorage.has("auth")) {
-        let result_date = date.formatDate(_this.date, "YYYY-MM-DD");
-        let timeStamp = Date.now();
-        let formattedString = date.formatDate(timeStamp, "YYYY/MM/DD");
+    getList () {
+      var _this = this
+      if (LocalStorage.has('auth')) {
+        let result_date = date.formatDate(_this.date, 'YYYY-MM-DD')
+        const timeStamp = Date.now()
+        const formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
         if (_this.date === formattedString) {
-          result_date = "";
+          result_date = ''
         }
-        getauth(_this.pathname + "?create_time=" + result_date, {})
+        getauth(_this.pathname + '?create_time=' + result_date, {})
           .then((res) => {
-            _this.table_list = res.results;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch((err) => {
             _this.$q.notify({
               message: err.detail,
-              icon: "close",
-              color: "negative",
-            });
-          });
+              icon: 'close',
+              color: 'negative'
+            })
+          })
       } else {
       }
     },
-    getListPrevious() {
-      var _this = this;
-      if (LocalStorage.has("auth")) {
+    getListPrevious () {
+      var _this = this
+      if (LocalStorage.has('auth')) {
         getauth(_this.pathname_previous, {})
           .then((res) => {
-            _this.table_list = res.results;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch((err) => {
             _this.$q.notify({
               message: err.detail,
-              icon: "close",
-              color: "negative",
-            });
-          });
+              icon: 'close',
+              color: 'negative'
+            })
+          })
       } else {
       }
     },
-    getListNext() {
-      var _this = this;
-      if (LocalStorage.has("auth")) {
+    getListNext () {
+      var _this = this
+      if (LocalStorage.has('auth')) {
         getauth(_this.pathname_next, {})
           .then((res) => {
-            _this.table_list = res.results;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch((err) => {
             _this.$q.notify({
               message: err.detail,
-              icon: "close",
-              color: "negative",
-            });
-          });
+              icon: 'close',
+              color: 'negative'
+            })
+          })
       } else {
       }
     },
-    reFresh() {
-      var _this = this;
-      let timeStamp = Date.now();
-      let formattedString = date.formatDate(timeStamp, "YYYY/MM/DD");
-      _this.date = formattedString;
-      console.log(_this.date);
-      _this.getList();
+    reFresh () {
+      var _this = this
+      const timeStamp = Date.now()
+      const formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
+      _this.date = formattedString
+      console.log(_this.date)
+      _this.getList()
     },
-    filterFn(val, update, abort) {
-      var _this = this;
+    filterFn (val, update, abort) {
+      var _this = this
       if (val.length < 1) {
-        abort();
-        return;
+        abort()
+        return
       }
       update(() => {
-        let needle = val.toLowerCase();
-        getauth("binset/?bin_name__icontains=" + needle)
+        const needle = val.toLowerCase()
+        getauth('binset/?bin_name__icontains=' + needle)
           .then((res) => {
-            var binlist = [];
+            var binlist = []
             res.results.forEach((detail) => {
-              binlist.push(detail.bin_name);
-            });
-            SessionStorage.set("bin_name", binlist);
-            _this.options = SessionStorage.getItem("bin_name");
+              binlist.push(detail.bin_name)
+            })
+            SessionStorage.set('bin_name', binlist)
+            _this.options = SessionStorage.getItem('bin_name')
           })
           .catch((err) => {
             _this.$q.notify({
               message: err.detail,
-              icon: "close",
-              color: "negative",
-            });
-          });
-      });
+              icon: 'close',
+              color: 'negative'
+            })
+          })
+      })
     },
-    updateProxy() {
-      var _this = this;
-      _this.proxyDate = _this.date;
+    updateProxy () {
+      var _this = this
+      _this.proxyDate = _this.date
     },
-    save() {
-      var _this = this;
-      _this.date = _this.proxyDate;
+    save () {
+      var _this = this
+      _this.date = _this.proxyDate
       if (_this.date == null) {
         _this.$q.notify({
-          message: "err.date",
-          icon: "close",
-          color: "negative",
-        });
+          message: 'err.date',
+          icon: 'close',
+          color: 'negative'
+        })
       } else {
-        _this.getList();
+        _this.getList()
       }
-    },
-  },
-  created() {
-    var _this = this;
-    if (LocalStorage.has("openid")) {
-      _this.openid = LocalStorage.getItem("openid");
-    } else {
-      _this.openid = "";
-      LocalStorage.set("openid", "");
-    }
-    if (LocalStorage.has("login_name")) {
-      _this.login_name = LocalStorage.getItem("login_name");
-    } else {
-      _this.login_name = "";
-      LocalStorage.set("login_name", "");
-    }
-    if (LocalStorage.has("auth")) {
-      _this.authin = "1";
-      const timeStamp = Date.now();
-      const formattedString = date.formatDate(timeStamp, "YYYY/MM/DD");
-      _this.date = formattedString;
-      _this.getList();
-    } else {
-      _this.authin = "0";
     }
   },
-  mounted() {
-    var _this = this;
+  created () {
+    var _this = this
+    if (LocalStorage.has('openid')) {
+      _this.openid = LocalStorage.getItem('openid')
+    } else {
+      _this.openid = ''
+      LocalStorage.set('openid', '')
+    }
+    if (LocalStorage.has('login_name')) {
+      _this.login_name = LocalStorage.getItem('login_name')
+    } else {
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
+    }
+    if (LocalStorage.has('auth')) {
+      _this.authin = '1'
+      const timeStamp = Date.now()
+      const formattedString = date.formatDate(timeStamp, 'YYYY/MM/DD')
+      _this.date = formattedString
+      _this.getList()
+    } else {
+      _this.authin = '0'
+    }
+  },
+  mounted () {
+    var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + "px";
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + "" + "px";
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
-  updated() {},
-  destroyed() {},
-};
+  updated () {},
+  destroyed () {}
+}
 </script>

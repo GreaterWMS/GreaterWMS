@@ -515,6 +515,11 @@ export default {
       contact_info: '連絡先'
     }
   },
+  handcount: {
+    handcount: '単品在庫',
+    handcountrecorder: '単一の在庫記録',
+    update_time: 'カウント時間'
+  },
   notice: {
     valerror: '正しい値を入力してください',
     unknow_error: '未知の間違い',

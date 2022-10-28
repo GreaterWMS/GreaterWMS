@@ -19,7 +19,7 @@
         <template v-slot:top>
           <q-btn-group push>
             <q-btn
-              :label="$t('twoKai.handcount')"
+              :label="$t('handcount.handcount')"
               icon="refresh"
               @click="handcountVisible = true"
             >
@@ -27,7 +27,7 @@
                 content-class="bg-amber text-black shadow-4"
                 :offset="[10, 10]"
                 content-style="font-size: 12px"
-                >{{ $t("twoKai.handcount") }}</q-tooltip
+                >{{ $t("handcount.handcount") }}</q-tooltip
               >
             </q-btn>
             <q-btn
@@ -156,7 +156,7 @@
           class="bg-light-blue-10 text-white rounded-borders"
           style="height: 50px"
         >
-          <div>{{ $t("twoKai.handcount") }}</div>
+          <div>{{ $t("handcount.handcount") }}</div>
           <q-space />
           <q-btn dense flat icon="close" v-close-popup>
             <q-tooltip content-class="bg-amber text-black shadow-4">{{

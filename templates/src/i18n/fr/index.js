@@ -515,6 +515,11 @@ export default {
       contact_info: 'Informations de contact'
     }
   },
+  handcount: {
+    handcount: 'Comptage unique',
+    handcountrecorder: 'Enregistreur de compte unique',
+    update_time: 'Compter le temps'
+  },
   notice: {
     valerror: 'Veuillez entrer la valeur correcte',
     unknow_error: 'erreur inconnue',
