@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import routes from './routes'
+import { LocalStorage } from "quasar";
 
 Vue.use(VueRouter)
 
@@ -13,6 +14,13 @@ VueRouter.prototype.push = function (location) {
   }
 }
 
+var openid = LocalStorage.getItem('lang')
+if (LocalStorage.has('openid')) {
+  openid = openid || ''
+} else {
+  LocalStorage.set('openid', '')
+  openid = ''
+}
 
 /*
  * If not building with SSR mode, you can
@@ -36,6 +44,11 @@ export default function (/* { store, ssrContext } */) {
   })
 
   Router.afterEach((to, from) => {
+    window.gtag('config', 'G-1TRGFWFWSZ', {
+      page_title: to.name,
+      page_path: to.name + to.path,
+      page_location: location + '-' + openid
+    })
   })
 
   return Router
