@@ -94,7 +94,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'greaterwms.wsgi.application'
-
+CSRF_COOKIE_SAMESITE = None
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
