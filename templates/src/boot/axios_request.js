@@ -4,7 +4,16 @@ import { SessionStorage, LocalStorage, Notify } from 'quasar'
 import { i18n } from './i18n'
 import Bus from './bus.js'
 
-const baseurl = window.g.BaseUrl
+function getBaseUrl (name) {
+  const xhr = new XMLHttpRequest()
+  const okStatus = document.location.protocol === 'file:' ? 0 : 200
+  xhr.open('GET', '../../statics/' + name, false)
+  xhr.overrideMimeType('text/html; charset=utf-8')
+  xhr.send(null)
+  return xhr.status === okStatus ? xhr.responseText : null
+}
+
+const baseurl = getBaseUrl('baseurl.txt')
 
 const axiosInstance = axios.create({
   baseURL: baseurl,
