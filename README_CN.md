@@ -201,7 +201,7 @@ quasar build # /templates/dist/spa
 
 ## Show
 <div align="left">
-    <img src="static/img/GreaterWMS.PNG" alt="GreaterWMS home" width="" height="400" />
+    <img src="static/img/GreaterWMS.png" alt="GreaterWMS home" width="" height="400" />
 </div>
 <div align="left">
     <img src="static/img/mobile_splash.jpg" alt="GreaterWMS splash" width="" height="300" />
