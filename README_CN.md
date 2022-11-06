@@ -104,12 +104,12 @@ python manage.py makemigratons
 python manage.py migrate
 ~~~
 
-### docker
+### docker(可选择)
 ~~~shell
 cd GreaterWMS/
 docker-compose up -d
 # 修改请求地址
-# baseurl GreaterWMS/templates/public/statics/baseurl.js
+# baseurl GreaterWMS/templates/public/statics/baseurl.txt
 docker-compose restart
 ~~~
 
@@ -154,15 +154,21 @@ or
 quasar dev # http://localhost:8080
 ~~~
 
+- 请求地址修改
+~~~shell
+templates/public/statics/baseurl.txt
+~~~
+
 - 配套的手机APP
 
 [Android](https://production.56yhz.com/media/GWMS.apks)
-支持手机扫描，支持手机扫描，和PDA扫描，配置下服务器请求地址即可
+GreaterWMS有配套的APP，支持手机扫描，和PDA扫描，配置下服务器请求地址即可
 
 配套的APP是一个apks文件，需要使用[bundletool](https://github.com/google/bundletool/releases)进行手机安装
 确保你的电脑中已经安装了JAVA
 
 ~~~shell
+## 注意使用你下载的bundletool版本
 bundletool-all-1.13.0.jar install-apks --apks=GWMS.apks
 ~~~
 
@@ -204,10 +210,9 @@ quasar build # /templates/dist/spa
     <img src="static/img/GreaterWMS.png" alt="GreaterWMS home" width="" height="400" />
 </div>
 <div align="left">
-    <img src="static/img/mobile_splash.jpg" alt="GreaterWMS splash" width="" height="300" />
-    <img src="static/img/mobile_asn.jpg" alt="GreaterWMS asn" width="" height="300" />
-    <img src="static/img/mobile_dn.jpg" alt="GreaterWMS dn" width="" height="300" />
-    <img src="static/img/mobile_equ.jpg" alt="GreaterWMS goods" width="" height="300" />
+    <img src="static/img/mobile_splash.jpg" alt="GreaterWMS splash" width="200" height="400" />
+    <img src="static/img/mobile_dn.jpg" alt="GreaterWMS dn" width="200" height="400" />
+    <img src="static/img/mobile_equ.jpg" alt="GreaterWMS goods" width="200" height="400" />
 </div>
 
 <!-- License -->
