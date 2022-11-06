@@ -20,7 +20,7 @@
 ![GitHub Watch](https://img.shields.io/github/watchers/GreaterWMS/GreaterWMS?style=social)
 
 ![Python](https://img.shields.io/badge/Python-3.9.5-yellowgreen)
-![Django](https://img.shields.io/badge/Django-3.1.14-yellowgreen)
+![Django](https://img.shields.io/badge/Django-4.1.2-yellowgreen)
 ![Quasar Cli](https://img.shields.io/badge/Quasar/cli-1.2.1-yellowgreen)
 ![Vue](https://img.shields.io/badge/Vue-2.6.0-yellowgreen)
 ![NodeJS](https://img.shields.io/badge/NodeJS-14.19.3-yellowgreen)
