@@ -213,8 +213,8 @@ If you use GreaterWMS and find it to be useful, please consider making a donatio
 </div>
 <div align="left">
     <img src="static/img/mobile_splash.jpg" alt="GreaterWMS splash" width="200" height="400" />
-    <img src="static/img/mobile_dn.jpg" alt="GreaterWMS dn" width="200" height="400" />
-    <img src="static/img/mobile_equ.jpg" alt="GreaterWMS goods" width="200" height="400" />
+    <img src="static/img/mobile_dn_en.jpg" alt="GreaterWMS dn" width="200" height="400" />
+    <img src="static/img/mobile_equ_en.jpg" alt="GreaterWMS goods" width="200" height="400" />
 </div>
 
 <!-- License -->
