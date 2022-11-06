@@ -71,28 +71,46 @@ OneAPP Type. Support scanner PDA, mobile APP, desktop exe, website as well.
 * [x] i18n Support
 * [x] API Documents
 
-[//]: # (development)
-## :eyes: Where are the APIs Documents:
-
-- After installing, you can find APIs Documents from url /docs/
-
-~~~shell
-example: http://127.0.0.1:8008/docs/
-~~~
-
 [//]: # (Install)
 ## :compass: Install
+Python install
+- [python 3.9.5](https://www.python.org/downloads/release/python-395/)
+
+Nodejs install
+- [nodejs 14.19.3](https://nodejs.org/download/release/v14.19.3/)
+
+Clone Project
 ~~~shell
 git clone https://github.com/GreaterWMS/GreaterWMS.git
 ~~~
 
-### docker
+Backend Environment
+~~~shell
+cd GreaterWMS/
+pip install -r requirements.txt
+~~~
+
+Frontend Environment
+~~~shell
+npm install -g @quasar/cli
+npm install -g yarn
+cd templates/
+yarn install
+~~~
+
+DataBase Migrate
+~~~shell
+cd GreaterWMS/
+python manage.py makemigratons
+python manage.py migrate
+~~~
+
+### docker(Optional)
 ~~~shell
 cd GreaterWMS/
 docker-compose up -d
-# Change Front Request Baseurl
-# baseurl GreaterWMS/templates/public/statics/baseurl.js
-# change the baseurl and wsurl
+# Change Baseurl
+# baseurl GreaterWMS/templates/public/statics/baseurl.txt
 docker-compose restart
 ~~~
 
@@ -121,8 +139,15 @@ docker-compose restart
 [//]: # (development)
 ## :hammer_and_wrench: How To Run Development Server:
 
-- Webside Dev Run:
+- Run Backend:
+~~~shell
+cd GreaterWMS
+python manage.py runserver
+or
+python manage.py runserver 0.0.0.0:8008 # internet
+~~~
 
+- Run Frontend:
 ~~~shell
 cd templates
 quasar d # http://localhost:8080
@@ -130,47 +155,35 @@ or
 quasar dev # http://localhost:8080
 ~~~
 
-- Electron APP Dev Run
-
+- Change Request Baseurl
 ~~~shell
-cd templates
-quasar d -m electron
-or
-quasar dev -m electron
+templates/public/statics/baseurl.txt
 ~~~
 
-- Mobile APP Dev Run
+- Companion Mobile APP
 
-You should connect your mobile. Sometimes, it needs you to choose the IP, which is your PC's internal IP. 
-The Android APP installed on the mobile phone is the mobile page, and the installation on the scanning device is the scanning page.
+GreaterWMS is supported by a companion mobile app which allows users access to run the business well.
+It can scan the goods by your camera or your PDA scanner.
+
+[Android](https://production.56yhz.com/media/GWMS.apks)
+
+Companion android app is a apks file, need use [bundletool](https://github.com/google/bundletool/releases) to install apk to your Android Phone
+
+Please confirm you have installed JAVA
 
 ~~~shell
-cd templates/src-cordova
-cordova platform add [ios or android]
-cd .. # back to templates
-quasar d -m cordova -T [ios or android]
+## Take attention on your bundletool version
+bundletool-all-1.13.0.jar install-apks --apks=GWMS.apks
 ~~~
 
 [//]: # (publish)
 ## :trumpet: How To Publish Your APP:
 
-- Webside Build:
+- Web Build:
 
 ~~~shell
 cd templates
 quasar build # /templates/dist/spa
-~~~
-
-- Electron APP Build:
-
-~~~shell
-quasar build -m electron -P always # /templates/dist/electron
-~~~
-
-- Mobile APP Build:
-
-~~~shell
-quasar build -m cordova -T [ios or android] # /templates/dist/cordova
 ~~~
 
 [//]: # (deploy)
@@ -193,6 +206,16 @@ The front-end code needs to be rebuilt after modification.
 If you use GreaterWMS and find it to be useful, please consider making a donation toward its continued development.
 
 [Donate via PayPal](https://paypal.me/singosgu)
+
+## Show
+<div align="left">
+    <img src="static/img/GreaterWMS_en.png" alt="GreaterWMS home" width="" height="400" />
+</div>
+<div align="left">
+    <img src="static/img/mobile_splash.jpg" alt="GreaterWMS splash" width="200" height="400" />
+    <img src="static/img/mobile_dn.jpg" alt="GreaterWMS dn" width="200" height="400" />
+    <img src="static/img/mobile_equ.jpg" alt="GreaterWMS goods" width="200" height="400" />
+</div>
 
 <!-- License -->
 ## :warning: License
