@@ -20,7 +20,7 @@
 ![GitHub Watch](https://img.shields.io/github/watchers/GreaterWMS/GreaterWMS?style=social)
 
 ![Python](https://img.shields.io/badge/Python-3.9.5-yellowgreen)
-![Django](https://img.shields.io/badge/Django-3.1.14-yellowgreen)
+![Django](https://img.shields.io/badge/Django-4.1.2-yellowgreen)
 ![Quasar Cli](https://img.shields.io/badge/Quasar/cli-1.2.1-yellowgreen)
 ![Vue](https://img.shields.io/badge/Vue-2.6.0-yellowgreen)
 ![NodeJS](https://img.shields.io/badge/NodeJS-14.19.3-yellowgreen)
@@ -70,19 +70,38 @@ OneAPP 理念。 支持扫描设备PDA、手机APP、桌面exe、网站等。
 * [x] 自动更新
 * [x] i18n国际化
 
-[//]: # (development)
-## :eyes: API文档在哪里:
-
-- 当你安装完成后，可以通过此链接找到API文档 /docs/
-
-~~~shell
-例子: http://127.0.0.1:8008/docs/
-~~~
-
 [//]: # (Install)
 ## :compass: 安装
+python安装
+- [python 3.9.5](https://www.python.org/downloads/release/python-395/)
+
+nodejs安装
+- [nodejs 14.19.3](https://nodejs.org/download/release/v14.19.3/)
+
+克隆代码
 ~~~shell
 git clone https://github.com/GreaterWMS/GreaterWMS.git
+~~~
+
+后端环境
+~~~shell
+cd GreaterWMS/
+pip install -r requirements.txt
+~~~
+
+后端环境
+~~~shell
+npm install -g @quasar/cli
+npm install -g yarn
+cd templates/
+yarn install
+~~~
+
+数据初始化
+~~~shell
+cd GreaterWMS/
+python manage.py makemigratons
+python manage.py migrate
 ~~~
 
 ### docker
@@ -91,7 +110,6 @@ cd GreaterWMS/
 docker-compose up -d
 # 修改请求地址
 # baseurl GreaterWMS/templates/public/statics/baseurl.js
-# 更改请求地址的baseurl和wsurl
 docker-compose restart
 ~~~
 
@@ -120,8 +138,15 @@ docker-compose restart
 [//]: # (development)
 ## :hammer_and_wrench: 怎么启动开发环境:
 
-- 启动网页开发环境:
+- 启动后端环境:
+~~~shell
+cd GreaterWMS
+python manage.py runserver
+or
+python manage.py runserver 0.0.0.0:8008 # 局域网
+~~~
 
+- 启动前端环境:
 ~~~shell
 cd templates
 quasar d # http://localhost:8080
@@ -129,25 +154,16 @@ or
 quasar dev # http://localhost:8080
 ~~~
 
-- 启动Electron开发环境
+- 配套的手机APP
+
+[Android](https://production.56yhz.com/media/GWMS.apks)
+支持手机扫描，支持手机扫描，和PDA扫描，配置下服务器请求地址即可
+
+配套的APP是一个apks文件，需要使用[bundletool](https://github.com/google/bundletool/releases)进行手机安装
+确保你的电脑中已经安装了JAVA
 
 ~~~shell
-cd templates
-quasar d -m electron
-or
-quasar dev -m electron
-~~~
-
-- 启动手机开发环境
-
-你需要链接你的手机，打开usb调试，有时候需要选择ip地址，记得要选择你的电脑的局域网ip. 
-Android APP安装到手机就是手机页面，安装到扫描设备，就是扫描页面。
-
-~~~shell
-cd templates/src-cordova
-cordova platform add [ios or android]
-cd .. # back to templates
-quasar d -m cordova -T [ios or android]
+bundletool-all-1.13.0.jar install-apks --apks=GWMS.apks
 ~~~
 
 [//]: # (publish)
@@ -158,18 +174,6 @@ quasar d -m cordova -T [ios or android]
 ~~~shell
 cd templates
 quasar build # /templates/dist/spa
-~~~
-
-- Electron APP构建
-
-~~~shell
-quasar build -m electron -P always # /templates/dist/electron
-~~~
-
-- 移动APP构建
-
-~~~shell
-quasar build -m cordova -T [ios or android] # /templates/dist/cordova
 ~~~
 
 [//]: # (deploy)
@@ -191,8 +195,19 @@ quasar build -m cordova -T [ios or android] # /templates/dist/cordova
 如果你觉得我们的项目对你有所帮助，可以请我们喝杯咖啡，我们会更好的维护这个项目。
 
 <div align="left">
-  <img src="static/img/wechat.jpg" alt="GreaterWMS wechat" width="" height="300" />
-<img src="static/img/alipay.jpg" alt="GreaterWMS alipay" width="" height="300" />
+    <img src="static/img/wechat.jpg" alt="GreaterWMS wechat" width="" height="300" />
+    <img src="static/img/alipay.jpg" alt="GreaterWMS alipay" width="" height="300" />
+</div>
+
+## Show
+<div align="left">
+    <img src="static/img/GreaterWMS.PNG" alt="GreaterWMS home" width="" height="400" />
+</div>
+<div align="left">
+    <img src="static/img/mobile_splash.jpg" alt="GreaterWMS splash" width="" height="300" />
+    <img src="static/img/mobile_asn.jpg" alt="GreaterWMS asn" width="" height="300" />
+    <img src="static/img/mobile_dn.jpg" alt="GreaterWMS dn" width="" height="300" />
+    <img src="static/img/mobile_equ.jpg" alt="GreaterWMS goods" width="" height="300" />
 </div>
 
 <!-- License -->
