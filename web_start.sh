@@ -1,5 +1,5 @@
 #!/bin/sh
-cd templates
+# cd templates
 yarn install --force
 #quasar build
 quasar dev

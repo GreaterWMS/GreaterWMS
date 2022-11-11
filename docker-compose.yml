@@ -33,7 +33,7 @@ services:
       - ./:/GreaterWMS/:rw #将前目录挂载到容器下
       - ./supervisord.conf:/etc/supervisor/supervisord.conf
     ports:
-      - '8008:8008'
+      - '8000:8000'
     environment:
       PYTHONUNBUFFERED: 1
     command:
