@@ -778,7 +778,8 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                     raise APIException({"detail": "Please Enter the Bin Name"})
                 else:
                     bin_detail = binset.objects.filter(openid=self.request.auth.openid,
-                                                       bin_name=str(data['bin_name'])).first()
+                                                       bin_name=str(data['bin_name']),
+                                                       is_delete=False).first()
                     asn_detail = AsnListModel.objects.filter(openid=self.request.auth.openid,
                                                              asn_code=str(data['asn_code'])).first()
                     goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
@@ -928,7 +929,8 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                 raise APIException({"detail": "Please Enter the Bin Name"})
             else:
                 bin_detail = binset.objects.filter(openid=self.request.auth.openid,
-                                                   bin_name=str(data['bin_name'])).first()
+                                                   bin_name=str(data['bin_name']),
+                                                   is_delete=False).first()
                 asn_detail = AsnListModel.objects.filter(openid=self.request.auth.openid,
                                                          asn_code=str(data['asn_code'])
                                                          ).first()
