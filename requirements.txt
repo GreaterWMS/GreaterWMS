@@ -1,3 +1,4 @@
+asgihandler==0.3.9
 asgiref==3.5.2
 certifi==2022.9.24
 charset-normalizer==2.1.1
