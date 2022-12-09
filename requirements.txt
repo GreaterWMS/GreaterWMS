@@ -1,6 +1,6 @@
 asgihandler==0.3.9
 asgiref==3.5.2
-certifi==2022.9.24
+certifi==2022.12.7
 charset-normalizer==2.1.1
 Django==4.1.2
 django-cors-headers==3.13.0
