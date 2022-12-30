@@ -92,12 +92,6 @@
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('confirmdelivery') }}</q-tooltip>
               </q-btn>
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                    $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                    $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                    $q.localStorage.getItem('staff_type') !== 'StockControl'
-                "
                 round
                 flat
                 push
@@ -108,12 +102,6 @@
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('finishloading') }}</q-tooltip>
               </q-btn>
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                    $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                    $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                    $q.localStorage.getItem('staff_type') !== 'StockControl'
-                "
                 round
                 flat
                 push
@@ -124,12 +112,6 @@
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('confirmsorted') }}</q-tooltip>
               </q-btn>
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                    $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                    $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                    $q.localStorage.getItem('staff_type') !== 'StockControl'
-                "
                 round
                 flat
                 push
