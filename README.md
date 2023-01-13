@@ -101,7 +101,7 @@ yarn install
 DataBase Migrate
 ~~~shell
 cd GreaterWMS/
-python manage.py makemigratons
+python manage.py makemigrations
 python manage.py migrate
 ~~~
 
