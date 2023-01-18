@@ -100,7 +100,7 @@ yarn install
 数据初始化
 ~~~shell
 cd GreaterWMS/
-python manage.py makemigratons
+python manage.py makemigrations
 python manage.py migrate
 ~~~
 
@@ -161,7 +161,10 @@ templates/public/statics/baseurl.txt
 
 - 配套的手机APP
 
+[IOS](https://apps.apple.com/cn/app/%E6%99%BA%E8%83%BD%E4%BB%93%E5%82%A8%E8%BD%AF%E4%BB%B6gwms/id6444078526)
+
 [Android](https://production.56yhz.com/media/GWMS.apks)
+
 GreaterWMS有配套的APP，支持手机扫描，和PDA扫描，配置下服务器请求地址即可
 
 配套的APP是一个apks文件，需要使用[bundletool](https://github.com/google/bundletool/releases)进行手机安装
