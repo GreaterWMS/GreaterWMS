@@ -101,7 +101,7 @@ yarn install
 DataBase Migrate
 ~~~shell
 cd GreaterWMS/
-python manage.py makemigratons
+python manage.py makemigrations
 python manage.py migrate
 ~~~
 
@@ -164,6 +164,8 @@ templates/public/statics/baseurl.txt
 
 GreaterWMS is supported by a companion mobile app which allows users access to run the business well.
 It can scan the goods by your camera or your PDA scanner.
+
+[IOS](https://apps.apple.com/gb/app/intelligent-warehousing-gwms/id6444078526)
 
 [Android](https://production.56yhz.com/media/GWMS.apks)
 
