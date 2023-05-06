@@ -4,7 +4,7 @@
   <p>Open Source Inventory Management System </p>
 
 <!-- Badges -->
-![License: AGPLv3](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)
+[![License: APLv2](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)](https://opensource.org/licenses/Apache-2.0/)
 ![Release Version (latest Version)](https://img.shields.io/github/v/release/GreaterWMS/GreaterWMS?color=orange&include_prereleases)
 ![QR Code Support](https://img.shields.io/badge/QR--Code-Support-orange.svg)
 ![Docker Support](https://img.shields.io/badge/Docker-Support-orange.svg)
@@ -19,7 +19,7 @@
 ![GitHub Forks](https://img.shields.io/github/forks/GreaterWMS/GreaterWMS?style=social)
 ![GitHub Watch](https://img.shields.io/github/watchers/GreaterWMS/GreaterWMS?style=social)
 
-![Python](https://img.shields.io/badge/Python-3.9.5-yellowgreen)
+![Python](https://img.shields.io/badge/Python-3.8.10-yellowgreen)
 ![Django](https://img.shields.io/badge/Django-4.1.2-yellowgreen)
 ![Quasar Cli](https://img.shields.io/badge/Quasar/cli-1.2.1-yellowgreen)
 ![Vue](https://img.shields.io/badge/Vue-2.6.0-yellowgreen)
@@ -74,7 +74,7 @@ OneAPP Type. Support scanner PDA, mobile APP, desktop exe, website as well.
 [//]: # (Install)
 ## :compass: Install
 Python install
-- [python 3.9.5](https://www.python.org/downloads/release/python-395/)
+- [python 3.8.10](https://www.python.org/downloads/release/python-3810/)
 
 Nodejs install
 - [nodejs 14.19.3](https://nodejs.org/download/release/v14.19.3/)
@@ -218,3 +218,13 @@ If you use GreaterWMS and find it to be useful, please consider making a donatio
     <img src="static/img/mobile_dn_en.jpg" alt="GreaterWMS dn" width="200" height="400" />
     <img src="static/img/mobile_equ_en.jpg" alt="GreaterWMS goods" width="200" height="400" />
 </div>
+
+<!-- License -->
+## :warning: License
+
+Distributed under the [APL V2](https://opensource.org/licenses/Apache-2.0/) License. See [LICENSE.txt](https://github.com/GreaterWMS/GreaterWMS/blob/master/LICENSE) for more information.
+
+<!-- COMMERCIAL LICENSE -->
+## :old_key: Commercial License
+
+- Don't worry about Commercial License. You will get Free Commercial License while you download the source code.
