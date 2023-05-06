@@ -4,7 +4,7 @@
   <p>完全开源的仓库管理系统</p>
 
 <!-- Badges -->
-![License: AGPLv3](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)
+[![License: APLv2](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)](https://opensource.org/licenses/Apache-2.0/)
 ![Release Version (latest Version)](https://img.shields.io/github/v/release/GreaterWMS/GreaterWMS?color=orange&include_prereleases)
 ![QR Code Support](https://img.shields.io/badge/QR--Code-Support-orange.svg)
 ![Docker Support](https://img.shields.io/badge/Docker-Support-orange.svg)
@@ -19,7 +19,7 @@
 ![GitHub Forks](https://img.shields.io/github/forks/GreaterWMS/GreaterWMS?style=social)
 ![GitHub Watch](https://img.shields.io/github/watchers/GreaterWMS/GreaterWMS?style=social)
 
-![Python](https://img.shields.io/badge/Python-3.9.5-yellowgreen)
+![Python](https://img.shields.io/badge/Python-3.8.10-yellowgreen)
 ![Django](https://img.shields.io/badge/Django-4.1.2-yellowgreen)
 ![Quasar Cli](https://img.shields.io/badge/Quasar/cli-1.2.1-yellowgreen)
 ![Vue](https://img.shields.io/badge/Vue-2.6.0-yellowgreen)
@@ -73,7 +73,7 @@ OneAPP 理念。 支持扫描设备PDA、手机APP、桌面exe、网站等。
 [//]: # (Install)
 ## :compass: 安装
 python安装
-- [python 3.9.5](https://www.python.org/downloads/release/python-395/)
+- [python 3.8.10](https://www.python.org/downloads/release/python-3810/)
 
 nodejs安装
 - [nodejs 14.19.3](https://nodejs.org/download/release/v14.19.3/)
@@ -217,6 +217,16 @@ quasar build # /templates/dist/spa
     <img src="static/img/mobile_dn.jpg" alt="GreaterWMS dn" width="200" height="400" />
     <img src="static/img/mobile_equ.jpg" alt="GreaterWMS goods" width="200" height="400" />
 </div>
+
+<!-- License -->
+## :warning: License
+
+该项目使用的是 [APL v2](https://opensource.org/licenses/Apache-2.0/) 协议. 详情查阅[LICENSE.txt](https://github.com/GreaterWMS/GreaterWMS/blob/master/LICENSE).必须遵守此协议。
+
+<!-- COMMERCIAL LICENSE -->
+## :old_key: 商用授权
+
+- 不要担心商用授权，下载本软件，即获得了GreaterWMS授予的免费商用授权，无需担心商业使用。
 
 <!-- ABOUT AUTHOR -->
 ## :bowing_man: 关于作者
