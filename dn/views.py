@@ -1637,7 +1637,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                 if dn_detail.pick_qty > 0:
                     dn_detail.pick_qty = 0
                 dn_detail.save()
-            if  DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=str(data['dn_code']), dn_status=3).exists() is False:
+            if DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=str(data['dn_code']), dn_status=3).exists() is False:
                 qs.save()
             return Response({"Detail": "success"}, status=200)
 

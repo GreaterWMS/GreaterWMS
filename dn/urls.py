@@ -31,6 +31,7 @@ re_path(r'^pickinglist/(?P<pk>\d+)/$', views.DnPickingListViewSet.as_view({
 path(r'picked/', views.DnPickedViewSet.as_view({'put': 'update'}), name="picked"),
 re_path(r'^picked/(?P<pk>\d+)/$', views.DnPickedViewSet.as_view({
     'post': 'create',
+    'put': 'update'
 }), name="picked_1"),
 re_path(r'^dispatch/(?P<pk>\d+)/$', views.DnDispatchViewSet.as_view({
     'post': 'create',
