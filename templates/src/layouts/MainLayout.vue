@@ -23,11 +23,28 @@
         <q-space />
         <transition appear enter-active-class="animated zoomIn">
           <q-btn
+            icon="img:statics/icons/IOS.png"
+            round
+            dense
+            flat
+            @click="brownlink('https://www.56yhz.com/IOS/')"
+            style="margin: 0 10px 0 10px"
+          >
+            <q-tooltip
+              content-class="bg-amber text-black shadow-4"
+              :offset="[15, 15]"
+              content-style="font-size: 12px"
+              >IOS APP
+            </q-tooltip>
+          </q-btn>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-btn
             icon="img:statics/icons/android.png"
             round
             dense
             flat
-            @click="brownlink('https://www.56yhz.com/media/GWMS.apks')"
+            @click="brownlink('https://www.56yhz.com/android/')"
             style="margin: 0 10px 0 10px"
           >
             <q-tooltip
