@@ -43,13 +43,5 @@ export default function (/* { store, ssrContext } */) {
     base: process.env.VUE_ROUTER_BASE
   })
 
-  Router.afterEach((to, from) => {
-    window.gtag('config', 'G-1TRGFWFWSZ', {
-      page_title: to.name,
-      page_path: to.name + to.path,
-      page_location: location + '-' + openid
-    })
-  })
-
   return Router
 }
