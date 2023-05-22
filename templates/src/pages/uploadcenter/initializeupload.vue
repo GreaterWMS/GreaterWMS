@@ -60,18 +60,18 @@
 import { baseurl } from 'boot/axios_request';
 import { LocalStorage, openURL } from 'quasar';
 export default {
-  name: 'Pagecapital',
+  name: 'Pageinitupload',
   data() {
     return {
       height: '',
       token: LocalStorage.getItem('openid'),
       lang: LocalStorage.getItem('lang'),
       login_id: LocalStorage.getItem('login_id'),
-      capitalfile_pathname: baseurl + 'uploadfile/capitalfile/',
-      customerfile_pathname: baseurl + 'uploadfile/customerfile/',
-      freightfile_pathname: baseurl + 'uploadfile/freightfile/',
-      goodslistfile_pathname: baseurl + 'uploadfile/goodslistfile/',
-      supplierfile_pathname: baseurl + 'uploadfile/supplierfile/'
+      capitalfile_pathname: baseurl + '/uploadfile/capitalfile/',
+      customerfile_pathname: baseurl + '/uploadfile/customerfile/',
+      freightfile_pathname: baseurl + '/uploadfile/freightfile/',
+      goodslistfile_pathname: baseurl + '/uploadfile/goodslistfile/',
+      supplierfile_pathname: baseurl + '/uploadfile/supplierfile/'
     };
   },
   methods: {
@@ -98,12 +98,12 @@ export default {
       if (LocalStorage.has('auth')) {
         if (LocalStorage.has('lang')) {
           if (LocalStorage.getItem('lang') === 'zh-hans') {
-            openURL(baseurl + 'media/upload_example/goodslist_cn.xlsx');
+            openURL(baseurl + '/media/upload_example/goodslist_cn.xlsx');
           } else {
-            openURL(baseurl + 'media/upload_example/goodslist_en.xlsx');
+            openURL(baseurl + '/media/upload_example/goodslist_en.xlsx');
           }
         } else {
-          openURL(baseurl + 'media/upload_example/goodslist_en.xlsx');
+          openURL(baseurl + '/media/upload_example/goodslist_en.xlsx');
         }
       } else {
         _this.$q.notify({
@@ -118,12 +118,12 @@ export default {
       if (LocalStorage.has('auth')) {
         if (LocalStorage.has('lang')) {
           if (LocalStorage.getItem('lang') === 'zh-hans') {
-            openURL(baseurl + 'media/upload_example/customer_cn.xlsx');
+            openURL(baseurl + '/media/upload_example/customer_cn.xlsx');
           } else {
-            openURL(baseurl + 'media/upload_example/customer_en.xlsx');
+            openURL(baseurl + '/media/upload_example/customer_en.xlsx');
           }
         } else {
-          openURL(baseurl + 'media/upload_example/customer_en.xlsx');
+          openURL(baseurl + '/media/upload_example/customer_en.xlsx');
         }
       } else {
         _this.$q.notify({
@@ -138,12 +138,12 @@ export default {
       if (LocalStorage.has('auth')) {
         if (LocalStorage.has('lang')) {
           if (LocalStorage.getItem('lang') === 'zh-hans') {
-            openURL(baseurl + 'media/upload_example/supplier_cn.xlsx');
+            openURL(baseurl + '/media/upload_example/supplier_cn.xlsx');
           } else {
-            openURL(baseurl + 'media/upload_example/supplier_en.xlsx');
+            openURL(baseurl + '/media/upload_example/supplier_en.xlsx');
           }
         } else {
-          openURL(baseurl + 'media/upload_example/supplier_en.xlsx');
+          openURL(baseurl + '/media/upload_example/supplier_en.xlsx');
         }
       } else {
         _this.$q.notify({
