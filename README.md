@@ -1,6 +1,10 @@
-![logo](assets/images/logo.png){ loading=lazy }
+<div align="center">
+  <img src="static/img/logo.png" alt="GreaterWMS logo" width="200" height="auto" />
+  <h1>GreaterWMS</h1>
+  <p>Open Source Inventory Management System </p>
+
 <!-- Badges -->
-![License: AGPLv2](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)
+[![License: APLv2](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)](https://opensource.org/licenses/Apache-2.0/)
 ![Release Version (latest Version)](https://img.shields.io/github/v/release/GreaterWMS/GreaterWMS?color=orange&include_prereleases)
 ![QR Code Support](https://img.shields.io/badge/QR--Code-Support-orange.svg)
 ![Docker Support](https://img.shields.io/badge/Docker-Support-orange.svg)
@@ -22,6 +26,7 @@
 ![NodeJS](https://img.shields.io/badge/NodeJS-14.19.3-yellowgreen)
 
 [![YouTube](https://img.shields.io/youtube/channel/subscribers/UCPW1wciGMIEh7CYOdLnsloA?color=red&label=YouTube&logo=youtube&style=for-the-badge)](https://www.youtube.com/channel/UCPW1wciGMIEh7CYOdLnsloA)
+</div>
 
 [//]: # (Some Link)
 ## :rocket: Link US
