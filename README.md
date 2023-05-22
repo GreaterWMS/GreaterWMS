@@ -207,10 +207,10 @@ If you use GreaterWMS and find it to be useful, please consider making a donatio
 
 ## Show
 <div align="left">
-    <img src="../assets/images/GreaterWMS_en.png" alt="GreaterWMS home" width="" height="400" />
+    <img src="static/img/GreaterWMS_en.png" alt="GreaterWMS home" width="" height="400" />
 </div>
 <div align="left">
-    <img src="../assets/images/mobile_splash.jpg" alt="GreaterWMS splash" width="200" height="400" />
-    <img src="../assets/images/mobile_dn_en.jpg" alt="GreaterWMS dn" width="200" height="400" />
-    <img src="../assets/images/mobile_equ_en.jpg" alt="GreaterWMS goods" width="200" height="400" />
+    <img src="static/img/mobile_splash.jpg" alt="GreaterWMS splash" width="200" height="400" />
+    <img src="static/img/mobile_dn_en.jpg" alt="GreaterWMS dn" width="200" height="400" />
+    <img src="static/img/mobile_equ_en.jpg" alt="GreaterWMS goods" width="200" height="400" />
 </div>
