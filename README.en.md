@@ -4,7 +4,7 @@
   <p>Open Source Inventory Management System </p>
 
 <!-- Badges -->
-[![License: APLv2](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)](https://opensource.org/licenses/Apache-2.0/)
+![License: AGPLv3](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)
 ![Release Version (latest Version)](https://img.shields.io/github/v/release/GreaterWMS/GreaterWMS?color=orange&include_prereleases)
 ![QR Code Support](https://img.shields.io/badge/QR--Code-Support-orange.svg)
 ![Docker Support](https://img.shields.io/badge/Docker-Support-orange.svg)

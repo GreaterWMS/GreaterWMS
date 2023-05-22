@@ -4,7 +4,7 @@
   <p>完全开源的仓库管理系统</p>
 
 <!-- Badges -->
-[![License: APLv2](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)](https://opensource.org/licenses/Apache-2.0/)
+![License: AGPLv3](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)
 ![Release Version (latest Version)](https://img.shields.io/github/v/release/GreaterWMS/GreaterWMS?color=orange&include_prereleases)
 ![QR Code Support](https://img.shields.io/badge/QR--Code-Support-orange.svg)
 ![Docker Support](https://img.shields.io/badge/Docker-Support-orange.svg)
