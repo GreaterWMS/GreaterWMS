@@ -119,3 +119,42 @@ class APIViewSet(viewsets.ModelViewSet):
             serializer = self.get_serializer(qs, many=False)
             headers = self.get_success_headers(serializer.data)
             return Response(serializer.data, status=200, headers=headers)
+
+class MultipleViewSet(viewsets.ModelViewSet):
+    """
+        retrieve:
+            Response a data list（get）
+
+        list:
+            Response a data list（all）
+    """
+    authentication_classes = []
+    pagination_class = MyPageNumberPagination
+    permission_classes = []
+    throttle_classes = []
+    filter_backends = [DjangoFilterBackend, OrderingFilter, ]
+    ordering_fields = ['-id', ]
+    filter_class = Filter
+
+    def get_project(self):
+        try:
+            id = self.kwargs.get('pk')
+            return id
+        except:
+            return None
+
+    def get_queryset(self):
+        id = self.get_project()
+        if self.request.user:
+            if id is None:
+                return ListModel.objects.filter(is_delete=False)
+            else:
+                return ListModel.objects.filter(id=id, is_delete=False)
+        else:
+            return ListModel.objects.none()
+
+    def get_serializer_class(self):
+        if self.action in ['list', 'retrieve']:
+            return serializers.WarehouseGetSerializer
+        else:
+            return self.http_method_not_allowed(request=self.request)
