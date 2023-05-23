@@ -686,7 +686,7 @@ export default {
       device_name: LocalStorage.getItem('device_name'),
       lang: this.$i18n.locale,
       container_height: this.$q.screen.height + '' + 'px',
-      warehouse_name: '',
+      warehouse_name: LocalStorage.getItem('warehouse_name'),
       warehouseOptions: [],
       langOptions: [
         { value: 'en-US', label: 'English' },
@@ -943,14 +943,14 @@ export default {
         .then((res) => {
           if (res.count === 1) {
             _this.openid = res.results[0].openid
-            _this.warehouse_name = res.results[0].warehouse_name
+            LocalStorage.set('warehouse_name', res.results[0].warehouse_name)
             LocalStorage.set('openid', _this.openid)
           } else {
             _this.warehouseOptions = res.results
             if (LocalStorage.has('openid')) {
               _this.warehouseOptions.forEach((item, index) => {
                 if (item.openid === LocalStorage.getItem('openid')) {
-                  _this.warehouse_name = item.warehouse_name
+                LocalStorage.set('warehouse_name', item.warehouse_name)
                 }
               })
             }
@@ -967,7 +967,7 @@ export default {
     },
     warehouseChange (e) {
       var _this = this
-      _this.warehouse_name = _this.warehouseOptions[e].warehouse_name
+      LocalStorage.set('warehouse_name', _this.warehouseOptions[e].warehouse_name)
       _this.openid = _this.warehouseOptions[e].openid
       LocalStorage.set('openid', _this.openid)
       LocalStorage.set('staff_type', 'Admin')
