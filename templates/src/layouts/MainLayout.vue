@@ -74,6 +74,31 @@
         </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-btn
+            square
+            dense
+            flat
+            color="white"
+            :label="warehouse_name"
+            icon="maps_home_work"
+            style="margin: 0 10px 0 10px"
+          >
+            <q-menu>
+              <q-list style="min-width: 100px">
+                <q-item
+                  clickable
+                  v-close-popup
+                  v-for="(warehouse, index) in warehouseOptions"
+                  :key="index"
+                  @click="warehouseChange(index)"
+                >
+                  <q-item-section>{{ warehouse.warehouse_name }}</q-item-section>
+                </q-item>
+              </q-list>
+            </q-menu>
+          </q-btn>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-btn
             round
             dense
             flat
@@ -507,6 +532,8 @@
               square
               :label="$t('index.your_openid')"
               v-model="openid"
+              disable
+              readonly
               @keyup.enter="Login()"
             />
             <q-input
@@ -648,7 +675,7 @@
   </q-layout>
 </template>
 <script>
-import { getauth, post, baseurl } from 'boot/axios_request'
+import { get, getauth, post, baseurl } from 'boot/axios_request'
 import { LocalStorage, SessionStorage, openURL } from 'quasar'
 import Bus from 'boot/bus.js'
 
@@ -659,6 +686,8 @@ export default {
       device_name: LocalStorage.getItem('device_name'),
       lang: this.$i18n.locale,
       container_height: this.$q.screen.height + '' + 'px',
+      warehouse_name: '',
+      warehouseOptions: [],
       langOptions: [
         { value: 'en-US', label: 'English' },
         { value: 'zh-hans', label: '中文简体' },
@@ -908,6 +937,47 @@ export default {
         LocalStorage.set('staff_type', res.results[0].staff_type)
       })
     },
+    warehouseOptionsGet () {
+      var _this = this
+      get('warehouse/multiple/?max_page=30')
+        .then((res) => {
+          if (res.count === 1) {
+            _this.openid = res.results[0].openid
+            _this.warehouse_name = res.results[0].warehouse_name
+            LocalStorage.set('openid', _this.openid)
+          } else {
+            _this.warehouseOptions = res.results
+            if (LocalStorage.has('openid')) {
+              _this.warehouseOptions.forEach((item, index) => {
+                if (item.openid === LocalStorage.getItem('openid')) {
+                  _this.warehouse_name = item.warehouse_name
+                }
+              })
+            }
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+          _this.$q.notify({
+            message: err.detail,
+            icon: 'close',
+            color: 'negative'
+          })
+        })
+    },
+    warehouseChange (e) {
+      var _this = this
+      _this.warehouse_name = _this.warehouseOptions[e].warehouse_name
+      _this.openid = _this.warehouseOptions[e].openid
+      LocalStorage.set('openid', _this.openid)
+      LocalStorage.set('staff_type', 'Admin')
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
+      _this.authin = '0'
+      _this.isLoggedIn()
+      LocalStorage.remove('auth')
+      SessionStorage.remove('axios_check')
+    },
     langChange (e) {
       var _this = this
       _this.lang = e
@@ -949,6 +1019,7 @@ export default {
   },
   mounted () {
     var _this = this
+    _this.warehouseOptionsGet()
     _this.link = localStorage.getItem('menulink')
     Bus.$on('needLogin', (val) => {
       _this.isLoggedIn()

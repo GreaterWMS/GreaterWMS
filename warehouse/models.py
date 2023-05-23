@@ -16,4 +16,4 @@ class ListModel(models.Model):
         db_table = 'warehouse'
         verbose_name = 'Warehouse'
         verbose_name_plural = "Warehouse"
-        ordering = ['warehouse_name']
+        ordering = ['-id']

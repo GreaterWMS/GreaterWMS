@@ -311,15 +311,9 @@ axiosInstanceAuthScan.interceptors.response.use(
 
 axiosInstance.interceptors.request.use(
   function (config) {
-    const auth = LocalStorage.getItem('auth')
-    const login = SessionStorage.getItem('axios_check')
-    if (auth || login) {
-      config.headers.post['Content-Type'] = 'application/json, charset="utf-8"'
-      config.headers.language = lang
-      return config
-    } else {
-      Bus.$emit('needLogin', true)
-    }
+    config.headers.post['Content-Type'] = 'application/json, charset="utf-8"'
+    config.headers.language = lang
+    return config
   },
   function (error) {
     return Promise.reject(error)
