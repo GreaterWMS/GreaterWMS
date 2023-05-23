@@ -8,5 +8,9 @@ re_path(r'^(?P<pk>\d+)/$', views.APIViewSet.as_view({
     'put': 'update',
     'patch': 'partial_update',
     'delete': 'destroy'
+}), name="warehouse_1"),
+path(r'multiple/', views.MultipleViewSet.as_view({"get": "list"}), name="warehouse"),
+re_path(r'^multiple/(?P<pk>\d+)/$', views.MultipleViewSet.as_view({
+    'get': 'retrieve',
 }), name="warehouse_1")
 ]
