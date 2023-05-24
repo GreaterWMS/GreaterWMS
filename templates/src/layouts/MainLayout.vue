@@ -452,6 +452,7 @@
             label="Openid"
             v-model="openid"
             readonly
+            disable
         /></q-card-section>
       </q-card>
     </q-dialog>

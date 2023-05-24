@@ -3,84 +3,38 @@ networks:
   basic:
 services:
   front:
-#    build:
-#      context: ./
-#      dockerfile: ./docker/front/Dockerfile
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: front
     container_name: greaterwms_front
-    image: greaterwms/greaterwms_front:latest
+    image: greaterwms/greaterwms:front
     restart: always
+    privileged: true
     ports:
       - '8080:8080'
+    depends_on:
+      - backend
     volumes:
       - ./templates:/GreaterWMS/templates:rw
-      - ./web_start.sh:/GreaterWMS/templates/webstart.sh
-    command:
-      - /bin/bash
-      - -c
-      #- "yarn install --force"
-      - |
-        bash /GreaterWMS/templates/webstart.sh
+      - ./web_start.sh:/GreaterWMS/templates/web_start.sh
     networks:
       - basic
   backend:
-#    build:
-#      context: ./
-#      dockerfile: ./docker/backend/Dockerfile 
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: backend
     container_name: greaterwms_backend
-    image: greaterwms/greaterwms_backend:latest
+    image: greaterwms/greaterwms:backend
     restart: always
+    privileged: true
     volumes:
-      - ./:/GreaterWMS/:rw #将前目录挂载到容器下
+      - ./:/GreaterWMS/:rw
       - ./supervisord.conf:/etc/supervisor/supervisord.conf
     ports:
-      - '8000:8000'
+      - '8008:8008'
     environment:
       PYTHONUNBUFFERED: 1
-    command:
-      - /bin/bash
-      - -c
-      - |
-        bash backend_start.sh && /etc/init.d/supervisor start
     networks:
       - basic
-#  greaterwms-mysql:
-#    image: mysql:5.7
-#    container_name: greaterwms-mysql
-#    #使用该参数，container内的root拥有真正的root权限，否则，container内的root只是外部的一个普通用户权限
-#    #设置为true，不然数据卷可能挂载不了，启动不起
-#    privileged: true
-#    restart: always
-#    ports:
-#      - "3306:3306"
-#    environment:
-#      MYSQL_ROOT_PASSWORD: "GreaterWMS20210816"
-#      MYSQL_DATABASE: "greaterwms"
-#      TZ: Asia/Shanghai
-#    command:
-#      --wait_timeout=31536000
-#      --interactive_timeout=31536000
-#      --max_connections=1000
-#    volumes:
-#      #映射mysql的数据目录到宿主机，保存数据
-#      - "./docker/mysql/data:/var/lib/mysql"
-#      #根据宿主机下的配置文件创建容器
-#      - "./docker/mysql/conf.d:/etc/mysql/conf.d"
-#      - "./docker/mysql/logs:/logs"
-#    networks:
-#      - basic
-#   nginx:
-#     image: nginx:1.19.1
-#     container_name: greaterwms_nginx
-#     restart: always
-#     privileged: true
-#     environment:
-#       - TZ=Asia/Shanghai
-#     ports:
-#       - 80:80
-#       #- 443:443
-#     volumes:
-#       - /etc/localtime:/etc/localtime:ro
-#       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-#       - ./static_new/:/GreaterWMS/static_new:ro
-#     networks:
-#       - basic
