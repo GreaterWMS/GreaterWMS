@@ -90,27 +90,6 @@ Clone Project
 git clone https://github.com/GreaterWMS/GreaterWMS.git
 ~~~
 
-Backend Environment
-~~~shell
-cd GreaterWMS/
-pip install -r requirements.txt
-~~~
-
-Frontend Environment
-~~~shell
-npm install -g @quasar/cli
-npm install -g yarn
-cd templates/
-yarn install
-~~~
-
-DataBase Migrate
-~~~shell
-cd GreaterWMS/
-python manage.py makemigrations
-python manage.py migrate
-~~~
-
 ### docker(Optional)
 ~~~shell
 cd GreaterWMS/
