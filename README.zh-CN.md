@@ -25,10 +25,13 @@
 ![Vue](https://img.shields.io/badge/Vue-2.6.0-yellowgreen)
 ![NodeJS](https://img.shields.io/badge/NodeJS-14.19.3-yellowgreen)
 
-[![YouTube](https://img.shields.io/badge/BiliBili-4987-red)](https://space.bilibili.com/407321291/channel/seriesdetail?sid=776320)
+[![BiliBili](https://img.shields.io/badge/BiliBili-4987-red)](https://space.bilibili.com/407321291/channel/seriesdetail?sid=776320)
 </div>
 
 [//]: # (Some Link)
+
+#### 自2.1.26版本以后，GreaterWMS将开源协议调整为AGPLv3，个人学习是无限制的，商用需要购买商用授权
+
 ## :rocket: 找到我们
 <h4>
     <a href="https://www.56yhz.com/">官网首页</a>
@@ -194,16 +197,6 @@ quasar build # /templates/dist/spa
 
 记得启用ssl的话，需要额外配置
 在前端代码中进行编辑
-
-<!-- Sponsor -->
-## :money_with_wings: 打赏
-
-如果你觉得我们的项目对你有所帮助，可以请我们喝杯咖啡，我们会更好的维护这个项目。
-
-<div align="left">
-    <img src="static/img/wechat.jpg" alt="GreaterWMS wechat" width="" height="300" />
-    <img src="static/img/alipay.jpg" alt="GreaterWMS alipay" width="" height="300" />
-</div>
 
 ## Show
 <div align="left">
