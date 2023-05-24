@@ -29,6 +29,9 @@
 </div>
 
 [//]: # (Some Link)
+
+#### Since V2.1.26，GreaterWMS switch license to AGPLv3, Personal learning is unlimited, and you need to purchase a commercial license for commercial use.
+
 ## :rocket: Link US
 <h4>
     <a href="https://www.56yhz.com/">Home Page</a>
@@ -197,13 +200,6 @@ quasar build # /templates/dist/spa
 If the server has SSL enabled, please use HTTPS and WSS, if SSL is not enabled, use HTTP and WS
 
 The front-end code needs to be rebuilt after modification.
-
-<!-- Sponsor -->
-## :money_with_wings: Sponsor
-
-If you use GreaterWMS and find it to be useful, please consider making a donation toward its continued development.
-
-[Donate via PayPal](https://paypal.me/singosgu)
 
 ## Show
 <div align="left">
