@@ -89,27 +89,6 @@ nodejs安装
 git clone https://github.com/GreaterWMS/GreaterWMS.git
 ~~~
 
-后端环境
-~~~shell
-cd GreaterWMS/
-pip install -r requirements.txt
-~~~
-
-后端环境
-~~~shell
-npm install -g @quasar/cli
-npm install -g yarn
-cd templates/
-yarn install
-~~~
-
-数据初始化
-~~~shell
-cd GreaterWMS/
-python manage.py makemigrations
-python manage.py migrate
-~~~
-
 ### docker(可选择)
 ~~~shell
 cd GreaterWMS/
