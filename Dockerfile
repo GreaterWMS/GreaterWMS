@@ -27,7 +27,7 @@ CMD ["/GreaterWMS/backend_start.sh"]
 FROM --platform=linux/amd64 node:14.19.3-buster-slim AS front
 COPY ./templates/package.json /GreaterWMS/templates/package.json
 #COPY ./templates/node_modules/ /GreaterWMS/templates/node_modules/
-COPY ./templates/web_start.sh /GreaterWMS/templates/web_start.sh
+COPY ./web_start.sh /GreaterWMS/templates/web_start.sh
 ENV port = ${port}
 #ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN cd  /GreaterWMS/templates
