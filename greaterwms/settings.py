@@ -155,7 +155,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 
 REST_FRAMEWORK = {
     # AttributeError: ‘AutoSchema’ object has no attribute ‘get_link’
-    #'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.AutoSchema',
     # DEFAULT SET:
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.openapi.AutoSchema',
     # EXCEPTION:
