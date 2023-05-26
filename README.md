@@ -26,9 +26,10 @@
 ![NodeJS](https://img.shields.io/badge/NodeJS-14.19.3-yellowgreen)
 
 [![YouTube](https://img.shields.io/youtube/channel/subscribers/UCPW1wciGMIEh7CYOdLnsloA?color=red&label=YouTube&logo=youtube&style=for-the-badge)](https://https://www.youtube.com/playlist?list=PLwkZNaVRd_9RMIfpbvzojhUxYFRz-wlXA)
+
 </div>
-https://www.youtube.com/playlist?list=PLwkZNaVRd_9RMIfpbvzojhUxYFRz-wlXA
-[//]: # (Some Link)
+[
+[//]: # (Some Link)]()
 
 #### Since V2.1.26，GreaterWMS switch license to AGPLv3, Personal learning is unlimited, and you need to purchase a commercial license for commercial use.
 
