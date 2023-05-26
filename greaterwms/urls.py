@@ -6,8 +6,10 @@ from django.contrib.staticfiles.views import serve
 from django.views.static import serve as static_serve
 from . import views
 
+
 def return_static(request, path, insecure=True, **kwargs):
   return serve(request, path, insecure, **kwargs)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -48,6 +50,5 @@ urlpatterns = [
     re_path('^statics/.*$', views.statics, name='statics'),
     re_path('^fonts/.*$', views.fonts, name='fonts'),
     re_path(r'^robots.txt', views.robots, name='robots'),
-    re_path(r'^static/(?P<path>.*)$', return_static, name='static'),
-    re_path(r'^media/(?P<path>.*)$', static_serve, {'document_root': settings.MEDIA_ROOT})
+    re_path(r'^static/(?P<path>.*)$', return_static, name='static')
 ]
