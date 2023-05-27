@@ -7,6 +7,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'greaterwms.settings')
 
 http_application = get_asgi_application()
 
+
 async def application(scope, receive, send):
     if scope['type'] in ['http', 'https']:
         ASGIHandler.asgi_get_handler(scope)
