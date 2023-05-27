@@ -62,6 +62,7 @@ OneAPP 理念。 支持扫描设备PDA、手机APP、桌面exe、网站等。
 [//]: # (Function)
 ## :dart: 模块
 
+* [x] 多仓
 * [x] 供应商管理
 * [x] 客户管理
 * [x] 扫描设备PDA
@@ -83,6 +84,9 @@ python安装
 
 nodejs安装
 - [nodejs 14.19.3](https://nodejs.org/download/release/v14.19.3/)
+
+Twisted安装
+- Twisted在某些情况下安装很困难，请自行百度安装方法
 
 克隆代码
 ~~~shell
@@ -114,9 +118,9 @@ docker-compose restart
 - 启动后端环境:
 ~~~shell
 cd GreaterWMS
-python manage.py runserver
+daphne -p 8008 greaterwms.asgi:application
 or
-python manage.py runserver 0.0.0.0:8008 # 局域网
+daphne -b 0.0.0.0 -p 8008 greaterwms.asgi:application # 局域网
 ~~~
 
 - 启动前端环境:
