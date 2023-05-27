@@ -86,6 +86,9 @@ Python install
 Nodejs install
 - [nodejs 14.19.3](https://nodejs.org/download/release/v14.19.3/)
 
+Twisted install
+- Please google how to install Twisted , if you have some problem on install it . 
+
 Clone Project
 ~~~shell
 git clone https://github.com/GreaterWMS/GreaterWMS.git
@@ -116,17 +119,15 @@ docker-compose restart
 - Run Backend:
 ~~~shell
 cd GreaterWMS
-python manage.py runserver
+daphne -p 8008 greaterwms.asgi:application
 or
-python manage.py runserver 0.0.0.0:8008 # internet
+daphne -b 0.0.0.0 -p 8008 greaterwms.asgi:application # lan
 ~~~
 
 - Run Frontend:
 ~~~shell
 cd templates
-quasar d # http://localhost:8080
-or
-quasar dev # http://localhost:8080
+quasar d
 ~~~
 
 - Change Request Baseurl
@@ -164,7 +165,7 @@ It can scan the goods by your camera or your PDA scanner.
 
 ~~~shell
 cd templates
-quasar build # /templates/dist/spa
+quasar build
 ~~~
 
 [//]: # (deploy)
