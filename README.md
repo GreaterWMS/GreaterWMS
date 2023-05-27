@@ -25,10 +25,10 @@
 ![Vue](https://img.shields.io/badge/Vue-2.6.0-yellowgreen)
 ![NodeJS](https://img.shields.io/badge/NodeJS-14.19.3-yellowgreen)
 
-[![YouTube](https://img.shields.io/youtube/channel/subscribers/UCPW1wciGMIEh7CYOdLnsloA?color=red&label=YouTube&logo=youtube&style=for-the-badge)](https://https://www.youtube.com/playlist?list=PLwkZNaVRd_9RMIfpbvzojhUxYFRz-wlXA)
+[![YouTube](https://img.shields.io/youtube/channel/subscribers/UCPW1wciGMIEh7CYOdLnsloA?color=red&label=YouTube&logo=youtube&style=for-the-badge)](https://www.youtube.com/channel/UCPW1wciGMIEh7CYOdLnsloA)
 
 </div>
-[
+
 [//]: # (Some Link)]()
 
 #### Since V2.1.26，GreaterWMS switch license to AGPLv3, Personal learning is unlimited, and you need to purchase a commercial license for commercial use.
@@ -63,6 +63,7 @@ OneAPP Type. Support scanner PDA, mobile APP, desktop exe, website as well.
 [//]: # (Function)
 ## :dart: Function
 
+* [x] Multiple Warehouses
 * [x] Supplier Management
 * [x] Customer Management
 * [x] Scanner PDA
