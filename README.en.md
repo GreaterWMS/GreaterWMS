@@ -29,8 +29,6 @@
 
 </div>
 
-[//]: # (Some Link)]()
-
 #### Since V2.1.26，GreaterWMS switch license to AGPLv3, Personal learning is unlimited, and you need to purchase a commercial license for commercial use.
 
 ## :rocket: Link US

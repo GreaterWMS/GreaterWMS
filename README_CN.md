@@ -28,8 +28,6 @@
 [![BiliBili](https://img.shields.io/badge/BiliBili-4987-red)](https://space.bilibili.com/407321291/channel/seriesdetail?sid=776320)
 </div>
 
-[//]: # (Some Link)
-
 #### 自2.1.26版本以后，GreaterWMS将开源协议调整为AGPLv3，个人学习是无限制的，商用需要购买商用授权
 
 ## :rocket: 找到我们
