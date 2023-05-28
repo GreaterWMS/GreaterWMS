@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 python:3.9-slim AS backend
+FROM --platform=linux/amd64 python:3.8.10-slim AS backend
 RUN mkdir -p /GreaterWMS/templates
 #copy requirements.txt
 ADD ./requirements.txt /GreaterWMS/requirements.txt
