@@ -13,8 +13,6 @@ services:
     privileged: true
     ports:
       - '8080:8080'
-    depends_on:
-      - backend
     volumes:
       - ./templates:/GreaterWMS/templates:rw
       - ./web_start.sh:/GreaterWMS/templates/web_start.sh
@@ -29,6 +27,8 @@ services:
     image: greaterwms/greaterwms:backend
     restart: always
     privileged: true
+    depends_on:
+      - front
     volumes:
       - ./:/GreaterWMS/:rw
       - ./supervisord.conf:/etc/supervisor/supervisord.conf
