@@ -265,6 +265,30 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                         transportation_list.append(transportation_detail)
                     transportation_res['detail'] = transportation_list
                 AsnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
+                check_data = AsnDetailModel.objects.filter(asn_code=data['asn_code'])
+                for k in range(len(check_data)):
+                    res_check_data = check_data.filter(goods_code=check_data[k].goods_code)
+                    if res_check_data.count() > 1:
+                        combine_qty = []
+                        conbine_weight = []
+                        conbine_volume = []
+                        conbine_cost = []
+                        for z in range(len(res_check_data)):
+                            combine_qty.append(res_check_data[z].goods_qty)
+                            conbine_weight.append(res_check_data[z].goods_weight)
+                            conbine_volume.append(res_check_data[z].goods_volume)
+                            conbine_cost.append(res_check_data[z].goods_cost)
+                            res_check_data[z].delete()
+                        AsnDetailModel.objects.create(openid=self.request.auth.openid,
+                                                      asn_code=str(data['asn_code']),
+                                                      supplier=str(data['supplier']),
+                                                      goods_code=str(check_data[k].goods_code),
+                                                      goods_desc=str(check_data[k].goods_desc),
+                                                      goods_qty=sumOfList(combine_qty, len(combine_qty)),
+                                                      goods_weight=sumOfList(conbine_weight, len(conbine_weight)),
+                                                      goods_volume=sumOfList(conbine_volume, len(conbine_volume)),
+                                                      goods_cost=sumOfList(conbine_cost, len(conbine_cost)),
+                                                      creater=str(staff_name))
                 AsnListModel.objects.filter(openid=self.request.auth.openid, asn_code=str(data['asn_code'])).update(
                     supplier=str(data['supplier']), total_weight=total_weight, total_volume=total_volume,
                     total_cost=total_cost, transportation_fee=transportation_res)
@@ -371,6 +395,30 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                         transportation_list.append(transportation_detail)
                     transportation_res['detail'] = transportation_list
                 AsnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
+                check_data = AsnDetailModel.objects.filter(asn_code=data['asn_code'])
+                for k in range(len(check_data)):
+                    res_check_data = check_data.filter(goods_code=check_data[k].goods_code)
+                    if res_check_data.count() > 1:
+                        combine_qty = []
+                        conbine_weight = []
+                        conbine_volume = []
+                        conbine_cost = []
+                        for z in range(len(res_check_data)):
+                            combine_qty.append(res_check_data[z].goods_qty)
+                            conbine_weight.append(res_check_data[z].goods_weight)
+                            conbine_volume.append(res_check_data[z].goods_volume)
+                            conbine_cost.append(res_check_data[z].goods_cost)
+                            res_check_data[z].delete()
+                        AsnDetailModel.objects.create(openid=self.request.auth.openid,
+                                                      asn_code=str(data['asn_code']),
+                                                      supplier=str(data['supplier']),
+                                                      goods_code=str(check_data[k].goods_code),
+                                                      goods_desc=str(check_data[k].goods_desc),
+                                                      goods_qty=sumOfList(combine_qty, len(combine_qty)),
+                                                      goods_weight=sumOfList(conbine_weight, len(conbine_weight)),
+                                                      goods_volume=sumOfList(conbine_volume, len(conbine_volume)),
+                                                      goods_cost=sumOfList(conbine_cost, len(conbine_cost)),
+                                                      creater=str(staff_name))
                 AsnListModel.objects.filter(openid=self.request.auth.openid, asn_code=str(data['asn_code'])).update(
                     supplier=str(data['supplier']), total_weight=total_weight, total_volume=total_volume,
                     transportation_fee=transportation_res)
