@@ -1,0 +1,46 @@
+{
+  "name": "org.greaterwms.scanner.app",
+  "displayName": "GreaterWMS--Open Source Warehouse Management System",
+  "version": "2.1.28",
+  "description": "GreaterWMS--Open Source Warehouse Management System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "GreaterWMS Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cordova-android": "^10.1.2",
+    "cordova-plugin-battery-status": "^2.0.3",
+    "cordova-plugin-device": "^2.1.0",
+    "cordova-plugin-dialogs": "^2.0.2",
+    "cordova-plugin-insomnia": "^4.3.0",
+    "cordova-plugin-splashscreen": "^6.0.2",
+    "cordova-plugin-vibration": "^3.1.1",
+    "ionic-plugin-keyboard": "^2.2.1",
+    "phonegap-plugin-barcodescanner": "^8.1.0"
+  },
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-battery-status": {},
+      "cordova-plugin-device": {},
+      "phonegap-plugin-barcodescanner": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
+      "cordova-plugin-insomnia": {},
+      "cordova-plugin-vibration": {},
+      "cordova-plugin-dialogs": {},
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-splashscreen": {}
+    }
+  },
+  "dependencies": {
+    "yargs": "^17.6.0"
+  }
+}

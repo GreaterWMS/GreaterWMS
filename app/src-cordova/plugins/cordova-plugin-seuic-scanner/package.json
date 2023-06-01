@@ -1,0 +1,22 @@
+{
+  "name": "cordova-plugin-seuic-scanner",
+  "version": "1.0.0",
+  "description": "通过BroadcastReceiver监听二维码识别获取二维码信息的cordova插件",
+  "cordova": {
+    "id": "cordova-plugin-seuic-scanner",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {},
+  "keywords": [
+    "codedata",
+    "receiver"
+  ],
+  "author": "kyl",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

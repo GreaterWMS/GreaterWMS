@@ -1,0 +1,16 @@
+language: node_js
+
+node_js:
+  - 6
+  - 8
+  - 10
+
+branches:
+  only:
+  - master
+
+notifications:
+  slack:
+    secure: QI+nroFHoaX5vBTtMiJwBt9pYBvFKC8TPwyREEY0yZNjp4+bF/rk7Sj7nNK136m4+nP+wPrAPSC+8jk7jdjRWP2j+CRbnGCSf/29xeDWgXpRUoOGTe8/XWhHlLKwwJ6zm+eB6kwNN3wqrQ+C/9L7gckbj6BCvpp9SwH1q02lpNU=
+  email:
+  - PhoneGapCI@adobe.com

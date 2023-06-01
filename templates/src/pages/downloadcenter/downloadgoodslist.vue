@@ -124,59 +124,39 @@
       </q-table>
     </transition>
     <template>
-      <div class="q-pa-lg flex flex-center">
-        <q-btn
-          v-show="pathname_previous"
-          flat
-          push
-          color="purple"
-          :label="$t('previous')"
-          icon="navigate_before"
-          @click="getListPrevious()"
-        >
-          <q-tooltip
-            content-class="bg-amber text-black shadow-4"
-            :offset="[10, 10]"
-            content-style="font-size: 12px"
-            >{{ $t("previous") }}</q-tooltip
-          >
-        </q-btn>
-        <q-btn
-          v-show="pathname_next"
-          flat
-          push
-          color="purple"
-          :label="$t('next')"
-          icon-right="navigate_next"
-          @click="getListNext()"
-        >
-          <q-tooltip
-            content-class="bg-amber text-black shadow-4"
-            :offset="[10, 10]"
-            content-style="font-size: 12px"
-            >{{ $t("next") }}</q-tooltip
-          >
-        </q-btn>
-        <q-btn
-          v-show="!pathname_previous && !pathname_next"
-          flat
-          push
-          color="dark"
-          :label="$t('no_data')"
-        ></q-btn>
-      </div>
+        <div v-show="max !== 0" class="q-pa-lg flex flex-center">
+           <div>{{ total }} </div>
+          <q-pagination
+            v-model="current"
+            color="black"
+            :max="max"
+            :max-pages="6"
+            boundary-links
+            @click="getList()"
+          />
+          <div>
+            <input
+              v-model="paginationIpt"
+              @blur="changePageEnter"
+              style="width: 60px; text-align: center"
+            />
+          </div>
+        </div>
+        <div v-show="max === 0" class="q-pa-lg flex flex-center">
+          <q-btn flat push color="dark" :label="$t('no_data')"></q-btn>
+        </div>
     </template>
   </div>
 </template>
 <router-view />
 
 <script>
-import { getauth, postauth, putauth, deleteauth, ViewPrintAuth, getfile } from 'boot/axios_request';
-import { date, exportFile, SessionStorage, LocalStorage } from 'quasar';
+import { getauth, getfile } from 'boot/axios_request'
+import { date, exportFile, LocalStorage } from 'quasar'
 
 export default {
   name: 'Pageasnlist',
-  data() {
+  data () {
     return {
       login_name: '',
       authin: '0',
@@ -217,121 +197,157 @@ export default {
       createDate2: '',
       date_range: '',
       searchUrl: '',
-      downloadUrl:'goods/file/'
-    };
+      downloadUrl: 'goods/file/',
+      current: 1,
+      max: 0,
+      total: 0,
+      paginationIpt: 1
+    }
   },
   computed: {
-    interval() {
-      return this.$t('download_center.start') + ' - ' + this.$t('download_center.end');
+    interval () {
+      return this.$t('download_center.start') + ' - ' + this.$t('download_center.end')
     }
   },
   watch: {
-    createDate1(val) {
+    createDate1 (val) {
       if (val) {
         if (val.to) {
-          this.createDate2 = `${val.from} - ${val.to}`;
-          this.date_range = `${val.from},${val.to} 23:59:59`;
+          this.createDate2 = `${val.from} - ${val.to}`
+          this.date_range = `${val.from},${val.to} 23:59:59`
           this.searchUrl = this.pathname + '?' + 'create_time__range=' + this.date_range
-           this.downloadUrl = this.pathname + 'file/?' + 'create_time__range=' + this.date_range
+          this.downloadUrl = this.pathname + 'file/?' + 'create_time__range=' + this.date_range
         } else {
-          this.createDate2 = `${val}`;
-          this.dateArray = val.split('/');
-          this.searchUrl = this.pathname + '?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];
-          this.downloadUrl = this.pathname + 'file/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];
-       }
-        this.date_range = this.date_range.replace(/\//g, '-');
-        this.getSearchList();
-        this.$refs.qDateProxy.hide();
+          this.createDate2 = `${val}`
+          this.dateArray = val.split('/')
+          this.searchUrl = this.pathname + '?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2]
+          this.downloadUrl = this.pathname + 'file/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2]
+        }
+        this.date_range = this.date_range.replace(/\//g, '-')
+        this.getSearchList()
+        this.$refs.qDateProxy.hide()
       }
     }
   },
   methods: {
-    getList() {
-      var _this = this;
-      getauth(_this.pathname, {})
+    getList () {
+      var _this = this
+      getauth(_this.pathname + '?page=' + '' + _this.current, {})
         .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = res.results
+          _this.total = res.count
+          if (res.count === 0) {
+            _this.max = 0
+          } else {
+            if (Math.ceil(res.count / 30) === 1) {
+              _this.max = 0
+            } else {
+              _this.max = Math.ceil(res.count / 30)
+            }
+          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getSearchList() {
-      var _this = this;
-      getauth(_this.searchUrl)
+    changePageEnter(e) {
+      if (Number(this.paginationIpt) < 1) {
+        this.current = 1;
+        this.paginationIpt = 1;
+      } else if (Number(this.paginationIpt) > this.max) {
+        this.current = this.max;
+        this.paginationIpt = this.max;
+      } else {
+        this.current = Number(this.paginationIpt);
+      }
+      this.getList();
+    },
+    getSearchList () {
+      var _this = this
+      getauth(_this.searchUrl + '&page=' + '' + _this.current)
         .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = res.results
+          _this.total = res.count
+          if (res.count === 0) {
+            _this.max = 0
+          } else {
+            if (Math.ceil(res.count / 30) === 1) {
+              _this.max = 0
+            } else {
+              _this.max = Math.ceil(res.count / 30)
+            }
+          }
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getListPrevious() {
-      var _this = this;
+    getListPrevious () {
+      var _this = this
       getauth(_this.pathname_previous, {})
         .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = res.results
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getListNext() {
-      var _this = this;
+    getListNext () {
+      var _this = this
       getauth(_this.pathname_next, {})
         .then(res => {
-          _this.table_list = res.results;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = res.results
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    downloadlistData() {
-      var _this = this;
+    downloadlistData () {
+      var _this = this
       getfile(_this.downloadUrl).then(res => {
-        var timeStamp = Date.now();
-        var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-        const status = exportFile(_this.pathname + 'list' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
+        var timeStamp = Date.now()
+        var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS')
+        const status = exportFile(_this.pathname + 'list' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv')
         if (status !== true) {
           _this.$q.notify({
             message: 'Browser denied file download...',
             color: 'negative',
             icon: 'warning'
-          });
+          })
         }
-      });
+      })
     },
-    reset(){
-        this.getList();
-        this.downloadUrl = 'goods/file/';
-        this.createDate2 = '';
+    reset () {
+      this.getList()
+      this.downloadUrl = 'goods/file/'
+      this.createDate2 = ''
     }
   },
-  created() {
+  created () {
     var _this = this
     if (LocalStorage.has('openid')) {
       _this.openid = LocalStorage.getItem('openid')
@@ -352,15 +368,15 @@ export default {
       _this.authin = '0'
     }
   },
-  mounted() {
-    var _this = this;
+  mounted () {
+    var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + 'px';
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + '' + 'px';
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
-  updated() {},
-  destroyed() {}
-};
+  updated () {},
+  destroyed () {}
+}
 </script>

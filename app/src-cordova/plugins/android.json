@@ -1,0 +1,44 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-battery-status": {
+      "PACKAGE_NAME": "org.greaterwms.scanner.app"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "org.greaterwms.scanner.app"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "org.greaterwms.scanner.app"
+    },
+    "cordova-plugin-insomnia": {
+      "PACKAGE_NAME": "org.greaterwms.scanner.app"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "org.greaterwms.scanner.app"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "org.greaterwms.scanner.app"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "org.greaterwms.scanner.app"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "org.greaterwms.scanner.app"
+    }
+  },
+  "dependent_plugins": {
+    "com-darryncampbell-cordova-plugin-intent": {
+      "PACKAGE_NAME": "org.greaterwms.scanner.app"
+    },
+    "cordova-plugin-seuic-scanner": {
+      "PACKAGE_NAME": "org.greaterwms.scanner.app"
+    }
+  }
+}

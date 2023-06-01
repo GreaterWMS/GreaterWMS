@@ -1,0 +1,10 @@
+.main-headers {
+  background: linear-gradient(to right, #606c88, #3f4c6b)
+}
+
+#__vconsole {
+  display: none;
+  &.show{
+  display: block;
+  }
+}
