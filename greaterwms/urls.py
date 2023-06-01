@@ -50,5 +50,6 @@ urlpatterns = [
     re_path('^statics/.*$', views.statics, name='statics'),
     re_path('^fonts/.*$', views.fonts, name='fonts'),
     re_path(r'^robots.txt', views.robots, name='robots'),
+    re_path(r'^media/(?P<path>.*)$', static_serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', return_static, name='static')
 ]
