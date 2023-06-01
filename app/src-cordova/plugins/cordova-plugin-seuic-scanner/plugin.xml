@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-seuic-scanner" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>SeuicScanner</name>
+    <js-module name="SeuicScanner" src="www/seuicScanner.js">
+        <clobbers target="cordova.plugins.SeuicScanner"/>
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="SeuicScanner">
+                <param name="android-package" value="com.seuic.scanner.SeuicScanner"/>
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+        <source-file src="src/android/SeuicScanner.java" target-dir="src/com/seuic/scanner"/>
+    </platform>
+</plugin>

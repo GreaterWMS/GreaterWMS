@@ -213,238 +213,238 @@
 </template>
 <router-view />
 <script>
-import { date, exportFile, LocalStorage, SessionStorage } from "quasar";
-import { getauth, getfile, postauth } from "boot/axios_request";
+import { date, exportFile, LocalStorage, SessionStorage } from 'quasar'
+import { getauth, getfile, postauth } from 'boot/axios_request'
 
 export default {
-  name: "cyclyecount",
-  data() {
+  name: 'cyclyecount',
+  data () {
     return {
-      openid: "",
-      login_name: "",
-      authin: "0",
-      pathname: "cyclecount/getgoodscyclecount/",
-      separator: "cell",
+      openid: '',
+      login_name: '',
+      authin: '0',
+      pathname: 'cyclecount/getgoodscyclecount/',
+      separator: 'cell',
       loading: false,
-      height: "",
+      height: '',
       table_list: [],
       bin_size_list: [],
       bin_property_list: [],
       warehouse_list: [],
       columns: [
         {
-          name: "bin_name",
+          name: 'bin_name',
           required: true,
-          label: this.$t("warehouse.view_binset.bin_name"),
-          align: "left",
-          field: "bin_name",
+          label: this.$t('warehouse.view_binset.bin_name'),
+          align: 'left',
+          field: 'bin_name'
         },
         {
-          name: "goods_code",
-          label: this.$t("stock.view_stocklist.goods_code"),
-          field: "goods_code",
-          align: "center",
+          name: 'goods_code',
+          label: this.$t('stock.view_stocklist.goods_code'),
+          field: 'goods_code',
+          align: 'center'
         },
         {
-          name: "goods_qty",
-          label: this.$t("stock.view_stocklist.on_hand_inventory"),
-          field: "goods_qty",
-          align: "center",
+          name: 'goods_qty',
+          label: this.$t('stock.view_stocklist.on_hand_inventory'),
+          field: 'goods_qty',
+          align: 'center'
         },
         {
-          name: "physical_inventory",
-          label: this.$t("stock.view_stocklist.physical_inventory"),
-          field: "physical_inventory",
-          align: "center",
+          name: 'physical_inventory',
+          label: this.$t('stock.view_stocklist.physical_inventory'),
+          field: 'physical_inventory',
+          align: 'center'
         },
         {
-          name: "difference",
-          label: this.$t("stock.view_stocklist.difference"),
-          field: "difference",
-          align: "center",
+          name: 'difference',
+          label: this.$t('stock.view_stocklist.difference'),
+          field: 'difference',
+          align: 'center'
         },
-        { name: "action", label: this.$t("action"), align: "right" },
+        { name: 'action', label: this.$t('action'), align: 'right' }
       ],
       pagination: {
         page: 1,
-        rowsPerPage: "10000",
+        rowsPerPage: '10000'
       },
       options: [],
-      error1: this.$t("stock.view_stocklist.error1"),
+      error1: this.$t('stock.view_stocklist.error1'),
       CountFrom: false,
       handcountVisible: false,
-      handcountVal: "",
-      skuOptions: SessionStorage.getItem("goods_code"),
-      options1: [],
-    };
+      handcountVal: '',
+      skuOptions: SessionStorage.getItem('goods_code'),
+      options1: []
+    }
   },
   methods: {
-    setOptions(val) {
-      const _this = this;
-      const needle = val.toLowerCase();
-      getauth("goods/?goods_code__icontains=" + needle).then((res) => {
-        const goodscodelist = [];
+    setOptions (val) {
+      const _this = this
+      const needle = val.toLowerCase()
+      getauth('goods/?goods_code__icontains=' + needle).then((res) => {
+        const goodscodelist = []
         for (let i = 0; i < res.results.length; i++) {
-          goodscodelist.push(res.results[i].goods_code);
+          goodscodelist.push(res.results[i].goods_code)
         }
-        _this.options1 = goodscodelist;
-      });
+        _this.options1 = goodscodelist
+      })
     },
-    filterFn(val, update, abort) {
+    filterFn (val, update, abort) {
       if (val.length < 1) {
-        abort();
-        return;
+        abort()
+        return
       }
       update(() => {
-        this.skuOptions = this.options1;
-      });
+        this.skuOptions = this.options1
+      })
     },
-    getList() {
-      var _this = this;
-      getauth("cyclecount/manualcyclecount/")
+    getList () {
+      var _this = this
+      getauth('cyclecount/manualcyclecount/')
         .then((res) => {
-          _this.table_list = res;
-          _this.handcountVisible = false;
+          _this.table_list = res
+          _this.handcountVisible = false
         })
         .catch((err) => {
           _this.$q.notify({
             message: err.detail,
-            icon: "close",
-            color: "negative",
-          });
-        });
+            icon: 'close',
+            color: 'negative'
+          })
+        })
     },
-    reFresh() {
-      var _this = this;
-      _this.getList();
+    reFresh () {
+      var _this = this
+      _this.getList()
     },
-    ConfirmCount() {
-      var _this = this;
+    ConfirmCount () {
+      var _this = this
       if (!_this.table_list.length) {
-        _this.CountFrom = false;
+        _this.CountFrom = false
         _this.$q.notify({
-          message: _this.$t("notice.cyclecounterror"),
-          icon: "close",
-          color: "negative",
-        });
+          message: _this.$t('notice.cyclecounterror'),
+          icon: 'close',
+          color: 'negative'
+        })
       } else {
-        postauth("cyclecount/manualcyclecount/", _this.table_list)
+        postauth('cyclecount/manualcyclecount/', _this.table_list)
           .then((res) => {
-            _this.CountFrom = false;
+            _this.CountFrom = false
             _this.$q.notify({
-              message: "Success Confirm Cycle Count",
-              icon: "check",
-              color: "green",
-            });
-            _this.table_list = [];
-            _this.reFresh();
+              message: 'Success Confirm Cycle Count',
+              icon: 'check',
+              color: 'green'
+            })
+            _this.table_list = []
+            _this.reFresh()
           })
           .catch((err) => {
             _this.$q.notify({
               message: err.detail,
-              icon: "close",
-              color: "negative",
-            });
-          });
+              icon: 'close',
+              color: 'negative'
+            })
+          })
       }
     },
-    preloadDataCancel() {
-      var _this = this;
-      _this.CountFrom = false;
+    preloadDataCancel () {
+      var _this = this
+      _this.CountFrom = false
     },
-    downloadData() {
-      var _this = this;
-      if (LocalStorage.has("auth")) {
+    downloadData () {
+      var _this = this
+      if (LocalStorage.has('auth')) {
         getfile(
-          "cyclecount/manualfilecyclecount/?lang=" +
-            LocalStorage.getItem("lang")
+          'cyclecount/manualfilecyclecount/?lang=' +
+            LocalStorage.getItem('lang')
         ).then((res) => {
-          var timeStamp = Date.now();
-          var formattedString = date.formatDate(timeStamp, "YYYYMMDDHHmmssSSS");
+          var timeStamp = Date.now()
+          var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS')
           const status = exportFile(
-            "manualcyclecountday_" + formattedString + ".csv",
-            "\uFEFF" + res.data,
-            "text/csv"
-          );
+            'manualcyclecountday_' + formattedString + '.csv',
+            '\uFEFF' + res.data,
+            'text/csv'
+          )
           if (status !== true) {
             _this.$q.notify({
-              message: "Browser denied file download...",
-              color: "negative",
-              icon: "warning",
-            });
+              message: 'Browser denied file download...',
+              color: 'negative',
+              icon: 'warning'
+            })
           }
-        });
+        })
       } else {
         _this.$q.notify({
-          message: _this.$t("notice.loginerror"),
-          color: "negative",
-          icon: "warning",
-        });
+          message: _this.$t('notice.loginerror'),
+          color: 'negative',
+          icon: 'warning'
+        })
       }
     },
-    ConfirmCounts() {
-      var _this = this;
-      _this.CountFrom = true;
+    ConfirmCounts () {
+      var _this = this
+      _this.CountFrom = true
     },
-    blurHandler(val) {
-      val = val.toString().replace(/^(0+)|[^\d]+/g, "");
+    blurHandler (val) {
+      val = val.toString().replace(/^(0+)|[^\d]+/g, '')
     },
-    handleHandcountSubmit() {
+    handleHandcountSubmit () {
       if (!this.handcountVal) {
         this.$q.notify({
-          message: "Please Enter SKU",
-          icon: "close",
-          color: "negative",
-        });
-        return;
+          message: 'Please Enter SKU',
+          icon: 'close',
+          color: 'negative'
+        })
+        return
       }
-      var _this = this;
+      var _this = this
       getauth(
-        "cyclecount/getgoodscyclecount/" + `?goods_code=${this.handcountVal}`
+        'cyclecount/getgoodscyclecount/' + `?goods_code=${this.handcountVal}`
       )
         .then((res) => {
-          this.getList();
-          this.handcountVal = "";
+          this.getList()
+          this.handcountVal = ''
         })
         .catch((err) => {
           _this.$q.notify({
             message: err.detail,
-            icon: "close",
-            color: "negative",
-          });
-        });
-    },
-  },
-  created() {
-    var _this = this;
-    if (LocalStorage.has("openid")) {
-      _this.openid = LocalStorage.getItem("openid");
-    } else {
-      _this.openid = "";
-      LocalStorage.set("openid", "");
-    }
-    if (LocalStorage.has("login_name")) {
-      _this.login_name = LocalStorage.getItem("login_name");
-    } else {
-      _this.login_name = "";
-      LocalStorage.set("login_name", "");
-    }
-    if (LocalStorage.has("auth")) {
-      _this.authin = "1";
-      _this.getList();
-    } else {
-      _this.authin = "0";
+            icon: 'close',
+            color: 'negative'
+          })
+        })
     }
   },
-  mounted() {
-    var _this = this;
+  created () {
+    var _this = this
+    if (LocalStorage.has('openid')) {
+      _this.openid = LocalStorage.getItem('openid')
+    } else {
+      _this.openid = ''
+      LocalStorage.set('openid', '')
+    }
+    if (LocalStorage.has('login_name')) {
+      _this.login_name = LocalStorage.getItem('login_name')
+    } else {
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
+    }
+    if (LocalStorage.has('auth')) {
+      _this.authin = '1'
+      _this.getList()
+    } else {
+      _this.authin = '0'
+    }
+  },
+  mounted () {
+    var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + "px";
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + "" + "px";
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
-  updated() {},
-  destroyed() {},
-};
+  updated () {},
+  destroyed () {}
+}
 </script>

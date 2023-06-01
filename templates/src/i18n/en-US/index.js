@@ -563,7 +563,7 @@ export default {
       notice1: 'QR code does not exist',
       notice2: 'Code does not exist',
       notice3: 'Server Error',
-      notice4: 'Only mobile can scan'
+      notice4: 'Only app can scan'
     },
     mobile_asn: {
       notice1: 'ASN List',

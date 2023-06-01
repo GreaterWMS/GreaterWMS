@@ -78,20 +78,28 @@
       </q-table>
         </transition>
       <template>
-        <div class="q-pa-lg flex flex-center">
-          <q-btn v-show="pathname_previous" flat push color="purple" :label="$t('previous')" icon="navigate_before" @click="getListPrevious()">
-            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-              {{ $t('previous') }}
-            </q-tooltip>
-          </q-btn>
-          <q-btn v-show="pathname_next" flat push color="purple" :label="$t('next')" icon-right="navigate_next" @click="getListNext()">
-            <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
-              {{ $t('next') }}
-            </q-tooltip>
-          </q-btn>
-          <q-btn v-show="!pathname_previous && !pathname_next" flat push color="dark" :label="$t('no_data')"></q-btn>
+        <div v-show="max !== 0" class="q-pa-lg flex flex-center">
+           <div>{{ total }} </div>
+          <q-pagination
+            v-model="current"
+            color="black"
+            :max="max"
+            :max-pages="6"
+            boundary-links
+            @click="getList()"
+          />
+          <div>
+            <input
+              v-model="paginationIpt"
+              @blur="changePageEnter"
+              style="width: 60px; text-align: center"
+            />
+          </div>
         </div>
-      </template>
+        <div v-show="max === 0" class="q-pa-lg flex flex-center">
+          <q-btn flat push color="dark" :label="$t('no_data')"></q-btn>
+        </div>
+    </template>
       <q-dialog v-model="moveForm">
        <q-card class="shadow-24">
          <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
@@ -189,16 +197,30 @@ export default {
       options: [],
       moveForm: false,
       movedata: {},
-      error1: this.$t('inbound.view_sortstock.error1')
+      error1: this.$t('inbound.view_sortstock.error1'),
+      current: 1,
+      max: 0,
+      total: 0,
+      paginationIpt: 1
     }
   },
   methods: {
     getList () {
       var _this = this
       if (_this.$q.localStorage.has('auth')) {
-        getauth(_this.pathname, {
+        getauth(_this.pathname + '?page=' + '' + _this.current, {
         }).then(res => {
           _this.table_list = res.results
+          _this.total = res.count
+          if (res.count === 0) {
+            _this.max = 0
+          } else {
+            if (Math.ceil(res.count / 30) === 1) {
+              _this.max = 0
+            } else {
+              _this.max = Math.ceil(res.count / 30)
+            }
+          }
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {
@@ -208,15 +230,36 @@ export default {
             color: 'negative'
           })
         })
-      } else {
       }
+    },
+    changePageEnter(e) {
+      if (Number(this.paginationIpt) < 1) {
+        this.current = 1;
+        this.paginationIpt = 1;
+      } else if (Number(this.paginationIpt) > this.max) {
+        this.current = this.max;
+        this.paginationIpt = this.max;
+      } else {
+        this.current = Number(this.paginationIpt);
+      }
+      this.getList();
     },
     getSearchList () {
       var _this = this
       if (_this.$q.localStorage.has('auth')) {
-        getauth(_this.pathname + '&asn_code__icontains=' + _this.filter, {
+        getauth(_this.pathname + '&asn_code__icontains=' + _this.filter + '&page=' + '' + _this.current, {
         }).then(res => {
           _this.table_list = res.results
+          _this.total = res.count
+          if (res.count === 0) {
+            _this.max = 0
+          } else {
+            if (Math.ceil(res.count / 30) === 1) {
+              _this.max = 0
+            } else {
+              _this.max = Math.ceil(res.count / 30)
+            }
+          }
           _this.pathname_previous = res.previous
           _this.pathname_next = res.next
         }).catch(err => {

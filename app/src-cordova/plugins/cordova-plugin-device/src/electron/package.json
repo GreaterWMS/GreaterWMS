@@ -1,0 +1,20 @@
+{
+  "name": "cordova-plugin-device-electron",
+  "version": "1.0.0",
+  "description": "Electron Native Support for Cordova Device Plugin",
+  "main": "index.js",
+  "keywords": [
+    "cordova",
+    "electron",
+    "device",
+    "native"
+  ],
+  "author": "Apache Software Foundation",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "systeminformation": "^5.11.9"
+  },
+  "cordova": {
+    "serviceName": "Device"
+  }
+}
