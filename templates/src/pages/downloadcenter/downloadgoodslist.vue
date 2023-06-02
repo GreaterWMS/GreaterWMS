@@ -43,24 +43,12 @@
                 icon="img:statics/downloadcenter/reset.svg"
                 @click="reset()"
               >
-                <q-tooltip
-                  content-class="bg-amber text-black shadow-4"
-                  :offset="[10, 10]"
-                  content-style="font-size: 12px"
-                  >{{ $t("download_center.reset") }}</q-tooltip
-                >
               </q-btn>
               <q-btn
                 :label="$t('downloadasnlist')"
                 icon="cloud_download"
                 @click="downloadlistData()"
               >
-                <q-tooltip
-                  content-class="bg-amber text-black shadow-4"
-                  :offset="[10, 10]"
-                  content-style="font-size: 12px"
-                  >{{ $t("downloadasnlisttip") }}</q-tooltip
-                >
               </q-btn>
             </q-btn-group>
           </div>
