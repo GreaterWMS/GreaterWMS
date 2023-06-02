@@ -208,7 +208,7 @@ export default {
     getList () {
       var _this = this
       if (_this.$q.localStorage.has('auth')) {
-        getauth(_this.pathname + '?page=' + '' + _this.current, {
+        getauth(_this.pathname + '&page=' + '' + _this.current, {
         }).then(res => {
           _this.table_list = res.results
           _this.total = res.count
