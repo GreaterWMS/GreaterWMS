@@ -48,7 +48,6 @@
 import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import { useStore } from "vuex";
 import { useQuasar } from "quasar";
-import axios from 'axios';
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router/dist/vue-router";
 
