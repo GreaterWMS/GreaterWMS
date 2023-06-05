@@ -337,7 +337,7 @@ export default defineComponent({
           message: "Please Enter the Bin Name",
         });
       } else {
-        apiurl.value = baseurl.value + "asn/movetobin/";
+        apiurl.value = baseurl.value + "/asn/movetobin/";
         axios
           .post(apiurl.value + submitdata.value.id + "/", submitdata.value, {
             headers: {
@@ -467,7 +467,7 @@ export default defineComponent({
         }
         update(() => {
           const needle = val.toLowerCase();
-          apiurl.value = baseurl.value + "binset/?bin_name__icontains=";
+          apiurl.value = baseurl.value + "/binset/?bin_name__icontains=";
           axios
             .get(apiurl.value + val, {
               headers: {

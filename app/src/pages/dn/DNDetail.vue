@@ -161,7 +161,7 @@ export default defineComponent({
 
     function InitData () {
       tablelist.value = []
-      apiurl.value = baseurl.value + 'dn/detail/?dn_code=' + dndata.value
+      apiurl.value = baseurl.value + '/dn/detail/?dn_code=' + dndata.value
       getTableData('')
     }
 

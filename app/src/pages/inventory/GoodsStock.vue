@@ -245,7 +245,7 @@ export default defineComponent({
         })
       } else {
         scanmode.value = 'GOODS'
-        apiurl.value = baseurl.value + 'stock/list/?ordering=-id'
+        apiurl.value = baseurl.value + '/stock/list/?ordering=-id'
         tablelist.value = []
         getTableData('')
       }

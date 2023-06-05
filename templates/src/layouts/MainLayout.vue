@@ -380,7 +380,7 @@
             /></q-item-section>
             <q-item-section>{{ $t("menuItem.driver") }}</q-item-section>
           </q-item>
-          <q-separator v-show="device === 0" />
+          <q-separator />
           <q-item
             clickable
             :to="{ name: 'initializeupload' }"

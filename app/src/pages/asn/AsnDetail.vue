@@ -216,7 +216,7 @@ export default defineComponent({
 
     function InitData (e) {
       tablelist.value = []
-      apiurl.value = baseurl.value + 'asn/detail/?asn_status=4&asn_code=' + asndata.value
+      apiurl.value = baseurl.value + '/asn/detail/?asn_status=4&asn_code=' + asndata.value
       getTableData(e)
     }
 
@@ -270,7 +270,7 @@ export default defineComponent({
           message: t('notice.mobile_asn.notice13')
         })
       } else {
-        apiurl.value = baseurl.value + 'asn/movetobin/'
+        apiurl.value = baseurl.value + '/asn/movetobin/'
         axios.post(apiurl.value + submitdata.value.id + '/', submitdata.value,
           {
             headers: {
@@ -296,7 +296,7 @@ export default defineComponent({
     }
 
     function setOptions (e) {
-      apiurl.value = baseurl.value + 'binset/?bin_name__icontains='
+      apiurl.value = baseurl.value + '/binset/?bin_name__icontains='
       axios.get(apiurl.value + e,
         {
           headers: {

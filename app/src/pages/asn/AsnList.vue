@@ -243,7 +243,7 @@ export default defineComponent({
         })
       } else {
         scanmode.value = 'ASN'
-        apiurl.value = baseurl.value + 'asn/list/'
+        apiurl.value = baseurl.value + '/asn/list/'
         asndata.value = ''
         tablelist.value = []
         getTableData('')
