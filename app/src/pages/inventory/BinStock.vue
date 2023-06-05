@@ -217,7 +217,7 @@ export default defineComponent({
 
     function InitData (e) {
       tablelist.value = []
-      apiurl.value = baseurl.value + 'stock/bin/?goods_code='
+      apiurl.value = baseurl.value + '/stock/bin/?goods_code='
       getTableData(e)
     }
 
@@ -271,7 +271,7 @@ export default defineComponent({
           message: t('notice.mobile_binstock.notice5')
         })
       } else {
-        apiurl.value = baseurl.value + 'stock/bin/'
+        apiurl.value = baseurl.value + '/stock/bin/'
         axios.post(apiurl.value + submitdata.value.id + '/', submitdata.value,
           {
             headers: {
@@ -297,7 +297,7 @@ export default defineComponent({
     }
 
     function setOptions (e) {
-      apiurl.value = baseurl.value + 'binset/?bin_name__icontains='
+      apiurl.value = baseurl.value + '/binset/?bin_name__icontains='
       axios.get(apiurl.value + e,
         {
           headers: {

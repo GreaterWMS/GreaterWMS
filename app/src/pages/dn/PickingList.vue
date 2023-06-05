@@ -189,7 +189,7 @@ export default defineComponent({
 
     function InitData (e) {
       tablelist.value = []
-      apiurl.value = baseurl.value + 'dn/pickinglistfilter/?pick_qty__gt=0&picking_status=0'
+      apiurl.value = baseurl.value + '/dn/pickinglistfilter/?pick_qty__gt=0&picking_status=0'
       getTableData(e)
     }
 
@@ -237,7 +237,7 @@ export default defineComponent({
     }
 
     function submitData (e) {
-      apiurl.value = baseurl.value + 'dn/list/?dn_code=' + submitdata.value.dn_code
+      apiurl.value = baseurl.value + '/dn/list/?dn_code=' + submitdata.value.dn_code
       axios.get(apiurl.value,
         {
           headers: {
@@ -270,7 +270,7 @@ export default defineComponent({
           message: t('notice.mobile_dn.notice12')
         })
       } else {
-        apiurl.value = baseurl.value + 'dn/picked/' + e.id + '/'
+        apiurl.value = baseurl.value + '/dn/picked/' + e.id + '/'
         const resData = {
           creater: login_name.value,
           customer: e.customer,
@@ -304,7 +304,7 @@ export default defineComponent({
     }
 
     function setOptions (e) {
-      apiurl.value = baseurl.value + 'binset/?bin_name__icontains='
+      apiurl.value = baseurl.value + '/binset/?bin_name__icontains='
       axios.get(apiurl.value + e,
         {
           headers: {

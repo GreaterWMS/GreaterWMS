@@ -252,7 +252,7 @@ export default defineComponent({
     }
 
     function getTableData (e) {
-      apiurl.value = baseurl.value + 'goods/?goods_code=' + e
+      apiurl.value = baseurl.value + '/goods/?goods_code=' + e
       axios.get(apiurl.value,
         {
           headers: {

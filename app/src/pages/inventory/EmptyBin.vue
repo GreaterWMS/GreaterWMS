@@ -213,7 +213,7 @@ export default defineComponent({
         })
       } else {
         scanmode.value = 'BINSET'
-        apiurl.value = baseurl.value + 'binset/?empty_label=true'
+        apiurl.value = baseurl.value + '/binset/?empty_label=true'
         tablelist.value = []
         getTableData('')
       }

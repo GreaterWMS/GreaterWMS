@@ -257,7 +257,6 @@ import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import { useMeta, useQuasar, openURL  } from 'quasar'
 import { useI18n } from "vue-i18n"
-import axios from 'axios'
 
 export default {
   data () {

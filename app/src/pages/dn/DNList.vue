@@ -242,7 +242,7 @@ export default defineComponent({
         })
       } else {
         scanmode.value = 'DN'
-        apiurl.value = baseurl.value + 'dn/list/'
+        apiurl.value = baseurl.value + '/dn/list/'
         dndata.value = ''
         tablelist.value = []
         getTableData('')
