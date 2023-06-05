@@ -155,7 +155,7 @@ export default defineComponent({
     }
 
     function getGoodsData (e) {
-      axios.get(baseurl.value + 'goods/?goods_code=' + e,
+      axios.get(baseurl.value + '/goods/?goods_code=' + e,
         {
           headers: {
             "Content-Type": 'application/json, charset="utf-8"',
@@ -181,7 +181,7 @@ export default defineComponent({
     }
 
     function getMobileData (e) {
-      axios.get(baseurl.value + 'scanner/list/' + e + '/',
+      axios.get(baseurl.value + '/scanner/list/' + e + '/',
         {
           headers: {
             "Content-Type": 'application/json, charset="utf-8"',

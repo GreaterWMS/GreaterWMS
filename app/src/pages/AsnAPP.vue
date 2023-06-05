@@ -179,7 +179,7 @@ export default defineComponent({
     }
 
     function getMobileData (e) {
-      axios.get(baseurl.value + 'scanner/list/' + e + '/',
+      axios.get(baseurl.value + '/scanner/list/' + e + '/',
         {
           headers: {
             "Content-Type": 'application/json, charset="utf-8"',
