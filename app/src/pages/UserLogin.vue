@@ -194,7 +194,7 @@ export default defineComponent({
             })
           } else {
             _this.$axios.get(
-              _this.baseurl + 'staff/?staff_name=' + _this.staff_name + '&check_code=' + _this.check_code,
+              _this.baseurl + '/staff/?staff_name=' + _this.staff_name + '&check_code=' + _this.check_code,
               {
                 headers: {
                   "Content-Type": 'application/json, charset="utf-8"',
@@ -245,7 +245,7 @@ export default defineComponent({
           if (_this.adminlogin.name === '3' && _this.adminlogin.password === '3') {
             _this.$store.commit('settings/Server', 'https://production.56yhz.com/')
           }
-          _this.$axios.post(_this.baseurl + 'login/', _this.adminlogin)
+          _this.$axios.post(_this.baseurl + '/login/', _this.adminlogin)
             .then((res) => {
               if (res.data.code === '200') {
                 _this.$store.commit('settings/Openid', res.data.data.openid)
