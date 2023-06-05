@@ -229,7 +229,7 @@ export default defineComponent({
       axios
         .get(
           baseurl.value +
-            `cyclecount/manualcyclecount/?bin_name=${state.bin_name}&goods_code=${state.goods_code}`,
+            `/cyclecount/manualcyclecount/?bin_name=${state.bin_name}&goods_code=${state.goods_code}`,
           {
             headers: {
               "Content-Type": 'application/json, charset="utf-8"',
