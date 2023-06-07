@@ -27,7 +27,7 @@
             round
             dense
             flat
-            @click="brownlink('https://www.56yhz.com/ios/')"
+            @click="brownlink('https://www.56yhz.com/ios.html')"
             style="margin: 0 10px 0 10px"
           >
             <q-tooltip
@@ -44,7 +44,7 @@
             round
             dense
             flat
-            @click="brownlink('https://www.56yhz.com/android/')"
+            @click="brownlink('https://www.56yhz.com/android.html')"
             style="margin: 0 10px 0 10px"
           >
             <q-tooltip
