@@ -799,6 +799,9 @@ export default {
                   localStorage.removeItem('menulink')
                   _this.link = ''
                   _this.$router.push({ name: 'web_index' })
+                  window.setTimeout(() => {
+                    location.reload()
+                  }, 1)
                 }
               })
               .catch((err) => {
@@ -851,6 +854,9 @@ export default {
                 localStorage.removeItem('menulink')
                 _this.link = ''
                 _this.$router.push({ name: 'web_index' })
+                window.setTimeout(() => {
+                  location.reload()
+                }, 1)
               } else {
                 _this.$q.notify({
                   message: res.msg,
@@ -886,6 +892,9 @@ export default {
       localStorage.removeItem('menulink')
       _this.link = ''
       _this.$router.push({ name: 'web_index' })
+      window.setTimeout(() => {
+        location.reload()
+      }, 1)
     },
     Register () {
       var _this = this
@@ -916,6 +925,9 @@ export default {
             localStorage.removeItem('menulink')
             _this.link = ''
             _this.$router.push({ name: 'web_index' })
+            window.setTimeout(() => {
+              location.reload()
+            }, 1)
           } else {
             _this.$q.notify({
               message: res.msg,

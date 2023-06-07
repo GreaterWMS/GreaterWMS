@@ -100,7 +100,7 @@ class DnListViewSet(viewsets.ModelViewSet):
             data['dn_code'] = custom_dn
         else:
             qs_set = DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
-            order_day =str(timezone.now().strftime('%Y%m%d'))
+            order_day = str(timezone.now().strftime('%Y%m%d'))
             if len(qs_set) > 0:
                 dn_last_code = qs_set.order_by('-id').first().dn_code
                 if dn_last_code[2:10] == order_day:
@@ -272,7 +272,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                         transportation_list.append(transportation_detail)
                     transportation_res['detail'] = transportation_list
                 DnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
-                check_data = DnDetailModel.objects.filter(dn_code=data['dn_code'])
+                check_data = DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=data['dn_code'])
                 for k in range(len(check_data)):
                     res_check_data = check_data.filter(goods_code=check_data[k].goods_code)
                     if res_check_data.count() > 1:
@@ -402,7 +402,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                         transportation_list.append(transportation_detail)
                     transportation_res['detail'] = transportation_list
                 DnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
-                check_data = DnDetailModel.objects.filter(dn_code=data['dn_code'])
+                check_data = DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=data['dn_code'])
                 for k in range(len(check_data)):
                     res_check_data = check_data.filter(goods_code=check_data[k].goods_code)
                     if res_check_data.count() > 1:
@@ -578,6 +578,10 @@ class DnNewOrderViewSet(viewsets.ModelViewSet):
                         goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - dn_detail_list[i].goods_qty
                         goods_qty_change.ordered_stock = goods_qty_change.ordered_stock + dn_detail_list[i].goods_qty
                         goods_qty_change.dn_stock = goods_qty_change.dn_stock - dn_detail_list[i].goods_qty
+                        print(goods_qty_change.can_order_stock)
+                        print(goods_qty_change.ordered_stock)
+                        print(goods_qty_change.dn_stock)
+                        print(goods_qty_change.dn_detail_list[i].goods_qty)
                         if goods_qty_change.can_order_stock < 0:
                             goods_qty_change.can_order_stock = 0
                         goods_qty_change.save()

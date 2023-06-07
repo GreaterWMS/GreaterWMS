@@ -265,7 +265,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                         transportation_list.append(transportation_detail)
                     transportation_res['detail'] = transportation_list
                 AsnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
-                check_data = AsnDetailModel.objects.filter(asn_code=data['asn_code'])
+                check_data = AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=data['asn_code'])
                 for k in range(len(check_data)):
                     res_check_data = check_data.filter(goods_code=check_data[k].goods_code)
                     if res_check_data.count() > 1:
@@ -395,7 +395,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                         transportation_list.append(transportation_detail)
                     transportation_res['detail'] = transportation_list
                 AsnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
-                check_data = AsnDetailModel.objects.filter(asn_code=data['asn_code'])
+                check_data = AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=data['asn_code'])
                 for k in range(len(check_data)):
                     res_check_data = check_data.filter(goods_code=check_data[k].goods_code)
                     if res_check_data.count() > 1:
