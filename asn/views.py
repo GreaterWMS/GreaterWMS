@@ -95,7 +95,7 @@ class AsnListViewSet(viewsets.ModelViewSet):
         if custom_asn:
             data['asn_code'] = custom_asn
         else:
-            qs_set = AsnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+            qs_set = AsnListModel.objects.filter(openid=self.request.auth.openid)
             order_day =str(timezone.now().strftime('%Y%m%d'))
             if len(qs_set) > 0:
                 asn_last_code = qs_set.order_by('-id').first().asn_code

@@ -99,7 +99,7 @@ class DnListViewSet(viewsets.ModelViewSet):
         if custom_dn:
             data['dn_code'] = custom_dn
         else:
-            qs_set = DnListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+            qs_set = DnListModel.objects.filter(openid=self.request.auth.openid)
             order_day = str(timezone.now().strftime('%Y%m%d'))
             if len(qs_set) > 0:
                 dn_last_code = qs_set.order_by('-id').first().dn_code
@@ -556,14 +556,13 @@ class DnNewOrderViewSet(viewsets.ModelViewSet):
             raise APIException({"detail": "Cannot delete data which not yours"})
         else:
             if qs.dn_status == 1:
-                if DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=qs.dn_code,
-                                                                dn_status=1, is_delete=False).exists():
+                dn_detail_list = DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=qs.dn_code,
+                                                              dn_status=1, is_delete=False)
+                if dn_detail_list.exists():
                     qs.dn_status = 2
-                    dn_detail_list = DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=qs.dn_code,
-                                                                    dn_status=1, is_delete=False)
                     for i in range(len(dn_detail_list)):
                         if stocklist.objects.filter(openid=self.request.auth.openid,
-                                                                    goods_code=str(dn_detail_list[i].goods_code)).exists():
+                                                    goods_code=str(dn_detail_list[i].goods_code)).exists():
                             pass
                         else:
                             goods_detail = goods.objects.filter(openid=self.request.auth.openid, goods_code=str(dn_detail_list[i].goods_code)).first()
