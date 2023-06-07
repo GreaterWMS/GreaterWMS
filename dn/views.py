@@ -441,7 +441,6 @@ class DnDetailViewSet(viewsets.ModelViewSet):
             raise APIException({"detail": "Cannot delete data which not yours"})
         else:
             if qs.dn_status == 2 and qs.back_order_label:
-                print(qs.is_delete)
                 qs.is_delete = True
                 goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
                                                             goods_code=str(qs.goods_code)).first()
