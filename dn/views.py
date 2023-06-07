@@ -578,10 +578,6 @@ class DnNewOrderViewSet(viewsets.ModelViewSet):
                         goods_qty_change.can_order_stock = goods_qty_change.can_order_stock - dn_detail_list[i].goods_qty
                         goods_qty_change.ordered_stock = goods_qty_change.ordered_stock + dn_detail_list[i].goods_qty
                         goods_qty_change.dn_stock = goods_qty_change.dn_stock - dn_detail_list[i].goods_qty
-                        print(goods_qty_change.can_order_stock)
-                        print(goods_qty_change.ordered_stock)
-                        print(goods_qty_change.dn_stock)
-                        print(goods_qty_change.dn_detail_list[i].goods_qty)
                         if goods_qty_change.can_order_stock < 0:
                             goods_qty_change.can_order_stock = 0
                         goods_qty_change.save()
