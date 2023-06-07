@@ -447,11 +447,10 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                 goods_qty_change.back_order_stock = goods_qty_change.back_order_stock - int(qs.goods_qty)
                 goods_qty_change.ordered_stock = goods_qty_change.ordered_stock - int(qs.goods_qty)
                 goods_qty_change.save()
+                dn_detail_list = DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=qs.dn_code, is_delete=False)
+                if dn_detail_list.exists():
+                    dn_detail_list.update(is_delete=True)
                 qs.save()
-                if DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=qs.dn_code, is_delete=False).exists():
-                    pass
-                else:
-                    DnListModel.objects.filter(openid=self.request.auth.openid, dn_code=qs.dn_code).update(is_delete=True)
                 return Response({"detail": "success"}, status=200)
             else:
                 raise APIException({"detail": "This order has Confirmed or Deliveried"})
