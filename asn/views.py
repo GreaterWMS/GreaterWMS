@@ -265,7 +265,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                         transportation_list.append(transportation_detail)
                     transportation_res['detail'] = transportation_list
                 AsnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
-                check_data = AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=data['asn_code'])
+                check_data = AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=data['asn_code'], is_delete=False)
                 for k in range(len(check_data)):
                     res_check_data = check_data.filter(goods_code=check_data[k].goods_code)
                     if res_check_data.count() > 1:
@@ -318,7 +318,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                     serializer = self.get_serializer(data=check_data)
                     serializer.is_valid(raise_exception=True)
                 asn_detail_list = AsnDetailModel.objects.filter(openid=self.request.auth.openid,
-                                              asn_code=str(data['asn_code']), is_delete=False)
+                                                                asn_code=str(data['asn_code']), is_delete=False)
                 for v in range(len(asn_detail_list)):
                     goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
                                                                 goods_code=str(asn_detail_list[v].goods_code)).first()
@@ -395,7 +395,7 @@ class AsnDetailViewSet(viewsets.ModelViewSet):
                         transportation_list.append(transportation_detail)
                     transportation_res['detail'] = transportation_list
                 AsnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
-                check_data = AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=data['asn_code'])
+                check_data = AsnDetailModel.objects.filter(openid=self.request.auth.openid, asn_code=data['asn_code'], is_delete=False)
                 for k in range(len(check_data)):
                     res_check_data = check_data.filter(goods_code=check_data[k].goods_code)
                     if res_check_data.count() > 1:

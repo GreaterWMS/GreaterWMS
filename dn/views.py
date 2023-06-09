@@ -272,7 +272,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                         transportation_list.append(transportation_detail)
                     transportation_res['detail'] = transportation_list
                 DnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
-                check_data = DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=data['dn_code'])
+                check_data = DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=data['dn_code'], is_delete=False)
                 for k in range(len(check_data)):
                     res_check_data = check_data.filter(goods_code=check_data[k].goods_code)
                     if res_check_data.count() > 1:
@@ -402,7 +402,7 @@ class DnDetailViewSet(viewsets.ModelViewSet):
                         transportation_list.append(transportation_detail)
                     transportation_res['detail'] = transportation_list
                 DnDetailModel.objects.bulk_create(post_data_list, batch_size=100)
-                check_data = DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=data['dn_code'])
+                check_data = DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=data['dn_code'], is_delete=False)
                 for k in range(len(check_data)):
                     res_check_data = check_data.filter(goods_code=check_data[k].goods_code)
                     if res_check_data.count() > 1:
