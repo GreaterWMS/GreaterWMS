@@ -47,7 +47,7 @@
   <a href="https://github.com/GreaterWMS/GreaterWMS/issues/new?template=feature_request.md&title=[FR]">提交一个建议</a>
 </h4>
 <h4>
-  <a href="https://www.56yhz.com/greaterwms/">英文文档</a>
+  <a href="https://www.56yhz.com/greaterwms.html">英文文档</a>
 </h4>
 
 [//]: # (About the Project)
@@ -101,13 +101,13 @@ docker-compose restart
 ~~~
 
 <h4>
-  <a href="https://www.56yhz.com/win_10/">Windows X64</a>
+  <a href="https://www.56yhz.com/win_10.html">Windows X64</a>
 </h4>
 <h4>
-  <a href="https://www.56yhz.com/centos_7/">Centos 7</a>
+  <a href="https://www.56yhz.com/centos_7.html">Centos 7</a>
 </h4>
 <h4>
-  <a href="https://www.56yhz.com/ubuntu_20/">Ubuntu 20</a>
+  <a href="https://www.56yhz.com/ubuntu_20.html">Ubuntu 20</a>
 </h4>
 
 [//]: # (development)
@@ -170,10 +170,10 @@ quasar build # /templates/dist/spa
 ## :computer: 怎么部署到服务器:
 
 <h4>
-  <a href="https://www.56yhz.com/zh/supervisor_process_guarded/">Supervisor教程</a>
+  <a href="https://www.56yhz.com/zh/supervisor_process_guarded.html">Supervisor教程</a>
 </h4>
 <h4>
-  <a href="https://www.56yhz.com/zh/nginx_config/">Nginx配置</a>
+  <a href="https://www.56yhz.com/zh/nginx_config.html">Nginx配置</a>
 </h4>
 
 记得启用ssl的话，需要额外配置
@@ -192,4 +192,4 @@ quasar build # /templates/dist/spa
 <!-- ABOUT AUTHOR -->
 ## :bowing_man: 关于作者
 
-[Elvis.Shi](https://gitee.com/Singosgu/GreaterWMS/wikis/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BB%8E%E4%B8%80%E4%B8%AA%E7%89%A9%E6%B5%81%E8%8F%9C%E9%B8%9F%EF%BC%8C%E4%B8%80%E7%9B%B4%E5%81%9A%E5%88%B0500%E5%BC%BA%E4%BA%9A%E5%A4%AA%E5%8C%BAChina%20PDC%20Manager%E7%9A%84)
+[Elvis.Shi](https://gitee.com/GreaterWMS/GreaterWMS/wikis/%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BB%8E%E4%B8%80%E4%B8%AA%E7%89%A9%E6%B5%81%E8%8F%9C%E9%B8%9F%EF%BC%8C%E4%B8%80%E7%9B%B4%E5%81%9A%E5%88%B0500%E5%BC%BA%E4%BA%9A%E5%A4%AA%E5%8C%BAChina%20PDC%20Manager%E7%9A%84)
