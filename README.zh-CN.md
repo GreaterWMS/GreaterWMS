@@ -101,13 +101,13 @@ docker-compose restart
 ~~~
 
 <h4>
-  <a href="https://www.56yhz.com/win_10.html">Windows X64</a>
+  <a href="https://www.56yhz.com/zh/win_10.html">Windows X64</a>
 </h4>
 <h4>
-  <a href="https://www.56yhz.com/centos_7.html">Centos 7</a>
+  <a href="https://www.56yhz.com/zh/centos_7.html">Centos 7</a>
 </h4>
 <h4>
-  <a href="https://www.56yhz.com/ubuntu_20.html">Ubuntu 20</a>
+  <a href="https://www.56yhz.com/zh/ubuntu_20.html">Ubuntu 20</a>
 </h4>
 
 [//]: # (development)
