@@ -48,7 +48,7 @@
   <a href="https://github.com/GreaterWMS/GreaterWMS/issues/new?template=feature_request.md&title=[FR]">Request Feature</a>
 </h4>
 <h4>
-  <a href="https://www.56yhz.com/zh/greaterwms/">中文文档</a>
+  <a href="https://www.56yhz.com/zh/greaterwms.html">中文文档</a>
 </h4>
 
 [//]: # (About the Project)
@@ -103,13 +103,13 @@ docker-compose restart
 ~~~
 
 <h4>
-  <a href="https://www.56yhz.com/win_10/">Windows X64</a>
+  <a href="https://www.56yhz.com/win_10.html">Windows X64</a>
 </h4>
 <h4>
-  <a href="https://www.56yhz.com/centos_7/">Centos 7</a>
+  <a href="https://www.56yhz.com/centos_7.html">Centos 7</a>
 </h4>
 <h4>
-  <a href="https://www.56yhz.com/ubuntu_20/">Ubuntu 20</a>
+  <a href="https://www.56yhz.com/ubuntu_20.html">Ubuntu 20</a>
 </h4>
 
 [//]: # (development)
@@ -171,10 +171,10 @@ quasar build
 ## :computer: How To Deploy Server:
 
 <h4>
-  <a href="https://www.56yhz.com/supervisor_process_guarded/">Supervisor Process Guarded</a>
+  <a href="https://www.56yhz.com/supervisor_process_guarded.html">Supervisor Process Guarded</a>
 </h4>
 <h4>
-  <a href="https://www.56yhz.com/nginx_config/">Nginx Config</a>
+  <a href="https://www.56yhz.com/nginx_config.html">Nginx Config</a>
 </h4>
 
 If the server has SSL enabled, please use HTTPS and WSS, if SSL is not enabled, use HTTP and WS
