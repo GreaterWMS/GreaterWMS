@@ -1163,6 +1163,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                 dn_back_order_qty = dn_detail_list[i].goods_qty - \
                                                    dn_detail_list[i].pick_qty - \
                                                    dn_detail_list[i].picked_qty
+                                goods_qty_change.back_order_stock = dn_detail_list[i].goods_qty - can_pick_qty
                                 dn_detail_list[i].goods_qty = dn_pick_qty
                                 dn_detail_list[i].dn_status = 3
                                 back_order_goods_volume = round(goods_detail.unit_volume * dn_back_order_qty, 4)
