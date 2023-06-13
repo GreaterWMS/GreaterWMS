@@ -766,7 +766,7 @@ export default {
       openURL(e)
     },
     apiLink () {
-      openURL(baseurl + 'docs/')
+      openURL(baseurl + '/api/docs/')
     },
     Login () {
       var _this = this
