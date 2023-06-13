@@ -4,6 +4,7 @@ from django.urls import path, include, re_path
 from django.views.generic.base import TemplateView
 from django.contrib.staticfiles.views import serve
 from django.views.static import serve as static_serve
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 from . import views
 
 
@@ -52,4 +53,11 @@ urlpatterns = [
     re_path(r'^robots.txt', views.robots, name='robots'),
     re_path(r'^media/(?P<path>.*)$', static_serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', return_static, name='static')
+]
+
+urlpatterns += [
+    path('api/', SpectacularAPIView.as_view(), name='schema'),
+    # Optional UI:
+    path('api/debug/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/docs/', SpectacularRedocView.as_view(url_name='schema'), name='docs'),
 ]
