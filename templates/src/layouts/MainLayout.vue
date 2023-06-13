@@ -74,6 +74,23 @@
         </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-btn
+            icon="api"
+            round
+            dense
+            flat
+            @click="apiLink()"
+            style="margin: 0 10px 0 10px"
+          >
+            <q-tooltip
+              content-class="bg-amber text-black shadow-4"
+              :offset="[15, 15]"
+              content-style="font-size: 12px"
+              >{{ $t('index.api') }}</q-tooltip
+            >
+          </q-btn>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-btn
             square
             dense
             flat
