@@ -23,6 +23,7 @@
         <q-space />
         <transition appear enter-active-class="animated zoomIn">
           <q-btn
+            v-show="lang !== 'zh-hans'"
             icon="img:statics/icons/IOS.png"
             round
             dense
@@ -40,11 +41,48 @@
         </transition>
         <transition appear enter-active-class="animated zoomIn">
           <q-btn
+            v-show="lang === 'zh-hans'"
+            icon="img:statics/icons/IOS.png"
+            round
+            dense
+            flat
+            @click="brownlink('https://www.56yhz.com/zh/ios.html')"
+            style="margin: 0 10px 0 10px"
+          >
+            <q-tooltip
+              content-class="bg-amber text-black shadow-4"
+              :offset="[15, 15]"
+              content-style="font-size: 12px"
+              >IOS APP
+            </q-tooltip>
+          </q-btn>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-btn
+            v-show="lang !== 'zh-hans'"
             icon="img:statics/icons/android.png"
             round
             dense
             flat
             @click="brownlink('https://www.56yhz.com/android.html')"
+            style="margin: 0 10px 0 10px"
+          >
+            <q-tooltip
+              content-class="bg-amber text-black shadow-4"
+              :offset="[15, 15]"
+              content-style="font-size: 12px"
+              >Android APP
+            </q-tooltip>
+          </q-btn>
+        </transition>
+        <transition appear enter-active-class="animated zoomIn">
+          <q-btn
+            v-show="lang === 'zh-hans'"
+            icon="img:statics/icons/android.png"
+            round
+            dense
+            flat
+            @click="brownlink('https://www.56yhz.com/zh/android.html')"
             style="margin: 0 10px 0 10px"
           >
             <q-tooltip
