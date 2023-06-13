@@ -8,9 +8,7 @@ data = {}
 
 class VisitThrottle(BaseThrottle):
     def allow_request(self, request, view):
-        if request.path == '/docs/':
-            return (False, None)
-        elif request.path == '/swagger/':
+        if request.path in ['/api/docs/', '/api/debug/', '/api/']:
             return (False, None)
         else:
             ip = request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get(
