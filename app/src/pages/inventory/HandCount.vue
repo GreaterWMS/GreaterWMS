@@ -248,7 +248,7 @@ export default defineComponent({
 
     function handleAffirmresultSubmit() {
       axios
-        .post(baseurl.value + "cyclecount/manualcyclecount/", state.tableData, {
+        .post(baseurl.value + "/cyclecount/manualcyclecount/", state.tableData, {
           headers: {
             "Content-Type": 'application/json',
             token: openid.value,
