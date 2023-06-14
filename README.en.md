@@ -134,7 +134,29 @@ quasar d
 templates/public/statics/baseurl.txt
 ~~~
 
-- Companion Mobile APP
+
+- API Documents
+
+~~~shell
+baseurl + '/docs/'
+~~~
+
+### Companion Mobile APP
+
+- App Source Code
+
+~~~shell
+npm install cordova -g
+
+cd app
+yarn install
+## Development
+quasar d -m cordova -T [android, ios]
+## Deploy
+quasar build -m [android, ios]
+~~~
+
+- You can directly use app if you don't want to build it 
 
 GreaterWMS is supported by a companion mobile app which allows users access to run the business well.
 It can scan the goods by your camera or your PDA scanner.

@@ -88,7 +88,7 @@ Twisted安装
 
 克隆代码
 ~~~shell
-git clone https://github.com/GreaterWMS/GreaterWMS.git
+git clone https://gitee.com/Singosgu/GreaterWMS.git
 ~~~
 
 ### docker(可选择)
@@ -134,7 +134,28 @@ quasar dev # http://localhost:8080
 templates/public/statics/baseurl.txt
 ~~~
 
-- 配套的手机APP
+- API文档
+
+~~~shell
+baseurl + '/docs/'
+~~~
+
+### 配套的手机APP
+
+- App源码编译
+
+~~~shell
+npm install cordova -g
+
+cd app
+yarn install
+## 开发环境
+quasar d -m cordova -T [android, ios]
+## 构建打包
+quasar build -m [android, ios]
+~~~
+
+- 你不想编译也可以直接使用
 
 [IOS](https://apps.apple.com/cn/app/%E6%99%BA%E8%83%BD%E4%BB%93%E5%82%A8%E8%BD%AF%E4%BB%B6gwms/id6444078526)
 
