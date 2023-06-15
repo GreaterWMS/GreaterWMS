@@ -35,7 +35,7 @@
     "vue-echarts-v3": "^2.0.1",
     "vue-i18n": "^8.24.4",
     "vue-print-nb": "^1.7.4",
-    "webpack": "^5.56.0",
+    "webpack": "^5.76.0",
     "xmldom": "^0.6.0",
     "yargs-parser": "^20.2.9"
   },
