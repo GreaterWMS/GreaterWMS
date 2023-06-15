@@ -344,8 +344,8 @@ export default defineComponent({
       }
     })
 
-    watch (screenscroll,(newValue,oldValue)=>{
-      if (newValue === 1) {
+    watch (screenscroll,(newValue, oldValue)=>{
+      if (newValue >= 0.95) {
         if (apiurlnext.value !== null) {
           apiurl.value = apiurlnext.value
           requestauth.value = 1

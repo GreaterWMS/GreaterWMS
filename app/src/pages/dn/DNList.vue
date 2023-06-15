@@ -211,7 +211,7 @@ export default defineComponent({
       })
     }
 
-    watch (screenscroll,(newValue,oldValue)=>{
+    watch (screenscroll,(newValue, oldValue)=>{
       if (newValue >= 0.95) {
         if (apiurlnext.value !== null) {
           apiurl.value = apiurlnext.value
@@ -222,7 +222,7 @@ export default defineComponent({
       }
     })
 
-    watch (requestauth,(newValue,oldValue)=>{
+    watch (requestauth,(newValue, oldValue)=>{
       if (newValue === 1) {
         getTableData('')
       }
