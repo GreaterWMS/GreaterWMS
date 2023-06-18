@@ -204,10 +204,18 @@ export default defineComponent({
       if (e !== null) {
         var baseurlCheck = baseurl.value.split(':')
         var urlCheck = e.split(':')
-        if (baseurlCheck[0] !== urlCheck[0]) {
-          return baseurlCheck[0] + ':' + urlCheck[1]
-        } else {
-          return urlCheck
+        if (urlCheck.length === 2)
+          if (baseurlCheck[0] !== urlCheck[0]) {
+            return baseurlCheck[0] + ':' + urlCheck[1]
+          } else {
+            return e
+          }
+        else if (urlCheck.length === 3) {
+          if (baseurlCheck[0] !== urlCheck[0]) {
+            return baseurlCheck[0] + ':' + urlCheck[1] + ':' + urlCheck[2]
+          } else {
+            return e
+          }
         }
       } else {
         return null
