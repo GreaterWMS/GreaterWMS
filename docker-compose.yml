@@ -3,10 +3,10 @@ networks:
   basic:
 services:
   front:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-      target: front
+    # build:
+    #   context: ./
+    #   dockerfile: Dockerfile
+    #   target: front
     container_name: greaterwms_front
     image: greaterwms/greaterwms:front
     restart: always
@@ -21,10 +21,10 @@ services:
     networks:
       - basic
   backend:
-    build:
-      context: ./
-      dockerfile: Dockerfile
-      target: backend
+    # build:
+    #   context: ./
+    #   dockerfile: Dockerfile
+    #   target: backend
     container_name: greaterwms_backend
     image: greaterwms/greaterwms:backend
     restart: always
