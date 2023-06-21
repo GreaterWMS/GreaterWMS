@@ -30,7 +30,7 @@
             </q-btn>
           </q-btn-group>
           <q-space />
-          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
+          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @input="getSearchList()" @keyup.enter="getSearchList()">
             <template v-slot:append>
               <q-icon name="search" @click="getSearchList()" />
             </template>
@@ -65,12 +65,6 @@
             <template v-if="!editMode">
               <q-td key="action" :props="props" style="width: 100px">
                 <q-btn
-                  v-show="
-                    $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                      $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                      $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                      $q.localStorage.getItem('staff_type') !== 'StockControl'
-                  "
                   round
                   flat
                   push
@@ -120,6 +114,7 @@
             <input
               v-model="paginationIpt"
               @blur="changePageEnter"
+              @keyup.enter="changePageEnter"
               style="width: 60px; text-align: center"
             />
           </div>
@@ -360,6 +355,8 @@ export default {
     getSearchList () {
       var _this = this
       if (LocalStorage.has('auth')) {
+        _this.current = 1
+        _this.paginationIpt = 1
         getauth(_this.pathname + '?bin_name__icontains=' + _this.filter + '&page=' + '' + _this.current, {})
           .then(res => {
             _this.table_list = res.results

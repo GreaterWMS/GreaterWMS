@@ -103,6 +103,7 @@
             <input
               v-model="paginationIpt"
               @blur="changePageEnter"
+              @keyup.enter="changePageEnter"
               style="width: 60px; text-align: center"
             />
           </div>
@@ -224,17 +225,17 @@ export default {
           })
       }
     },
-    changePageEnter(e) {
+    changePageEnter (e) {
       if (Number(this.paginationIpt) < 1) {
-        this.current = 1;
-        this.paginationIpt = 1;
+        this.current = 1
+        this.paginationIpt = 1
       } else if (Number(this.paginationIpt) > this.max) {
-        this.current = this.max;
-        this.paginationIpt = this.max;
+        this.current = this.max
+        this.paginationIpt = this.max
       } else {
-        this.current = Number(this.paginationIpt);
+        this.current = Number(this.paginationIpt)
       }
-      this.getList();
+      this.getList()
     },
     getListPrevious () {
       var _this = this
@@ -252,7 +253,6 @@ export default {
               color: 'negative'
             })
           })
-      } else {
       }
     },
     getListNext () {
@@ -271,7 +271,6 @@ export default {
               color: 'negative'
             })
           })
-      } else {
       }
     },
     reFresh () {

@@ -78,6 +78,7 @@
             <input
               v-model="paginationIpt"
               @blur="changePageEnter"
+              @keyup.enter="changePageEnter"
               style="width: 60px; text-align: center"
             />
           </div>
@@ -194,7 +195,6 @@ export default {
             color: 'negative'
           })
         })
-      } else {
       }
     },
     getListNext () {
@@ -212,7 +212,6 @@ export default {
             color: 'negative'
           })
         })
-      } else {
       }
     },
     reFresh () {

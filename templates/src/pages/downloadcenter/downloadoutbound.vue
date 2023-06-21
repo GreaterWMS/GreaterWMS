@@ -98,6 +98,7 @@
             <input
               v-model="paginationIpt"
               @blur="changePageEnter"
+              @keyup.enter="changePageEnter"
               style="width: 60px; text-align: center"
             />
           </div>
@@ -111,12 +112,12 @@
 <router-view />
 
 <script>
-import { getauth, getfile } from 'boot/axios_request';
-import { date, exportFile, LocalStorage } from 'quasar';
+import { getauth, getfile } from 'boot/axios_request'
+import { date, exportFile, LocalStorage } from 'quasar'
 
 export default {
-  name: 'Pageasnlist',
-  data() {
+  name: 'Pageoutbounddownload',
+  data () {
     return {
       login_name: '',
       authin: '0',
@@ -151,59 +152,59 @@ export default {
       max: 0,
       total: 0,
       paginationIpt: 1
-    };
+    }
   },
-  computed:{
-    interval(){
+  computed: {
+    interval () {
       return this.$t('download_center.start') + ' - ' + this.$t('download_center.end')
     }
   },
   watch: {
-    createDate1(val) {
+    createDate1 (val) {
       if (val) {
         if (val.to) {
-          this.createDate2 = `${val.from} - ${val.to}`;
-          this.date_range = `${val.from},${val.to} 23:59:59`;
+          this.createDate2 = `${val.from} - ${val.to}`
+          this.date_range = `${val.from},${val.to} 23:59:59`
           this.searchUrl = this.pathname + 'list/?' + 'create_time__range=' + this.date_range
           this.downloadUrl = this.pathname + 'filelist/?' + 'create_time__range=' + this.date_range
           this.downloadDetailUrl = this.pathname + 'filedetail/?' + 'create_time__range=' + this.date_range
         } else {
-          this.createDate2 = `${val}`;
-          this.dateArray = val.split('/');
-          this.searchUrl = this.pathname + 'list/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];
-          this.downloadUrl = this.pathname + 'filelist/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];
-          this.downloadDetailUrl = this.pathname + 'filedetail/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2];
+          this.createDate2 = `${val}`
+          this.dateArray = val.split('/')
+          this.searchUrl = this.pathname + 'list/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2]
+          this.downloadUrl = this.pathname + 'filelist/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2]
+          this.downloadDetailUrl = this.pathname + 'filedetail/?' + 'create_time__year=' + this.dateArray[0] + '&' + 'create_time__month=' + this.dateArray[1] + '&' + 'create_time__day=' + this.dateArray[2]
         }
-        this.date_range = this.date_range.replace(/\//g, '-');
-        this.getSearchList();
-        this.$refs.qDateProxy.hide();
+        this.date_range = this.date_range.replace(/\//g, '-')
+        this.getSearchList()
+        this.$refs.qDateProxy.hide()
       }
     }
   },
   methods: {
-    getList() {
-      var _this = this;
+    getList () {
+      var _this = this
       getauth(_this.pathname + 'list/' + '?page=' + '' + _this.current)
         .then(res => {
-          _this.table_list = [];
+          _this.table_list = []
           res.results.forEach(item => {
             if (item.dn_status === 1) {
-              item.dn_status = _this.$t('outbound.freshorder');
+              item.dn_status = _this.$t('outbound.freshorder')
             } else if (item.dn_status === 2) {
-              item.dn_status = _this.$t('outbound.neworder');
+              item.dn_status = _this.$t('outbound.neworder')
             } else if (item.dn_status === 3) {
-              item.dn_status = _this.$t('outbound.pickstock');
+              item.dn_status = _this.$t('outbound.pickstock')
             } else if (item.dn_status === 4) {
-              item.dn_status = _this.$t('outbound.pickedstock');
+              item.dn_status = _this.$t('outbound.pickedstock')
             } else if (item.dn_status === 5) {
-              item.dn_status = _this.$t('outbound.shippedstock');
+              item.dn_status = _this.$t('outbound.shippedstock')
             } else if (item.dn_status === 6) {
-              item.dn_status = _this.$t('outbound.received');
+              item.dn_status = _this.$t('outbound.received')
             } else {
-              item.dn_status = 'N/A';
+              item.dn_status = 'N/A'
             }
-            _this.table_list.push(item);
-          });
+            _this.table_list.push(item)
+          })
           _this.total = res.count
           if (res.count === 0) {
             _this.max = 0
@@ -216,56 +217,56 @@ export default {
           }
           res.results.forEach(item => {
             if (item.asn_status === 1) {
-              item.asn_status = _this.$t();
+              item.asn_status = _this.$t()
             }
-          });
-          _this.customer_list = res.customer_list;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          })
+          _this.customer_list = res.customer_list
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    changePageEnter(e) {
+    changePageEnter (e) {
       if (Number(this.paginationIpt) < 1) {
-        this.current = 1;
-        this.paginationIpt = 1;
+        this.current = 1
+        this.paginationIpt = 1
       } else if (Number(this.paginationIpt) > this.max) {
-        this.current = this.max;
-        this.paginationIpt = this.max;
+        this.current = this.max
+        this.paginationIpt = this.max
       } else {
-        this.current = Number(this.paginationIpt);
+        this.current = Number(this.paginationIpt)
       }
-      this.getList();
+      this.getList()
     },
-    getSearchList() {
-      var _this = this;
+    getSearchList () {
+      var _this = this
       getauth(_this.searchUrl + '&page=' + '' + _this.current)
         .then(res => {
-          _this.table_list = [];
+          _this.table_list = []
           res.results.forEach(item => {
             if (item.dn_status === 1) {
-              item.dn_status = _this.$t('outbound.freshorder');
+              item.dn_status = _this.$t('outbound.freshorder')
             } else if (item.dn_status === 2) {
-              item.dn_status = _this.$t('outbound.neworder');
+              item.dn_status = _this.$t('outbound.neworder')
             } else if (item.dn_status === 3) {
-              item.dn_status = _this.$t('outbound.pickstock');
+              item.dn_status = _this.$t('outbound.pickstock')
             } else if (item.dn_status === 4) {
-              item.dn_status = _this.$t('outbound.pickedstock');
+              item.dn_status = _this.$t('outbound.pickedstock')
             } else if (item.dn_status === 5) {
-              item.dn_status = _this.$t('outbound.shippedstock');
+              item.dn_status = _this.$t('outbound.shippedstock')
             } else if (item.dn_status === 6) {
-              item.dn_status = _this.$t('outbound.received');
+              item.dn_status = _this.$t('outbound.received')
             } else {
-              item.dn_status = 'N/A';
+              item.dn_status = 'N/A'
             }
-            _this.table_list.push(item);
-          });
+            _this.table_list.push(item)
+          })
           _this.total = res.count
           if (res.count === 0) {
             _this.max = 0
@@ -276,123 +277,123 @@ export default {
               _this.max = Math.ceil(res.count / 30)
             }
           }
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getListPrevious() {
-      var _this = this;
+    getListPrevious () {
+      var _this = this
       getauth(_this.pathname_previous, {})
         .then(res => {
-          _this.table_list = [];
+          _this.table_list = []
           res.results.forEach(item => {
             if (item.dn_status === 1) {
-              item.dn_status = _this.$t('outbound.freshorder');
+              item.dn_status = _this.$t('outbound.freshorder')
             } else if (item.dn_status === 2) {
-              item.dn_status = _this.$t('outbound.neworder');
+              item.dn_status = _this.$t('outbound.neworder')
             } else if (item.dn_status === 3) {
-              item.dn_status = _this.$t('outbound.pickstock');
+              item.dn_status = _this.$t('outbound.pickstock')
             } else if (item.dn_status === 4) {
-              item.dn_status = _this.$t('outbound.pickedstock');
+              item.dn_status = _this.$t('outbound.pickedstock')
             } else if (item.dn_status === 5) {
-              item.dn_status = _this.$t('outbound.shippedstock');
+              item.dn_status = _this.$t('outbound.shippedstock')
             } else if (item.dn_status === 6) {
-              item.dn_status = _this.$t('outbound.received');
+              item.dn_status = _this.$t('outbound.received')
             } else {
-              item.dn_status = 'N/A';
+              item.dn_status = 'N/A'
             }
-            _this.table_list.push(item);
-          });
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+            _this.table_list.push(item)
+          })
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    getListNext() {
-      var _this = this;
+    getListNext () {
+      var _this = this
       getauth(_this.pathname_next, {})
         .then(res => {
-          _this.table_list = [];
-            res.results.forEach(item => {
-              if (item.dn_status === 1) {
-                item.dn_status = _this.$t('outbound.freshorder');
-              } else if (item.dn_status === 2) {
-                item.dn_status = _this.$t('outbound.neworder');
-              } else if (item.dn_status === 3) {
-                item.dn_status = _this.$t('outbound.pickstock');
-              } else if (item.dn_status === 4) {
-                item.dn_status = _this.$t('outbound.pickedstock');
-              } else if (item.dn_status === 5) {
-                item.dn_status = _this.$t('outbound.shippedstock');
-              } else if (item.dn_status === 6) {
-                item.dn_status = _this.$t('outbound.received');
-              } else {
-                item.dn_status = 'N/A';
-              }
-              _this.table_list.push(item);
-            });
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.table_list = []
+          res.results.forEach(item => {
+            if (item.dn_status === 1) {
+              item.dn_status = _this.$t('outbound.freshorder')
+            } else if (item.dn_status === 2) {
+              item.dn_status = _this.$t('outbound.neworder')
+            } else if (item.dn_status === 3) {
+              item.dn_status = _this.$t('outbound.pickstock')
+            } else if (item.dn_status === 4) {
+              item.dn_status = _this.$t('outbound.pickedstock')
+            } else if (item.dn_status === 5) {
+              item.dn_status = _this.$t('outbound.shippedstock')
+            } else if (item.dn_status === 6) {
+              item.dn_status = _this.$t('outbound.received')
+            } else {
+              item.dn_status = 'N/A'
+            }
+            _this.table_list.push(item)
+          })
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    downloadlistData() {
-      var _this = this;
+    downloadlistData () {
+      var _this = this
       getfile(_this.downloadUrl).then(res => {
-        var timeStamp = Date.now();
-        var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-        const status = exportFile(_this.pathname + 'list' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
+        var timeStamp = Date.now()
+        var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS')
+        const status = exportFile(_this.pathname + 'list' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv')
         if (status !== true) {
           _this.$q.notify({
             message: 'Browser denied file download...',
             color: 'negative',
             icon: 'warning'
-          });
+          })
         }
-      });
+      })
     },
-    downloaddetailData() {
-      var _this = this;
+    downloaddetailData () {
+      var _this = this
       getfile(_this.downloadDetailUrl).then(res => {
-        var timeStamp = Date.now();
-        var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-        const status = exportFile(_this.pathname + 'detail' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
+        var timeStamp = Date.now()
+        var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS')
+        const status = exportFile(_this.pathname + 'detail' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv')
         if (status !== true) {
           _this.$q.notify({
             message: 'Browser denied file download...',
             color: 'negative',
             icon: 'warning'
-          });
+          })
         }
-      });
+      })
     },
-    reset(){
-        this.getList();
-        this.downloadUrl = 'dn/filelist/';
-        this.downloadDetailUrl = 'dn/filedetail/';
-        this.createDate2 = '';
+    reset () {
+      this.getList()
+      this.downloadUrl = 'dn/filelist/'
+      this.downloadDetailUrl = 'dn/filedetail/'
+      this.createDate2 = ''
     }
   },
-  created() {
+  created () {
     var _this = this
     if (LocalStorage.has('openid')) {
       _this.openid = LocalStorage.getItem('openid')
@@ -413,15 +414,15 @@ export default {
       _this.authin = '0'
     }
   },
-  mounted() {
-    var _this = this;
+  mounted () {
+    var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + 'px';
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + '' + 'px';
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
-  updated() {},
-  destroyed() {}
-};
+  updated () {},
+  destroyed () {}
+}
 </script>

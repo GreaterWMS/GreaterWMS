@@ -20,12 +20,6 @@
         <template v-slot:top>
           <q-btn-group push>
             <q-btn
-              v-show="
-                $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                  $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                  $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                  $q.localStorage.getItem('staff_type') !== 'StockControl'
-              "
               :label="$t('new')"
               icon="add"
               @click="newFormOpen()"
@@ -36,12 +30,6 @@
               <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('refreshtip') }}</q-tooltip>
             </q-btn>
             <q-btn
-              v-show="
-                $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                  $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                  $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                  $q.localStorage.getItem('staff_type') !== 'StockControl'
-              "
               :label="$t('release')"
               icon="img:statics/outbound/orderrelease.png"
               @click="orderreleaseAllData()"
@@ -50,7 +38,7 @@
             </q-btn>
           </q-btn-group>
           <q-space />
-          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
+          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @input="getSearchList()" @keyup.enter="getSearchList()">
             <template v-slot:append>
               <q-icon name="search" @click="getSearchList()" />
             </template>
@@ -68,12 +56,6 @@
             <q-td key="update_time" :props="props">{{ props.row.update_time }}</q-td>
             <q-td key="action" :props="props" style="width: 100px">
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                    $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                    $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                    $q.localStorage.getItem('staff_type') !== 'StockControl'
-                "
                 round
                 flat
                 push
@@ -84,12 +66,6 @@
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('printthisdn') }}</q-tooltip>
               </q-btn>
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                    $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                    $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                    $q.localStorage.getItem('staff_type') !== 'StockControl'
-                "
                 round
                 flat
                 push
@@ -100,12 +76,6 @@
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('confirmorder') }}</q-tooltip>
               </q-btn>
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                    $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                    $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                    $q.localStorage.getItem('staff_type') !== 'StockControl'
-                "
                 round
                 flat
                 push
@@ -116,12 +86,6 @@
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('releaseorder') }}</q-tooltip>
               </q-btn>
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                    $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                    $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                    $q.localStorage.getItem('staff_type') !== 'StockControl'
-                "
                 round
                 flat
                 push
@@ -132,12 +96,6 @@
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('print') }}</q-tooltip>
               </q-btn>
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                    $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                    $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                    $q.localStorage.getItem('staff_type') !== 'StockControl'
-                "
                 round
                 flat
                 push
@@ -148,12 +106,6 @@
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('confirmpicked') }}</q-tooltip>
               </q-btn>
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                    $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                    $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                    $q.localStorage.getItem('staff_type') !== 'StockControl'
-                "
                 round
                 flat
                 push
@@ -164,12 +116,6 @@
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('dispatch') }}</q-tooltip>
               </q-btn>
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                    $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                    $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                    $q.localStorage.getItem('staff_type') !== 'StockControl'
-                "
                 round
                 flat
                 push
@@ -180,12 +126,6 @@
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('outbound.pod') }}</q-tooltip>
               </q-btn>
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                    $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                    $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                    $q.localStorage.getItem('staff_type') !== 'StockControl'
-                "
                 round
                 flat
                 push
@@ -196,12 +136,6 @@
                 <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('edit') }}</q-tooltip>
               </q-btn>
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                    $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                    $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                    $q.localStorage.getItem('staff_type') !== 'StockControl'
-                "
                 round
                 flat
                 push
@@ -245,6 +179,7 @@
             <input
               v-model="paginationIpt"
               @blur="changePageEnter"
+              @keyup.enter="changePageEnter"
               style="width: 60px; text-align: center"
             />
           </div>
@@ -1097,21 +1032,23 @@ export default {
           })
       }
     },
-    changePageEnter(e) {
+    changePageEnter (e) {
       if (Number(this.paginationIpt) < 1) {
-        this.current = 1;
-        this.paginationIpt = 1;
+        this.current = 1
+        this.paginationIpt = 1
       } else if (Number(this.paginationIpt) > this.max) {
-        this.current = this.max;
-        this.paginationIpt = this.max;
+        this.current = this.max
+        this.paginationIpt = this.max
       } else {
-        this.current = Number(this.paginationIpt);
+        this.current = Number(this.paginationIpt)
       }
-      this.getList();
+      this.getList()
     },
     getSearchList () {
       var _this = this
       if (LocalStorage.has('auth')) {
+        _this.current = 1
+        _this.paginationIpt = 1
         getauth(_this.pathname + 'list/?dn_code__icontains=' + _this.filter + '&page=' + '' + _this.current, {})
           .then(res => {
             _this.table_list = []

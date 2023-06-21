@@ -98,6 +98,7 @@
             <input
               v-model="paginationIpt"
               @blur="changePageEnter"
+              @keyup.enter="changePageEnter"
               style="width: 60px; text-align: center"
             />
           </div>
@@ -115,7 +116,7 @@ import { getauth, getfile } from 'boot/axios_request'
 import { date, exportFile, LocalStorage } from 'quasar'
 
 export default {
-  name: 'Pageasnlist',
+  name: 'Pagebindownload',
   data () {
     return {
       login_name: '',
@@ -220,6 +221,8 @@ export default {
     },
     getSearchList () {
       var _this = this
+      _this.current = 1
+      _this.paginationIpt = 1
       getauth(_this.searchUrl + '&page=' + '' + _this.current)
         .then(res => {
           _this.table_list = res.results

@@ -20,13 +20,6 @@
         <template v-slot:top>
           <q-btn-group push>
             <q-btn
-              v-show="
-                $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                  $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                  $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                  $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                  $q.localStorage.getItem('staff_type') !== 'StockControl'
-              "
               :label="$t('new')"
               icon="add"
               @click="newForm = true"
@@ -41,9 +34,9 @@
             </q-btn>
           </q-btn-group>
           <q-space />
-          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @input="getSearchList()">
+          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @input="getSearchList()" @keyup.enter="getSearchList()">
             <template v-slot:append>
-              <q-icon name="search" />
+              <q-icon name="search" @click="getSearchList()"/>
             </template>
           </q-input>
         </template>
@@ -88,13 +81,6 @@
             <template v-if="!editMode">
               <q-td key="action" :props="props" style="width: 175px">
                 <q-btn
-                  v-show="
-                    $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                      $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                      $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                      $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                      $q.localStorage.getItem('staff_type') !== 'StockControl'
-                  "
                   round
                   flat
                   push
@@ -107,13 +93,6 @@
                   </q-tooltip>
                 </q-btn>
                 <q-btn
-                  v-show="
-                    $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                      $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                      $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                      $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                      $q.localStorage.getItem('staff_type') !== 'StockControl'
-                  "
                   round
                   flat
                   push
@@ -124,13 +103,6 @@
                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">{{ $t('edit') }}</q-tooltip>
                 </q-btn>
                 <q-btn
-                  v-show="
-                    $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                      $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                      $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                      $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                      $q.localStorage.getItem('staff_type') !== 'StockControl'
-                  "
                   round
                   flat
                   push
@@ -174,6 +146,7 @@
             <input
               v-model="paginationIpt"
               @blur="changePageEnter"
+              @keyup.enter="changePageEnter"
               style="width: 60px; text-align: center"
             />
           </div>
@@ -340,21 +313,23 @@ export default {
           })
         })
     },
-    changePageEnter(e) {
+    changePageEnter (e) {
       if (Number(this.paginationIpt) < 1) {
-        this.current = 1;
-        this.paginationIpt = 1;
+        this.current = 1
+        this.paginationIpt = 1
       } else if (Number(this.paginationIpt) > this.max) {
-        this.current = this.max;
-        this.paginationIpt = this.max;
+        this.current = this.max
+        this.paginationIpt = this.max
       } else {
-        this.current = Number(this.paginationIpt);
+        this.current = Number(this.paginationIpt)
       }
-      this.getList();
+      this.getList()
     },
     getSearchList () {
       var _this = this
       _this.filter = _this.filter.replace(/\s+/g, '')
+      _this.current = 1
+      _this.paginationIpt = 1
       getauth(_this.pathname + '?staff_name__icontains=' + _this.filter + '&page=' + '' + _this.current, {})
         .then(res => {
           _this.table_list = res.results

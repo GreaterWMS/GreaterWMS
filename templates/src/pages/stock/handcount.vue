@@ -87,10 +87,6 @@
             }}</q-td>
             <q-td key="action" :props="props" style="width: 50px">
               <q-btn
-                v-show="
-                  $q.localStorage.getItem('staff_type') !== 'Inbound' &&
-                  $q.localStorage.getItem('staff_type') !== 'Outbound'
-                "
                 round
                 flat
                 push

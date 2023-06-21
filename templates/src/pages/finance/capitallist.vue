@@ -36,7 +36,7 @@
              </q-btn>
            </q-btn-group>
            <q-space />
-           <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
+           <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @input="getSearchList()" @keyup.enter="getSearchList()">
              <template v-slot:append>
                <q-icon name="search" @click="getSearchList()"/>
              </template>
@@ -155,6 +155,7 @@
             <input
               v-model="paginationIpt"
               @blur="changePageEnter"
+              @keyup.enter="changePageEnter"
               style="width: 60px; text-align: center"
             />
           </div>
@@ -322,6 +323,8 @@ export default {
     getSearchList () {
       var _this = this
       if (LocalStorage.has('auth')) {
+        _this.current = 1
+        _this.paginationIpt = 1
         getauth(_this.pathname + '?capital_name__icontains=' + _this.filter + '&page=' + '' + _this.current, {
         }).then(res => {
           _this.table_list = res.results

@@ -27,7 +27,7 @@
             </q-btn>
           </q-btn-group>
           <q-space />
-          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @blur="getSearchList()" @keyup.enter="getSearchList()">
+          <q-input outlined rounded dense debounce="300" color="primary" v-model="filter" :placeholder="$t('search')" @input="getSearchList()" @keyup.enter="getSearchList()">
             <template v-slot:append>
               <q-icon name="search" @click="getSearchList()" />
             </template>
@@ -313,12 +313,6 @@
             <template v-if="!editMode">
               <q-td key="action" :props="props" style="width: 100px">
                 <q-btn
-                  v-show="
-                    $q.localStorage.getItem('staff_type') !== 'Supplier' &&
-                      $q.localStorage.getItem('staff_type') !== 'Customer' &&
-                      $q.localStorage.getItem('staff_type') !== 'Outbound' &&
-                      $q.localStorage.getItem('staff_type') !== 'StockControl'
-                  "
                   round
                   flat
                   push
@@ -370,6 +364,7 @@
             <input
               v-model="paginationIpt"
               @blur="changePageEnter"
+              @keyup.enter="changePageEnter"
               style="width: 60px; text-align: center"
             />
           </div>
@@ -612,12 +607,12 @@
 <router-view />
 
 <script>
-import { getauth, postauth, putauth, deleteauth, getfile } from 'boot/axios_request';
-import { date, exportFile, LocalStorage } from 'quasar';
+import { getauth, postauth, putauth, deleteauth } from 'boot/axios_request'
+import { LocalStorage } from 'quasar'
 
 export default {
   name: 'Pagegoodslist',
-  data() {
+  data () {
     return {
       goods_code: '',
       goods_desc: '',
@@ -718,14 +713,14 @@ export default {
       max: 0,
       total: 0,
       paginationIpt: 1
-    };
+    }
   },
   methods: {
-    getList() {
-      var _this = this;
+    getList () {
+      var _this = this
       getauth(_this.pathname + '?page=' + '' + _this.current, {})
         .then(res => {
-          _this.table_list = res.results;
+          _this.table_list = res.results
           _this.total = res.count
           if (res.count === 0) {
             _this.max = 0
@@ -736,43 +731,45 @@ export default {
               _this.max = Math.ceil(res.count / 30)
             }
           }
-          _this.goods_unit_list = res.goods_unit_list;
-          _this.goods_class_list = res.goods_class_list;
-          _this.goods_brand_list = res.goods_brand_list;
-          _this.goods_color_list = res.goods_color_list;
-          _this.goods_shape_list = res.goods_shape_list;
-          _this.goods_specs_list = res.goods_specs_list;
-          _this.goods_origin_list = res.goods_origin_list;
-          _this.supplier_list = res.supplier_list;
-          _this.pathname_previous = res.previous;
-          _this.pathname_next = res.next;
+          _this.goods_unit_list = res.goods_unit_list
+          _this.goods_class_list = res.goods_class_list
+          _this.goods_brand_list = res.goods_brand_list
+          _this.goods_color_list = res.goods_color_list
+          _this.goods_shape_list = res.goods_shape_list
+          _this.goods_specs_list = res.goods_specs_list
+          _this.goods_origin_list = res.goods_origin_list
+          _this.supplier_list = res.supplier_list
+          _this.pathname_previous = res.previous
+          _this.pathname_next = res.next
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    changePageEnter(e) {
+    changePageEnter (e) {
       if (Number(this.paginationIpt) < 1) {
-        this.current = 1;
-        this.paginationIpt = 1;
+        this.current = 1
+        this.paginationIpt = 1
       } else if (Number(this.paginationIpt) > this.max) {
-        this.current = this.max;
-        this.paginationIpt = this.max;
+        this.current = this.max
+        this.paginationIpt = this.max
       } else {
-        this.current = Number(this.paginationIpt);
+        this.current = Number(this.paginationIpt)
       }
-      this.getList();
+      this.getList()
     },
     getSearchList () {
-      var _this = this;
+      var _this = this
       if (LocalStorage.has('auth')) {
+        _this.current = 1
+        _this.paginationIpt = 1
         getauth(_this.pathname + '?goods_desc__icontains=' + _this.filter + '&page=' + '' + _this.current, {})
           .then(res => {
-            _this.table_list = res.results;
+            _this.table_list = res.results
             _this.total = res.count
             if (res.count === 0) {
               _this.max = 0
@@ -783,101 +780,101 @@ export default {
                 _this.max = Math.ceil(res.count / 30)
               }
             }
-            _this.goods_unit_list = res.goods_unit_list;
-            _this.goods_class_list = res.goods_class_list;
-            _this.goods_brand_list = res.goods_brand_list;
-            _this.goods_color_list = res.goods_color_list;
-            _this.goods_shape_list = res.goods_shape_list;
-            _this.goods_specs_list = res.goods_specs_list;
-            _this.goods_origin_list = res.goods_origin_list;
-            _this.supplier_list = res.supplier_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.goods_unit_list = res.goods_unit_list
+            _this.goods_class_list = res.goods_class_list
+            _this.goods_brand_list = res.goods_brand_list
+            _this.goods_color_list = res.goods_color_list
+            _this.goods_shape_list = res.goods_shape_list
+            _this.goods_specs_list = res.goods_specs_list
+            _this.goods_origin_list = res.goods_origin_list
+            _this.supplier_list = res.supplier_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       }
     },
     getListPrevious () {
-      var _this = this;
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_previous, {})
           .then(res => {
-            _this.table_list = res.results;
-            _this.goods_unit_list = res.goods_unit_list;
-            _this.goods_class_list = res.goods_class_list;
-            _this.goods_brand_list = res.goods_brand_list;
-            _this.goods_color_list = res.goods_color_list;
-            _this.goods_shape_list = res.goods_shape_list;
-            _this.goods_specs_list = res.goods_specs_list;
-            _this.goods_origin_list = res.goods_origin_list;
-            _this.supplier_list = res.supplier_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            _this.goods_unit_list = res.goods_unit_list
+            _this.goods_class_list = res.goods_class_list
+            _this.goods_brand_list = res.goods_brand_list
+            _this.goods_color_list = res.goods_color_list
+            _this.goods_shape_list = res.goods_shape_list
+            _this.goods_specs_list = res.goods_specs_list
+            _this.goods_origin_list = res.goods_origin_list
+            _this.supplier_list = res.supplier_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else {
       }
     },
-    getListNext() {
-      var _this = this;
+    getListNext () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getauth(_this.pathname_next, {})
           .then(res => {
-            _this.table_list = res.results;
-            _this.goods_unit_list = res.goods_unit_list;
-            _this.goods_class_list = res.goods_class_list;
-            _this.goods_brand_list = res.goods_brand_list;
-            _this.goods_color_list = res.goods_color_list;
-            _this.goods_shape_list = res.goods_shape_list;
-            _this.goods_specs_list = res.goods_specs_list;
-            _this.goods_origin_list = res.goods_origin_list;
-            _this.supplier_list = res.supplier_list;
-            _this.pathname_previous = res.previous;
-            _this.pathname_next = res.next;
+            _this.table_list = res.results
+            _this.goods_unit_list = res.goods_unit_list
+            _this.goods_class_list = res.goods_class_list
+            _this.goods_brand_list = res.goods_brand_list
+            _this.goods_color_list = res.goods_color_list
+            _this.goods_shape_list = res.goods_shape_list
+            _this.goods_specs_list = res.goods_specs_list
+            _this.goods_origin_list = res.goods_origin_list
+            _this.supplier_list = res.supplier_list
+            _this.pathname_previous = res.previous
+            _this.pathname_next = res.next
           })
           .catch(err => {
             _this.$q.notify({
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       }
     },
-    reFresh() {
-      var _this = this;
-      _this.getList();
+    reFresh () {
+      var _this = this
+      _this.getList()
     },
-    newDataSubmit() {
-      var _this = this;
-      var goodscodes = [];
+    newDataSubmit () {
+      var _this = this
+      var goodscodes = []
       _this.table_list.forEach(i => {
-        goodscodes.push(i.goods_code);
-      });
+        goodscodes.push(i.goods_code)
+      })
       if (goodscodes.indexOf(_this.newFormData.goods_code) === -1 && _this.newFormData.goods_code.length !== 0) {
-        _this.newFormData.creater = _this.login_name;
+        _this.newFormData.creater = _this.login_name
         postauth(_this.pathname, _this.newFormData)
           .then(res => {
-            _this.getList();
-            _this.newDataCancel();
+            _this.getList()
+            _this.newDataCancel()
             if (res.status_code != 500) {
               _this.$q.notify({
                 message: 'Success Create',
                 icon: 'check',
                 color: 'green'
-              });
+              })
             }
           })
           .catch(err => {
@@ -885,26 +882,26 @@ export default {
               message: err.detail,
               icon: 'close',
               color: 'negative'
-            });
-          });
+            })
+          })
       } else if (goodscodes.indexOf(_this.newFormData.goods_code) !== -1) {
         _this.$q.notify({
           message: _this.$t('notice.goodserror.goods_listerror'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       } else if (_this.newFormData.goods_code.length === 0) {
         _this.$q.notify({
           message: _this.$t('goods.view_goodslist.error1'),
           icon: 'close',
           color: 'negative'
-        });
+        })
       }
-      goodscodes = [];
+      goodscodes = []
     },
-    newDataCancel() {
-      var _this = this;
-      _this.newForm = false;
+    newDataCancel () {
+      var _this = this
+      _this.newForm = false
       _this.newFormData = {
         goods_code: '',
         goods_desc: '',
@@ -923,12 +920,12 @@ export default {
         goods_cost: '',
         goods_price: '',
         creater: ''
-      };
+      }
     },
-    editData(e) {
-      var _this = this;
-      _this.editMode = true;
-      _this.editid = e.id;
+    editData (e) {
+      var _this = this
+      _this.editMode = true
+      _this.editid = e.id
       _this.editFormData = {
         goods_code: e.goods_code,
         goods_desc: e.goods_desc,
@@ -948,20 +945,20 @@ export default {
         goods_price: e.goods_price,
         creater: _this.login_name,
         bar_code: e.bar_code
-      };
+      }
     },
-    editDataSubmit() {
-      var _this = this;
+    editDataSubmit () {
+      var _this = this
       putauth(_this.pathname + _this.editid + '/', _this.editFormData)
         .then(res => {
-          _this.editDataCancel();
-          _this.getList();
+          _this.editDataCancel()
+          _this.getList()
           if (res.status_code != 500) {
             _this.$q.notify({
               message: 'Success Edit Data',
               icon: 'check',
               color: 'green'
-            });
+            })
           }
         })
         .catch(err => {
@@ -969,13 +966,13 @@ export default {
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    editDataCancel() {
-      var _this = this;
-      _this.editMode = false;
-      _this.editid = 0;
+    editDataCancel () {
+      var _this = this
+      _this.editMode = false
+      _this.editid = 0
       _this.editFormData = {
         goods_code: '',
         goods_desc: '',
@@ -994,41 +991,41 @@ export default {
         goods_cost: '',
         goods_price: '',
         creater: ''
-      };
+      }
     },
-    deleteData(e) {
-      var _this = this;
-      _this.deleteForm = true;
-      _this.deleteid = e;
+    deleteData (e) {
+      var _this = this
+      _this.deleteForm = true
+      _this.deleteid = e
     },
-    deleteDataSubmit() {
-      var _this = this;
+    deleteDataSubmit () {
+      var _this = this
       deleteauth(_this.pathname + _this.deleteid + '/')
         .then(res => {
-          _this.deleteDataCancel();
-          _this.getList();
+          _this.deleteDataCancel()
+          _this.getList()
           _this.$q.notify({
             message: 'Success Edit Data',
             icon: 'check',
             color: 'green'
-          });
+          })
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    deleteDataCancel() {
-      var _this = this;
-      _this.deleteForm = false;
-      _this.deleteid = 0;
+    deleteDataCancel () {
+      var _this = this
+      _this.deleteForm = false
+      _this.deleteid = 0
     },
-    viewData(e) {
-      var _this = this;
-      var QRCode = require('qrcode');
+    viewData (e) {
+      var _this = this
+      var QRCode = require('qrcode')
       QRCode.toDataURL(e.bar_code, [
         {
           errorCorrectionLevel: 'H',
@@ -1038,46 +1035,46 @@ export default {
         }
       ])
         .then(url => {
-          _this.goods_code = e.goods_code;
-          _this.goods_desc = e.goods_desc;
-          _this.bar_code = url;
+          _this.goods_code = e.goods_code
+          _this.goods_desc = e.goods_desc
+          _this.bar_code = url
         })
         .catch(err => {
-          console.error(err);
-        });
-      _this.viewForm = true;
+          console.error(err)
+        })
+      _this.viewForm = true
     }
   },
-  created() {
-    var _this = this;
+  created () {
+    var _this = this
     if (LocalStorage.has('openid')) {
-      _this.openid = LocalStorage.getItem('openid');
+      _this.openid = LocalStorage.getItem('openid')
     } else {
-      _this.openid = '';
-      LocalStorage.set('openid', '');
+      _this.openid = ''
+      LocalStorage.set('openid', '')
     }
     if (LocalStorage.has('login_name')) {
-      _this.login_name = LocalStorage.getItem('login_name');
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
-      _this.login_name = '';
-      LocalStorage.set('login_name', '');
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
     }
     if (LocalStorage.has('auth')) {
-      _this.authin = '1';
-      _this.getList();
+      _this.authin = '1'
+      _this.getList()
     } else {
-      _this.authin = '0';
+      _this.authin = '0'
     }
   },
-  mounted() {
-    var _this = this;
+  mounted () {
+    var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + 'px';
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + '' + 'px';
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
-  updated() {},
-  destroyed() {}
-};
+  updated () {},
+  destroyed () {}
+}
 </script>

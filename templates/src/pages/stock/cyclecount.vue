@@ -96,12 +96,12 @@
 </template>
 <router-view />
 <script>
-import { date, exportFile, LocalStorage } from 'quasar';
-import { getauth, getfile, postauth } from 'boot/axios_request';
+import { date, exportFile, LocalStorage } from 'quasar'
+import { getauth, getfile, postauth } from 'boot/axios_request'
 
 export default {
   name: 'cyclyecount',
-  data() {
+  data () {
     return {
       openid: '',
       login_name: '',
@@ -129,121 +129,121 @@ export default {
       options: [],
       error1: this.$t('stock.view_stocklist.error1'),
       CountFrom: false
-    };
+    }
   },
   methods: {
-    getList() {
-      var _this = this;
+    getList () {
+      var _this = this
       getauth(_this.pathname, {})
         .then(res => {
-          _this.table_list = res;
+          _this.table_list = res
         })
         .catch(err => {
           _this.$q.notify({
             message: err.detail,
             icon: 'close',
             color: 'negative'
-          });
-        });
+          })
+        })
     },
-    reFresh() {
-      var _this = this;
-      _this.getList();
+    reFresh () {
+      var _this = this
+      _this.getList()
     },
-    ConfirmCount() {
-      var _this = this;
-        if (!_this.table_list.length) {
-          _this.CountFrom = false;
-          _this.$q.notify({
-            message: _this.$t('notice.cyclecounterror'),
-            icon: 'close',
-            color: 'negative'
-          });
-        } else {
-          postauth(_this.pathname, _this.table_list)
-            .then(res => {
-              _this.CountFrom = false;
-              _this.$q.notify({
-                message: 'Success Confirm Cycle Count',
-                icon: 'check',
-                color: 'green'
-              });
-              _this.reFresh();
+    ConfirmCount () {
+      var _this = this
+      if (!_this.table_list.length) {
+        _this.CountFrom = false
+        _this.$q.notify({
+          message: _this.$t('notice.cyclecounterror'),
+          icon: 'close',
+          color: 'negative'
+        })
+      } else {
+        postauth(_this.pathname, _this.table_list)
+          .then(res => {
+            _this.CountFrom = false
+            _this.$q.notify({
+              message: 'Success Confirm Cycle Count',
+              icon: 'check',
+              color: 'green'
             })
-            .catch(err => {
-              _this.$q.notify({
-                message: err.detail,
-                icon: 'close',
-                color: 'negative'
-              });
-            });
-        }
+            _this.reFresh()
+          })
+          .catch(err => {
+            _this.$q.notify({
+              message: err.detail,
+              icon: 'close',
+              color: 'negative'
+            })
+          })
+      }
     },
-    preloadDataCancel() {
-      var _this = this;
-      _this.CountFrom = false;
+    preloadDataCancel () {
+      var _this = this
+      _this.CountFrom = false
     },
-    downloadData() {
-      var _this = this;
+    downloadData () {
+      var _this = this
       if (LocalStorage.has('auth')) {
         getfile('cyclecount/filecyclecountday/?lang=' + LocalStorage.getItem('lang')).then(res => {
-          var timeStamp = Date.now();
-          var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS');
-          const status = exportFile('cyclecountday_' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv');
+          var timeStamp = Date.now()
+          var formattedString = date.formatDate(timeStamp, 'YYYYMMDDHHmmssSSS')
+          const status = exportFile('cyclecountday_' + formattedString + '.csv', '\uFEFF' + res.data, 'text/csv')
           if (status !== true) {
             _this.$q.notify({
               message: 'Browser denied file download...',
               color: 'negative',
               icon: 'warning'
-            });
+            })
           }
-        });
+        })
       } else {
         _this.$q.notify({
           message: _this.$t('notice.loginerror'),
           color: 'negative',
           icon: 'warning'
-        });
+        })
       }
     },
-    ConfirmCounts() {
-      var _this = this;
-      _this.CountFrom = true;
+    ConfirmCounts () {
+      var _this = this
+      _this.CountFrom = true
     },
-    blurHandler(val) {
-      val = val.toString().replace(/^(0+)|[^\d]+/g, '');
+    blurHandler (val) {
+      val = val.toString().replace(/^(0+)|[^\d]+/g, '')
     }
   },
-  created() {
-    var _this = this;
+  created () {
+    var _this = this
     if (LocalStorage.has('openid')) {
-      _this.openid = LocalStorage.getItem('openid');
+      _this.openid = LocalStorage.getItem('openid')
     } else {
-      _this.openid = '';
-      LocalStorage.set('openid', '');
+      _this.openid = ''
+      LocalStorage.set('openid', '')
     }
     if (LocalStorage.has('login_name')) {
-      _this.login_name = LocalStorage.getItem('login_name');
+      _this.login_name = LocalStorage.getItem('login_name')
     } else {
-      _this.login_name = '';
-      LocalStorage.set('login_name', '');
+      _this.login_name = ''
+      LocalStorage.set('login_name', '')
     }
     if (LocalStorage.has('auth')) {
-      _this.authin = '1';
-      _this.getList();
+      _this.authin = '1'
+      _this.getList()
     } else {
-      _this.authin = '0';
+      _this.authin = '0'
     }
   },
-  mounted() {
-    var _this = this;
+  mounted () {
+    var _this = this
     if (_this.$q.platform.is.electron) {
-      _this.height = String(_this.$q.screen.height - 290) + 'px';
+      _this.height = String(_this.$q.screen.height - 290) + 'px'
     } else {
-      _this.height = _this.$q.screen.height - 290 + '' + 'px';
+      _this.height = _this.$q.screen.height - 290 + '' + 'px'
     }
   },
-  updated() {},
-  destroyed() {}
-};
+  updated () {},
+  destroyed () {}
+}
 </script>
