@@ -162,7 +162,7 @@ class StockBinViewSet(viewsets.ModelViewSet):
                                                      t_code=Md5.md5(str(data['goods_code'])),
                                                      create_time=qs.create_time
                                                      )
-                        if move_to_bin_detail.empty_label == True:
+                        if move_to_bin_detail.empty_label is True:
                             move_to_bin_detail.empty_label = False
                             move_to_bin_detail.save()
                         goods_qty_change.save()
@@ -227,7 +227,7 @@ class StockBinViewSet(viewsets.ModelViewSet):
                                                      t_code=Md5.md5(str(data['goods_code'])),
                                                      create_time=qs.create_time
                                                      )
-                        if move_to_bin_detail.empty_label == True:
+                        if move_to_bin_detail.empty_label is True:
                             move_to_bin_detail.empty_label = False
                             move_to_bin_detail.save()
                         goods_qty_change.save()
@@ -339,7 +339,7 @@ class StockBinViewSet(viewsets.ModelViewSet):
                                                  t_code=Md5.md5(str(data[j]['goods_code'])),
                                                  create_time=qs_project.create_time
                                                  )
-                    if move_to_bin_detail.empty_label == True:
+                    if move_to_bin_detail.empty_label is True:
                         move_to_bin_detail.empty_label = False
                         move_to_bin_detail.save()
                     goods_qty_change.save()
@@ -416,7 +416,7 @@ class StockBinViewSet(viewsets.ModelViewSet):
                                                  t_code=Md5.md5(str(data[j]['goods_code'])),
                                                  create_time=qs_project.create_time
                                                  )
-                    if move_to_bin_detail.empty_label == True:
+                    if move_to_bin_detail.empty_label is True:
                         move_to_bin_detail.empty_label = False
                         move_to_bin_detail.save()
                     goods_qty_change.save()

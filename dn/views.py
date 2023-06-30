@@ -674,7 +674,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                goods_qty_change.picked_stock
                 if can_pick_qty > 0:
                     if dn_detail_list[i].goods_qty > can_pick_qty:
-                        if qs[v].back_order_label == False:
+                        if qs[v].back_order_label is False:
                             dn_pick_qty = dn_detail_list[i].pick_qty
                             for j in range(len(goods_bin_stock_list)):
                                 bin_can_pick_qty = goods_bin_stock_list[j].goods_qty - \
@@ -937,7 +937,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                     else:
                         continue
                 elif can_pick_qty == 0:
-                    if qs[v].back_order_label == False:
+                    if qs[v].back_order_label is False:
                         goods_qty_change.back_order_stock = goods_qty_change.back_order_stock + dn_detail_list[
                             i].goods_qty
                         back_order_goods_volume = round(goods_detail.unit_volume * dn_detail_list[i].goods_qty, 4)

@@ -867,6 +867,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                              mode_code=qs.asn_code,
                                                              bin_name=str(data['bin_name']),
                                                              goods_code=str(data['goods_code']),
+                                                             goods_desc=goods_qty_change.goods_desc,
                                                              goods_qty=int(data['qty']),
                                                              creater=str(staff_name)
                                                              )
@@ -893,7 +894,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                           goods_qty=int(data['qty']),
                                                           creater=str(staff_name)
                                                           )
-                            if bin_detail.empty_label == True:
+                            if bin_detail.empty_label is True:
                                 bin_detail.empty_label = False
                                 bin_detail.save()
                         elif move_qty == 0:
@@ -914,6 +915,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                              mode_code=qs.asn_code,
                                                              bin_name=str(data['bin_name']),
                                                              goods_code=str(data['goods_code']),
+                                                             goods_desc=goods_qty_change.goods_desc,
                                                              goods_qty=int(data['qty']),
                                                              creater=str(staff_name)
                                                              )
@@ -960,7 +962,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                     bin_property=bin_detail.bin_property,
                                                     t_code=Md5.md5(str(data['goods_code'])),
                                                     create_time=qs.create_time)
-                            if bin_detail.empty_label == True:
+                            if bin_detail.empty_label is True:
                                 bin_detail.empty_label = False
                                 bin_detail.save()
                         elif move_qty < 0:
@@ -1021,6 +1023,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                              mode_code=qs.asn_code,
                                                              bin_name=str(data['bin_name']),
                                                              goods_code=str(data['res_data'][i]['goods_code']),
+                                                             goods_desc=goods_qty_change.goods_desc,
                                                              goods_qty=int(data['res_data'][i]['qty']),
                                                              creater=str(staff_name)
                                                              )
@@ -1068,6 +1071,7 @@ class MoveToBinViewSet(viewsets.ModelViewSet):
                                                              mode_code=qs.asn_code,
                                                              bin_name=str(data['bin_name']),
                                                              goods_code=str(data['res_data'][i]['goods_code']),
+                                                             goods_desc=goods_qty_change.goods_desc,
                                                              goods_qty=int(data['res_data'][i]['qty']),
                                                              creater=str(staff_name)
                                                              )
