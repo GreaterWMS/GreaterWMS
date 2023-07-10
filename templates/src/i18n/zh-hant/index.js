@@ -438,17 +438,19 @@ export default {
     binsize: '庫位尺寸',
     property: '庫位屬性',
     printbin: '打印庫位標簽',
-    view_warehouse: {
-      warehouse_name: '倉庫名稱',
-      warehouse_city: '所在城市',
-      warehouse_address: '地址',
-      warehouse_contact: '聯繫方式',
-      warehouse_manager: '負責人',
+    view_warehouseset: {
       error1: '請輸入倉庫名稱',
       error2: '請輸入倉庫所在城市',
       error3: '請輸入倉庫地址',
       error4: '請輸入倉庫聯係方式給',
       error5: '請輸入倉庫負責人'
+    },
+    view_warehouse: {
+      warehouse_name: '倉庫名稱',
+      warehouse_city: '所在城市',
+      warehouse_address: '地址',
+      warehouse_contact: '聯繫方式',
+      warehouse_manager: '負責人'
     },
     view_binset: {
       bin_name: '庫位名稱',

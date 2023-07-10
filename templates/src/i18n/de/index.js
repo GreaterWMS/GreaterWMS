@@ -55,7 +55,7 @@ export default {
     equipment: 'Ausrüstungsunterstützung'
   },
   menuItem: {
-    Dashboard: 'Dashboard',
+    dashboard: 'Dashboard',
     inbound: 'Eingehend',
     outbound: 'Ausgehend',
     stock: 'Inventar',
