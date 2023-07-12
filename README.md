@@ -4,7 +4,7 @@
   <p>Open Source Inventory Management System </p>
 
 <!-- Badges -->
-![License: AGPLv3](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)
+![License: APLv2](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)
 ![Release Version (latest Version)](https://img.shields.io/github/v/release/GreaterWMS/GreaterWMS?color=orange&include_prereleases)
 ![QR Code Support](https://img.shields.io/badge/QR--Code-Support-orange.svg)
 ![Docker Support](https://img.shields.io/badge/Docker-Support-orange.svg)
@@ -29,7 +29,7 @@
 
 </div>
 
-#### Since V2.1.26，GreaterWMS switch license to AGPLv3, Personal learning is unlimited, and you need to purchase a commercial license for commercial use.
+#### You can share your vacant warehouse space, use it for those in need, and generate income
 
 ## :rocket: Link US
 <h4>

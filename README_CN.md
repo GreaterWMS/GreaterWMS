@@ -4,7 +4,7 @@
   <p>完全开源的仓库管理系统</p>
 
 <!-- Badges -->
-![License: AGPLv3](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)
+![License: APLv2](https://img.shields.io/github/license/GreaterWMS/GreaterWMS)
 ![Release Version (latest Version)](https://img.shields.io/github/v/release/GreaterWMS/GreaterWMS?color=orange&include_prereleases)
 ![QR Code Support](https://img.shields.io/badge/QR--Code-Support-orange.svg)
 ![Docker Support](https://img.shields.io/badge/Docker-Support-orange.svg)
@@ -28,7 +28,7 @@
 [![BiliBili](https://img.shields.io/badge/BiliBili-4987-red)](https://space.bilibili.com/407321291/channel/seriesdetail?sid=776320)
 </div>
 
-#### 自2.1.26版本以后，GreaterWMS将开源协议调整为AGPLv3，个人学习是无限制的，商用需要购买商用授权
+#### 你可以分享你的空置仓库空间，给有需要的人使用，并带来收入
 
 ## :rocket: 找到我们
 <h4>
