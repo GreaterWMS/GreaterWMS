@@ -141,6 +141,16 @@
                     {{ $t('delete') }}
                   </q-tooltip>
                  </q-btn>
+                 <q-btn round flat push color="green" icon="publish" @click="publishData(props.row)">
+                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                    {{ $t('warehouse.view_warehouse.publish_warehouse') }}
+                  </q-tooltip>
+                 </q-btn>
+                 <q-btn round flat push color="red" icon="backspace" @click="NopublishData(props.row)">
+                   <q-tooltip content-class="bg-amber text-black shadow-4" :offset="[10, 10]" content-style="font-size: 12px">
+                    {{ $t('warehouse.view_warehouse.Nopublish_warehouse') }}
+                  </q-tooltip>
+                 </q-btn>
                </q-td>
                </template>
              <template v-else-if="editMode">
@@ -259,6 +269,24 @@
          </div>
        </q-card>
      </q-dialog>
+     <q-dialog v-model="publishForm">
+       <q-card class="shadow-24">
+         <q-bar class="bg-light-blue-10 text-white rounded-borders" style="height: 50px">
+           <div>{{ $t('warehouse.view_warehouse.square_measure') }}</div>
+           <q-space />
+           <q-btn dense flat icon="close" v-close-popup>
+             <q-tooltip content-class="bg-amber text-black shadow-4">{{ $t('index.close') }}</q-tooltip>
+           </q-btn>
+         </q-bar>
+         <q-card-section class="q-pt-none">
+          <q-input dense v-model="square_measure" autofocus />
+        </q-card-section>
+         <div style="float: right; padding: 15px 15px 15px 0">
+           <q-btn color="white" text-color="black" style="margin-right: 25px" @click="publishCancel()">{{ $t('cancel') }}</q-btn>
+           <q-btn color="primary" @click="publishDataSubmit()">{{ $t('submit') }}</q-btn>
+         </div>
+       </q-card>
+     </q-dialog>
     </div>
 </template>
     <router-view />
@@ -266,6 +294,7 @@
 <script>
 import { getauth, postauth, putauth, deleteauth } from 'boot/axios_request'
 import { LocalStorage } from 'quasar'
+import axios from 'axios'
 
 export default {
   name: 'Pagewarehouse',
@@ -311,6 +340,9 @@ export default {
       editMode: false,
       deleteForm: false,
       deleteid: 0,
+      publishForm: false,
+      publishdetail: '',
+      square_measure: '',
       error1: this.$t('warehouse.view_warehouseset.error1'),
       error2: this.$t('warehouse.view_warehouseset.error2'),
       error3: this.$t('warehouse.view_warehouseset.error3'),
@@ -350,17 +382,17 @@ export default {
         })
       }
     },
-    changePageEnter(e) {
+    changePageEnter (e) {
       if (Number(this.paginationIpt) < 1) {
-        this.current = 1;
-        this.paginationIpt = 1;
+        this.current = 1
+        this.paginationIpt = 1
       } else if (Number(this.paginationIpt) > this.max) {
-        this.current = this.max;
-        this.paginationIpt = this.max;
+        this.current = this.max
+        this.paginationIpt = this.max
       } else {
-        this.current = Number(this.paginationIpt);
+        this.current = Number(this.paginationIpt)
       }
-      this.getList();
+      this.getList()
     },
     getListPrevious () {
       var _this = this
@@ -539,6 +571,58 @@ export default {
       var _this = this
       _this.deleteForm = false
       _this.deleteid = 0
+    },
+    publishData (e) {
+      var _this = this
+      _this.publishForm = true
+      _this.publishdetail = e
+    },
+    publishDataSubmit () {
+      var _this = this
+      _this.publishdetail.openid = LocalStorage.getItem('openid')
+      _this.publishdetail.square_measure = _this.square_measure
+      axios.post('https://po.56yhz.com/warehouse/', _this.publishdetail
+      ).then(res => {
+        _this.publishCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Publish Data',
+          icon: 'check',
+          color: 'green'
+        })
+      }).catch(err => {
+        _this.$q.notify({
+          message: err.detail,
+          icon: 'close',
+          color: 'negative'
+        })
+      })
+    },
+    NopublishData (e) {
+      var _this = this
+      _this.publishdetail = e
+      _this.publishdetail.openid = LocalStorage.getItem('openid')
+      axios.put('https://po.56yhz.com/warehouse/', _this.publishdetail
+      ).then(res => {
+        _this.publishCancel()
+        _this.getList()
+        _this.$q.notify({
+          message: 'Success Backspace Data',
+          icon: 'check',
+          color: 'green'
+        })
+      }).catch(err => {
+        _this.$q.notify({
+          message: err.detail,
+          icon: 'close',
+          color: 'negative'
+        })
+      })
+    },
+    publishCancel () {
+      var _this = this
+      _this.publishForm = false
+      _this.publishdetail = ''
     }
   },
   created () {

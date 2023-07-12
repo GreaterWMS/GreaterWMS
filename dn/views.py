@@ -1741,6 +1741,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                                                 data['goodsData'][j].get('goods_code'))).first()
                 dn_detail = DnDetailModel.objects.filter(openid=self.request.auth.openid,
                                                          dn_code=str(data['dn_code']),
+                                                         customer=str(data['customer']),
                                                          goods_code=str(data['goodsData'][j].get('goods_code'))).first()
                 bin_qty_change = stockbin.objects.filter(openid=self.request.auth.openid,
                                                          t_code=str(data['goodsData'][j].get('t_code'))).first()

@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    operation: 'Operación manual',
+    app_store: 'Licencia comercial',
+    signin: 'Dirección de acceso:',
     app_title: 'título de la aplicación',
     slogan: 'eslogan',
     server: 'Solicitar URL base',
@@ -68,7 +71,8 @@ export default {
     customerdn: 'DN del cliente',
     supplierasn: 'ASN del proveedor',
     uploadcenter: 'Centro de carga',
-    downloadcenter: 'Centro de descargas'
+    downloadcenter: 'Centro de descargas',
+    cloudwarehouse: 'Interconexión Wancang'
   },
   contact: 'Comunícate de inmediato',
   sendmessage: 'Envíale un mensaje',
@@ -450,7 +454,11 @@ export default {
       warehouse_city: 'Ubicación ciudad',
       warehouse_address: 'habla a',
       warehouse_contact: 'Información del contacto',
-      warehouse_manager: 'principal'
+      warehouse_manager: 'principal',
+      square_measure: 'Superficie disponible',
+      city_search: 'Búsqueda de la ciudad',
+      publish_warehouse: 'Lanzamiento del almacén',
+      Nopublish_warehouse: 'Retiro de almacenes'
     },
     view_binset: {
       bin_name: 'Nombre del lugar',

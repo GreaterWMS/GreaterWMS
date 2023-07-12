@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    operation: '取扱説明書',
+    app_store: '商用ライセンス',
+    signin: 'アクセス アドレス:',
     app_title: 'アプリのタイトル',
     slogan: 'スローガン',
     server: 'リクエストアドレス',
@@ -68,7 +71,8 @@ export default {
     customerdn: '顧客の注文',
     supplierasn: 'サプライヤーの注文',
     uploadcenter: 'アップロードセンター',
-    downloadcenter: 'ダウンロードセンター'
+    downloadcenter: 'ダウンロードセンター',
+    cloudwarehouse: '万倉インターコネクト'
   },
   contact: 'すぐに連絡する',
   sendmessage: '彼にメッセージを送信してください',
@@ -450,7 +454,11 @@ export default {
       warehouse_city: '都市名',
       warehouse_address: '住所',
       warehouse_contact: '連絡先情報',
-      warehouse_manager: '担当者'
+      warehouse_manager: '担当者',
+      square_measure: 'かようめんせき',
+      city_search: 'としけんさ',
+      publish_warehouse: '倉庫の公開',
+      Nopublish_warehouse: '倉庫をリコールする'
     },
     view_binset: {
       bin_name: 'ロケーション名称',

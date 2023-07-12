@@ -5,7 +5,10 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    operation: '操作手册',
+    app_store: '商用授权',
     app_title: 'APP 名称',
+    signin: '访问地址：',
     slogan: '宣传语',
     server: '请求地址',
     index_title: '仓库管理平台',
@@ -63,7 +66,8 @@ export default {
     customerdn: '客户订单',
     supplierasn: '供应商订单',
     uploadcenter: '上传中心',
-    downloadcenter: '下载中心'
+    downloadcenter: '下载中心',
+    cloudwarehouse: '万仓互联'
   },
   contact: '立即沟通',
   sendmessage: '给他发一条消息',
@@ -450,7 +454,11 @@ export default {
       warehouse_city: '所在城市',
       warehouse_address: '地址',
       warehouse_contact: '联系方式',
-      warehouse_manager: '负责人'
+      warehouse_manager: '负责人',
+      square_measure: '可用面积',
+      city_search: '城市搜索',
+      publish_warehouse: '发布仓库',
+      Nopublish_warehouse: '撤回仓库发布'
     },
     view_binset: {
       bin_name: '库位名称',

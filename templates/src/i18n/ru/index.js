@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    operation: 'Руководство по эксплуатации',
+    app_store: 'коммерческая лицензия',
+    signin: 'Адрес доступа:',
     app_title: 'Название приложения',
     slogan: 'лозунг',
     server: 'запросить базовый URL',
@@ -68,7 +71,8 @@ export default {
     customerdn: 'DN клиента',
     supplierasn: 'ASN поставщика',
     uploadcenter: 'Центр загрузки',
-    downloadcenter: 'Центр загрузки'
+    downloadcenter: 'Центр загрузки',
+    cloudwarehouse: 'Соединение Ванкуура'
   },
   contact: '',
   sendmessage: 'Общаться сразу',
@@ -450,7 +454,11 @@ export default {
       warehouse_city: 'Горад размяшчэння',
       warehouse_address: 'адрас',
       warehouse_contact: 'Кантактная інфармацыя',
-      warehouse_manager: 'дырэктар'
+      warehouse_manager: 'дырэктар',
+      square_measure: 'Доступная площадь',
+      city_search: 'Городской поиск',
+      publish_warehouse: 'Выпуск склада',
+      Nopublish_warehouse: 'Отзыв склада'
     },
     view_binset: {
       bin_name: 'Назва месцазнаходжання',

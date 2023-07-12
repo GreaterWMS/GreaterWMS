@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    operation: "Mode d'emploi",
+    app_store: 'Licence commerciale',
+    signin: "Adresse d'accès:",
     app_title: "Titre de l'application",
     slogan: 'Slogan',
     server: 'requête URL de base',
@@ -68,7 +71,8 @@ export default {
     customerdn: 'DN client',
     supplierasn: 'Fournisseur ASN',
     uploadcenter: 'Centre de téléchargement',
-    downloadcenter: 'Centre de téléchargement'
+    downloadcenter: 'Centre de téléchargement',
+    cloudwarehouse: 'Interconnexion de wankura'
   },
   contact: 'Communiquer immédiatement',
   sendmessage: 'Envoyez-lui un message',
@@ -450,7 +454,11 @@ export default {
       warehouse_city: 'Lieu de la ville',
       warehouse_address: 'adresse',
       warehouse_contact: 'Informations de contact',
-      warehouse_manager: 'principal'
+      warehouse_manager: 'principal',
+      square_measure: 'Zone disponible',
+      city_search: 'Recherche de ville',
+      publish_warehouse: 'Publier un entrepôt',
+      Nopublish_warehouse: "Rappel de l'entrepôt"
     },
     view_binset: {
       bin_name: 'Nom de la localisation',
@@ -563,7 +571,7 @@ export default {
       notice1: "Le code QR n'existe pas",
       notice2: "Le code n'existe pas",
       notice3: 'Erreur de serveur',
-      notice4: 'Seul app peut scanner'
+      notice4: 'Seul mobile peut scanner'
     },
     mobile_asn: {
       notice1: 'Liste ASN',

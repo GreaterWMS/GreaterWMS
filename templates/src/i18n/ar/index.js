@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    operation: 'دليل التشغيل',
+    app_store: 'رخصة تجارية',
+    signin: 'عنوان الوصول:',
     app_title: 'عنوان التطبيق',
     slogan: 'شعار',
     server: 'الخادم',
@@ -68,7 +71,8 @@ export default {
     customerdn: 'طلب الزبون',
     supplierasn: 'طلب المورد',
     uploadcenter: 'مركز التحميل',
-    downloadcenter: 'مركز التحميل'
+    downloadcenter: 'مركز التحميل',
+    cloudwarehouse: 'وان بن مترابطة'
   },
   contact: 'تواصل الآن',
   sendmessage: 'أرسل له رسالة',
@@ -450,7 +454,11 @@ export default {
       warehouse_city: 'مدينة',
       warehouse_address: 'تبوك',
       warehouse_contact: 'معلومات التواصل',
-      warehouse_manager: 'المالك'
+      warehouse_manager: 'المالك',
+      square_measure: 'المساحة المتوفرة',
+      city_search: 'البحث عن المدينة',
+      publish_warehouse: 'الافراج عن مستودع',
+      Nopublish_warehouse: 'استدعاء مستودع'
     },
     view_binset: {
       bin_name: 'اسم الموقع',

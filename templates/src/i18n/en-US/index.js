@@ -5,6 +5,9 @@ export default {
   failed: 'Action failed',
   success: 'Action was successful',
   index: {
+    operation: 'Operation Docs',
+    app_store: 'Commercial License',
+    signin: 'Access address:',
     app_title: 'APP Title',
     slogan: 'Slogan',
     server: 'Request Baseurl',
@@ -68,7 +71,8 @@ export default {
     customerdn: 'Customer DN',
     supplierasn: 'Supplieer ASN',
     uploadcenter: 'Upload Center',
-    downloadcenter: 'Download Center'
+    downloadcenter: 'Download Center',
+    cloudwarehouse: 'Wancang Interconnection'
   },
   contact: 'Contact',
   sendmessage: 'Send A Message',
@@ -449,7 +453,11 @@ export default {
       warehouse_city: 'Warehouse City',
       warehouse_address: 'Warehouse Address',
       warehouse_contact: 'Warehouse Contact',
-      warehouse_manager: 'Warehouse Manager'
+      warehouse_manager: 'Warehouse Manager',
+      square_measure: 'Usable Area',
+      city_search: 'City Search',
+      publish_warehouse: 'Publish Warehouse',
+      Nopublish_warehouse: 'Recall Warehouse'
     },
     view_binset: {
       bin_name: 'Bin Name',
@@ -563,7 +571,7 @@ export default {
       notice1: 'QR code does not exist',
       notice2: 'Code does not exist',
       notice3: 'Server Error',
-      notice4: 'Only app can scan'
+      notice4: 'Only mobile can scan'
     },
     mobile_asn: {
       notice1: 'ASN List',
