@@ -72,7 +72,7 @@ export default {
     supplierasn: 'ASN поставщика',
     uploadcenter: 'Центр загрузки',
     downloadcenter: 'Центр загрузки',
-    cloudwarehouse: 'Соединение Ванкуура'
+    cloudwarehouse: 'Складское соединение'
   },
   contact: '',
   sendmessage: 'Общаться сразу',

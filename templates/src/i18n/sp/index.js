@@ -72,7 +72,7 @@ export default {
     supplierasn: 'ASN del proveedor',
     uploadcenter: 'Centro de carga',
     downloadcenter: 'Centro de descargas',
-    cloudwarehouse: 'Interconexión Wancang'
+    cloudwarehouse: 'Interconexión de almacenes'
   },
   contact: 'Comunícate de inmediato',
   sendmessage: 'Envíale un mensaje',

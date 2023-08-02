@@ -72,7 +72,7 @@ export default {
     supplierasn: 'طلب المورد',
     uploadcenter: 'مركز التحميل',
     downloadcenter: 'مركز التحميل',
-    cloudwarehouse: 'وان بن مترابطة'
+    cloudwarehouse: 'ربط المستودعات'
   },
   contact: 'تواصل الآن',
   sendmessage: 'أرسل له رسالة',

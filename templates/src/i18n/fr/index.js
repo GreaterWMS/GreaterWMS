@@ -72,7 +72,7 @@ export default {
     supplierasn: 'Fournisseur ASN',
     uploadcenter: 'Centre de téléchargement',
     downloadcenter: 'Centre de téléchargement',
-    cloudwarehouse: 'Interconnexion de wankura'
+    cloudwarehouse: "Interconnexion d'entrepôt"
   },
   contact: 'Communiquer immédiatement',
   sendmessage: 'Envoyez-lui un message',
