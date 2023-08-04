@@ -31,7 +31,6 @@
     "tar": "^6.1.11",
     "url-parse": "^1.5.3",
     "v-distpicker": "^1.2.12",
-    "vconsole": "^3.9.4",
     "vue-echarts-v3": "^2.0.1",
     "vue-i18n": "^8.24.4",
     "vue-print-nb": "^1.7.4",
