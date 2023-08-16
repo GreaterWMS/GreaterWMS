@@ -6,6 +6,7 @@
         <q-toolbar-title @click="$router.push({ name: 'home' })">
           {{ apptitle }}
         </q-toolbar-title>
+<!--        <q-btn @click="cordovaDevice()">device</q-btn>-->
           <q-btn
             round
             dense
@@ -439,6 +440,17 @@ export default {
       authin,
       login_name,
       operator,
+
+      cordovaDevice() {
+         alert("Cordova version: " + device.cordova + "\n" +
+            "Device model: " + device.model + "\n" +
+            "Device platform: " + device.platform + "\n" +
+            "Device UUID: " + device.uuid + "\n" +
+            "Device version: " + device.version + "\n" +
+            "Device Manufacturer: " + device.manufacturer + "\n" +
+            "Device isVirtual: " + device.isVirtual + "\n" +
+            "Device serial: " + device.serial);
+      },
 
       langChange (e) {
         lang.value = e

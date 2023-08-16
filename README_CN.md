@@ -44,7 +44,7 @@
     <a href="https://production.56yhz.com/">演示地址</a>
 </h4>
 <h4>
-  <a href="https://space.bilibili.com/407321291/channel/seriesdetail?sid=776320">相关视频</a>
+  <a href="https://space.bilibili.com/407321291/channel/collectiondetail?sid=436525&ctype=0">相关视频</a>
 </h4>
 <h4>
   <a href="https://github.com/GreaterWMS/GreaterwMS/issues/new?template=bug_report.md&title=[BUG]">提交一个Bug</a>
