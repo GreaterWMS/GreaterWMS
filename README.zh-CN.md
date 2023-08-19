@@ -28,14 +28,6 @@
 [![BiliBili](https://img.shields.io/badge/BiliBili-4987-red)](https://space.bilibili.com/407321291/channel/seriesdetail?sid=776320)
 </div>
 
-最近抖音喜欢一个小姐姐，你们不给我打赏，那给我喜欢的小姐姐一个关注吧
-
-- 抖音： 削削Katie
-
-<div align="left">
-    <img src="static/img/Katie.jpg" alt="削削Katie" height="400" />
-</div>
-
 ## :rocket: 找到我们
 <h4>
     <a href="https://www.56yhz.com/">官网首页</a>
