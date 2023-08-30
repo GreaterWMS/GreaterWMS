@@ -48,6 +48,8 @@
   <a href="https://www.56yhz.com/greaterwms.html">英文文档</a>
 </h4>
 
+QQ技术交流群：289548524
+
 [//]: # (About the Project)
 ### :star2: 关于此项目
 
