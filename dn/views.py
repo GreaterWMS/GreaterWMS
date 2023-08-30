@@ -1792,13 +1792,14 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                     pick_qty_change.save()
                     bin_qty_change.save()
                 dn_detail.picked_qty = dn_detail.picked_qty + int(data['goodsData'][j].get('picked_qty'))
-                if dn_detail.dn_status == 3:
-                    dn_detail.dn_status = 4
                 if dn_detail.pick_qty > 0:
                     dn_detail.pick_qty = 0
-                dn_detail.save()
-            if DnDetailModel.objects.filter(openid=self.request.auth.openid, dn_code=str(data['dn_code']), dn_status=3).exists() is False:
-                qs.save()
+                if PickingListModel.objects.filter(openid=self.request.auth.openid, dn_code=str(data['dn_code']), picking_status=0).exists():
+                    dn_detail.save()
+                else:
+                    qs.save()
+                    dn_detail.dn_status = 4
+                    dn_detail.save()
             return Response({"Detail": "success"}, status=200)
 
 class DnDispatchViewSet(viewsets.ModelViewSet):

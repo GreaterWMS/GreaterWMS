@@ -1,7 +1,7 @@
 {
   "name": "org.greaterwms.scanner.app",
   "displayName": "GreaterWMS--Open Source Warehouse Management System",
-  "version": "2.1.47",
+  "version": "2.1.48",
   "description": "GreaterWMS--Open Source Warehouse Management System",
   "main": "index.js",
   "scripts": {

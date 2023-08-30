@@ -73,8 +73,6 @@ export default defineComponent({
     const requestauth = ref(0)
     const submitdata = ref({})
     const dialogForm = ref(false)
-    const options = ref([])
-    const optionsChange = ref('')
     const { t } = useI18n()
     const fab1 = computed({
       get: () => $store.state.fabchange.fab1,
@@ -173,7 +171,7 @@ export default defineComponent({
       }
     })
 
-        function sslCheck (e) {
+    function sslCheck (e) {
       if (e !== null) {
         var baseurlCheck = baseurl.value.split(':')
         var urlCheck = e.split(':')
@@ -311,39 +309,6 @@ export default defineComponent({
       }
     }
 
-    function setOptions (e) {
-      apiurl.value = baseurl.value + '/binset/?bin_name__icontains='
-      axios.get(apiurl.value + e,
-        {
-          headers: {
-            "Content-Type": 'application/json, charset="utf-8"',
-            "token": openid.value,
-            "language": lang.value,
-            "operator": operator.value
-          }
-        }).then(res => {
-        if (!res.data.detail) {
-          var binlist = []
-          options.value = []
-          res.data.results.forEach(item => {
-            binlist.push(item.bin_name)
-          })
-          options.value = binlist
-        }
-      }).catch(err => {
-        $q.notify({
-          type: 'negative',
-          message: t('notice.mobile_scan.notice3')
-        })
-      })
-    }
-
-    watch (optionsChange,(newValue,oldValue)=>{
-      if (newValue.length >= 2) {
-        setOptions(newValue)
-      }
-    })
-
     watch (bar_scanned,(newValue,oldValue)=>{
       if (scanmode.value === 'GOODS') {
         InitData('&goods_code=' + scandata.value)
@@ -417,20 +382,7 @@ export default defineComponent({
       dataSubmit,
       cancelSubmitData,
       submitData,
-      options,
-      optionsChange,
-      error1: t('notice.mobile_dn.notice16'),
-      setOptions,
-      filterFn (val, update, abort) {
-        if (val.length < 2) {
-          abort()
-          return
-        }
-        update(() => {
-          const needle = val.toLowerCase()
-          optionsChange.value = needle
-        })
-      }
+      error1: t('notice.mobile_dn.notice16')
     }
   }
 })

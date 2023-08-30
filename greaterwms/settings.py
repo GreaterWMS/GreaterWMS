@@ -161,7 +161,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')
 SPECTACULAR_SETTINGS = {
     'TITLE': 'GreaterWMS',
     'DESCRIPTION': 'GreaterWMS API Documents',
-    'VERSION': '2.1.37',
+    'VERSION': '2.1.48',
     'SERVE_INCLUDE_SCHEMA': False,
     # OTHER SETTINGS
     'SWAGGER_UI_DIST': 'SIDECAR',  # shorthand to use the sidecar instead
