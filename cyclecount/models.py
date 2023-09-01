@@ -7,6 +7,7 @@ class QTYRecorder(models.Model):
     goods_code = models.CharField(max_length=255, verbose_name="Goods Code")
     goods_desc = models.CharField(max_length=255, verbose_name="Goods Description")
     goods_qty = models.BigIntegerField(default=0, verbose_name="On Hand Stock")
+    store_code = models.CharField(default='', max_length=255, verbose_name="Store Code")
     creater = models.CharField(max_length=255, verbose_name="Who Create")
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="Create Time")
     update_time = models.DateTimeField(auto_now=True, blank=True, null=True, verbose_name="Update Time")

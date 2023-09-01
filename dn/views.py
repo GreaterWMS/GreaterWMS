@@ -1666,6 +1666,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                                  goods_code=bin_qty_change.goods_code,
                                                  goods_desc=bin_qty_change.goods_desc,
                                                  goods_qty=0 - int(data['goodsData'][j].get('pick_qty')),
+                                                 store_code=bin_qty_change.t_code,
                                                  creater=str(staff_name)
                                                  )
                 cur_date = timezone.now().date()
@@ -1756,6 +1757,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                                  goods_code=bin_qty_change.goods_code,
                                                  goods_desc=bin_qty_change.goods_desc,
                                                  goods_qty=0 - int(data['goodsData'][j].get('picked_qty')),
+                                                 store_code=bin_qty_change.t_code,
                                                  creater=str(staff_name)
                                                  )
                 cur_date = timezone.now().date()

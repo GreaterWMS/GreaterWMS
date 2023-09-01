@@ -28,7 +28,6 @@ class QTYRecorderViewSet(viewsets.ModelViewSet):
             Response a data list（all）
 
     """
-
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
     ordering_fields = ['id', "create_time", "update_time", ]

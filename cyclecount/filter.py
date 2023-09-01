@@ -21,6 +21,7 @@ class QTYRecorderListFilter(FilterSet):
             "goods_code": ['exact', 'iexact', 'contains', 'icontains'],
             "goods_desc": ['exact', 'iexact', 'contains', 'icontains'],
             "goods_qty": ['exact', 'iexact', 'gt', 'gte', 'lt', 'lte', 'range'],
+            "store_code": ['exact', 'iexact', 'contains', 'icontains'],
             "creater": ['exact', 'iexact', 'contains', 'icontains'],
             "create_time": ['year', 'month', 'day', 'week_day', 'gt', 'gte', 'lt', 'lte', 'range'],
             "update_time": ['year', 'month', 'day', 'week_day', 'gt', 'gte', 'lt', 'lte', 'range']
