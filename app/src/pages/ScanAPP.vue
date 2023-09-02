@@ -268,6 +268,20 @@ function getData (data) {
   document.getElementById('scannedBarcodes').dispatchEvent(new Event('input'))
 }
 
+function iDataDevice () {
+  document.addEventListener('deviceready', iDataOndeviceReady, false)
+}
+
+function iDataOndeviceReady () {
+  window.addEventListener('idatadata', getiData, false)
+}
+
+function getiData (data) {
+  document.getElementById('scannedBarcodes').value = ''
+  document.getElementById('scannedBarcodes').value = data.data
+  document.getElementById('scannedBarcodes').dispatchEvent(new Event('input'))
+}
+
 function playSuccAudio () {
   navigator.notification.beep(1)
 }
@@ -514,6 +528,8 @@ export default defineComponent({
             scanner.initialize()
         } else if (window.device.manufacturer === "SEUIC") {
           seuicDevice()
+        } else if (window.device.manufacturer === "iData") {
+          iDataDevice()
         }
       }
     })
@@ -524,6 +540,8 @@ export default defineComponent({
           window.removeEventListener('deviceready', scanner.onDeviceReady, false)
         } else if (window.device.manufacturer === "SEUIC") {
           window.removeEventListener('deviceready', seuicOndeviceReady, false)
+        } else if (window.device.manufacturer === "iData") {
+          window.removeEventListener('deviceready', iDataOndeviceReady, false)
         }
       }
     })

@@ -37,6 +37,9 @@
     "com-darryncampbell-cordova-plugin-intent": {
       "PACKAGE_NAME": "org.greaterwms.scanner.app"
     },
+    "cordova-plugin-idatascanner": {
+      "PACKAGE_NAME": "org.greaterwms.scanner.app"
+    },
     "cordova-plugin-seuic-scanner": {
       "PACKAGE_NAME": "org.greaterwms.scanner.app"
     }
