@@ -2,7 +2,7 @@
     <div>
       <transition appear enter-active-class="animated fadeIn">
       <q-table
-        class="my-sticky-header-column-table shadow-24"
+        class="my-sticky-header-table shadow-24"
         :data="table_list"
         row-key="id"
         :separator="separator"

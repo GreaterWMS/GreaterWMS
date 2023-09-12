@@ -27,6 +27,13 @@
         <img src="statics/equipment/zebra.png" style="margin-right: 20px">
       </q-item-section>
     </q-item>
+    <q-separator />
+    <q-item clickable v-ripple>
+      <q-item-section>iData</q-item-section>
+      <q-item-section thumbnail>
+        <img src="statics/equipment/idata.jpg" style="margin-right: 20px">
+      </q-item-section>
+    </q-item>
 <!--    <q-separator />-->
 <!--    <q-item clickable v-ripple>-->
 <!--      <q-item-section>Urovo</q-item-section>-->
