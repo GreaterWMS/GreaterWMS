@@ -1684,6 +1684,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock + int(data['goodsData'][j].get('pick_qty'))
                     pick_qty_change.picked_qty = int(data['goodsData'][j].get('pick_qty'))
                     pick_qty_change.picking_status = 1
+                    bin_qty_change.goods_qty = bin_qty_change.goods_qty - int(data['goodsData'][j].get('pick_qty'))
                     bin_qty_change.pick_qty = bin_qty_change.pick_qty - int(data['goodsData'][j].get('pick_qty'))
                     bin_qty_change.picked_qty = bin_qty_change.picked_qty + int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.save()
@@ -1696,6 +1697,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                         data['goodsData'][j].get('pick_qty')))
                     pick_qty_change.picked_qty = int(data['goodsData'][j].get('pick_qty'))
                     pick_qty_change.picking_status = 1
+                    bin_qty_change.goods_qty = bin_qty_change.goods_qty - pick_qty_change.pick_qty
                     bin_qty_change.pick_qty = bin_qty_change.pick_qty - pick_qty_change.pick_qty
                     bin_qty_change.picked_qty = bin_qty_change.picked_qty + int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.save()
@@ -1777,6 +1779,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                         data['goodsData'][j].get('picked_qty'))
                     pick_qty_change.picked_qty = int(data['goodsData'][j].get('picked_qty'))
                     pick_qty_change.picking_status = 1
+                    bin_qty_change.goods_qty = bin_qty_change.goods_qty - int(data['goodsData'][j].get('pick_qty'))
                     bin_qty_change.pick_qty = bin_qty_change.pick_qty - int(data['goodsData'][j].get('picked_qty'))
                     bin_qty_change.picked_qty = bin_qty_change.picked_qty + int(data['goodsData'][j].get('picked_qty'))
                     goods_qty_change.save()
@@ -1788,6 +1791,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                         data['goodsData'][j].get('picked_qty'))
                     pick_qty_change.picked_qty = int(data['goodsData'][j].get('picked_qty'))
                     pick_qty_change.picking_status = 1
+                    bin_qty_change.goods_qty = bin_qty_change.goods_qty - pick_qty_change.pick_qty
                     bin_qty_change.pick_qty = bin_qty_change.pick_qty - pick_qty_change.pick_qty
                     bin_qty_change.picked_qty = bin_qty_change.picked_qty + int(data['goodsData'][j].get('picked_qty'))
                     goods_qty_change.save()

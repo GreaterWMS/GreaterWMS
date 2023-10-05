@@ -419,11 +419,9 @@ class StockBinViewSet(viewsets.ModelViewSet):
                     goods_qty_change.save()
                     qs_project.save()
                     if StockBinModel.objects.filter(openid=self.request.auth.openid,
-                                                    bin_name=str(data[j]['bin_name'])).exists():
-                        pass
-                    else:
+                                                    bin_name=str(data[j]['bin_name'])).exists() is False:
                         current_bin_detail.empty_label = True
-                    current_bin_detail.save()
+                        current_bin_detail.save()
                 elif bin_move_qty_res < 0:
                     raise APIException({"detail": "Move Qty must < Bin Goods Qty"})
                 else:
