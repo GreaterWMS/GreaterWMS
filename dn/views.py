@@ -1876,18 +1876,15 @@ class DnDispatchViewSet(viewsets.ModelViewSet):
                                                              goods_code=pick_qty_change[j].goods_code,
                                                              bin_name=pick_qty_change[j].bin_name,
                                                              t_code=pick_qty_change[j].t_code).first()
-                    bin_qty_change.goods_qty = bin_qty_change.goods_qty - pick_qty_change[j].picked_qty
-                    if bin_qty_change.goods_qty == 0:
+                    bin_qty_change.picked_qty = bin_qty_change.picked_qty - pick_qty_change[j].picked_qty
+                    if bin_qty_change.goods_qty == 0 and bin_qty_change.pick_qty == 0 and bin_qty_change.picked_qty == 0:
                         bin_qty_change.delete()
                         if stockbin.objects.filter(openid=self.request.auth.openid,
-                                                   bin_name=pick_qty_change[j].bin_name).exists():
-                            pass
-                        else:
+                                                   bin_name=pick_qty_change[j].bin_name,
+                                                   goods_qty__gt=0).exists() is False:
                             binset.objects.filter(openid=self.request.auth.openid,
                                                   bin_name=pick_qty_change[j].bin_name).update(empty_label=True)
-                    else:
-                        bin_qty_change.picked_qty = bin_qty_change.picked_qty - pick_qty_change[j].picked_qty
-                        bin_qty_change.save()
+                    bin_qty_change.save()
                 driverdispatch.objects.create(openid=self.request.auth.openid,
                                               driver_name=driver.driver_name,
                                               dn_code=str(data['dn_code']),
