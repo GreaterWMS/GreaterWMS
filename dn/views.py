@@ -1111,7 +1111,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                     dn_detail_list[i].goods_code)).first()
                     goods_bin_stock_list = stockbin.objects.filter(openid=self.request.auth.openid,
                                                                    goods_code=str(dn_detail_list[i].goods_code),
-                                                                   bin_property="Normal").order_by('bin_level')
+                                                                   bin_property="Normal").order_by('id')
                     can_pick_qty = goods_qty_change.onhand_stock - \
                                    goods_qty_change.inspect_stock - \
                                    goods_qty_change.hold_stock - \
@@ -1663,6 +1663,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                           goods_code=bin_qty_change.goods_code,
                                           create_time__gte=cur_date).update(goods_qty=cycle_qty)
                 if int(data['goodsData'][j].get('pick_qty')) == pick_qty_change.pick_qty:
+                    goods_qty_change.onhand_stock = goods_qty_change.onhand_stock - int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.pick_stock = goods_qty_change.pick_stock - int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock + int(data['goodsData'][j].get('pick_qty'))
                     pick_qty_change.picked_qty = int(data['goodsData'][j].get('pick_qty'))
@@ -1674,6 +1675,7 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                     pick_qty_change.save()
                     bin_qty_change.save()
                 elif int(data['goodsData'][j].get('pick_qty')) < pick_qty_change.pick_qty:
+                    goods_qty_change.onhand_stock = goods_qty_change.onhand_stock - int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.pick_stock = goods_qty_change.pick_stock - dn_detail.pick_qty
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock + int(data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.can_order_stock = goods_qty_change.can_order_stock + (int(pick_qty_change.pick_qty) - int(
@@ -1756,6 +1758,8 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                                           goods_code=bin_qty_change.goods_code,
                                           create_time__gte=cur_date).update(goods_qty=cycle_qty)
                 if int(data['goodsData'][j].get('picked_qty')) == pick_qty_change.pick_qty:
+                    goods_qty_change.onhand_stock = goods_qty_change.onhand_stock - int(
+                        data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.pick_stock = goods_qty_change.pick_stock - int(
                         data['goodsData'][j].get('picked_qty'))
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock + int(
@@ -1769,6 +1773,8 @@ class DnPickedViewSet(viewsets.ModelViewSet):
                     pick_qty_change.save()
                     bin_qty_change.save()
                 elif int(data['goodsData'][j].get('picked_qty')) < pick_qty_change.pick_qty:
+                    goods_qty_change.onhand_stock = goods_qty_change.onhand_stock - int(
+                        data['goodsData'][j].get('pick_qty'))
                     goods_qty_change.pick_stock = goods_qty_change.pick_stock - dn_detail.pick_qty
                     goods_qty_change.picked_stock = goods_qty_change.picked_stock + int(
                         data['goodsData'][j].get('picked_qty'))
