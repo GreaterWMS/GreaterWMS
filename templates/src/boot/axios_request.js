@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
-import { SessionStorage, LocalStorage, Notify } from 'quasar'
+import { SessionStorage, LocalStorage, Notify, Loading } from 'quasar'
 import { i18n } from './i18n'
 import Bus from './bus.js'
 
@@ -54,12 +54,15 @@ axiosInstanceAuth.interceptors.request.use(
       config.headers.token = LocalStorage.getItem('openid')
       config.headers.operator = LocalStorage.getItem('login_id')
       config.headers.language = lang
+      Loading.show()
       return config
     } else {
+      Loading.hide()
       Bus.$emit('needLogin', true)
     }
   },
   function (error) {
+    Loading.hide()
     return Promise.reject(error)
   }
 )
@@ -100,8 +103,10 @@ axiosInstanceAuth.interceptors.response.use(
       } else {
         response.data.previous = null
       }
+      Loading.hide()
       return response.data
     }
+    Loading.hide()
     return response.data
   },
   function (error) {
@@ -177,6 +182,7 @@ axiosInstanceAuth.interceptors.response.use(
         Notify.create(defaultNotify)
         break
     }
+    Loading.hide()
     return Promise.reject(error)
   }
 )
@@ -192,12 +198,15 @@ axiosInstanceAuthScan.interceptors.request.use(
       config.headers.token = LocalStorage.getItem('openid')
       config.headers.operator = LocalStorage.getItem('login_id')
       config.headers.language = lang
+      Loading.show()
       return config
     } else {
+      Loading.hide()
       Bus.$emit('needLogin', true)
     }
   },
   function (error) {
+    Loading.hide()
     return Promise.reject(error)
   }
 )
@@ -228,8 +237,10 @@ axiosInstanceAuthScan.interceptors.response.use(
       } else {
         response.data.previous = null
       }
+      Loading.hide()
       return response.data
     }
+    Loading.hide()
     return response.data
   },
   function (error) {
@@ -305,6 +316,7 @@ axiosInstanceAuthScan.interceptors.response.use(
         Notify.create(defaultNotify)
         break
     }
+    Loading.hide()
     return Promise.reject(error)
   }
 )
@@ -313,9 +325,11 @@ axiosInstance.interceptors.request.use(
   function (config) {
     config.headers.post['Content-Type'] = 'application/json, charset="utf-8"'
     config.headers.language = lang
+    Loading.show()
     return config
   },
   function (error) {
+    Loading.hide()
     return Promise.reject(error)
   }
 )
@@ -332,6 +346,7 @@ axiosInstance.interceptors.response.use(
         })
       }
     }
+    Loading.hide()
     return response.data
   },
   function (error) {
@@ -407,6 +422,7 @@ axiosInstance.interceptors.response.use(
         Notify.create(defaultNotify)
         break
     }
+    Loading.hide()
     return Promise.reject(error)
   }
 )
@@ -416,21 +432,26 @@ axiosInstanceVersion.interceptors.request.use(
     const auth = LocalStorage.getItem('auth')
     const login = SessionStorage.getItem('axios_check')
     if (auth || login) {
+      Loading.show()
       return config
     } else {
+      Loading.hide()
       Bus.$emit('needLogin', true)
     }
   },
   function (error) {
+    Loading.hide()
     return Promise.reject(error)
   }
 )
 
 axiosInstanceVersion.interceptors.response.use(
   function (response) {
+    Loading.hide()
     return response.data
   },
   function (error) {
+    Loading.hide()
     return Promise.reject(error)
   }
 )
@@ -444,12 +465,15 @@ axiosFile.interceptors.request.use(
       config.headers.token = LocalStorage.getItem('openid')
       config.headers.operator = LocalStorage.getItem('login_id')
       config.headers.language = lang
+      Loading.show()
       return config
     } else {
+      Loading.hide()
       Bus.$emit('needLogin', true)
     }
   },
   function (error) {
+    Loading.hide()
     return Promise.reject(error)
   }
 )
@@ -466,6 +490,7 @@ axiosFile.interceptors.response.use(
         })
       }
     }
+    Loading.hide()
     return response
   },
   function (error) {
@@ -541,6 +566,7 @@ axiosFile.interceptors.response.use(
         Notify.create(defaultNotify)
         break
     }
+    Loading.hide()
     return Promise.reject(error)
   }
 )
