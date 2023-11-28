@@ -663,7 +663,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                 dn_detail_list[i].goods_code)).first()
                 goods_bin_stock_list = stockbin.objects.filter(openid=self.request.auth.openid,
                                                                goods_code=str(dn_detail_list[i].goods_code),
-                                                               bin_property="Normal").order_by('id')
+                                                               bin_property="Normal", goods_qty__gt=0).order_by('id')
                 can_pick_qty = goods_qty_change.onhand_stock - \
                                goods_qty_change.inspect_stock - \
                                goods_qty_change.hold_stock - \
@@ -1111,7 +1111,7 @@ class DnOrderReleaseViewSet(viewsets.ModelViewSet):
                                                                     dn_detail_list[i].goods_code)).first()
                     goods_bin_stock_list = stockbin.objects.filter(openid=self.request.auth.openid,
                                                                    goods_code=str(dn_detail_list[i].goods_code),
-                                                                   bin_property="Normal").order_by('id')
+                                                                   bin_property="Normal", goods_qty__gt=0).order_by('id')
                     can_pick_qty = goods_qty_change.onhand_stock - \
                                    goods_qty_change.inspect_stock - \
                                    goods_qty_change.hold_stock - \
@@ -1610,6 +1610,13 @@ class DnPickedViewSet(viewsets.ModelViewSet):
             return self.http_method_not_allowed(request=self.request)
 
     def create(self, request, pk):
+        delete_data = stockbin.objects.filter(openid=self.request.auth.openid,
+                                                   goods_qty=0,
+                                                   pick_qty=0,
+                                                   picked_qty=0)
+        if delete_data.exists():
+            for i in delete_data:
+                i.delete()
         qs = self.get_object()
         if qs.dn_status != 3:
             raise APIException({"detail": "This dn Status Not Pre Pick"})
@@ -1699,6 +1706,13 @@ class DnPickedViewSet(viewsets.ModelViewSet):
             return Response({"Detail": "success"}, status=200)
 
     def update(self, request, *args, **kwargs):
+        delete_data = stockbin.objects.filter(openid=self.request.auth.openid,
+                                              goods_qty=0,
+                                              pick_qty=0,
+                                              picked_qty=0)
+        if delete_data.exists():
+            for i in delete_data:
+                i.delete()
         data = self.request.data
         qs = self.get_queryset().filter(dn_code=data['dn_code']).first()
         if qs.dn_status != 3:

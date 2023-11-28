@@ -197,7 +197,7 @@ function datawedge64 () {
       PARAM_LIST: {}
     },
     APP_LIST: [{
-      PACKAGE_NAME: 'org.greaterwms.app',
+      PACKAGE_NAME: 'org.greaterwms.scanner.app',
       ACTIVITY_LIST: ['*']
     }]
   }
