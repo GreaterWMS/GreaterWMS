@@ -695,7 +695,7 @@
             <tr>
               <th class="text-left">{{ $t('outbound.view_dn.dn_code') }}</th>
               <th class="text-right">{{ $t('warehouse.view_binset.bin_name') }}</th>
-              <th class="text-right">{{ $t('outbound.view_dn.goods_qty') }}</th>
+              <th class="text-right">{{ $t('goods.view_goodslist.goods_code') }}</th>
               <th class="text-right">{{ $t('outbound.pickstock') }}</th>
               <th class="text-right">{{ $t('outbound.pickedstock') }}</th>
               <th class="text-right">Comments</th>
