@@ -101,7 +101,7 @@ class StockBinViewSet(viewsets.ModelViewSet):
                 if int(data['move_qty']) <= 0:
                     raise APIException({"detail": "Move QTY Must > 0"})
                 else:
-                    bin_move_qty_res = qs.goods_qty - qs.pick_qty - int(data['move_qty'])
+                    bin_move_qty_res = qs.goods_qty - qs.pick_qty - qs.picked_qty - int(data['move_qty'])
                     if bin_move_qty_res > 0:
                         qs.goods_qty = bin_move_qty_res
                         if current_bin_detail.bin_property == 'Damage':
@@ -274,7 +274,7 @@ class StockBinViewSet(viewsets.ModelViewSet):
             if int(data[j]['move_qty']) <= 0:
                 raise APIException({"detail": "Move QTY Must > 0"})
             else:
-                bin_move_qty_res = qs_project.goods_qty - qs_project.pick_qty - int(
+                bin_move_qty_res = qs_project.goods_qty - qs_project.pick_qty - qs.picked_qty - int(
                     data[j]['move_qty'])
                 if bin_move_qty_res > 0:
                     qs_project.goods_qty = bin_move_qty_res
