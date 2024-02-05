@@ -24,7 +24,7 @@ RUN pip3 install daphne
 RUN chmod +x /GreaterWMS/backend_start.sh
 CMD ["/GreaterWMS/backend_start.sh"]
 
-FROM --platform=linux/amd64 node:14.19.3-buster-slim AS front
+FROM --platform=linux/amd64 node:20.5.0-buster-slim AS front
 COPY ./templates/package.json /GreaterWMS/templates/package.json
 #COPY ./templates/node_modules/ /GreaterWMS/templates/node_modules/
 COPY ./web_start.sh /GreaterWMS/templates/web_start.sh
