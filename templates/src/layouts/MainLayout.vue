@@ -466,21 +466,6 @@
             /></q-item-section>
             <q-item-section>{{ $t("menuItem.downloadcenter") }}</q-item-section>
           </q-item>
-          <q-separator/>
-          <q-item
-            clickable
-            :to="{ name: 'warehouselist' }"
-            @click="linkChange('warehouselist')"
-            v-ripple
-            exact
-            :active="link === 'warehouselist' && link !== ''"
-            :class="{'my-menu-link': link === 'warehouselist' && link !== '',}"
-          >
-            <q-item-section avatar>
-              <q-icon name="warehouse"/>
-            </q-item-section>
-            <q-item-section>{{ $t("menuItem.cloudwarehouse") }}</q-item-section>
-          </q-item>
         </q-list>
       </q-scroll-area>
     </q-drawer>

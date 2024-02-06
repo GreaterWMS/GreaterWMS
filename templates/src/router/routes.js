@@ -366,16 +366,6 @@ const routes = [{
       ]
     },
     {
-      path: 'cloudwarehouse',
-      name: 'cloudwarehouse',
-      component: () => import('pages/cloudwarehouse/cloudwarehouse.vue'),
-      children: [{
-        path: 'warehouselist',
-        name: 'warehouselist',
-        component: () => import('pages/cloudwarehouse/warehouselist.vue')
-      }]
-    },
-    {
       path: 'downloadcenter',
       name: 'downloadcenter',
       component: () => import('pages/downloadcenter/download.vue'),
