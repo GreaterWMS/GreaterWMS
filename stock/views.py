@@ -93,9 +93,9 @@ class StockBinViewSet(viewsets.ModelViewSet):
                 raise APIException({"detail": "Please Enter The Bin Name"})
             else:
                 current_bin_detail = binset.objects.filter(openid=self.request.auth.openid,
-                                                   bin_name=str(data['bin_name'])).first()
+                                                   bin_name=str(data['bin_name']), is_delete=False).first()
                 move_to_bin_detail = binset.objects.filter(openid=self.request.auth.openid,
-                                                   bin_name=str(data['move_to_bin'])).first()
+                                                   bin_name=str(data['move_to_bin']), is_delete=False).first()
                 goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
                                                             goods_code=str(data['goods_code'])).first()
                 if int(data['move_qty']) <= 0:
@@ -265,9 +265,9 @@ class StockBinViewSet(viewsets.ModelViewSet):
                 raise APIException({"detail": "Please Enter The Bin Name"})
         for j in range(len(data)):
             current_bin_detail = binset.objects.filter(openid=self.request.auth.openid,
-                                                       bin_name=str(data[j]['bin_name'])).first()
+                                                       bin_name=str(data[j]['bin_name']), is_delete=False).first()
             move_to_bin_detail = binset.objects.filter(openid=self.request.auth.openid,
-                                                       bin_name=str(data[j]['move_to_bin'])).first()
+                                                       bin_name=str(data[j]['move_to_bin']), is_delete=False).first()
             goods_qty_change = stocklist.objects.filter(openid=self.request.auth.openid,
                                                         goods_code=str(data[j]['goods_code'])).first()
             qs_project = qs.filter(t_code=data[j]['t_code']).first()

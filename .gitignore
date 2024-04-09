@@ -9,3 +9,5 @@ delete.py
 *.xlsx
 logs/
 bfg.jar
+error.log
+server.log
