@@ -1,3 +1,5 @@
+import random
+
 from dateutil.relativedelta import relativedelta
 from django.http import StreamingHttpResponse
 from django.utils import timezone
@@ -12,6 +14,9 @@ from rest_framework.generics import RetrieveAPIView,GenericAPIView
 from rest_framework.viewsets import ViewSetMixin
 from rest_framework.response import Response
 from rest_framework.exceptions import APIException
+from utils.jwt import create_token, parse_payload
+from utils.md5 import Md5
+
 
 from stock.models import StockBinModel
 from dn.models import DnDetailModel
@@ -84,8 +89,22 @@ class ListViewSet(viewsets.ModelViewSet):
         else:
             return self.http_method_not_allowed(request=self.request)
 
-
-
+    def create(self, request, *args, **kwargs):
+        context = {}
+        data = self.request.data
+        process = data.get('process', '')
+        if process:
+            jwt_data = {
+                        "data": data
+                    }
+            bar_code = Md5.md5(self.request.auth.openid + str(random.randint(10000, 99999)))
+            code_data = create_token(jwt_data)
+            ListModel.objects.create(openid=self.request.auth.openid, mode=str(process), code=code_data,
+                                     bar_code=bar_code)
+            context['bar_code'] = bar_code
+            return Response(context)
+        else:
+            raise APIException({'detail': '请填入具体的流程名称'})
 class SannerView(viewsets.ModelViewSet):
     """
         Retrieve:
