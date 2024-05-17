@@ -1,0 +1,7 @@
+FROM mysql:5.7
+
+COPY ./init.sh /docker-entrypoint-initdb.d/init.sh
+
+RUN chown -R mysql:mysql /docker-entrypoint-initdb.d
+
+CMD ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]

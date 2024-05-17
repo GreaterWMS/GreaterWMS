@@ -1,6 +1,8 @@
 version: '3.9'
 networks:
   basic:
+    name: basic
+    external: true
 services:
   front:
     # build:

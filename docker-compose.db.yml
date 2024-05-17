@@ -1,0 +1,47 @@
+version: '2.4'
+
+services:
+  mysql-db:
+    image: mysql:5.7
+    container_name: mysql_db
+    build: 
+      context: .
+      dockerfile: Dockerfile.Db
+    ports:
+      # - "127.0.0.1:3309:3306"
+      - 3306:3306
+    expose:
+      - 3306
+    env_file:
+      - .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_TCP_PORT: 3306
+    volumes:
+      - db_data:/var/lib/mysql:cached
+    restart: always
+    networks:
+      - basic
+  redis:
+    image: "redis:alpine"
+    container_name: main_redis
+    command: redis-server --requirepass sOmE_Very_sEcUrE_pAsS
+    ports:
+      - 6379:6379
+    volumes:
+      - $PWD/../redis-data:/var/lib/redis
+      - $PWD/../redis.conf:/usr/local/etc/redis/redis.conf
+      # - /home/deploy/chronicle/redis-data:/var/lib/redis
+      # - /home/deploy/chronicle/redis.conf:/usr/local/etc/redis/redis.conf
+    restart: unless-stopped
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    networks:
+      - basic
+networks:
+  basic:
+    name: basic
+    external: true

@@ -11,3 +11,4 @@ logs/
 bfg.jar
 error.log
 server.log
+.env
