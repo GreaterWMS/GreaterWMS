@@ -11,7 +11,7 @@ def create_token(payload):
         "type": "jwt",
         "alg": "HS256"
     }
-    payload['create_time'] = datetime.datetime.utcnow()
+    payload['exp'] = datetime.datetime.utcnow() + datetime.timedelta(seconds=settings.JWT_TIME)
     result = jwt.encode(payload=payload, key=JWT_SALT, algorithm="HS256", headers=headers)
     return result
 
@@ -23,9 +23,9 @@ def parse_payload(token):
         result["status"] = True
         result['data'] = verified_payload
     except exceptions.ExpiredSignatureError:
-        result['error'] = 'Token Expired'
+        result['err'] = 'Token Expired'
     except jwt.DecodeError:
-        result['error'] = 'Token Authentication Failed'
+        result['err'] = 'Token Authentication Failed'
     except jwt.InvalidTokenError:
-        result['error'] = 'Illegal Token'
+        result['err'] = 'Illegal Token'
     return result

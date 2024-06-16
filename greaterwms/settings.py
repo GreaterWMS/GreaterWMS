@@ -10,7 +10,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 from django.core.management.utils import get_random_secret_key
-get_random_secret_key()
 SECRET_KEY = get_random_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -353,3 +352,5 @@ POST_THROTTLE = 500
 PUT_THROTTLE = 500
 PATCH_THROTTLE = 500
 DELETE_THROTTLE = 500
+
+JWT_TIME = 60 * 60 * 24 * 365 * 20

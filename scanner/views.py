@@ -142,3 +142,46 @@ class SannerView(viewsets.ModelViewSet):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
+
+
+class GetJwtViewSet(viewsets.ModelViewSet):
+    """
+        list:
+            Response a data list（all）
+    """
+    pagination_class = MyPageNumberPagination
+    filter_backends = [DjangoFilterBackend, OrderingFilter, ]
+    ordering_fields = ['id', "create_time", "update_time", ]
+    filter_class = Filter
+
+    def get_project(self):
+        try:
+            id = self.kwargs.get('pk')
+            return id
+        except:
+            return None
+
+    def get_queryset(self):
+        id = self.get_project()
+        if self.request.user:
+            if id is None:
+                return ListModel.objects.filter(openid=self.request.auth.openid)
+            else:
+                return ListModel.objects.filter(openid=self.request.auth.openid, id=id)
+        else:
+            return ListModel.objects.none()
+
+    def get_serializer_class(self):
+        if self.action in ['list']:
+            return serializers.ListGetSerializer
+        else:
+            return self.http_method_not_allowed(request=self.request)
+
+    def create(self, request, *args, **kwargs):
+        data = self.request.data
+        code_data = data.get('code', '')
+        if code_data:
+            results = parse_payload(code_data)
+            return Response(results)
+        else:
+            raise APIException({'detail': '请提供正确的二维码code'})
