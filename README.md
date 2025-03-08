@@ -83,7 +83,7 @@ Python install
 - [python 3.8.10](https://www.python.org/downloads/release/python-3810/)
 
 Nodejs install
-- [nodejs 14.19.3](https://nodejs.org/download/release/v14.19.3/)
+- [nodejs v16.18.1](https://nodejs.org/download/release/v16.18.1/)
 
 Twisted install
 - Please google how to install Twisted , if you have some problem on install it . 
