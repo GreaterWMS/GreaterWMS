@@ -51,9 +51,7 @@ class MyPageNumberPaginationASNList(PageNumberPagination):
 
     def get_paginated_response(self, data):
         supplier_list_data = supplier.objects.filter(openid=self.request.auth.openid, is_delete=False)
-        supplier_list = []
-        for i in range(len(supplier_list_data)):
-            supplier_list.append(supplier_list_data[i].supplier_name)
+        supplier_list = list(map(lambda obj: obj.supplier_name, supplier_list_data))
         return Response(OrderedDict([
             ('supplier_list', supplier_list),
             ('count', self.page.paginator.count),
