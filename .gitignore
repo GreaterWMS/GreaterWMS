@@ -11,8 +11,4 @@ logs/
 bfg.jar
 error.log
 server.log
-
-venv/
-*/migrations/0001_initial.py
-.DS_Store
-*.log
+/.history/
