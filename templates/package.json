@@ -10,7 +10,7 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/cli": "^1.2.1",
+    "@quasar/cli": "^2.2.1",
     "@quasar/extras": "^1.10.11",
     "ansi-html": "^0.0.7",
     "ansi-regex": "^6.0.1",
