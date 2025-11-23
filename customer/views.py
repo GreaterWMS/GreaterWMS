@@ -34,7 +34,7 @@ class APIViewSet(viewsets.ModelViewSet):
     """
     pagination_class = MyPageNumberPagination
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
-    ordering_fields = ['id', "create_time", "update_time", ]
+    ordering_fields = ['id', "create_time",  ]
     filter_class = Filter
 
     def get_project(self):
@@ -117,7 +117,7 @@ class APIViewSet(viewsets.ModelViewSet):
 class FileDownloadView(viewsets.ModelViewSet):
     renderer_classes = (FileRenderCN, ) + tuple(api_settings.DEFAULT_RENDERER_CLASSES)
     filter_backends = [DjangoFilterBackend, OrderingFilter, ]
-    ordering_fields = ['id', "create_time", "update_time", ]
+    ordering_fields = ['id', "create_time", ]
     filter_class = Filter
 
     def get_project(self):

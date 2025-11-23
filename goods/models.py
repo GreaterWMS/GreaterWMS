@@ -1,6 +1,7 @@
 from django.db import models
 
 class ListModel(models.Model):
+    customer_id = models.CharField(max_length=255, verbose_name="Customer ID",blank=True,null=True)
     goods_code = models.CharField(max_length=255, verbose_name="Goods Code")
     goods_desc = models.CharField(max_length=255, verbose_name="Goods Description")
     goods_supplier = models.CharField(max_length=255, verbose_name="Goods Supplier")

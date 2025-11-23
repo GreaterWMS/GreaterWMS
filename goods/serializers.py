@@ -4,6 +4,7 @@ from utils import datasolve
 from rest_framework.exceptions import ValidationError
 
 class GoodsGetSerializer(serializers.ModelSerializer):
+    customer_id = serializers.CharField(read_only=True, required=False,allow_blank=True)
     goods_code = serializers.CharField(read_only=True, required=False)
     goods_desc = serializers.CharField(read_only=True, required=False)
     goods_supplier = serializers.CharField(read_only=True, required=False)
@@ -33,6 +34,7 @@ class GoodsGetSerializer(serializers.ModelSerializer):
 
 
 class GoodsPostSerializer(serializers.ModelSerializer):
+    customer_id = serializers.CharField(read_only=True, required=False,validators=[datasolve.openid_validate],allow_blank=True)
     openid = serializers.CharField(read_only=False, required=False, validators=[datasolve.openid_validate])
     goods_code = serializers.CharField(read_only=False, required=True, min_length=1,
                                        validators=[datasolve.data_validate])
@@ -65,6 +67,7 @@ class GoodsPostSerializer(serializers.ModelSerializer):
 
 
 class GoodsUpdateSerializer(serializers.ModelSerializer):
+    customer_id = serializers.CharField(read_only=True, required=False,validators=[datasolve.openid_validate])
     goods_code = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate],
                                        min_length=1)
     goods_desc = serializers.CharField(read_only=False, required=True, validators=[datasolve.data_validate])
@@ -92,6 +95,7 @@ class GoodsUpdateSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'create_time', 'update_time', ]
 
 class GoodsPartialUpdateSerializer(serializers.ModelSerializer):
+    customer_id = serializers.CharField(read_only=True, required=False,validators=[datasolve.data_validate])
     goods_code = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate],
                                        min_length=1)
     goods_desc = serializers.CharField(read_only=False, required=False, validators=[datasolve.data_validate])
