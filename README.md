@@ -1,250 +1,97 @@
 <div align="center">
   <img src="static/img/logo.png" alt="GreaterWMS logo" width="200" height="auto" />
   <h1>GreaterWMS</h1>
-  <p>Fully Open Source Warehouse Management System</p>
-  
-  <!-- CI/CD Status Badges -->
-  <p>
-    <img src="https://github.com/dev00amk/GreaterWMS-amk/workflows/CI%20Pipeline/badge.svg" alt="CI Pipeline" />
-    <img src="https://github.com/dev00amk/GreaterWMS-amk/workflows/Security%20Scan/badge.svg" alt="Security Scan" />
-    <img src="https://github.com/dev00amk/GreaterWMS-amk/workflows/Release%20Drafter/badge.svg" alt="Release Drafter" />
-  </p>
-  
-  <!-- Quality Badges -->
-  <p>
-    <img src="https://img.shields.io/badge/Python-3.9+-blue.svg" alt="Python Version" />
-    <img src="https://img.shields.io/badge/Django-4.1.2-green.svg" alt="Django Version" />
-    <img src="https://img.shields.io/badge/Node.js-16+-brightgreen.svg" alt="Node.js Version" />
-    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License" />
-  </p>
-</div></div>
+  <h3>完全开源的仓库管理系统 —— 为你的业务而定制</h3>
+</div>
 
-The original vision for this software was to make it a framework that would facilitate warehouse management software development for everyone. However, we later discovered that we had written it as a complete software system, which was not what we intended.
 
-Therefore, we have rewritten the underlying layer using Rust and Python as the carrier, creating a new CLI underlying framework called [Bomiot](https://github.com/Bomiot/Bomiot). It offers high performance and more convenient development, fully leveraging Python's inherent language advantages.
 
-The old version of GreaterWMS files can be found here:
-[GreaterWMS v2.1.49](https://github.com/GreaterWMS/GreaterWMS/tree/V2.1.49)
+## 🎬 开源版本功能视频介绍
 
-GreaterWMS will also use [Bomiot](https://github.com/Bomiot/Bomiot) for its 3.0 reconstruction.
+想快速了解 GreaterWMS 能做什么？我们录制了完整的开源版本功能演示，涵盖入库、出库、库存管理、PDA 扫描等核心操作流程。
 
-## 🚀 Quick Start
+👉 **[点击观看 GreaterWMS 开源版本功能视频](https://www.bilibili.com/video/BV1r1Em6QE5v/?vd_source=e27ed0e4cbc69fce7cb662cddc3ceae1)**
 
-### Prerequisites
+## 🔓 为什么选择 GreaterWMS 
 
-- Python 3.9+
-- Node.js 16+
-- PostgreSQL 13+ (for production)
-- Docker & Docker Compose (optional)
+​	传统的商业 WMS 软件往往闭源且难以二次开发，企业一旦选择某款软件，二次开发就会被开发公司绑定，费用高昂且周期漫长。GreaterWMS 的诞生正是为了解决这个问题——作者在供应链行业工作 15 年，深知行业内缺乏一款**高自由度、高自定义化**的软件来深度支持企业业务。GreaterWMS 的设计初衷就是**为定制而生**：无论你是仅构建进销存、仓库管理，还是需要对接物联网、ERP 和分销系统，GreaterWMS 都能作为你的基础平台。
 
-### Local Development Setup
+**Bomiot 底层框架赋能**
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/dev00amk/GreaterWMS-amk.git
-   cd GreaterWMS-amk
-   ```
+GreaterWMS 3.0 正在基于 Bomiot 框架重构。Bomiot 用 Rust 编写核心，提供插件化架构、应用市场（pip 安装即可扩展）、信号机制等能力，让**定制开发和功能扩展变得更加高效**。**GreaterWMS 也将使用[Bomiot](https://github.com/Bomiot/Bomiot)，进行3.0重构**
 
-2. **Backend Setup**
-   ```bash
-   # Create virtual environment
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+## 🎯 定制化能力
 
-   # Install dependencies
-   pip install -r requirements.txt
+**前后端分离架构**
 
-   # Run migrations
-   python manage.py migrate
+系统采用 Django REST Framework 后端 + Quasar (Vue.js) 前端的分离架构，API 遵循 RESTful 协议。这种设计使得**添加功能或修改业务逻辑**非常方便，前后端可以独立演进。
 
-   # Create superuser
-   python manage.py createsuperuser
+**模块化业务设计**
 
-   # Start development server
-   python manage.py runserver
-   ```
+系统按模块组织业务逻辑（ASN 收货、DN 发货、库存、库位等），每个模块职责清晰。你可以**只修改或扩展需要的模块**，而不影响其他功能。
 
-3. **Frontend Setup**
-   ```bash
-   cd templates
-   npm install
-   npm run dev  # or quasar dev
-   ```
+**多端统一与灵活扩展**
 
-4. **Docker Setup (Alternative)**
-   ```bash
-   # Start all services
-   docker-compose up -d
+OneAPP 理念让同一套后端可以服务于 PDA、手机 APP、桌面端和网站等多种终端。前端基于 Quasar 框架，代码可编译为 Web、Android、PDA 程序，甚至微信小程序。
 
-   # View logs
-   docker-compose logs -f
-   ```
+## 📬 联系方式
 
-## 🧪 Testing & Quality Assurance
+**项目官网**：[https://www.bomiot.com/](https://gitee.com/link?target=https%3A%2F%2Fwww.bomiot.com%2F)
 
-### Running Tests Locally
+**邮箱**：dawnup888@163.com
 
-**Backend Tests:**
-```bash
-# Run all Django tests
-python manage.py test
+**微信**：ts-Wlm
 
-# Run with coverage
-coverage run --source='.' manage.py test
-coverage report
-coverage html
+如有定制化需求、商业合作意向，或希望咨询二次开发相关问题，欢迎通过以上方式联系我们。
 
-# Run specific app tests
-python manage.py test asn.tests
+## 📦 实际定制场景
+
+GreaterWMS 已经在多个行业被成功定制落地：
+
+**三方物流、云仓（3PL）**：基于原生代码扩展多仓集群管控、一车多仓串装卸、冷链 IoT 温控、批次效期管控、多货主租户隔离等功能。原生 Milk-Run 能力可改造为干线车辆依次停靠多仓装卸货。
+
+**医药流通**：定制批次管理模块实现药品有效期自动预警，对接 IoT 设备监控温湿度，满足 GSP 合规要求。某医药分销企业上线后库存周转天数从 45 天降至 28 天。
+
+**冷链仓储**：在标准 WMS 基础上增加温度记录与预警功能，实现冷库+冷藏车的全链路温控追溯。
+
+**跨境电商**：开发国际物流与报关集成接口，适配跨境业务的特殊流程需求。
+
+**制造业**：通过批次管理和 FIFO 控制满足零部件追溯需求，与 MES 系统集成实现物料拉动式管理。某汽车零部件企业应用后库存周转率提升 25%。
+
+## 🧭 快速开始
+
+### 获取代码
+
+bash
+
+```
+git clone https://github.com/GreaterWMS/GreaterWMS.git
+cd GreaterWMS
 ```
 
-**Frontend Tests:**
-```bash
+### 后端启动
+
+bash
+
+```
+pip install -r requirements.txt
+daphne -b 0.0.0.0 -p 8008 greaterwms.asgi:application
+```
+
+### 前端开发
+
+bash
+
+```
 cd templates
-npm test
-npm run lint
-```
-
-**Security Scanning:**
-```bash
-# Python security checks
-pip install safety bandit
-safety check -r requirements.txt
-bandit -r . --exclude=./venv,./migrations
-
-# Frontend security audit
-cd templates
-npm audit
-```
-
-### CI/CD Pipeline
-
-Our CI/CD pipeline automatically runs on every pull request and includes:
-
-#### 🔍 **Quality Gates**
-- ✅ Python code linting (flake8)
-- ✅ Frontend code linting (ESLint)
-- ✅ Django system checks
-- ✅ Migration checks
-- ✅ Unit tests (Django + Frontend)
-- ✅ Integration tests
-- ✅ Security vulnerability scanning
-- ✅ Docker build tests
-
-#### 🔒 **Security Scanning**
-- **Dependency Scanning**: Safety, pip-audit, npm audit
-- **Code Security**: Bandit, Semgrep
-- **Secrets Detection**: TruffleHog
-- **Docker Security**: Trivy (when applicable)
-
-#### 📦 **Build Verification**
-- Docker image builds
-- Docker Compose configuration validation
-- Static file collection
-- Frontend build process
-
-### Running CI Locally
-
-**Using Docker Compose for CI:**
-```bash
-# Test the CI pipeline locally
-docker-compose -f docker-compose.ci.yml up --build
-
-# Run specific CI tests
-docker-compose -f docker-compose.ci.yml run backend-test python manage.py test
-docker-compose -f docker-compose.ci.yml run frontend-test npm test
-```
-
-**Manual CI Steps:**
-```bash
-# Backend CI steps
-python manage.py check --deploy
-python manage.py makemigrations --check --dry-run
-flake8 . --max-line-length=100 --exclude=migrations
-python manage.py test
-
-# Frontend CI steps
-cd templates
-npm ci
-npm run lint
-npm test
-npm run build  # if build script exists
-```
-
-## 📋 Development Workflow
-
-1. **Create a feature branch**: `git checkout -b feature/your-feature-name`
-2. **Make your changes** following our [coding guidelines](docs/PR_GUIDELINES.md)
-3. **Run tests locally**: Ensure all tests pass before pushing
-4. **Commit changes**: Use [Conventional Commits](https://www.conventionalcommits.org/) format
-5. **Push and create PR**: Use our [PR template](.github/PULL_REQUEST_TEMPLATE.md)
-6. **Code review**: Address feedback and ensure CI passes
-7. **Merge**: Once approved, PR will be merged using squash and merge
-
-### Helper Scripts
-
-Use our PR helper script to automate testing and PR creation:
-```bash
-# Run tests and create PR
-./scripts/make_pr.sh
-
-# With specific target branch
-./scripts/make_pr.sh develop "feat: add new inventory feature"
-```
-
-## 🛠️ Development Tools
-
-### Recommended IDE Setup
-- **VS Code** with Python, Django, and Vue.js extensions
-- **PyCharm Professional** for Django development
-- **WebStorm** for frontend development
-
-### Code Quality Tools
-```bash
-# Install development tools
-pip install flake8 black isort pre-commit
-npm install -g eslint prettier
-
-# Set up pre-commit hooks
-pre-commit install
-```
-
-## 📖 Documentation
-
-- **[Contributing Guidelines](docs/PR_GUIDELINES.md)** - How to contribute to the project
-- **[Pull Request Template](.github/PULL_REQUEST_TEMPLATE.md)** - PR template and checklist
-- **[Security Policy](SECURITY.md)** - Security reporting and best practices
-- **[Changelog](CHANGELOG.md)** - Version history and release notes
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Database Connection Issues:**
-```bash
-# Reset database
-python manage.py flush
-python manage.py migrate
-```
-
-**Frontend Build Issues:**
-```bash
-cd templates
-rm -rf node_modules package-lock.json
 npm install
+quasar dev
 ```
 
-**Docker Issues:**
-```bash
-# Reset Docker environment
-docker-compose down -v
-docker system prune -f
-docker-compose up --build
-```
+**请求地址配置**：`templates/public/statics/baseurl.txt`
 
-### Getting Help
+### 技术栈
 
-- 📖 Check our [documentation](docs/)
-- 🐛 [Report bugs](https://github.com/dev00amk/GreaterWMS-amk/issues)
-- 💬 [Discussions](https://github.com/dev00amk/GreaterWMS-amk/discussions)
-- 📧 Contact: [maintainer@example.com](mailto:maintainer@example.com)
+- **后端**：Python 3.8+ / Django 3.1+ / Django REST Framework
+- **前端**：Quasar 1.7.2+ / Vue 2.6+
+- **数据库**：SQLite（默认）/ MySQL / PostgreSQL

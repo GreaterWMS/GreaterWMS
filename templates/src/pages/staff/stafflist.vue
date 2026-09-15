@@ -454,6 +454,23 @@ export default {
       _this.getList()
     },
     unlock (val) {
+      if (val.staff_type === '管理员') {
+        val.staff_type = 'Admin'
+      } else if (val.staff_type === '客户') {
+        val.staff_type = 'Customer'
+      } else if (val.staff_type === '供应商') {
+        val.staff_type = 'Supplier'
+      } else if (val.staff_type === '经理') {
+        val.staff_type = 'Manager'
+      } else if (val.staff_type === '主管') {
+        val.staff_type = 'Supervisor'
+      } else if (val.staff_type === '收货组') {
+        val.staff_type = 'Inbound'
+      } else if (val.staff_type === '发货组') {
+        val.staff_type = 'Outbound'
+      } else if (val.staff_type === '库存管理') {
+        val.staff_type = 'StockControl'
+      }
       putauth(this.pathname + val.id + '/', {
         is_lock: !val.is_lock,
         staff_name: val.staff_name,
