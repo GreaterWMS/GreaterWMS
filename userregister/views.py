@@ -8,7 +8,7 @@ from django.contrib import auth
 from django.utils import timezone
 from django.contrib.auth.models import User
 from staff.models import ListModel as staff
-import json, random, os
+import json, random, os, secrets
 from django.conf import settings
 from scanner.models import ListModel as scanner
 
@@ -96,11 +96,16 @@ def register(request, *args, **kwargs):
                             err_password_not_same['data'] = data['name']
                             return JsonResponse(err_password_not_same)
                         else:
-                            transaction_code = Md5.md5(data['name'])
+                            # openid/appid are the permanent bearer credentials checked on every
+                            # API request (utils/auth.py Authtication). They must not be derived
+                            # from public/guessable input (username) plus a low-entropy timestamp,
+                            # since that is brute-forceable once the registration time is known
+                            # or narrowed down. Use a CSPRNG instead.
+                            transaction_code = secrets.token_hex(32)
                             user = User.objects.create_user(username=str(data['name']),
                                                             password=str(data['password1']))
                             Users.objects.create(user_id=user.id, name=str(data['name']),
-                                                 openid=transaction_code, appid=Md5.md5(data['name'] + '1'),
+                                                 openid=transaction_code, appid=secrets.token_hex(32),
                                                  t_code=Md5.md5(str(timezone.now())),
                                                  developer=1, ip=ip)
                             auth.login(request, user)
