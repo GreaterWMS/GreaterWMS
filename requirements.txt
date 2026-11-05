@@ -3,7 +3,7 @@ asgiref==3.5.2
 attrs==23.1.0
 autobahn==23.1.2
 Automat==22.10.0
-certifi==2022.9.24
+certifi==2023.7.22
 cffi==1.15.1
 charset-normalizer==2.1.1
 constantly==15.1.0
