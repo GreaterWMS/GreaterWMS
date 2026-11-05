@@ -46,11 +46,15 @@ class SannerGoodsTagView(viewsets.ModelViewSet):
 
     def get_queryset(self):
         bar_code = self.get_project()
+        customer_id = self.request.query_params.get('customer_id', None)
         if self.request.user:
             if bar_code is None:
-                return ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+                queryset = ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
             else:
-                return ListModel.objects.filter(openid=self.request.auth.openid, bar_code=bar_code, is_delete=False)
+                queryset = ListModel.objects.filter(openid=self.request.auth.openid, bar_code=bar_code, is_delete=False)
+            if customer_id:
+                queryset = queryset.filter(customer_id=customer_id)
+            return queryset
         else:
             return ListModel.objects.filter().none()
 
@@ -113,6 +117,7 @@ class APIViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         id = self.get_project()
+        customer_id = self.request.query_params.get('customer_id', None)
         if self.request.user:
             search_word = self.request.GET.get('search', '')
             if search_word:
@@ -123,12 +128,17 @@ class APIViewSet(viewsets.ModelViewSet):
                 else:
                     data_list = ListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
                     search_list = data_list.filter(Q(goods_shape=search_word) | Q(goods_specs=search_word))
+                    if customer_id:
+                        search_list = search_list.filter(customer_id=customer_id)
                     return search_list
             else:
                 if id is None:
-                    return ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
+                   request = ListModel.objects.filter(openid=self.request.auth.openid, is_delete=False)
                 else:
-                    return ListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                    rqueryset = ListModel.objects.filter(openid=self.request.auth.openid, id=id, is_delete=False)
+                if customer_id:
+                    queryset = rqueryset.filter(customer_id=customer_id)
+                    return queryset
         else:
             return ListModel.objects.filter().none()
 

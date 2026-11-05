@@ -1,10 +1,14 @@
 from django_filters import FilterSet
+from django_filters import filters
 from .models import ListModel
 
 class Filter(FilterSet):
+    class Filter(FilterSet):
+        customer_id = filters.CharFilter(field_name='customer_id', lookup_expr='exact')
     class Meta:
         model = ListModel
         fields = {
+            "customer_id": ["exact"],
             "id": ['exact', 'iexact', 'gt', 'gte', 'lt', 'lte', 'isnull', 'in', 'range'],
             "goods_code": ['exact', 'iexact', 'contains', 'icontains'],
             "goods_desc": ['exact', 'iexact', 'contains', 'icontains'],
