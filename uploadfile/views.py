@@ -59,13 +59,13 @@ class GoodlistfileViewSet(views.APIView):
                                               id=self.request.META.get('HTTP_OPERATOR')).first().staff_name
             if excel_type in ['xlsx', 'xls', 'csv']:
                 self.get_queryset().delete()
-                goodsunit.objects.all().delete()
-                goodsclass.objects.all().delete()
-                goodsbrand.objects.all().delete()
-                goodscolor.objects.all().delete()
-                goodsshape.objects.all().delete()
-                goodsspecs.objects.all().delete()
-                goodsorigin.objects.all().delete()
+                goodsunit.objects.filter(openid=self.request.auth.openid).delete()
+                goodsclass.objects.filter(openid=self.request.auth.openid).delete()
+                goodsbrand.objects.filter(openid=self.request.auth.openid).delete()
+                goodscolor.objects.filter(openid=self.request.auth.openid).delete()
+                goodsshape.objects.filter(openid=self.request.auth.openid).delete()
+                goodsspecs.objects.filter(openid=self.request.auth.openid).delete()
+                goodsorigin.objects.filter(openid=self.request.auth.openid).delete()
                 scanner.objects.filter(openid=self.request.auth.openid, mode='GOODS').delete()
                 if excel_type == 'csv':
                     df = pd.read_csv(files)
